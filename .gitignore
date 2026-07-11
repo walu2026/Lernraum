@@ -1,0 +1,6 @@
+# Theorie-PDFs bleiben lokal, werden nicht auf GitHub veröffentlicht
+*.pdf
+
+# Interne Arbeitsordner, nicht für Veröffentlichung
+/Archiv/
+/Pendenzen/

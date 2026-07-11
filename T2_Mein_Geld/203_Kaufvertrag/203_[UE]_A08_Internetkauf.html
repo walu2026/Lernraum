@@ -1,0 +1,2280 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>203-08 Kaufvertrag – Kaufen im Internet</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
+
+  :root {
+    /* SLP-Themenfarbe T1 "Mein Lehrbeginn" */
+    --t1: #1F638F;
+    --t1-light: #D4E8F4;
+    --t1-lighter: #EBF4FB;
+    --t1-dark: #174F72;
+
+    --bg: #FBF8F4;
+    --paper: #FFFFFF;
+    --ink: #20221F;
+    --ink-light: #7A7468;
+    --rule: #ECE6DA;
+    --green: #1F8045;
+    --green-light: #E9F7EE;
+    --red: #174F72;
+    --red-light: #D4E8F4;
+
+    --accent: var(--t1);
+    --accent-light: var(--t1-lighter);
+    --gold: #B8860B;
+    --gold-light: #FDF6E3;
+    --correct-border: #2a7a3a;
+    --wrong-border: #c0392b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── TOP BAR ── */
+  .top-bar {
+    background: linear-gradient(120deg, #2980B9 0%, var(--t1) 35%, var(--t1-dark) 100%);
+    color: white;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 20px rgba(31,99,143,.22);
+  }
+  .topic-check {
+    width: 32px; height: 32px;
+    border-radius: 10px;
+    background: rgba(255,255,255,.2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .topic-check svg { width: 18px; height: 18px; }
+  .top-bar h1 {
+    font-size: 17px;
+    font-weight: 700;
+    flex: 1;
+    min-width: 140px;
+    letter-spacing: -.01em;
+  }
+  .nw { display: flex; align-items: center; gap: 8px; }
+  .nw label { font-size: 12.5px; opacity: .9; font-weight: 500; font-family: inherit; }
+  .nw input {
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.32);
+    background: rgba(255,255,255,.16);
+    color: white;
+    font-size: 13px;
+    width: 165px;
+    font-family: inherit;
+  }
+  .nw input::placeholder { color: rgba(255,255,255,.6); }
+  .nw input:focus { outline: none; border-color: rgba(255,255,255,.7); background: rgba(255,255,255,.24); }
+
+  .btn {
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: none;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: filter .15s, transform .12s;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .btn:hover { transform: translateY(-1px); filter: brightness(1.06); }
+  .btn:active { transform: translateY(0) scale(.97); }
+  .btn-check { background: white; color: var(--t1-dark); }
+  .btn-check:hover { background: #fff; }
+  .btn-ghost { background: rgba(255,255,255,.18); color: white; }
+  .btn-ghost:hover { background: rgba(255,255,255,.28); }
+  .btn-dl { background: rgba(255,255,255,.94); color: var(--t1-dark); font-weight: 700; }
+  .btn-copy { background: rgba(255,255,255,.18); color: white; }
+  .btn-copy:hover { background: rgba(255,255,255,.28); }
+  .btn-copy.copied { background: var(--green); color: white; }
+  .btn-send { background: rgba(255,255,255,.94); color: #1a7a3c; font-weight: 700; }
+  .btn-send:hover { background: #fff; }
+  .btn-send:disabled { opacity: .5; cursor: not-allowed; }
+  .btn-send.sent { background: var(--green); color: white; }
+  .spell-btn-main { background: rgba(255,255,255,.18); color: white; }
+  .spell-btn-main:hover { background: rgba(255,255,255,.28); }
+
+  /* ── COPY TOAST ── */
+  #copyToast {
+    position: fixed; top: 70px; right: 20px; z-index: 9999;
+    background: var(--green); color: white; padding: 10px 18px;
+    border-radius: 999px; font-family: inherit;
+    font-size: 13px; font-weight: 600; box-shadow: 0 4px 16px rgba(0,0,0,.25);
+    opacity: 0; transform: translateY(-8px); transition: all .25s;
+    pointer-events: none;
+  }
+  #copyToast.show { opacity: 1; transform: translateY(0); }
+
+  /* ── SCORE BANNER ── */
+  .score-banner {
+    display: none;
+    background: var(--t1);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-family: inherit;
+    font-weight: 600;
+  }
+  .score-banner.show { display: block; }
+
+  /* ── WORKSHEET CONTAINER ── */
+  .ws {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 36px 28px 64px;
+    background: transparent;
+    border-left: none;
+  }
+  .task-id {
+    display: none;
+  }
+  .lebenswelt-ref {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--t1-dark);
+    letter-spacing: 0;
+    margin-bottom: 6px;
+    font-family: inherit;
+  }
+  .task-title {
+    display: block;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -.012em;
+    margin-bottom: 22px;
+  }
+
+  /* ── LERNZIEL BOX ── */
+  .lz-box {
+    background: var(--t1-lighter);
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    font-size: 14.5px;
+    color: #3a362f;
+    font-style: normal;
+    position: relative;
+    overflow: hidden;
+  }
+  .lz-box::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px;
+    background: var(--t1); border-radius: 16px 0 0 16px;
+  }
+  .lz-box strong { color: var(--t1-dark); font-weight: 700; font-style: normal; }
+
+  .meta-row {
+    display: inline-flex !important;
+    font-size: 11px !important;
+    color: var(--t1-dark) !important;
+    background: var(--t1-light);
+    font-family: 'JetBrains Mono', monospace !important;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 24px !important;
+    letter-spacing: .03em;
+  }
+
+  /* ── AUFTRAG TEXT ── */
+  .ws > p, p.auftrag {
+    font-size: 15px;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .ws > p strong, p.auftrag strong { color: var(--t1-dark); font-weight: 700; }
+
+  /* ── TABLE ── */
+  table.ex {
+    width: 100% !important;
+    border-collapse: separate !important;
+    border-spacing: 0 10px !important;
+    font-size: 14.5px;
+    margin: 8px 0 28px !important;
+  }
+  table.ex thead th {
+    background: transparent !important;
+    color: var(--ink-light) !important;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px !important;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 0 16px 8px !important;
+  }
+  table.ex tbody tr {
+    background: var(--paper);
+    border-radius: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+    transition: box-shadow .2s ease, transform .2s ease;
+  }
+  table.ex tbody tr:has(textarea:focus) {
+    box-shadow: 0 4px 16px rgba(31,99,143,.12);
+    transform: translateY(-1px);
+  }
+  table.ex tbody tr:nth-child(even) td { background: transparent !important; }
+  table.ex tbody td { padding: 15px 16px !important; vertical-align: top; border: none !important; }
+  table.ex tbody td:first-child { border-radius: 14px 0 0 14px; }
+  table.ex tbody td:last-child { border-radius: 0 14px 14px 0; }
+  table.ex td strong {
+    display: inline-block;
+    font-weight: 700; color: var(--t1-dark); font-size: 13px;
+    background: var(--t1-lighter); padding: 4px 10px; border-radius: 999px;
+  }
+  table.ex textarea, table.ex input[type=text] {
+    width: 100% !important; border: 1.5px solid var(--rule) !important; border-radius: 10px !important;
+    background: var(--bg) !important; font-family: inherit !important; font-size: 14px !important;
+    padding: 9px 12px !important; resize: vertical; margin-top: 6px;
+    transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  table.ex textarea:focus, table.ex input[type=text]:focus {
+    outline: none; border-color: var(--t1) !important; background: white !important; box-shadow: 0 0 0 4px var(--t1-light);
+  }
+
+  /* ── SOLUTION BOXES (.visible toggled by checkAll()) ── */
+  .sol-inline-sm, .sol-inline {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    background: var(--green-light) !important;
+    border-left: none !important;
+    border-radius: 10px !important;
+    padding: 0 12px !important;
+    margin-top: 0 !important;
+    font-size: 13px !important;
+    font-weight: 500;
+    color: #135c2c !important;
+    overflow: hidden;
+    transition: grid-template-rows .32s ease, opacity .28s ease, padding .32s ease, margin-top .32s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+  }
+  .sol-inline-sm::before, .sol-inline::before { content: ''; min-height: 0; display: block; }
+  .sol-inline-sm.visible, .sol-inline.visible {
+    display: grid;
+    grid-template-rows: 1fr;
+    opacity: 1;
+    padding: 9px 12px !important;
+    margin-top: 8px !important;
+  }
+  .sol-inline-sm.visible::before, .sol-inline.visible::before { content: none; }
+  .sol-inline-sm.sol-empty-hint, .sol-inline.sol-empty-hint,
+  .sol-inline-sm.sol-unplausibel-hint, .sol-inline.sol-unplausibel-hint {
+    background: #FDF6E3 !important;
+    color: #8a6500 !important;
+    font-style: italic;
+  }
+
+  /* ── KOMPETENZORIENTIERTE FRAGE BOX ── */
+  .ko-box {
+    background: var(--paper) !important;
+    border-radius: 18px !important;
+    padding: 22px 24px !important;
+    box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    margin-top: 28px !important;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow .2s ease;
+  }
+
+  /* ── KI-Feedback: Toggle, Button, Ergebnis-Boxen ── */
+  .ki-toggle-row { display: flex; align-items: center; gap: 8px; margin: 10px 0 14px; flex-wrap: wrap; }
+  .ki-toggle-label { font-size: 12.5px; font-weight: 600; color: var(--ink); }
+  .ki-switch { position: relative; width: 42px; height: 23px; border-radius: 999px; background: #DDD6C8; cursor: pointer; transition: background .18s; flex-shrink: 0; display: inline-block; vertical-align: middle; }
+  .ki-switch.on { background: var(--t1); }
+  .ki-switch-knob { position: absolute; top: 2.5px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: left .18s; box-shadow: 0 1px 2px rgba(0,0,0,.25); }
+  .ki-switch.on .ki-switch-knob { left: 21px; }
+  .ki-modus-pill { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #ECE6DA; color: #7A7468; }
+  .ki-modus-pill.on { background: var(--t1-light); color: var(--t1-dark); }
+  .btn-ki { background: #fff; color: var(--t1-dark); box-shadow: 0 0 0 1.5px var(--t1) inset; }
+  .btn-ki:hover:not(:disabled) { background: var(--t1-light); }
+  .btn-ki:disabled { opacity: .45; cursor: not-allowed; box-shadow: 0 0 0 1.5px #DDD6C8 inset; }
+  .kf-feedback-box { margin-top: 12px; padding: 12px 14px; background: #fff; border-left: 3px solid #1565C0; border-radius: 0 8px 8px 0; font-size: 13.5px; line-height: 1.6; user-select: none; -webkit-user-select: none; -moz-user-select: none; }
+  .kf-feedback-box.kf-pattern { border-left-color: #B8860B; background: #FDF6E3; }
+  .kf-feedback-box.kf-error { border-left-color: var(--t1); }
+  .kf-feedback-box p { margin: 0; }
+  .kf-feedback-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: #1565C0; margin-bottom: 6px; display: block; }
+  .kf-pattern .kf-feedback-label { color: #8a6500; }
+  .kf-error .kf-feedback-label { color: var(--t1-dark); }
+  .kf-mini-ex { margin-top: 8px; padding: 8px 10px; background: #fff; border: 1px dashed #B8860B; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; }
+  .kf-loading { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #7A7468; margin-top: 10px; }
+  .kf-spin { width: 13px; height: 13px; border: 2px solid #ECE6DA; border-top-color: var(--t1); border-radius: 50%; animation: kf-spin .7s linear infinite; }
+  @keyframes kf-spin { to { transform: rotate(360deg); } }
+  .block-reset-link { font-size: 11px; color: #9a948a; text-decoration: none; }
+  .block-reset-link:hover { color: var(--t1-dark); text-decoration: underline; }
+  .ko-box:has(textarea:focus) { box-shadow: 0 6px 20px rgba(31,99,143,.12); }
+  .ko-box::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--t1); }
+  .ko-label {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 10.5px !important;
+    font-weight: 700;
+    color: var(--t1-dark) !important;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: 10px !important;
+  }
+  .ko-text { font-size: 14.5px !important; color: var(--ink) !important; margin-bottom: 14px !important; font-weight: 500; line-height: 1.65 !important; }
+  .ko-box textarea {
+    width: 100% !important; min-height: 90px; border: 1.5px solid var(--rule) !important; border-radius: 12px !important;
+    padding: 12px 14px !important; font-family: inherit !important; font-size: 14.5px !important; resize: vertical; background: var(--bg) !important;
+  }
+  .ko-box textarea:focus { outline: none; border-color: var(--t1) !important; background: white !important; box-shadow: 0 0 0 4px var(--t1-light); }
+
+  /* ── BUTTON ROW (bottom) ── */
+  .btn-row {
+    display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px !important;
+  }
+  .btn-row .btn-check { background: var(--gold); color: white; }
+  .btn-row .btn-check:hover { background: #9a6e00; }
+  .btn-row .btn-ghost { background: var(--paper); color: var(--ink); border: 1.5px solid var(--rule); }
+  .btn-row .btn-ghost:hover { background: var(--bg); }
+  .btn-row .btn-dl { background: var(--t1); color: white; }
+  .btn-row .btn-dl:hover { background: var(--t1-dark); }
+  .btn-row .btn-copy { background: var(--green); color: white; }
+  .btn-row .btn-copy:hover { background: #15602f; }
+  .btn-row .btn-copy.copied { background: var(--green); color: white; }
+  .btn-row .spell-btn-main { background: var(--t1-lighter); color: var(--t1-dark); }
+  .btn-row .spell-btn-main:hover { background: var(--t1-light); }
+
+  /* ── GLOBAL SPELL LIMIT NOTE ── */
+  .spell-limit-note {
+    display: none;
+    margin-bottom: 8px;
+    padding: 8px 14px;
+    background: var(--t1-lighter);
+    border: 1px dashed var(--t1-light);
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--t1-dark);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .spell-limit-note.show { display: block; }
+
+  /* ── FOOTER ── */
+  .ws > p[style*="border-top"] {
+    color: var(--ink-light) !important;
+    font-size: 11.5px !important;
+    font-family: 'JetBrains Mono', monospace !important;
+    margin-top: 32px !important;
+    border-top: 1px solid var(--rule) !important;
+    padding-top: 14px !important;
+  }
+
+  /* ── SPELLCHECK RESULT BOXES ── */
+  .spell-result {
+    display: none;
+    margin-top: 8px;
+    font-size: 12.5px;
+    font-family: inherit;
+    border-radius: 10px;
+    padding: 10px 14px;
+    line-height: 1.5;
+    position: relative;
+  }
+  .spell-result.show { display: block; }
+  .spell-result.spell-ok { background: var(--green-light); color: #1e5c23; }
+  .spell-result.spell-issues { background: #FDF6E3; color: #6b4d10; }
+  .spell-result.spell-error { background: var(--t1-lighter); color: var(--t1-dark); }
+  .spell-result ul { margin: 4px 0 0 0; padding-left: 18px; }
+  .spell-result li { margin-bottom: 5px; }
+  .spell-result .spell-orig { text-decoration: underline wavy var(--t1); }
+  .spell-result .spell-fix { color: #1565C0; font-weight: 600; }
+  .spell-close-btn {
+    position: absolute; top: 6px; right: 8px;
+    width: 20px; height: 20px; border-radius: 50%;
+    border: none; background: rgba(0,0,0,.08); color: inherit;
+    font-size: 11px; line-height: 20px; text-align: center;
+    cursor: pointer; padding: 0;
+  }
+  .spell-close-btn:hover { background: rgba(0,0,0,.18); }
+  .spell-highlighted-text {
+    margin: 6px 0 8px;
+    padding: 8px 12px;
+    background: var(--bg);
+    border-radius: 8px;
+    line-height: 1.6;
+  }
+  .spell-highlighted-text mark.spell-mark {
+    background: transparent;
+    color: var(--t1);
+    font-weight: 700;
+    text-decoration: underline wavy var(--t1);
+    text-decoration-thickness: 1.5px;
+    cursor: help;
+  }
+
+  /* ── PASTE WARNING ── */
+  .paste-warn {
+    border-color: var(--t1) !important;
+    background: var(--t1-lighter) !important;
+  }
+  .paste-msg {
+    display: none;
+    font-size: 11.5px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--t1-dark);
+    background: var(--t1-lighter);
+    border: 1px solid var(--t1-light);
+    border-radius: 8px;
+    padding: 5px 10px;
+    margin-top: 4px;
+    font-weight: 600;
+  }
+  .paste-msg.show { display: block; }
+
+  /* ── ICON ROW (theme navigation) ── */
+  .icon-row { display: flex; gap: 12px; margin: 40px 0 0; flex-wrap: wrap; }
+  .icon-item {
+    display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: var(--ink-light);
+    background: var(--paper); padding: 10px 14px; border-radius: 999px; box-shadow: 0 1px 3px rgba(0,0,0,.05);
+  }
+  .icon-item svg { width: 17px; height: 17px; stroke: var(--t1); }
+
+  /* ── REVEAL ANIMATION (one-time on load) ── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { animation: fadeInUp .5s cubic-bezier(.16,.84,.44,1) both; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { animation: none; }
+  }
+
+  .punkte-box, .punkte-summe-zeile { display: none; }
+
+  @media print {
+    .top-bar { display: none; }
+    .score-banner { display: none !important; }
+    .ws { box-shadow: none; border: none; margin: 0; padding: 0; max-width: 100%; }
+    table.ex tbody tr { page-break-inside: avoid; break-inside: avoid; box-shadow: none; }
+    .rf-row { page-break-inside: avoid; break-inside: avoid; }
+    /* Punkte-Box pro Aufgabe (nur im Druck sichtbar) - Korrekturhilfe:
+       zeigt die maximale Punktzahl, die tatsächlich erreichte Punktzahl
+       trägt die Lehrperson von Hand ein, KEINE automatische Bewertung. */
+    .punkte-box {
+      display: inline-block !important;
+      border: 1px solid #999;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #444;
+      white-space: nowrap;
+      margin-left: 8px;
+    }
+    .punkte-summe-zeile {
+      display: block !important;
+      margin-top: 20px;
+      padding-top: 10px;
+      border-top: 2px solid #333;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: right;
+    }
+    /* Echter Seitenrand statt 0 - sonst reicht der Inhalt bis an den
+       physischen Papierrand, was bei vielen Druckern/PDF-Renderern zu
+       abgeschnittenem Text an den Kanten führt. */
+    @page { margin: 15mm 12mm; size: A4 portrait; }
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+</head>
+<body>
+<table width="100%" style="background:#f7f7f7;border-bottom:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;">
+<tr>
+<td style="padding:6px 10px;text-align:left;width:33%;"><a href="203_[UE]_A07_Kaufvertrag_Aussagen.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
+<td style="padding:6px 10px;text-align:center;width:34%;"><a href="203_Aufgaben.html" style="color:#8b1a1a;text-decoration:none;font-size:14px;" title="Zur Übersicht">&#8593;</a></td>
+<td style="padding:6px 10px;text-align:right;width:33%;"><a href="203_[UE]_A09_Kaufvertrag_Faelle.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
+</tr>
+</table>
+
+<div id="iframeBanner" style="display:none;background:#b8860b;color:white;text-align:center;padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.03em;z-index:9999;">
+  ⚠️ Diese Übung läuft in der SharePoint-Vorschau – Buttons sind deaktiviert.
+  &nbsp;<strong>Bitte oben rechts auf «Öffnen» klicken</strong>, um die Übung im Browser zu starten.
+</div>
+<div class="top-bar">
+  <div class="topic-check">
+    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+  <h1>Mein Geld</h1>
+  <div class="nw"><label>Name:</label><input id="studentName" type="text" placeholder="Vorname Nachname" autocomplete="name"></div>
+  <div class="nw"><label>Klasse:</label><input id="studentKlasse" type="text" placeholder="z.B. 3a" style="width:70px;"></div>
+  <button class="btn btn-check" onclick="checkAll()">Überprüfen</button>
+  <button class="btn spell-btn-main" id="spellCheckAllBtnTop" onclick="checkAllSpelling(this)">Rechtschreibung</button>
+  <button class="btn btn-copy" id="copyBtn" onclick="copyAllToClipboard()">📋 Kopieren</button>
+  <button class="btn btn-send" id="sendBtn" onclick="antwortenEinsenden(this)">✉ Antworten einsenden</button>
+</div>
+<div id="copyToast">✓ In Zwischenablage kopiert</div>
+
+<div class="ws" style="border-left-color: var(--t1);">
+  <div class="lebenswelt-ref">203 Kaufvertrag &amp; Konsumentenrecht &mdash; Einkaufen und Verträge abschliessen</div>
+  <div class="task-title">203-08 · Kaufen im Internet</div>
+  <div class="lz-box reveal" style="animation-delay:.02s"><strong>Lernziel:</strong> Ich kenne die rechtlichen Grundlagen beim Online-Kauf und kann typische Fragen dazu beantworten.</div>
+  <div class="meta-row" style="font-size:12px;color:#888;font-family:'JetBrains Mono',monospace;margin-bottom:20px;">K3</div>
+<p style="margin:0 0 10px;"><strong style="color:var(--t1-dark);">Auftrag:</strong> Beantworten Sie die folgenden Fragen zum Kaufen im Internet in vollständigen Sätzen. Begründen Sie Ihre Antworten.</p>
+<table class="ex" style="width:100%;border-collapse:collapse;margin:8px 0;">
+<tbody><tr><td style="padding:10px 14px;">
+<p style="font-size:14px;font-weight:600;margin-bottom:6px;">a) Sind im Internet abgeschlossene Verträge verbindlich?</p>
+<textarea id="ta_203_08_1" rows="2" style="width:100%;border:1px solid var(--rule);border-radius:4px;padding:6px 10px;font-family:'Source Serif 4',serif;font-size:13.5px;resize:vertical;"></textarea>
+<div class="sol-inline-sm" id="sol_203_08_1">Ja. Sie sind so verbindlich wie schriftliche oder mündliche Verträge.</div>
+</td></tr><tr><td style="padding:10px 14px;">
+<p style="font-size:14px;font-weight:600;margin-bottom:6px;">b) Kann man sich auf die Preisangaben verlassen?</p>
+<textarea id="ta_203_08_2" rows="2" style="width:100%;border:1px solid var(--rule);border-radius:4px;padding:6px 10px;font-family:'Source Serif 4',serif;font-size:13.5px;resize:vertical;"></textarea>
+<div class="sol-inline-sm" id="sol_203_08_2">Ja. Es gilt dasselbe wie bei Preisangaben am Produkt im Geschäft.</div>
+</td></tr><tr><td style="padding:10px 14px;">
+<p style="font-size:14px;font-weight:600;margin-bottom:6px;">c) Kann man von einem Internetkaufvertrag zurücktreten?</p>
+<textarea id="ta_203_08_3" rows="2" style="width:100%;border:1px solid var(--rule);border-radius:4px;padding:6px 10px;font-family:'Source Serif 4',serif;font-size:13.5px;resize:vertical;"></textarea>
+<div class="sol-inline-sm" id="sol_203_08_3">Nein, es gibt kein gesetzliches Rücktrittsrecht.</div>
+</td></tr><tr><td style="padding:10px 14px;">
+<p style="font-size:14px;font-weight:600;margin-bottom:6px;">d) Wann sind allgemeine Geschäftsbedingungen gültig?</p>
+<textarea id="ta_203_08_4" rows="2" style="width:100%;border:1px solid var(--rule);border-radius:4px;padding:6px 10px;font-family:'Source Serif 4',serif;font-size:13.5px;resize:vertical;"></textarea>
+<div class="sol-inline-sm" id="sol_203_08_4">Wenn man sie mit einem «Häkchen» als gelesen markiert.</div>
+</td></tr><tr><td style="padding:10px 14px;">
+<p style="font-size:14px;font-weight:600;margin-bottom:6px;">e) Unter welchen Umständen können Minderjährige im Internet etwas kaufen?</p>
+<textarea id="ta_203_08_5" rows="2" style="width:100%;border:1px solid var(--rule);border-radius:4px;padding:6px 10px;font-family:'Source Serif 4',serif;font-size:13.5px;resize:vertical;"></textarea>
+<div class="sol-inline-sm" id="sol_203_08_5">Wenn sie die Ware mit dem eigenen Geld oder im Einverständnis mit den Eltern bezahlen.</div>
+</td></tr><tr><td style="padding:10px 14px;">
+<p style="font-size:14px;font-weight:600;margin-bottom:6px;">f) Wer haftet, wenn die Ware verloren geht oder beschädigt wird?</p>
+<textarea id="ta_203_08_6" rows="2" style="width:100%;border:1px solid var(--rule);border-radius:4px;padding:6px 10px;font-family:'Source Serif 4',serif;font-size:13.5px;resize:vertical;"></textarea>
+<div class="sol-inline-sm" id="sol_203_08_6">Es haftet der Absender oder der Transportdienst, je nachdem, wer den Schaden verursacht hat.</div>
+</td></tr><tr><td style="padding:10px 14px;">
+<p style="font-size:14px;font-weight:600;margin-bottom:6px;">g) Wer bezahlt die Versandkosten?</p>
+<textarea id="ta_203_08_7" rows="2" style="width:100%;border:1px solid var(--rule);border-radius:4px;padding:6px 10px;font-family:'Source Serif 4',serif;font-size:13.5px;resize:vertical;"></textarea>
+<div class="sol-inline-sm" id="sol_203_08_7">In der Regel bezahlt der Käufer (im Vertrag geregelt!) die Versandkosten. Je nach Herkunft und Versandart können diese Kosten sehr hoch sein.</div>
+</td></tr><tr><td style="padding:10px 14px;">
+<p style="font-size:14px;font-weight:600;margin-bottom:6px;">h) Warum haften Verkaufsportale wie Ricardo nicht, wenn man betrogen worden ist?</p>
+<textarea id="ta_203_08_8" rows="2" style="width:100%;border:1px solid var(--rule);border-radius:4px;padding:6px 10px;font-family:'Source Serif 4',serif;font-size:13.5px;resize:vertical;"></textarea>
+<div class="sol-inline-sm" id="sol_203_08_8">Sie haften nicht, weil sie keine Vertragspartei sind.</div>
+</td></tr><tr><td style="padding:10px 14px;">
+<p style="font-size:14px;font-weight:600;margin-bottom:6px;">i) Muss man unbemerkt hergestellte kostenpflichtige Verbindungen bezahlen?</p>
+<textarea id="ta_203_08_9" rows="2" style="width:100%;border:1px solid var(--rule);border-radius:4px;padding:6px 10px;font-family:'Source Serif 4',serif;font-size:13.5px;resize:vertical;"></textarea>
+<div class="sol-inline-sm" id="sol_203_08_9">Nein. Für einen gültigen Vertrag braucht es die Einwilligung beider Parteien. Aber die Problemlösung wird aufwändig werden. Es lohnt sich deshalb, nur seriöse Seiten zu besuchen.</div>
+</td></tr></tbody></table>
+<div class="ko-box reveal" style="animation-delay:.24s"><div class="ko-label">💬 Kompetenzorientierte Frage</div><div class="ko-text" id="ko_text_203_08">Du bestellst online ein Kleidungsstück, das nach dem Auspacken nicht passt. Der Shop hat kein Rückgaberecht in den AGB erwähnt. Beurteile: Musst du das Kleidungsstück trotzdem behalten?</div><textarea id="ta_ko_203_08" rows="4" style="width:100%;border:1px solid #90CAF9;border-radius:5px;padding:8px;font-family:'Source Serif 4',serif;font-size:14px;resize:vertical;" data-ki-aufgabe="Du bestellst online ein Kleidungsstück, das nach dem Auspacken nicht passt. Der Shop hat kein Rückgaberecht in den AGB erwähnt. Beurteile: Musst du das Kleidungsstück trotzdem behalten?" data-ki-loesung="Rechtlich gesehen ja, sofern die Ware nicht mangelhaft ist – es gibt kein gesetzliches Widerrufsrecht beim Online-Kauf in der Schweiz. Viele Shops bieten aber freiwillig ein Rückgaberecht als Kundenservice an, das man vor dem Kauf prüfen sollte."></textarea><div class="ki-toggle-row" id="kiToggleArea"><span class="ki-toggle-label">KI-Modus</span><div class="ki-switch" id="kiModeToggle" role="switch" aria-checked="false" tabindex="0" onclick="kiModeUmschalten(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();kiModeUmschalten(this);}"><div class="ki-switch-knob"></div></div><span class="ki-modus-pill" data-ki-pill>Modus: Rechtschreibprüfung (LanguageTool)</span></div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px;" id="kiFeedbackBtnArea"><button class="btn btn-ki" id="kiFeedbackBtn" onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button></div><div id="kiFeedbackResult"></div><div class="sol-inline" id="sol_ko_203_08" style="background:#fff;border-left-color:#1565C0;">✓ Mögliche begründete Antwort: Rechtlich gesehen ja, sofern die Ware nicht mangelhaft ist – es gibt kein gesetzliches Widerrufsrecht beim Online-Kauf in der Schweiz. Viele Shops bieten aber freiwillig ein Rückgaberecht als Kundenservice an, das man vor dem Kauf prüfen sollte.</div><div class="block-reset-row" style="text-align:right;margin:6px 0 4px;"><a href="#" class="block-reset-link" onclick="resetBlock(this,['ta_ko_203_08']);return false;">↺ Nur diesen Auftrag zurücksetzen</a></div></div>
+  <div id="spellGlobalLimitNote" class="spell-limit-note">⚠ Rechtschreibung: Erkennt nicht alle Fehler.</div>
+  <div class="btn-row" style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;">
+    <button class="btn spell-btn-main" id="spellCheckAllBtn" onclick="checkAllSpelling(this)">Rechtschreibung</button>
+    <button class="btn btn-check" onclick="checkAll()">Überprüfen</button>
+    <button class="btn btn-ghost" onclick="printAsPDF()">Als PDF drucken</button>
+    <button class="btn btn-dl" onclick="downloadFile()">Speichern</button>
+    <button class="btn btn-ghost" onclick="resetAll()">Zurücksetzen</button>
+  </div>
+  <p style="color:#5a5a52;font-size:12px;font-family:'JetBrains Mono',monospace;margin-top:28px;border-top:1px solid #ccc9be;padding-top:12px;">
+    <span id="footerName"></span> · 203-08 – Kaufen im Internet · Thema 2: Mein Geld
+  </p>
+  <p style="margin-top:6px;">
+    <a href="#" id="erweiterteNutzungLink" onclick="erweiterteNutzungUmschalten();return false;" style="font-size:11px;color:#b0aa9c;text-decoration:none;">⚙ Erweiterte Nutzung</a>
+    &nbsp;·&nbsp;
+    <a href="#" id="einsendenModusLink" onclick="einsendenModusUmschalten();return false;" style="font-size:11px;color:#b0aa9c;text-decoration:none;">✉ Abgabe-Modus</a>
+    &nbsp;·&nbsp;
+    <a href="#" id="pruefungsModusLink" onclick="pruefungsModusUmschalten();return false;" style="font-size:11px;color:#b0aa9c;text-decoration:none;">📝 Standortbestimmung</a>
+  </p>
+</div>
+<script>
+/* ════════════════════════════════════════════════════════════════
+   EINSTELLUNGEN FÜR DIESE DATEI
+   ════════════════════════════════════════════════════════════════
+   Hier ein/ausschalten, ohne im restlichen Code suchen zu müssen.
+   ════════════════════════════════════════════════════════════════ */
+const ANTWORTEN_EINSENDEN_AKTIV = true;   // false = "Antworten einsenden" wird in dieser Datei komplett deaktiviert (auch mit Passwort nicht aktivierbar)
+const PRUEFUNGS_MODUS_FEST = false;   // true = Standortbestimmung ist FEST aktiv für jeden, der die Datei öffnet (z.B. für eine vorbereitete Standortbestimmung) - der Footer-Link verschwindet dann, da nichts mehr umzuschalten ist
+const PRUEFUNG_KEY = 'abu_pruefungs_modus';
+const PRUEFUNG_PASSWORT = "test"; // <- hier dein eigenes Passwort eintragen
+
+function pruefungsModusIstAktiv() {
+  return PRUEFUNGS_MODUS_FEST || localStorage.getItem(PRUEFUNG_KEY) === '1';
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ERWEITERTE NUTZUNG (nur KI-Modus)
+   ════════════════════════════════════════════════════════════════
+   Standardmässig ist der KI-Modus ausgeblendet, damit die Datei für
+   alle (Lernende, andere Lehrpersonen) zunächst einfach aussieht.
+   Über den dezenten Link "⚙ Erweiterte Nutzung" (ganz unten) lässt
+   er sich mit einem einfachen Passwort einblenden - gedacht für die
+   gemeinsame, kollaborative Nutzung im Unterricht (Lehrperson UND
+   Lernende kennen das Passwort). Zustand bleibt nach Neuladen
+   erhalten (localStorage, pro Browser/Gerät).
+   ════════════════════════════════════════════════════════════════ */
+const ERWEITERT_KEY = 'abu_erweiterte_nutzung';
+const ERWEITERT_PASSWORT = "abu"; // <- hier dein eigenes Passwort eintragen
+
+function wendeErweiterteNutzungAn() {
+  const aktiv = localStorage.getItem(ERWEITERT_KEY) === '1';
+  // Standortbestimmung hat Vorrang: KI-Bereich bleibt versteckt, auch wenn
+  // "Erweiterte Nutzung" zuvor aktiviert wurde.
+  const pruefungAktiv = pruefungsModusIstAktiv();
+  const kiSichtbar = aktiv && !pruefungAktiv;
+
+  const kiToggleArea = document.getElementById('kiToggleArea');
+  if (kiToggleArea) kiToggleArea.style.display = kiSichtbar ? 'flex' : 'none';
+
+  const kiBtnArea = document.getElementById('kiFeedbackBtnArea');
+  if (kiBtnArea) kiBtnArea.style.display = kiSichtbar ? 'flex' : 'none';
+
+  const link = document.getElementById('erweiterteNutzungLink');
+  if (link) link.textContent = aktiv ? '⚙ Erweiterte Nutzung (an)' : '⚙ Erweiterte Nutzung';
+}
+
+function erweiterteNutzungUmschalten() {
+  const aktuell = localStorage.getItem(ERWEITERT_KEY) === '1';
+  if (!aktuell) {
+    const eingabe = prompt('Passwort für erweiterte Nutzung:');
+    if (eingabe === null) return;
+    if (eingabe !== ERWEITERT_PASSWORT) { alert('Falsches Passwort.'); return; }
+  }
+  try { localStorage.setItem(ERWEITERT_KEY, aktuell ? '0' : '1'); } catch (e) {}
+  wendeErweiterteNutzungAn();
+}
+
+/* ════════════════════════════════════════════════════════════════
+   PRÜFUNGS-MODUS – blendet Überprüfen, Rechtschreibung und KI aus
+   ════════════════════════════════════════════════════════════════
+   Eigenes, drittes Passwort. Wird aktiviert, wenn eine Datei als
+   echter Test/Prüfung eingesetzt wird, statt als normale Übung mit
+   Hilfsmitteln. Hat Vorrang vor "Erweiterte Nutzung": Solange
+   Standortbestimmung aktiv ist, bleibt der KI-Bereich versteckt, auch
+   wenn das KI-Passwort separat eingegeben wurde.
+   ════════════════════════════════════════════════════════════════ */
+function wendePruefungsModusAn() {
+  const aktiv = pruefungsModusIstAktiv();
+
+  // Überprüfen + Rechtschreibung ausblenden (oben UND unten)
+  document.querySelectorAll('.btn-check, .spell-btn-main').forEach(function(btn) {
+    btn.style.display = aktiv ? 'none' : '';
+  });
+  const limitNote = document.getElementById('spellGlobalLimitNote');
+  if (limitNote) limitNote.style.display = aktiv ? 'none' : '';
+
+  // Zurücksetzen (global + pro Auftrag) ausblenden, damit während einer
+  // Prüfung niemand (versehentlich oder absichtlich) Antworten löscht
+  document.querySelectorAll('.btn-ghost').forEach(function(btn) {
+    if (btn.textContent.trim() === 'Zurücksetzen') btn.style.display = aktiv ? 'none' : '';
+  });
+  document.querySelectorAll('.block-reset-row').forEach(function(el) {
+    el.style.display = aktiv ? 'none' : '';
+  });
+
+  const link = document.getElementById('pruefungsModusLink');
+  if (link) {
+    if (PRUEFUNGS_MODUS_FEST) {
+      // Fest aktiviert: nichts mehr umzuschalten, Link verschwindet ganz
+      link.style.display = 'none';
+    } else {
+      link.textContent = aktiv ? '📝 Standortbestimmung (aktiv, gesperrt)' : '📝 Standortbestimmung';
+    }
+  }
+
+  // KI-Sichtbarkeit neu berechnen, da Standortbestimmung Vorrang hat
+  wendeErweiterteNutzungAn();
+}
+
+function pruefungsModusUmschalten() {
+  if (PRUEFUNGS_MODUS_FEST) return; // fest aktiviert, kein Umschalten möglich
+  const aktuell = localStorage.getItem(PRUEFUNG_KEY) === '1';
+  if (aktuell) {
+    // Einbahnstrasse: einmal aktiviert, gibt es kein Zurückschalten mehr -
+    // auch nicht mit dem Passwort. Verhindert, dass ein Lernender, der das
+    // Passwort kennt, den Modus während der Prüfung selbst wieder ausschaltet.
+    alert('Die Standortbestimmung ist aktiv und kann nicht mehr ausgeschaltet werden.');
+    return;
+  }
+  const eingabe = prompt('Passwort für die Standortbestimmung:');
+  if (eingabe === null) return;
+  if (eingabe !== PRUEFUNG_PASSWORT) { alert('Falsches Passwort.'); return; }
+  try { localStorage.setItem(PRUEFUNG_KEY, '1'); } catch (e) {}
+  wendePruefungsModusAn();
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ANTWORTEN EINSENDEN – separat, eigenes Passwort
+   ════════════════════════════════════════════════════════════════
+   Komplett unabhängig vom KI-Modus: eigenes Passwort, eigener
+   localStorage-Schlüssel. Gedacht für gezielte, von der Lehrperson
+   kontrollierte Abgabe-Situationen, nicht für die alltägliche,
+   gemeinsame Übungsnutzung - daher bewusst getrennt vom einfacheren
+   "Erweiterte Nutzung"-Passwort.
+   ════════════════════════════════════════════════════════════════ */
+const EINSENDEN_KEY = 'abu_einsenden_modus';
+const EINSENDEN_PASSWORT = "abgabe"; // <- hier dein eigenes, anderes Passwort eintragen
+
+function wendeEinsendenModusAn() {
+  const aktiv = ANTWORTEN_EINSENDEN_AKTIV && localStorage.getItem(EINSENDEN_KEY) === '1';
+
+  const sendBtn = document.getElementById('sendBtn');
+  if (sendBtn) sendBtn.style.display = aktiv ? '' : 'none';
+
+  const klasseFeld = document.getElementById('studentKlasse');
+  if (klasseFeld && klasseFeld.closest('.nw')) klasseFeld.closest('.nw').style.display = aktiv ? '' : 'none';
+
+  const link = document.getElementById('einsendenModusLink');
+  if (link) link.textContent = aktiv ? '✉ Abgabe-Modus (an)' : '✉ Abgabe-Modus';
+}
+
+function einsendenModusUmschalten() {
+  if (!ANTWORTEN_EINSENDEN_AKTIV) return;
+  const aktuell = localStorage.getItem(EINSENDEN_KEY) === '1';
+  if (!aktuell) {
+    const eingabe = prompt('Passwort für den Abgabe-Modus:');
+    if (eingabe === null) return;
+    if (eingabe !== EINSENDEN_PASSWORT) { alert('Falsches Passwort.'); return; }
+  }
+  try { localStorage.setItem(EINSENDEN_KEY, aktuell ? '0' : '1'); } catch (e) {}
+  wendeEinsendenModusAn();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  wendePruefungsModusAn();
+  wendeErweiterteNutzungAn();
+  wendeEinsendenModusAn();
+});
+
+
+const SAFE_FN = '203_[UE]_A08_Internetkauf';
+
+// Stufe-1-Plausibilitätsprüfung (rein regelbasiert, keine KI, keine Kosten):
+// Prüft, ob ein eingegebener Text überhaupt eine ernsthafte Antwort sein
+// könnte - NICHT, ob er inhaltlich richtig ist. Filtert nur die offensichtlichsten
+// Lückenfüller heraus (zu kurz, Buchstabensalat, Tastatur-Muster, Wiederholungen).
+function istPlausibleAntwort(text) {
+  const t = (text || '').trim();
+  const ohneLeerzeichen = t.replace(/\s+/g, '');
+
+  // Mindestlänge (ohne Leerzeichen)
+  if (ohneLeerzeichen.length < 8) return false;
+
+  // Muss mindestens 2 echte Buchstaben enthalten (verhindert reine Zahlen/Symbole)
+  const buchstabenAnzahl = (t.match(/[a-zA-ZäöüÄÖÜàâéèêïîôûçÀ-ÿ]/g) || []).length;
+  if (buchstabenAnzahl < 2) return false;
+
+  // Keine reine Wiederholung desselben Zeichens 3x+ in Folge (z.B. "aaaa", "xxxxxxxx")
+  if (/(.)\1{2,}/.test(ohneLeerzeichen.toLowerCase()) && new Set(ohneLeerzeichen.toLowerCase()).size <= 2) return false;
+
+  // Bekannte Tastatur-Gewohnheitsmuster - jetzt auch als TEILSTRING erkannt
+  // (nicht nur exakte Gesamteingabe), damit z.B. "asdfasdf xy" nicht mehr
+  // durchschlüpft, nur weil ein kurzes Anhängsel "xy" technisch 2 Buchstaben hat.
+  const tastaturTeilstring = /(asdf|qwer|qwert|zxcv|wert|ertz|tzui|yxcv|asdfgh|qwertz)/i;
+  if (tastaturTeilstring.test(ohneLeerzeichen)) return false;
+
+  // Jedes einzelne "Wort" (durch Leerzeichen getrennt) mit 4+ Buchstaben am
+  // Stück muss genügend UNTERSCHIEDLICHE Buchstaben enthalten. Echte Wörter
+  // wiederholen ihr Buchstabenmuster nicht wie "xyxyxyxy" und bestehen nicht
+  // nur aus 1-2 verschiedenen Zeichen wie "aaaa" - das verhindert, dass ein
+  // einziges kurzes, sinnloses Anhängsel die ganze Eingabe "rettet".
+  const woerter = t.split(/\s+/).filter(function(w) { return w.length >= 4; });
+  const hatEchtesWort = woerter.some(function(w) {
+    const nurBuchstaben = w.replace(/[^a-zA-ZäöüÄÖÜàâéèêïîôûçÀ-ÿ]/g, '');
+    if (nurBuchstaben.length < 4) return false;
+    const verschiedeneBuchstaben = new Set(nurBuchstaben.toLowerCase()).size;
+    return verschiedeneBuchstaben >= 3;
+  });
+  if (!hatEchtesWort) return false;
+
+  return true;
+}
+
+function checkAll() {
+  // ── Textareas: reveal solution only if filled in AND plausible ──
+  document.querySelectorAll('textarea[id^="ta_"]').forEach(function(ta) {
+    const sid = 'sol_' + ta.id.replace('ta_','');
+    const sol = document.getElementById(sid);
+    if (!sol) return;
+    if (!sol.dataset.origText) sol.dataset.origText = sol.textContent;
+    const wert = ta.value.trim();
+    if (wert.length === 0) {
+      sol.textContent = 'Bitte zuerst Text eingeben.';
+      sol.classList.remove('sol-empty-hint'); // reset, damit sol-unplausibel-Klasse unten korrekt greift
+      sol.classList.add('visible', 'sol-empty-hint');
+      ta.style.borderColor = '#c0392b';
+    } else if (!istPlausibleAntwort(wert)) {
+      sol.textContent = 'Bitte eine ernsthafte, ausformulierte Antwort eingeben.';
+      sol.classList.remove('sol-empty-hint');
+      sol.classList.add('visible', 'sol-unplausibel-hint');
+      ta.style.borderColor = '#c0392b';
+    } else {
+      sol.classList.remove('sol-empty-hint', 'sol-unplausibel-hint');
+      sol.textContent = sol.dataset.origText;
+      sol.classList.add('visible');
+      ta.style.borderColor = '#2a7a3a';
+    }
+  });
+
+  // ── Text inputs (table cells): same logic ──
+  document.querySelectorAll('input[type=text][id^="ta_"]').forEach(function(inp) {
+    const sid = 'sol_' + inp.id.replace('ta_','');
+    const sol = document.getElementById(sid);
+    if (!sol) return;
+    if (inp.value.trim().length > 0) {
+      sol.classList.add('visible');
+      inp.style.borderBottomColor = '#2a7a3a';
+    } else {
+      sol.classList.remove('visible');
+      inp.style.borderBottomColor = '#c0392b';
+    }
+  });
+
+  // ── Radio-button groups (rf_ rows): reveal only if a choice was made ──
+  const rfGroups = {};
+  document.querySelectorAll('input[type=radio][data-rf-correct]').forEach(function(inp) {
+    rfGroups[inp.name] = true;
+  });
+  Object.keys(rfGroups).forEach(function(name) {
+    const radios = document.querySelectorAll('input[name="' + name + '"]');
+    const checked = document.querySelector('input[name="' + name + '"]:checked');
+    const id = name.replace('rf_','');
+    const solTr = document.getElementById('trsol_' + id);
+    radios.forEach(function(r) {
+      const row = r.closest('tr');
+      if (!row) return;
+      if (checked) {
+        row.style.background = (checked.value === checked.dataset.rfCorrect) ? '#eaf5ec' : '#faeaea';
+      } else {
+        row.style.background = '#fdf3e3';
+      }
+    });
+    if (solTr) {
+      if (checked) {
+        solTr.style.display = 'table-row';
+        solTr.classList.add('visible');
+      } else {
+        solTr.style.display = 'none';
+        solTr.classList.remove('visible');
+      }
+    }
+  });
+
+  // ── Checkboxes (multi-select): reveal each only if checked, mark unanswered ──
+  document.querySelectorAll('input[type=checkbox][data-cb-correct]').forEach(function(inp) {
+    const correct = inp.dataset.cbCorrect === 'true';
+    const lbl = document.getElementById('lbl_cb_' + inp.id.replace('cb_',''));
+    const sid = 'sol_' + inp.id.replace('cb_','');
+    const sol = document.getElementById(sid);
+    if (!lbl) return;
+    if (inp.checked) {
+      lbl.style.background = correct ? '#eaf5ec' : '#faeaea';
+      if (sol) sol.classList.add('visible');
+    } else {
+      lbl.style.background = '';
+      if (sol) sol.classList.remove('visible');
+    }
+  });
+}
+
+function resetAll() {
+  if (pruefungsModusIstAktiv()) {
+    alert('Zurücksetzen ist während der Standortbestimmung gesperrt.');
+    return;
+  }
+  document.querySelectorAll('textarea, input[type=text]').forEach(function(el) { el.value = ''; el.style.borderColor = ''; el.style.borderBottomColor = ''; });
+  document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach(function(el) { el.checked = false; });
+  document.querySelectorAll('.sol-inline, .sol-inline-sm').forEach(function(el) {
+    el.classList.remove('visible', 'sol-empty-hint', 'sol-unplausibel-hint');
+    if (el.dataset.origText) { el.textContent = el.dataset.origText; delete el.dataset.origText; }
+  });
+  document.querySelectorAll('.sol-tr').forEach(function(el) { el.style.display = 'none'; el.classList.remove('visible'); });
+  document.querySelectorAll('tr').forEach(function(el) { el.style.background = ''; });
+  document.querySelectorAll('label[id^="lbl_cb_"]').forEach(function(el) { el.style.background = ''; });
+  document.querySelectorAll('.paste-warn').forEach(function(el) { el.classList.remove('paste-warn'); });
+  document.querySelectorAll('.paste-msg.show').forEach(function(el) { el.classList.remove('show'); });
+  // KI-Feedback: Ergebnis-Box leeren und Toggle auf "aus" zurücksetzen
+  document.querySelectorAll('.spell-result').forEach(function(el) { el.className = 'spell-result'; el.textContent = ''; });
+  const kiResult = document.getElementById('kiFeedbackResult');
+  if (kiResult) kiResult.innerHTML = '';
+  const kiToggle = document.getElementById('kiModeToggle');
+  if (kiToggle && kiToggle.classList.contains('on')) { kiModeUmschalten(kiToggle); }
+  // Einsende-Sperre aufheben, damit nach einem vollständigen Reset wieder
+  // neu eingesendet werden kann
+  try { localStorage.removeItem('abu_eingesendet_' + SAFE_FN); } catch (e) {}
+  const sendBtn = document.getElementById('sendBtn');
+  if (sendBtn) { sendBtn.disabled = false; sendBtn.classList.remove('sent'); sendBtn.textContent = '✉ Antworten einsenden'; }
+  // Punkte-Boxen (vom PDF-Druck) wieder entfernen, falls vorhanden
+  document.querySelectorAll('.punkte-box, .punkte-summe-zeile').forEach(function(el) { el.remove(); });
+}
+
+// Setzt NUR die übergebenen Textarea-IDs (plus deren unmittelbar zugehörige
+// Musterlösung, Spellcheck-Box und Paste-Markierung) zurück - lässt alle
+// anderen Aufträge in der Datei unberührt. Wird über die dezenten
+// "↺ Nur diesen Auftrag zurücksetzen"-Links pro Block aufgerufen.
+function resetBlock(triggerLink, textareaIds) {
+  if (pruefungsModusIstAktiv()) {
+    alert('Zurücksetzen ist während der Standortbestimmung gesperrt.');
+    return;
+  }
+  if (!confirm('Nur diesen Auftrag zurücksetzen? Die anderen Aufträge bleiben unverändert.')) return;
+  textareaIds.forEach(function(id) {
+    const ta = document.getElementById(id);
+    if (!ta) return;
+    ta.value = '';
+    ta.style.borderColor = '';
+    ta.style.borderBottomColor = '';
+
+    // zugehörige Tabellenzeile farblich zurücksetzen, falls vorhanden
+    const tr = ta.closest('tr');
+    if (tr) tr.style.background = '';
+
+    // zugehörige Musterlösung wieder ausblenden und Originaltext wiederherstellen
+    const sol = document.getElementById('sol_' + id.replace(/^ta_/, ''));
+    if (sol) {
+      sol.classList.remove('visible', 'sol-empty-hint', 'sol-unplausibel-hint');
+      if (sol.dataset.origText) { sol.textContent = sol.dataset.origText; delete sol.dataset.origText; }
+    }
+
+    // Paste-Markierung direkt neben dem Feld entfernen
+    let sib = ta.nextElementSibling;
+    while (sib && (sib.classList.contains('paste-msg') || sib.classList.contains('spell-result'))) {
+      if (sib.classList.contains('paste-msg')) sib.classList.remove('show');
+      if (sib.classList.contains('spell-result')) { sib.className = 'spell-result'; sib.textContent = ''; }
+      sib = sib.nextElementSibling;
+    }
+    ta.classList.remove('paste-warn');
+  });
+
+  // Falls dieser Block die Kompetenzfrage ist: auch deren KI-Feedback-Box leeren
+  if (textareaIds.indexOf('ta_ko_203_08') !== -1) {
+    const kiResult = document.getElementById('kiFeedbackResult');
+    if (kiResult) kiResult.innerHTML = '';
+  }
+}
+
+function printAsPDF() {
+  const n = document.getElementById('studentName').value.trim();
+  const fn = document.getElementById('footerName');
+  if (fn) fn.textContent = n;
+
+  if (pruefungsModusIstAktiv()) {
+    // Bei aktiver Standortbestimmung: eigener Titel (Standortbestimmung + Name + Datum)
+    // und Punkte-Boxen pro Aufgabe als Korrekturhilfe.
+    const heute = new Date().toLocaleDateString('de-CH');
+    document.title = n
+      ? 'Standortbestimmung – ' + n + ' – ' + heute
+      : 'Standortbestimmung – ' + heute;
+    fuegePunkteboxenEin();
+  } else {
+    // Normale Übung: bisheriges, einfaches Verhalten - kein Punkte-Layout
+    document.title = n ? SAFE_FN + '_' + n.replace(/\s+/g,'_') : SAFE_FN;
+    document.querySelectorAll('.punkte-box, .punkte-summe-zeile').forEach(function(el) { el.remove(); });
+  }
+
+  window.focus();
+  setTimeout(function() { try { window.print(); } catch(e) { alert('Bitte Strg+P verwenden.'); } }, 80);
+}
+
+// Fügt pro Aufgabe eine Punkte-Box ein (nur im Druck sichtbar, siehe CSS) -
+// Textfelder = 2 Punkte, Multiple-Choice (Radio/Checkbox) = 1 Punkt.
+// Die tatsächlich erreichte Punktzahl trägt die Lehrperson von Hand ein -
+// dies ist bewusst KEINE automatische inhaltliche Bewertung, da freie
+// Texte nicht zuverlässig maschinell auf Richtigkeit geprüft werden können.
+function fuegePunkteboxenEin() {
+  // Vorherige Boxen entfernen, falls schon einmal eingefügt (z.B. erneuter Druck)
+  document.querySelectorAll('.punkte-box, .punkte-summe-zeile').forEach(function(el) { el.remove(); });
+
+  let punkteTotal = 0;
+  const PUNKTE_TEXT = 2;
+  const PUNKTE_MC = 1;
+
+  // Freie Textfelder (Tabellen-Textareas, Text-Inputs, Kompetenzfrage)
+  document.querySelectorAll('textarea[id^="ta_"], input[type=text][id^="ta_"]').forEach(function(feld) {
+    punkteTotal += PUNKTE_TEXT;
+    const box = document.createElement('span');
+    box.className = 'punkte-box';
+    box.textContent = '___ / ' + PUNKTE_TEXT + ' P.';
+    feld.insertAdjacentElement('afterend', box);
+  });
+
+  // Radio-Gruppen (eine Box pro Gruppe, nicht pro einzelnem Radio-Button)
+  const rfGroups = {};
+  document.querySelectorAll('input[type=radio][data-rf-correct]').forEach(function(inp) {
+    rfGroups[inp.name] = true;
+  });
+  Object.keys(rfGroups).forEach(function(name) {
+    punkteTotal += PUNKTE_MC;
+    const letzterRadio = document.querySelector('input[name="' + name + '"]:last-of-type');
+    if (letzterRadio) {
+      const box = document.createElement('span');
+      box.className = 'punkte-box';
+      box.textContent = '___ / ' + PUNKTE_MC + ' P.';
+      const row = letzterRadio.closest('tr');
+      if (row) row.appendChild(document.createElement('td')).appendChild(box);
+    }
+  });
+
+  // Checkbox-Fragen (eine Box pro Checkbox, da jede einzeln bewertbar ist)
+  document.querySelectorAll('input[type=checkbox][data-cb-correct]').forEach(function(inp) {
+    punkteTotal += PUNKTE_MC;
+    const lbl = document.getElementById('lbl_cb_' + inp.id.replace('cb_', ''));
+    if (lbl) {
+      const box = document.createElement('span');
+      box.className = 'punkte-box';
+      box.textContent = '___ / ' + PUNKTE_MC + ' P.';
+      lbl.appendChild(box);
+    }
+  });
+
+  // Summenzeile am Ende des Arbeitsbereichs einfügen
+  const ws = document.querySelector('.ws');
+  if (ws) {
+    const summe = document.createElement('div');
+    summe.className = 'punkte-summe-zeile';
+    summe.textContent = 'Total: ___ / ' + punkteTotal + ' Punkte';
+    ws.appendChild(summe);
+  }
+}
+
+function collectVals(v) {
+  document.querySelectorAll('textarea[id], input[type=text][id]').forEach(function(el) { v[el.id] = el.value; });
+  document.querySelectorAll('input[type=radio]:checked').forEach(function(el) { v['__r_' + el.name] = el.value; });
+  document.querySelectorAll('input[type=checkbox][id]').forEach(function(el) { v[el.id] = el.checked; });
+}
+
+function restoreVals(v) {
+  Object.keys(v).forEach(function(k) {
+    if (k === 'name') return;
+    if (k.startsWith('__r_')) {
+      const r = document.querySelector('input[name="' + k.slice(4) + '"][value="' + v[k] + '"]');
+      if (r) r.checked = true;
+      return;
+    }
+    const el = document.getElementById(k);
+    if (el) {
+      if (el.type === 'checkbox') el.checked = v[k];
+      else el.value = v[k];
+    }
+  });
+}
+
+async function downloadFile() {
+  const name = document.getElementById('studentName').value.trim();
+  if (!name) { alert('Bitte zuerst Vor- und Nachname eingeben!'); document.getElementById('studentName').focus(); return; }
+  const v = {}; collectVals(v); v.name = name;
+  const fn = document.getElementById('footerName');
+  if (fn) fn.textContent = name;
+  document.documentElement.setAttribute('data-saved-values', JSON.stringify(v).replace(/"/g, '&quot;'));
+  let html = document.documentElement.outerHTML;
+  const blob = new Blob([html], {type:'text/html;charset=utf-8'});
+  const suggestedName = SAFE_FN + '_' + name.replace(/\s+/g,'_') + '.html';
+
+  if (window.showSaveFilePicker) {
+    try {
+      const handle = await window.showSaveFilePicker({
+        suggestedName: suggestedName,
+        types: [{ description: 'HTML-Datei', accept: { 'text/html': ['.html'] } }]
+      });
+      const writable = await handle.createWritable();
+      await writable.write(blob);
+      await writable.close();
+      return;
+    } catch (err) {
+      if (err && err.name === 'AbortError') return;
+    }
+  }
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = suggestedName;
+  a.click();
+}
+
+/* ════════════════════════════════════════════════════════════════
+   ANTWORTEN EINSENDEN (Supabase)
+   ════════════════════════════════════════════════════════════════
+   Schickt alle ausgefüllten Feldwerte gesammelt an eine zentrale
+   Supabase-Tabelle ("antworten"), damit die Lehrperson sie am Schluss
+   an einem Ort einsehen kann, statt 25+ einzelne Dateien zu erhalten.
+   Der Versand-Key (publishable key) ist absichtlich öffentlich im
+   Code sichtbar - das ist bei Supabase so vorgesehen, der Schutz
+   erfolgt über die Datenbank-Berechtigungen (Row Level Security),
+   nicht durch Geheimhaltung dieses Schlüssels.
+   ════════════════════════════════════════════════════════════════ */
+const SUPABASE_URL = "https://lrpaomltzrfgtupzeooq.supabase.co";
+const SUPABASE_KEY = "sb_publishable_Q9t2s4kLLNy--Tkm8EwLBQ_CbHJo9G-";
+let supabaseClient = null;
+function getSupabaseClient() {
+  if (!supabaseClient && window.supabase) {
+    supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  }
+  return supabaseClient;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   AUSWERTUNGS-ZUSAMMENFASSUNG
+   ════════════════════════════════════════════════════════════════
+   Wird beim Einsenden automatisch berechnet und zusätzlich zur Tabelle
+   gesendet, damit die Lehrperson auf einen Blick sieht, wie viel
+   bearbeitet wurde - OHNE freie Textantworten inhaltlich zu bewerten
+   (nur "plausibel ausgefüllt" ja/nein, wie schon bei "Überprüfen").
+   ════════════════════════════════════════════════════════════════ */
+function berechneAuswertung() {
+  const auswertung = {
+    felder_total: 0,
+    felder_ausgefuellt: 0,
+    text_geloest: 0,
+    text_total: 0,
+    mc_bearbeitet: 0,
+    mc_richtig: 0,
+    mc_total: 0
+  };
+
+  // Freie Textfelder (Tabellen-Textareas + Kompetenzfrage)
+  document.querySelectorAll('textarea[id^="ta_"]').forEach(function(ta) {
+    auswertung.felder_total++;
+    auswertung.text_total++;
+    const wert = ta.value.trim();
+    if (wert.length > 0) auswertung.felder_ausgefuellt++;
+    if (istPlausibleAntwort(wert)) auswertung.text_geloest++;
+  });
+  document.querySelectorAll('input[type=text][id^="ta_"]').forEach(function(inp) {
+    auswertung.felder_total++;
+    auswertung.text_total++;
+    const wert = inp.value.trim();
+    if (wert.length > 0) auswertung.felder_ausgefuellt++;
+    if (istPlausibleAntwort(wert)) auswertung.text_geloest++;
+  });
+
+  // Radio-Button-Gruppen (Zuordnung, Richtig/Falsch) - automatisch auswertbar
+  const rfGroups = {};
+  document.querySelectorAll('input[type=radio][data-rf-correct]').forEach(function(inp) {
+    rfGroups[inp.name] = true;
+  });
+  Object.keys(rfGroups).forEach(function(name) {
+    auswertung.felder_total++;
+    auswertung.mc_total++;
+    const checked = document.querySelector('input[name="' + name + '"]:checked');
+    if (checked) {
+      auswertung.felder_ausgefuellt++;
+      auswertung.mc_bearbeitet++;
+      if (checked.value === checked.dataset.rfCorrect) auswertung.mc_richtig++;
+    }
+  });
+
+  // Checkbox-Fragen (Multiple Choice) - automatisch auswertbar
+  document.querySelectorAll('input[type=checkbox][data-cb-correct]').forEach(function(inp) {
+    auswertung.felder_total++;
+    auswertung.mc_total++;
+    // Bei Checkbox gilt "ausgefüllt", sobald eine bewusste Auswahl (an oder bewusst aus) vorliegt;
+    // da das nicht unterscheidbar ist, zählen wir "angekreuzt" als Bearbeitung.
+    if (inp.checked) {
+      auswertung.felder_ausgefuellt++;
+      auswertung.mc_bearbeitet++;
+      if (inp.dataset.cbCorrect === 'true') auswertung.mc_richtig++;
+    }
+  });
+
+  return auswertung;
+}
+
+// Normalisiert Klassennamen, damit Schreibvarianten wie "LW23a", "Lw 23a",
+// "lw23a" alle in derselben Gruppe landen. Entfernt Leerzeichen, schreibt
+// den Buchstaben-Teil in Grossbuchstaben, lässt aber die letzte(n) Ziffer
+// und den abschliessenden Klassenbuchstaben unverändert in Kleinschreibung
+// (Konvention: "23a", "23b" klein). Kein Ersatz für eine feste Klassenliste
+// (geplant für später, in Supabase verwaltet) - nur eine Annäherung gegen
+// die häufigsten Tipp-/Schreibvarianten.
+function normalisiereKlasse(roh) {
+  let k = roh.trim().replace(/\s+/g, ''); // alle Leerzeichen entfernen
+  // Letzten Buchstaben (Klassenbuchstabe wie a/b/c) klein, Rest gross
+  const m = k.match(/^(.*\d)([a-zA-Z])$/);
+  if (m) {
+    k = m[1].toUpperCase() + m[2].toLowerCase();
+  } else {
+    k = k.toUpperCase();
+  }
+  return k;
+}
+
+async function antwortenEinsenden(btn) {
+  const name = document.getElementById('studentName').value.trim();
+  if (!name) {
+    alert('Bitte zuerst Vor- und Nachname eingeben!');
+    document.getElementById('studentName').focus();
+    return;
+  }
+  const klasseEl = document.getElementById('studentKlasse');
+  const klasseRoh = klasseEl ? klasseEl.value.trim() : '';
+  if (!klasseRoh) {
+    alert('Bitte zuerst die Klasse eingeben!');
+    if (klasseEl) klasseEl.focus();
+    return;
+  }
+  const klasse = normalisiereKlasse(klasseRoh);
+
+  const client = getSupabaseClient();
+  if (!client) {
+    alert('Senden aktuell nicht möglich (keine Internetverbindung oder Supabase-Bibliothek nicht geladen). Bitte später erneut versuchen oder die Datei stattdessen über "Speichern" sichern.');
+    return;
+  }
+
+  const v = {};
+  collectVals(v);
+  delete v.studentName; // Name liegt bereits separat in der "name"-Spalte
+  delete v.studentKlasse; // Klasse liegt bereits separat in der "klasse"-Spalte
+
+  const auswertung = berechneAuswertung();
+
+  const altText = btn.dataset.origLabel || btn.textContent;
+  btn.dataset.origLabel = altText;
+  btn.disabled = true;
+  btn.textContent = 'Wird gesendet…';
+
+  try {
+    const { error } = await client.from('antworten').insert([
+      { name: name, klasse: klasse, datei: SAFE_FN, antworten: v, auswertung: auswertung }
+    ]);
+    if (error) throw error;
+    markiereAlsEingesendet(btn);
+  } catch (err) {
+    alert('Senden fehlgeschlagen. (' + (err && err.message ? err.message : 'unbekannter Fehler') + ') Bitte später erneut versuchen oder die Datei stattdessen über "Speichern" sichern.');
+    btn.textContent = altText;
+    btn.disabled = false;
+  }
+}
+
+// Sperrt den Senden-Button DAUERHAFT (auch über Browser-Neuladen hinweg),
+// damit nicht versehentlich mehrfach eingesendet wird. Schlüssel ist an
+// SAFE_FN gekoppelt, damit jede Übungsdatei unabhängig ihren eigenen
+// Einsende-Status führt.
+const SENT_KEY = 'abu_eingesendet_' + SAFE_FN;
+function markiereAlsEingesendet(btn) {
+  try { localStorage.setItem(SENT_KEY, '1'); } catch (e) {}
+  btn.textContent = '✓ Eingesendet';
+  btn.classList.add('sent');
+  btn.disabled = true;
+}
+(function() {
+  if (localStorage.getItem(SENT_KEY) === '1') {
+    document.addEventListener('DOMContentLoaded', function() {
+      const btn = document.getElementById('sendBtn');
+      if (btn) { btn.textContent = '✓ Eingesendet'; btn.classList.add('sent'); btn.disabled = true; }
+    });
+  }
+})();
+
+
+/* ── COPY ALL: Aufgabenstellung + EIGENE Antwort als Text in Zwischenablage ── */
+function buildCopyText() {
+  const ws = document.querySelector('.ws');
+  let header = [];
+  const taskId = ws.querySelector('.task-id');
+  const taskTitle = ws.querySelector('.task-title');
+  if (taskId || taskTitle) {
+    header.push((taskId ? taskId.textContent.trim() : '') + (taskTitle ? ' – ' + taskTitle.textContent.trim() : ''));
+    header.push('');
+  }
+  const lz = ws.querySelector('.lz-box');
+  if (lz) { header.push(lz.textContent.trim().replace(/\s+/g,' ')); header.push(''); }
+
+  const NOT_ANSWERED = 'Frage nicht beantwortet';
+
+  function cleanText(el) {
+    if (!el) return '';
+    return el.textContent.replace(/\s+/g,' ').trim();
+  }
+
+  // Liefert die EIGENE Antwort einer Textarea/Text-Inputs, oder NOT_ANSWERED falls leer.
+  // Trägt das Feld aktuell die Paste-Markierung (eingefügter Text noch enthalten),
+  // wird die Antwort mit dem Präfix "[KOPIERT] " versehen.
+  function ownTextAnswer(ta) {
+    if (!ta) return NOT_ANSWERED;
+    const v = (ta.value || '').trim();
+    if (v === '') return NOT_ANSWERED;
+    return (ta.classList.contains('paste-warn') ? '[KOPIERT] ' : '') + v;
+  }
+
+  // Liefert die EIGENE Antwort einer Radio-Gruppe (Label-Text der angekreuzten Option),
+  // oder NOT_ANSWERED falls keine Option gewählt wurde.
+  function ownRadioAnswer(radioGroupName) {
+    const checked = document.querySelector('input[type=radio][name="' + radioGroupName + '"]:checked');
+    if (!checked) return NOT_ANSWERED;
+    // Label-Text: bevorzugt zugehöriges <label for="...">, sonst Spaltenüberschrift (Richtig/Falsch/R/F),
+    // sonst einfach den value des Radios.
+    const lbl = document.querySelector('label[for="' + checked.id + '"]');
+    if (lbl) return cleanText(lbl);
+    // Versuche die thead-Spaltenüberschrift über die Zellposition zu ermitteln
+    const td = checked.closest('td');
+    const tr = checked.closest('tr');
+    const table = checked.closest('table');
+    if (td && tr && table) {
+      const cellIdx = Array.prototype.indexOf.call(tr.children, td);
+      const headerCells = table.querySelectorAll('thead th');
+      if (headerCells[cellIdx]) return cleanText(headerCells[cellIdx]);
+    }
+    return checked.value || NOT_ANSWERED;
+  }
+
+  // Liefert die EIGENE Antwort einer einzelnen Checkbox (angekreuzt ja/nein).
+  function ownCheckboxAnswer(checkbox) {
+    if (!checkbox) return NOT_ANSWERED;
+    return checkbox.checked ? '✓ Ausgewählt' : NOT_ANSWERED;
+  }
+
+  const handledNodes = new Set();   // tables / ko-boxes / paragraphs already fully processed
+  const handledTaIds = new Set();   // ta_ ids already emitted
+
+  // blocks: { anchor: <Node for DOM-order sorting>, lines: [..] }
+  const blocks = [];
+
+  // ── 1) Tables (rows with textarea/text-input OR radio groups) ──
+  ws.querySelectorAll('table.ex').forEach(function(table) {
+    handledNodes.add(table);
+    const lines = [];
+    let introP = table.previousElementSibling;
+    if (introP && introP.tagName === 'P' && !handledNodes.has(introP)) {
+      const introTxt = cleanText(introP);
+      if (introTxt) { lines.push(introTxt); handledNodes.add(introP); }
+    }
+    table.querySelectorAll('tbody tr').forEach(function(tr) {
+      if (tr.classList.contains('sol-tr')) return;
+      const cells = tr.querySelectorAll('td');
+      if (!cells.length) return;
+      const label = cleanText(cells[0]);
+      const tas = tr.querySelectorAll('textarea, input[type=text]');
+      const radio = tr.querySelector('input[type=radio]');
+      if (tas.length > 1) {
+        // Mehrspaltige Zeile (z.B. Recht + Pflicht): jede Spalte einzeln mit ihrem
+        // eigenen Spalten-Header als Präfix ausgeben.
+        const headerCells = table.querySelectorAll('thead th');
+        if (label) lines.push('• ' + label);
+        tas.forEach(function(taN, colIdx) {
+          handledTaIds.add(taN.id);
+          const ansTxt = ownTextAnswer(taN);
+          const headerTxt = headerCells[colIdx+1] ? cleanText(headerCells[colIdx+1]) : '';
+          lines.push('  → ' + (headerTxt ? headerTxt + ': ' : '') + ansTxt);
+        });
+        lines.push('');
+        return;
+      }
+      // Zeile ganz ohne Eingabefeld (fester Vorgabewert, z.B. "Geburt" -> "Rechtsfähigkeit (ZGB 11)"):
+      // diesen festen Text direkt anzeigen, da der Lernende hier nichts auszufüllen hatte.
+      if (tas.length === 0 && !radio && cells.length > 1) {
+        const headerCells = table.querySelectorAll('thead th');
+        const fixedVals = [];
+        for (let i = 1; i < cells.length; i++) {
+          const v = cleanText(cells[i]);
+          if (v) {
+            const headerTxt = headerCells[i] ? cleanText(headerCells[i]) : '';
+            fixedVals.push((headerTxt ? headerTxt + ': ' : '') + v);
+          }
+        }
+        if (label) {
+          lines.push('• ' + label);
+          lines.push('  → ' + (fixedVals.length ? fixedVals.join(' | ') : NOT_ANSWERED));
+          lines.push('');
+        }
+        return;
+      }
+      const ta = tas[0];
+      if (ta) handledTaIds.add(ta.id);
+      if (label) {
+        lines.push('• ' + label);
+        if (radio && ta) {
+          // Wahr/Falsch-Auswahl PLUS eigenes Begründungs-/Korrekturfeld in derselben Zeile
+          lines.push('  → ' + ownRadioAnswer(radio.name));
+          const ownText = ownTextAnswer(ta);
+          if (ownText !== NOT_ANSWERED) lines.push('  → Begründung: ' + ownText);
+        } else if (radio) {
+          lines.push('  → ' + ownRadioAnswer(radio.name));
+        } else if (ta) {
+          lines.push('  → ' + ownTextAnswer(ta));
+        } else {
+          lines.push('  → ' + NOT_ANSWERED);
+        }
+        lines.push('');
+      }
+    });
+    blocks.push({ anchor: table, lines: lines });
+  });
+
+  // ── 2) Checkbox groups: group consecutive lbl_cb_ items by shared id-prefix ──
+  const cbAllLabels = Array.from(ws.querySelectorAll('label[id^="lbl_cb_"]'));
+  const cbGroupPrefix = function(lbl) {
+    return lbl.id.replace(/_[0-9]+$/, '');
+  };
+  const cbSeenGroups = new Set();
+  cbAllLabels.forEach(function(lbl) {
+    handledNodes.add(lbl);
+    const groupKey = cbGroupPrefix(lbl);
+    if (cbSeenGroups.has(groupKey)) return;
+    cbSeenGroups.add(groupKey);
+    const lines = [];
+    let firstAnchor = lbl;
+    cbAllLabels.filter(function(l2) { return cbGroupPrefix(l2) === groupKey; }).forEach(function(l2) {
+      const span = l2.querySelector('span');
+      const txt = cleanText(span || l2);
+      const inp = l2.querySelector('input[type=checkbox]');
+      if (txt) {
+        lines.push('☐ ' + txt + '  → ' + ownCheckboxAnswer(inp));
+      }
+    });
+    lines.push('');
+    let introP = firstAnchor.previousElementSibling;
+    while (introP && introP.tagName !== 'P') {
+      introP = introP.previousElementSibling;
+    }
+    if (introP && introP.tagName === 'P' && !handledNodes.has(introP)) {
+      const introTxt = cleanText(introP);
+      if (introTxt) { lines.unshift(introTxt); handledNodes.add(introP); }
+      blocks.push({ anchor: introP, lines: lines });
+    } else {
+      blocks.push({ anchor: firstAnchor, lines: lines });
+    }
+  });
+
+  // ── 3) Standalone radio rows NOT inside table.ex ──
+  document.querySelectorAll('tr[id^="row_rf_"]').forEach(function(tr) {
+    if (tr.closest('table.ex')) return;
+    const cells = tr.querySelectorAll('td');
+    if (!cells.length) return;
+    const label = cleanText(cells[0]);
+    const radio = tr.querySelector('input[type=radio]');
+    const ansTxt = radio ? ownRadioAnswer(radio.name) : NOT_ANSWERED;
+    if (label) {
+      blocks.push({ anchor: tr, lines: ['• ' + label, '  → ' + ansTxt, ''] });
+    }
+  });
+
+  // ── 4) ko-box (Kompetenzorientierte Frage) ──
+  ws.querySelectorAll('.ko-box').forEach(function(box) {
+    handledNodes.add(box);
+    const label = box.querySelector('.ko-label');
+    const text = box.querySelector('.ko-text');
+    const ta = box.querySelector('textarea[id^="ta_"]');
+    if (ta) handledTaIds.add(ta.id);
+    const ansTxt = ta ? ownTextAnswer(ta) : NOT_ANSWERED;
+    const lines = [(label ? cleanText(label) + ': ' : '') + cleanText(text)];
+    lines.push('Eigene Antwort: ' + ansTxt);
+    lines.push('');
+    blocks.push({ anchor: box, lines: lines });
+  });
+
+  // ── 5) Standalone Auftrags-Fragen ausserhalb Tabelle/ko-box: jede textarea[id^="ta_"]
+  //      die noch nicht erfasst wurde -> Frage (vorangehendes Element) + eigene Antwort ──
+  ws.querySelectorAll('textarea[id^="ta_"], input[type=text][id^="ta_"]').forEach(function(ta) {
+    if (ta.closest('table.ex') || ta.closest('.ko-box')) return;
+    if (handledTaIds.has(ta.id)) return;
+    handledTaIds.add(ta.id);
+
+    let q = ta.previousElementSibling;
+    while (q && (q.tagName === 'TEXTAREA' || q.classList.contains('sol-inline') || q.classList.contains('sol-inline-sm') || cleanText(q) === '')) {
+      q = q.previousElementSibling;
+    }
+    const qText = q ? cleanText(q) : '';
+    const lines = [];
+    if (qText) { lines.push(qText); handledNodes.add(q); }
+    lines.push('Eigene Antwort: ' + ownTextAnswer(ta));
+    lines.push('');
+    blocks.push({ anchor: ta, lines: lines });
+  });
+
+  // ── 6) Any remaining loose <p> intro paragraphs not yet used ──
+  ws.querySelectorAll('p').forEach(function(p) {
+    if (p.closest('.footer') || p.id === 'footerName' || p.querySelector('#footerName')) return;
+    if (p.closest('table.ex') || p.closest('.ko-box')) return;
+    if (handledNodes.has(p)) return;
+    const txt = cleanText(p);
+    if (txt) { blocks.push({ anchor: p, lines: [txt, ''] }); handledNodes.add(p); }
+  });
+
+  // ── Sort all blocks by DOM order, then flatten ──
+  blocks.sort(function(a, b) {
+    const pos = a.anchor.compareDocumentPosition(b.anchor);
+    if (pos & Node.DOCUMENT_POSITION_FOLLOWING) return -1;
+    if (pos & Node.DOCUMENT_POSITION_PRECEDING) return 1;
+    return 0;
+  });
+
+  let out = header.slice();
+  blocks.forEach(function(b) { out = out.concat(b.lines); });
+
+  return out.join('\n').replace(/\n{3,}/g, '\n\n').trim();
+}
+
+function copyAllToClipboard() {
+  const text = buildCopyText();
+  const btn = document.getElementById('copyBtn');
+  const toast = document.getElementById('copyToast');
+  function showFeedback() {
+    if (btn) {
+      btn.classList.add('copied');
+      const old = btn.textContent;
+      btn.textContent = '✓ Kopiert';
+      setTimeout(function() { btn.classList.remove('copied'); btn.textContent = old; }, 1600);
+    }
+    if (toast) {
+      toast.classList.add('show');
+      setTimeout(function() { toast.classList.remove('show'); }, 1800);
+    }
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(showFeedback).catch(function() {
+      fallbackCopy(text); showFeedback();
+    });
+  } else {
+    fallbackCopy(text); showFeedback();
+  }
+}
+
+/* ── LAYOUT-KOPIE: kopiert Lernziel-Box + Auftrag + Tabelle(n) + Kompetenzfrage
+   als formatiertes HTML (Tabelle, Farben) in die Zwischenablage, geeignet zum
+   Einfügen in OneNote. Buttons/Topbar werden nicht mitkopiert. Eigene Antworten
+   werden so übernommen, wie sie aktuell im Feld stehen; eingeblendete Musterlösungen
+   werden nur mitkopiert, wenn sie auf dem Bildschirm sichtbar sind. ── */
+// Schreibt die wichtigsten von CSS-Klassen kommenden, berechneten Stile (Hinter-
+// grund, Textfarbe, Rahmen, Innenabstand, Eckenradius) direkt als Inline-Style auf
+// jedes Element. Notwendig, weil beim Export eines isolierten HTML-Fragments
+// (ohne das zugehörige <style>-Tag der Seite) reine Klassennamen wie "lz-box"
+// oder "ko-box" für Programme wie OneNote bedeutungslos sind - ohne diesen
+// Schritt gehen Hintergrundfarben und farbige Rahmen verloren.
+const STYLE_PROPS_TO_INLINE = [
+  'backgroundColor', 'color', 'borderLeftWidth', 'borderLeftStyle', 'borderLeftColor',
+  'borderTopWidth', 'borderTopStyle', 'borderTopColor',
+  'borderRadius', 'padding', 'margin', 'fontWeight', 'fontStyle',
+  'fontSize', 'fontFamily', 'textTransform', 'letterSpacing'
+];
+
+function inlineComputedStyles(root) {
+  // <col>, <colgroup>, <thead>, <tbody>, <tr>, <table> sind reine Struktur-/
+  // Gruppierungselemente. Box-Modell-Eigenschaften (padding/border/margin) an
+  // diesen Tags sind nach HTML-Spezifikation grösstenteils ungültig bzw. werden
+  // von Office-Programmen wie OneNote nicht erwartet - mit solchen Inline-Styles
+  // verwirft OneNote im schlimmsten Fall die ganze Tabelle, statt sie nur teilweise
+  // falsch darzustellen. Daher werden nur die tatsächlichen Inhalts-Elemente
+  // gestylt; Tabellen-Strukturelemente bleiben unangetastet (ihr Aussehen kommt
+  // ohnehin über die gestylten <td>/<th>-Zellen).
+  const SKIP_TAGS = new Set(['COL', 'COLGROUP', 'THEAD', 'TBODY', 'TR', 'TABLE']);
+  const all = [root].concat(Array.from(root.querySelectorAll('*')));
+  all.forEach(function(el) {
+    if (SKIP_TAGS.has(el.tagName)) return;
+    const cs = getComputedStyle(el);
+    const decls = STYLE_PROPS_TO_INLINE.map(function(prop) {
+      const val = cs[prop];
+      const cssProp = prop.replace(/[A-Z]/g, function(m) { return '-' + m.toLowerCase(); });
+      return cssProp + ':' + val;
+    }).join(';');
+    el.setAttribute('style', (el.getAttribute('style') || '') + ';' + decls);
+  });
+}
+
+function buildLayoutClone() {
+  const ws = document.querySelector('.ws');
+
+  // WICHTIG: Stile werden auf dem ORIGINAL (live im Dokument, mit aktiven CSS-Klassen)
+  // berechnet und eingebrannt, NICHT auf dem Klon (der hängt nicht im DOM und hätte
+  // sonst keine vom Stylesheet abgeleiteten Werte über getComputedStyle).
+  inlineComputedStyles(ws);
+
+  const clone = ws.cloneNode(true);
+
+  // Alle Textareas/Text-Inputs durch ihren aktuellen Wert als sichtbaren Text
+  // ersetzen (der "value" einer Textarea ist sonst beim HTML-Export unsichtbar).
+  const origFields = ws.querySelectorAll('textarea, input[type=text]');
+  const cloneFields = clone.querySelectorAll('textarea, input[type=text]');
+  origFields.forEach(function(orig, i) {
+    const cl = cloneFields[i];
+    if (!cl) return;
+    const div = document.createElement('div');
+    div.style.minHeight = '1.3em';
+    div.style.whiteSpace = 'pre-wrap';
+    div.style.fontFamily = "'Source Serif 4', serif";
+    div.style.fontSize = '13px';
+    div.textContent = orig.value || '';
+    cl.replaceWith(div);
+  });
+
+  // Radio/Checkbox-Auswahl als Text kennzeichnen (✓ vor der gewählten Option)
+  const origRadios = ws.querySelectorAll('input[type=radio]');
+  const cloneRadios = clone.querySelectorAll('input[type=radio]');
+  origRadios.forEach(function(orig, i) {
+    const cl = cloneRadios[i];
+    if (!cl) return;
+    const mark = document.createElement('span');
+    mark.textContent = orig.checked ? '☑' : '☐';
+    mark.style.fontSize = '16px';
+    cl.replaceWith(mark);
+  });
+  const origChecks = ws.querySelectorAll('input[type=checkbox]');
+  const cloneChecks = clone.querySelectorAll('input[type=checkbox]');
+  origChecks.forEach(function(orig, i) {
+    const cl = cloneChecks[i];
+    if (!cl) return;
+    const mark = document.createElement('span');
+    mark.textContent = orig.checked ? '☑' : '☐';
+    mark.style.fontSize = '16px';
+    cl.replaceWith(mark);
+  });
+
+  // Buttons und Bearbeitungs-Hilfen (Paste-Warnung, Rechtschreib-Ergebnis) entfernen,
+  // da sie in einer Notiz keine Funktion mehr haben.
+  clone.querySelectorAll('.spell-btn-main, .spell-result, .spell-limit-note, .paste-msg, button').forEach(function(el) {
+    el.remove();
+  });
+
+  // Musterlösungen nur mitnehmen, wenn sie aktuell sichtbar sind (z.B. nach
+  // "Überprüfen"); ansonsten entfernen, damit nur der eigene Stand kopiert wird.
+  const origSolutions = ws.querySelectorAll('.sol-inline, .sol-inline-sm, .sol-tr');
+  const cloneSolutions = clone.querySelectorAll('.sol-inline, .sol-inline-sm, .sol-tr');
+  origSolutions.forEach(function(orig, i) {
+    const cl = cloneSolutions[i];
+    if (!cl) return;
+    const visible = orig.offsetParent !== null && getComputedStyle(orig).display !== 'none';
+    if (!visible) cl.remove();
+  });
+
+  return clone;
+}
+
+function copyLayoutToClipboard() {
+  const btn = document.getElementById('copyLayoutBtn');
+  const toast = document.getElementById('copyToast');
+  function showFeedback() {
+    if (btn) {
+      btn.classList.add('copied');
+      const old = btn.textContent;
+      btn.textContent = '✓ Kopiert';
+      setTimeout(function() { btn.classList.remove('copied'); btn.textContent = old; }, 1600);
+    }
+    if (toast) {
+      toast.classList.add('show');
+      setTimeout(function() { toast.classList.remove('show'); }, 1800);
+    }
+  }
+
+  const clone = buildLayoutClone();
+  const html = '<div style="font-family:Georgia,serif;">' + clone.innerHTML + '</div>';
+  const plain = clone.innerText || clone.textContent || '';
+
+  if (navigator.clipboard && window.ClipboardItem) {
+    const item = new ClipboardItem({
+      'text/html': new Blob([html], { type: 'text/html' }),
+      'text/plain': new Blob([plain], { type: 'text/plain' })
+    });
+    navigator.clipboard.write([item]).then(showFeedback).catch(function() {
+      navigator.clipboard.writeText(plain).then(showFeedback).catch(function() {
+        fallbackCopy(plain); showFeedback();
+      });
+    });
+  } else if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(plain).then(showFeedback).catch(function() {
+      fallbackCopy(plain); showFeedback();
+    });
+  } else {
+    fallbackCopy(plain); showFeedback();
+  }
+}
+
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); } catch(e) {}
+  document.body.removeChild(ta);
+}
+
+/* ── PASTE DETECTION: eingefügter Text bleibt dauerhaft markiert.
+   Die Markierung verschwindet erst, wenn der eingefügte Textabschnitt
+   nicht mehr im Feld vorkommt – egal ob durch Löschen oder durch
+   Überschreiben (markieren + neu tippen, ohne vorher zu leeren). ── */
+function attachPasteWarning() {
+  document.querySelectorAll('textarea').forEach(function(ta) {
+    if (ta.dataset.pasteWatched) return;
+    ta.dataset.pasteWatched = '1';
+
+    let msg = ta.nextElementSibling;
+    if (!msg || !msg.classList.contains('paste-msg')) {
+      msg = document.createElement('div');
+      msg.className = 'paste-msg';
+      msg.textContent = '⚠ Text eingefügt – bitte in eigenen Worten formulieren.';
+      ta.insertAdjacentElement('afterend', msg);
+    }
+
+    // Merkt sich die zuletzt eingefügten Textabschnitte dieses Feldes
+    let pastedFragments = [];
+
+    ta.addEventListener('paste', function(e) {
+      let pastedText = '';
+      try {
+        pastedText = (e.clipboardData || window.clipboardData).getData('text');
+      } catch (err) { pastedText = ''; }
+      if (pastedText && pastedText.trim() !== '') {
+        pastedFragments.push(pastedText.trim());
+      }
+      ta.classList.add('paste-warn');
+      msg.classList.add('show');
+    });
+
+    // Bei jeder Eingabe prüfen: ist noch IRGENDEIN eingefügter Abschnitt
+    // im aktuellen Feldwert enthalten? Wenn nicht mehr (weil gelöscht
+    // oder überschrieben), Markierung entfernen.
+    ta.addEventListener('input', function() {
+      if (ta.value.trim() === '') {
+        pastedFragments = [];
+        ta.classList.remove('paste-warn');
+        msg.classList.remove('show');
+        return;
+      }
+      pastedFragments = pastedFragments.filter(function(frag) {
+        return ta.value.indexOf(frag) !== -1;
+      });
+      if (pastedFragments.length === 0) {
+        ta.classList.remove('paste-warn');
+        msg.classList.remove('show');
+      }
+    });
+  });
+}
+attachPasteWarning();
+
+/* ── RECHTSCHREIB-/GRAMMATIKPRÜFUNG via LanguageTool (öffentliche API) ──
+   Ein einziger Button prüft alle ausgefüllten Freitextfelder auf einmal.
+   Korrekturhinweise erscheinen jeweils direkt unter dem betroffenen Feld. ── */
+function ensureSpellResultBox(ta) {
+  let insertAfter = ta;
+  if (ta.nextElementSibling && ta.nextElementSibling.classList.contains('paste-msg')) {
+    insertAfter = ta.nextElementSibling;
+  }
+  let resultBox = insertAfter.nextElementSibling;
+  if (!resultBox || !resultBox.classList.contains('spell-result')) {
+    resultBox = document.createElement('div');
+    resultBox.className = 'spell-result';
+    insertAfter.insertAdjacentElement('afterend', resultBox);
+  }
+  return resultBox;
+}
+
+function showGlobalSpellLimitNote() {
+  const note = document.getElementById('spellGlobalLimitNote');
+  if (note) note.classList.add('show');
+}
+
+function checkAllSpelling(triggerBtn) {
+  const textareas = Array.from(document.querySelectorAll('textarea[id^="ta_"]'))
+    .filter(function(ta) { return (ta.value || '').trim() !== ''; });
+
+  if (textareas.length === 0) {
+    alert('Es wurde noch kein Text eingegeben – bitte zuerst Antworten ausfüllen.');
+    return;
+  }
+
+  showGlobalSpellLimitNote();
+
+  if (triggerBtn) {
+    triggerBtn.disabled = true;
+    triggerBtn.dataset.origLabel = triggerBtn.dataset.origLabel || triggerBtn.textContent;
+    triggerBtn.textContent = '⏳ Prüfe ' + textareas.length + ' Antwort' + (textareas.length === 1 ? '' : 'en') + ' …';
+  }
+
+  let remaining = textareas.length;
+  function done() {
+    remaining--;
+    if (remaining <= 0 && triggerBtn) {
+      triggerBtn.disabled = false;
+      triggerBtn.textContent = triggerBtn.dataset.origLabel;
+    }
+  }
+
+  textareas.forEach(function(ta) {
+    const resultBox = ensureSpellResultBox(ta);
+    runSpellcheck(ta, resultBox, done);
+  });
+}
+
+function runSpellcheck(ta, resultBox, onDone) {
+  const text = (ta.value || '').trim();
+  if (text === '') { if (onDone) onDone(); return; }
+
+  resultBox.className = 'spell-result show';
+  resultBox.textContent = 'Wird geprüft …';
+
+  const params = new URLSearchParams();
+  params.append('text', text);
+  params.append('language', 'de-CH');
+
+  fetch('https://api.languagetool.org/v2/check', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: params.toString()
+  })
+  .then(function(res) {
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return res.json();
+  })
+  .then(function(data) {
+    renderSpellResult(data, text, resultBox);
+  })
+  .catch(function(err) {
+    resultBox.className = 'spell-result show spell-error';
+    resultBox.textContent = '⚠ Prüfung aktuell nicht möglich (keine Internetverbindung zum Prüfdienst oder Dienst überlastet). Bitte später erneut versuchen.';
+  })
+  .finally(function() {
+    if (onDone) onDone();
+  });
+}
+
+function escapeHtml(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function findCasingOnlySuggestion(errText, replacements) {
+  // Sucht unter allen Korrekturvorschlägen nach einem, der sich vom Originaltext
+  // NUR in Gross-/Kleinschreibung unterscheidet (gleiche Länge, gleicher Text
+  // bei Ignorierung der Schreibweise). Liefert diesen Vorschlag zurück, auch wenn
+  // daneben noch weitere, längenabweichende Vorschläge existieren.
+  if (!replacements) return null;
+  for (let i = 0; i < replacements.length; i++) {
+    const r = replacements[i].value;
+    if (r.length === errText.length && r.toLowerCase() === errText.toLowerCase() && r !== errText) {
+      return r;
+    }
+  }
+  return null;
+}
+
+function markErrorSpan(errText, suggestion, title) {
+  // Wenn unter den Korrekturvorschlägen einer existiert, der sich vom
+  // Originaltext NUR in Gross-/Kleinschreibung unterscheidet, werden
+  // ausschliesslich die tatsächlich abweichenden Buchstaben rot markiert
+  // statt des ganzen Worts - das wirkt deutlich weniger "alarmierend".
+  if (suggestion) {
+    let out = '';
+    for (let i = 0; i < errText.length; i++) {
+      if (errText[i] !== suggestion[i]) {
+        out += '<mark class="spell-mark" title="' + escapeHtml(title) + '">' + escapeHtml(errText[i]) + '</mark>';
+      } else {
+        out += escapeHtml(errText[i]);
+      }
+    }
+    return out;
+  }
+  // Sonst: gesamtes Wort/Textstück markieren (z.B. bei Tippfehlern, Grammatik,
+  // fehlenden/zusätzlichen Buchstaben mit unterschiedlicher Länge).
+  return '<mark class="spell-mark" title="' + escapeHtml(title) + '">' + escapeHtml(errText) + '</mark>';
+}
+
+function buildHighlightedText(originalText, matches) {
+  // Baut den Originaltext als HTML auf, mit jeder Fehlerstelle (offset/length)
+  // hervorgehoben. Sortiert nach Position, überlappende Treffer werden
+  // übersprungen (LanguageTool liefert i.d.R. bereits nicht überlappende Matches,
+  // aber zur Sicherheit abgesichert).
+  const sorted = matches.slice().sort(function(a, b) { return a.offset - b.offset; });
+  let html = '';
+  let pos = 0;
+  sorted.forEach(function(m) {
+    if (m.offset < pos) return; // überlappend -> überspringen
+    html += escapeHtml(originalText.substring(pos, m.offset));
+    const errText = originalText.substring(m.offset, m.offset + m.length);
+    const title = m.shortMessage || m.message || '';
+    const suggestion = findCasingOnlySuggestion(errText, m.replacements);
+    html += markErrorSpan(errText, suggestion, title);
+    pos = m.offset + m.length;
+  });
+  html += escapeHtml(originalText.substring(pos));
+  return html;
+}
+
+function renderSpellResult(data, originalText, resultBox) {
+  const matches = (data && data.matches) || [];
+
+  // KI-Feedback-Baustein: Fehlerkategorien in die portal-weite,
+  // localStorage-basierte Historie aufnehmen (nur Rechtschreib-/
+  // Grammatik-Kategorien, keine inhaltlichen Daten).
+  if (matches.length > 0 && window.erfasseFehlerInHistorie) {
+    window.erfasseFehlerInHistorie(matches);
+  }
+
+  if (matches.length === 0) {
+    resultBox.className = 'spell-result show spell-ok';
+    resultBox.innerHTML = '';
+    const closeBtnOk = document.createElement('button');
+    closeBtnOk.className = 'spell-close-btn';
+    closeBtnOk.type = 'button';
+    closeBtnOk.setAttribute('aria-label', 'Hinweis ausblenden');
+    closeBtnOk.textContent = '✕';
+    closeBtnOk.onclick = function() { resultBox.classList.remove('show'); };
+    resultBox.appendChild(closeBtnOk);
+    const okText = document.createElement('span');
+    okText.textContent = '✓ Keine Rechtschreib- oder Grammatikfehler gefunden.';
+    resultBox.appendChild(okText);
+    return;
+  }
+
+  resultBox.className = 'spell-result show spell-issues';
+  resultBox.innerHTML = '';
+
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'spell-close-btn';
+  closeBtn.type = 'button';
+  closeBtn.setAttribute('aria-label', 'Rechtschreibhinweise ausblenden');
+  closeBtn.textContent = '✕';
+  closeBtn.onclick = function() { resultBox.classList.remove('show'); };
+  resultBox.appendChild(closeBtn);
+
+  const summary = document.createElement('div');
+  summary.textContent = '⚠ ' + matches.length + (matches.length === 1 ? ' möglicher Rechtschreib-/Grammatikfehler:' : ' mögliche Rechtschreib-/Grammatikfehler:');
+  resultBox.appendChild(summary);
+
+  // Satz mit rot markierten Fehlerstellen direkt im Fliesstext anzeigen
+  const highlighted = document.createElement('div');
+  highlighted.className = 'spell-highlighted-text';
+  highlighted.innerHTML = buildHighlightedText(originalText, matches);
+  resultBox.appendChild(highlighted);
+
+  const list = document.createElement('ul');
+  matches.slice(0, 15).forEach(function(m) {
+    const li = document.createElement('li');
+    const orig = originalText.substring(m.offset, m.offset + m.length);
+    const origSpan = document.createElement('span');
+    origSpan.className = 'spell-orig';
+    origSpan.textContent = orig;
+    li.appendChild(origSpan);
+
+    if (m.replacements && m.replacements.length > 0) {
+      const arrow = document.createTextNode(' → ');
+      li.appendChild(arrow);
+      const fixSpan = document.createElement('span');
+      fixSpan.className = 'spell-fix';
+      fixSpan.textContent = m.replacements.slice(0, 3).map(function(r) { return r.value; }).join(' / ');
+      li.appendChild(fixSpan);
+    }
+
+    const msg = document.createElement('div');
+    msg.style.fontSize = '11px';
+    msg.style.color = '#7a6a4a';
+    msg.style.marginTop = '1px';
+    msg.textContent = m.shortMessage || m.message || '';
+    li.appendChild(msg);
+
+    list.appendChild(li);
+  });
+  resultBox.appendChild(list);
+
+  if (matches.length > 15) {
+    const more = document.createElement('div');
+    more.style.marginTop = '4px';
+    more.style.fontSize = '11px';
+    more.textContent = '… und ' + (matches.length - 15) + ' weitere.';
+    resultBox.appendChild(more);
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   KI-FEEDBACK BAUSTEIN
+   ════════════════════════════════════════════════════════════════
+   Schaltet über den Toggle eine zusätzliche, inhaltliche KI-Rückmeldung
+   frei (LanguageTool/Rechtschreibprüfung bleibt davon unberührt und
+   weiterhin separat aktiv). Verrät nie die Musterlösung wörtlich,
+   gibt Hinweise/Rückfragen, und erkennt wiederkehrende Rechtschreib-
+   /Grammatikmuster aus der portal-weiten, lokal gespeicherten
+   Fehlerhistorie (ein Gerät pro Lernende:r).
+   ════════════════════════════════════════════════════════════════ */
+(function () {
+  "use strict";
+
+  /* ── KONFIGURATION ──────────────────────────────────────────── */
+  const WORKER_URL = "https://twilight-butterfly-5015.uwalser75.workers.dev/feedback";
+  const HISTORY_KEY = "abu_portal_fehlerhistorie_v1";
+
+  /* ── FEHLERHISTORIE (localStorage) ──────────────────────────── */
+  function ladeFehlerhistorie() {
+    try {
+      const raw = localStorage.getItem(HISTORY_KEY);
+      if (!raw) return {};
+      return JSON.parse(raw);
+    } catch (e) {
+      console.warn('Fehlerhistorie konnte nicht gelesen werden:', e);
+      return {};
+    }
+  }
+
+  function speichereFehlerhistorie(historie) {
+    try {
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(historie));
+    } catch (e) {
+      console.warn('Fehlerhistorie konnte nicht gespeichert werden:', e);
+    }
+  }
+
+  function erfasseFehlerInHistorie(matches) {
+    const historie = ladeFehlerhistorie();
+    matches.forEach(function (m) {
+      const kategorie = (m.rule && m.rule.category && m.rule.category.id) || 'SONSTIGE';
+      if (!historie[kategorie]) {
+        historie[kategorie] = { count: 0, beispiele: [] };
+      }
+      historie[kategorie].count += 1;
+      if (historie[kategorie].beispiele.length < 5) {
+        historie[kategorie].beispiele.push((m.context && m.context.text) || '');
+      }
+    });
+    speichereFehlerhistorie(historie);
+  }
+
+  function historieAlsText() {
+    const historie = ladeFehlerhistorie();
+    const teile = Object.keys(historie).map(function (kat) {
+      return kat + ' (' + historie[kat].count + 'x bisher)';
+    });
+    return teile.length ? teile.join('; ') : 'keine bisherige Historie';
+  }
+
+  /* ── KI-FEEDBACK ANFORDERN ──────────────────────────────────── */
+  async function holeKiFeedback(aufgabeText, musterloesung, schuelerAntwort) {
+    const body = {
+      aufgabe: aufgabeText,
+      musterloesung: musterloesung,
+      antwort: schuelerAntwort,
+      fehlerhistorie: historieAlsText()
+    };
+
+    const response = await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+
+    if (!response.ok) {
+      throw new Error('Worker antwortete mit Status ' + response.status);
+    }
+    return await response.json();
+  }
+
+  /* ── UI-VERDRAHTUNG ──────────────────────────────────────────── */
+  function zeigeKiFeedback(resultBox, daten) {
+    let html = '<div class="kf-feedback-box">' +
+      '<span class="kf-feedback-label">Inhaltliches Feedback</span>' +
+      '<p>' + escapeHtml(daten.inhalt || '') + '</p></div>';
+
+    if (daten.fehlermuster) {
+      html += '<div class="kf-feedback-box kf-pattern">' +
+        '<span class="kf-feedback-label">Wiederkehrendes Muster erkannt</span>' +
+        '<p><strong>' + escapeHtml(daten.fehlermuster) + '</strong> – ' + escapeHtml(daten.regel || '') + '</p>';
+      if (daten.uebung && daten.uebung.length) {
+        html += '<div class="kf-mini-ex">';
+        daten.uebung.forEach(function (u) { html += '• ' + escapeHtml(u) + '<br>'; });
+        html += '</div>';
+      }
+      html += '</div>';
+    }
+    resultBox.innerHTML = html;
+  }
+
+  window.kiFeedbackKlick = async function (btn) {
+    const ta = document.querySelector('textarea[data-ki-aufgabe]');
+    if (!ta) return;
+
+    const aufgabe = ta.getAttribute('data-ki-aufgabe') || '';
+    const musterloesung = ta.getAttribute('data-ki-loesung') || '';
+    const antwort = ta.value.trim();
+    const resultBox = document.getElementById('kiFeedbackResult');
+
+    if (!antwort) {
+      resultBox.innerHTML = '<div class="kf-feedback-box kf-error"><span class="kf-feedback-label">Hinweis</span><p>Bitte zuerst eine Antwort schreiben.</p></div>';
+      return;
+    }
+
+    btn.disabled = true;
+    const altText = btn.textContent;
+    btn.textContent = 'Analysiere…';
+    resultBox.innerHTML = '<div class="kf-loading"><div class="kf-spin"></div>KI analysiert Antwort und Fehlerhistorie…</div>';
+
+    try {
+      const daten = await holeKiFeedback(aufgabe, musterloesung, antwort);
+      zeigeKiFeedback(resultBox, daten);
+    } catch (err) {
+      resultBox.innerHTML = '<div class="kf-feedback-box kf-error"><span class="kf-feedback-label">Fehler</span><p>KI-Anfrage fehlgeschlagen. (' + escapeHtml(err.message || 'unbekannt') + ')</p></div>';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = altText;
+    }
+  };
+
+  window.kiModeUmschalten = function (toggleEl) {
+    const aktiv = !toggleEl.classList.contains('on');
+    toggleEl.classList.toggle('on', aktiv);
+    toggleEl.setAttribute('aria-checked', aktiv ? 'true' : 'false');
+    const kiBtn = document.getElementById('kiFeedbackBtn');
+    if (kiBtn) kiBtn.disabled = !aktiv;
+    document.querySelectorAll('[data-ki-pill]').forEach(function (el) {
+      el.textContent = aktiv
+        ? 'Modus: KI-Feedback verfügbar (Rechtschreibprüfung bleibt aktiv)'
+        : 'Modus: Rechtschreibprüfung (LanguageTool)';
+      el.classList.toggle('on', aktiv);
+    });
+  };
+
+  window.erfasseFehlerInHistorie = erfasseFehlerInHistorie;
+})();
+
+
+/* ════════════════════════════════════════════════════════════════
+   KOPIERSCHUTZ: Musterlösungen + KI-Hinweise
+   ════════════════════════════════════════════════════════════════
+   Zusätzlich zu user-select:none (CSS) wird das eigentliche
+   Kopier-Event aktiv unterdrückt - das schützt auch in Fällen, in
+   denen CSS-Markierungssperren umgangen werden (z.B. über die
+   Browser-Entwicklertools oder bestimmte Tastenkombinationen).
+   Betrifft: Musterlösungs-Boxen (.sol-inline, .sol-inline-sm) und
+   alle KI-Hinweis-Boxen (.kf-feedback-box).
+   ════════════════════════════════════════════════════════════════ */
+document.addEventListener('copy', function(e) {
+  const sel = window.getSelection();
+  if (!sel || sel.rangeCount === 0) return;
+  const node = sel.getRangeAt(0).commonAncestorContainer;
+  const el = node.nodeType === 1 ? node : node.parentElement;
+  if (el && el.closest('.sol-inline, .sol-inline-sm, .kf-feedback-box')) {
+    e.preventDefault();
+  }
+});
+
+
+/* ════════════════════════════════════════════════════════════════
+   AUTOSPEICHERUNG (localStorage)
+   ════════════════════════════════════════════════════════════════
+   Schützt vor Datenverlust, falls der Tab versehentlich geschlossen
+   wird, bevor manuell auf "Speichern" geklickt wurde. Speichert NICHT
+   bei jedem Tastenanschlag (das wäre unnötig häufig), sondern erst
+   800ms nach der letzten Eingabe (Debounce) - das ist performant und
+   verliert im Ernstfall höchstens den allerletzten Satzteil.
+   Eindeutiger Schlüssel pro Übungsdatei (SAFE_FN), damit sich
+   verschiedene Übungen im selben Browser nicht überschreiben.
+   ════════════════════════════════════════════════════════════════ */
+(function() {
+  const AUTOSAVE_KEY = 'abu_autosave_' + SAFE_FN;
+  let autosaveTimer = null;
+
+  function autosaveJetzt() {
+    try {
+      const v = {};
+      collectVals(v);
+      const sn = document.getElementById('studentName');
+      if (sn) v.name = sn.value;
+      localStorage.setItem(AUTOSAVE_KEY, JSON.stringify(v));
+    } catch (e) {
+      console.warn('Autospeicherung fehlgeschlagen:', e);
+    }
+  }
+
+  function autosaveGeplant() {
+    clearTimeout(autosaveTimer);
+    autosaveTimer = setTimeout(autosaveJetzt, 800);
+  }
+
+  // Auf alle Eingabefelder anwenden (Textareas, Textfelder, Checkboxen, Radios)
+  document.addEventListener('input', function(e) {
+    if (e.target.matches('textarea, input[type=text], input[type=radio], input[type=checkbox]')) {
+      autosaveGeplant();
+    }
+  });
+  document.addEventListener('change', function(e) {
+    if (e.target.matches('input[type=radio], input[type=checkbox]')) {
+      autosaveGeplant();
+    }
+  });
+
+  // Beim Schliessen/Verlassen der Seite sofort speichern (kein Warten auf Debounce)
+  window.addEventListener('beforeunload', function() {
+    clearTimeout(autosaveTimer);
+    autosaveJetzt();
+  });
+
+  // Wiederherstellung: nur falls KEIN expliziter "Speichern"-Stand
+  // (data-saved-values) vorhanden ist - der hat immer Vorrang, da er
+  // ein bewusst gespeicherter Stand ist, der Autosave-Stand dagegen
+  // nur ein Sicherheitsnetz für unbeabsichtigtes Schliessen.
+  function autosaveWiederherstellen() {
+    if (document.documentElement.getAttribute('data-saved-values')) return;
+    try {
+      const raw = localStorage.getItem(AUTOSAVE_KEY);
+      if (!raw) return;
+      const v = JSON.parse(raw);
+      const sn = document.getElementById('studentName');
+      if (sn && v.name) sn.value = v.name;
+      const fnEl = document.getElementById('footerName');
+      if (fnEl && v.name) fnEl.textContent = v.name;
+      restoreVals(v);
+    } catch (e) {
+      console.warn('Autospeicherung konnte nicht wiederhergestellt werden:', e);
+    }
+  }
+  autosaveWiederherstellen();
+
+  // Nach "Zurücksetzen" auch den Autosave-Stand löschen, sonst würde
+  // beim nächsten Laden der alte, eigentlich verworfene Stand wieder
+  // auftauchen.
+  const origResetAll = window.resetAll;
+  if (typeof origResetAll === 'function') {
+    window.resetAll = function() {
+      origResetAll();
+      try { localStorage.removeItem(AUTOSAVE_KEY); } catch (e) {}
+    };
+  }
+})();
+
+
+/* ── Gespeicherte Werte wiederherstellen (data-saved-values) ── */
+(function() {
+  const raw = document.documentElement.getAttribute('data-saved-values');
+  if (!raw) return;
+  try {
+    const v = JSON.parse(raw.replace(/&quot;/g, '"'));
+    const sn = document.getElementById('studentName');
+    if (sn && v.name) sn.value = v.name;
+    const fnEl = document.getElementById('footerName');
+    if (fnEl && v.name) fnEl.textContent = v.name;
+    restoreVals(v);
+  } catch (e) {
+    console.warn('Gespeicherte Werte konnten nicht wiederhergestellt werden:', e);
+  }
+})();
+(function() {
+  try {
+    if (window.self !== window.top) {
+      const b = document.getElementById('iframeBanner');
+      if (b) b.style.display = 'block';
+      document.querySelectorAll('.btn').forEach(function(btn) {
+        btn.disabled = true; btn.style.opacity = '0.4'; btn.style.cursor = 'not-allowed';
+      });
+    }
+  } catch(e) {
+    const b = document.getElementById('iframeBanner');
+    if (b) b.style.display = 'block';
+  }
+})();
+</script>
+<table width="100%" style="background:#f7f7f7;border-top:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;">
+<tr>
+<td style="padding:6px 10px;text-align:left;width:33%;"><a href="203_[UE]_A07_Kaufvertrag_Aussagen.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
+<td style="padding:6px 10px;text-align:center;width:34%;"><a href="203_Aufgaben.html" style="color:#8b1a1a;text-decoration:none;font-size:14px;" title="Zur Übersicht">&#8593;</a></td>
+<td style="padding:6px 10px;text-align:right;width:33%;"><a href="203_[UE]_A09_Kaufvertrag_Faelle.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
+</tr>
+</table>
+</body>
+</html>
