@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>202-04 · Preisbildung</title>
+<title>701-21 · Marktgleichgewicht</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
   :root {
-    --t1: #1F638F; --t1-light: #D6EAF8; --t1-lighter: #EBF5FB; --t1-dark: #17527A;
+    --t1: #6D3FA1; --t1-light: #E8DAEF; --t1-lighter: #F5EEF8; --t1-dark: #5B3488;
     --bg: #FBF8F4; --paper: #FFFFFF; --ink: #20221F; --ink-light: #7A7468; --rule: #ECE6DA;
     --green: #1F8045; --green-light: #E9F7EE; --gold: #B8860B;
     --accent: var(--t1); --accent-light: var(--t1-lighter);
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-  .top-bar { background: linear-gradient(120deg, #3b79a2 0%, #1F638F 40%, #17527A 100%); color: white; padding: 14px 22px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,.18); }
+  .top-bar { background: linear-gradient(120deg, #8861b4 0%, #6D3FA1 40%, #5B3488 100%); color: white; padding: 14px 22px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,.18); }
   .topic-check { width: 30px; height: 30px; border-radius: 10px; background: rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .topic-check svg { width: 17px; height: 17px; }
   .top-bar h1 { font-size: 16px; font-weight: 700; flex: 1; min-width: 130px; letter-spacing: -.01em; }
@@ -179,9 +179,9 @@
 <body>
 <table width="100%" style="background:#f7f7f7;border-bottom:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;">
 <tr>
-<td style="padding:6px 10px;text-align:left;width:33%;"><a href="202_[UE]_A03_Gueterarten.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
-<td style="padding:6px 10px;text-align:center;width:34%;"><a href="202_Aufgaben.html" style="color:#8b1a1a;text-decoration:none;font-size:14px;" title="Zur Übersicht">&#8593;</a></td>
-<td style="padding:6px 10px;text-align:right;width:33%;"><a href="202_[UE]_A05_Angebot_Nachfrage.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
+<td style="padding:6px 10px;text-align:left;width:33%;"><a href="701_[UE]_A20_Angebot_Nachfrage.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
+<td style="padding:6px 10px;text-align:center;width:34%;"><a href="701_Aufgaben.html" style="color:#8b1a1a;text-decoration:none;font-size:14px;" title="Zur Übersicht">&#8593;</a></td>
+<td style="padding:6px 10px;text-align:right;width:33%;"><a href="701_[UE]_A22_Selbsteinschaetzung_Gefragte_Kompetenzen.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
 </tr>
 </table>
 
@@ -193,7 +193,7 @@
   <div class="topic-check">
     <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
   </div>
-  <h1>Mein Geld</h1>
+  <h1>Meine Zukunft</h1>
   <div class="nw"><label>Name:</label><input id="studentName" type="text" placeholder="Vorname Nachname" autocomplete="name"></div>
   <div class="nw" id="klasseNw" style="display:none"><label>Klasse:</label><input id="studentKlasse" type="text" placeholder="z.B. LW3a" style="width:80px;"></div>
   <button class="btn btn-check" onclick="checkAll()">Überprüfen</button>
@@ -205,29 +205,29 @@
 <div class="score-banner" id="scoreBanner"></div>
 
 <div class="ws">
-  <div class="lebenswelt-ref">202 Konsum & Werbung — Durch Umfeld und Medien im Konsumverhalten beeinflusst werden</div>
-  <div class="task-title">202-04 · Preisbildung</div>
-  <div class="lz-box reveal" style="animation-delay:.02s"><strong>Lernziel:</strong> Ich kann die Begriffe der Preisbildung (Angebot, Nachfrage, Marktpreis) erklären und einen Lückentext korrekt ergänzen.</div>
-  <div class="meta-row">K1–K2</div>
-<p style="font-size:15px;margin-bottom:12px;"><strong style="color:var(--t1-dark);">Auftrag:</strong> Ergänzen Sie den Lückentext mit den passenden Begriffen aus der Wortliste.</p>
-  <p style="font-size:13px;color:var(--ink-light);background:var(--accent-light);padding:8px 12px;border-radius:4px;margin-bottom:18px;font-family:'JetBrains Mono',monospace;">
-    teuer · steigt · hoch · steigende · sinken · Preise (2×) · Preis · Angebot · Markt · Nachfrage (2×)
-  </p>
-  <p style="font-size:15px;line-height:2.2;">
-    Die <select class="lueck-sel" id="l31_0" data-ans="Preise" data-correct="Preise"><option value="">…</option><option value="Angebot">Angebot</option><option value="Markt">Markt</option><option value="Nachfrage">Nachfrage</option><option value="Preis">Preis</option><option value="Preise">Preise</option><option value="Steigende">Steigende</option><option value="hoch">hoch</option><option value="sinken">sinken</option><option value="steigt">steigt</option><option value="teuer">teuer</option></select> von Gütern entstehen im Zusammenspiel von <select class="lueck-sel" id="l31_1" data-ans="Angebot" data-correct="Angebot"><option value="">…</option><option value="Angebot">Angebot</option><option value="Markt">Markt</option><option value="Nachfrage">Nachfrage</option><option value="Preis">Preis</option><option value="Preise">Preise</option><option value="Steigende">Steigende</option><option value="hoch">hoch</option><option value="sinken">sinken</option><option value="steigt">steigt</option><option value="teuer">teuer</option></select> und <select class="lueck-sel" id="l31_2" data-ans="Nachfrage" data-correct="Nachfrage"><option value="">…</option><option value="Angebot">Angebot</option><option value="Markt">Markt</option><option value="Nachfrage">Nachfrage</option><option value="Preis">Preis</option><option value="Preise">Preise</option><option value="Steigende">Steigende</option><option value="hoch">hoch</option><option value="sinken">sinken</option><option value="steigt">steigt</option><option value="teuer">teuer</option></select>.
-    Ist ein Gut sehr knapp, fällt sein <select class="lueck-sel" id="l31_3" data-ans="Preis" data-correct="Preis"><option value="">…</option><option value="Angebot">Angebot</option><option value="Markt">Markt</option><option value="Nachfrage">Nachfrage</option><option value="Preis">Preis</option><option value="Preise">Preise</option><option value="Steigende">Steigende</option><option value="hoch">hoch</option><option value="sinken">sinken</option><option value="steigt">steigt</option><option value="teuer">teuer</option></select> entsprechend <select class="lueck-sel" id="l31_4" data-ans="hoch" data-correct="hoch"><option value="">…</option><option value="Angebot">Angebot</option><option value="Markt">Markt</option><option value="Nachfrage">Nachfrage</option><option value="Preis">Preis</option><option value="Preise">Preise</option><option value="Steigende">Steigende</option><option value="hoch">hoch</option><option value="sinken">sinken</option><option value="steigt">steigt</option><option value="teuer">teuer</option></select>.
-    <select class="lueck-sel" id="l31_5" data-ans="Steigende" data-correct="Steigende"><option value="">…</option><option value="Angebot">Angebot</option><option value="Markt">Markt</option><option value="Nachfrage">Nachfrage</option><option value="Preis">Preis</option><option value="Preise">Preise</option><option value="Steigende">Steigende</option><option value="hoch">hoch</option><option value="sinken">sinken</option><option value="steigt">steigt</option><option value="teuer">teuer</option></select> Preise lassen die <select class="lueck-sel" id="l31_6" data-ans="Nachfrage" data-correct="Nachfrage"><option value="">…</option><option value="Angebot">Angebot</option><option value="Markt">Markt</option><option value="Nachfrage">Nachfrage</option><option value="Preis">Preis</option><option value="Preise">Preise</option><option value="Steigende">Steigende</option><option value="hoch">hoch</option><option value="sinken">sinken</option><option value="steigt">steigt</option><option value="teuer">teuer</option></select> sinken.
-    Umgekehrt <select class="lueck-sel" id="l31_7" data-ans="steigt" data-correct="steigt"><option value="">…</option><option value="Angebot">Angebot</option><option value="Markt">Markt</option><option value="Nachfrage">Nachfrage</option><option value="Preis">Preis</option><option value="Preise">Preise</option><option value="Steigende">Steigende</option><option value="hoch">hoch</option><option value="sinken">sinken</option><option value="steigt">steigt</option><option value="teuer">teuer</option></select> die Nachfrage, sobald die Preise <select class="lueck-sel" id="l31_8" data-ans="sinken" data-correct="sinken"><option value="">…</option><option value="Angebot">Angebot</option><option value="Markt">Markt</option><option value="Nachfrage">Nachfrage</option><option value="Preis">Preis</option><option value="Preise">Preise</option><option value="Steigende">Steigende</option><option value="hoch">hoch</option><option value="sinken">sinken</option><option value="steigt">steigt</option><option value="teuer">teuer</option></select>.
-    Alltägliche Produkte oder Dienstleistungen setzen sich auf dem <select class="lueck-sel" id="l31_9" data-ans="Markt" data-correct="Markt"><option value="">…</option><option value="Angebot">Angebot</option><option value="Markt">Markt</option><option value="Nachfrage">Nachfrage</option><option value="Preis">Preis</option><option value="Preise">Preise</option><option value="Steigende">Steigende</option><option value="hoch">hoch</option><option value="sinken">sinken</option><option value="steigt">steigt</option><option value="teuer">teuer</option></select> nicht durch, wenn sie zu <select class="lueck-sel" id="l31_10" data-ans="teuer" data-correct="teuer"><option value="">…</option><option value="Angebot">Angebot</option><option value="Markt">Markt</option><option value="Nachfrage">Nachfrage</option><option value="Preis">Preis</option><option value="Preise">Preise</option><option value="Steigende">Steigende</option><option value="hoch">hoch</option><option value="sinken">sinken</option><option value="steigt">steigt</option><option value="teuer">teuer</option></select> sind.
-  </p>
-  <div class="sol-inline-sm" id="b31_score"></div>
+  <div class="lebenswelt-ref">701 Arbeitsmarkt & Wirtschaft — Im Arbeitsmarkt ankommen</div>
+  <div class="task-title">701-21 · Marktgleichgewicht</div>
+  <div class="lz-box reveal" style="animation-delay:.02s"><strong>Lernziel:</strong> Ich kann das Marktgleichgewicht grafisch darstellen und in eigenen Worten erklären.</div>
+  <div class="meta-row">K2</div>
+
+<p style="font-size:15px;margin-bottom:12px;"><strong style="color:var(--t1-dark);">Auftrag:</strong></p>
+<div class="section-label">a) Marktgleichgewicht grafisch darstellen</div>
+  <p style="font-size:15px;margin-bottom:12px;">Zeichnen Sie eine Skizze des Marktgleichgewichts mit Angebots- und Nachfragekurve. Beschriften Sie den Gleichgewichtspreis und die Gleichgewichtsmenge.</p>
+  <div style="border:1.5px dashed var(--rule);border-radius:6px;height:200px;display:flex;align-items:center;justify-content:center;color:var(--ink-light);font-family:'JetBrains Mono',monospace;font-size:13px;margin-bottom:20px;">
+    ✏️ Skizze auf Papier / in der Mappe zeichnen
+  </div>
+
+  <div class="section-label">b) Marktgleichgewicht beschreiben</div>
+  <p style="font-size:15px;margin-bottom:12px;">Erklären Sie in zwei bis vier Sätzen, was das Marktgleichgewicht bedeutet. Verwenden Sie dabei die Begriffe <em>Angebot</em>, <em>Nachfrage</em> und <em>Gleichgewichtspreis</em>.</p>
+  <textarea class="free-text" id="a33b" rows="5" placeholder="Im Marktgleichgewicht …"></textarea>
+  <div class="sol-inline-sm" id="b33b"></div>
 
 <div class="ko-box reveal" style="animation-delay:.2s">
   <div class="ko-label">💬 Kompetenzorientierte Frage</div>
-  <div class="ko-text" id="ko_text_202_[UE]_A04">Analysiere eine aktuelle Preisveränderung (z. B. Lebensmittel, Energie, Elektronik): Was hat sich auf der Angebots- oder Nachfrageseite verändert? Überlege ausserdem, welche Folgen diese Preisveränderung für Konsumentinnen und Konsumenten in unterschiedlichen Einkommenssituationen hat.</div>
-  <textarea id="ko_31" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Analysiere eine aktuelle Preisveränderung (z. B. Lebensmittel, Energie, Elektronik): Was hat sich auf der Angebots- oder Nachfrageseite verändert? Überlege ausserdem, welche Folgen diese Preisveränderung für Konsumentinnen und Konsumenten in unterschiedlichen Einkommenssituationen hat."
-    data-ki-loesung="Steigen zum Beispiel Energie- oder Lebensmittelpreise, können höhere Produktionskosten oder eine stärkere Nachfrage dahinterstehen. Haushalte mit tiefem Einkommen sind stärker betroffen, weil Grundgüter einen grösseren Anteil ihres Budgets ausmachen."></textarea>
+  <div class="ko-text" id="ko_text_202_[UE]_A06">Was passiert mit dem Marktgleichgewicht, wenn ein neuer Anbieter mit einem günstigeren Produkt in den Markt eintritt? Beschreibe die Auswirkungen auf Preis und Menge. Überlege dann: In welchen Fällen funktioniert dieser Ausgleichsmechanismus des Marktes gut – und wann versagt er?</div>
+  <textarea id="ko_33" rows="5" placeholder="Meine Antwort …"
+    data-ki-aufgabe="Was passiert mit dem Marktgleichgewicht, wenn ein neuer Anbieter mit einem günstigeren Produkt in den Markt eintritt? Beschreibe die Auswirkungen auf Preis und Menge. Überlege dann: In welchen Fällen funktioniert dieser Ausgleichsmechanismus des Marktes gut – und wann versagt er?"
+    data-ki-loesung="Tritt ein neuer günstiger Anbieter in den Markt ein, steigt das Angebot. Der Preis sinkt meist und die verkaufte Menge kann steigen. Das funktioniert schlecht bei Monopolen, Umweltfolgen, fehlenden Informationen oder öffentlichen Gütern."></textarea>
   <div class="ki-toggle-row" id="kiToggleArea" style="display:none">
     <span class="ki-toggle-label">KI-Modus</span>
     <div class="ki-switch" id="kiModeToggle" role="switch" aria-checked="false" tabindex="0"
@@ -240,9 +240,9 @@
     <button class="btn btn-ki" id="kiFeedbackBtn" onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
   </div>
   <div id="kiFeedbackResult"></div>
-  <div class="sol-inline" id="sol_ko_31">✓ Mögliche Antwort: Steigen zum Beispiel Energie- oder Lebensmittelpreise, können höhere Produktionskosten oder eine stärkere Nachfrage dahinterstehen. Haushalte mit tiefem Einkommen sind stärker betroffen, weil Grundgüter einen grösseren Anteil ihres Budgets ausmachen.</div>
+  <div class="sol-inline" id="sol_ko_33">✓ Mögliche Antwort: Tritt ein neuer günstiger Anbieter in den Markt ein, steigt das Angebot. Der Preis sinkt meist und die verkaufte Menge kann steigen. Das funktioniert schlecht bei Monopolen, Umweltfolgen, fehlenden Informationen oder öffentlichen Gütern.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
-    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_31']);return false;">↺ Nur diese Frage zurücksetzen</a>
+    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_33']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
 </div>
 
@@ -255,7 +255,7 @@
     <button class="btn btn-ghost" onclick="resetAll()">Zurücksetzen</button>
   </div>
   <p style="color:var(--ink-light);font-size:11.5px;font-family:'JetBrains Mono',monospace;margin-top:28px;border-top:1px solid var(--rule);padding-top:12px;">
-    <span id="footerName"></span> · 202-04 · Mein Geld
+    <span id="footerName"></span> · 701-21 · Meine Zukunft
   </p>
   <p style="margin-top:6px;">
     <a href="#" id="erweiterteNutzungLink" onclick="erweiterteNutzungUmschalten();return false;" style="font-size:11px;color:#b0aa9c;text-decoration:none;">⚙ Erweiterte Nutzung</a>
@@ -266,7 +266,7 @@
   </p>
 </div>
 <script>
-const SAFE_FN = '202_[UE]_A04_Preisbildung';
+const SAFE_FN = '701_[UE]_A21_Marktgleichgewicht';
 const SUPABASE_URL = 'https://lrpaomltzrfgtupzeooq.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_Q9t2s4kLLNy--Tkm8EwLBQ_CbHJo9G-';
 const WORKER_URL = 'https://twilight-butterfly-5015.uwalser75.workers.dev/feedback';
@@ -679,9 +679,9 @@ document.addEventListener('copy',function(e){
 </script>
 <table width="100%" style="background:#f7f7f7;border-top:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;">
 <tr>
-<td style="padding:6px 10px;text-align:left;width:33%;"><a href="202_[UE]_A03_Gueterarten.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
-<td style="padding:6px 10px;text-align:center;width:34%;"><a href="202_Aufgaben.html" style="color:#8b1a1a;text-decoration:none;font-size:14px;" title="Zur Übersicht">&#8593;</a></td>
-<td style="padding:6px 10px;text-align:right;width:33%;"><a href="202_[UE]_A05_Angebot_Nachfrage.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
+<td style="padding:6px 10px;text-align:left;width:33%;"><a href="701_[UE]_A20_Angebot_Nachfrage.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
+<td style="padding:6px 10px;text-align:center;width:34%;"><a href="701_Aufgaben.html" style="color:#8b1a1a;text-decoration:none;font-size:14px;" title="Zur Übersicht">&#8593;</a></td>
+<td style="padding:6px 10px;text-align:right;width:33%;"><a href="701_[UE]_A22_Selbsteinschaetzung_Gefragte_Kompetenzen.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
 </tr>
 </table>
 </body>
