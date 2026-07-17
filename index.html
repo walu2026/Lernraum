@@ -41,6 +41,10 @@
   .tile-arrow { position:absolute; bottom:10px; right:12px; font-size:14px; color:var(--tc); opacity:0.4; transition:all .15s; }
   .tile:hover .tile-arrow { opacity:1; transform:translateX(3px); }
 
+  .tile.lw-relevant { border-left:4px solid #2E7D32; }
+  .tile.lw-relevant::after { content:'🌱'; position:absolute; top:8px; right:10px; font-size:13px; line-height:1; }
+  .lw-legend { font-size:11px; color:var(--g5); text-align:center; margin-top:1.5rem; }
+
 
   /* Thema 9 – 4+3 Grid */
   .tiles-t9 { display:grid; grid-template-columns:repeat(4,1fr); gap:7px; padding:12px 18px 14px; background:white; }
@@ -122,6 +126,18 @@
         <div class="tile-desc">Grössere Anschaffungen planen und finanzieren</div>
         <span class="tile-arrow">→</span>
       </a>
+      <a class="tile lw-relevant" href="detail.html#205" style="--tc:var(--t2)">
+        <div class="tile-code">205</div>
+        <div class="tile-name">Steuern &amp; Vorsorge</div>
+        <div class="tile-desc">Steuern verstehen und für die Altersvorsorge planen</div>
+        <span class="tile-arrow">→</span>
+      </a>
+      <a class="tile lw-relevant" href="detail.html#206" style="--tc:var(--t2)">
+        <div class="tile-code">206</div>
+        <div class="tile-name">Mobilität</div>
+        <div class="tile-desc">Ein Fahrzeug kaufen, versichern und sicher unterwegs sein</div>
+        <span class="tile-arrow">→</span>
+      </a>
     </div>
   </div>
   <div class="theme-block" style="--tc:var(--t3);--tbg:#D4F7E2">
@@ -162,6 +178,12 @@
         <div class="tile-desc">Auf Gewaltsituationen treffen</div>
         <span class="tile-arrow">→</span>
       </a>
+      <a class="tile lw-relevant" href="detail.html#306" style="--tc:var(--t3)">
+        <div class="tile-code">306</div>
+        <div class="tile-name">Verhütung &amp; Sexualität</div>
+        <div class="tile-desc">Verantwortungsvoll mit der eigenen Sexualität umgehen</div>
+        <span class="tile-arrow">→</span>
+      </a>
     </div>
   </div>
   <div class="theme-block" style="--tc:var(--t4);--tbg:#D4E9F9">
@@ -188,6 +210,12 @@
         <div class="tile-code">403</div>
         <div class="tile-name">Vielseitigkeit der Schweiz</div>
         <div class="tile-desc">In der Schweiz leben und ihrer Vielseitigkeit begegnen</div>
+        <span class="tile-arrow">→</span>
+      </a>
+      <a class="tile lw-relevant" href="detail.html#404" style="--tc:var(--t4)">
+        <div class="tile-code">404</div>
+        <div class="tile-name">Medien &amp; KI</div>
+        <div class="tile-desc">KI-Werkzeuge nutzen und die eigenen Daten schützen</div>
         <span class="tile-arrow">→</span>
       </a>
     </div>
@@ -228,6 +256,12 @@
         <div class="tile-code">505</div>
         <div class="tile-name">Gesellschaft mitgestalten</div>
         <div class="tile-desc">Eine lebenswerte Gesellschaft mitgestalten</div>
+        <span class="tile-arrow">→</span>
+      </a>
+      <a class="tile lw-relevant" href="detail.html#506" style="--tc:var(--t5)">
+        <div class="tile-code">506</div>
+        <div class="tile-name">Erbrecht &amp; Güterrecht</div>
+        <div class="tile-desc">Erbschaft, Güterrecht und Betriebsübergabe verstehen</div>
         <span class="tile-arrow">→</span>
       </a>
     </div>
@@ -406,6 +440,8 @@
       </a>
     </div>
   </div>
+
+  <div class="lw-legend">🌱 = neue Kachel, Inhalt in Arbeit</div>
 
 </div>
 </body>
