@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>502-16 · Versicherungen für die erste Wohnung</title>
+<meta name="slp2026-thema" content="5">
+<meta name="slp2026-ls" content="B">
+<meta name="slp2026-ges" content="—">
+<meta name="slp2026-suk" content="B3">
+<meta name="slp2026-status" content="kern">
+<meta name="slp2026-efz3" content="kern">
+<meta name="slp2026-format" content="analyse-praesentation">
+<meta name="slp2026-ow" content="—">
+<title>502-17 · Wohnungsmarkt und Wohnungsnot</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
   :root {
@@ -63,8 +71,6 @@
   table.ex td strong { display: inline-block; font-weight: 700; color: var(--t1-dark); font-size: 13px; background: var(--t1-lighter); padding: 3px 9px; border-radius: 999px; }
   table.ex textarea, table.ex input[type=text] { width: 100% !important; border: 1.5px solid var(--rule) !important; border-radius: 9px !important; background: var(--bg) !important; font-family: inherit !important; font-size: 14px !important; padding: 8px 11px !important; resize: vertical; margin-top: 5px; transition: border-color .18s, box-shadow .18s; }
   table.ex textarea:focus, table.ex input[type=text]:focus { outline: none; border-color: var(--t1) !important; background: white !important; box-shadow: 0 0 0 3px var(--t1-light); }
-  .ex-select { border: 1.5px solid var(--rule); border-radius: 8px; background: var(--bg); font-family: inherit; font-size: 13.5px; padding: 6px 10px; cursor: pointer; margin-top: 4px; }
-  .ex-select:focus { outline: none; border-color: var(--t1); box-shadow: 0 0 0 3px var(--t1-light); }
   .sol-inline-sm, .sol-inline { display: none; background: var(--green-light) !important; border-radius: 8px !important; padding: 8px 11px !important; margin-top: 7px !important; font-size: 13px !important; font-weight: 500; color: #135c2c !important; user-select: none; -webkit-user-select: none; }
   .sol-inline-sm.visible, .sol-inline.visible { display: block; }
   .sol-inline-sm.sol-empty-hint, .sol-inline.sol-empty-hint,
@@ -125,6 +131,10 @@
   .reveal { animation: fadeInUp .5s cubic-bezier(.16,.84,.44,1) both; }
   @media (prefers-reduced-motion: reduce) { .reveal { animation: none; } }
   .punkte-box, .punkte-summe-zeile { display: none; }
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 10px; margin-bottom: 20px; }
+  .stat-card { background: var(--paper); border: 1.5px solid var(--rule); border-radius: 12px; padding: 14px; text-align: center; }
+  .stat-card .num { font-size: 20px; font-weight: 800; color: var(--t1-dark); font-family: 'JetBrains Mono', monospace; }
+  .stat-card .lbl { font-size: 11.5px; color: var(--ink-light); margin-top: 3px; }
   @media print {
     .top-bar { display: none; }
     .score-banner { display: none !important; }
@@ -134,57 +144,10 @@
     .punkte-summe-zeile { display: block !important; margin-top: 20px; padding-top: 10px; border-top: 2px solid #333; font-size: 14px; font-weight: 700; text-align: right; }
     @page { margin: 15mm 12mm; size: A4 portrait; }
   }
-
-  /* ── Alte Textarea-Klassen → v10.3 Stil ── */
-  textarea.cell-ta, textarea.free-text, textarea.freitext,
-  textarea:not(.ko-box textarea) {
-    width: 100% !important;
-    border: 1.5px solid var(--rule) !important;
-    border-radius: 9px !important;
-    background: var(--bg) !important;
-    font-family: inherit !important;
-    font-size: 14px !important;
-    padding: 8px 11px !important;
-    resize: vertical;
-    min-height: 70px;
-    box-sizing: border-box;
-    transition: border-color .18s, box-shadow .18s;
-  }
-  textarea.cell-ta:focus, textarea.free-text:focus, textarea.freitext:focus {
-    outline: none;
-    border-color: var(--t1) !important;
-    background: white !important;
-    box-shadow: 0 0 0 3px var(--t1-light);
-  }
-  /* Alte select-Klassen */
-  select.lueck-sel, select.match-sel {
-    border: 1.5px solid var(--rule);
-    border-radius: 8px;
-    background: var(--bg);
-    font-family: inherit;
-    font-size: 13.5px;
-    padding: 5px 9px;
-    cursor: pointer;
-  }
-  select.lueck-sel:focus, select.match-sel:focus {
-    outline: none;
-    border-color: var(--t1);
-    box-shadow: 0 0 0 3px var(--t1-light);
-  }
-  select.correct-sel { border-color: #2a7a3a !important; background: #eaf5ec !important; }
-  select.wrong-sel   { border-color: #c0392b !important; background: #faeaea !important; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 </head>
 <body>
-<table width="100%" style="background:#f7f7f7;border-bottom:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;">
-<tr>
-<td style="padding:6px 10px;text-align:left;width:33%;"><a href="502_[UE]_A15_Mieterschutz.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
-<td style="padding:6px 10px;text-align:center;width:34%;"><a href="502_Aufgaben.html" style="color:#8b1a1a;text-decoration:none;font-size:14px;" title="Zur Übersicht">&#8593;</a></td>
-<td style="padding:6px 10px;text-align:right;width:33%;"><a href="502_[UE]_A17_Wohnungsmarkt_Wohnungsnot.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
-</tr>
-</table>
-
 <div id="iframeBanner" style="display:none;background:#b8860b;color:white;text-align:center;padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;z-index:9999;">
   ⚠️ Diese Übung läuft in der SharePoint-Vorschau – Buttons sind deaktiviert.
   &nbsp;<strong>Bitte oben rechts auf «Öffnen» klicken</strong>, um die Übung im Browser zu starten.
@@ -206,31 +169,74 @@
 
 <div class="ws">
   <div class="lebenswelt-ref">502 Ausziehen & Mietrecht — Das gewohnte Zuhause verlassen</div>
-  <div class="task-title">502-16 · Versicherungen für die erste Wohnung</div>
-  <div class="lz-box reveal" style="animation-delay:.02s"><strong>Lernziel:</strong> Ich kann die notwendigen Versicherungen beim Einzug in eine erste eigene Wohnung benennen und begründen.</div>
-  <div class="meta-row">K2–K3</div>
-<p style="font-size:15px;margin-bottom:12px;"><strong style="color:var(--t1-dark);">Auftrag:</strong></p>
+  <div class="task-title">502-17 · Wohnungsmarkt und Wohnungsnot</div>
+  <div class="lz-box reveal" style="animation-delay:.02s"><strong>Lernziel:</strong> Ich kenne die aktuelle Lage auf dem Schweizer Wohnungsmarkt und kann Ursachen der Wohnungsnot erklären.</div>
+  <div class="meta-row">K3–K4</div>
+<p style="font-size:15px;margin-bottom:12px;"><strong style="color:var(--t1-dark);">Auftrag:</strong> Lesen Sie den Text zur aktuellen Lage auf dem Schweizer Wohnungsmarkt und beantworten Sie die folgenden Fragen.</p>
 
+  <div class="section-label">Aktuelle Zahlen (Bundesamt für Wohnungswesen BWO, 2025)</div>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="num">1,0%</div><div class="lbl">Leerwohnungsziffer Schweiz (Juni 2025)</div></div>
+    <div class="stat-card"><div class="num">48'455</div><div class="lbl">leerstehende Wohnungen gesamtschweizerisch</div></div>
+    <div class="stat-card"><div class="num">&lt;0,6%</div><div class="lbl">Leerstand in Zürich, Genf, Zug, Basel-Stadt</div></div>
+  </div>
 
-<p style="font-size:15px;margin-bottom:16px;">Pia zieht aus. Welche Versicherungen soll sie abschliessen? Begründen Sie in vollständigen Sätzen.</p>
+  <div style="background:var(--paper);border:1.5px solid var(--rule);border-radius:12px;padding:18px 22px;margin-bottom:20px;font-size:14.5px;line-height:1.65;color:#3a362f;">
+    <p style="font-weight:800;color:var(--t1-dark);margin-bottom:8px;">Wohnungsnot in der Schweiz</p>
+    <p>Die «Leerwohnungsziffer» misst, wie viele Wohnungen am Stichtag leer stehen und sofort bezogen werden könnten — sie ist der wichtigste Indikator für die Lage auf dem Wohnungsmarkt. Am 1. Juni 2025 lag sie schweizweit bei nur noch 1,0 Prozent (48'455 leere Wohnungen), dem tiefsten Stand seit zwölf Jahren. Fachleute sprechen ab einer Quote unter 1 Prozent von einer landesweiten «Wohnungsnot»; in den grossen Stadtkantonen (Zürich, Genf, Zug, Basel-Stadt) liegt der Leerstand bereits unter 0,6 Prozent — ein Niveau, das als «Wohnungsnotstand» gilt.</p>
+    <p style="font-weight:700;color:var(--t1-dark);margin-top:14px;">Ursachen der Wohnungsnot</p>
+    <p>Die Wohnbevölkerung der Schweiz wächst schneller, als neue Wohnungen gebaut werden. Zusätzlich verstärkt der Trend zu kleineren Haushalten (mehr Alleinlebende, mehr Scheidungen) die Nachfrage nach Wohnraum, weil auf gleich viele Personen mehr Wohnungen kommen. Bauland ist zudem knapp und Bauprojekte dauern oft mehrere Jahre bis zur Fertigstellung.</p>
+    <p style="font-weight:700;color:var(--t1-dark);margin-top:14px;">Folgen für Wohnungssuchende</p>
+    <p>Ein knapper Markt bedeutet: weniger Auswahl, mehr Bewerbungen pro Wohnung, steigende Mietzinse bei Wiedervermietung und mehr Konkurrenzdruck — besonders in den grossen Zentren. Für Lernende und junge Erwachsene, die zum ersten Mal eine eigene Wohnung suchen, kann das die Wohnungssuche deutlich erschweren.</p>
+    <p style="font-size:12px;color:var(--ink-light);font-family:'JetBrains Mono',monospace;margin-top:12px;margin-bottom:0;">Quelle: Bundesamt für Wohnungswesen (BWO), Leerwohnungszählung 2025; Tagesanzeiger/UBS-Prognose zum Wohnungsmarkt.</p>
+  </div>
+
+  <div class="section-label">Sachfragen</div>
   <table class="ex">
-    <thead><tr><th style="width:30%;">Versicherung</th><th>Begründung / Leistungen</th></tr></thead>
+    <thead><tr><th style="width:38%">Frage</th><th style="text-align:left;">Ihre Antwort</th></tr></thead>
     <tbody>
-      <tr><td style="font-weight:600;">Hausratversicherung</td>
-          <td><textarea class="cell-ta" id="v32_hr" rows="3" placeholder="Deckt..."></textarea>
-          <div class="sol-inline-sm" id="b_v32_hr"></div></td></tr>
-      <tr><td style="font-weight:600;">Privathaftpflichtversicherung</td>
-          <td><textarea class="cell-ta" id="v32_ph" rows="3" placeholder="Übernimmt..."></textarea>
-          <div class="sol-inline-sm" id="b_v32_ph"></div></td></tr>
+      <tr>
+        <td><strong>1</strong> Was misst die Leerwohnungsziffer, und wie hoch war sie im Juni 2025 schweizweit?</td>
+        <td>
+          <textarea class="cell-ta" id="ta_a1" rows="3" placeholder="Meine Antwort …"></textarea>
+          <div class="sol-inline-sm" id="sol_a1">Sie misst den Anteil leerstehender, sofort beziehbarer Wohnungen am Gesamtwohnungsbestand; im Juni 2025 lag sie schweizweit bei 1,0 Prozent.</div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>2</strong> Nennen Sie zwei Ursachen der aktuellen Wohnungsnot.</td>
+        <td>
+          <textarea class="cell-ta" id="ta_a2" rows="3" placeholder="Meine Antwort …"></textarea>
+          <div class="sol-inline-sm" id="sol_a2">Zum Beispiel: Bevölkerungswachstum übersteigt Bautätigkeit, Trend zu kleineren Haushalten, knappes Bauland, lange Bauprojektdauer.</div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>3</strong> Welche Folgen hat die Wohnungsnot konkret für Wohnungssuchende?</td>
+        <td>
+          <textarea class="cell-ta" id="ta_a3" rows="3" placeholder="Meine Antwort …"></textarea>
+          <div class="sol-inline-sm" id="sol_a3">Weniger Auswahl, mehr Bewerbungen pro Wohnung, steigende Mietzinse bei Wiedervermietung, mehr Konkurrenzdruck.</div>
+        </td>
+      </tr>
     </tbody>
   </table>
 
 <div class="ko-box reveal" style="animation-delay:.2s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Gesellschaft)</div>
-  <div class="ko-text" id="ko_text_502_[UE]_A16">Erkläre den Unterschied zwischen Hausrat- und Haftpflichtversicherung. In welchen konkreten Situationen greift welche Versicherung – und was passiert, wenn man keine dieser Versicherungen hat?</div>
-  <textarea id="ko_v32" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Erkläre den Unterschied zwischen Hausrat- und Haftpflichtversicherung. In welchen konkreten Situationen greift welche Versicherung – und was passiert, wenn man keine dieser Versicherungen hat?"
-    data-ki-loesung="Die Hausratversicherung ersetzt Schäden am eigenen Eigentum, zum Beispiel durch Feuer, Wasser oder Einbruch. Die Privathaftpflicht bezahlt Schäden, die ich anderen zufüge, etwa wenn Wasser in die Nachbarwohnung läuft. Ohne Haftpflicht können grosse Forderungen existenzbedrohend sein."></textarea>
+  <div class="ko-text" id="ko_text_ges">Analysieren Sie: Welche Gruppen in der Gesellschaft sind von der Wohnungsnot besonders stark betroffen, und weshalb? Nennen Sie mindestens zwei Gruppen mit Begründung.</div>
+  <textarea id="ko_ges" rows="6" placeholder="Meine Analyse …"
+    data-ki-aufgabe="Analysieren Sie: Welche Gruppen in der Gesellschaft sind von der Wohnungsnot besonders stark betroffen, und weshalb? Nennen Sie mindestens zwei Gruppen mit Begruendung."
+    data-ki-loesung="Eine gute Analyse nennt plausible Gruppen (z.B. Personen mit tiefem Einkommen — weniger Verhandlungsspielraum bei steigenden Mieten; junge Erwachsene/Lehrlinge bei der ersten Wohnungssuche — wenig Referenzen/Budget; kinderreiche Familien — brauchen grössere, seltenere Wohnungen; Personen ohne Schweizer Pass — teils Diskriminierung bei Bewerbungen) mit nachvollziehbarer Begründung."></textarea>
+  <div class="sol-inline" id="sol_ko_ges">Eine gute Analyse nennt plausible Gruppen (z.B. Personen mit tiefem Einkommen — weniger Verhandlungsspielraum bei steigenden Mieten; junge Erwachsene/Lehrlinge bei der ersten Wohnungssuche — wenig Referenzen/Budget; kinderreiche Familien — brauchen grössere, seltenere Wohnungen; Personen ohne Schweizer Pass — teils Diskriminierung bei Bewerbungen) mit nachvollziehbarer Begründung.</div>
+  <div class="block-reset-row" style="text-align:right;margin-top:7px;">
+    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_ges']);return false;">↺ Nur diese Frage zurücksetzen</a>
+  </div>
+</div>
+
+<div class="ko-box reveal" style="animation-delay:.28s">
+  <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
+  <div class="ko-text" id="ko_text_suk">Bereiten Sie eine kurze Präsentation (Stichworte/Gliederung, 8–10 Sätze als Fliesstext) zum Thema «Wohnungsnot in der Schweiz» vor, die Sie einer Klasse vorstellen könnten. Nennen Sie die wichtigsten Zahlen, Ursachen und Folgen.</div>
+  <textarea id="ko_suk" rows="8" placeholder="Meine Präsentationsgliederung/Text …"
+    data-ki-aufgabe="Bereiten Sie eine kurze Praesentation (Stichworte/Gliederung, 8-10 Saetze als Fliesstext) zum Thema 'Wohnungsnot in der Schweiz' vor, die Sie einer Klasse vorstellen koennten. Nennen Sie die wichtigsten Zahlen, Ursachen und Folgen."
+    data-ki-loesung="Eine gute Präsentation ist klar strukturiert (z.B. Einleitung/Zahlen/Ursachen/Folgen) und nennt mindestens die zentrale Kennzahl (Leerwohnungsziffer 1,0%), mindestens eine Ursache und eine Folge."></textarea>
   <div class="ki-toggle-row" id="kiToggleArea" style="display:none">
     <span class="ki-toggle-label">KI-Modus</span>
     <div class="ki-switch" id="kiModeToggle" role="switch" aria-checked="false" tabindex="0"
@@ -243,21 +249,9 @@
     <button class="btn btn-ki" id="kiFeedbackBtn" onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
   </div>
   <div id="kiFeedbackResult"></div>
-  <div class="sol-inline" id="sol_ko_v32">✓ Mögliche Antwort: Die Hausratversicherung ersetzt Schäden am eigenen Eigentum, zum Beispiel durch Feuer, Wasser oder Einbruch. Die Privathaftpflicht bezahlt Schäden, die ich anderen zufüge, etwa wenn Wasser in die Nachbarwohnung läuft. Ohne Haftpflicht können grosse Forderungen existenzbedrohend sein.</div>
+  <div class="sol-inline" id="sol_ko_suk">Eine gute Präsentation ist klar strukturiert (z.B. Einleitung/Zahlen/Ursachen/Folgen) und nennt mindestens die zentrale Kennzahl (Leerwohnungsziffer 1,0%), mindestens eine Ursache und eine Folge.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
-    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_v32']);return false;">↺ Nur diese Frage zurücksetzen</a>
-  </div>
-</div>
-
-<div class="ko-box reveal" style="animation-delay:.28s">
-  <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_v32">Erklären Sie in eigenen Worten, was eine Privathaftpflichtversicherung ist.</div>
-  <textarea id="ko_suk_v32" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Erklaere in eigenen Worten, was eine Privathaftpflichtversicherung ist."
-    data-ki-loesung="Eine Privathaftpflichtversicherung deckt Schäden, die man versehentlich anderen Personen oder deren Eigentum zufügt, zum Beispiel wenn man beim Fussballspielen ein Fenster einschlägt oder eine überlaufende Badewanne die Wohnung darunter beschädigt."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_v32">✓ Mögliche Antwort: Eine Privathaftpflichtversicherung deckt Schäden, die man versehentlich anderen Personen oder deren Eigentum zufügt, zum Beispiel wenn man beim Fussballspielen ein Fenster einschlägt oder eine überlaufende Badewanne die Wohnung darunter beschädigt.</div>
-  <div class="block-reset-row" style="text-align:right;margin-top:7px;">
-    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_v32']);return false;">↺ Nur diese Frage zurücksetzen</a>
+    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
 </div>
 
@@ -270,7 +264,7 @@
     <button class="btn btn-ghost" onclick="resetAll()">Zurücksetzen</button>
   </div>
   <p style="color:var(--ink-light);font-size:11.5px;font-family:'JetBrains Mono',monospace;margin-top:28px;border-top:1px solid var(--rule);padding-top:12px;">
-    <span id="footerName"></span> · 502-16 · Unser Zusammenleben
+    <span id="footerName"></span> · 502-17 · Unser Zusammenleben
   </p>
   <p style="margin-top:6px;">
     <a href="#" id="erweiterteNutzungLink" onclick="erweiterteNutzungUmschalten();return false;" style="font-size:11px;color:#b0aa9c;text-decoration:none;">⚙ Erweiterte Nutzung</a>
@@ -281,7 +275,7 @@
   </p>
 </div>
 <script>
-const SAFE_FN = '502_[UE]_A16_Versicherungen_Wohnung';
+const SAFE_FN = '502_[UE]_A17_Wohnungsmarkt_Wohnungsnot';
 const SUPABASE_URL = 'https://lrpaomltzrfgtupzeooq.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_Q9t2s4kLLNy--Tkm8EwLBQ_CbHJo9G-';
 const WORKER_URL = 'https://twilight-butterfly-5015.uwalser75.workers.dev/feedback';
@@ -341,24 +335,17 @@ function einsendenModusUmschalten() {
   try { localStorage.setItem(EINSENDEN_KEY, aktuell ? '0' : '1'); } catch(e) {}
   wendeEinsendenModusAn();
 }
-document.addEventListener('DOMContentLoaded', function() {
-  // Sol-div Originaltexte einmalig sichern
-  document.querySelectorAll('.sol-inline, .sol-inline-sm').forEach(function(el) {
-    el.dataset.origText = el.textContent;
-  });
-  wendePruefungsModusAn(); wendeErweiterteNutzungAn(); wendeEinsendenModusAn();
-});
+document.addEventListener('DOMContentLoaded', function() { wendePruefungsModusAn(); wendeErweiterteNutzungAn(); wendeEinsendenModusAn(); });
 
 function istPlausibleAntwort(text) {
   const t = (text||'').trim(), ol = t.replace(/\s+/g,'');
   if (ol.length < 8) return false;
   if ((t.match(/[a-zA-ZäöüÄÖÜ]/g)||[]).length < 2) return false;
-  if (/(.)\\1{2,}/.test(ol.toLowerCase()) && new Set(ol.toLowerCase()).size <= 2) return false;
+  if (/(.)\1{2,}/.test(ol.toLowerCase()) && new Set(ol.toLowerCase()).size <= 2) return false;
   if (/(asdf|qwer|qwert|zxcv)/i.test(ol)) return false;
   return t.split(/\s+/).filter(w=>w.length>=4).some(function(w) { const nb=w.replace(/[^a-zA-ZäöüÄÖÜ]/g,''); return nb.length>=4 && new Set(nb.toLowerCase()).size>=3; });
 }
 function checkAll() {
-  // ── Selects mit data-correct ──
   document.querySelectorAll('select[data-correct]').forEach(function(sel) {
     const correct = sel.getAttribute('data-correct');
     const val = sel.value;
@@ -374,29 +361,23 @@ function checkAll() {
     sel.style.borderColor = ok ? '#2a7a3a' : '#c0392b';
     sel.style.background = ok ? '#eaf5ec' : '#faeaea';
     if(sol) {
+      if(!sol.dataset.origText) sol.dataset.origText = sol.textContent;
       sol.textContent = ok ? ('✔ ' + correct) : ('✘ Lösung: ' + correct);
       sol.classList.add('visible');
-      sol.style.display = 'block';
       sol.style.color = ok ? '#135c2c' : '#8b1a1a';
     }
   });
-  // ── Alle Textareas (ausser KO) ──
   document.querySelectorAll('textarea').forEach(function(ta) {
-    // KO-Textarea separat behandelt
     const isKo = ta.closest('.ko-box') !== null;
     if(isKo) return;
-    // Sol-div suchen: zuerst via ID-Konvention, dann als nächstes Geschwister
     const id = ta.id;
     let sol = null;
-    // Versuch 1: sol_ + id (ohne ta_-Präfix)
     const solId1 = 'sol_' + id.replace(/^ta_/, '');
     sol = document.getElementById(solId1);
-    // Versuch 2: b + id ohne führendes 'a' (altes Muster: ta=aX_y → sol=bX_y)
     if(!sol) {
       const solId2 = 'b' + id.replace(/^a/, '');
       sol = document.getElementById(solId2);
     }
-    // Versuch 3: nächstes sol-inline Geschwister
     if(!sol) {
       let sib = ta.nextElementSibling;
       while(sib) {
@@ -405,45 +386,40 @@ function checkAll() {
       }
     }
     if(!sol) return;
+    if(!sol.dataset.origText) sol.dataset.origText = sol.textContent;
     const w = ta.value.trim();
     if(!w) {
       sol.textContent = 'Bitte zuerst Text eingeben.';
       sol.classList.remove('sol-unplausibel-hint');
       sol.classList.add('visible', 'sol-empty-hint');
-      sol.style.display = 'block';
       ta.style.borderColor = '#c0392b';
     } else if(!istPlausibleAntwort(w)) {
       sol.textContent = 'Bitte eine ernsthafte Antwort eingeben.';
       sol.classList.remove('sol-empty-hint');
       sol.classList.add('visible', 'sol-unplausibel-hint');
-      sol.style.display = 'block';
       ta.style.borderColor = '#c0392b';
     } else {
       sol.classList.remove('sol-empty-hint', 'sol-unplausibel-hint');
       const loesung = sol.dataset.origText || '';
       sol.textContent = loesung.trim() ? loesung : '✓ Eigene Antwort (keine Musterlösung hinterlegt)';
       sol.classList.add('visible');
-      sol.style.display = 'block';
       ta.style.borderColor = '#2a7a3a';
     }
   });
-  // ── KO-Textarea ──
   document.querySelectorAll('.ko-box textarea').forEach(function(ta) {
     const sol = document.getElementById('sol_' + ta.id);
     if(!sol) return;
+    if(!sol.dataset.origText) sol.dataset.origText = sol.textContent;
     if(!ta.value.trim()) {
       sol.textContent = 'Keine Antwort eingegeben – Musterlösung wird nach dem Ausfüllen angezeigt.';
       sol.classList.add('visible', 'sol-empty-hint');
       sol.classList.remove('sol-unplausibel-hint');
-      sol.style.display = 'block';
     } else {
       sol.textContent = sol.dataset.origText;
       sol.classList.add('visible');
       sol.classList.remove('sol-empty-hint', 'sol-unplausibel-hint');
-      sol.style.display = 'block';
     }
   });
-  // ── Radio ──
   const rfG = {};
   document.querySelectorAll('input[type=radio][data-rf-correct]').forEach(function(inp){rfG[inp.name]=true;});
   Object.keys(rfG).forEach(function(name){
@@ -453,7 +429,6 @@ function checkAll() {
     radios.forEach(function(r){const row=r.closest('tr');if(!row)return;if(checked){row.style.background=(checked.value===checked.dataset.rfCorrect)?'#eaf5ec':'#faeaea';}else{row.style.background='#fdf3e3';}});
     if(solTr){if(checked){solTr.style.display='table-row';solTr.classList.add('visible');}else{solTr.style.display='none';solTr.classList.remove('visible');}}
   });
-  // ── Checkboxen ──
   document.querySelectorAll('input[type=checkbox][data-cb-correct]').forEach(function(inp){
     const correct=inp.dataset.cbCorrect==='true';
     const lbl=document.getElementById('lbl_cb_'+inp.id.replace('cb_',''));
@@ -467,7 +442,7 @@ function resetAll() {
   if(pruefungsModusIstAktiv()){alert('Zurücksetzen ist während der Standortbestimmung gesperrt.');return;}
   document.querySelectorAll('textarea,input[type=text]').forEach(function(el){el.value='';el.style.borderColor='';el.style.borderBottomColor='';});
   document.querySelectorAll('input[type=radio],input[type=checkbox]').forEach(function(el){el.checked=false;});
-  document.querySelectorAll('.sol-inline,.sol-inline-sm').forEach(function(el){el.classList.remove('visible','sol-empty-hint','sol-unplausibel-hint');el.style.display='';if(el.dataset.origText){el.textContent=el.dataset.origText;delete el.dataset.origText;}});
+  document.querySelectorAll('.sol-inline,.sol-inline-sm').forEach(function(el){el.classList.remove('visible','sol-empty-hint','sol-unplausibel-hint');if(el.dataset.origText){el.textContent=el.dataset.origText;delete el.dataset.origText;}});
   document.querySelectorAll('.sol-tr').forEach(function(el){el.style.display='none';el.classList.remove('visible');});
   document.querySelectorAll('tr').forEach(function(el){el.style.background='';});
   document.querySelectorAll('label[id^="lbl_cb_"]').forEach(function(el){el.style.background='';});
@@ -510,6 +485,7 @@ function fuegePunkteboxenEin() {
   document.querySelectorAll('.punkte-box,.punkte-summe-zeile').forEach(function(el){el.remove();});
   let pt=0;
   document.querySelectorAll('textarea[id^="ta_"],input[type=text][id^="ta_"]').forEach(function(f){pt+=2;const b=document.createElement('span');b.className='punkte-box';b.textContent='___ / 2 P.';f.insertAdjacentElement('afterend',b);});
+  document.querySelectorAll('.ko-box textarea').forEach(function(f){pt+=2;const b=document.createElement('span');b.className='punkte-box';b.textContent='___ / 2 P.';f.insertAdjacentElement('afterend',b);});
   const rfG={};document.querySelectorAll('input[type=radio][data-rf-correct]').forEach(function(i){rfG[i.name]=true;});
   Object.keys(rfG).forEach(function(name){pt+=1;const lr=document.querySelector('input[name="'+name+'"]:last-of-type');if(lr){const b=document.createElement('span');b.className='punkte-box';b.textContent='___ / 1 P.';const row=lr.closest('tr');if(row)row.appendChild(document.createElement('td')).appendChild(b);}});
   document.querySelectorAll('input[type=checkbox][data-cb-correct]').forEach(function(i){pt+=1;const lbl=document.getElementById('lbl_cb_'+i.id.replace('cb_',''));if(lbl){const b=document.createElement('span');b.className='punkte-box';b.textContent='___ / 1 P.';lbl.appendChild(b);}});
@@ -532,6 +508,7 @@ async function downloadFile() {
 function berechneAuswertung() {
   const a={felder_total:0,felder_ausgefuellt:0,text_geloest:0,text_total:0,mc_bearbeitet:0,mc_richtig:0,mc_total:0};
   document.querySelectorAll('textarea[id^="ta_"],input[type=text][id^="ta_"]').forEach(function(f){a.felder_total++;a.text_total++;const w=f.value.trim();if(w)a.felder_ausgefuellt++;if(istPlausibleAntwort(w))a.text_geloest++;});
+  document.querySelectorAll('.ko-box textarea').forEach(function(f){a.felder_total++;a.text_total++;const w=f.value.trim();if(w)a.felder_ausgefuellt++;if(istPlausibleAntwort(w))a.text_geloest++;});
   const rfG={};document.querySelectorAll('input[type=radio][data-rf-correct]').forEach(function(i){rfG[i.name]=true;});
   Object.keys(rfG).forEach(function(name){a.felder_total++;a.mc_total++;const c=document.querySelector('input[name="'+name+'"]:checked');if(c){a.felder_ausgefuellt++;a.mc_bearbeitet++;if(c.value===c.dataset.rfCorrect)a.mc_richtig++;}});
   document.querySelectorAll('input[type=checkbox][data-cb-correct]').forEach(function(i){a.felder_total++;a.mc_total++;if(i.checked){a.felder_ausgefuellt++;a.mc_bearbeitet++;if(i.dataset.cbCorrect==='true')a.mc_richtig++;}});
@@ -565,7 +542,11 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){
+    const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');
+    if(kt)out.push('💬 '+kt.textContent.trim());
+    out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');
+  });
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
@@ -646,7 +627,7 @@ function renderSpellResult(data,originalText,rb){
     rb.innerHTML=html;
   }
   window.kiFeedbackKlick=async function(btn){
-    const ta=document.querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
+    const ta=btn.closest('.ko-box').querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
     const aufgabe=ta.getAttribute('data-ki-aufgabe')||'',loesung=ta.getAttribute('data-ki-loesung')||'',antwort=ta.value.trim();
     const rb=document.getElementById('kiFeedbackResult');
     if(!antwort){rb.innerHTML='<div class="kf-feedback-box kf-error"><span class="kf-feedback-label">Hinweis</span><p>Bitte zuerst eine Antwort schreiben.</p></div>';return;}
@@ -692,12 +673,5 @@ document.addEventListener('copy',function(e){
 })();
 
 </script>
-<table width="100%" style="background:#f7f7f7;border-top:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;">
-<tr>
-<td style="padding:6px 10px;text-align:left;width:33%;"><a href="502_[UE]_A15_Mieterschutz.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
-<td style="padding:6px 10px;text-align:center;width:34%;"><a href="502_Aufgaben.html" style="color:#8b1a1a;text-decoration:none;font-size:14px;" title="Zur Übersicht">&#8593;</a></td>
-<td style="padding:6px 10px;text-align:right;width:33%;"><a href="502_[UE]_A17_Wohnungsmarkt_Wohnungsnot.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
-</tr>
-</table>
 </body>
 </html>

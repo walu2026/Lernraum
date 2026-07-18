@@ -3,7 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>502-16 · Versicherungen für die erste Wohnung</title>
+<meta name="slp2026-thema" content="5">
+<meta name="slp2026-ls" content="A">
+<meta name="slp2026-ges" content="—">
+<meta name="slp2026-suk" content="A2">
+<meta name="slp2026-status" content="kern">
+<meta name="slp2026-efz3" content="kern">
+<meta name="slp2026-format" content="reflexion">
+<meta name="slp2026-ow" content="—">
+<title>501-05 · Gute Beziehungen pflegen (Reflexion)</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
   :root {
@@ -63,8 +71,6 @@
   table.ex td strong { display: inline-block; font-weight: 700; color: var(--t1-dark); font-size: 13px; background: var(--t1-lighter); padding: 3px 9px; border-radius: 999px; }
   table.ex textarea, table.ex input[type=text] { width: 100% !important; border: 1.5px solid var(--rule) !important; border-radius: 9px !important; background: var(--bg) !important; font-family: inherit !important; font-size: 14px !important; padding: 8px 11px !important; resize: vertical; margin-top: 5px; transition: border-color .18s, box-shadow .18s; }
   table.ex textarea:focus, table.ex input[type=text]:focus { outline: none; border-color: var(--t1) !important; background: white !important; box-shadow: 0 0 0 3px var(--t1-light); }
-  .ex-select { border: 1.5px solid var(--rule); border-radius: 8px; background: var(--bg); font-family: inherit; font-size: 13.5px; padding: 6px 10px; cursor: pointer; margin-top: 4px; }
-  .ex-select:focus { outline: none; border-color: var(--t1); box-shadow: 0 0 0 3px var(--t1-light); }
   .sol-inline-sm, .sol-inline { display: none; background: var(--green-light) !important; border-radius: 8px !important; padding: 8px 11px !important; margin-top: 7px !important; font-size: 13px !important; font-weight: 500; color: #135c2c !important; user-select: none; -webkit-user-select: none; }
   .sol-inline-sm.visible, .sol-inline.visible { display: block; }
   .sol-inline-sm.sol-empty-hint, .sol-inline.sol-empty-hint,
@@ -125,6 +131,8 @@
   .reveal { animation: fadeInUp .5s cubic-bezier(.16,.84,.44,1) both; }
   @media (prefers-reduced-motion: reduce) { .reveal { animation: none; } }
   .punkte-box, .punkte-summe-zeile { display: none; }
+  .pillar-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap: 8px; margin-bottom: 20px; }
+  .pillar-card { background: var(--paper); border: 1.5px solid var(--rule); border-radius: 12px; padding: 10px 12px; text-align: center; font-size: 12.5px; color: #3a362f; }
   @media print {
     .top-bar { display: none; }
     .score-banner { display: none !important; }
@@ -134,57 +142,10 @@
     .punkte-summe-zeile { display: block !important; margin-top: 20px; padding-top: 10px; border-top: 2px solid #333; font-size: 14px; font-weight: 700; text-align: right; }
     @page { margin: 15mm 12mm; size: A4 portrait; }
   }
-
-  /* ── Alte Textarea-Klassen → v10.3 Stil ── */
-  textarea.cell-ta, textarea.free-text, textarea.freitext,
-  textarea:not(.ko-box textarea) {
-    width: 100% !important;
-    border: 1.5px solid var(--rule) !important;
-    border-radius: 9px !important;
-    background: var(--bg) !important;
-    font-family: inherit !important;
-    font-size: 14px !important;
-    padding: 8px 11px !important;
-    resize: vertical;
-    min-height: 70px;
-    box-sizing: border-box;
-    transition: border-color .18s, box-shadow .18s;
-  }
-  textarea.cell-ta:focus, textarea.free-text:focus, textarea.freitext:focus {
-    outline: none;
-    border-color: var(--t1) !important;
-    background: white !important;
-    box-shadow: 0 0 0 3px var(--t1-light);
-  }
-  /* Alte select-Klassen */
-  select.lueck-sel, select.match-sel {
-    border: 1.5px solid var(--rule);
-    border-radius: 8px;
-    background: var(--bg);
-    font-family: inherit;
-    font-size: 13.5px;
-    padding: 5px 9px;
-    cursor: pointer;
-  }
-  select.lueck-sel:focus, select.match-sel:focus {
-    outline: none;
-    border-color: var(--t1);
-    box-shadow: 0 0 0 3px var(--t1-light);
-  }
-  select.correct-sel { border-color: #2a7a3a !important; background: #eaf5ec !important; }
-  select.wrong-sel   { border-color: #c0392b !important; background: #faeaea !important; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 </head>
 <body>
-<table width="100%" style="background:#f7f7f7;border-bottom:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;">
-<tr>
-<td style="padding:6px 10px;text-align:left;width:33%;"><a href="502_[UE]_A15_Mieterschutz.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
-<td style="padding:6px 10px;text-align:center;width:34%;"><a href="502_Aufgaben.html" style="color:#8b1a1a;text-decoration:none;font-size:14px;" title="Zur Übersicht">&#8593;</a></td>
-<td style="padding:6px 10px;text-align:right;width:33%;"><a href="502_[UE]_A17_Wohnungsmarkt_Wohnungsnot.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
-</tr>
-</table>
-
 <div id="iframeBanner" style="display:none;background:#b8860b;color:white;text-align:center;padding:10px 20px;font-family:'JetBrains Mono',monospace;font-size:13px;z-index:9999;">
   ⚠️ Diese Übung läuft in der SharePoint-Vorschau – Buttons sind deaktiviert.
   &nbsp;<strong>Bitte oben rechts auf «Öffnen» klicken</strong>, um die Übung im Browser zu starten.
@@ -205,32 +166,58 @@
 <div class="score-banner" id="scoreBanner"></div>
 
 <div class="ws">
-  <div class="lebenswelt-ref">502 Ausziehen & Mietrecht — Das gewohnte Zuhause verlassen</div>
-  <div class="task-title">502-16 · Versicherungen für die erste Wohnung</div>
-  <div class="lz-box reveal" style="animation-delay:.02s"><strong>Lernziel:</strong> Ich kann die notwendigen Versicherungen beim Einzug in eine erste eigene Wohnung benennen und begründen.</div>
-  <div class="meta-row">K2–K3</div>
-<p style="font-size:15px;margin-bottom:12px;"><strong style="color:var(--t1-dark);">Auftrag:</strong></p>
+  <div class="lebenswelt-ref">501 Beziehungen — Beziehungen eingehen, pflegen und beenden</div>
+  <div class="task-title">501-05 · Gute Beziehungen pflegen (Reflexion)</div>
+  <div class="lz-box reveal" style="animation-delay:.02s"><strong>Lernziel:</strong> Ich kenne Faktoren, die zu gelingenden Beziehungen beitragen, und kann mein eigenes Verhalten in Beziehungen reflektieren.</div>
+  <div class="meta-row">K3–K4</div>
+<p style="font-size:15px;margin-bottom:12px;"><strong style="color:var(--t1-dark);">Auftrag:</strong> Lesen Sie den Text zu gelingenden Beziehungen und beantworten Sie die folgenden Fragen.</p>
 
+  <div class="section-label">Sachtext</div>
+  <div style="background:var(--paper);border:1.5px solid var(--rule);border-radius:12px;padding:18px 22px;margin-bottom:20px;font-size:14.5px;line-height:1.65;color:#3a362f;">
+    <p style="font-weight:800;color:var(--t1-dark);margin-bottom:8px;">Was macht Beziehungen stark?</p>
+    <p>Ob Partnerschaft, Familie oder Freundschaft — gelingende Beziehungen entstehen nicht von selbst, sondern brauchen aktive Pflege. Aus der Beziehungsforschung lassen sich einige zentrale Faktoren nennen, die zu stabilen, guten Beziehungen beitragen.</p>
+    <p style="font-weight:700;color:var(--t1-dark);margin-top:14px;">Zentrale Faktoren</p>
+    <p><strong>Offene Kommunikation:</strong> Regelmässig und ehrlich über Bedürfnisse, Erwartungen und Probleme sprechen, statt sie anzustauen. <strong>Gegenseitiger Respekt:</strong> Die eigenständige Meinung, Grenzen und Bedürfnisse der anderen Person anerkennen. <strong>Verlässlichkeit:</strong> Versprechen einhalten und für die andere Person da sein, wenn es darauf ankommt. <strong>Zeit füreinander:</strong> Bewusst gemeinsame Zeit einplanen, statt Beziehungen nur nebenbei laufen zu lassen. <strong>Konfliktfähigkeit:</strong> Meinungsverschiedenheiten konstruktiv austragen, statt sie zu vermeiden oder eskalieren zu lassen.</p>
+    <p style="font-weight:700;color:var(--t1-dark);margin-top:14px;">Beziehungen verändern sich</p>
+    <p>Beziehungen sind nicht statisch — sie entwickeln sich mit der Zeit weiter, verändern sich durch neue Lebensphasen (z.B. Lehrbeginn, Auszug von zuhause) und benötigen deshalb immer wieder neue Aufmerksamkeit und Anpassung.</p>
+  </div>
 
-<p style="font-size:15px;margin-bottom:16px;">Pia zieht aus. Welche Versicherungen soll sie abschliessen? Begründen Sie in vollständigen Sätzen.</p>
+  <div class="section-label">Fünf Faktoren gelingender Beziehungen</div>
+  <div class="pillar-grid">
+    <div class="pillar-card">Offene Kommunikation</div>
+    <div class="pillar-card">Gegenseitiger Respekt</div>
+    <div class="pillar-card">Verlässlichkeit</div>
+    <div class="pillar-card">Zeit füreinander</div>
+    <div class="pillar-card">Konfliktfähigkeit</div>
+  </div>
+
+  <div class="section-label">Sachfragen</div>
   <table class="ex">
-    <thead><tr><th style="width:30%;">Versicherung</th><th>Begründung / Leistungen</th></tr></thead>
+    <thead><tr><th style="width:38%">Frage</th><th style="text-align:left;">Ihre Antwort</th></tr></thead>
     <tbody>
-      <tr><td style="font-weight:600;">Hausratversicherung</td>
-          <td><textarea class="cell-ta" id="v32_hr" rows="3" placeholder="Deckt..."></textarea>
-          <div class="sol-inline-sm" id="b_v32_hr"></div></td></tr>
-      <tr><td style="font-weight:600;">Privathaftpflichtversicherung</td>
-          <td><textarea class="cell-ta" id="v32_ph" rows="3" placeholder="Übernimmt..."></textarea>
-          <div class="sol-inline-sm" id="b_v32_ph"></div></td></tr>
+      <tr>
+        <td><strong>1</strong> Nennen Sie drei Faktoren, die laut Text zu gelingenden Beziehungen beitragen.</td>
+        <td>
+          <textarea class="cell-ta" id="ta_a1" rows="3" placeholder="Drei Faktoren …"></textarea>
+          <div class="sol-inline-sm" id="sol_a1">Offene Kommunikation, gegenseitiger Respekt, Verlässlichkeit, Zeit füreinander, Konfliktfähigkeit (drei davon genügen).</div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>2</strong> Weshalb verändern sich Beziehungen laut Text im Laufe der Zeit?</td>
+        <td>
+          <textarea class="cell-ta" id="ta_a2" rows="3" placeholder="Meine Antwort …"></textarea>
+          <div class="sol-inline-sm" id="sol_a2">Weil neue Lebensphasen (z.B. Lehrbeginn, Auszug von zuhause) neue Anforderungen und Anpassungen an die Beziehung mit sich bringen.</div>
+        </td>
+      </tr>
     </tbody>
   </table>
 
 <div class="ko-box reveal" style="animation-delay:.2s">
-  <div class="ko-label">💬 Kompetenzorientierte Frage (Gesellschaft)</div>
-  <div class="ko-text" id="ko_text_502_[UE]_A16">Erkläre den Unterschied zwischen Hausrat- und Haftpflichtversicherung. In welchen konkreten Situationen greift welche Versicherung – und was passiert, wenn man keine dieser Versicherungen hat?</div>
-  <textarea id="ko_v32" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Erkläre den Unterschied zwischen Hausrat- und Haftpflichtversicherung. In welchen konkreten Situationen greift welche Versicherung – und was passiert, wenn man keine dieser Versicherungen hat?"
-    data-ki-loesung="Die Hausratversicherung ersetzt Schäden am eigenen Eigentum, zum Beispiel durch Feuer, Wasser oder Einbruch. Die Privathaftpflicht bezahlt Schäden, die ich anderen zufüge, etwa wenn Wasser in die Nachbarwohnung läuft. Ohne Haftpflicht können grosse Forderungen existenzbedrohend sein."></textarea>
+  <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
+  <div class="ko-text" id="ko_text_suk">Reflektieren Sie eine wichtige Beziehung in Ihrem Leben (Familie, Freundschaft, Partnerschaft): Welche der fünf Faktoren gelingen bereits gut, und wo sehen Sie Verbesserungspotenzial? Schreiben Sie 8–10 Sätze.</div>
+  <textarea id="ko_suk" rows="8" placeholder="Meine Reflexion …"
+    data-ki-aufgabe="Reflektieren Sie eine wichtige Beziehung in Ihrem Leben (Familie, Freundschaft, Partnerschaft): Welche der fuenf Faktoren gelingen bereits gut, und wo sehen Sie Verbesserungspotenzial? Schreiben Sie 8-10 Saetze."
+    data-ki-loesung="Eine gute Reflexion bezieht sich konkret auf mindestens zwei der fünf genannten Faktoren (Kommunikation, Respekt, Verlässlichkeit, Zeit, Konfliktfähigkeit), benennt sowohl eine Stärke als auch ein Verbesserungspotenzial an einer konkreten, plausiblen Beziehung."></textarea>
   <div class="ki-toggle-row" id="kiToggleArea" style="display:none">
     <span class="ki-toggle-label">KI-Modus</span>
     <div class="ki-switch" id="kiModeToggle" role="switch" aria-checked="false" tabindex="0"
@@ -243,21 +230,21 @@
     <button class="btn btn-ki" id="kiFeedbackBtn" onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
   </div>
   <div id="kiFeedbackResult"></div>
-  <div class="sol-inline" id="sol_ko_v32">✓ Mögliche Antwort: Die Hausratversicherung ersetzt Schäden am eigenen Eigentum, zum Beispiel durch Feuer, Wasser oder Einbruch. Die Privathaftpflicht bezahlt Schäden, die ich anderen zufüge, etwa wenn Wasser in die Nachbarwohnung läuft. Ohne Haftpflicht können grosse Forderungen existenzbedrohend sein.</div>
+  <div class="sol-inline" id="sol_ko_suk">Eine gute Reflexion bezieht sich konkret auf mindestens zwei der fünf genannten Faktoren (Kommunikation, Respekt, Verlässlichkeit, Zeit, Konfliktfähigkeit), benennt sowohl eine Stärke als auch ein Verbesserungspotenzial an einer konkreten, plausiblen Beziehung.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
-    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_v32']);return false;">↺ Nur diese Frage zurücksetzen</a>
+    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
 </div>
 
 <div class="ko-box reveal" style="animation-delay:.28s">
-  <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_v32">Erklären Sie in eigenen Worten, was eine Privathaftpflichtversicherung ist.</div>
-  <textarea id="ko_suk_v32" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Erklaere in eigenen Worten, was eine Privathaftpflichtversicherung ist."
-    data-ki-loesung="Eine Privathaftpflichtversicherung deckt Schäden, die man versehentlich anderen Personen oder deren Eigentum zufügt, zum Beispiel wenn man beim Fussballspielen ein Fenster einschlägt oder eine überlaufende Badewanne die Wohnung darunter beschädigt."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_v32">✓ Mögliche Antwort: Eine Privathaftpflichtversicherung deckt Schäden, die man versehentlich anderen Personen oder deren Eigentum zufügt, zum Beispiel wenn man beim Fussballspielen ein Fenster einschlägt oder eine überlaufende Badewanne die Wohnung darunter beschädigt.</div>
+  <div class="ko-label">💬 Kompetenzorientierte Frage (Gesellschaft)</div>
+  <div class="ko-text" id="ko_text_ges">Formulieren Sie ein konkretes, umsetzbares Ziel, wie Sie einen der fünf Faktoren in Ihrer gewählten Beziehung in den nächsten Wochen bewusst verbessern möchten.</div>
+  <textarea id="ko_ges" rows="5" placeholder="Mein Ziel …"
+    data-ki-aufgabe="Formulieren Sie ein konkretes, umsetzbares Ziel, wie Sie einen der fuenf Faktoren in Ihrer gewaehlten Beziehung in den naechsten Wochen bewusst verbessern moechten."
+    data-ki-loesung="Ein gutes Ziel ist konkret, realistisch und zeitlich eingrenzbar (z.B. 'Ich rufe meine Grossmutter künftig jeden Sonntag an' statt nur 'Ich möchte mehr Zeit haben')."></textarea>
+  <div class="sol-inline" id="sol_ko_ges">Ein gutes Ziel ist konkret, realistisch und zeitlich eingrenzbar (z.B. "Ich rufe meine Grossmutter künftig jeden Sonntag an" statt nur "Ich möchte mehr Zeit haben").</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
-    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_v32']);return false;">↺ Nur diese Frage zurücksetzen</a>
+    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_ges']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
 </div>
 
@@ -270,7 +257,7 @@
     <button class="btn btn-ghost" onclick="resetAll()">Zurücksetzen</button>
   </div>
   <p style="color:var(--ink-light);font-size:11.5px;font-family:'JetBrains Mono',monospace;margin-top:28px;border-top:1px solid var(--rule);padding-top:12px;">
-    <span id="footerName"></span> · 502-16 · Unser Zusammenleben
+    <span id="footerName"></span> · 501-05 · Unser Zusammenleben
   </p>
   <p style="margin-top:6px;">
     <a href="#" id="erweiterteNutzungLink" onclick="erweiterteNutzungUmschalten();return false;" style="font-size:11px;color:#b0aa9c;text-decoration:none;">⚙ Erweiterte Nutzung</a>
@@ -281,7 +268,7 @@
   </p>
 </div>
 <script>
-const SAFE_FN = '502_[UE]_A16_Versicherungen_Wohnung';
+const SAFE_FN = '501_[UE]_A05_Gute_Beziehungen_Pflegen_Reflexion';
 const SUPABASE_URL = 'https://lrpaomltzrfgtupzeooq.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_Q9t2s4kLLNy--Tkm8EwLBQ_CbHJo9G-';
 const WORKER_URL = 'https://twilight-butterfly-5015.uwalser75.workers.dev/feedback';
@@ -341,24 +328,17 @@ function einsendenModusUmschalten() {
   try { localStorage.setItem(EINSENDEN_KEY, aktuell ? '0' : '1'); } catch(e) {}
   wendeEinsendenModusAn();
 }
-document.addEventListener('DOMContentLoaded', function() {
-  // Sol-div Originaltexte einmalig sichern
-  document.querySelectorAll('.sol-inline, .sol-inline-sm').forEach(function(el) {
-    el.dataset.origText = el.textContent;
-  });
-  wendePruefungsModusAn(); wendeErweiterteNutzungAn(); wendeEinsendenModusAn();
-});
+document.addEventListener('DOMContentLoaded', function() { wendePruefungsModusAn(); wendeErweiterteNutzungAn(); wendeEinsendenModusAn(); });
 
 function istPlausibleAntwort(text) {
   const t = (text||'').trim(), ol = t.replace(/\s+/g,'');
   if (ol.length < 8) return false;
   if ((t.match(/[a-zA-ZäöüÄÖÜ]/g)||[]).length < 2) return false;
-  if (/(.)\\1{2,}/.test(ol.toLowerCase()) && new Set(ol.toLowerCase()).size <= 2) return false;
+  if (/(.)\1{2,}/.test(ol.toLowerCase()) && new Set(ol.toLowerCase()).size <= 2) return false;
   if (/(asdf|qwer|qwert|zxcv)/i.test(ol)) return false;
   return t.split(/\s+/).filter(w=>w.length>=4).some(function(w) { const nb=w.replace(/[^a-zA-ZäöüÄÖÜ]/g,''); return nb.length>=4 && new Set(nb.toLowerCase()).size>=3; });
 }
 function checkAll() {
-  // ── Selects mit data-correct ──
   document.querySelectorAll('select[data-correct]').forEach(function(sel) {
     const correct = sel.getAttribute('data-correct');
     const val = sel.value;
@@ -374,29 +354,23 @@ function checkAll() {
     sel.style.borderColor = ok ? '#2a7a3a' : '#c0392b';
     sel.style.background = ok ? '#eaf5ec' : '#faeaea';
     if(sol) {
+      if(!sol.dataset.origText) sol.dataset.origText = sol.textContent;
       sol.textContent = ok ? ('✔ ' + correct) : ('✘ Lösung: ' + correct);
       sol.classList.add('visible');
-      sol.style.display = 'block';
       sol.style.color = ok ? '#135c2c' : '#8b1a1a';
     }
   });
-  // ── Alle Textareas (ausser KO) ──
   document.querySelectorAll('textarea').forEach(function(ta) {
-    // KO-Textarea separat behandelt
     const isKo = ta.closest('.ko-box') !== null;
     if(isKo) return;
-    // Sol-div suchen: zuerst via ID-Konvention, dann als nächstes Geschwister
     const id = ta.id;
     let sol = null;
-    // Versuch 1: sol_ + id (ohne ta_-Präfix)
     const solId1 = 'sol_' + id.replace(/^ta_/, '');
     sol = document.getElementById(solId1);
-    // Versuch 2: b + id ohne führendes 'a' (altes Muster: ta=aX_y → sol=bX_y)
     if(!sol) {
       const solId2 = 'b' + id.replace(/^a/, '');
       sol = document.getElementById(solId2);
     }
-    // Versuch 3: nächstes sol-inline Geschwister
     if(!sol) {
       let sib = ta.nextElementSibling;
       while(sib) {
@@ -405,45 +379,40 @@ function checkAll() {
       }
     }
     if(!sol) return;
+    if(!sol.dataset.origText) sol.dataset.origText = sol.textContent;
     const w = ta.value.trim();
     if(!w) {
       sol.textContent = 'Bitte zuerst Text eingeben.';
       sol.classList.remove('sol-unplausibel-hint');
       sol.classList.add('visible', 'sol-empty-hint');
-      sol.style.display = 'block';
       ta.style.borderColor = '#c0392b';
     } else if(!istPlausibleAntwort(w)) {
       sol.textContent = 'Bitte eine ernsthafte Antwort eingeben.';
       sol.classList.remove('sol-empty-hint');
       sol.classList.add('visible', 'sol-unplausibel-hint');
-      sol.style.display = 'block';
       ta.style.borderColor = '#c0392b';
     } else {
       sol.classList.remove('sol-empty-hint', 'sol-unplausibel-hint');
       const loesung = sol.dataset.origText || '';
       sol.textContent = loesung.trim() ? loesung : '✓ Eigene Antwort (keine Musterlösung hinterlegt)';
       sol.classList.add('visible');
-      sol.style.display = 'block';
       ta.style.borderColor = '#2a7a3a';
     }
   });
-  // ── KO-Textarea ──
   document.querySelectorAll('.ko-box textarea').forEach(function(ta) {
     const sol = document.getElementById('sol_' + ta.id);
     if(!sol) return;
+    if(!sol.dataset.origText) sol.dataset.origText = sol.textContent;
     if(!ta.value.trim()) {
       sol.textContent = 'Keine Antwort eingegeben – Musterlösung wird nach dem Ausfüllen angezeigt.';
       sol.classList.add('visible', 'sol-empty-hint');
       sol.classList.remove('sol-unplausibel-hint');
-      sol.style.display = 'block';
     } else {
       sol.textContent = sol.dataset.origText;
       sol.classList.add('visible');
       sol.classList.remove('sol-empty-hint', 'sol-unplausibel-hint');
-      sol.style.display = 'block';
     }
   });
-  // ── Radio ──
   const rfG = {};
   document.querySelectorAll('input[type=radio][data-rf-correct]').forEach(function(inp){rfG[inp.name]=true;});
   Object.keys(rfG).forEach(function(name){
@@ -453,7 +422,6 @@ function checkAll() {
     radios.forEach(function(r){const row=r.closest('tr');if(!row)return;if(checked){row.style.background=(checked.value===checked.dataset.rfCorrect)?'#eaf5ec':'#faeaea';}else{row.style.background='#fdf3e3';}});
     if(solTr){if(checked){solTr.style.display='table-row';solTr.classList.add('visible');}else{solTr.style.display='none';solTr.classList.remove('visible');}}
   });
-  // ── Checkboxen ──
   document.querySelectorAll('input[type=checkbox][data-cb-correct]').forEach(function(inp){
     const correct=inp.dataset.cbCorrect==='true';
     const lbl=document.getElementById('lbl_cb_'+inp.id.replace('cb_',''));
@@ -467,7 +435,7 @@ function resetAll() {
   if(pruefungsModusIstAktiv()){alert('Zurücksetzen ist während der Standortbestimmung gesperrt.');return;}
   document.querySelectorAll('textarea,input[type=text]').forEach(function(el){el.value='';el.style.borderColor='';el.style.borderBottomColor='';});
   document.querySelectorAll('input[type=radio],input[type=checkbox]').forEach(function(el){el.checked=false;});
-  document.querySelectorAll('.sol-inline,.sol-inline-sm').forEach(function(el){el.classList.remove('visible','sol-empty-hint','sol-unplausibel-hint');el.style.display='';if(el.dataset.origText){el.textContent=el.dataset.origText;delete el.dataset.origText;}});
+  document.querySelectorAll('.sol-inline,.sol-inline-sm').forEach(function(el){el.classList.remove('visible','sol-empty-hint','sol-unplausibel-hint');if(el.dataset.origText){el.textContent=el.dataset.origText;delete el.dataset.origText;}});
   document.querySelectorAll('.sol-tr').forEach(function(el){el.style.display='none';el.classList.remove('visible');});
   document.querySelectorAll('tr').forEach(function(el){el.style.background='';});
   document.querySelectorAll('label[id^="lbl_cb_"]').forEach(function(el){el.style.background='';});
@@ -510,6 +478,7 @@ function fuegePunkteboxenEin() {
   document.querySelectorAll('.punkte-box,.punkte-summe-zeile').forEach(function(el){el.remove();});
   let pt=0;
   document.querySelectorAll('textarea[id^="ta_"],input[type=text][id^="ta_"]').forEach(function(f){pt+=2;const b=document.createElement('span');b.className='punkte-box';b.textContent='___ / 2 P.';f.insertAdjacentElement('afterend',b);});
+  document.querySelectorAll('.ko-box textarea').forEach(function(f){pt+=2;const b=document.createElement('span');b.className='punkte-box';b.textContent='___ / 2 P.';f.insertAdjacentElement('afterend',b);});
   const rfG={};document.querySelectorAll('input[type=radio][data-rf-correct]').forEach(function(i){rfG[i.name]=true;});
   Object.keys(rfG).forEach(function(name){pt+=1;const lr=document.querySelector('input[name="'+name+'"]:last-of-type');if(lr){const b=document.createElement('span');b.className='punkte-box';b.textContent='___ / 1 P.';const row=lr.closest('tr');if(row)row.appendChild(document.createElement('td')).appendChild(b);}});
   document.querySelectorAll('input[type=checkbox][data-cb-correct]').forEach(function(i){pt+=1;const lbl=document.getElementById('lbl_cb_'+i.id.replace('cb_',''));if(lbl){const b=document.createElement('span');b.className='punkte-box';b.textContent='___ / 1 P.';lbl.appendChild(b);}});
@@ -532,6 +501,7 @@ async function downloadFile() {
 function berechneAuswertung() {
   const a={felder_total:0,felder_ausgefuellt:0,text_geloest:0,text_total:0,mc_bearbeitet:0,mc_richtig:0,mc_total:0};
   document.querySelectorAll('textarea[id^="ta_"],input[type=text][id^="ta_"]').forEach(function(f){a.felder_total++;a.text_total++;const w=f.value.trim();if(w)a.felder_ausgefuellt++;if(istPlausibleAntwort(w))a.text_geloest++;});
+  document.querySelectorAll('.ko-box textarea').forEach(function(f){a.felder_total++;a.text_total++;const w=f.value.trim();if(w)a.felder_ausgefuellt++;if(istPlausibleAntwort(w))a.text_geloest++;});
   const rfG={};document.querySelectorAll('input[type=radio][data-rf-correct]').forEach(function(i){rfG[i.name]=true;});
   Object.keys(rfG).forEach(function(name){a.felder_total++;a.mc_total++;const c=document.querySelector('input[name="'+name+'"]:checked');if(c){a.felder_ausgefuellt++;a.mc_bearbeitet++;if(c.value===c.dataset.rfCorrect)a.mc_richtig++;}});
   document.querySelectorAll('input[type=checkbox][data-cb-correct]').forEach(function(i){a.felder_total++;a.mc_total++;if(i.checked){a.felder_ausgefuellt++;a.mc_bearbeitet++;if(i.dataset.cbCorrect==='true')a.mc_richtig++;}});
@@ -565,7 +535,11 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){
+    const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');
+    if(kt)out.push('💬 '+kt.textContent.trim());
+    out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');
+  });
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
@@ -646,7 +620,7 @@ function renderSpellResult(data,originalText,rb){
     rb.innerHTML=html;
   }
   window.kiFeedbackKlick=async function(btn){
-    const ta=document.querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
+    const ta=btn.closest('.ko-box').querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
     const aufgabe=ta.getAttribute('data-ki-aufgabe')||'',loesung=ta.getAttribute('data-ki-loesung')||'',antwort=ta.value.trim();
     const rb=document.getElementById('kiFeedbackResult');
     if(!antwort){rb.innerHTML='<div class="kf-feedback-box kf-error"><span class="kf-feedback-label">Hinweis</span><p>Bitte zuerst eine Antwort schreiben.</p></div>';return;}
@@ -692,12 +666,5 @@ document.addEventListener('copy',function(e){
 })();
 
 </script>
-<table width="100%" style="background:#f7f7f7;border-top:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;">
-<tr>
-<td style="padding:6px 10px;text-align:left;width:33%;"><a href="502_[UE]_A15_Mieterschutz.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
-<td style="padding:6px 10px;text-align:center;width:34%;"><a href="502_Aufgaben.html" style="color:#8b1a1a;text-decoration:none;font-size:14px;" title="Zur Übersicht">&#8593;</a></td>
-<td style="padding:6px 10px;text-align:right;width:33%;"><a href="502_[UE]_A17_Wohnungsmarkt_Wohnungsnot.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
-</tr>
-</table>
 </body>
 </html>
