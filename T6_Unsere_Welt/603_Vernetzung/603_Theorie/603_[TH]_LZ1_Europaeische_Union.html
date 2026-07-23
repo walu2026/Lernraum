@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>603 · LZ1 Europäische Union – Theorie</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --accent:#8D44AF; --g9:#111827; --g7:#374151; --g5:#6B7280; --g3:#D1D5DB; --g1:#F3F4F6; }
+  *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'DM Sans',sans-serif; background:#F0F2F5; color:var(--g7); line-height:1.6; }
+  .wrap { max-width:720px; margin:0 auto; padding:2rem 1.5rem 5rem; }
+  .back-btn { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:500; color:var(--g5); text-decoration:none; }
+  .back-btn:hover { color:var(--g9); }
+  .nav-bar { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:8px; }
+  .next-btn { font-size:13px; font-weight:500; color:var(--g5); text-decoration:none; }
+  .next-btn:hover { color:var(--g9); }
+
+  .d-header { border-radius:14px; overflow:hidden; margin-bottom:1.5rem; display:grid; grid-template-columns:5px 1fr; box-shadow:0 2px 12px rgba(0,0,0,0.07); background:white; }
+  .d-stripe { background:var(--accent); }
+  .d-head-body { padding:18px 22px; }
+  .d-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:3px; }
+  .d-title { font-family:'Barlow Condensed',sans-serif; font-size:24px; font-weight:800; text-transform:uppercase; color:var(--g9); line-height:1.1; margin-bottom:4px; }
+  .d-desc { font-size:12px; color:var(--g5); }
+
+  /* Kernaussagen-Box: die AVIVA-"Informieren"-taugliche Kurzfassung */
+  .kern-box { background:white; border:2px solid var(--accent); border-radius:12px; padding:20px 22px; margin-bottom:1.75rem; }
+  .kern-label { display:flex; align-items:center; gap:8px; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  .kern-box ul { margin:0; padding-left:1.2em; }
+  .kern-box li { margin-bottom:8px; font-size:14px; }
+  .kern-box li:last-child { margin-bottom:0; }
+  .kern-hint { font-size:11px; color:var(--g5); margin-top:12px; font-style:italic; }
+
+  .verarbeiten-link { display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--g1); border:1px solid var(--g3); border-radius:10px; padding:12px 16px; margin-bottom:2rem; text-decoration:none; color:var(--g9); font-size:13px; font-weight:600; transition:all .15s; }
+  .verarbeiten-link:hover { border-color:var(--accent); color:var(--accent); }
+
+  .section-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--g5); margin:0 0 10px 2px; }
+  .vertiefung { background:white; border-radius:12px; padding:20px 22px; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+  .vertiefung h3 { font-family:'Barlow Condensed',sans-serif; font-size:19px; font-weight:800; color:var(--g9); margin:1.4em 0 0.4em; }
+  .vertiefung h3:first-child { margin-top:0; }
+  .vertiefung h4 { font-size:14px; font-weight:700; color:var(--accent); margin:1em 0 0.3em; }
+  .vertiefung p { font-size:13.5px; margin-bottom:0.7em; }
+  .vertiefung strong { color:var(--g9); }
+  .vertiefung em { color:var(--g7); }
+  .quellen { font-size:11.5px; color:var(--g5); margin-top:1.6em; padding-top:1em; border-top:1px solid var(--g3); }
+  .quellen p { margin-bottom:4px; }
+  .quellen a { color:var(--accent); }
+
+  .einleitung { font-size:13.5px; color:var(--g7); margin-bottom:1.25rem; }
+
+  .video-box { display:flex; align-items:center; gap:12px; background:white; border:1px solid var(--g3); border-radius:10px; padding:12px 16px; margin-bottom:1.75rem; text-decoration:none; color:var(--g9); transition:all .15s; }
+  .video-box:hover { border-color:var(--accent); }
+  .video-box .video-icon { font-size:22px; flex-shrink:0; }
+  .video-box .video-text { font-size:13px; }
+  .video-box .video-title { font-weight:600; margin-bottom:2px; }
+  .video-box .video-meta { font-size:11px; color:var(--g5); }
+
+  .links-list { background:white; border-radius:12px; padding:18px 22px; box-shadow:0 1px 4px rgba(0,0,0,0.06); margin-top:1.5rem; }
+  .links-list ul { list-style:none; padding:0; margin:0; }
+  .links-list li { margin-bottom:8px; font-size:13px; }
+  .links-list a { color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="nav-bar">
+    <a class="back-btn" href="../603_[TH]_Vernetzung_Globalisierung.html">← Zurück zur Theorie-Übersicht</a>
+  </div>
+
+  <div class="d-header">
+    <div class="d-stripe"></div>
+    <div class="d-head-body">
+      <div class="d-label">Thema 6 · Unsere Welt · Theorie · Lernziel-Block 1</div>
+      <div class="d-title">Europäische Union</div>
+      <div class="d-desc">Entstehung, Grundfreiheiten und Organe der EU</div>
+    </div>
+  </div>
+
+  <p class="einleitung">Die Europäische Union prägt die Schweiz als wichtigste Nachbarin und Handelspartnerin, ohne dass die Schweiz selbst Mitglied ist. Dieser Block klärt, wie die EU entstanden ist, was ihre vier Grundfreiheiten bedeuten und wie ihre Organe zusammenspielen — die Grundlage, um im nächsten Block («Schweiz &amp; Europa») den bilateralen Weg der Schweiz einzuordnen.</p>
+
+  <a class="video-box" href="https://www.youtube.com/watch?v=x-HUsTQMQeo&t=53s" target="_blank" rel="noopener">
+    <span class="video-icon">▶️</span>
+    <span class="video-text">
+      <div class="video-title">Einführungsvideo: Die Geschichte der Europäischen Union</div>
+      <div class="video-meta">Wissen to go · YouTube · externer Link</div>
+    </span>
+  </a>
+
+  <div class="kern-box">
+    <div class="kern-label">🎓 Kernaussagen</div>
+    <ul>
+      <li>Die europäische Integration begann <strong>1951</strong> mit der <strong>Europäischen Gemeinschaft für Kohle und Stahl (EGKS)</strong> von sechs Staaten. 1957 folgten die <strong>Römischen Verträge</strong> (Gründung der EWG).</li>
+      <li>Der <strong>Maastricht-Vertrag (1992)</strong> schuf die EU als Staatenverbund mit drei Pfeilern und ebnete den Weg zum <strong>Euro</strong> (1999 als Buchgeld, 2002 als Bargeld).</li>
+      <li>Die EU hat heute <strong>27 Mitgliedstaaten</strong>.</li>
+      <li>Die <strong>vier Grundfreiheiten</strong> des Binnenmarkts: freier Waren-, Personen-, Kapital- und Dienstleistungsverkehr.</li>
+      <li>Die wichtigsten <strong>Organe</strong>: Europäischer Rat (strategische Leitlinien), Europäische Kommission (Exekutive), Rat der EU + Europäisches Parlament (Legislative), Gerichtshof der EU (Judikative).</li>
+    </ul>
+  </div>
+
+  <div class="section-label">Vertiefung</div>
+  <div class="vertiefung">
+    <h3>Geschichte der Europäischen Union</h3>
+    <p>Nach dem Zweiten Weltkrieg suchten europäische Politiker nach Wegen, um den Frieden dauerhaft zu sichern. 1951 wurde die <strong>Europäische Gemeinschaft für Kohle und Stahl (EGKS)</strong> gegründet – ein Zusammenschluss von Belgien, Frankreich, Italien, Luxemburg, den Niederlanden und der Bundesrepublik Deutschland. Die EGKS – auch <em>Montanunion</em> genannt – integrierte die Kohle- und Stahlindustrie der Mitgliedstaaten, um künftige Kriege materiell zu verhindern. Die Gründung gilt als erster Schritt der europäischen Integration.</p>
+    <p>1957 unterzeichneten dieselben sechs Staaten die <strong>Römischen Verträge</strong>, die zur Gründung der <em>Europäischen Wirtschaftsgemeinschaft (EWG)</em> und der Europäischen Atomgemeinschaft führten. Die EWG entwickelte sich später über die <em>Europäische Gemeinschaft (EG)</em> zur heutigen Europäischen Union (EU).</p>
+    <p>Im Laufe der Jahrzehnte traten weitere Länder bei: 1973 Dänemark, Irland und das Vereinigte Königreich; 1981 Griechenland; 1986 Spanien und Portugal; 1995 Österreich, Finnland und Schweden; 2004 zehn mittel- und osteuropäische Staaten; 2007 Bulgarien und Rumänien; 2013 Kroatien. Grossbritannien trat 2020 aus (Brexit). Die EU umfasst heute 27 Mitgliedstaaten.</p>
+    <p>Am 7. Februar 1992 wurde im niederländischen Maastricht der Vertrag über die Europäische Union unterzeichnet. Der <strong>Maastricht-Vertrag</strong> begründete die EU als neuen Staatenverbund, schuf die <em>Unionsbürgerschaft</em> und legte drei sogenannte <em>Stützpfeiler</em> fest: die Europäischen Gemeinschaften, die Zusammenarbeit in Justiz und Inneres sowie die Gemeinsame Aussen- und Sicherheitspolitik. Er bereitete zudem den Weg für die gemeinsame Währung: die Bestimmungen zum wirtschaftlichen und monetären Zusammenschluss führten dazu, dass der Euro 1999 als Buchgeld eingeführt wurde und 2002 als Bargeld in Umlauf kam.</p>
+
+    <h3>Die vier Grundfreiheiten</h3>
+    <p>Die EU bildet den grössten Binnenmarkt der Welt, in dem <strong>Waren, Dienstleistungen, Kapital und Personen frei zirkulieren</strong> dürfen. Nicht-EU-Mitglieder wie Island, Norwegen, Liechtenstein und die Schweiz sind über den Europäischen Wirtschaftsraum (EWR) oder bilaterale Abkommen ebenfalls am Binnenmarkt beteiligt.</p>
+
+    <h3>EU-Institutionen</h3>
+    <p>Die Europäische Union verfügt über mehrere Institutionen, die gemeinsam Rechtsakte erlassen, den Haushalt festlegen und die Umsetzung kontrollieren:</p>
+    <h4>Europäischer Rat (strategische Ebene)</h4>
+    <p>Besteht aus den Staats- und Regierungschefs der Mitgliedstaaten sowie dem Präsidenten der Europäischen Kommission. Er definiert die allgemeinen politischen Leitlinien und Prioritäten der EU, beschliesst jedoch keine Gesetze.</p>
+    <h4>Europäische Kommission (Exekutive)</h4>
+    <p>Die politisch unabhängige Exekutive der EU. Sie vertritt das gemeinsame Interesse der Union, schlägt neue Rechtsvorschriften vor, setzt EU-Politik um und überwacht die Einhaltung der Verträge.</p>
+    <h4>Rat der Europäischen Union / Europäisches Parlament (Legislative)</h4>
+    <p>Im Rat der Europäischen Union (Ministerrat) treffen sich die Fachministerinnen und -minister der 27 Mitgliedstaaten. Er verhandelt und beschliesst gemeinsam mit dem Europäischen Parlament EU-Gesetze. Das Europäische Parlament ist das einzige direkt gewählte Organ der EU; seine Mitglieder werden alle fünf Jahre gewählt.</p>
+    <h4>Gerichtshof der Europäischen Union (Judikative)</h4>
+    <p>Sorgt dafür, dass EU-Recht in allen Mitgliedstaaten einheitlich ausgelegt und angewendet wird. Er entscheidet bei Streitigkeiten zwischen Mitgliedstaaten und EU-Institutionen.</p>
+
+    <div class="quellen">
+      <p><strong>Quellen:</strong></p>
+      <p>Europäisches Parlament: <a href="https://european-union.europa.eu/institutions-law-budget/institutions-and-bodies/search-all-eu-institutions-and-bodies/european-parliament_de" target="_blank" rel="noopener">europa.eu</a> — offizielle EU-Seite</p>
+      <p>Rat der EU: <a href="https://www.consilium.europa.eu/de/council-eu/what-the-council-does/" target="_blank" rel="noopener">consilium.europa.eu</a> — offizielle EU-Seite</p>
+      <p>Europäische Kommission: <a href="https://commission.europa.eu/about-european-commission/what-european-commission-does_de" target="_blank" rel="noopener">commission.europa.eu</a> — offizielle EU-Seite</p>
+      <p>Mitgliedstaaten/Beitrittsjahre: <a href="https://de.wikipedia.org/wiki/Mitgliedstaaten_der_Europ%C3%A4ischen_Union" target="_blank" rel="noopener">Wikipedia</a></p>
+      <p>Video: <a href="https://www.youtube.com/watch?v=KeLLonXfw1w" target="_blank" rel="noopener">EU-Institutionen einfach erklärt</a> — PolEdu/Europäisches Parlament</p>
+    </div>
+  </div>
+
+  <a class="verarbeiten-link" href="../603_Aufgaben.html#lz1" style="margin-top:1.75rem;">
+    <span>✏️ Passende Aufgaben zu diesem Block</span>
+    <span>→</span>
+  </a>
+</div>
+</body>
+</html>

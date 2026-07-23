@@ -29,6 +29,12 @@
   .toggle-btn.active { background:var(--accent); border-color:var(--accent); color:white; }
   .toggle-btn:hover:not(.active) { border-color:var(--accent); color:var(--accent); }
   .section-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--g5); margin:0 0 8px 2px; }
+  .th-card { display:flex; align-items:center; gap:14px; background:white; border:2px solid var(--accent); border-radius:14px; padding:16px 18px; margin-bottom:1.75rem; text-decoration:none; color:inherit; transition:all .15s; }
+  .th-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.08); transform:translateY(-1px); }
+  .th-card .th-icon { font-size:26px; flex-shrink:0; }
+  .th-card .th-title { font-size:14px; font-weight:700; color:var(--g9); margin-bottom:2px; }
+  .th-card .th-desc { font-size:11.5px; color:var(--g5); }
+  .th-card .th-arrow { margin-left:auto; font-size:18px; color:var(--accent); }
 
   /* Lernziel-Zeilen: nur Display, kein Hover-Effekt auf die Zeile */
   .lz-list { display:flex; flex-direction:column; gap:7px; margin-bottom:1.75rem; }
@@ -95,6 +101,15 @@
     </div>
   </div>
 
+  <a class="th-card" href="603_[TH]_Vernetzung_Globalisierung.html">
+    <span class="th-icon">📖</span>
+    <span>
+      <div class="th-title">Theorie zu dieser Serie</div>
+      <div class="th-desc">EU, bilateraler Weg, humanitäre Tradition, Globalisierung – vor den Übungen lesen</div>
+    </span>
+    <span class="th-arrow">›</span>
+  </a>
+
   <div class="toggle-bar">
     <button class="toggle-btn active" id="btnLz" onclick="showView('lz')">📚 Nach Lernzielen</button>
     <button class="toggle-btn" id="btnA"  onclick="showView('a')">🔢 Nach Aufgaben-Nr.</button>
@@ -103,7 +118,7 @@
   <div id="viewLz">
     <div class="section-label">SLP-Lernziele – Kapitel 603</div>
     <div class="lz-list">
-      <div class="lz-row" style="--fc:#8D44AF">
+      <div class="lz-row" id="lz1" style="--fc:#8D44AF">
         <div class="lz-bar"></div>
         <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES</span></div>
         <div class="lz-body">
@@ -120,7 +135,7 @@
         </div>
         <div class="lz-arrow"></div>
       </div>
-      <div class="lz-row" style="--fc:#8D44AF">
+      <div class="lz-row" id="lz2" style="--fc:#8D44AF">
         <div class="lz-bar"></div>
         <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES</span></div>
         <div class="lz-body">
@@ -139,12 +154,12 @@
         </div>
         <div class="lz-arrow"></div>
       </div>
-      <div class="lz-row" style="--fc:#8D44AF">
+      <div class="lz-row" id="lz3" style="--fc:#8D44AF">
         <div class="lz-bar"></div>
         <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">GES</span></div>
         <div class="lz-body">
-          <div class="lz-title">Internationale Organisationen</div>
-          <div class="lz-ziel">Ich erkläre Aufgaben und Bedeutung des IKRK (UNO/NATO/WTO/NGOs siehe Serie 505).</div>
+          <div class="lz-title">Humanitäre Tradition der Schweiz</div>
+          <div class="lz-ziel">Ich zeige anhand aktueller Beispiele, wie die Schweiz ihre humanitäre Tradition in der internationalen Politik umsetzt (IKRK, Entwicklungszusammenarbeit; UNO/NATO/WTO/NGOs siehe Serie 505).</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="603_[UE]_A20_IKRK_Symbole.html">A20 IKRK Symbole</a>
             <a class="a-pill a-pill-link" href="603_[UE]_A21_Industrie_Entwicklungsland.html">A21 Industrie Entwicklungsland</a>
             <a class="a-pill a-pill-link" href="603_[UE]_A22_DEZA_Projekte.html">A22 DEZA Projekte</a>
@@ -152,7 +167,7 @@
         </div>
         <div class="lz-arrow"></div>
       </div>
-      <div class="lz-row" style="--fc:#8D44AF">
+      <div class="lz-row" id="lz4" style="--fc:#8D44AF">
         <div class="lz-bar"></div>
         <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">GES</span></div>
         <div class="lz-body">
@@ -173,7 +188,7 @@
         </div>
         <div class="lz-arrow"></div>
       </div>
-      <div class="lz-row" style="--fc:#8D44AF">
+      <div class="lz-row" id="lz5" style="--fc:#8D44AF">
         <div class="lz-bar"></div>
         <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">GES</span></div>
         <div class="lz-body">

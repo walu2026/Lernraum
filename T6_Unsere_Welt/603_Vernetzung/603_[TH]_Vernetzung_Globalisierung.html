@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>603 · Theorie: Vernetzung &amp; Globalisierung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#8D44AF; --t1-dark:#6D3488; --t1-light:#F3E9F8;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+.vertiefung-link{display:block;margin-top:10px;font-size:.82rem}
+.vertiefung-link a{color:var(--ink-soft);text-decoration:underline;text-decoration-style:dotted}
+.vertiefung-link a:hover{color:var(--t1)}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+.gesetz{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:#EEF1F5;border:1px solid var(--line);padding:2px 8px;border-radius:6px;white-space:nowrap}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+details{border:1px solid var(--line);border-radius:10px;margin:12px 0;background:#FCFCFD}
+summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--t1-dark)}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .inner{padding:14px 16px;color:var(--ink-soft)}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none} details .inner{display:block}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">603 · [TH]</span>
+  <h1>Theorie: Vernetzung &amp; Globalisierung</h1>
+  <a class="nav" href="603_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Die Schweiz ist eng mit der Welt verflochten: politisch mit ihrer Nachbarin EU, wirtschaftlich über Handel und Globalisierung, und aussenpolitisch über ihre humanitäre Tradition. Diese Theorie klärt, wie die EU aufgebaut ist, wie die Schweiz ihre Beziehung zur EU über den bilateralen Weg regelt, wie sich die humanitäre Tradition der Schweiz zeigt, was Globalisierung bedeutet und wie Freihandelsabkommen funktionieren.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES</span>) verweisen auf den SLP-Fachbereich; die zugehörigen Lernziele stehen am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">GES</span> Europäische Union</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="603_[UE]_A02_Schuman_Plan.html">A2</a>
+    <a href="603_[UE]_A03_EU_Grundfreiheiten.html">A3</a>
+    <a href="603_[UE]_A04_EU_Geschichte.html">A4</a>
+    <a href="603_[UE]_A05_EU_Aussagen.html">A5</a>
+    <a href="603_[UE]_A06_EU_Karte.html">A6</a>
+    <a href="603_[UE]_A07_EU_Organe.html">A7</a>
+    <a href="603_[UE]_A08_EU_Organe_Aussagen.html">A8</a>
+  </div>
+  <p class="einstieg">Die Europäische Union prägt die Schweiz als wichtigste Nachbarin und Handelspartnerin, ohne dass die Schweiz selbst Mitglied ist. Dieser Abschnitt klärt, wie die EU entstanden ist, was ihre vier Grundfreiheiten bedeuten und wie ihre Organe zusammenspielen.</p>
+  <h3>Entstehung</h3>
+  <p>Die europäische Integration begann <strong>1951</strong> mit der Europäischen Gemeinschaft für Kohle und Stahl (EGKS) von sechs Staaten; 1957 folgten die <strong>Römischen Verträge</strong> (Gründung der EWG). Der <strong>Maastricht-Vertrag (1992)</strong> schuf die EU als Staatenverbund und ebnete den Weg zum Euro (1999 Buchgeld, 2002 Bargeld). Die EU umfasst heute <strong>27 Mitgliedstaaten</strong>.</p>
+  <h3>Die vier Grundfreiheiten</h3>
+  <p>Im EU-Binnenmarkt zirkulieren <strong>Waren, Dienstleistungen, Kapital und Personen frei</strong>. Auch Nicht-Mitglieder wie die Schweiz sind über den EWR bzw. bilaterale Abkommen teilweise am Binnenmarkt beteiligt.</p>
+  <h3>Die wichtigsten Organe</h3>
+  <table class="tb">
+    <tr><th>Organ</th><th>Funktion</th></tr>
+    <tr><td><strong>Europäischer Rat</strong></td><td>Staats- und Regierungschefs; legt politische Leitlinien fest, erlässt keine Gesetze.</td></tr>
+    <tr><td><strong>Europäische Kommission</strong></td><td>Exekutive; schlägt Rechtsvorschriften vor, setzt EU-Politik um.</td></tr>
+    <tr><td><strong>Rat der EU &amp; Europäisches Parlament</strong></td><td>Legislative; beschliessen gemeinsam EU-Gesetze. Das Parlament wird alle 5 Jahre direkt gewählt.</td></tr>
+    <tr><td><strong>Gerichtshof der EU</strong></td><td>Judikative; einheitliche Auslegung und Anwendung von EU-Recht.</td></tr>
+  </table>
+  <div class="vertiefung-link">→ Vertiefung: <a href="603_Theorie/603_[TH]_LZ1_Europaeische_Union.html">Geschichte der EU und ihre Institutionen im Detail</a></div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Wie viele Mitgliedstaaten hat die EU aktuell?</div>
+    <label>19</label>
+    <label data-ok>27</label>
+    <label>33</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES</span> Schweiz &amp; Europa</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="603_[UE]_A09_Schweiz_Europa.html">A9</a>
+    <a href="603_[UE]_A10_EU_Beitritt.html">A10</a>
+    <a href="603_[UE]_A11_Meinung_EU_Beitritt.html">A11</a>
+    <a href="603_[UE]_A12_Bilaterale_Vertraege.html">A12</a>
+    <a href="603_[UE]_A13_Bilaterale_I.html">A13</a>
+    <a href="603_[UE]_A14_Bilaterale_II.html">A14</a>
+    <a href="603_[UE]_A15_Bilaterale_Dossiers.html">A15</a>
+    <a href="603_[UE]_A16_Bilateraler_Weg.html">A16</a>
+    <a href="603_[UE]_A17_Personenfreizuegigkeit.html">A17</a>
+  </div>
+  <p class="einstieg">Die Schweiz ist nicht EU-Mitglied und lehnte 1992 sogar den EWR-Beitritt ab. Trotzdem ist sie wirtschaftlich eng mit der EU verflochten — geregelt über einzelne, ausgehandelte Verträge statt eine Gesamtmitgliedschaft: den «bilateralen Weg».</p>
+  <h3>Vom EWR-Nein zum bilateralen Weg</h3>
+  <p>Am <strong>6. Dezember 1992</strong> lehnten Volk (50,3&nbsp;% Nein) und Kantone den Beitritt zum Europäischen Wirtschaftsraum (EWR) ab. Seither verfolgt die Schweiz den bilateralen Weg: einzelne, sektorielle Abkommen statt EU-Mitgliedschaft.</p>
+  <table class="tb">
+    <tr><th>Paket</th><th>Inhalt</th></tr>
+    <tr><td><strong>Bilaterale I</strong> (1999/2000)</td><td>7 Verträge, Kernstück <strong>Personenfreizügigkeit</strong>; daneben technische Handelshemmnisse, öffentliches Beschaffungswesen, Land-/Luftverkehr, Landwirtschaft, Forschung.</td></tr>
+    <tr><td><strong>Bilaterale II</strong> (2004/2005)</td><td>Politische Themen: <strong>Schengen</strong> (Grenzkontrollen), <strong>Dublin</strong> (Asylzuständigkeit), automatischer Informationsaustausch (Steuertransparenz).</td></tr>
+    <tr><td><strong>Bilaterale III</strong></td><td>Am 2.&nbsp;März 2026 unterzeichnet (Aktualisierung bestehender Abkommen + neue, u.&nbsp;a. Strommarkt). Botschaft am 13.&nbsp;März 2026 ans Parlament, Erstrat Ständerat, Abschluss der Beratungen spätestens Herbst 2027, danach Volksabstimmung.</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Die Schweiz verdient jeden dritten Franken im Austausch mit der EU — rund eine Milliarde Franken Handelsvolumen pro Tag.</div>
+  <div class="vertiefung-link">→ Vertiefung: <a href="603_Theorie/603_[TH]_LZ2_Schweiz_Europa.html">Bilaterale I–III im Detail</a></div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was ist das Kernstück der Bilateralen I?</div>
+    <label>Schengen/Dublin</label>
+    <label data-ok>Personenfreizügigkeit</label>
+    <label>Zugang zum Strommarkt</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">GES</span> Humanitäre Tradition der Schweiz</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="603_[UE]_A20_IKRK_Symbole.html">A20</a>
+    <a href="603_[UE]_A21_Industrie_Entwicklungsland.html">A21</a>
+    <a href="603_[UE]_A22_DEZA_Projekte.html">A22</a>
+    <a href="603_[UE]_A23_Entwicklungshilfe_BV.html">A23</a>
+  </div>
+  <p class="einstieg">Die Schweiz gilt weltweit als Land mit einer besonderen humanitären Tradition. Vier Beispiele zeigen, wie sich das konkret äussert: eine Schweizer Gründung von Weltrang (IKRK), das Verständnis von Industrie- und Entwicklungsländern, die praktische Umsetzung durch die DEZA — und die Verankerung dieser Tradition in der Bundesverfassung.</p>
+  <ul class="list">
+    <li><strong>IKRK:</strong> 1863 vom Schweizer Henri Dunant gegründet, gestützt auf die Genfer Konvention — Schutz von Verwundeten, Kranken und Zivilpersonen, Familien-Suchdienst, Soforthilfe.</li>
+    <li><strong>Industrie- vs. Entwicklungsländer:</strong> unterscheiden sich u.&nbsp;a. bei Wasserversorgung, Arbeitsbedingungen und Infrastruktur — Grundlage, um zu verstehen, wo Entwicklungszusammenarbeit ansetzt.</li>
+    <li><strong>DEZA:</strong> setzt als Teil des EDA weltweit Schweizer Entwicklungsprojekte um; unterscheidet kurzfristige Nothilfe von nachhaltiger, lokale Strukturen stärkender Zusammenarbeit.</li>
+    <li><strong>Bundesverfassung Art.&nbsp;54 Abs.&nbsp;2:</strong> verpflichtet die Schweiz aussenpolitisch zur Linderung von Not und Armut und zur Achtung der Menschenrechte.</li>
+  </ul>
+  <p style="font-size:.82rem">UNO, NATO, WTO und weitere internationale Organisationen werden vertieft in Serie 505 behandelt.</p>
+  <div class="vertiefung-link">→ Vertiefung: <a href="603_Theorie/603_[TH]_LZ3_Humanitaere_Tradition.html">IKRK, DEZA und Art. 54 BV im Detail</a></div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Wer gründete das IKRK, und worauf stützt sich seine Arbeit?</div>
+    <label>Die UNO, gestützt auf die Uno-Charta</label>
+    <label data-ok>Henri Dunant, gestützt auf die Genfer Konvention</label>
+    <label>Die DEZA, gestützt auf das EDA-Gesetz</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">GES</span> Globalisierung</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="603_[UE]_A24_Globalisierung.html">A24</a>
+    <a href="603_[UE]_A25_Globalisierung_Beispiele.html">A25</a>
+    <a href="603_[UE]_A26_Standort_Schweiz.html">A26</a>
+    <a href="603_[UE]_A27_Schweiz_globalisiert.html">A27</a>
+    <a href="603_[UE]_A28_Globalisierung_Risiken.html">A28</a>
+    <a href="603_[UE]_A29_Weltgueterhandel.html">A29</a>
+    <a href="603_[UE]_A30_Exportgueter.html">A30</a>
+    <a href="603_[UE]_A31_Handelspartner.html">A31</a>
+    <a href="603_[UE]_A32_Handelspartner_Aussagen.html">A32</a>
+    <a href="603_[UE]_A33_Swissness.html">A33</a>
+    <a href="603_[UE]_A34_Globalisierung_Gewinner.html">A34</a>
+  </div>
+  <p class="einstieg">Als rohstoffarmes, aber wirtschaftlich starkes Land ist die Schweiz besonders stark in die globalisierte Weltwirtschaft eingebunden. Dieser Abschnitt klärt, was Globalisierung bedeutet, wo sie spürbar wird — und wie die Schweiz vom internationalen Handel abhängt und profitiert.</p>
+  <p><strong>Globalisierung</strong> meint die zunehmende weltweite Verflechtung in Wirtschaft, Politik, Kultur, Technologie und Umwelt. Ursachen: technischer Fortschritt (Transport, digitale Vernetzung) und die Liberalisierung des Welthandels (Zollabbau). Dadurch entstanden grosse <strong>Handelsblöcke</strong> — u.&nbsp;a. der EU-Binnenmarkt, USMCA (Nordamerika), Mercosur (Südamerika), ASEAN (Südostasien).</p>
+  <div class="merk"><b>Merke:</b> 2025 exportierte die Schweiz Waren im Rekordwert von <b>287&nbsp;Mrd. Franken</b> und importierte für <b>232,7&nbsp;Mrd. Franken</b> — Haupttreiber ist die Chemie-/Pharmabranche.</div>
+  <p>Die wirtschaftliche Globalisierung bringt Wohlstand, aber auch <strong>Risiken</strong>: Druck auf Löhne gering qualifizierter Arbeitskräfte, steigende Umweltbelastung durch Warentransporte, und Entwicklungsländer profitieren bisher nur beschränkt.</p>
+  <div class="vertiefung-link">→ Vertiefung: <a href="603_Theorie/603_[TH]_LZ4_Globalisierung.html">Handelsblöcke, Schweizer Aussenhandel und Risiken im Detail</a></div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welche Branche treibt den Schweizer Exportrekord 2025 hauptsächlich an?</div>
+    <label>Uhren/Maschinenbau</label>
+    <label data-ok>Chemie/Pharma</label>
+    <label>Tourismus</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">GES</span> Freihandelsabkommen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="603_[UE]_A35_Freihandelsabkommen.html">A35</a>
+  </div>
+  <p class="einstieg">Neben den grossen Handelsblöcken sichert sich die Schweiz Marktzugang auch über einzelne, gezielt ausgehandelte Freihandelsabkommen — meist über die EFTA.</p>
+  <p>Ein <strong>Freihandelsabkommen</strong> ist ein Vertrag zwischen Staaten, der den gegenseitigen Handel erleichtert — meist durch tiefere Zölle und den Abbau anderer Handelshemmnisse. Über die <strong>EFTA</strong> (mit Norwegen, Island, Liechtenstein) ist die Schweiz mit <strong>über 40 Ländern</strong> weltweit verbunden — zuletzt mit Indien (seit 1.&nbsp;Oktober 2025).</p>
+  <div class="merk"><b>Aktuelles Beispiel:</b> Die EFTA unterzeichnete am 16.&nbsp;September 2025 ein Freihandelsabkommen mit den Mercosur-Staaten (Argentinien, Brasilien, Paraguay, Uruguay). Der Nationalrat lehnte die Ratifizierung am 17.&nbsp;Juni 2026 ab (96:86, 10 Enthaltungen) — ebenso einen Rahmenkredit von 880&nbsp;Mio. Franken (2028–2035) für die Landwirtschaft. Das Geschäft liegt nun beim Ständerat.</div>
+  <div class="vertiefung-link">→ Vertiefung: <a href="603_Theorie/603_[TH]_LZ5_Freihandelsabkommen.html">EFTA–Mercosur im Detail</a></div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Über welchen Staatenverbund handelt die Schweiz ihre Freihandelsabkommen aus?</div>
+    <label>Allein, als Einzelstaat</label>
+    <label data-ok>Gemeinsam mit den EFTA-Partnern</label>
+    <label>Über die EU</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 6 «Unsere Welt» · Lebenssituation C</h2>
+  <p style="font-weight:700;margin-bottom:10px">Die Vernetzung der Schweiz mit der Welt verstehen</p>
+  <table>
+    <tr><td class="lz">GES</td><td>Ich erkläre Entstehung, Grundfreiheiten und Organe der EU.</td></tr>
+    <tr><td class="lz">GES</td><td>Ich beurteile den bilateralen Weg der Schweiz und erkläre die wichtigsten Abkommen.</td></tr>
+    <tr><td class="lz">GES</td><td>Ich zeige anhand aktueller Beispiele, wie die Schweiz ihre humanitäre Tradition in der internationalen Politik umsetzt (IKRK, Entwicklungszusammenarbeit; UNO/NATO/WTO/NGOs siehe Serie 505).</td></tr>
+    <tr><td class="lz">GES</td><td>Ich erkläre Ursachen und Folgen der Globalisierung und beurteile Chancen und Risiken für die Schweiz.</td></tr>
+    <tr><td class="lz">GES</td><td>Ich kann erklären, was ein Freihandelsabkommen ist.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen (S. 54/56)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="603_Aufgaben.html"><strong>Übungen A2–A35 lösen</strong></a>.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>

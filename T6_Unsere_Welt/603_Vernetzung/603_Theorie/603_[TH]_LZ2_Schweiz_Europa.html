@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>603 · LZ2 Schweiz & Europa – Theorie</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --accent:#8D44AF; --g9:#111827; --g7:#374151; --g5:#6B7280; --g3:#D1D5DB; --g1:#F3F4F6; }
+  *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'DM Sans',sans-serif; background:#F0F2F5; color:var(--g7); line-height:1.6; }
+  .wrap { max-width:720px; margin:0 auto; padding:2rem 1.5rem 5rem; }
+  .back-btn { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:500; color:var(--g5); text-decoration:none; }
+  .back-btn:hover { color:var(--g9); }
+  .nav-bar { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:8px; }
+
+  .d-header { border-radius:14px; overflow:hidden; margin-bottom:1.5rem; display:grid; grid-template-columns:5px 1fr; box-shadow:0 2px 12px rgba(0,0,0,0.07); background:white; }
+  .d-stripe { background:var(--accent); }
+  .d-head-body { padding:18px 22px; }
+  .d-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:3px; }
+  .d-title { font-family:'Barlow Condensed',sans-serif; font-size:24px; font-weight:800; text-transform:uppercase; color:var(--g9); line-height:1.1; margin-bottom:4px; }
+  .d-desc { font-size:12px; color:var(--g5); }
+
+  .einleitung { font-size:13.5px; color:var(--g7); margin-bottom:1.25rem; }
+
+  .video-box { display:flex; align-items:center; gap:12px; background:white; border:1px solid var(--g3); border-radius:10px; padding:12px 16px; margin-bottom:1.75rem; text-decoration:none; color:var(--g9); transition:all .15s; }
+  .video-box:hover { border-color:var(--accent); }
+  .video-box .video-icon { font-size:22px; flex-shrink:0; }
+  .video-box .video-text { font-size:13px; }
+  .video-box .video-title { font-weight:600; margin-bottom:2px; }
+  .video-box .video-meta { font-size:11px; color:var(--g5); }
+
+  .kern-box { background:white; border:2px solid var(--accent); border-radius:12px; padding:20px 22px; margin-bottom:1.75rem; }
+  .kern-label { display:flex; align-items:center; gap:8px; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  .kern-box ul { margin:0; padding-left:1.2em; }
+  .kern-box li { margin-bottom:8px; font-size:14px; }
+  .kern-box li:last-child { margin-bottom:0; }
+  .kern-hint { font-size:11px; color:var(--g5); margin-top:12px; font-style:italic; }
+
+  .verarbeiten-link { display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--g1); border:1px solid var(--g3); border-radius:10px; padding:12px 16px; margin-bottom:1.5rem; text-decoration:none; color:var(--g9); font-size:13px; font-weight:600; transition:all .15s; }
+  .verarbeiten-link:hover { border-color:var(--accent); color:var(--accent); }
+
+  .section-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--g5); margin:0 0 10px 2px; }
+  .vertiefung { background:white; border-radius:12px; padding:20px 22px; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+  .vertiefung h3 { font-family:'Barlow Condensed',sans-serif; font-size:19px; font-weight:800; color:var(--g9); margin:1.4em 0 0.4em; }
+  .vertiefung h3:first-child { margin-top:0; }
+  .vertiefung p { font-size:13.5px; margin-bottom:0.7em; }
+  .vertiefung strong { color:var(--g9); }
+  .vertiefung table { width:100%; border-collapse:collapse; margin:0.8em 0; font-size:12.5px; }
+  .vertiefung th { background:var(--g9); color:white; text-align:left; padding:6px 10px; }
+  .vertiefung td { padding:6px 10px; border-bottom:1px solid var(--g3); vertical-align:top; }
+  .vertiefung tr:nth-child(even) td { background:var(--g1); }
+  .merke { background:var(--g9); color:white; border-radius:8px; padding:12px 16px; margin:1em 0; font-size:13px; }
+  .merke strong { color:#F3E8FF; }
+  .quellen { font-size:11.5px; color:var(--g5); margin-top:1.6em; padding-top:1em; border-top:1px solid var(--g3); }
+  .quellen p { margin-bottom:4px; }
+  .quellen a { color:var(--accent); }
+
+  .links-list { background:white; border-radius:12px; padding:18px 22px; box-shadow:0 1px 4px rgba(0,0,0,0.06); margin-top:1.5rem; }
+  .links-list ul { list-style:none; padding:0; margin:0; }
+  .links-list li { margin-bottom:8px; font-size:13px; }
+  .links-list a { color:var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="nav-bar">
+    <a class="back-btn" href="../603_[TH]_Vernetzung_Globalisierung.html">← Zurück zur Theorie-Übersicht</a>
+  </div>
+
+  <div class="d-header">
+    <div class="d-stripe"></div>
+    <div class="d-head-body">
+      <div class="d-label">Thema 6 · Unsere Welt · Theorie · Lernziel-Block 2</div>
+      <div class="d-title">Schweiz & Europa</div>
+      <div class="d-desc">Der bilaterale Weg der Schweiz und die wichtigsten Abkommen</div>
+    </div>
+  </div>
+
+  <p class="einleitung">Die Schweiz ist nicht EU-Mitglied und lehnte 1992 sogar den EWR-Beitritt ab. Trotzdem ist sie wirtschaftlich eng mit der EU verflochten — geregelt über einzelne, ausgehandelte Verträge statt eine Gesamtmitgliedschaft: den «bilateralen Weg». Dieser Block zeigt, welche Abkommen das sind und wie sich der bilaterale Weg bis heute weiterentwickelt.</p>
+
+  <a class="video-box" href="https://www.youtube.com/watch?v=Gkr3Cf3TgMQ" target="_blank" rel="noopener">
+    <span class="video-icon">▶️</span>
+    <span class="video-text">
+      <div class="video-title">Einführungsvideo: Schweiz und die EU – Bilaterale Verträge I verständlich erklärt</div>
+      <div class="video-meta">YouTube · externer Link</div>
+    </span>
+  </a>
+
+  <div class="kern-box">
+    <div class="kern-label">🎓 Kernaussagen</div>
+    <ul>
+      <li>Am <strong>6. Dezember 1992</strong> lehnten Volk (50,3&nbsp;% Nein) und Kantone den Beitritt zum Europäischen Wirtschaftsraum (EWR) ab. Seither verfolgt die Schweiz den <strong>bilateralen Weg</strong> statt einer EU-Mitgliedschaft.</li>
+      <li><strong>Bilaterale I</strong> (ausgehandelt 1999, vom Volk 2000 mit Zweidrittelmehrheit angenommen): 7 Verträge, Kernstück ist die <strong>Personenfreizügigkeit</strong> — daneben u.&nbsp;a. technische Handelshemmnisse, öffentliches Beschaffungswesen, Land- und Luftverkehr, Landwirtschaft, Forschung.</li>
+      <li><strong>Bilaterale II</strong> (2004 abgeschlossen, 2005 angenommen) betreffen v.&nbsp;a. politische Fragen: <strong>Schengen/Dublin</strong> (Grenzkontrollen, Asylkoordination) und der automatische Informationsaustausch (Steuertransparenz).</li>
+      <li>Die Schweiz verdient <strong>jeden dritten Franken</strong> im Austausch mit der EU; rund 430'000 Schweizer/innen leben in der EU, 1,4&nbsp;Mio. EU-Bürger/innen in der Schweiz.</li>
+      <li><strong>Bilaterale III</strong> (unterzeichnet 2.&nbsp;März 2026) aktualisieren bestehende Abkommen und bringen neue hinzu (u.&nbsp;a. Strommarkt). Der Bundesrat überwies die Botschaft am 13.&nbsp;März 2026 ans Parlament; Erstrat ist der Ständerat. Abschluss der Beratungen spätestens Herbst 2027, danach voraussichtlich Volksabstimmung.</li>
+    </ul>
+  </div>
+
+  <div class="section-label">Vertiefung</div>
+  <div class="vertiefung">
+    <h3>Vorgeschichte: EFTA und EWR-Ablehnung</h3>
+    <p>1960 gründete die Schweiz zusammen mit Grossbritannien, Österreich, Dänemark, Norwegen, Portugal und Schweden die <strong>EFTA</strong> (Europäische Freihandelsassoziation) als Gegengewicht zur damaligen EG — mit dem Ziel, Handelsschranken abzubauen, ohne die politische Handlungsfreiheit einzuschränken. Heute sind noch Schweiz, Island, Liechtenstein und Norwegen Mitglied. 1992 lehnten Volk und Kantone den Beitritt zum Europäischen Wirtschaftsraum (EWR) ab; der Bundesrat legte das EU-Beitrittsgesuch daraufhin auf Eis. Seither verhandelt die Schweiz einzelne, sektorielle Abkommen mit der EU.</p>
+
+    <h3>Bilaterale Verträge I (1999/2000)</h3>
+    <table>
+      <tr><th>Abkommen</th><th>Inhalt</th></tr>
+      <tr><td><strong>Personenfreizügigkeit</strong></td><td>Schweizer/innen und EU-Bürger/innen dürfen im jeweils anderen Gebiet leben und arbeiten; gegenseitige Anerkennung von Berufsdiplomen; Lohnschutz durch flankierende Massnahmen.</td></tr>
+      <tr><td>Technische Handelshemmnisse</td><td>Produkte mit bestandener Prüfung in der Schweiz brauchen keine zweite Prüfung in der EU (und umgekehrt).</td></tr>
+      <tr><td>Öffentliches Beschaffungswesen</td><td>Öffentliche Aufträge müssen ab einem bestimmten Betrag EU-weit ausgeschrieben werden.</td></tr>
+      <tr><td>Landverkehr</td><td>Verlagerung des Alpentransits auf die Schiene (NEAT), Einführung der LSVA.</td></tr>
+      <tr><td>Luftverkehr, Landwirtschaft, Forschung</td><td>Marktzugang für Schweizer Fluggesellschaften; Abbau von Handelshemmnissen bei Agrarprodukten; Beteiligung an EU-Forschungsprogrammen.</td></tr>
+    </table>
+    <div class="merke"><strong>Merke:</strong> Die Schweiz verdient jeden dritten Franken im Austausch mit der EU — pro Arbeitstag rund 1 Milliarde Franken Handelsvolumen.</div>
+
+    <h3>Bilaterale Verträge II (2004/2005)</h3>
+    <p>Während Bilaterale I vor allem wirtschaftliche Fragen regeln, stehen bei Bilaterale II politische Themen im Vordergrund:</p>
+    <p><strong>Schengen-Abkommen:</strong> Abschaffung der Grenzkontrollen zwischen den beteiligten Staaten, dafür mobile Kontrollen im Landesinnern und verstärkte Überwachung der EU-Aussengrenze; die Schweiz ist seit Ende 2008 Mitglied.</p>
+    <p><strong>Dublin-Abkommen:</strong> regelt die Zuständigkeit für Asylgesuche — ein in einem Dublin-Staat abgelehntes Gesuch gilt für alle; die Fingerabdruckdatenbank EURODAC verhindert Mehrfachgesuche.</p>
+    <p><strong>Automatischer Informationsaustausch (AIA):</strong> steuerliche Transparenz gegenüber dem Ausland — Schweiz und EU erheben seit 2017 Kontodaten und tauschen sie seit 2018 aus.</p>
+
+    <h3>Bilaterale Verträge III (2024–2027) — Stand der Beratungen</h3>
+    <p>Nach dem Scheitern des institutionellen Rahmenabkommens (2021) nahm die Schweiz 2022 Sondierungsgespräche auf. Ziel ist es, den bilateralen Weg zu <strong>stabilisieren und weiterzuentwickeln</strong> — ohne EU-Vollmitgliedschaft. Am 2. März 2026 unterzeichneten Bundespräsident Guy Parmelin und EU-Kommissionspräsidentin Ursula von der Leyen das ausgehandelte Paket in Brüssel. Es umfasst zwei Teile: die <strong>Aktualisierung</strong> bestehender Abkommen (u.&nbsp;a. Personenfreizügigkeit mit neuer Schutzklausel, Land- und Luftverkehr, Landwirtschaft) sowie <strong>neue Abkommen</strong>, etwa zum Zugang der Schweiz zum europäischen Strommarkt.</p>
+    <p>Am 13. März 2026 überwies der Bundesrat die Botschaft ans Parlament. Insgesamt müssen 36 Schweizer Gesetze angepasst und 3 neue Gesetze geschaffen werden; 4 Verpflichtungskredite bedürfen der Genehmigung. Erstrat ist der Ständerat, dessen zuständige Kommission die Beratungen Ende März 2026 aufnahm. Der Abschluss der parlamentarischen Beratungen ist spätestens bis Herbst 2027 vorgesehen — danach ist mit einer Volksabstimmung zu rechnen.</p>
+
+    <div class="quellen">
+      <p><strong>Quellen:</strong></p>
+      <p>Bilateraler Weg: <a href="https://www.europa.eda.admin.ch/de/bilateraler-weg" target="_blank" rel="noopener">europa.eda.admin.ch</a> — offizielle Seite des Bundes</p>
+      <p>Bilaterale III, Stand der Beratungen: <a href="https://www.europa.eda.admin.ch/de/botschaft-paket-schweiz-eu" target="_blank" rel="noopener">EDA: Botschaft zum Paket Schweiz–EU</a></p>
+      <p>Ergänzend: <a href="https://de.wikipedia.org/wiki/Bilaterale_III" target="_blank" rel="noopener">Wikipedia: Bilaterale III</a> — laufend aktualisierte Übersicht</p>
+      <p>Video: <a href="https://www.youtube.com/watch?v=Tlp69w9U128" target="_blank" rel="noopener">Personenfreizügigkeitsabkommen</a> — Erklärvideo</p>
+    </div>
+  </div>
+
+  <a class="verarbeiten-link" href="../603_Aufgaben.html#lz2" style="margin-top:1.75rem;">
+    <span>✏️ Passende Aufgaben zu diesem Block</span>
+    <span>→</span>
+  </a>
+</div>
+</body>
+</html>
