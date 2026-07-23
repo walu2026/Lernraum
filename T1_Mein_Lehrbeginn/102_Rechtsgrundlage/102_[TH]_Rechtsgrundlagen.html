@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>102 · Theorie: Rechtsgrundlagen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#C1392B; --t1-dark:#96281B; --t1-light:#FDEDEB;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+.gesetz{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:#EEF1F5;border:1px solid var(--line);padding:2px 8px;border-radius:6px;white-space:nowrap}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">102 · [TH]</span>
+  <h1>Theorie: Rechtsgrundlagen</h1>
+  <a class="nav" href="102_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Mit der Lehre beginnt rechtlich ein neuer Lebensabschnitt: Manches, was gestern noch die Eltern regeln mussten, kann eine lernende Person jetzt selbst entscheiden – anderes noch nicht. Diese Theorie klärt die rechtlichen Grundbegriffe, die dafür nötig sind: der Unterschied zwischen Recht, Moral und Sitte, öffentliches und privates Recht, wer wann handlungsfähig ist, wie Zivil- und Strafprozess funktionieren, was das Jugendstrafrecht regelt – und wie man mit Reglementen und digitaler Kommunikation im Betrieb und in der Schule umgeht.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES B6</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">GES B6</span> Recht, Moral und Sitte/Brauch</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="102_[UE]_A01_Recht_Moral_Brauch_MIX.html">A16</a>
+  </div>
+  <p class="einstieg">Nicht jede Regel im Alltag ist ein Gesetz. Wer Recht, Moral und Sitte/Brauch unterscheiden kann, versteht auch, warum manches zwar unangenehm auffällt, aber nicht bestraft werden kann – und umgekehrt, warum manches, das kaum jemand schlimm findet, trotzdem rechtliche Folgen hat.</p>
+  <table class="tb">
+    <tr><th>Normensystem</th><th>Merkmal</th><th>Beispiel</th></tr>
+    <tr><td><strong>Recht</strong></td><td>Vom Staat gesetzt, mit Zwang durchsetzbar (Busse, Klage, Strafe).</td><td>Tempo 50 im Dorf (StVG), Steuern zahlen, Lohn pünktlich zahlen (OR)</td></tr>
+    <tr><td><strong>Sitte/Brauch</strong></td><td>Gesellschaftliche Gewohnheit; kein staatlicher Zwang, aber sozialer Druck.</td><td>Verkleidung an der Fasnacht</td></tr>
+    <tr><td><strong>Moral</strong></td><td>Individuelles Gewissen, was als richtig/falsch empfunden wird.</td><td>Einer älteren Person über die Strasse helfen</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Recht und Moral sind nicht deckungsgleich – manches ist legal, aber moralisch fragwürdig (z.&nbsp;B. Massentierhaltung), anderes ist illegal, wird aber von vielen als harmlos angesehen (z.&nbsp;B. bei Rot über eine leere Kreuzung).</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Timo zahlt seine Steuern. Welchem Normensystem ist das zuzuordnen?</div>
+    <label data-ok>Recht</label>
+    <label>Sitte/Brauch</label>
+    <label>Moral</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES B2 · B3</span> Rechtsgebiete, Rechte/Pflichten im Lebensverlauf, Rechtsgrundsätze</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="102_[UE]_A02_Privates_Oeffentliches_Recht_MIX.html">A17</a>
+    <a href="102_[UE]_A03_Rechte_Pflichten_MIX.html">A18</a>
+    <a href="102_[UE]_A04_Rechtsgrundsaetze_MIX.html">A19</a>
+  </div>
+  <p class="einstieg">Rechtssätze lassen sich zwei grossen Gebieten zuordnen, und Rechte sowie Pflichten verändern sich im Lauf des Lebens automatisch mit dem Alter. Ausserdem gelten für das ganze Rechtssystem einige Grundsätze, ohne die es nicht funktionieren würde.</p>
+  <h3>Öffentliches und privates Recht</h3>
+  <table class="tb">
+    <tr><th></th><th>Verhältnis</th><th>Beispiele</th></tr>
+    <tr><td><strong>Öffentliches Recht</strong></td><td>Staat – Bürger/in (übergeordnet)</td><td>Steuererklärung, Verkehrsbusse (SVG)</td></tr>
+    <tr><td><strong>Privates Recht</strong></td><td>Bürger/in – Bürger/in (gleichgestellt)</td><td>Kaufvertrag, Mietvertrag, Lehrvertrag (OR)</td></tr>
+  </table>
+  <h3>Rechte und Pflichten im Lebensverlauf</h3>
+  <table class="tb">
+    <tr><th>Alter</th><th>Neu dazu</th></tr>
+    <tr><td>Geburt</td><td>Rechtsfähigkeit <span class="gesetz">ZGB 11</span></td></tr>
+    <tr><td>6 Jahre</td><td>Schulpflicht</td></tr>
+    <tr><td>10 Jahre</td><td>Strafmündigkeit beginnt (Jugendstrafrecht)</td></tr>
+    <tr><td>14 Jahre</td><td>Teilweise Strafmündigkeit im Sinne des Jugendstrafgesetzes</td></tr>
+    <tr><td>16 Jahre</td><td>Wein/Bier, Lehrvertrag mit Zustimmung der Eltern</td></tr>
+    <tr><td>18 Jahre</td><td>Stimm-/Wahlrecht <span class="gesetz">BV 136</span>, volle Handlungsfähigkeit <span class="gesetz">ZGB 13</span>, Erwachsenenstrafrecht</td></tr>
+    <tr><td>20 Jahre</td><td>Ferienanspruch sinkt auf 4 Wochen <span class="gesetz">OR 329a</span></td></tr>
+  </table>
+  <h3>Wichtige Rechtsgrundsätze</h3>
+  <ul class="list">
+    <li><strong>Unschuldsvermutung</strong> <span class="gesetz">BV 32</span> – niemand gilt als schuldig, bevor ein Urteil vorliegt.</li>
+    <li><strong>Nulla poena sine lege</strong> <span class="gesetz">StGB 1</span> – keine Strafe ohne Gesetz.</li>
+    <li><strong>Rechtsgleichheit</strong> <span class="gesetz">BV 8</span> – alle sind vor dem Gesetz gleich.</li>
+    <li><strong>Verhältnismässigkeit</strong> <span class="gesetz">BV 5 Abs. 2</span> – staatliche Massnahmen müssen im Verhältnis zum Zweck stehen.</li>
+  </ul>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Ein Streit um unbezahlte Überstunden zwischen Lernender und Lehrbetrieb – welches Recht ist einschlägig?</div>
+    <label data-ok>Privates Recht (Arbeitsrecht im OR)</label>
+    <label>Öffentliches Recht</label>
+    <label>Keines von beiden</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">GES B4</span> Personenrecht – Handlungsfähigkeit</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="102_[UE]_A07_Personenrecht_MIX.html">A22</a>
+    <a href="102_[UE]_A08_Rechtsfaelle_Personenrecht_MIX.html">A23</a>
+  </div>
+  <p class="einstieg">Ob ein Vertrag gültig zustande kommt, hängt davon ab, ob die unterzeichnende Person überhaupt rechtlich dazu in der Lage ist. Drei Begriffe bauen aufeinander auf und entscheiden das.</p>
+  <table class="tb">
+    <tr><th>Begriff</th><th>Bedeutung</th></tr>
+    <tr><td><strong>Rechtsfähigkeit</strong> <span class="gesetz">ZGB 11</span></td><td>Hat jeder Mensch ab Geburt: kann Träger/in von Rechten und Pflichten sein.</td></tr>
+    <tr><td><strong>Urteilsfähigkeit</strong> <span class="gesetz">ZGB 16</span></td><td>Fähigkeit, vernünftig zu handeln – situativ, kann z.&nbsp;B. durch Alkohol oder Demenz fehlen.</td></tr>
+    <tr><td><strong>Handlungsfähigkeit</strong> <span class="gesetz">ZGB 13</span></td><td>Rechtsfähig + urteilsfähig + volljährig = kann selbstständig Verträge abschliessen.</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Minderjährige, die urteilsfähig sind, sind nur <b>beschränkt handlungsfähig</b>: Verträge sind «schwebend unwirksam», bis die Eltern zustimmen <span class="gesetz">ZGB 19</span> – ausser es handelt sich um ein alltägliches Geschäft aus dem eigenen Lehrlingslohn <span class="gesetz">ZGB 323</span>.</div>
+  <p>Beispiel: Jan (17) kauft ein E-Bike für Fr.&nbsp;5'000.– und unterschreibt selbst. Da dies kein alltägliches Geschäft aus dem eigenen Lohn ist, braucht es die Zustimmung der Eltern; verweigern sie diese, kommt kein Vertrag zustande und das E-Bike geht zurück.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Fiona (5) zündet einen Brand. Welche der drei Fähigkeiten trifft auf sie zu?</div>
+    <label>Urteilsfähig</label>
+    <label data-ok>Nur rechtsfähig</label>
+    <label>Voll handlungsfähig</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">GES</span> Zivil- und Strafprozess</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="102_[UE]_A06_Zivil_Strafprozess_MIX.html">A21</a>
+  </div>
+  <p class="einstieg">Je nachdem, worum es in einem Streit geht, kommt ein ganz unterschiedliches Verfahren zur Anwendung – mit unterschiedlichen Beteiligten und einem unterschiedlichen Ziel.</p>
+  <table class="tb">
+    <tr><th></th><th>Zivilprozess</th><th>Strafprozess</th></tr>
+    <tr><td><strong>Wer gegen wen?</strong></td><td>Private gegen Private</td><td>Staat gegen Täter/in</td></tr>
+    <tr><td><strong>Wer klagt?</strong></td><td>Kläger/in gegen Beklagte/n</td><td>Staatsanwaltschaft</td></tr>
+    <tr><td><strong>Ziel</strong></td><td>Schadenersatz/Unterlassung</td><td>Ahndung/Schutz der Gesellschaft</td></tr>
+    <tr><td><strong>Mögliches Urteil</strong></td><td>Leistungspflicht</td><td>Strafe</td></tr>
+    <tr><td><strong>Beispiel</strong></td><td>Mietstreit, Kaufvertrag</td><td>Diebstahl, Körperverletzung</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Ein einziges Ereignis kann beide Verfahren auslösen: Beschädigt ein Nachbar ein Fahrrad und beleidigt dabei zusätzlich, folgt daraus eine Zivilklage auf Schadenersatz <span class="gesetz">OR 41</span> und eine Strafanzeige wegen Beleidigung <span class="gesetz">StGB 177</span>.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Wer klagt im Strafprozess an?</div>
+    <label>Die geschädigte Person persönlich</label>
+    <label data-ok>Die Staatsanwaltschaft</label>
+    <label>Das Gericht von sich aus</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">GES B4</span> Strafrecht &amp; Bussen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="102_[UE]_A05_Busse_Einkommen_MIX.html">A20</a>
+    <a href="102_[UE]_A09_Strafrecht_MIX.html">A24</a>
+    <a href="102_[UE]_A10_Rechtsgrundlagen_Faelle_MIX.html">A25</a>
+  </div>
+  <p class="einstieg">Neben den Grundbegriffen des Strafrechts lohnt sich ein genauer Blick auf ein System, das im Alltag oft missverstanden wird: die einkommensabhängige Geldstrafe.</p>
+  <ul class="list">
+    <li><strong>Offizialdelikt:</strong> Der Staat handelt von Amtes wegen, keine Anzeige nötig – anders bei <strong>Antragsdelikten</strong> (z.&nbsp;B. Beleidigung): dort muss innert 3 Monaten ein Strafantrag gestellt werden <span class="gesetz">StGB 30/31</span>.</li>
+    <li>Unter 10 Jahren besteht keine strafrechtliche Verantwortlichkeit.</li>
+    <li>Vorsätzliche Handlungen werden strenger bestraft als fahrlässige – Fahrlässigkeit ist aber nicht straflos, sie wird in bestimmten Fällen ebenfalls bestraft <span class="gesetz">z.B. StGB 117</span>.</li>
+    <li>Eine Verwaltungsbusse (z.&nbsp;B. Ordnungsbusse im Verkehr) ist kein Strafurteil.</li>
+  </ul>
+  <h3>Das Tagessatzsystem</h3>
+  <p>Geldstrafen richten sich in der Schweiz nach dem Einkommen <span class="gesetz">StGB 34</span>: Tagessatz = Nettoeinkommen ÷ 30.</p>
+  <p>Beispiel: Architekt Werner (Fr.&nbsp;12'000.–/Monat) und Coiffeur Erich (Fr.&nbsp;3'000.–/Monat) werden für dasselbe Vergehen mit je 20 Tagessätzen bestraft – Werner zahlt Fr.&nbsp;8'000.– (Tagessatz Fr.&nbsp;400.–), Erich Fr.&nbsp;2'000.– (Tagessatz Fr.&nbsp;100.–). Gleiche Anzahl Tagessätze, unterschiedliche Geldsumme: Ziel ist eine vergleichbare relative Belastung («Opfergleichheit»), nicht ein identischer Frankenbetrag.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Warum zahlen zwei Personen für dasselbe Vergehen unterschiedlich hohe Bussen im Tagessatzsystem?</div>
+    <label>Zufall</label>
+    <label data-ok>Der Tagessatz richtet sich nach dem Einkommen, die Anzahl Tagessätze nach der Schwere der Tat</label>
+    <label>Wohlhabende zahlen weniger, weil sie sich Anwälte leisten können</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 6 ==================== -->
+<section>
+  <h2><span class="nr">GES B5</span> Jugendstrafrecht</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="102_[UE]_A12_Jugendstrafrecht.html">A12</a>
+  </div>
+  <p class="einstieg">Ab welchem Alter eine Person überhaupt strafrechtlich zur Verantwortung gezogen werden kann und was dann mit ihr geschieht, regelt ein eigenes Recht.</p>
+  <p>Ab dem <strong>10. Lebensjahr</strong> kommt in der Schweiz das Jugendstrafrecht zur Anwendung – im europäischen Vergleich sehr früh (anderswo meist 12 oder 14 Jahre) – und gilt bis zur Volljährigkeit. Welches Verhalten strafbar ist, bestimmt für Jugendliche wie für Erwachsene dasselbe <strong>Strafgesetzbuch (StGB)</strong>. Das Verfahren regelt jedoch die <strong>Jugendstrafprozessordnung (JStPO)</strong>, Strafen und Massnahmen legt das <strong>Jugendstrafgesetzbuch (JStG)</strong> fest.</p>
+  <p>Im Zentrum steht nicht nur die Strafe, sondern die Frage nach den Ursachen des Verhaltens und wie eine Wiederholung verhindert werden kann. Das JStG kennt vier <strong>Strafen</strong> (Verweis, persönliche Leistung, Busse, Freiheitsentzug) und vier <strong>Massnahmen</strong> (Aufsicht, persönliche Betreuung, ambulante Behandlung, Unterbringung – längstens bis zum 22.&nbsp;Altersjahr).</p>
+  <div class="merk"><b>Merke:</b> Der Vorwurf der «Kuscheljustiz» greift zu kurz: Eine Massnahme verlangt Anpassung, Leistungen und oft Therapie – und dauert häufig länger als die vergleichbare Strafe gedauert hätte.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welches Gesetz legt fest, welches Verhalten überhaupt strafbar ist – auch für Jugendliche?</div>
+    <label>Das Jugendstrafgesetzbuch (JStG)</label>
+    <label data-ok>Das Strafgesetzbuch (StGB) – dasselbe wie für Erwachsene</label>
+    <label>Die Jugendstrafprozessordnung (JStPO)</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 7 ==================== -->
+<section>
+  <h2><span class="nr">SUK B5 · GES B6</span> Ethik-Dilemma</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="102_[UE]_A11_Ethik_Dilemma.html">A11</a>
+  </div>
+  <p class="einstieg">Manchmal stehen Recht und Moral im Widerspruch: Etwas ist zwar illegal, fühlt sich aber moralisch richtig an – oder umgekehrt. Ein ethisches Dilemma verlangt eine begründete Stellungnahme, nicht eine einfache Ja/Nein-Antwort.</p>
+  <p>Beispiel: Sina erfährt, dass eine Freundin aus finanzieller Not eine Sache entwendet hat. Rechtlich handelt es sich um <strong>Diebstahl</strong> <span class="gesetz">StGB 139</span> – Sina müsste dies eigentlich melden. Moralisch fühlt sie sich der Freundin gegenüber loyal, verrät aber mit ihrem Schweigen zugleich das Vertrauen des Arbeitgebers. Es gibt hier keine eindeutig «richtige» Lösung – gefragt ist eine begründete, nachvollziehbare Abwägung.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was zeichnet ein echtes ethisches Dilemma aus?</div>
+    <label>Es gibt immer eine klar richtige Antwort im Gesetz</label>
+    <label data-ok>Zwei Werte oder Pflichten stehen im Widerspruch, ohne eindeutig «richtige» Lösung</label>
+    <label>Es betrifft nur Straftaten</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 8 ==================== -->
+<section>
+  <h2><span class="nr">SUK B3</span> Reglemente lesen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="102_[UE]_A14_Reglemente_Lesen.html">A14</a>
+  </div>
+  <p class="einstieg">Übergeordnete Gesetze werden für den Alltag an Schule und Betrieb durch eigene Reglemente konkretisiert. Wer sein Schul- oder Betriebsreglement kennt, weiss auch, wie ein Fehlverhalten geahndet wird.</p>
+  <p>Reglemente (z.&nbsp;B. eine Schulordnung) regeln typischerweise: Verhalten im Unterricht, Umgang mit Absenzen und Verspätungen, Rechte der Lernenden (z.&nbsp;B. Beschwerdeweg) sowie ein <strong>abgestuftes Disziplinarwesen</strong>.</p>
+  <table class="tb">
+    <tr><th>Stufe</th><th>Zuständig</th><th>Mögliche Massnahme</th></tr>
+    <tr><td>1</td><td>Lehrperson</td><td>Mündliche Verwarnung, zusätzliche Arbeit, Wegweisung aus der Lektion</td></tr>
+    <tr><td>2</td><td>Bereichsleitung</td><td>Mündlicher oder schriftlicher Verweis</td></tr>
+    <tr><td>3</td><td>Abteilungsleitung/Rektorat</td><td>Vorübergehender Ausschluss; Antrag auf Auflösung des Lehrverhältnisses beim Amt für Berufsbildung</td></tr>
+  </table>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Wer kann als letzte Stufe die Auflösung eines Lehrverhältnisses beim Amt für Berufsbildung beantragen?</div>
+    <label>Jede Lehrperson direkt</label>
+    <label data-ok>Die Abteilungsleitung/das Rektorat</label>
+    <label>Nur die lernende Person selbst</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 9 ==================== -->
+<section>
+  <h2><span class="nr">SUK B2</span> Digitale Kommunikationskanäle</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="102_[UE]_A13_Digitale_Kommunikationskanaele.html">A13</a>
+  </div>
+  <p class="einstieg">E-Mail, Chat und Intranet verlangen unterschiedliche Umgangsformen. Wer den falschen Ton für den falschen Kanal wählt, wirkt schnell unprofessionell.</p>
+  <table class="tb">
+    <tr><th>Kanal</th><th>Wann einsetzen</th><th>Ton</th></tr>
+    <tr><td><strong>E-Mail</strong></td><td>Formelle Anfragen, Dokumentation, Kontakt mit Berufsbildner/in oder externen Stellen.</td><td>Betreff, Anrede, ganze Sätze, korrekte Rechtschreibung, kurze Signatur. E-Mails sind wie Postkarten – nichts Vertrauliches hineinschreiben.</td></tr>
+    <tr><td><strong>Chat/Messenger</strong></td><td>Kurze, informelle Absprachen im Team, dringende Fragen.</td><td>Kürzer und lockerer erlaubt, gegenüber Vorgesetzten trotzdem höflich. Keine internen Firmeninformationen in privaten Gruppenchats teilen.</td></tr>
+    <tr><td><strong>Intranet/Firmenkanal</strong></td><td>Offizielle Informationen, die alle betreffen (z.&nbsp;B. Ferienplan, Anlässe).</td><td>Sachlich, für ein grosses Publikum verständlich.</td></tr>
+  </table>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Über welchen Kanal sollte eine formelle, dokumentierte Anfrage an den Berufsbildner laufen?</div>
+    <label>Chat/Messenger</label>
+    <label data-ok>E-Mail</label>
+    <label>Intranet</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 10 ==================== -->
+<section>
+  <h2><span class="nr">GES B1 · SUK B4</span> Mein Weg in die Lehre</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="102_[UE]_A15_Mein_Weg_in_die_Lehre.html">A15</a>
+  </div>
+  <p class="einstieg">Der Übertritt von der Schule in die Berufslehre ist mehr als ein Ortswechsel: Er bringt neue Aufgaben, mehr Verantwortung und neue Erwartungen mit sich – ein eigentlicher Rollenwechsel.</p>
+  <p>Eine <strong>Lebenslinie</strong> hilft, diesen Übergang einzuordnen: Wichtige Stationen sind z.&nbsp;B. Familienveränderungen, neue Lebensabschnitte (Schuleintritt, neues Hobby) oder einschneidende Erlebnisse. Beim Reflektieren gilt: Ereignisse, die zu persönlich sind, dürfen weggelassen werden, und andere Personen werden nicht mit vollem Namen genannt.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was ist beim Reflektieren der eigenen Lebenslinie zu beachten, wenn andere Personen erwähnt werden?</div>
+    <label>Vollständiger Name ist Pflicht</label>
+    <label data-ok>Andere Personen werden nicht mit vollem Namen genannt</label>
+    <label>Andere Personen dürfen gar nicht erwähnt werden</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 1 «Mein Lehrbeginn» · Lebenssituation B</h2>
+  <p style="font-weight:700;margin-bottom:10px">Rechtliche Grundlagen kennen und anwenden</p>
+  <table>
+    <tr><td class="lz">GES B6</td><td>Ich unterscheide zwischen Recht, Moral und Sitte und erkläre deren gesellschaftliche Funktion.</td></tr>
+    <tr><td class="lz">GES B3</td><td>Ich ordne Lebenssachverhalte dem privaten oder öffentlichen Recht zu.</td></tr>
+    <tr><td class="lz">GES B2</td><td>Ich erläutere, wie sich Rechte und Pflichten mit dem Alter verändern.</td></tr>
+    <tr><td class="lz">GES B4</td><td>Ich beschreibe die Grundzüge des Personenrechts (Handlungsfähigkeit, juristische Person).</td></tr>
+    <tr><td class="lz">GES B4</td><td>Ich erkläre den Unterschied zwischen Zivil- und Strafprozess.</td></tr>
+    <tr><td class="lz">GES B4</td><td>Ich kenne Grundzüge des Strafrechts und berechne einkommensbezogene Bussen.</td></tr>
+    <tr><td class="lz">GES B5</td><td>Ich unterscheide die wichtigsten Bestimmungen des geltenden Jugendstrafrechts.</td></tr>
+    <tr><td class="lz">SUK B5 · GES B6</td><td>Ich beziehe zu einer ethisch-moralischen Frage Stellung und begründe meine Meinung; ich erkläre den Unterschied zwischen Ethik, Sitte und Moral.</td></tr>
+    <tr><td class="lz">SUK B3</td><td>Ich entnehme schulischen und betrieblichen Reglementen relevante Informationen.</td></tr>
+    <tr><td class="lz">SUK B2</td><td>Ich nutze digitale Kommunikationskanäle situationsgerecht.</td></tr>
+    <tr><td class="lz">SUK B4 · GES B1</td><td>Ich erstelle ein klar gegliedertes Produkt zu für mich zentralen Lebensstationen und verstehe den Schritt in die Lehre als Rollenwechsel mit neuen Chancen und Verantwortung.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen (S. 15/16/18)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="102_Aufgaben.html"><strong>Übungen A11–A25 lösen</strong></a> → Kompetenznachweis Rechtsgrundlagen.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
