@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>101 · Theorie: Lehrvertrag & Rechte/Pflichten</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#C1392B; --t1-dark:#96281B; --t1-light:#FDEDEB;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+.vertiefung-link{display:block;margin-top:10px;font-size:.82rem}
+.vertiefung-link a{color:var(--ink-soft);text-decoration:underline;text-decoration-style:dotted}
+.vertiefung-link a:hover{color:var(--t1)}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+.gesetz{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:#EEF1F5;border:1px solid var(--line);padding:2px 8px;border-radius:6px;white-space:nowrap}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.rechnung{font-family:'JetBrains Mono',monospace;font-size:.88rem;background:#1E2530;color:#E8ECF1;border-radius:10px;padding:14px 18px;margin:14px 0;overflow-x:auto}
+.rechnung b{color:#FFB4A8}
+details{border:1px solid var(--line);border-radius:10px;margin:12px 0;background:#FCFCFD}
+summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--t1-dark)}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .inner{padding:14px 16px;color:var(--ink-soft)}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+.ow-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;margin:6px 0;background:#FCFCFD;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;color:var(--ink-soft)}
+.ow-item input{margin-top:4px;accent-color:var(--t1)}
+.ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">101 · [TH]</span>
+  <h1>Theorie: Lehrvertrag & Rechte/Pflichten</h1>
+  <a class="nav" href="101_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Mit dem Lehrvertrag beginnt die Berufslehre offiziell – ein Dokument, das weit mehr regelt als nur den Lohn. Diese Theorie zeigt, wie das Schweizer Berufsbildungssystem aufgebaut ist, was im Lehrvertrag stehen muss, welche Rechte und Pflichten Lernende und Lehrbetrieb haben, wie mit Pflichtverletzungen umgegangen wird und wie ein Lehrverhältnis endet.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">GES A3</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">GES A3</span> Das Berufsbildungssystem der Schweiz</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="101_[UE]_A01_Berufsbildung_Gesetze_MIX.html">A1</a>
+    <a href="101_[UE]_A05_Lernorte_MIX.html">A5</a>
+    <a href="101_[UE]_A06_Zustaendigkeit_Gesetze_MIX.html">A6</a>
+    <a href="101_[UE]_A07_Gesetze_Berufsbildung_Nachtrag(1).html">A7</a>
+    <a href="101_[UE]_A12_Rechtsquellen_Nachtrag(1).html">A12</a>
+  </div>
+  <p class="einstieg">Die Lehre findet nicht nur im Betrieb statt – sie ist ein Zusammenspiel von drei Lernorten und wird von drei verschiedenen Partnern getragen und geregelt. Wer hier den Überblick hat, weiss auch, an wen man sich bei Fragen oder Problemen wenden kann.</p>
+  <h3>Die drei Lernorte</h3>
+  <table class="tb">
+    <tr><th>Lernort</th><th>Aufgabe</th></tr>
+    <tr><td><strong>Lehrbetrieb</strong></td><td>Praktische Ausbildung im Berufsalltag. Grundlage: die berufsspezifische Bildungsverordnung (BiVo).</td></tr>
+    <tr><td><strong>Berufsfachschule</strong></td><td>Schulische Bildung: Berufskunde + allgemeinbildender Unterricht (ABU) + Sport.</td></tr>
+    <tr><td><strong>Überbetriebliche Kurse (üK)</strong></td><td>Vermitteln grundlegende berufliche Fertigkeiten, ergänzend zu Betrieb und Schule.</td></tr>
+  </table>
+  <h3>Wer ist zuständig?</h3>
+  <p>Die Berufsbildung ist eine <strong>Verbundaufgabe</strong> von drei Partnern:</p>
+  <ul class="list">
+    <li><strong>Bund</strong> (SBFI): strategische Steuerung, erlässt Bildungsverordnungen, anerkennt Abschlüsse</li>
+    <li><strong>Kantone</strong> (Amt für Berufsbildung): Vollzug – genehmigen Lehrverträge, beaufsichtigen die Lehrverhältnisse, führen die Berufsfachschulen</li>
+    <li><strong>Organisationen der Arbeitswelt</strong> (Berufsverbände/OdA): definieren Bildungsinhalte, organisieren üK und Qualifikationsverfahren</li>
+  </ul>
+  <h3>Die wichtigsten Gesetze</h3>
+  <table class="tb">
+    <tr><th>Gesetz</th><th>Regelt</th></tr>
+    <tr><td><span class="gesetz">OR 344–346a</span></td><td>Lehrvertrag als besonderer Einzelarbeitsvertrag: Form, Pflichten, Beendigung</td></tr>
+    <tr><td><span class="gesetz">BBG</span></td><td>Berufsbildungsgesetz: Aufbau der Berufsbildung, Genehmigungspflicht des Lehrvertrags <span class="gesetz">BBG 14</span></td></tr>
+    <tr><td><span class="gesetz">ArG</span></td><td>Arbeitsgesetz: Arbeits-/Ruhezeiten, besonderer Schutz für Jugendliche unter 18</td></tr>
+    <tr><td><span class="gesetz">BiVo</span></td><td>Bildungsverordnung des jeweiligen Berufs: Dauer, Inhalte, Lernziele, QV</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Auch der <b>Lehrvertrag selbst ist eine Rechtsquelle</b>: Er regelt die individuellen Punkte (konkreter Lohn, Beginn/Ende, freiwillige Zusatzleistungen) – die Gesetze setzen den Mindestrahmen, der immer gilt.</div>
+  <p>Alle Gesetzestexte gratis auf <a href="https://www.fedlex.admin.ch" target="_blank">fedlex.admin.ch</a> – auch die in den Übungen verwendeten Artikel lassen sich dort nachschlagen.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Wer genehmigt den Lehrvertrag und beaufsichtigt das Lehrverhältnis?</div>
+    <label>Der Bund (SBFI)</label>
+    <label data-ok>Das kantonale Amt für Berufsbildung</label>
+    <label>Der Berufsverband (OdA)</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES A1 · SUK A1</span> Mein Lehrvertrag: Form, Inhalt, Rechte und Pflichten</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="101_[UE]_A02_Mein_Lehrvertrag_MIX.html">A2</a>
+    <a href="101_[UE]_A03_Vertragspflichten_MIX.html">A3</a>
+    <a href="101_[UE]_A09_Aussagen_MIX.html">A9</a>
+  </div>
+  <p class="einstieg">Der Lehrvertrag ist das wichtigste Dokument der Ausbildung: Er hält fest, was beide Seiten zwingend einhalten müssen, und regelt individuelle Punkte wie den konkreten Lohn. Wer die Formvorschriften und den Unterschied zwischen zwingendem und frei vereinbartem Inhalt kennt, kann den eigenen Vertrag richtig lesen und einschätzen.</p>
+  <h3>Formvorschriften</h3>
+  <ul class="list">
+    <li><strong>Schriftlich</strong> <span class="gesetz">OR 344a Abs. 1</span> – mündlich ist der Lehrvertrag ungültig.</li>
+    <li><strong>Unterschriften:</strong> lernende Person + Betrieb – bei Minderjährigen zusätzlich die gesetzliche Vertretung.</li>
+    <li><strong>Genehmigung durch den Kanton</strong> <span class="gesetz">BBG 14 Abs. 3</span> – vor Antritt der Lehre.</li>
+  </ul>
+  <h3>Zwingender Inhalt vs. frei vereinbar</h3>
+  <table class="tb">
+    <tr><th>Gesetzlich zwingend</th><th>Frei bestimmbar (Beispiele)</th></tr>
+    <tr><td>Lehrberuf und Abschluss (EFZ/EBA), Beginn und Dauer, Lohn, Arbeitszeit, Ferien, Probezeit</td><td>Beiträge an Unterkunft/Verpflegung, Übernahme von Versicherungsprämien, Werkzeug und Berufskleidung, Schulmaterial</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Der Vertrag darf <b>nie schlechter</b> sein als das Gesetz. Steht z.B. weniger Ferien drin, als gesetzlich zustehen, ist diese Klausel <b>nichtig</b> – es gilt das Gesetz.</div>
+  <h3>Rechte und Pflichten beider Seiten</h3>
+  <table class="tb">
+    <tr><th></th><th>Pflichten (= Rechte der Gegenseite)</th></tr>
+    <tr><td><strong>Lernende</strong></td><td>Hauptpflicht: alles daran setzen, das <strong>Lernziel zu erreichen</strong> · sorgfältig arbeiten · Weisungen befolgen · Berufsfachschule und üK besuchen · Lerndokumentation führen · Treuepflicht</td></tr>
+    <tr><td><strong>Lehrbetrieb</strong></td><td>Fachgerecht ausbilden <span class="gesetz">OR 344</span> · Lohn pünktlich zahlen · Zeit für Schule und üK freigeben (gilt als Arbeitszeit) · Fürsorgepflicht · Lehrzeugnis ausstellen</td></tr>
+  </table>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Im Lehrvertrag steht ein tieferer Ferienanspruch, als das Gesetz vorschreibt. Was gilt?</div>
+    <label>Der Vertrag – er wurde ja unterschrieben</label>
+    <label data-ok>Das Gesetz – die Vertragsklausel ist nichtig</label>
+    <label>Der Mittelwert aus beidem</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">GES A2 · A4</span> Pflichtverletzungen und ihre Konsequenzen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="101_[UE]_A04_Rechtsfaelle_MIX.html">A4</a>
+    <a href="101_[UE]_A08_Pflichtverletzungen_MIX.html">A8</a>
+    <a href="101_[UE]_A10_Lernende_Aussagen_Nachtrag(1).html">A10</a>
+  </div>
+  <p class="einstieg">Nicht jeder Konflikt in der Lehre bedeutet gleich das Ende des Lehrverhältnisses. Sowohl Lernende als auch Betriebe können ihre Pflichten verletzen – entscheidend ist, dass es dafür ein klar geregeltes, abgestuftes Vorgehen gibt, bevor es zu einer Auflösung kommt.</p>
+  <p>Verletzt eine Seite ihre Pflichten, gibt es ein abgestuftes Vorgehen – nicht sofort die Auflösung:</p>
+  <ul class="list">
+    <li><strong>Stufe 1 – Gespräch:</strong> direkt mit Berufsbildner/in bzw. der lernenden Person das Problem ansprechen.</li>
+    <li><strong>Stufe 2 – Schriftlich:</strong> Verwarnung (durch Betrieb) bzw. schriftliche Beanstandung (durch Lernende, z.B. bei mangelhafter Ausbildung).</li>
+    <li><strong>Stufe 3 – Lehraufsicht:</strong> das kantonale Amt für Berufsbildung einschalten – es vermittelt und kontrolliert.</li>
+    <li><strong>Letzter Schritt:</strong> fristlose Auflösung aus wichtigem Grund <span class="gesetz">OR 346 Abs. 2</span> (siehe LZ 5).</li>
+  </ul>
+  <h3>Typische Pflichtverletzungen</h3>
+  <table class="tb">
+    <tr><th>Durch Lernende</th><th>Durch den Betrieb</th></tr>
+    <tr><td>Unentschuldigtes Fehlen (Betrieb/Schule/üK), wiederholtes Zuspätkommen, Weisungen missachten, keine Lerndokumentation, Betriebsgeheimnisse ausplaudern</td><td>Keine oder mangelhafte Ausbildung (nur Hilfsarbeiten), Lohn nicht/zu spät zahlen, keine Freistellung für Schule/üK, Fürsorgepflicht verletzen (Überlastung, Mobbing dulden)</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Lernende <b>haften</b> für Schäden, die sie absichtlich oder fahrlässig verursachen – aber der Massstab richtet sich nach Ausbildungsstand und Erfahrung.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Ein Betrieb lässt eine lernende Person seit Monaten nur aufräumen statt ausbilden. Das Gespräch hat nichts gebracht. Nächster sinnvoller Schritt?</div>
+    <label>Sofort fristlos kündigen</label>
+    <label>Einfach nicht mehr hingehen</label>
+    <label data-ok>Schriftlich beanstanden und die kantonale Lehraufsicht einschalten</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">GES A1</span> Lohn, Arbeitszeit und Ferien</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="101_[UE]_A11_Lohn_Arbeitszeit_MIX.html">A11</a>
+    <a href="101_[UE]_A13_Ferienregelung_MIX.html">A13</a>
+  </div>
+  <p class="einstieg">Lohn, Arbeitszeit und Ferien betreffen Lernende ganz direkt und regelmässig – deshalb lohnt es sich, die Grundregeln zu kennen: wie sich der Stundenlohn berechnet, was vom Bruttolohn abgezogen wird, wie viel gearbeitet werden darf und wie viele Ferien zustehen.</p>
+  <h3>Lohn</h3>
+  <p>Es gibt <strong>keinen gesetzlichen Mindestlohn</strong> für Lernende. Massgebend sind die <strong>Richtlöhne</strong> der Berufsverbände (pro Beruf, Lehrjahr und teils Kanton). Der Lohn steht zwingend im Lehrvertrag.</p>
+  <h3>So wird der Stundenlohn berechnet</h3>
+  <div class="rechnung">
+    Wochenarbeitszeit × <b>4.33</b> = Monatsarbeitszeit&nbsp;&nbsp;<i>(4.33 = 52 Wochen ÷ 12 Monate)</i><br>
+    Monatslohn ÷ Monatsarbeitszeit = <b>Stundenlohn</b><br><br>
+    Beispiel: 45 h/Woche × 4.33 ≈ 195 h/Monat · Fr. 600.– ÷ 195 h ≈ <b>Fr. 3.10/h</b>
+  </div>
+  <h3>Lohnabzüge: Brutto ist nicht Netto</h3>
+  <p>Vom <strong>Bruttolohn</strong> im Vertrag werden Sozialversicherungsbeiträge abgezogen – übrig bleibt der <strong>Nettolohn</strong>, der aufs Konto kommt. Ab dem 1. Januar nach dem <strong>17. Geburtstag</strong> werden Beiträge an AHV/IV/EO und ALV fällig; dazu kommt meist die Nichtberufsunfallversicherung (NBU). Die Details stehen auf der Lohnabrechnung.</p>
+  <h3>Arbeitszeit und Jugendschutz</h3>
+  <ul class="list">
+    <li>Die Arbeitszeit steht im Lehrvertrag; es gelten die Höchstarbeitszeiten des ArG.</li>
+    <li><strong>Unter 18:</strong> Arbeit längstens bis <strong>20 Uhr</strong> <span class="gesetz">ArG 31</span>; Nacht- und Sonntagsarbeit sind grundsätzlich verboten (Ausnahmen nur mit Bewilligung, z.B. in bestimmten Branchen).</li>
+    <li>Schulzeit und üK gelten als Arbeitszeit.</li>
+  </ul>
+  <h3>Ferien</h3>
+  <ul class="list">
+    <li>Mindestens <strong>5 Wochen pro Jahr bis zum vollendeten 20. Altersjahr</strong> <span class="gesetz">OR 345a Abs. 3</span>, danach mindestens 4 Wochen.</li>
+    <li>Mindestens 2 Ferienwochen müssen zusammenhängen; der Betrieb bestimmt den Zeitpunkt, berücksichtigt aber die Wünsche der lernenden Person.</li>
+    <li><strong>Ferienkürzung</strong> ist nur erlaubt, wenn eine lernende Person <em>unentschuldigt</em> oder selbstverschuldet länger als einen Monat abwesend ist <span class="gesetz">OR 329b</span>. Krankheit <strong>mit Arztzeugnis</strong> ist entschuldigt – dafür dürfen keine Ferien gestrichen werden.</li>
+  </ul>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Eine 17-jährige lernende Person war 3 Wochen krank (mit Arztzeugnis). Der Betrieb will dafür Ferientage abziehen. Zulässig?</div>
+    <label>Ja – wer fehlt, verliert Ferien</label>
+    <label data-ok>Nein – entschuldigte Krankheit erlaubt keine Kürzung (OR 329b)</label>
+    <label>Ja, aber höchstens 2 Tage</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">GES A3 · A4</span> Wie der Lehrvertrag endet</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="101_[UE]_A14_Lehrvertrag_Ende_MIX.html">A14</a>
+  </div>
+  <p class="einstieg">Ein Lehrvertrag endet nicht einfach «wie ein normaler Job». Weil er auf eine bestimmte Ausbildungszeit befristet ist, gelten eigene Regeln dafür, wann und wie er endet – und was passiert, wenn eine Seite vorzeitig aussteigen will.</p>
+  <table class="tb">
+    <tr><th>Beendigungsform</th><th>Regel</th></tr>
+    <tr><td><strong>Ablauf der Lehrzeit</strong></td><td>Der Lehrvertrag ist befristet – er endet automatisch, ohne Kündigung.</td></tr>
+    <tr><td><strong>Kündigung in der Probezeit</strong></td><td>Beide Seiten, Frist <strong>7 Tage</strong>, ohne Angabe von Gründen <span class="gesetz">OR 346 Abs. 1</span>.</td></tr>
+    <tr><td><strong>Aufhebung im gegenseitigen Einvernehmen</strong></td><td>Jederzeit möglich, schriftlich; der Kanton wird informiert.</td></tr>
+    <tr><td><strong>Fristlose Auflösung</strong></td><td>Nach der Probezeit nur aus <strong>wichtigen Gründen</strong> <span class="gesetz">OR 346 Abs. 2</span> – z.B. Ausbildung nicht mehr gewährleistet, schwere/wiederholte Pflichtverletzung. Wer auflöst, muss den Grund belegen können.</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Nach der Probezeit gibt es <b>keine ordentliche Kündigung</b> mehr – «es gefällt mir nicht mehr» reicht rechtlich nicht.</div>
+  <h3>Lehrabbruch – nicht einfach «Versagen»</h3>
+  <p>Rund jedes fünfte Lehrverhältnis wird vorzeitig aufgelöst. Die Ursachen sind <strong>individuell</strong> (falsche Berufswahl, Motivation, Überforderung) <strong>und strukturell</strong> (schlechte Ausbildungsqualität, Konflikte im Betrieb, Mobbing). Wichtig: Eine Auflösung bedeutet oft einen <strong>Neustart</strong> (anderer Betrieb, anderer Beruf), nicht das Ende der Ausbildung.</p>
+  <details>
+    <summary>Anlaufstellen bei Problemen in der Lehre</summary>
+    <div class="inner">1. Berufsbildner/in im Betrieb · 2. Klassenlehrperson oder Schulsozialarbeit der Berufsfachschule · 3. Kantonale Lehraufsicht (Amt für Berufsbildung) · 4. Berufs- und Laufbahnberatung für Neuorientierung. Je früher Hilfe geholt wird, desto mehr Optionen bleiben offen.</div>
+  </details>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Eine Lernende bricht nach 4 Monaten ab. Welche Auflösungsform kommt rechtlich in Frage?</div>
+    <label>Ordentliche Kündigung mit 7 Tagen Frist</label>
+    <label data-ok>Nur Aufhebung im Einvernehmen oder fristlos aus wichtigem Grund</label>
+    <label>Gar keine – sie muss die Lehre beenden</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="nr">SLP</span> Orientierungswissen – Ich kann …</h2>
+  <p>Direkt aus dem Schullehrplan (Thema 1). Abhaken, was bereits sicher beherrscht wird – der Rest ist der individuelle Lernauftrag:</p>
+  <div id="ow">
+    <label class="ow-item"><input type="checkbox"> … fünf Inhalte nennen, die in einem Lehrvertrag geregelt werden.</label>
+    <label class="ow-item"><input type="checkbox"> … die gesetzliche Hauptpflicht der Lernenden formulieren.</label>
+    <label class="ow-item"><input type="checkbox"> … drei Rechte der Lernenden in der Lehre aufzählen.</label>
+    <label class="ow-item"><input type="checkbox"> … drei Pflichten der Lernenden in der Lehre aufzählen.</label>
+    <label class="ow-item"><input type="checkbox"> … drei Rechte der Berufsbildenden aufzählen.</label>
+    <label class="ow-item"><input type="checkbox"> … drei Pflichten der Berufsbildenden aufzählen.</label>
+  </div>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Punkte 7–11 des Orientierungswissens (Personenrecht, öffentliches/privates Recht) folgen in Serie 102.</p>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 1 «Mein Lehrbeginn» · Lebenssituation A</h2>
+  <p style="font-weight:700;margin-bottom:10px">Eine Lehre beginnen, Rechte und Pflichten verstehen und wahrnehmen</p>
+  <table>
+    <tr><td class="lz">GES A1</td><td>Ich wende meine Rechte und Pflichten in der Berufslehre an.</td></tr>
+    <tr><td class="lz">GES A2</td><td>Ich analysiere Rechte und Pflichten der Berufsbildenden.</td></tr>
+    <tr><td class="lz">GES A3</td><td>Ich untersuche, welche rechtlichen Grundlagen für die Lehrzeit relevant sind und wende zur Bearbeitung einfacher Rechtsfälle eine klare Strategie an.</td></tr>
+    <tr><td class="lz">GES A4</td><td>Ich beurteile Rechtsfälle und begründe diese mit Gesetzesartikeln.</td></tr>
+    <tr><td class="lz">SUK A1</td><td>Ich entnehme meinem Lehrvertrag wichtige Informationen und erkläre diese.</td></tr>
+    <tr><td class="lz">SUK A4</td><td>Ich erschliesse die Bedeutung von Rechtstexten.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen, Auflage 2026 (S. 14/18)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="101_Aufgaben.html"><strong>Übungen A1–A15 lösen</strong></a> → Kompetenznachweis Lehrvertrag.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
