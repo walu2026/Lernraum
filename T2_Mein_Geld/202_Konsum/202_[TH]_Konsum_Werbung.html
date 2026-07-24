@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>202 · Theorie: Konsum &amp; Werbung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#1F638F; --t1-dark:#174C6E; --t1-light:#E7EFF5;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">202 · [TH]</span>
+  <h1>Theorie: Konsum &amp; Werbung</h1>
+  <a class="nav" href="202_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Warum kaufen Menschen, was sie kaufen? Diese Theorie zeigt, wie Bedürfnisse und Güter zusammenhängen, wie Werbung und das eigene Umfeld – auch über Algorithmen und soziale Netzwerke – das Konsumverhalten beeinflussen, und wie sich nachhaltiger Konsum (z.&nbsp;B. über Öko-Labels) einschätzen lässt.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES B1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">GES B1</span> Bedürfnispyramide nach Maslow</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="202_[UE]_A01_Maslow_Beduerfnisse.html">A01</a>
+  </div>
+  <p class="einstieg">Bevor man Konsum und Werbung versteht, lohnt sich der Blick auf das, was Konsum überhaupt antreibt: menschliche Bedürfnisse.</p>
+  <p>Maslow ordnet Bedürfnisse in fünf Stufen, von der Basis zur Spitze:</p>
+  <table class="tb">
+    <tr><th>Stufe</th><th>Beispiel</th></tr>
+    <tr><td><strong>1. Lebenswichtiges</strong></td><td>Nahrung, Schlaf, Wohnen</td></tr>
+    <tr><td><strong>2. Sicherheit</strong></td><td>Fester Arbeitsplatz, geregeltes Einkommen</td></tr>
+    <tr><td><strong>3. Dazugehörigkeit</strong></td><td>Freundschaften, Familie, Teamzugehörigkeit</td></tr>
+    <tr><td><strong>4. Anerkennung</strong></td><td>Respekt, Status, Erfolg</td></tr>
+    <tr><td><strong>5. Selbstverwirklichung</strong></td><td>Eigene Talente entfalten, persönliches Wachstum</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Maslow geht davon aus, dass untere Bedürfnisse zuerst befriedigt werden müssen, bevor höhere relevant werden – im echten Leben verfolgen Menschen aber oft mehrere Stufen gleichzeitig.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Auf welcher Stufe der Bedürfnispyramide steht ein fester Arbeitsplatz mit geregeltem Einkommen?</div>
+    <label>Lebenswichtiges</label>
+    <label data-ok>Sicherheit</label>
+    <label>Selbstverwirklichung</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES B1</span> Bedürfnisarten</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="202_[UE]_A02_Beduerfnisarten.html">A02</a>
+  </div>
+  <p class="einstieg">Neben der Maslow-Pyramide lassen sich Bedürfnisse zusätzlich nach drei unabhängigen Achsen unterscheiden.</p>
+  <table class="tb">
+    <tr><th>Achse</th><th>Unterscheidung</th></tr>
+    <tr><td><strong>Existenz- vs. Wahlbedürfnis</strong></td><td>Existenzbedürfnisse müssen gedeckt werden (z.&nbsp;B. Brot), Wahlbedürfnisse sind frei wählbar (z.&nbsp;B. ein neues Smartphone trotz funktionierendem alten Gerät).</td></tr>
+    <tr><td><strong>Individual- vs. Kollektivbedürfnis</strong></td><td>Individualbedürfnisse betreffen eine einzelne Person, Kollektivbedürfnisse eine Gruppe oder Gesellschaft (z.&nbsp;B. öffentliche Sicherheit).</td></tr>
+    <tr><td><strong>Materielles vs. immaterielles Bedürfnis</strong></td><td>Materielle Bedürfnisse werden durch Güter gedeckt, immaterielle durch Erlebnisse/Beziehungen (z.&nbsp;B. eine persönliche Nachricht an eine Freundin).</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Ein und dieselbe Situation kann gleichzeitig mehreren Bedürfnisarten zugeordnet werden – z.&nbsp;B. ist ein gemeinsames Restaurantessen sowohl Wahl- als auch Kollektiv- als auch materielles und immaterielles Bedürfnis zugleich.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Jemand kauft ein neues Smartphone, obwohl das alte noch funktioniert. Um welche Art von Bedürfnis handelt es sich in erster Linie?</div>
+    <label>Existenzbedürfnis</label>
+    <label data-ok>Wahlbedürfnis</label>
+    <label>Kollektivbedürfnis</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">Ergänzend</span> Geld und Sexualität in der Bedürfnispyramide</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="202_[UE]_A08_Geld_Sexualitaet.html">A08</a>
+  </div>
+  <p class="einstieg">Nicht jedes Bedürfnis lässt sich sauber einer einzigen Stufe der Maslow-Pyramide zuordnen – Geld und Sexualität sind gute Beispiele dafür.</p>
+  <p><strong>Geld</strong> kann auf mehreren Stufen gleichzeitig eine Rolle spielen: als Mittel zur Existenzsicherung (Stufe 1–2), aber auch als Statussymbol (Stufe 4). <strong>Sexualität</strong> wird bei Maslow ursprünglich als körperliches Grundbedürfnis (Stufe 1) eingeordnet, hat aber ebenso eine emotionale Komponente auf der Ebene von Dazugehörigkeit (Stufe 3). Diese Übung vertieft damit exemplarisch die Bedürfnispyramide aus LZ&nbsp;1.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Warum lassen sich Geld und Sexualität nicht eindeutig einer einzigen Maslow-Stufe zuordnen?</div>
+    <label>Weil sie gar keine Bedürfnisse sind</label>
+    <label data-ok>Weil sie gleichzeitig mehrere Ebenen ansprechen (z.B. Existenz und Status/Zugehörigkeit)</label>
+    <label>Weil Maslow sie explizit ausgeschlossen hat</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">GES B1</span> Güterarten</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="202_[UE]_A03_Gueterarten.html">A03</a>
+  </div>
+  <p class="einstieg">Bedürfnisse werden durch Güter und Dienstleistungen befriedigt. Auch Güter selbst lassen sich nach mehreren, unabhängigen Kriterien einordnen.</p>
+  <table class="tb">
+    <tr><th>Einteilung</th><th>Unterscheidung</th></tr>
+    <tr><td><strong>Wirtschaftliches vs. freies Gut</strong></td><td>Wirtschaftliche Güter sind knapp und haben einen Preis; freie Güter sind unbegrenzt verfügbar (z.&nbsp;B. Aufwind beim Gleitschirm).</td></tr>
+    <tr><td><strong>Sachgut vs. Dienstleistung</strong></td><td>Sachgüter sind physisch greifbar (z.&nbsp;B. ein Auto), Dienstleistungen sind Tätigkeiten (z.&nbsp;B. eine Beratung).</td></tr>
+    <tr><td><strong>Konsumgut vs. Investitionsgut</strong></td><td>Konsumgüter befriedigen direkt private Bedürfnisse, Investitionsgüter dienen der Produktion weiterer Güter (z.&nbsp;B. ein Lieferwagen einer Bäckerei).</td></tr>
+    <tr><td><strong>Gebrauchsgut vs. Verbrauchsgut</strong></td><td>Gebrauchsgüter werden mehrfach genutzt (z.&nbsp;B. ein Auto), Verbrauchsgüter sind nach einmaligem Gebrauch aufgebraucht (z.&nbsp;B. eine Banane).</td></tr>
+  </table>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Zu welcher Güterart gehört eine Banane vor allem?</div>
+    <label>Investitionsgut</label>
+    <label data-ok>Verbrauchsgut</label>
+    <label>Freies Gut</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">GES</span> Öko-Labels</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="202_[UE]_A07_Oeko_Label.html">A07</a>
+  </div>
+  <p class="einstieg">Öko-Labels sollen beim nachhaltigen Einkaufen helfen – sie unterscheiden sich aber stark darin, wie streng die Kriterien dahinter tatsächlich sind. Diese Übung stützt die Kompetenz zu nachhaltigem Konsum, die in Serie 203 vertieft wird.</p>
+  <p>Bekannte Beispiele sind die <strong>Bio Suisse Knospe</strong> (Schweizer Bio-Landbau), <strong>Fairtrade</strong> (faire Handelsbedingungen für Produzent/innen im globalen Süden), <strong>MSC</strong> (nachhaltige Fischerei) und <strong>FSC</strong> (nachhaltige Waldwirtschaft).</p>
+  <div class="merk"><b>Merke:</b> Nicht jedes «grüne» Logo auf einer Verpackung ist ein geprüftes Label – manche Firmen betreiben <b>Greenwashing</b>: Sie wecken mit Farben und Begriffen einen nachhaltigen Eindruck, ohne dass unabhängige Kriterien dahinterstehen. Ein glaubwürdiges Label erkennt man an einer unabhängigen Prüfstelle und öffentlich einsehbaren Kriterien.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Woran erkennt man am ehesten ein glaubwürdiges Öko-Label?</div>
+    <label>An einer möglichst grünen Verpackungsfarbe</label>
+    <label data-ok>An unabhängiger Prüfung und öffentlich einsehbaren Kriterien</label>
+    <label>Daran, dass es teuer ist</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 6 ==================== -->
+<section>
+  <h2><span class="nr">SUK+GES B4</span> Werbung &amp; Manipulation</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="202_[UE]_A10_Werbung_Manipulation.html">A10</a>
+  </div>
+  <p class="einstieg">Werbung folgt oft einem erkennbaren Muster. Wer dieses Muster kennt, kann Werbebotschaften bewusster einordnen.</p>
+  <p>Das <strong>AIDA-Modell</strong> beschreibt vier Phasen klassischer Werbewirkung:</p>
+  <table class="tb">
+    <tr><th>Phase</th><th>Ziel</th></tr>
+    <tr><td><strong>Attention</strong></td><td>Aufmerksamkeit wecken (z.&nbsp;B. auffälliges Bild, Farbe, Ton).</td></tr>
+    <tr><td><strong>Interest</strong></td><td>Interesse am Produkt aufbauen.</td></tr>
+    <tr><td><strong>Desire</strong></td><td>Den Wunsch nach dem Produkt erzeugen.</td></tr>
+    <tr><td><strong>Action</strong></td><td>Zur Handlung auffordern (Kauf, Klick, Anmeldung).</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Neben klassischer Werbung beeinflussen auch Peergroup und Online-Bewertungen das Konsumverhalten – oft unbewusst und stärker als eine einzelne Anzeige.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welche AIDA-Phase steht für den konkreten Aufruf zum Kauf?</div>
+    <label>Attention</label>
+    <label>Desire</label>
+    <label data-ok>Action</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 7 ==================== -->
+<section>
+  <h2><span class="nr">GES B3</span> Einfluss von Umfeld und Social Media</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="202_[UE]_A11_Einfluss_Umfeld_Social_Media.html">A11</a>
+  </div>
+  <p class="einstieg">Neben klassischer Werbung beeinflussen heute vor allem Algorithmen und das eigene soziale Umfeld, was man zu sehen bekommt – und in der Folge auch, was man kauft.</p>
+  <p>Soziale Netzwerke wie Instagram, TikTok oder YouTube zeigen nicht allen Nutzer/innen dieselben Inhalte: Ein <strong>Algorithmus</strong> wertet aus, was angeschaut, geliked oder wie lange bei einem Beitrag verweilt wird, und zeigt danach automatisch mehr ähnliche Inhalte samt passender Werbung. Das kann zu einer <strong>«Filterblase»</strong> führen: Man bekommt kaum noch andere Meinungen oder Produkte zu Gesicht.</p>
+  <p>Damit der Algorithmus funktioniert, sammeln Plattformen viele Daten (Interessen, Standort, Kontakte, Nutzungsdauer) – ein wiederkehrendes Datenschutzthema bei praktisch allen grossen Plattformen. Zusätzlich verstärken sich <strong>Umfeld und Algorithmus gegenseitig</strong>: Was die eigene Peergroup postet und teilt, beeinflusst zusätzlich, was der Algorithmus zeigt.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was bezeichnet der Begriff «Filterblase»?</div>
+    <label>Ein technisches Problem beim Laden von Videos</label>
+    <label data-ok>Dass man durch den Algorithmus kaum noch andere Meinungen/Produkte zu sehen bekommt</label>
+    <label>Eine Funktion zum Blockieren von Werbung</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 8 ==================== -->
+<section>
+  <h2><span class="nr">SUK B2 · B3</span> Konsum-Reflexion und Bericht</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="202_[UE]_A09_Konsum_Reflexion_Bericht.html">A09</a>
+  </div>
+  <p class="einstieg">Die vorangehenden Lernziele liefern das Handwerkszeug, um das eigene Konsumverhalten begründet einzuschätzen und dazu Stellung zu nehmen.</p>
+  <p>Ein strukturierter Bericht zum eigenen Konsumverhalten stützt sich auf konkrete Beispiele (eigene Käufe), ordnet diese den Bedürfnis- und Güterarten aus LZ&nbsp;1–4 zu, benennt Einflussfaktoren (Werbung, Umfeld, Social Media, siehe LZ&nbsp;6–7) und formuliert daraus eine begründete, mit Pro- und Contra-Argumenten abgewogene Haltung.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was gehört in einen strukturierten Bericht zum eigenen Konsumverhalten?</div>
+    <label>Nur eine persönliche Meinung ohne Beispiele</label>
+    <label data-ok>Konkrete Beispiele, Einordnung und begründete Pro-/Contra-Abwägung</label>
+    <label>Eine reine Liste gekaufter Produkte</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 2 «Mein Geld» · Lebenssituation B</h2>
+  <p style="font-weight:700;margin-bottom:10px">Durch Umfeld und Medien im Konsumverhalten beeinflusst werden</p>
+  <table>
+    <tr><td class="lz">SUK B1</td><td>Ich formuliere und reflektiere meine eigenen Bedürfnisse und tausche mich mit anderen darüber aus.</td></tr>
+    <tr><td class="lz">GES B1</td><td>Ich unterscheide verschiedene Formen von Bedürfnissen sowie von Gütern und Dienstleistungen, die zu deren Befriedigung notwendig sind.</td></tr>
+    <tr><td class="lz">SUK B2</td><td>Ich begründe mein Konsum- und Finanzverhalten und diskutiere die Auswirkungen.</td></tr>
+    <tr><td class="lz">GES B2</td><td>Ich reflektiere mein Konsum- und Finanzverhalten.</td></tr>
+    <tr><td class="lz">SUK B3</td><td>Ich verfasse einen Bericht, in dem ich meine Haltung zum Thema Konsum und Werbung darlege.</td></tr>
+    <tr><td class="lz">GES B3</td><td>Ich erkenne und hinterfrage den Einfluss meines Umfelds auf meine Bedürfnisse und Entscheidungen.</td></tr>
+    <tr><td class="lz">SUK B4</td><td>Ich beschreibe, wie eine Werbung auf mich wirkt und welche Botschaft damit transportiert werden soll.</td></tr>
+    <tr><td class="lz">GES B4</td><td>Ich verstehe, wie die Mechanismen der Werbung in den Medien und sozialen Netzwerken funktionieren und wie sie mich manipulieren können.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen (S. 22)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="202_Aufgaben.html"><strong>Übungen A01–A11 lösen</strong></a>.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>

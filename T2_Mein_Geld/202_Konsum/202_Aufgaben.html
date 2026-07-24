@@ -27,6 +27,12 @@
   .toggle-btn.active { background:var(--accent); border-color:var(--accent); color:white; }
   .toggle-btn:hover:not(.active) { border-color:var(--accent); color:var(--accent); }
   .section-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--g5); margin:0 0 8px 2px; }
+  .th-card { display:flex; align-items:center; gap:14px; background:white; border:2px solid var(--accent); border-radius:14px; padding:16px 18px; margin-bottom:1.75rem; text-decoration:none; color:inherit; transition:all .15s; }
+  .th-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.08); transform:translateY(-1px); }
+  .th-card .th-icon { font-size:26px; flex-shrink:0; }
+  .th-card .th-title { font-size:14px; font-weight:700; color:var(--g9); margin-bottom:2px; }
+  .th-card .th-desc { font-size:11.5px; color:var(--g5); }
+  .th-card .th-arrow { margin-left:auto; font-size:18px; color:var(--accent); }
   .lz-list { display:flex; flex-direction:column; gap:7px; margin-bottom:1.75rem; }
   .lz-row { display:grid; grid-template-columns:4px 48px 1fr 12px; align-items:stretch; background:white; border-radius:10px; border:1px solid var(--g3); overflow:hidden; }
   .lz-bar { background:var(--fc, var(--accent)); }
@@ -73,6 +79,15 @@
     </div>
   </div>
 
+  <a class="th-card" href="202_[TH]_Konsum_Werbung.html">
+    <span class="th-icon">📖</span>
+    <span>
+      <div class="th-title">Theorie zu dieser Serie</div>
+      <div class="th-desc">Bedürfnisse, Güterarten, Öko-Labels, Werbung, Social Media – vor den Übungen lesen</div>
+    </span>
+    <span class="th-arrow">›</span>
+  </a>
+
   <div class="toggle-bar">
     <button class="toggle-btn active" id="btnLz" onclick="showView('lz')">📚 Nach Lernzielen</button>
     <button class="toggle-btn" id="btnA"  onclick="showView('a')">🔢 Nach Aufgaben-Nr.</button>
@@ -83,80 +98,80 @@
     <div class="lz-list">
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES</span></div>
         <div class="lz-body">
           <div class="lz-title">Bedürfnispyramide Maslow</div>
-          <div class="lz-ziel">Aufgaben zu: Bedürfnispyramide Maslow</div>
+          <div class="lz-ziel">Ich unterscheide verschiedene Formen von Bedürfnissen sowie von Gütern und Dienstleistungen, die zu deren Befriedigung notwendig sind.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="202_[UE]_A01_Maslow_Beduerfnisse.html">A01 Bedürfnispyramide Maslow</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES</span></div>
         <div class="lz-body">
           <div class="lz-title">Bedürfnisarten</div>
-          <div class="lz-ziel">Aufgaben zu: Bedürfnisarten</div>
+          <div class="lz-ziel">Ich ordne Alltagssituationen den verschiedenen Bedürfnisarten zu und begründe meine Einschätzung.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="202_[UE]_A02_Beduerfnisarten.html">A02 Bedürfnisarten</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">Ergänzend</span></div>
         <div class="lz-body">
           <div class="lz-title">Geld und Sexualität</div>
-          <div class="lz-ziel">Aufgaben zu: Geld und Sexualität</div>
+          <div class="lz-ziel">Ich ordne komplexe Bedürfnisse wie Geld und Sexualität in das Modell von Maslow ein und hinterfrage kritisch, ob ein Bedürfnis eindeutig einer einzigen Stufe zugeordnet werden kann (vertiefte Anwendung von GES B1).</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="202_[UE]_A08_Geld_Sexualitaet.html">A08 Geld und Sexualität</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">GES</span></div>
         <div class="lz-body">
           <div class="lz-title">Güterarten</div>
-          <div class="lz-ziel">Aufgaben zu: Güterarten</div>
+          <div class="lz-ziel">Ich unterscheide verschiedene Formen von Bedürfnissen sowie von Gütern und Dienstleistungen, die zu deren Befriedigung notwendig sind.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="202_[UE]_A03_Gueterarten.html">A03 Güterarten</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">GES</span></div>
         <div class="lz-body">
           <div class="lz-title">Öko-Labels</div>
-          <div class="lz-ziel">Aufgaben zu: Öko-Labels</div>
+          <div class="lz-ziel">Ich beschreibe verschiedene Öko-Labels und beurteile deren Aussagekraft kritisch (stützt GES C3, Serie 203).</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="202_[UE]_A07_Oeko_Label.html">A07 Öko-Labels</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">6</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">6</span><span class="lz-fach">SUK+GES</span></div>
         <div class="lz-body">
           <div class="lz-title">Werbung &amp; Manipulation</div>
-          <div class="lz-ziel">Aufgaben zu: Werbung &amp; Manipulation</div>
+          <div class="lz-ziel">Ich beschreibe, wie eine Werbung auf mich wirkt und welche Botschaft damit transportiert werden soll (SUK), und verstehe, wie die Mechanismen der Werbung in den Medien und sozialen Netzwerken funktionieren und wie sie mich manipulieren können (GES).</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="202_[UE]_A10_Werbung_Manipulation.html">A10 Werbung &amp; Manipulation</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">7</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">7</span><span class="lz-fach">GES</span></div>
         <div class="lz-body">
           <div class="lz-title">Einfluss Umfeld/Social Media</div>
-          <div class="lz-ziel">Aufgaben zu: Einfluss Umfeld/Social Media</div>
+          <div class="lz-ziel">Ich erkenne und hinterfrage den Einfluss meines Umfelds auf meine Bedürfnisse und Entscheidungen.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="202_[UE]_A11_Einfluss_Umfeld_Social_Media.html">A11 Einfluss Umfeld/Social Media</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">8</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">8</span><span class="lz-fach">SUK</span></div>
         <div class="lz-body">
           <div class="lz-title">Konsum-Reflexion + Bericht</div>
-          <div class="lz-ziel">Aufgaben zu: Konsum-Reflexion + Bericht</div>
+          <div class="lz-ziel">Ich begründe mein Konsum- und Finanzverhalten und diskutiere die Auswirkungen, und ich verfasse einen Bericht, in dem ich meine Haltung zum Thema Konsum und Werbung darlege.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="202_[UE]_A09_Konsum_Reflexion_Bericht.html">A09 Konsum-Reflexion + Bericht</a></div>
         </div>
         <div class="lz-arrow"></div>
