@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>103 · Theorie: Kommunikation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#C1392B; --t1-dark:#96281B; --t1-light:#FDEDEB;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">103 · [TH]</span>
+  <h1>Theorie: Kommunikation</h1>
+  <a class="nav" href="103_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Nach Lehrvertrag (Serie 101) und Rechtsgrundlagen (Serie 102) geht es nun um den Alltag selbst: Wie gelingt Kommunikation, wie erkennt man Konflikte im Betrieb oder in der Schule frühzeitig, wo gibt es Hilfe, und wie organisiert man Schule, Betrieb und Privatleben nebeneinander? Diese Theorie liefert die Werkzeuge dazu.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES C1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">SUK C3</span> Kommunikationsregeln: das Vier-Ohren-Modell</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="103_[UE]_A02_Kommunikationsregeln.html">A02</a>
+  </div>
+  <p class="einstieg">Warum verstehen zwei Personen dieselbe Aussage manchmal völlig unterschiedlich? Das Kommunikationsquadrat von Schulz von Thun liefert dafür ein einfaches Erklärungsmodell.</p>
+  <p>Jede Nachricht hat nach Schulz von Thun <strong>vier Ebenen</strong> gleichzeitig – die «vier Schnäbel» der sendenden und die «vier Ohren» der empfangenden Person:</p>
+  <table class="tb">
+    <tr><th>Ebene</th><th>Bedeutung</th></tr>
+    <tr><td><strong>Sachebene</strong></td><td>Die reine Sachinformation.</td></tr>
+    <tr><td><strong>Selbstkundgabe</strong></td><td>Was die sendende Person von sich selbst zeigt.</td></tr>
+    <tr><td><strong>Beziehungsebene</strong></td><td>Was die sendende Person vom Gegenüber hält.</td></tr>
+    <tr><td><strong>Appellebene</strong></td><td>Was beim Gegenüber erreicht werden soll.</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Beispiel: «Die Werkstatt sieht ja wieder aus wie ein Saustall!» ist rein sachlich der Zustand der Werkstatt gemeint – auf dem <b>Beziehungsohr</b> kann aber Kritik oder Geringschätzung mitschwingen. Weil Menschen unterschiedlich empfindliche Ohren einsetzen, entstehen so leicht Missverständnisse.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Jemand hört bei einer Aussage vor allem heraus, was er jetzt konkret tun soll. Welches «Ohr» ist das?</div>
+    <label>Sachohr</label>
+    <label>Beziehungsohr</label>
+    <label data-ok>Appellohr</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES C1</span> Konflikte im Lehrbetrieb und in der Schule</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="103_[UE]_A01_Konflikte_Betrieb_Schule.html">A01</a>
+  </div>
+  <p class="einstieg">Ein beachtlicher Teil aller Lehrverhältnisse in der Schweiz wird vorzeitig abgebrochen. Wer typische Konfliktursachen kennt, kann früher gegensteuern, statt «die Faust im Sack zu machen».</p>
+  <p>Konflikte zwischen Lernenden und Berufsbildner/innen sind teilweise <strong>entwicklungspsychologisch vorprogrammiert</strong>: Jugendliche lösen sich von Autoritäten und stellen sie in Frage. Dazu kommen oft: fehlende Erfahrung der Berufsbildner/innen in der pädagogischen Betreuung, fehlende Anerkennung und Einbindung in den Betrieb sowie unterschiedliche Arbeits- und Lebenseinstellungen zwischen den Generationen.</p>
+  <div class="merk"><b>Merke:</b> «Die Faust im Sack machen» heisst, Ärger runterzuschlucken statt ihn anzusprechen. Frühzeitiges Ansprechen verhindert, dass sich ein Konflikt aufschaukelt – und ermöglicht Lösungen, bevor es zum Lehrabbruch kommt.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was bedeutet «die Faust im Sack machen»?</div>
+    <label data-ok>Ärger runterschlucken, statt ihn anzusprechen</label>
+    <label>Sofort kündigen</label>
+    <label>Einen Konflikt offen austragen</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">SUK C1 · GES C2</span> Anlaufstellen &amp; Angebote</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="103_[UE]_A03_Anlaufstellen_Angebote.html">A03</a>
+  </div>
+  <p class="einstieg">Nicht jedes Problem lässt sich allein lösen. Im Kanton St. Gallen stehen Lernenden mehrere Anlaufstellen zur Verfügung, je nach Art des Problems.</p>
+  <table class="tb">
+    <tr><th>Anlaufstelle</th><th>Wofür</th></tr>
+    <tr><td><strong>Abteilung Lehraufsicht</strong> (Amt für Berufsbildung SG)</td><td>Offizielle Aufsicht über Lehrverhältnisse; berät und vermittelt bei Konflikten, z.&nbsp;B. vor drohender Vertragsauflösung.</td></tr>
+    <tr><td><strong>Pro Juventute – 147</strong></td><td>Kostenlose, anonyme Beratung rund um die Uhr, telefonisch/Chat/SMS – für eine erste, niederschwellige Beratung.</td></tr>
+    <tr><td><strong>Berufs-, Studien- und Laufbahnberatung</strong></td><td>Bei Fragen zu Berufswahl, Berufswechsel oder Wiedereinstieg nach Lehrabbruch.</td></tr>
+    <tr><td><strong>Sozialberatung KSB</strong></td><td>Unterstützung im beruflichen, schulischen und privaten Bereich, zugänglich für Lernende, Berufsbildende und Lehrpersonen.</td></tr>
+  </table>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welche Anlaufstelle ist offiziell für die Aufsicht über Lehrverhältnisse zuständig?</div>
+    <label>Pro Juventute – 147</label>
+    <label data-ok>Die Abteilung Lehraufsicht</label>
+    <label>Die Berufsberatung</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">SUK C2</span> Schriftliche Anfrage formulieren</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="103_[UE]_A04_Schriftliche_Anfrage.html">A04</a>
+  </div>
+  <p class="einstieg">Eine Anfrage an eine Beratungs- oder Fachstelle sollte formell, klar und höflich formuliert sein – dann wird sie auch schneller und gezielter beantwortet.</p>
+  <p>Eine formelle schriftliche Anfrage enthält typischerweise: <strong>Betreff</strong>, <strong>Anrede</strong>, eine kurze Vorstellung/Kontext, das <strong>konkrete Anliegen</strong> bzw. die Frage, einen höflichen Schluss mit Gruss sowie die eigenen Kontaktangaben.</p>
+  <div class="merk"><b>Merke:</b> Fachstellen bearbeiten viele Anfragen – eine klare, kurze Anfrage wird schneller erfasst und gezielter beantwortet als ein langer, ausführlicher Text.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Warum sollte eine Anfrage an eine Fachstelle eher kurz und konkret sein?</div>
+    <label>Weil lange Texte verboten sind</label>
+    <label data-ok>Weil sie so schneller erfasst und gezielter beantwortet wird</label>
+    <label>Weil Fachstellen keine E-Mails lesen</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">SUK C4 · GES C3</span> Stärken, Ziele und Lernstrategien</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="103_[UE]_A05_Staerken_Ziele_Strategien.html">A05</a>
+  </div>
+  <p class="einstieg">Wer die eigenen Stärken kennt und passende Lernstrategien einsetzt, kommt mit den Anforderungen von Schule und Betrieb leichter zurecht.</p>
+  <ul class="list">
+    <li><strong>Ziele setzen:</strong> Lernstoff bestimmen und in Portionen einteilen, jede Lernsession mit klarer Absicht beginnen.</li>
+    <li><strong>Früh beginnen:</strong> Zeitplan erstellen statt erst am Vorabend zu lernen – verhindert Stress und ermöglicht Wiederholungen.</li>
+    <li><strong>Mehrere Sinne nutzen:</strong> sehen/lesen, schreiben/zeichnen, sprechen/hören kombinieren.</li>
+    <li><strong>Rhythmus einhalten:</strong> ca. 45 Min. konzentriert arbeiten, danach 10–15 Min. Pause.</li>
+    <li><strong>Wiederholen:</strong> lieber kurze, regelmässige Übungen als langes Üben am Stück.</li>
+  </ul>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Wie lange sollte laut Rhythmus-Grundsatz eine konzentrierte Lernphase etwa dauern, bevor eine Pause folgt?</div>
+    <label>15 Minuten</label>
+    <label data-ok>Rund 45 Minuten</label>
+    <label>3 Stunden</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 6 ==================== -->
+<section>
+  <h2><span class="nr">GES C4</span> Die eigene Lebenssituation reflektieren</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="103_[UE]_A06_Lebenssituation_reflektieren.html">A06</a>
+  </div>
+  <p class="einstieg">Der Start in die Lehre verändert den Alltag spürbar: neue Anforderungen in Betrieb und Schule treffen auf das private Umfeld. Eine bewusste Standortbestimmung hilft, den Überblick zu behalten.</p>
+  <p>Beim Reflektieren der eigenen Lebenssituation lohnt sich der Blick auf alle drei Bereiche gleichzeitig: <strong>Lehrbetrieb</strong> (Anforderungen, Beziehung zu Berufsbildner/in und Team), <strong>Schule</strong> (Lernpensum, Klassenklima) und <strong>privates Umfeld</strong> (Familie, Freundeskreis, Freizeit) – und wie diese drei Bereiche sich gegenseitig beeinflussen.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welche drei Bereiche sollten bei einer Standortbestimmung zur eigenen Lebenssituation berücksichtigt werden?</div>
+    <label>Nur der Lehrbetrieb</label>
+    <label data-ok>Lehrbetrieb, Schule und privates Umfeld</label>
+    <label>Nur die Freizeit</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 7 ==================== -->
+<section>
+  <h2><span class="nr">Ergänzend</span> Wochenplanung und Selbstorganisation</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="103_[UE]_A07_Wochenplanung_Selbstorganisation.html">A07</a>
+  </div>
+  <p class="einstieg">Zwei bekannte Werkzeuge helfen, Schule, Betrieb und Freizeit unter einen Hut zu bringen.</p>
+  <table class="tb">
+    <tr><th>Werkzeug</th><th>Erklärung</th></tr>
+    <tr><td><strong>ALPEN-Methode</strong></td><td><strong>A</strong>ktivitäten auflisten · <strong>L</strong>änge (Zeitbedarf) einschätzen · <strong>P</strong>ufferzeiten einplanen (ca. 40&nbsp;% unverplant lassen) · <strong>E</strong>ntscheidungen treffen (Prioritäten setzen) · <strong>N</strong>achkontrolle am Ende von Tag/Woche.</td></tr>
+    <tr><td><strong>ABCD-Analyse</strong></td><td><strong>A</strong> wichtig &amp; dringend (sofort) · <strong>B</strong> wichtig, nicht dringend (einplanen) · <strong>C</strong> dringend, nicht wichtig (delegieren) · <strong>D</strong> weder noch (streichen).</td></tr>
+  </table>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Eine Aufgabe ist dringend, aber nicht wichtig. Welcher ABCD-Kategorie entspricht das?</div>
+    <label>A</label>
+    <label>B</label>
+    <label data-ok>C</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 1 «Mein Lehrbeginn» · Lebenssituation C</h2>
+  <p style="font-weight:700;margin-bottom:10px">Neue Herausforderungen erleben und den Alltag zwischen Beruf, Schule und Privatleben organisieren</p>
+  <table>
+    <tr><td class="lz">SUK C1</td><td>Ich verstehe die Informationen einer Beratungsstelle und nehme bei Bedarf unterstützende Angebote in Anspruch.</td></tr>
+    <tr><td class="lz">SUK C2</td><td>Ich verfasse selbständig oder bei Bedarf mit geeigneten Hilfsmitteln eine schriftliche Anfrage.</td></tr>
+    <tr><td class="lz">SUK C3</td><td>Ich wende Regeln erfolgreicher Kommunikation in typischen Gesprächssituationen in Schule, Beruf und Alltag an.</td></tr>
+    <tr><td class="lz">SUK C4</td><td>Ich erkenne und benenne meine Stärken und persönlichen Eigenschaften und formuliere daraus persönliche Ziele und Strategien für meine Weiterentwicklung.</td></tr>
+    <tr><td class="lz">GES C1</td><td>Ich erkenne und benenne auftretende Konflikte im Betrieb oder in der Schule und zeige Lösungsmöglichkeiten auf.</td></tr>
+    <tr><td class="lz">GES C2</td><td>Ich erkenne, wenn ich eine Situation nicht selbstständig bewältigen kann, und suche rechtzeitig Hilfe bei geeigneten Anlaufstellen.</td></tr>
+    <tr><td class="lz">GES C3</td><td>Ich stärke meine Selbstwirksamkeit, indem ich Strategien zum Umgang mit Herausforderungen anwende.</td></tr>
+    <tr><td class="lz">GES C4</td><td>Ich reflektiere meine neue Lebenssituation in Bezug auf meinen Lehrbetrieb, die Schule und mein privates Umfeld.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen (S. 17)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="103_Aufgaben.html"><strong>Übungen A01–A07 lösen</strong></a>.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>

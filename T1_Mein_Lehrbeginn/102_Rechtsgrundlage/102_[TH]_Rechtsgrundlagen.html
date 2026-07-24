@@ -53,6 +53,9 @@ table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
 .check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
 .check .fb.show{display:block}
 a{color:var(--t1)}
+.ow-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;margin:6px 0;background:#FCFCFD;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;color:var(--ink-soft)}
+.ow-item input{margin-top:4px;accent-color:var(--t1)}
+.ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none}}
 </style>
 </head>
@@ -314,6 +317,19 @@ a{color:var(--t1)}
     <label>Andere Personen dürfen gar nicht erwähnt werden</label>
     <div class="fb"></div>
   </div>
+</section>
+
+<section>
+  <h2><span class="nr">SLP</span> Orientierungswissen – Ich kann …</h2>
+  <p>Direkt aus dem Schullehrplan (Thema 1). Abhaken, was bereits sicher beherrscht wird – der Rest ist der individuelle Lernauftrag:</p>
+  <div id="ow">
+    <label class="ow-item"><input type="checkbox"> … den Begriff Urteilsfähigkeit erklären.</label>
+    <label class="ow-item"><input type="checkbox"> … den Begriff Volljährigkeit erklären.</label>
+    <label class="ow-item"><input type="checkbox"> … den Begriff Handlungsfähigkeit erklären.</label>
+    <label class="ow-item"><input type="checkbox"> … zwischen öffentlichem und privatem Recht unterscheiden.</label>
+    <label class="ow-item"><input type="checkbox"> … die Begriffe Rechtsfähigkeit und beschränkte Handlungsunfähigkeit erklären.</label>
+  </div>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Punkte 1–6 des Orientierungswissens (Lehrvertrag, Rechte/Pflichten) siehe Serie 101.</p>
 </section>
 
 <div class="lernziel">

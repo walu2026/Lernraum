@@ -27,6 +27,12 @@
   .toggle-btn.active { background:var(--accent); border-color:var(--accent); color:white; }
   .toggle-btn:hover:not(.active) { border-color:var(--accent); color:var(--accent); }
   .section-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--g5); margin:0 0 8px 2px; }
+  .th-card { display:flex; align-items:center; gap:14px; background:white; border:2px solid var(--accent); border-radius:14px; padding:16px 18px; margin-bottom:1.75rem; text-decoration:none; color:inherit; transition:all .15s; }
+  .th-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.08); transform:translateY(-1px); }
+  .th-card .th-icon { font-size:26px; flex-shrink:0; }
+  .th-card .th-title { font-size:14px; font-weight:700; color:var(--g9); margin-bottom:2px; }
+  .th-card .th-desc { font-size:11.5px; color:var(--g5); }
+  .th-card .th-arrow { margin-left:auto; font-size:18px; color:var(--accent); }
   .lz-list { display:flex; flex-direction:column; gap:7px; margin-bottom:1.75rem; }
   .lz-row { display:grid; grid-template-columns:4px 48px 1fr 12px; align-items:stretch; background:white; border-radius:10px; border:1px solid var(--g3); overflow:hidden; }
   .lz-bar { background:var(--fc, var(--accent)); }
@@ -73,6 +79,15 @@
     </div>
   </div>
 
+  <a class="th-card" href="103_[TH]_Kommunikation.html">
+    <span class="th-icon">📖</span>
+    <span>
+      <div class="th-title">Theorie zu dieser Serie</div>
+      <div class="th-desc">Vier-Ohren-Modell, Konflikte, Anlaufstellen, Lernstrategien – vor den Übungen lesen</div>
+    </span>
+    <span class="th-arrow">›</span>
+  </a>
+
   <div class="toggle-bar">
     <button class="toggle-btn active" id="btnLz" onclick="showView('lz')">📚 Nach Lernzielen</button>
     <button class="toggle-btn" id="btnA"  onclick="showView('a')">🔢 Nach Aufgaben-Nr.</button>
@@ -83,70 +98,70 @@
     <div class="lz-list">
       <div class="lz-row" style="--fc:#C1392B">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">SUK</span></div>
         <div class="lz-body">
           <div class="lz-title">Kommunikationsregeln</div>
-          <div class="lz-ziel">Aufgaben zu: Kommunikationsregeln</div>
+          <div class="lz-ziel">Ich wende Regeln erfolgreicher Kommunikation in typischen Gesprächssituationen in Schule, Beruf und Alltag an.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="103_[UE]_A02_Kommunikationsregeln.html">A02 Kommunikationsregeln</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#C1392B">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES</span></div>
         <div class="lz-body">
           <div class="lz-title">Konflikte Betrieb/Schule</div>
-          <div class="lz-ziel">Aufgaben zu: Konflikte Betrieb/Schule</div>
+          <div class="lz-ziel">Ich erkenne und benenne auftretende Konflikte im Betrieb oder in der Schule und zeige Lösungsmöglichkeiten auf.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="103_[UE]_A01_Konflikte_Betrieb_Schule.html">A01 Konflikte Betrieb/Schule</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#C1392B">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">SUK+GES</span></div>
         <div class="lz-body">
           <div class="lz-title">Anlaufstellen &amp; Angebote</div>
-          <div class="lz-ziel">Aufgaben zu: Anlaufstellen &amp; Angebote</div>
+          <div class="lz-ziel">Ich verstehe die Informationen einer Beratungsstelle und nehme bei Bedarf unterstützende Angebote in Anspruch (SUK) und erkenne, wenn ich eine Situation nicht selbstständig bewältigen kann, und suche rechtzeitig Hilfe bei geeigneten Anlaufstellen (GES).</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="103_[UE]_A03_Anlaufstellen_Angebote.html">A03 Anlaufstellen &amp; Angebote</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#C1392B">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">SUK</span></div>
         <div class="lz-body">
           <div class="lz-title">Schriftliche Anfrage</div>
-          <div class="lz-ziel">Aufgaben zu: Schriftliche Anfrage</div>
+          <div class="lz-ziel">Ich verfasse selbständig oder bei Bedarf mit geeigneten Hilfsmitteln eine schriftliche Anfrage.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="103_[UE]_A04_Schriftliche_Anfrage.html">A04 Schriftliche Anfrage</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#C1392B">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">SUK+GES</span></div>
         <div class="lz-body">
           <div class="lz-title">Stärken, Ziele, Strategien</div>
-          <div class="lz-ziel">Aufgaben zu: Stärken, Ziele, Strategien</div>
+          <div class="lz-ziel">Ich erkenne und benenne meine Stärken und persönlichen Eigenschaften und formuliere daraus persönliche Ziele und Strategien für meine Weiterentwicklung (SUK) und stärke meine Selbstwirksamkeit, indem ich Strategien zum Umgang mit Herausforderungen anwende (GES).</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="103_[UE]_A05_Staerken_Ziele_Strategien.html">A05 Stärken, Ziele, Strategien</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#C1392B">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">6</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">6</span><span class="lz-fach">GES</span></div>
         <div class="lz-body">
           <div class="lz-title">Lebenssituation reflektieren</div>
-          <div class="lz-ziel">Aufgaben zu: Lebenssituation reflektieren</div>
+          <div class="lz-ziel">Ich reflektiere meine neue Lebenssituation in Bezug auf meinen Lehrbetrieb, die Schule und mein privates Umfeld.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="103_[UE]_A06_Lebenssituation_reflektieren.html">A06 Lebenssituation reflektieren</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#C1392B">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">7</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">7</span><span class="lz-fach">Ergänzend</span></div>
         <div class="lz-body">
           <div class="lz-title">Wochenplanung</div>
-          <div class="lz-ziel">Aufgaben zu: Wochenplanung</div>
+          <div class="lz-ziel">Ich plane meine Woche selbstständig und organisiere Schule, Betrieb und Freizeit sinnvoll (ergänzender Inhalt, kein eigener SLP-Kompetenzcode).</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="103_[UE]_A07_Wochenplanung_Selbstorganisation.html">A07 Wochenplanung</a></div>
         </div>
         <div class="lz-arrow"></div>
