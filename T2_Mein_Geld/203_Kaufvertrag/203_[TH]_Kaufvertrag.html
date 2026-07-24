@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>203 · Theorie: Kaufvertrag</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#1F638F; --t1-dark:#174C6E; --t1-light:#E7EFF5;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+.gesetz{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:#EEF1F5;border:1px solid var(--line);padding:2px 8px;border-radius:6px;white-space:nowrap}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">203 · [TH]</span>
+  <h1>Theorie: Kaufvertrag</h1>
+  <a class="nav" href="203_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Ob im Laden, beim Töff- oder Wohnungskauf oder online: Ein Kaufvertrag kommt schneller zustande, als viele denken – und bringt Rechte und Pflichten mit sich, sobald etwas schiefläuft. Diese Theorie klärt, wann und wie ein Kaufvertrag gültig wird, welche Rechte bei mangelhafter Ware oder Lieferverzug bestehen und worauf beim Online-Kauf zu achten ist.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES C2</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">GES C2 · SUK C3</span> Offerten, Kaufvertrag-Gültigkeit &amp; Mängelrüge</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="203_[UE]_A04_Offerten.html">A04</a>
+    <a href="203_[UE]_A05_Kaufvertrag_Gueltigkeit.html">A05</a>
+    <a href="203_[UE]_A06_Maengelruege.html">A06</a>
+  </div>
+  <p class="einstieg">Ein Kaufvertrag entsteht nicht erst bei der Lieferung oder Bezahlung – und nicht jedes Angebot ist rechtlich gleich verbindlich. Wer das versteht, weiss auch, ab wann er oder sie an einen Kauf gebunden ist.</p>
+  <h3>Verbindliche und unverbindliche Offerten</h3>
+  <p>Ausgezeichnete Preise im Schaufenster oder Regal (z.&nbsp;B. ein Fahrradhelm für Fr.&nbsp;95.–) gelten als <strong>verbindliche Offerte</strong> <span class="gesetz">OR 7</span> – der Anbieter muss zum ausgeschriebenen Preis verkaufen. Ein blosses Zeitungsinserat gilt dagegen meist als <strong>unverbindliche</strong> Einladung, ein Angebot zu machen.</p>
+  <h3>Ab wann ist ein Kaufvertrag gültig?</h3>
+  <p>Ein Kaufvertrag kommt zustande, sobald sich beide Parteien einig sind – <strong>bei der Bestellung</strong>, nicht erst bei Lieferung oder Bezahlung <span class="gesetz">OR 1</span>.</p>
+  <h3>Mängelrüge</h3>
+  <p>Ist die gelieferte Ware fehlerhaft, muss der Mangel <strong>sofort gerügt</strong> werden («Mängelrüge») – wer zu lange zuwartet, riskiert seine Mängelrechte zu verlieren (siehe LZ&nbsp;8).</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Ab wann ist ein Kaufvertrag rechtsgültig?</div>
+    <label>Erst nach der Lieferung</label>
+    <label data-ok>Schon bei der Bestellung</label>
+    <label>Erst nach der Bezahlung</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES C2</span> Töffkauf: Vertragsform</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="203_[UE]_A02_Toeffkauf.html">A02</a>
+  </div>
+  <p class="einstieg">Für die meisten Käufe im Alltag braucht es keine besondere Form – das gilt auch für grössere bewegliche Sachen wie ein Motorrad.</p>
+  <p>Beim Kauf beweglicher Sachen gilt der Grundsatz der <strong>Formfreiheit</strong> <span class="gesetz">OR 11</span>: Ein Vertrag ist auch mündlich oder durch schlüssiges Verhalten gültig. Bei bedeutenden Beträgen empfiehlt sich trotzdem die einfache Schriftlichkeit, um im Streitfall etwas in der Hand zu haben.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welche Form braucht ein Kaufvertrag über ein Motorrad grundsätzlich?</div>
+    <label>Öffentliche Beurkundung</label>
+    <label>Zwingend schriftlich</label>
+    <label data-ok>Keine besondere Form (formfrei gültig)</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">GES C2</span> Wohnungsverkauf: Vertragsform</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="203_[UE]_A03_Wohnungsverkauf.html">A03</a>
+  </div>
+  <p class="einstieg">Im Gegensatz zu beweglichen Sachen gelten beim Grundstückkauf deutlich strengere Formvorschriften.</p>
+  <p>Der Verkauf einer Liegenschaft oder Eigentumswohnung bedarf der <strong>öffentlichen Beurkundung</strong> <span class="gesetz">OR 216</span>. Der anschliessende <strong>Eintrag im Grundbuch</strong> ist nicht für den Vertragsabschluss, aber für den eigentlichen Eigentumsübergang erforderlich.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welche Form braucht der Verkauf einer Eigentumswohnung?</div>
+    <label>Formfrei, auch mündlich möglich</label>
+    <label data-ok>Öffentliche Beurkundung</label>
+    <label>Einfache Schriftlichkeit genügt</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">GES</span> Rechtsfälle zum Vertragsrecht</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="203_[UE]_A01_Vertragsrecht_Faelle.html">A01</a>
+  </div>
+  <p class="einstieg">Rechtsfälle lassen sich lösen, indem man den Sachverhalt systematisch den passenden Begriffen und Gesetzesartikeln aus den vorangehenden Abschnitten zuordnet – Vertragsform, Zustandekommen, Offerte.</p>
+  <p>Beim Lösen eines Rechtsfalls hilft immer dieselbe Vorgehensweise: zuerst den Sachverhalt in eigenen Worten zusammenfassen, dann die einschlägige Rechtsfrage bestimmen (z.&nbsp;B. Vertragsform, Zustandekommen, Mängel), und erst danach den passenden Gesetzesartikel suchen und die Begründung formulieren.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was ist beim Lösen eines Rechtsfalls der erste Schritt?</div>
+    <label>Sofort einen Gesetzesartikel raten</label>
+    <label data-ok>Den Sachverhalt zusammenfassen und die Rechtsfrage bestimmen</label>
+    <label>Die Meinung einer Drittperson einholen</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">GES</span> Kaufvertrag: Aussagen und Rechtsfälle</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="203_[UE]_A07_Kaufvertrag_Aussagen.html">A07</a>
+    <a href="203_[UE]_A09_Kaufvertrag_Faelle.html">A09</a>
+  </div>
+  <p class="einstieg">Diese Übungen prüfen und vertiefen das Verständnis der vorangehenden Abschnitte anhand von Aussagen und weiteren Fallbeispielen zum Kaufvertrag.</p>
+  <p>Typische Stolpersteine: der Zeitpunkt des Vertragsschlusses (LZ&nbsp;1), die richtige Vertragsform (LZ&nbsp;2–3) und die Unterscheidung zwischen verbindlicher und unverbindlicher Offerte (LZ&nbsp;1) – diese Konzepte werden hier auf neue Situationen angewendet.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Ein Zeitungsinserat bietet eine gebrauchte Vespa für Fr. 1'200.– an. Handelt es sich um eine verbindliche Offerte?</div>
+    <label data-ok>Nein, ein Inserat ist in der Regel unverbindlich</label>
+    <label>Ja, Inserate sind immer verbindlich</label>
+    <label>Nur wenn ein Preis genannt wird</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 6 ==================== -->
+<section>
+  <h2><span class="nr">GES C4</span> Kaufen im Internet</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="203_[UE]_A08_Internetkauf.html">A08</a>
+  </div>
+  <p class="einstieg">Online-Käufe fühlen sich unverbindlicher an als ein Kauf im Laden – rechtlich gelten aber dieselben Regeln, mit ein paar wichtigen Besonderheiten.</p>
+  <ul class="list">
+    <li>Online abgeschlossene Verträge sind genauso verbindlich wie schriftliche oder mündliche Verträge.</li>
+    <li>Für Preisangaben online gilt dasselbe wie für Preisschilder im Geschäft.</li>
+    <li><strong>In der Schweiz gibt es kein gesetzliches Rücktrittsrecht</strong> beim Online-Kauf – anders als in der EU. Ein «Widerrufsrecht» besteht nur, wenn der Anbieter es freiwillig einräumt.</li>
+    <li>Minderjährige dürfen online nur mit eigenem Geld oder im Einverständnis der Eltern einkaufen (vgl. Serie 102, Handlungsfähigkeit).</li>
+    <li>Beim Transport haftet der Absender oder Transportdienst, je nachdem, wer den Schaden verursacht hat; die Versandkosten trägt meist die Käuferschaft (im Vertrag geregelt).</li>
+  </ul>
+  <div class="merk"><b>Merke:</b> Online-Handel steht in Konkurrenz zum lokalen Gewerbe – günstigere Preise und grössere Auswahl im Internet können stationäre Geschäfte unter Druck setzen.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Kann man einen Online-Kauf in der Schweiz einfach widerrufen, weil man es sich anders überlegt hat?</div>
+    <label>Ja, immer innert 14 Tagen</label>
+    <label data-ok>Nein, es gibt kein gesetzliches Rücktrittsrecht</label>
+    <label>Ja, aber nur bei Kleidern</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 7 ==================== -->
+<section>
+  <h2><span class="nr">Ergänzend</span> Quittung schreiben</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="203_[UE]_A10_Quittung.html">A10</a>
+  </div>
+  <p class="einstieg">Bei Barzahlungen, z.&nbsp;B. beim privaten Verkauf eines gebrauchten Gegenstands, dient eine Quittung als Zahlungsnachweis für beide Seiten.</p>
+  <p>Eine korrekte Quittung enthält: den <strong>erhaltenen Betrag</strong> (in Zahlen und Worten), den <strong>Zahlungsgrund</strong> (wofür bezahlt wurde), <strong>Ort und Datum</strong> sowie die <strong>Unterschrift</strong> der empfangenden Person.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was gehört zwingend auf eine korrekte Quittung?</div>
+    <label>Nur der Betrag</label>
+    <label data-ok>Betrag, Zahlungsgrund, Ort/Datum und Unterschrift</label>
+    <label>Nur die Unterschrift</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 8 ==================== -->
+<section>
+  <h2><span class="nr">SUK C3</span> Mängelrechte &amp; Garantie</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="203_[UE]_A12_Maengelrechte_Garantie.html">A12</a>
+  </div>
+  <p class="einstieg">Ist eine gekaufte Sache mangelhaft, stehen der Käuferschaft gesetzlich drei Möglichkeiten offen – unabhängig davon, ob eine Garantie besteht oder nicht.</p>
+  <table class="tb">
+    <tr><th>Mängelrecht</th><th>Bedeutung</th></tr>
+    <tr><td><strong>Wandlung</strong></td><td>Der Kauf wird rückgängig gemacht – Sache zurück an den Verkäufer, Geld zurück an die Käuferin.</td></tr>
+    <tr><td><strong>Minderung</strong></td><td>Die Käuferin behält die mangelhafte Sache, erhält aber eine Reduktion des Kaufpreises.</td></tr>
+    <tr><td><strong>Ersatzlieferung</strong></td><td>Bei vertretbaren Sachen <span class="gesetz">OR 206</span> kann statt Wandlung/Minderung eine mangelfreie Ersatzsache verlangt werden.</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Das Gesetz <span class="gesetz">OR 205</span> gibt der Käuferin die Wahl zwischen diesen drei Mängelrechten – eine blosse <b>Reparatur</b> ist gesetzlich keines davon, kann aber freiwillig vereinbart werden. Eine <b>Garantie</b> ist ein zusätzliches, freiwilliges Versprechen des Verkäufers/Herstellers und gilt unabhängig von der gesetzlichen Gewährleistung, die immer automatisch gilt.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was ist der Unterschied zwischen Minderung und Wandlung?</div>
+    <label>Es gibt keinen Unterschied</label>
+    <label data-ok>Bei Minderung bleibt die Sache bei der Käuferin (Preisreduktion), bei Wandlung wird der Kauf rückgängig gemacht</label>
+    <label>Minderung gilt nur bei Immobilien</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 9 ==================== -->
+<section>
+  <h2><span class="nr">GES</span> Lieferverzug</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="203_[UE]_A13_Lieferverzug.html">A13</a>
+  </div>
+  <p class="einstieg">Kommt eine bestellte Ware nicht rechtzeitig an, hängt das weitere Vorgehen davon ab, ob ein fester Termin vereinbart war oder nicht.</p>
+  <table class="tb">
+    <tr><th>Geschäftsart</th><th>Wann tritt Verzug ein?</th></tr>
+    <tr><td><strong>Mahngeschäft</strong></td><td>Ware ist grundsätzlich jederzeit fällig <span class="gesetz">OR 75</span>; Verzug tritt erst ein, wenn die Käuferin den Verkäufer mahnt <span class="gesetz">OR 102 Abs. 1</span>.</td></tr>
+    <tr><td><strong>Fixgeschäft</strong></td><td>Ein genauer Liefertermin ist vereinbart; Verzug tritt automatisch mit Ablauf des Termins ein – ohne Mahnung <span class="gesetz">OR 102 Abs. 2</span>.</td></tr>
+  </table>
+  <p>Bei Lieferverzug stehen der Käuferin drei <strong>Wahlrechte</strong> offen <span class="gesetz">OR 107/109</span>:</p>
+  <ul class="list">
+    <li>Am Vertrag festhalten und weiterhin auf Erfüllung bestehen, zuzüglich Schadenersatz für die Verspätung.</li>
+    <li>Am Vertrag festhalten, aber auf die nachträgliche Erfüllung verzichten, zuzüglich Schadenersatz wegen Nichterfüllung.</li>
+    <li>Vom Vertrag zurücktreten, zuzüglich Schadenersatz wegen Dahinfallens des Vertrags.</li>
+  </ul>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Bei welcher Geschäftsart tritt der Verzug automatisch ein, ohne dass gemahnt werden muss?</div>
+    <label>Beim Mahngeschäft</label>
+    <label data-ok>Beim Fixgeschäft</label>
+    <label>Bei keiner der beiden</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 2 «Mein Geld» · Lebenssituation C</h2>
+  <p style="font-weight:700;margin-bottom:10px">Einkaufen und Verträge abschliessen</p>
+  <table>
+    <tr><td class="lz">SUK C1</td><td>Ich begründe in Alltagssituationen passende Einkaufs- und Zahlungsmöglichkeiten.</td></tr>
+    <tr><td class="lz">GES C1</td><td>Ich vergleiche verschiedene Einkaufsmöglichkeiten und reflektiere deren Vor- und Nachteile.</td></tr>
+    <tr><td class="lz">SUK C2</td><td>Ich wende geeignete Methoden an, um wichtige Inhalte eines schriftlichen Vertrages zu verstehen.</td></tr>
+    <tr><td class="lz">GES C2</td><td>Ich schliesse Kaufverträge ab und leite daraus meine Rechte und Pflichten ab.</td></tr>
+    <tr><td class="lz">SUK C3</td><td>Ich reagiere angemessen auf Störungen im Kaufvertrag und kann meine Rechte einfordern.</td></tr>
+    <tr><td class="lz">GES C3</td><td>Ich zeige auf, wie sich Konsumentscheide auf eine wirtschaftlich, ökologisch und sozial nachhaltige Lebensführung auswirken können.</td></tr>
+    <tr><td class="lz">GES C4</td><td>Ich schätze die Auswirkungen des Online-Handels auf das lokale Gewerbe ein.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen (S. 23)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="203_Aufgaben.html"><strong>Übungen A01–A13 lösen</strong></a>.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
