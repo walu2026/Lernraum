@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>201 · Theorie: Lohn &amp; Budget</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#1F638F; --t1-dark:#174C6E; --t1-light:#E7EFF5;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+.gesetz{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:#EEF1F5;border:1px solid var(--line);padding:2px 8px;border-radius:6px;white-space:nowrap}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+.ow-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;margin:6px 0;background:#FCFCFD;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;color:var(--ink-soft)}
+.ow-item input{margin-top:4px;accent-color:var(--t1)}
+.ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">201 · [TH]</span>
+  <h1>Theorie: Lohn &amp; Budget</h1>
+  <a class="nav" href="201_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Der erste eigene Lohn wirft viele Fragen auf: Was steht überhaupt auf dem Lohnausweis, wie plant man ein Budget, welches Zahlungsmittel passt wohin – und was passiert, wenn das Geld nicht reicht? Diese Theorie liefert dafür die Grundlagen, von der Lohnabrechnung über den Wirtschaftskreislauf bis zum Betreibungsverfahren.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES A1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">SUK A1</span> Lohn und Lohnausweis</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="201_[UE]_A01_Lohnausweis.html">A01</a>
+  </div>
+  <p class="einstieg">Auf dem Lohnausweis stehen mehr Zahlen als nur der Betrag, der aufs Konto kommt. Wer die wichtigsten Begriffe kennt, versteht, wohin die Differenz zwischen Brutto- und Nettolohn fliesst.</p>
+  <table class="tb">
+    <tr><th>Begriff</th><th>Bedeutung</th></tr>
+    <tr><td><strong>Bruttolohn</strong></td><td>Der vertraglich vereinbarte Lohn <em>vor</em> sämtlichen Abzügen.</td></tr>
+    <tr><td><strong>Nettolohn</strong></td><td>Der tatsächlich ausbezahlte Lohn <em>nach</em> allen Abzügen.</td></tr>
+    <tr><td><strong>AHV/IV/EO</strong></td><td>Gesetzliche Pflichtabzüge für Alters- und Hinterlassenenversicherung, Invalidenversicherung und Erwerbsersatzordnung – sichern Rente, Invalidität und Mutterschaft/Militär ab.</td></tr>
+    <tr><td><strong>ALV</strong></td><td>Arbeitslosenversicherung – ersetzt bei Stellenverlust einen Teil des bisherigen Lohns.</td></tr>
+    <tr><td><strong>BVG</strong></td><td>Berufliche Vorsorge (2. Säule) – Pflichtabzug ab dem 17. Altersjahr (ab Fr.&nbsp;22'050.– Jahreslohn); sichert Altersrente, Invalidität und Tod ab.</td></tr>
+  </table>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was ist der Unterschied zwischen Brutto- und Nettolohn?</div>
+    <label>Es gibt keinen Unterschied</label>
+    <label data-ok>Brutto = vor Abzügen, Netto = nach Abzügen</label>
+    <label>Brutto ist immer tiefer als Netto</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES A4</span> Wirtschaftskreislauf</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="201_[UE]_A05_Wirtschaftskreislauf.html">A05</a>
+  </div>
+  <p class="einstieg">Lohn und Konsum sind Teil eines grösseren Systems: des Wirtschaftskreislaufs. Wer die eigene Rolle darin kennt, versteht auch, warum eine Wirtschaftskrise alle betrifft.</p>
+  <p>Im <strong>einfachen Wirtschaftskreislauf</strong> stehen sich Haushalte und Unternehmen gegenüber: Haushalte liefern Produktionsfaktoren (Arbeit) an Unternehmen und erhalten dafür Lohn; Unternehmen liefern Güter an Haushalte und erhalten dafür Zahlungen. Güter- und Geldstrom fliessen dabei immer in entgegengesetzte Richtungen.</p>
+  <p>Der <strong>erweiterte Wirtschaftskreislauf</strong> ergänzt drei weitere Akteure:</p>
+  <table class="tb">
+    <tr><th>Akteur</th><th>Rolle</th></tr>
+    <tr><td><strong>Staat</strong></td><td>Erhebt Steuern &amp; Abgaben, zahlt öffentliche Leistungen und Transferleistungen (z.&nbsp;B. AHV, Sozialhilfe).</td></tr>
+    <tr><td><strong>Ausland</strong></td><td>Exporte bringen Geld herein, Importe lassen es hinausfliessen.</td></tr>
+    <tr><td><strong>Banken</strong></td><td>Sammeln Ersparnisse der Haushalte und vergeben Kredite an Unternehmen.</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Gerät der Kreislauf ins Stocken (z.&nbsp;B. Wirtschaftskrise), sparen Haushalte mehr und konsumieren weniger, Unternehmen investieren weniger und entlassen Mitarbeitende – der Kreislauf schwächt sich wechselseitig weiter ab.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welche drei Akteure kommen im erweiterten gegenüber dem einfachen Wirtschaftskreislauf neu hinzu?</div>
+    <label>Schulen, Vereine, Medien</label>
+    <label data-ok>Staat, Ausland, Banken</label>
+    <label>Gewerkschaften, Parteien, NGOs</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">GES</span> Fixe und variable Kosten</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="201_[UE]_A02_Kostenarten.html">A02</a>
+  </div>
+  <p class="einstieg">Wer sparen will, muss zuerst wissen, wo überhaupt Spielraum besteht. Nicht jede Ausgabe lässt sich gleich leicht reduzieren.</p>
+  <table class="tb">
+    <tr><th>Kostenart</th><th>Merkmal</th><th>Beispiele</th></tr>
+    <tr><td><strong>Fixe Kosten</strong></td><td>Regelmässig, vertraglich gebunden, kurzfristig nicht veränderbar.</td><td>Miete, Krankenkassenprämie, Steuern</td></tr>
+    <tr><td><strong>Variable Kosten</strong></td><td>Schwanken je nach Verhalten und Bedarf, durch eigene Entscheide beeinflussbar.</td><td>Kleider, Ausgang, auswärtige Verpflegung, Sport/Freizeit</td></tr>
+    <tr><td><strong>Rückstellungen</strong></td><td>Monatlich zurückgelegte Beträge für ungewisse, aber wahrscheinliche Ausgaben – Zeitpunkt und Höhe unbekannt.</td><td>Zahnarzt, Ferien, Autoservice</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Bei Geldknappheit lassen sich <b>variable Kosten</b> am schnellsten senken – fixe Kosten sind kurzfristig kaum veränderbar.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welcher Kostenart ist ein Zahnarztbesuch am ehesten zuzuordnen?</div>
+    <label>Fixe Kosten</label>
+    <label>Variable Kosten</label>
+    <label data-ok>Rückstellung</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">GES A1</span> Monatsbudget erstellen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="201_[UE]_A03_Budget.html">A03</a>
+  </div>
+  <p class="einstieg">Ein Budget verschafft Überblick über Einnahmen und Ausgaben – und macht sichtbar, wo überhaupt Sparpotenzial besteht.</p>
+  <p>Ein vollständiges Monatsbudget stellt den <strong>Einnahmen</strong> (z.&nbsp;B. Lehrlingslohn) alle <strong>Ausgaben</strong> gegenüber, aufgeteilt nach fixen Kosten, variablen Kosten und Rückstellungen (siehe LZ&nbsp;3). Bleibt am Ende ein Überschuss, kann er gespart oder für Rückstellungen verwendet werden; reicht das Geld nicht, müssen zuerst variable Kosten überprüft werden.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Am Monatsende fehlen unerwartet Fr. 80.–. Wo sollte zuerst angesetzt werden?</div>
+    <label>Bei der Miete</label>
+    <label data-ok>Bei den variablen Kosten</label>
+    <label>Bei den AHV-Abzügen</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">GES A2</span> Zahlungsmittel im Alltag</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="201_[UE]_A04_Zahlungsmittel.html">A04</a>
+  </div>
+  <p class="einstieg">Nicht jedes Zahlungsmittel passt zu jeder Situation. Wer die Vor- und Nachteile kennt, trifft die passende Wahl – und weiss, welche Risiken bestehen.</p>
+  <table class="tb">
+    <tr><th>Zahlungsmittel</th><th>Merkmal</th></tr>
+    <tr><td><strong>Bargeld</strong></td><td>Universell akzeptiert, kein Verschuldungsrisiko – aber kein Zahlungsnachweis, Verlustrisiko bei Diebstahl.</td></tr>
+    <tr><td><strong>Debitkarte</strong></td><td>Belastet direkt das eigene Konto – kein Kredit, weltweit einsetzbar, digitaler Zahlungsnachweis.</td></tr>
+    <tr><td><strong>Kreditkarte</strong></td><td>Kauf auf Kredit («heute kaufen, morgen zahlen»), Schuldenrisiko bei verspäteter Rückzahlung.</td></tr>
+    <tr><td><strong>Mobile Payment</strong> (z.&nbsp;B. TWINT)</td><td>Schnell und bargeldlos, ideal für kleine Beträge, direkt mit Konto/Karte verknüpft.</td></tr>
+    <tr><td><strong>E-Banking/Dauerauftrag</strong></td><td>Ideal für wiederkehrende Zahlungen (Miete, Krankenkasse), erfordert Überblick über den Kontostand.</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Kreditkarten dürfen laut Konsumkreditgesetz erst <b>ab 18 Jahren</b> beantragt werden – Minderjährige dürfen entsprechende Verträge nicht abschliessen.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welches Zahlungsmittel eignet sich am besten für den wiederkehrenden Kauf der Krankenkassenprämie?</div>
+    <label>Bargeld</label>
+    <label data-ok>Dauerauftrag im E-Banking</label>
+    <label>Mobile Payment</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 6 ==================== -->
+<section>
+  <h2><span class="nr">SUK</span> Hörverständnis: Bargeld</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="201_[UE]_A08_HV_Bargeld.html">A08</a>
+  </div>
+  <p class="einstieg">Diese Übung trainiert das Zuhören: einem Podcast über Bargeld folgen, Argumente dafür und dagegen erkennen und die Haltung verschiedener Akteure einordnen.</p>
+  <p>Die Bargeld-Debatte dreht sich meist um denselben Kern: <strong>Bargeld</strong> steht für Anonymität, Unabhängigkeit von der Technik und Budgetkontrolle («nur ausgeben, was man in der Hand hat»); <strong>bargeldlose Zahlung</strong> steht für Bequemlichkeit, Nachvollziehbarkeit und Sicherheit gegen Diebstahl. Beim genauen Hinhören lohnt es sich, zu unterscheiden, wer aus welcher Perspektive argumentiert (z.&nbsp;B. Konsument/in, Bank, Staat).</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welches Argument spricht typischerweise <em>für</em> Bargeld?</div>
+    <label>Es ist immer nachvollziehbar, wer wann bezahlt hat</label>
+    <label data-ok>Es hilft, nur auszugeben, was man tatsächlich besitzt</label>
+    <label>Es kann bei Verlust problemlos gesperrt werden</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 7 ==================== -->
+<section>
+  <h2><span class="nr">GES A3</span> Schulden vermeiden</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="201_[UE]_A06_Schulden.html">A06</a>
+  </div>
+  <p class="einstieg">In der Schweiz hat rund jede vierte jugendliche Person Schulden. Das Konsumkreditgesetz (KKG) schützt Konsumentinnen und Konsumenten – trotzdem lohnt es sich, die häufigsten Fallen zu kennen.</p>
+  <h3>KKG-Schutzbestimmungen</h3>
+  <ul class="list">
+    <li><strong>Höchstzinssatz:</strong> Konsumkredite dürfen höchstens mit 15&nbsp;% Zins pro Jahr belastet werden.</li>
+    <li><strong>Rücktrittsrecht:</strong> Innert 7 Tagen nach Erhalt der Vertragskopie kann ein Konsumkreditvertrag ohne Angabe von Gründen widerrufen werden.</li>
+    <li><strong>Kreditfähigkeitsprüfung:</strong> Vor Vertragsabschluss muss der Anbieter prüfen, ob der Kredit zurückgezahlt werden kann.</li>
+  </ul>
+  <h3>Häufige Ursachen privater Verschuldung</h3>
+  <p>Konsumverhalten und Statusdenken, Volljährigkeit ohne Budget-Erfahrung, «heute kaufen, morgen zahlen»-Verträge (Ratenkäufe, Abos), sowie ein fehlendes oder unrealistisches Budget.</p>
+  <div class="merk"><b>Hilfsangebote:</b> <a href="https://www.schulden.ch" target="_blank" rel="noopener">schulden.ch</a> (Information/Prävention, anonym) · <a href="https://www.budgetberatung.ch" target="_blank" rel="noopener">budgetberatung.ch</a> (Budgetvorlagen, Beratung) · Caritas-Schuldenberatung (kostenlose Fachberatung inkl. Sanierungsplan).</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Wie hoch darf der Zins bei einem Konsumkredit laut KKG höchstens sein?</div>
+    <label>5 %</label>
+    <label data-ok>15 %</label>
+    <label>Unbegrenzt, solange vertraglich vereinbart</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 8 ==================== -->
+<section>
+  <h2><span class="nr">GES A5</span> Betreibungsverfahren</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="201_[UE]_A07_Betreibung.html">A07</a>
+  </div>
+  <p class="einstieg">Bleibt eine Rechnung trotz Mahnung unbezahlt, kann der Weg über das Betreibungsverfahren führen. Wer den Ablauf kennt, weiss, wie er in jeder Phase reagieren kann.</p>
+  <table class="tb">
+    <tr><th>Schritt</th><th>Bedeutung</th></tr>
+    <tr><td><strong>Mahnung</strong></td><td>Der Gläubiger fordert die offene Zahlung ein.</td></tr>
+    <tr><td><strong>Betreibungsbegehren</strong></td><td>Der Gläubiger beantragt beim Betreibungsamt die Betreibung.</td></tr>
+    <tr><td><strong>Zahlungsbefehl</strong></td><td>Das Betreibungsamt stellt dem Schuldner den Zahlungsbefehl zu.</td></tr>
+    <tr><td><strong>Rechtsvorschlag</strong></td><td>Der Schuldner kann die Forderung bestreiten («Rechtsvorschlag erheben»).</td></tr>
+    <tr><td><strong>Rechtsöffnung</strong></td><td>Der Gläubiger muss den Rechtsvorschlag gerichtlich beseitigen lassen.</td></tr>
+    <tr><td><strong>Fortsetzungsbegehren, Pfändung/Pfändungsurkunde</strong></td><td>Ohne (erfolgreichen) Rechtsvorschlag folgt die Pfändung von Lohn oder Vermögen.</td></tr>
+    <tr><td><strong>Verwertungsbegehren, Versteigerung</strong></td><td>Gepfändete Gegenstände können verwertet (versteigert) werden.</td></tr>
+    <tr><td><strong>Verlustschein</strong></td><td>Reicht der Erlös nicht, erhält der Gläubiger einen Verlustschein für den ungedeckten Betrag.</td></tr>
+  </table>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was kann eine schuldende Person tun, wenn sie eine Forderung im Zahlungsbefehl für unberechtigt hält?</div>
+    <label>Nichts, die Forderung ist automatisch gültig</label>
+    <label data-ok>Rechtsvorschlag erheben</label>
+    <label>Direkt Verwertungsbegehren stellen</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 9 ==================== -->
+<section>
+  <h2><span class="nr">Ergänzend</span> Datensicherheit</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="201_[UE]_A09_Datensicherheit_Digitale_Identitaet.html">A09</a>
+  </div>
+  <p class="einstieg">E-Banking, TWINT und Online-Shopping gehören zum digitalen Zahlungsverkehr – und bringen eigene Sicherheitsrisiken mit sich.</p>
+  <ul class="list">
+    <li>Zugangsdaten (Passwörter, PINs) nie weitergeben und für jeden Dienst unterschiedlich wählen.</li>
+    <li>Zwei-Faktor-Authentifizierung (2FA) wo möglich aktivieren.</li>
+    <li>Phishing-Mails/-SMS erkennen: nie über einen Link in einer unerwarteten Nachricht Zugangsdaten eingeben.</li>
+    <li>Die eigene digitale Identität (Profile, geteilte Informationen) bewusst und zurückhaltend gestalten.</li>
+  </ul>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Eine SMS fordert dazu auf, dringend über einen Link die E-Banking-Zugangsdaten zu bestätigen. Was ist der richtige Umgang damit?</div>
+    <label>Sofort auf den Link klicken und Daten eingeben</label>
+    <label data-ok>Nicht klicken – typisches Phishing-Muster</label>
+    <label>Die Bank per SMS zurückfragen</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="nr">SLP</span> Orientierungswissen – Ich kann …</h2>
+  <p>Direkt aus dem Schullehrplan (Thema 2). Abhaken, was bereits sicher beherrscht wird – der Rest ist der individuelle Lernauftrag:</p>
+  <div id="ow">
+    <label class="ow-item"><input type="checkbox"> … die Begriffe der Lohnabrechnung nennen.</label>
+    <label class="ow-item"><input type="checkbox"> … bei einem Budget fixe und variable Ausgaben erklären.</label>
+    <label class="ow-item"><input type="checkbox"> … den erweiterten Wirtschaftskreislauf aufzeichnen und die Akteure benennen.</label>
+  </div>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Die übrigen Orientierungswissen-Punkte zu Thema 2 (Kaufvertrag, Finanzierungsarten) folgen in Serie 203/204.</p>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 2 «Mein Geld» · Lebenssituation A</h2>
+  <p style="font-weight:700;margin-bottom:10px">Einen Lohn erhalten, ausgeben und sparen</p>
+  <table>
+    <tr><td class="lz">SUK A1</td><td>Ich analysiere die für meine Budgetplanung wesentlichen Informationen in meiner Lohnabrechnung.</td></tr>
+    <tr><td class="lz">GES A1</td><td>Ich erstelle ein Budget und treffe Entscheidungen über Ausgaben und Sparmöglichkeiten.</td></tr>
+    <tr><td class="lz">GES A2</td><td>Ich führe Zahlungen mit meinem Konto selbstständig aus und unterscheide situationsgerecht, welche Zahlungsmöglichkeit geeignet ist.</td></tr>
+    <tr><td class="lz">GES A3</td><td>Ich entwickle einen Plan zur Vermeidung von Schulden und lege fest, welche Hilfsangebote ich bei Bedarf nutze.</td></tr>
+    <tr><td class="lz">GES A4</td><td>Ich erkläre meine Rollen im erweiterten Wirtschaftskreislauf.</td></tr>
+    <tr><td class="lz">GES A5</td><td>Ich zeige Möglichkeiten auf, wie ich auf eine Betreibung reagiere, und kenne deren Folgen.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen (S. 21/25)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="201_Aufgaben.html"><strong>Übungen A01–A09 lösen</strong></a>.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>

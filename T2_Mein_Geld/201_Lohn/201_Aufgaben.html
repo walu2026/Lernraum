@@ -27,6 +27,12 @@
   .toggle-btn.active { background:var(--accent); border-color:var(--accent); color:white; }
   .toggle-btn:hover:not(.active) { border-color:var(--accent); color:var(--accent); }
   .section-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--g5); margin:0 0 8px 2px; }
+  .th-card { display:flex; align-items:center; gap:14px; background:white; border:2px solid var(--accent); border-radius:14px; padding:16px 18px; margin-bottom:1.75rem; text-decoration:none; color:inherit; transition:all .15s; }
+  .th-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.08); transform:translateY(-1px); }
+  .th-card .th-icon { font-size:26px; flex-shrink:0; }
+  .th-card .th-title { font-size:14px; font-weight:700; color:var(--g9); margin-bottom:2px; }
+  .th-card .th-desc { font-size:11.5px; color:var(--g5); }
+  .th-card .th-arrow { margin-left:auto; font-size:18px; color:var(--accent); }
   .lz-list { display:flex; flex-direction:column; gap:7px; margin-bottom:1.75rem; }
   .lz-row { display:grid; grid-template-columns:4px 48px 1fr 12px; align-items:stretch; background:white; border-radius:10px; border:1px solid var(--g3); overflow:hidden; }
   .lz-bar { background:var(--fc, var(--accent)); }
@@ -73,6 +79,15 @@
     </div>
   </div>
 
+  <a class="th-card" href="201_[TH]_Lohn_Budget.html">
+    <span class="th-icon">📖</span>
+    <span>
+      <div class="th-title">Theorie zu dieser Serie</div>
+      <div class="th-desc">Lohnausweis, Budget, Zahlungsmittel, Schulden, Betreibung – vor den Übungen lesen</div>
+    </span>
+    <span class="th-arrow">›</span>
+  </a>
+
   <div class="toggle-bar">
     <button class="toggle-btn active" id="btnLz" onclick="showView('lz')">📚 Nach Lernzielen</button>
     <button class="toggle-btn" id="btnA"  onclick="showView('a')">🔢 Nach Aufgaben-Nr.</button>
@@ -83,90 +98,90 @@
     <div class="lz-list">
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">SUK</span></div>
         <div class="lz-body">
           <div class="lz-title">Lohn und Lohnausweis</div>
-          <div class="lz-ziel">Aufgaben zu: Lohn und Lohnausweis</div>
+          <div class="lz-ziel">Ich analysiere die für meine Budgetplanung wesentlichen Informationen in meiner Lohnabrechnung.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="201_[UE]_A01_Lohnausweis.html">A01 Lohn und Lohnausweis</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES</span></div>
         <div class="lz-body">
           <div class="lz-title">Wirtschaftskreislauf</div>
-          <div class="lz-ziel">Aufgaben zu: Wirtschaftskreislauf</div>
+          <div class="lz-ziel">Ich erkläre meine Rollen im erweiterten Wirtschaftskreislauf.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="201_[UE]_A05_Wirtschaftskreislauf.html">A05 Wirtschaftskreislauf</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">GES</span></div>
         <div class="lz-body">
           <div class="lz-title">Fixe und variable Kosten</div>
-          <div class="lz-ziel">Aufgaben zu: Fixe und variable Kosten</div>
+          <div class="lz-ziel">Ich unterscheide fixe und variable Ausgaben bei einem Budget und ordne diese korrekt zu.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="201_[UE]_A02_Kostenarten.html">A02 Fixe und variable Kosten</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">GES</span></div>
         <div class="lz-body">
           <div class="lz-title">Monatsbudget erstellen</div>
-          <div class="lz-ziel">Aufgaben zu: Monatsbudget erstellen</div>
+          <div class="lz-ziel">Ich erstelle ein Budget und treffe Entscheidungen über Ausgaben und Sparmöglichkeiten.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="201_[UE]_A03_Budget.html">A03 Monatsbudget erstellen</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">GES</span></div>
         <div class="lz-body">
           <div class="lz-title">Zahlungsmittel im Alltag</div>
-          <div class="lz-ziel">Aufgaben zu: Zahlungsmittel im Alltag</div>
+          <div class="lz-ziel">Ich führe Zahlungen mit meinem Konto selbstständig aus und unterscheide situationsgerecht, welche Zahlungsmöglichkeit geeignet ist.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="201_[UE]_A04_Zahlungsmittel.html">A04 Zahlungsmittel im Alltag</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">6</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">6</span><span class="lz-fach">SUK</span></div>
         <div class="lz-body">
           <div class="lz-title">Hörverständnis Bargeld</div>
-          <div class="lz-ziel">Aufgaben zu: Hörverständnis Bargeld</div>
+          <div class="lz-ziel">Ich folge einem Podcast über Bargeld, benenne wesentliche Argumente dafür und dagegen und ordne die Haltung verschiedener Akteure ein.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="201_[UE]_A08_HV_Bargeld.html">A08 Hörverständnis Bargeld</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">7</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">7</span><span class="lz-fach">GES</span></div>
         <div class="lz-body">
           <div class="lz-title">Schulden vermeiden</div>
-          <div class="lz-ziel">Aufgaben zu: Schulden vermeiden</div>
+          <div class="lz-ziel">Ich entwickle einen Plan zur Vermeidung von Schulden und lege fest, welche Hilfsangebote ich bei Bedarf nutze.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="201_[UE]_A06_Schulden.html">A06 Schulden vermeiden</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">8</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">8</span><span class="lz-fach">GES</span></div>
         <div class="lz-body">
           <div class="lz-title">Betreibungsverfahren</div>
-          <div class="lz-ziel">Aufgaben zu: Betreibungsverfahren</div>
+          <div class="lz-ziel">Ich zeige Möglichkeiten auf, wie ich auf eine Betreibung reagiere, und kenne deren Folgen.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="201_[UE]_A07_Betreibung.html">A07 Betreibungsverfahren</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">9</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">9</span><span class="lz-fach">Ergänzend</span></div>
         <div class="lz-body">
           <div class="lz-title">Datensicherheit</div>
-          <div class="lz-ziel">Aufgaben zu: Datensicherheit</div>
+          <div class="lz-ziel">Ich kenne wichtige Regeln zum Schutz meiner Daten beim Zahlungsverkehr und gestalte meine digitale Identität im Internet bewusst (ergänzender Inhalt, kein eigener SLP-Kompetenzcode).</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="201_[UE]_A09_Datensicherheit_Digitale_Identitaet.html">A09 Datensicherheit</a></div>
         </div>
         <div class="lz-arrow"></div>
