@@ -27,6 +27,12 @@
   .toggle-btn.active { background:var(--accent); border-color:var(--accent); color:white; }
   .toggle-btn:hover:not(.active) { border-color:var(--accent); color:var(--accent); }
   .section-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--g5); margin:0 0 8px 2px; }
+  .th-card { display:flex; align-items:center; gap:14px; background:white; border:2px solid var(--accent); border-radius:14px; padding:16px 18px; margin-bottom:1.75rem; text-decoration:none; color:inherit; transition:all .15s; }
+  .th-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.08); transform:translateY(-1px); }
+  .th-card .th-icon { font-size:26px; flex-shrink:0; }
+  .th-card .th-title { font-size:14px; font-weight:700; color:var(--g9); margin-bottom:2px; }
+  .th-card .th-desc { font-size:11.5px; color:var(--g5); }
+  .th-card .th-arrow { margin-left:auto; font-size:18px; color:var(--accent); }
   .lz-list { display:flex; flex-direction:column; gap:7px; margin-bottom:1.75rem; }
   .lz-row { display:grid; grid-template-columns:4px 48px 1fr 12px; align-items:stretch; background:white; border-radius:10px; border:1px solid var(--g3); overflow:hidden; }
   .lz-bar { background:var(--fc, var(--accent)); }
@@ -73,6 +79,15 @@
     </div>
   </div>
 
+  <a class="th-card" href="204_[TH]_Investition_Finanzierung.html">
+    <span class="th-icon">📖</span>
+    <span>
+      <div class="th-title">Theorie zu dieser Serie</div>
+      <div class="th-desc">Finanzierungsarten, Leasing, Abschreibung, Vermögensaufbau – vor den Übungen lesen</div>
+    </span>
+    <span class="th-arrow">›</span>
+  </a>
+
   <div class="toggle-bar">
     <button class="toggle-btn active" id="btnLz" onclick="showView('lz')">📚 Nach Lernzielen</button>
     <button class="toggle-btn" id="btnA"  onclick="showView('a')">🔢 Nach Aufgaben-Nr.</button>
@@ -83,100 +98,100 @@
     <div class="lz-list">
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES D1 · SUK D1</span></div>
         <div class="lz-body">
           <div class="lz-title">Finanzierungsarten</div>
-          <div class="lz-ziel">Aufgaben zu: Finanzierungsarten</div>
+          <div class="lz-ziel">Ich vergleiche mögliche Finanzierungsarten für grössere Anschaffungen und begründe die Wahl einer passenden Finanzierungsart.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="204_[UE]_A01_Eigentum_Finanzierungsarten.html">A01 Finanzierungsarten</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES D1</span></div>
         <div class="lz-body">
           <div class="lz-title">Kaufarten</div>
-          <div class="lz-ziel">Aufgaben zu: Kaufarten</div>
+          <div class="lz-ziel">Ich unterscheide Barkauf, Kreditkauf, Kauf mit Konsumkreditvertrag, Kleinkredit und Leasing anhand konkreter Situationen.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="204_[UE]_A02_Kaufarten.html">A02 Kaufarten</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">GES D1</span></div>
         <div class="lz-body">
           <div class="lz-title">Leasing: richtig/falsch</div>
-          <div class="lz-ziel">Aufgaben zu: Leasing: richtig/falsch</div>
+          <div class="lz-ziel">Ich beurteile Aussagen zum Leasing auf ihre Richtigkeit und begründe meine Einschätzung sachlich.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="204_[UE]_A03_Leasing.html">A03 Leasing: richtig/falsch</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">SUK D1</span></div>
         <div class="lz-body">
           <div class="lz-title">Autofinanzierung</div>
-          <div class="lz-ziel">Aufgaben zu: Autofinanzierung</div>
+          <div class="lz-ziel">Ich wende mein Wissen über Finanzierungsarten auf ein konkretes Fallbeispiel an und begründe eine Empfehlung.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="204_[UE]_A04_Autofinanzierung.html">A04 Autofinanzierung</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">Ergänzend</span></div>
         <div class="lz-body">
           <div class="lz-title">Investitionsrechner</div>
-          <div class="lz-ziel">Aufgaben zu: Investitionsrechner</div>
+          <div class="lz-ziel">Ich plane eine grössere Anschaffung systematisch und berechne verschiedene Finanzierungsvarianten.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="204_[UE]_A05_Investitionsrechner_allgemein.html">A05 Investitionsrechner</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">6</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">6</span><span class="lz-fach">Ergänzend</span></div>
         <div class="lz-body">
           <div class="lz-title">Abschreibung</div>
-          <div class="lz-ziel">Aufgaben zu: Abschreibung</div>
+          <div class="lz-ziel">Ich berechne die Abschreibung einer Anschaffung und erkläre, weshalb sich der Wert eines Gutes über die Zeit verändert.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="204_[UE]_A06_Abschreibung_allgemein.html">A06 Abschreibung</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">7</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">7</span><span class="lz-fach">GES D3</span></div>
         <div class="lz-body">
           <div class="lz-title">Vermögensaufbau-Theorie</div>
-          <div class="lz-ziel">Aufgaben zu: Vermögensaufbau-Theorie</div>
+          <div class="lz-ziel">Ich verstehe verschiedene Möglichkeiten des Vermögensaufbaus und kann ihre Chancen und Risiken einschätzen.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="204_[UE]_A07_Vermoegensaufbau_Theorie_allgemein.html">A07 Vermögensaufbau-Theorie</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">8</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">8</span><span class="lz-fach">GES D3</span></div>
         <div class="lz-body">
           <div class="lz-title">Vermögensaufbau-Rechner</div>
-          <div class="lz-ziel">Aufgaben zu: Vermögensaufbau-Rechner</div>
+          <div class="lz-ziel">Ich berechne mit dem Zinseszins-Rechner, wie sich ein Betrag über die Zeit bei unterschiedlichen Anlageformen und Zinssätzen entwickelt.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="204_[UE]_A08_Vermoegensaufbau_Rechner_allgemein.html">A08 Vermögensaufbau-Rechner</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">9</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">9</span><span class="lz-fach">GES D2</span></div>
         <div class="lz-body">
           <div class="lz-title">Sparstrategien</div>
-          <div class="lz-ziel">Aufgaben zu: Sparstrategien</div>
+          <div class="lz-ziel">Ich vergleiche verschiedene Strategien des Sparens und beurteile deren Vor- und Nachteile für mich.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="204_[UE]_A10_Sparstrategien_Vergleichen.html">A10 Sparstrategien</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#1F638F">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">10</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">10</span><span class="lz-fach">Ergänzend</span></div>
         <div class="lz-body">
           <div class="lz-title">Lernkontrolle</div>
-          <div class="lz-ziel">Aufgaben zu: Lernkontrolle</div>
+          <div class="lz-ziel">Ich wende mein Wissen zu Finanzierungsarten, Investition und Vermögensaufbau in einer Lernkontrolle an.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="204_[UE]_A09_Lernkontrolle_allgemein.html">A09 Lernkontrolle</a></div>
         </div>
         <div class="lz-arrow"></div>

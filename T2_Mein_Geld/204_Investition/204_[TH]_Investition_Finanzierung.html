@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>204 · Theorie: Investition &amp; Finanzierung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#1F638F; --t1-dark:#174C6E; --t1-light:#E7EFF5;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.rechnung{font-family:'JetBrains Mono',monospace;font-size:.88rem;background:#1E2530;color:#E8ECF1;border-radius:10px;padding:14px 18px;margin:14px 0;overflow-x:auto}
+.rechnung b{color:#8FCBFF}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">204 · [TH]</span>
+  <h1>Theorie: Investition &amp; Finanzierung</h1>
+  <a class="nav" href="204_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Eine grössere Anschaffung – vom Occasionsauto bis zur ersten Investition – lässt sich auf verschiedene Arten finanzieren, mit jeweils eigenen Konsequenzen für Eigentum und Kosten. Diese Theorie zeigt die wichtigsten Finanzierungs- und Kaufarten, wie sich der Wert einer Anschaffung über die Zeit verändert und wie Sparen und Vermögensaufbau grundsätzlich funktionieren. Für die landwirtschaftlichen Zusatzübungen (Maschinen, Betriebsmittel) gelten dieselben Grundlagen.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES D1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">GES D1 · SUK D1</span> Finanzierungsarten</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="204_[UE]_A01_Eigentum_Finanzierungsarten.html">A01</a>
+  </div>
+  <p class="einstieg">Wer eine grössere Anschaffung finanziert, ist nicht automatisch auch deren Eigentümer/in – das hängt von der gewählten Finanzierungsart ab.</p>
+  <table class="tb">
+    <tr><th>Finanzierungsart</th><th>Wer wird Eigentümer/in?</th></tr>
+    <tr><td><strong>Barkauf</strong></td><td>Sofort die kaufende Person – volle Zahlung bei Übergabe.</td></tr>
+    <tr><td><strong>Konsumkredit / Ratenkauf</strong></td><td>Sofort die kaufende Person; die Bank hat nur eine Geldforderung, kein Eigentum an der Sache.</td></tr>
+    <tr><td><strong>Leasing</strong></td><td>Die Leasinggesellschaft bleibt während der ganzen Vertragsdauer Eigentümerin – die leasende Person ist nur Besitzerin und darf die Sache nicht verkaufen.</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Eigentum und Besitz sind nicht dasselbe: Eigentum ist die rechtliche Zugehörigkeit, Besitz die tatsächliche Verfügungsgewalt über eine Sache (vgl. Mietwohnung: die Mieterin ist nur Besitzerin).</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Wer bleibt beim Leasing während der ganzen Vertragsdauer Eigentümer/in der Sache?</div>
+    <label>Die leasende Person</label>
+    <label data-ok>Die Leasinggesellschaft</label>
+    <label>Niemand, das Eigentum ist offen</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES D1</span> Kaufarten</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="204_[UE]_A02_Kaufarten.html">A02</a>
+  </div>
+  <p class="einstieg">Neben der Eigentumsfrage aus LZ 1 unterscheiden sich Kaufarten auch darin, wie und wann bezahlt wird.</p>
+  <table class="tb">
+    <tr><th>Kaufart</th><th>Merkmal</th></tr>
+    <tr><td><strong>Barkauf</strong></td><td>Sofortige, vollständige Zahlung bei Übergabe.</td></tr>
+    <tr><td><strong>Kreditkauf/Ratenkauf</strong></td><td>Zahlung in Raten, Ware wird sofort übergeben.</td></tr>
+    <tr><td><strong>Konsumkreditvertrag</strong></td><td>Kredit über eine Bank/Finanzierungsgesellschaft, unterliegt dem KKG (siehe Serie 201: Höchstzins 15&nbsp;%, 7 Tage Rücktrittsrecht, Kreditfähigkeitsprüfung).</td></tr>
+    <tr><td><strong>Kleinkredit</strong></td><td>Bankdarlehen für einen bestimmten Zweck, unterliegt ebenfalls dem KKG.</td></tr>
+    <tr><td><strong>Leasing</strong></td><td>Miete mit fester Laufzeit statt Kauf, kein Eigentumserwerb (siehe LZ 1).</td></tr>
+  </table>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welche Kaufart unterliegt dem Konsumkreditgesetz (KKG)?</div>
+    <label>Nur der Barkauf</label>
+    <label data-ok>Konsumkreditvertrag und Kleinkredit</label>
+    <label>Nur das Leasing</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">GES D1</span> Leasing: Aussagen prüfen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="204_[UE]_A03_Leasing.html">A03</a>
+  </div>
+  <p class="einstieg">Leasing wird oft missverstanden – diese Übung prüft typische Aussagen dazu auf ihre Richtigkeit.</p>
+  <p>Wichtigste Punkte zum Leasing: Es handelt sich rechtlich um eine <strong>Miete</strong>, nicht um einen Kauf – die leasende Person erwirbt zu keinem Zeitpunkt automatisch Eigentum. Am Ende der Laufzeit muss das Objekt zurückgegeben werden (oder es besteht eine separate Kaufoption gegen zusätzliche Zahlung). Leasingraten enthalten neben der Nutzung auch einen Wertverlust- und Zinsanteil.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Wird man beim Leasing automatisch Eigentümer/in, sobald die letzte Rate bezahlt ist?</div>
+    <label data-ok>Nein, nicht automatisch – dafür braucht es eine separate Kaufoption</label>
+    <label>Ja, immer automatisch</label>
+    <label>Ja, aber erst nach 10 Jahren</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">SUK D1</span> Autofinanzierung (Fallbeispiel)</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="204_[UE]_A04_Autofinanzierung.html">A04</a>
+  </div>
+  <p class="einstieg">Die Konzepte aus LZ 1–3 lassen sich am Beispiel eines Autokaufs konkret anwenden und gegeneinander abwägen.</p>
+  <p>Bei der Wahl zwischen Barkauf, Kreditkauf und Leasing für ein Auto sind jeweils abzuwägen: die <strong>Gesamtkosten</strong> (Zinsen/Leasingraten vs. Kaufpreis), die <strong>Eigentumsfrage</strong> (spätere Verkaufsmöglichkeit), das <strong>Verschuldungsrisiko</strong> und die persönliche <strong>Liquidität</strong> (verfügbares Ersparte).</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welcher Faktor gehört NICHT zu den zentralen Abwägungen bei einer Finanzierungsentscheidung?</div>
+    <label>Gesamtkosten</label>
+    <label>Eigentumsfrage</label>
+    <label data-ok>Die Lieblingsfarbe des Verkäufers</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">Ergänzend</span> Investitionsrechner</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="204_[UE]_A05_Investitionsrechner_allgemein.html">A05</a>
+  </div>
+  <p class="einstieg">Eine grössere Anschaffung lässt sich systematisch planen, indem verschiedene Finanzierungsvarianten durchgerechnet und verglichen werden.</p>
+  <p>Zur Planung gehören: die Höhe des <strong>Eigenkapitals</strong> (verfügbares Erspartes), der benötigte <strong>Fremdkapitalanteil</strong>, die daraus resultierenden <strong>monatlichen Raten</strong> sowie die <strong>Gesamtkosten</strong> der jeweiligen Variante über die ganze Laufzeit.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was gehört zu einer systematischen Finanzierungsplanung?</div>
+    <label>Nur der Kaufpreis</label>
+    <label data-ok>Eigenkapital, Fremdkapital, monatliche Raten und Gesamtkosten</label>
+    <label>Nur die monatliche Rate</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 6 ==================== -->
+<section>
+  <h2><span class="nr">Ergänzend</span> Abschreibung</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="204_[UE]_A06_Abschreibung_allgemein.html">A06</a>
+  </div>
+  <p class="einstieg">Die meisten Anschaffungen verlieren mit der Zeit an Wert. Wie stark und wie schnell, hängt von der gewählten Abschreibungsmethode ab.</p>
+  <table class="tb">
+    <tr><th>Methode</th><th>Merkmal</th></tr>
+    <tr><td><strong>Linear</strong></td><td>Der Wert sinkt über die Nutzungsdauer um einen gleichbleibenden Betrag pro Jahr.</td></tr>
+    <tr><td><strong>Degressiv</strong></td><td>Der Wert sinkt anfangs stärker und verlangsamt sich danach; der degressive Satz liegt in der Praxis oft etwa beim doppelten linearen Satz.</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Bei der degressiven Methode ist der Buchwert in den ersten Jahren tiefer als bei der linearen Methode – typisch für Fahrzeuge und Maschinen, die zu Beginn am stärksten an Wert verlieren.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Bei welcher Abschreibungsmethode sinkt der Wert anfangs am stärksten?</div>
+    <label>Linear</label>
+    <label data-ok>Degressiv</label>
+    <label>Bei beiden gleich</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 7 ==================== -->
+<section>
+  <h2><span class="nr">GES D3</span> Vermögensaufbau: Grundprinzipien</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="204_[UE]_A07_Vermoegensaufbau_Theorie_allgemein.html">A07</a>
+  </div>
+  <p class="einstieg">Wer früh beginnt zu sparen oder zu investieren, profitiert von einem mächtigen Effekt: dem Zinseszins.</p>
+  <div class="rechnung">
+    Zinseszinsformel:&nbsp;&nbsp;<b>K<sub>n</sub> = K<sub>0</sub> × (1 + i)<sup>n</sup></b><br>
+    K<sub>0</sub> = Anfangskapital · i = Zinssatz · n = Anzahl Jahre
+  </div>
+  <p>Nicht entnommene Erträge erwirtschaften selbst wieder Erträge – über viele Jahre macht das einen grossen Unterschied. Je früher man beginnt, desto stärker wirkt der Zinseszinseffekt.</p>
+  <table class="tb">
+    <tr><th>Anlageform</th><th>Merkmal</th></tr>
+    <tr><td><strong>Sparkonto</strong></td><td>Sehr sicher, aber meist tiefer Zins.</td></tr>
+    <tr><td><strong>ETF (z.&nbsp;B. MSCI World)</strong></td><td>Bündelt tausende Aktien in einem Produkt; breite Streuung senkt das Einzelrisiko, der Wert schwankt aber trotzdem.</td></tr>
+    <tr><td><strong>Einzelaktie</strong></td><td>Höheres Risiko als ein breit gestreuter ETF, da keine Streuung über viele Firmen.</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Höhere mögliche Rendite geht in der Regel mit höherem Risiko einher – Werte können steigen oder fallen, bei Aktien, ETF und v.&nbsp;a. Krypto-Assets teils deutlich.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Warum senkt ein breit gestreuter ETF das Risiko gegenüber einer Einzelaktie?</div>
+    <label>Weil ETFs keine Kursschwankungen haben</label>
+    <label data-ok>Weil das Geld auf viele Firmen verteilt ist statt auf eine einzelne</label>
+    <label>Weil ETFs staatlich garantiert sind</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 8 ==================== -->
+<section>
+  <h2><span class="nr">GES D3</span> Vermögensaufbau-Rechner</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="204_[UE]_A08_Vermoegensaufbau_Rechner_allgemein.html">A08</a>
+  </div>
+  <p class="einstieg">Die Zinseszinsformel aus LZ 7 lässt sich direkt anwenden, um zu sehen, wie stark sich unterschiedliche Zinssätze und Zeiträume auf einen Betrag auswirken.</p>
+  <p>Mit der Formel <span class="gesetz" style="font-family:'JetBrains Mono',monospace">K<sub>n</sub> = K<sub>0</sub> × (1 + i)<sup>n</sup></span> lässt sich für einen beliebigen Betrag durchrechnen, wie er sich bei unterschiedlichen Anlageformen (z.&nbsp;B. 0,5&nbsp;% Sparkonto vs. 4–6&nbsp;% breit gestreute Anlage) über mehrere Jahre entwickelt.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was passiert mit dem Endkapital, wenn die Laufzeit n bei gleichem Zinssatz verlängert wird?</div>
+    <label>Es bleibt gleich</label>
+    <label data-ok>Es wird durch den Zinseszinseffekt überproportional grösser</label>
+    <label>Es sinkt</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 9 ==================== -->
+<section>
+  <h2><span class="nr">GES D2</span> Sparstrategien</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="204_[UE]_A10_Sparstrategien_Vergleichen.html">A10</a>
+  </div>
+  <p class="einstieg">Nicht nur wie viel, sondern auch wie gespart wird, macht einen Unterschied. Einige Strategien funktionieren zuverlässiger als andere.</p>
+  <table class="tb">
+    <tr><th>Strategie</th><th>Merkmal</th></tr>
+    <tr><td><strong>Sich selbst zuerst bezahlen</strong> (Dauerauftrag)</td><td>Ein fester Betrag wird direkt am Lohntag automatisch auf ein separates Sparkonto überwiesen, bevor das Geld für andere Ausgaben «verschwindet».</td></tr>
+    <tr><td><strong>Übrig gebliebenes Geld sparen</strong></td><td>Funktioniert schlechter, da am Ende des Monats oft nichts mehr übrig ist – das Sparen bleibt dem Zufall überlassen.</td></tr>
+    <tr><td><strong>Jugend-Sparkonto</strong></td><td>Bietet einen (meist tiefen) Zins und Sicherheit vor Verlust; eine Kündigungsfrist erschwert zusätzlich spontanes Ausgeben.</td></tr>
+  </table>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Warum funktioniert «sich selbst zuerst bezahlen» meist besser als «übrig gebliebenes Geld sparen»?</div>
+    <label>Weil es einen höheren Zinssatz gibt</label>
+    <label data-ok>Weil das Sparen nicht vom zufällig übrig bleibenden Geld abhängt</label>
+    <label>Es gibt keinen Unterschied</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 10 ==================== -->
+<section>
+  <h2><span class="nr">Ergänzend</span> Lernkontrolle</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="204_[UE]_A09_Lernkontrolle_allgemein.html">A09</a>
+  </div>
+  <p class="einstieg">Diese Übung prüft das gesamte Wissen zu Finanzierungsarten, Investition und Vermögensaufbau aus den vorangehenden Abschnitten in kombinierter Form.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welche drei Themenbereiche deckt die Lernkontrolle zu Serie 204 gesamthaft ab?</div>
+    <label>Nur Sparstrategien</label>
+    <label data-ok>Finanzierungsarten, Investition und Vermögensaufbau</label>
+    <label>Nur Abschreibung</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 2 «Mein Geld» · Lebenssituation D</h2>
+  <p style="font-weight:700;margin-bottom:10px">Grössere Anschaffungen planen und finanzieren</p>
+  <table>
+    <tr><td class="lz">SUK D1</td><td>Ich begründe die Wahl einer passenden Finanzierungsart.</td></tr>
+    <tr><td class="lz">GES D1</td><td>Ich vergleiche mögliche Finanzierungsarten für grössere Anschaffungen.</td></tr>
+    <tr><td class="lz">GES D2</td><td>Ich vergleiche verschiedene Strategien des Sparens und beurteile deren Vor- und Nachteile für mich.</td></tr>
+    <tr><td class="lz">GES D3</td><td>Ich verstehe verschiedene Möglichkeiten des Vermögensaufbaus und kann ihre Chancen und Risiken einschätzen.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen (S. 24/25)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="204_Aufgaben.html"><strong>Übungen A01–A10 lösen</strong></a>.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
