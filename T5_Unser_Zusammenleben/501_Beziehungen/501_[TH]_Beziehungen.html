@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>501 · Theorie: Beziehungen &amp; Zusammenleben</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#E67F22; --t1-dark:#CA6F1E; --t1-light:#FDEBD0;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+.vertiefung-link{display:block;margin-top:10px;font-size:.82rem}
+.vertiefung-link a{color:var(--ink-soft);text-decoration:underline;text-decoration-style:dotted}
+.vertiefung-link a:hover{color:var(--t1)}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+.gesetz{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:#EEF1F5;border:1px solid var(--line);padding:2px 8px;border-radius:6px;white-space:nowrap}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.rechnung{font-family:'JetBrains Mono',monospace;font-size:.88rem;background:#1E2530;color:#E8ECF1;border-radius:10px;padding:14px 18px;margin:14px 0;overflow-x:auto}
+.rechnung b{color:#FFB4A8}
+details{border:1px solid var(--line);border-radius:10px;margin:12px 0;background:#FCFCFD}
+summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--t1-dark)}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .inner{padding:14px 16px;color:var(--ink-soft)}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+.ow-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;margin:6px 0;background:#FCFCFD;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;color:var(--ink-soft)}
+.ow-item input{margin-top:4px;accent-color:var(--t1)}
+.ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
+.dialog-box{background:#FAFAFB;border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:14px 0;font-size:.93rem}
+.dialog-box p{margin:8px 0;color:var(--ink-soft)}
+.dialog-box .who{font-weight:700;color:var(--t1-dark)}
+.ohr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:14px 0}
+.ohr-card{background:#FAFAFB;border:1.5px solid var(--line);border-radius:10px;padding:12px 14px}
+.ohr-card strong{display:block;color:var(--t1-dark);font-size:.88rem;margin-bottom:3px}
+.ohr-card span{font-size:.8rem;color:var(--ink-soft)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">501 · [TH]</span>
+  <h1>Theorie: Beziehungen &amp; Zusammenleben</h1>
+  <a class="nav" href="501_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Beziehungen begleiten das ganze Leben – zu Familie, Freundinnen und Freunden, Partnerinnen und Partnern, aber auch zu Vorgesetzten und Arbeitskolleginnen und -kollegen. Diese Theorie zeigt, wie Kommunikation in Beziehungen funktioniert und wo Missverständnisse entstehen, worin sich private und berufliche Beziehungen unterscheiden, welche Faktoren zu gelingenden Beziehungen beitragen und wie sich Rollen und Kommunikationsmuster in einem Dialog erkennen lassen.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">SUK A1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">SUK A1 · GES A1</span> Kommunikationsmodelle &amp; Beziehungsformen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="501_[UE]_A03_Kommunikationsmodelle_Vier_Ohren.html">A3</a>
+    <a href="501_[UE]_A04_Beziehungsformen_Beruflich_Privat.html">A4</a>
+  </div>
+  <p class="einstieg">Ob ein Satz als reine Information oder als Vorwurf ankommt, hängt stark davon ab, mit welchem «Ohr» er gehört wird – besonders in privaten Beziehungen. Und je nachdem, ob eine Beziehung privat oder beruflich ist, gelten unterschiedliche Regeln für Nähe, Distanz und Verbindlichkeit. Wer beides kennt, kommuniziert bewusster und ordnet Beziehungen realistischer ein.</p>
+
+  <h3>Das Vier-Ohren-Modell in Beziehungen</h3>
+  <p>Wie bereits in Serie 103 gelernt, enthält jede Nachricht nach dem Kommunikationsmodell von Friedemann Schulz von Thun vier Ebenen gleichzeitig:</p>
+  <div class="ohr-grid">
+    <div class="ohr-card"><strong>Sachebene</strong><span>Die reine Sachinformation.</span></div>
+    <div class="ohr-card"><strong>Selbstkundgabe</strong><span>Was die sendende Person von sich zeigt.</span></div>
+    <div class="ohr-card"><strong>Beziehungsebene</strong><span>Was die sendende Person vom Gegenüber hält.</span></div>
+    <div class="ohr-card"><strong>Appellebene</strong><span>Was beim Gegenüber erreicht werden soll.</span></div>
+  </div>
+  <p>In privaten Beziehungen (Partnerschaft, Familie, enge Freundschaften) wird die Beziehungsebene besonders stark «mitgehört» – auch wenn eine Aussage eigentlich sachlich gemeint ist. Der Satz «Die Ampel ist grün» kann auf der Beziehungsebene z.B. als «Du fährst zu langsam» ankommen, obwohl er rein sachlich gemeint war.</p>
+  <div class="merk"><b>Merke:</b> Missverständnisse entstehen oft, weil sendende und empfangende Person unterschiedliche Ebenen betonen. Wer bewusst prüft, mit welchem «Ohr» man gerade hört, bevor man reagiert, kann unnötige Konflikte in Beziehungen deutlich reduzieren.</div>
+
+  <h3>Private und berufliche Beziehungen im Vergleich</h3>
+  <p>Im Leben werden viele unterschiedliche Beziehungen eingegangen: private wie Partnerschaft, Familie und Freundschaft, aber auch berufliche wie zu Vorgesetzten, Berufsbildnerinnen/-bildnern, Arbeitskolleginnen und -kollegen oder Kundschaft. Jede Beziehungsform hat eigene, oft ungeschriebene Regeln.</p>
+  <table class="tb">
+    <tr><th>Private Beziehungen</th><th>Berufliche Beziehungen</th></tr>
+    <tr><td>Meist freiwillig eingegangen, basieren auf Sympathie oder Zuneigung, erlauben mehr emotionale Nähe</td><td>Meist nicht frei wählbar, folgen klareren Hierarchien und Rollen, erfordern professionelle Distanz</td></tr>
+    <tr><td>Jederzeit beendbar (Ausnahme: Ehe, eingetragene Partnerschaft)</td><td>An den Betrieb bzw. die Zusammenarbeit gebunden; bestimmte private Themen (Gesundheit, Finanzen, politische Ansichten) werden oft zurückhaltend besprochen</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Berufliche und private Beziehungen können sich überschneiden – etwa wenn aus Arbeitskolleginnen enge Freundinnen werden. Dann lohnt es sich, bewusst zu klären, welche Rolle gerade im Vordergrund steht, um <b>Rollenkonflikte</b> zu vermeiden.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Eine Person sagt sachlich «Es ist schon 19 Uhr», meint aber vielleicht mehr. Auf welcher Ebene wird diese Aussage in einer privaten Beziehung oft zusätzlich «gehört»?</div>
+    <label>Auf der Sachebene – reine Zeitangabe</label>
+    <label data-ok>Auf der Beziehungsebene – z.B. als Vorwurf zu spät zu sein</label>
+    <label>Auf der Selbstkundgabe-Ebene – nur eine Aussage über die eigene Uhr</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">SUK A2</span> Beziehungen pflegen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="501_[UE]_A05_Gute_Beziehungen_Pflegen_Reflexion.html">A5</a>
+  </div>
+  <p class="einstieg">Gelingende Beziehungen entstehen nicht von selbst – sie brauchen aktive Pflege. Aus der Beziehungsforschung lassen sich einige zentrale Faktoren nennen, die zu stabilen, guten Beziehungen beitragen und die sich in Partnerschaft, Familie und Freundschaft gleichermassen zeigen.</p>
+
+  <h3>Fünf Faktoren gelingender Beziehungen</h3>
+  <ul class="list">
+    <li><strong>Offene Kommunikation:</strong> regelmässig und ehrlich über Bedürfnisse, Erwartungen und Probleme sprechen, statt sie anzustauen.</li>
+    <li><strong>Gegenseitiger Respekt:</strong> die eigenständige Meinung, Grenzen und Bedürfnisse der anderen Person anerkennen.</li>
+    <li><strong>Verlässlichkeit:</strong> Versprechen einhalten und für die andere Person da sein, wenn es darauf ankommt.</li>
+    <li><strong>Zeit füreinander:</strong> bewusst gemeinsame Zeit einplanen, statt Beziehungen nur nebenbei laufen zu lassen.</li>
+    <li><strong>Konfliktfähigkeit:</strong> Meinungsverschiedenheiten konstruktiv austragen, statt sie zu vermeiden oder eskalieren zu lassen.</li>
+  </ul>
+  <div class="merk"><b>Merke:</b> Beziehungen sind nicht statisch – sie verändern sich durch neue Lebensphasen (z.B. Lehrbeginn, Auszug von zuhause) und brauchen deshalb immer wieder neue Aufmerksamkeit und Anpassung.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Zwei Freunde sprechen ihre Erwartungen nie offen an und lassen kleine Ärgernisse sich anstauen. Welcher Faktor gelingender Beziehungen fehlt hier vor allem?</div>
+    <label>Zeit füreinander</label>
+    <label data-ok>Offene Kommunikation</label>
+    <label>Verlässlichkeit</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">SUK A3</span> Dialoge und Rollen analysieren</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="501_[UE]_A06_Dialoge_Rollen_Analysieren.html">A6</a>
+  </div>
+  <p class="einstieg">In jedem Gespräch nehmen die beteiligten Personen bestimmte Rollen ein und zeigen typische Kommunikationsmuster – etwa zustimmend, kritisch oder abwehrend. Wer diese Muster in einem Dialog erkennt, kann besser einschätzen, wie ein Gespräch verläuft, und Vorschläge machen, wie es konstruktiver geführt werden könnte.</p>
+
+  <h3>Rollen und Muster erkennen</h3>
+  <p>Eine Aussage wie «Schon wieder? Ich hab dir letzte Woche auch schon geholfen.» zeigt eine <strong>kritische/abwehrende</strong> Reaktion: Die sprechende Person fühlt sich beansprucht und formuliert einen impliziten Vorwurf, statt die eigene Verfügbarkeit direkt anzusprechen. Antworten wie «Okay, verstehe» oder ein Gegenvorschlag zeigen dagegen eine <strong>zustimmende bzw. kooperative</strong> Haltung.</p>
+  <h3>Was eine Entschuldigung wirksam macht</h3>
+  <p>Ein Dialogverlauf kann sich deutlich verändern, wenn eine Person das eigene Verhalten anerkennt und einen nachvollziehbaren Grund nennt (z.B. Stress), statt sich zu rechtfertigen oder einen Vorwurf zurückzuweisen. Das macht es der Gegenseite leichter, kooperativ zu reagieren und eine Alternative vorzuschlagen.</p>
+  <div class="merk"><b>Merke:</b> Eine konfliktärmere Reaktion benennt die eigenen Bedürfnisse oder Grenzen klar als <b>Ich-Botschaft</b> (statt als Vorwurf), bleibt aber wertschätzend gegenüber dem Gegenüber – z.B. «Ich habe heute leider schon Pläne, aber ich helfe dir gerne am Wochenende» statt «Schon wieder?».</div>
+  <p>Solche Verbesserungsvorschläge lassen sich auch mit dem Vier-Ohren-Modell (Abschnitt <span class="nr" style="display:inline">SUK A1</span>) begründen: Wer eine Aussage bewusst zuerst auf der Sachebene prüft, statt sofort über das «Beziehungsohr» zu reagieren, kann eskalierende Muster durchbrechen.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welche Formulierung ist eine Ich-Botschaft statt eines Vorwurfs?</div>
+    <label>«Du fragst mich nie vorher, ob ich Zeit habe.»</label>
+    <label data-ok>«Ich habe heute leider schon Pläne, aber ich helfe dir gerne am Wochenende.»</label>
+    <label>«Schon wieder? Das kann doch nicht dein Ernst sein.»</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 5 «Unser Zusammenleben» · Lebenssituation A</h2>
+  <p style="font-weight:700;margin-bottom:10px">Beziehungen eingehen, pflegen und beenden</p>
+  <table>
+    <tr><td class="lz">SUK A1</td><td>Ich wende geeignete Grundsätze aus Kommunikationsmodellen situationsangepasst an.</td></tr>
+    <tr><td class="lz">GES A1</td><td>Ich unterscheide verschiedene Formen von Beziehungen im beruflichen und privaten Umfeld und erkenne deren Wesensmerkmale.</td></tr>
+    <tr><td class="lz">SUK A2</td><td>Ich diskutiere, was gute Beziehungen ausmacht und wie man sie pflegt.</td></tr>
+    <tr><td class="lz">SUK A3</td><td>Ich analysiere Dialoge in Bezug auf unterschiedliche gesellschaftliche Rollen und vergleiche, welche Kommunikationsform wann passend ist.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen, Auflage 2026 (S. 44). Das Orientierungswissen zu Thema 5 (S. 49) betrifft die Lebenssituationen B–E (Mietrecht, Konkubinat/Ehe, Menschenrechte) und nicht Lebenssituation A – für diesen Abschnitt sind keine eigenen Orientierungswissen-Punkte ausgewiesen.</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="501_Aufgaben.html"><strong>Übungen A3–A6 lösen</strong></a> → Beziehungen &amp; Zusammenleben vertiefen.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
