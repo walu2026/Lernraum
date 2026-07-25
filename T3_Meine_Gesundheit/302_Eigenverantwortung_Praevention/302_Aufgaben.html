@@ -24,6 +24,12 @@
   .d-desc { font-size:12px; color:var(--g5); line-height:1.5; }
   .no-ue-banner { display:flex; align-items:center; gap:12px; padding:12px 16px; background:#FFFBEB; border:1px solid #FDE68A; border-radius:10px; margin-bottom:1.5rem; font-size:12px; color:#92400E; line-height:1.5; }
   .no-ue-banner span { font-size:22px; flex-shrink:0; }
+  .th-card { display:flex; align-items:center; gap:14px; background:white; border:2px solid var(--accent); border-radius:14px; padding:16px 18px; margin-bottom:1.75rem; text-decoration:none; color:inherit; transition:all .15s; }
+  .th-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.08); transform:translateY(-1px); }
+  .th-card .th-icon { font-size:26px; flex-shrink:0; }
+  .th-card .th-title { font-size:14px; font-weight:700; color:var(--g9); margin-bottom:2px; }
+  .th-card .th-desc { font-size:11.5px; color:var(--g5); }
+  .th-card .th-arrow { margin-left:auto; font-size:18px; color:var(--accent); }
   .toggle-bar { display:flex; gap:6px; margin-bottom:1.25rem; }
   .toggle-btn { display:flex; align-items:center; gap:6px; padding:7px 14px; border-radius:8px; border:1.5px solid var(--g3); background:white; font-size:12px; font-weight:600; color:var(--g5); cursor:pointer; transition:all .15s; }
   .toggle-btn.active { background:var(--accent); border-color:var(--accent); color:white; }
@@ -95,6 +101,15 @@
     </div>
   </div>
 
+  <a class="th-card" href="302_[TH]_Praevention.html">
+    <span class="th-icon">📖</span>
+    <span>
+      <div class="th-title">Theorie zu dieser Serie</div>
+      <div class="th-desc">Lebensmittelpyramide, Prävention, Risikoprofil, Stigmatisierung – vor den Übungen lesen</div>
+    </span>
+    <span class="th-arrow">›</span>
+  </a>
+
   <div class="toggle-bar">
     <button class="toggle-btn active" id="btnLz" onclick="showView('lz')">📚 Nach Lernzielen</button>
     <button class="toggle-btn" id="btnA"  onclick="showView('a')">🔢 Nach Aufgaben-Nr.</button>
@@ -105,7 +120,7 @@
     <div class="lz-list">
       <div class="lz-row" style="--fc:#27AE61">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES B2</span></div>
         <div class="lz-body">
           <div class="lz-title">Bewegung &amp; Ernährung</div>
           <div class="lz-ziel">Ich begründe die Bedeutung von Ernährung und Bewegung für die Gesundheit.</div>
@@ -116,7 +131,7 @@
       </div>
       <div class="lz-row" style="--fc:#27AE61">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES B1</span></div>
         <div class="lz-body">
           <div class="lz-title">Prävention</div>
           <div class="lz-ziel">Ich analysiere meinen Lebensstil, erkläre Präventionsmassnahmen und wende sie auf meinen Berufsalltag an.</div>
@@ -128,7 +143,7 @@
       </div>
       <div class="lz-row" style="--fc:#27AE61">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">SUK+GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">GES B3 · B6</span></div>
         <div class="lz-body">
           <div class="lz-title">Risikoprofil &amp; Risiken im Alltag</div>
           <div class="lz-ziel">Ich erstelle und analysiere mein eigenes Risikoprofil und analysiere Risiken in meinem Alltag, um Gegenstrategien zu entwickeln.</div>
@@ -139,7 +154,7 @@
       </div>
       <div class="lz-row" style="--fc:#27AE61">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">GES B6</span></div>
         <div class="lz-body">
           <div class="lz-title">Neue Technologien</div>
           <div class="lz-ziel">Ich beurteile Chancen und Risiken neuer Technologien für die Gesundheit.</div>
@@ -150,7 +165,7 @@
       </div>
       <div class="lz-row" style="--fc:#27AE61">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">SUK B3</span></div>
         <div class="lz-body">
           <div class="lz-title">Lebensmittel bewusst einkaufen</div>
           <div class="lz-ziel">Ich entscheide bewusst, welche Lebensmittel ich kaufe, um meine Gesundheit zu fördern, nachhaltig zu konsumieren und mein Budget im Gleichgewicht zu halten.</div>
@@ -160,7 +175,7 @@
       </div>
       <div class="lz-row" style="--fc:#27AE61">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">6</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">6</span><span class="lz-fach">GES B5</span></div>
         <div class="lz-body">
           <div class="lz-title">Medien, Denken &amp; Stimmung</div>
           <div class="lz-ziel">Ich beurteile, wie Medien mein Denken, Handeln und meine Stimmung beeinflussen können.</div>
@@ -170,7 +185,7 @@
       </div>
       <div class="lz-row" style="--fc:#27AE61">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">7</span><span class="lz-fach">SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">7</span><span class="lz-fach">SUK B1</span></div>
         <div class="lz-body">
           <div class="lz-title">Gesundheitsthema audiovisuell</div>
           <div class="lz-ziel">Ich verstehe audiovisuelle Materialien zu Themen der Gesundheit und erstelle eine Zusammenfassung.</div>
@@ -180,7 +195,7 @@
       </div>
       <div class="lz-row" style="--fc:#27AE61">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">8</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">8</span><span class="lz-fach">GES B4</span></div>
         <div class="lz-body">
           <div class="lz-title">Werte in Freundschaften/Partnerschaften</div>
           <div class="lz-ziel">Ich erkenne, welche Werte mir in Freundschaften und Partnerschaften wichtig sind und handle danach.</div>
@@ -190,7 +205,7 @@
       </div>
       <div class="lz-row" style="--fc:#27AE61">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">9</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">9</span><span class="lz-fach">GES B7</span></div>
         <div class="lz-body">
           <div class="lz-title">Stigmatisierung psych. Erkrankungen</div>
           <div class="lz-ziel">Ich analysiere gesellschaftliche Ursachen für die Stigmatisierung psychisch erkrankter Menschen.</div>

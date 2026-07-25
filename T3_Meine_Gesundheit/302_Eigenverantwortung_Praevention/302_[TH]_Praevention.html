@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>302 · Theorie: Eigenverantwortung &amp; Prävention</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#27AE61; --t1-dark:#1E8449; --t1-light:#E8F8EF;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">302 · [TH]</span>
+  <h1>Theorie: Eigenverantwortung &amp; Prävention</h1>
+  <a class="nav" href="302_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Gesundheit lässt sich aktiv mitgestalten: durch Bewegung und Ernährung, durch das Erkennen und Absichern von Risiken, durch bewusste Mediennutzung und durch einen respektvollen Umgang mit psychischer Gesundheit. Diese Theorie zeigt die wichtigsten Grundlagen der Eigenverantwortung und Prävention.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES B2</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">GES B2</span> Bewegung &amp; Ernährung</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="302_[UE]_A01_Bewegung_Ernaehrung.html">A01</a>
+  </div>
+  <p class="einstieg">Ausgewogene Ernährung lässt sich mit der Schweizerischen Lebensmittelpyramide gut veranschaulichen: von der breiten Basis (grosse empfohlene Menge) bis zur Spitze (kleine empfohlene Menge).</p>
+  <table class="tb">
+    <tr><th>Stufe</th><th>Empfehlung</th></tr>
+    <tr><td><strong>1. Getränke</strong></td><td>Täglich 1–2 Liter, v.&nbsp;a. Wasser und ungezuckerte Tees.</td></tr>
+    <tr><td><strong>2. Gemüse &amp; Früchte</strong></td><td>5 Portionen täglich.</td></tr>
+    <tr><td><strong>3. Stärkebeilagen</strong></td><td>Getreideprodukte, Kartoffeln, Hülsenfrüchte, zu jeder Hauptmahlzeit.</td></tr>
+    <tr><td><strong>4. Eiweissquellen</strong></td><td>Milchprodukte, Fleisch, Fisch, Eier, Tofu – täglich massvoll.</td></tr>
+    <tr><td><strong>5. Öle, Fette &amp; Nüsse</strong></td><td>Täglich in kleinen Mengen.</td></tr>
+    <tr><td><strong>6. Süsses, Salziges &amp; Alkohol</strong></td><td>Die Spitze: bewusst und in kleinen Mengen geniessen.</td></tr>
+  </table>
+  <p style="font-size:.82rem">Quelle: Schweizerische Gesellschaft für Ernährung (SGE), Lebensmittelpyramide.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Wie viele Portionen Gemüse und Früchte empfiehlt die Lebensmittelpyramide täglich?</div>
+    <label>2</label>
+    <label data-ok>5</label>
+    <label>10</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES B1</span> Prävention</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="302_[UE]_A02_Lebensstil.html">A02</a>
+    <a href="302_[UE]_A03_Praevention_Lueckentext.html">A03</a>
+  </div>
+  <p class="einstieg">Prävention bedeutet, vorbeugende Massnahmen zu ergreifen, statt erst zu reagieren, wenn ein Problem bereits eingetreten ist. Man unterscheidet drei Stufen.</p>
+  <table class="tb">
+    <tr><th>Stufe</th><th>Bedeutung</th><th>Beispiel</th></tr>
+    <tr><td><strong>Primärprävention</strong></td><td>Verhindert, dass ein Problem überhaupt entsteht.</td><td>Impfungen, gesunde Ernährung, Bewegung</td></tr>
+    <tr><td><strong>Sekundärprävention</strong></td><td>Erkennt ein Problem frühzeitig.</td><td>Vorsorgeuntersuchungen</td></tr>
+    <tr><td><strong>Tertiärprävention</strong></td><td>Mildert die Folgen eines bereits eingetretenen Problems.</td><td>Rehabilitation, Rückfallprävention</td></tr>
+  </table>
+  <p>Der eigene Lebensstil (Bewegung, Ernährung, Stress, Sucht-/Genussmittel, Selbstwertgefühl) lässt sich strukturiert analysieren, um gezielte Verbesserungsmöglichkeiten abzuleiten. Wichtige präventive Alltagsfaktoren sind zudem: Impfungen (schützen z.&nbsp;B. vor Starrkrampf, Hepatitis), Vorsicht im Strassenverkehr (übersetzte Geschwindigkeit und Alkohol sind häufige Unfallursachen), das Befolgen von SUVA-Richtlinien am Arbeitsplatz sowie Entspannung, ausreichend Schlaf und geselliges Beisammensein gegen negative Stressfolgen.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Zu welcher Präventionsstufe gehört eine Impfung?</div>
+    <label data-ok>Primärprävention</label>
+    <label>Sekundärprävention</label>
+    <label>Tertiärprävention</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">GES B3 · B6</span> Risikoprofil &amp; Risiken im Alltag</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="302_[UE]_A05_Risiken_Skitour.html">A05</a>
+  </div>
+  <p class="einstieg">Risiken lassen sich mit einem einfachen Drei-Schritte-Modell systematisch angehen.</p>
+  <table class="tb">
+    <tr><th>Schritt</th><th>Bedeutung</th></tr>
+    <tr><td><strong>Erkennen</strong></td><td>Welche Gefahren bestehen in einer Situation überhaupt?</td></tr>
+    <tr><td><strong>Vermeiden</strong></td><td>Welche Risiken lassen sich durch eigenes Verhalten reduzieren oder umgehen?</td></tr>
+    <tr><td><strong>Absichern</strong></td><td>Welche verbleibenden Risiken lassen sich durch Vorsichtsmassnahmen oder Versicherungen abfedern?</td></tr>
+  </table>
+  <p>Dieses Modell lässt sich auf ganz unterschiedliche Situationen übertragen – von einer Skitour bis zu Alltagsrisiken im Beruf – und bildet die Basis für ein eigenes, persönliches Risikoprofil.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: In welcher Reihenfolge geht das Risikomodell vor?</div>
+    <label>Absichern → Vermeiden → Erkennen</label>
+    <label data-ok>Erkennen → Vermeiden → Absichern</label>
+    <label>Vermeiden → Absichern → Erkennen</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">GES B6</span> Neue Technologien</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="302_[UE]_A04_Neue_Technologien.html">A04</a>
+  </div>
+  <p class="einstieg">Neue Technologien wirken auf viele Menschen bedrohlicher als vertraute Risiken – auch wenn die tatsächliche Gefahr geringer sein kann.</p>
+  <p>Dieses Phänomen heisst <strong>Risikoüberschätzung</strong>: Unbekannte oder neue Risiken werden subjektiv oft als gefährlicher eingeschätzt, während vertraute, gewohnte Risiken (z.&nbsp;B. Autofahren) eher unterschätzt werden. Ängste vor neuen Technologien beruhen deshalb oft eher auf Unkenntnis oder Gewöhnung als auf einer tatsächlich höheren objektiven Gefahr.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Warum wirken neue Technologien oft bedrohlicher als vertraute Risiken?</div>
+    <label>Weil sie objektiv immer gefährlicher sind</label>
+    <label data-ok>Weil Unbekanntes subjektiv oft als gefährlicher eingeschätzt wird als Gewohntes</label>
+    <label>Weil sie gesetzlich schlechter reguliert sind</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">SUK B3</span> Lebensmittel bewusst einkaufen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="302_[UE]_A07_Lebensmittel_Bewusst_Einkaufen.html">A07</a>
+  </div>
+  <p class="einstieg">Beim Einkaufen treffen drei Anliegen aufeinander: Gesundheit, Nachhaltigkeit und das eigene Budget. Ein paar einfache Überlegungen helfen, gute Kompromisse zu finden.</p>
+  <ul class="list">
+    <li><strong>Saisonal und regional einkaufen:</strong> oft günstiger, frischer und durch kürzere Transportwege ökologischer als Importware ausserhalb der Saison.</li>
+    <li><strong>Zutatenliste statt Werbeversprechen lesen:</strong> Aufschriften wie «natürlich» sagen wenig über den Nährwert aus – die nach Menge sortierte Zutatenliste und Nährwerttabelle geben ehrlichere Auskunft.</li>
+    <li><strong>Foodwaste vermeiden:</strong> eine Einkaufsliste auf Basis eines groben Menüplans verhindert Spontankäufe, die im Kühlschrank verderben.</li>
+  </ul>
+  <div class="merk"><b>Merke:</b> Teurer ist nicht automatisch gesünder – Grundnahrungsmittel wie Hülsenfrüchte, Vollkornprodukte oder Wasser statt Süssgetränke sind oft günstiger als stark verarbeitete Convenience-Produkte. Gesundheit und ein knappes Budget schliessen sich nicht zwingend aus.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Woran erkennt man den tatsächlichen Nährwert eines Produkts am zuverlässigsten?</div>
+    <label>An Werbeaufschriften wie «natürlich»</label>
+    <label data-ok>An der Zutatenliste und Nährwerttabelle</label>
+    <label>Am Preis</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 6 ==================== -->
+<section>
+  <h2><span class="nr">GES B5</span> Medien, Denken &amp; Stimmung</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="302_[UE]_A08_Medien_Denken_Stimmung.html">A08</a>
+  </div>
+  <p class="einstieg">Mediennutzung beeinflusst nicht nur, was man weiss, sondern auch, wie man sich fühlt.</p>
+  <p>Auf Social Media werden meist die sorgfältig ausgewählten Höhepunkte aus dem Leben anderer gezeigt. Ständige Vergleiche mit diesen «Highlight-Ausschnitten» können das eigene Selbstbild belasten, auch wenn der Vergleich objektiv unfair ist – man vergleicht das eigene, vollständige Leben mit den ausgewählten Glanzmomenten anderer.</p>
+  <div class="merk"><b>Merke:</b> Algorithmisch verstärkte, emotional aufwühlende Inhalte und späte Bildschirmnutzung können die Stimmung zusätzlich belasten und den Schlaf stören. Bildschirmfreie Abendzeiten oder eine bewusste Social-Media-Pause können helfen.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Warum kann der Vergleich mit anderen auf Social Media das Selbstbild unfair belasten?</div>
+    <label>Weil dort immer die Wahrheit gezeigt wird</label>
+    <label data-ok>Weil meist nur sorgfältig ausgewählte Höhepunkte gezeigt werden, nicht der ganze Alltag</label>
+    <label>Weil Social Media reguliert ist</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 7 ==================== -->
+<section>
+  <h2><span class="nr">SUK B1</span> Gesundheitsthema audiovisuell</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="302_[UE]_A06_Gesundheitsthema_Audiovisuell.html">A06</a>
+  </div>
+  <p class="einstieg">Diese Übung trainiert das Verstehen audiovisueller Materialien zu Gesundheitsthemen und das Zusammenfassen des Inhalts in eigenen Worten.</p>
+  <p>Beim Zusammenfassen eines audiovisuellen Beitrags helfen: die zentrale Aussage in ein bis zwei Sätzen festhalten, die wichtigsten Argumente/Fakten stichwortartig notieren und die Quelle (Titel, Anbieter) angeben.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was gehört zu einer guten Zusammenfassung eines audiovisuellen Beitrags?</div>
+    <label>Eine vollständige Wort-für-Wort-Abschrift</label>
+    <label data-ok>Zentrale Aussage, wichtigste Argumente und Quellenangabe</label>
+    <label>Nur die eigene Meinung dazu</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 8 ==================== -->
+<section>
+  <h2><span class="nr">GES B4</span> Werte in Freundschaften &amp; Partnerschaften</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="302_[UE]_A09_Werte_Freundschaft_Partnerschaft.html">A09</a>
+  </div>
+  <p class="einstieg">Gute zwischenmenschliche Beziehungen tragen wesentlich zur psychischen Gesundheit bei – welche Werte dabei zählen, ist individuell, aber einige kehren immer wieder.</p>
+  <p>Zentrale Werte in Freundschaften und Partnerschaften sind u.&nbsp;a. <strong>Vertrauen</strong>, <strong>Ehrlichkeit</strong> und <strong>Respekt</strong>. Solche Beziehungen geben Rückhalt in schwierigen Zeiten, stärken das Selbstwertgefühl und wirken einem Gefühl der Isolation entgegen. Werden zentrale Werte wiederholt verletzt, kann das eine Beziehung stark belasten – umgekehrt stärken gemeinsam gelebte Werte den Zusammenhalt.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Warum sind gute Freundschaften/Partnerschaften für die psychische Gesundheit relevant?</div>
+    <label>Sie sind irrelevant für die Gesundheit</label>
+    <label data-ok>Sie geben Rückhalt, stärken das Selbstwertgefühl und wirken Isolation entgegen</label>
+    <label>Nur wegen der finanziellen Vorteile</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 9 ==================== -->
+<section>
+  <h2><span class="nr">GES B7</span> Stigmatisierung psychischer Erkrankungen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="302_[UE]_A10_Stigmatisierung_Psychische_Erkrankungen.html">A10</a>
+  </div>
+  <p class="einstieg">Psychische Erkrankungen sind weit verbreitet, werden aber oft anders behandelt als körperliche Erkrankungen.</p>
+  <p>Betroffene werden häufig mit Vorurteilen konfrontiert, als «schwach» oder «nicht belastbar» abgestempelt, oder meiden es aus Angst vor solchen Reaktionen, offen über ihre Erkrankung zu sprechen. Dieses Phänomen nennt man <strong>Stigmatisierung</strong>.</p>
+  <div class="merk"><b>Folgen:</b> Stigmatisierung kann dazu führen, dass Betroffene aus Scham keine professionelle Hilfe suchen, ihre Erkrankung verheimlichen oder sich sozial zurückziehen – das verzögert die Behandlung und verstärkt die Belastung zusätzlich.</div>
+  <p>Was hilft: offene, sachliche Gespräche über psychische Gesundheit, korrekte Informationen statt Vorurteile, und eine Sprache, die die Person nicht auf ihre Erkrankung reduziert (z.&nbsp;B. «eine Person mit Depression» statt «ein Depressiver»).</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was ist eine typische Folge von Stigmatisierung?</div>
+    <label>Betroffene suchen schneller professionelle Hilfe</label>
+    <label data-ok>Betroffene verheimlichen die Erkrankung oder ziehen sich zurück</label>
+    <label>Die Erkrankung heilt dadurch schneller</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 3 «Meine Gesundheit» · Lebenssituation B</h2>
+  <p style="font-weight:700;margin-bottom:10px">Verantwortung für die Gesundheit tragen</p>
+  <table>
+    <tr><td class="lz">SUK B1</td><td>Ich verstehe audiovisuelle Materialien zu Themen der Gesundheit und erstelle eine Zusammenfassung.</td></tr>
+    <tr><td class="lz">GES B1</td><td>Ich beschreibe verschiedene Bereiche der Gesundheit, in denen ich wirksam Prävention betreiben kann.</td></tr>
+    <tr><td class="lz">GES B2</td><td>Ich analysiere meine Ernährungsgewohnheiten im Vergleich zu den Ernährungsempfehlungen der schweizerischen Lebensmittelpyramide.</td></tr>
+    <tr><td class="lz">SUK B3</td><td>Ich entscheide bewusst, welche Lebensmittel ich kaufe, um meine Gesundheit zu fördern, nachhaltig zu konsumieren und mein Budget im Gleichgewicht zu halten.</td></tr>
+    <tr><td class="lz">GES B3</td><td>Ich erstelle und analysiere mein eigenes Risikoprofil.</td></tr>
+    <tr><td class="lz">GES B4</td><td>Ich erkenne, welche Werte mir in Freundschaften und Partnerschaften wichtig sind und handle danach.</td></tr>
+    <tr><td class="lz">GES B5</td><td>Ich beurteile, wie Medien mein Denken, Handeln und meine Stimmung beeinflussen können.</td></tr>
+    <tr><td class="lz">GES B6</td><td>Ich analysiere Risiken in meinem Alltag und entwickle Gegenstrategien.</td></tr>
+    <tr><td class="lz">GES B7</td><td>Ich analysiere gesellschaftliche Ursachen für die Stigmatisierung psychisch erkrankter Menschen.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen (S. 29/30/34)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="302_Aufgaben.html"><strong>Übungen A01–A10 lösen</strong></a>.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
