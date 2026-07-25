@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>303 · Theorie: Kranken- &amp; Unfallversicherung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#27AE61; --t1-dark:#1E8449; --t1-light:#E8F8EF;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.rechnung{font-family:'JetBrains Mono',monospace;font-size:.88rem;background:#1E2530;color:#E8ECF1;border-radius:10px;padding:14px 18px;margin:14px 0;overflow-x:auto}
+.rechnung b{color:#8FE0B0}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+.ow-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;margin:6px 0;background:#FCFCFD;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;color:var(--ink-soft)}
+.ow-item input{margin-top:4px;accent-color:var(--t1)}
+.ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">303 · [TH]</span>
+  <h1>Theorie: Kranken- &amp; Unfallversicherung</h1>
+  <a class="nav" href="303_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Das Schweizer Versicherungssystem beruht auf Solidarität und ist in mehrere Säulen und Versicherungsarten gegliedert. Diese Theorie zeigt, wie Kranken- und Unfallversicherung funktionieren, was Prämie, Franchise und Selbstbehalt bedeuten und wie sich Über- oder Unterversicherung auswirken.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES C2</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">GES</span> Drei Säulen &amp; Solidaritätsprinzip</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="303_[UE]_A01_Solidaritaetsprinzip.html">A01</a>
+    <a href="303_[UE]_A02_Drei_Saeulen.html">A02</a>
+    <a href="303_[UE]_A03_Versicherungsbegriffe.html">A03</a>
+  </div>
+  <p class="einstieg">Das Schweizer Vorsorge- und Versicherungssystem beruht auf zwei Grundideen: Solidarität zwischen den Versicherten und ein Drei-Säulen-Modell für die Altersvorsorge.</p>
+  <div class="merk"><b>Solidaritätsprinzip:</b> Gesunde zahlen für Kranke, Junge für Alte. Damit sind alle abgesichert, unabhängig vom individuellen Risiko – das Prinzip gerät jedoch unter Druck, wenn Kosten stark steigen.</div>
+  <table class="tb">
+    <tr><th>Säule</th><th>Merkmal</th></tr>
+    <tr><td><strong>1. Säule (staatlich)</strong></td><td>AHV/IV – sichert die Existenz, aber meist nicht den gewohnten Lebensstandard.</td></tr>
+    <tr><td><strong>2. Säule (beruflich)</strong></td><td>Pensionskasse (BVG) – ergänzt die 1. Säule, abhängig vom Lohn.</td></tr>
+    <tr><td><strong>3. Säule (privat)</strong></td><td>Freiwillig, steuerlich begünstigt – schliesst die Lücke zum gewohnten Lebensstandard.</td></tr>
+  </table>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was bedeutet das Solidaritätsprinzip in der Krankenversicherung?</div>
+    <label>Jede Person zahlt nur für die eigenen Kosten</label>
+    <label data-ok>Gesunde zahlen für Kranke, Junge für Alte</label>
+    <label>Nur der Staat zahlt die Prämien</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES C2 · C3</span> Krankenversicherung wählen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="303_[UE]_A04_Versicherungen_Tabelle.html">A04</a>
+    <a href="303_[UE]_A05_Krankenversicherung.html">A05</a>
+    <a href="303_[UE]_A06_Franchise_Selbstbehalt.html">A06</a>
+    <a href="303_[UE]_A07_Praemien_sparen.html">A07</a>
+  </div>
+  <p class="einstieg">Prämie, Franchise und Selbstbehalt spielen bei jedem Arztbesuch zusammen. Wer diese Begriffe versteht, kann Krankenkassenkosten gezielt beeinflussen.</p>
+  <table class="tb">
+    <tr><th>Begriff</th><th>Bedeutung</th></tr>
+    <tr><td><strong>Prämie</strong></td><td>Der regelmässige (meist monatliche) Preis für die Versicherung.</td></tr>
+    <tr><td><strong>Franchise</strong></td><td>Der Betrag, den die versicherte Person pro Jahr zuerst selbst bezahlt, bevor die Kasse übernimmt.</td></tr>
+    <tr><td><strong>Selbstbehalt</strong></td><td>Zusätzlich 10&nbsp;% der Kosten, die über die Franchise hinausgehen, trägt die versicherte Person weiterhin selbst (bis zu einem jährlichen Maximum).</td></tr>
+  </table>
+  <div class="rechnung">
+    Beispiel: Franchise Fr.&nbsp;300.–, Rechnung Fr.&nbsp;500.–<br>
+    Franchise: <b>Fr. 300.–</b> (selbst bezahlt)<br>
+    Rest: Fr. 500.– − Fr. 300.– = Fr. 200.– → davon 10 % Selbstbehalt = <b>Fr. 20.–</b><br>
+    Ich zahle total: 300 + 20 = <b>Fr. 320.–</b> · Die Kasse zahlt: <b>Fr. 180.–</b>
+  </div>
+  <h3>Prämien sparen</h3>
+  <ul class="list">
+    <li><strong>Höhere Franchise wählen</strong> – senkt die Prämie, setzt aber eine finanzielle Reserve voraus.</li>
+    <li><strong>Hausarzt- oder HMO-Modell</strong> – verlangt, zuerst eine bestimmte Anlaufstelle zu kontaktieren, statt frei zum Spezialisten zu gehen.</li>
+    <li><strong>Prämien vergleichen</strong> – die Prämien unterscheiden sich je nach Kasse und Modell teils deutlich.</li>
+    <li><strong>Prämienverbilligung</strong> – für Personen mit tiefem Einkommen oft wichtiger als die Wahl einer hohen Franchise.</li>
+  </ul>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Franchise Fr. 300.–, Rechnung Fr. 500.–. Wie viel zahlt die versicherte Person total (inkl. 10 % Selbstbehalt)?</div>
+    <label>Fr. 300.–</label>
+    <label data-ok>Fr. 320.–</label>
+    <label>Fr. 500.–</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">GES C2</span> Grund- &amp; Zusatzversicherung</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="303_[UE]_A08_Krankenkasse_finden.html">A08</a>
+    <a href="303_[UE]_A09_Grund_Zusatzversicherung.html">A09</a>
+  </div>
+  <p class="einstieg">Nicht jede Leistung ist gleich abgesichert: Die obligatorische Grundversicherung deckt das Nötigste, alles Zusätzliche ist freiwillig und kostet extra.</p>
+  <table class="tb">
+    <tr><th>Leistung</th><th>Versicherungsart</th></tr>
+    <tr><td>Spitalaufenthalt allgemeine Abteilung</td><td>Grundversicherung</td></tr>
+    <tr><td>Verordnete Medikamente</td><td>Grundversicherung</td></tr>
+    <tr><td>Zweier-/Einzelzimmer bei Spitalaufenthalt</td><td>Zusatzversicherung</td></tr>
+    <tr><td>Zahnkorrektur</td><td>Zusatzversicherung</td></tr>
+    <tr><td>Spitaltaggeld</td><td>Zusatzversicherung</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Die Grundversicherung ist für alle Krankenkassen gesetzlich gleich (KVG) und obligatorisch. Zusatzversicherungen sind freiwillig, unterscheiden sich zwischen Anbietern und können bei Vorerkrankungen abgelehnt werden.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Wird ein Einzelzimmer bei einem Spitalaufenthalt von der Grund- oder der Zusatzversicherung gedeckt?</div>
+    <label>Grundversicherung</label>
+    <label data-ok>Zusatzversicherung</label>
+    <label>Weder noch</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">GES C1 · C2</span> Versicherungsfälle</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="303_[UE]_A11_SUVA_Vorschriften.html">A11</a>
+    <a href="303_[UE]_A12_Versicherungsfaelle.html">A12</a>
+    <a href="303_[UE]_A13_Unterversicherung.html">A13</a>
+    <a href="303_[UE]_A14_Selbstbehalt_Junglenker.html">A14</a>
+  </div>
+  <p class="einstieg">Je nachdem, ob ein Vorfall bei der Arbeit, in der Freizeit oder als Krankheit auftritt, ist eine andere Versicherung zuständig – und auch bei Sachversicherungen lohnt sich ein genauer Blick auf die Versicherungssumme.</p>
+  <table class="tb">
+    <tr><th>Fall</th><th>Zuständig</th></tr>
+    <tr><td><strong>Berufsunfall (BU)</strong></td><td>Unfall während der Arbeitszeit oder auf dem direkten Arbeitsweg.</td></tr>
+    <tr><td><strong>Nichtberufsunfall (NBU)</strong></td><td>Unfall in der Freizeit – mitversichert, wenn mindestens 8 Std./Woche beim selben Arbeitgeber gearbeitet wird.</td></tr>
+    <tr><td><strong>Krankenversicherung (KK)</strong></td><td>Zuständig bei Krankheit (kein Unfallereignis).</td></tr>
+  </table>
+  <div class="merk"><b>Unterversicherung:</b> Ist z.&nbsp;B. Hausrat im Wert von Fr.&nbsp;80'000.– nur für Fr.&nbsp;50'000.– versichert, wird ein Schaden meist nur anteilig ersetzt (hier im Verhältnis 5/8) – die Versicherungssumme sollte deshalb regelmässig an den tatsächlichen Wert angepasst werden.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Ab wie vielen Stunden pro Woche beim selben Arbeitgeber ist die Nichtberufsunfallversicherung (NBU) obligatorisch mitversichert?</div>
+    <label>Ab 1 Stunde</label>
+    <label data-ok>Ab 8 Stunden</label>
+    <label>Ab 40 Stunden</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">SUK C1</span> Unfallbericht analysieren &amp; verfassen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="303_[UE]_A15_Unfallbericht_Analysieren_Verfassen.html">A15</a>
+  </div>
+  <p class="einstieg">Diese Übung trainiert, einen Unfallbericht aus aktueller Medienberichterstattung zu analysieren und selbst einen eigenen, sachlichen Bericht zu verfassen.</p>
+  <p>Ein guter Unfallbericht beantwortet die W-Fragen (wer, was, wann, wo, wie, warum) knapp und sachlich, unterscheidet zwischen gesicherten Fakten und Vermutungen und ordnet den Vorfall – sofern relevant – der passenden Versicherungsart zu (siehe LZ&nbsp;4).</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was gehört zwingend in einen sachlichen Unfallbericht?</div>
+    <label>Nur die eigene Meinung zum Vorfall</label>
+    <label data-ok>Die W-Fragen, klar getrennt von blossen Vermutungen</label>
+    <label>Ausschliesslich technische Fachbegriffe</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 6 ==================== -->
+<section>
+  <h2><span class="nr">SUK C3</span> Meinung zu einem gesundheitspolitischen Thema</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="303_[UE]_A16_Meinung_Gesundheitspolitisches_Thema.html">A16</a>
+  </div>
+  <p class="einstieg">Ob steigende Krankenkassenprämien oder das Solidaritätsprinzip: Gesundheitspolitische Themen betreffen alle direkt – eine begründete eigene Meinung dazu zu formulieren, ist eine wichtige Kompetenz.</p>
+  <p>Eine überzeugende Meinungsäusserung nennt eine klare Position, stützt sie mit mindestens einem nachvollziehbaren Argument (idealerweise mit einem Fakt oder Beispiel aus dieser Theorie, z.&nbsp;B. Solidaritätsprinzip, Prämien/Franchise) und geht auch auf ein Gegenargument ein.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was macht eine gute schriftliche Meinungsäusserung aus?</div>
+    <label>Nur eine Behauptung ohne Begründung</label>
+    <label data-ok>Klare Position, Argument mit Beispiel/Fakt, Berücksichtigung eines Gegenarguments</label>
+    <label>Möglichst viele Fachbegriffe ohne Erklärung</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="nr">SLP</span> Orientierungswissen – Ich kann …</h2>
+  <p>Direkt aus dem Schullehrplan (Thema 3). Abhaken, was bereits sicher beherrscht wird – der Rest ist der individuelle Lernauftrag:</p>
+  <div id="ow">
+    <label class="ow-item"><input type="checkbox"> … die Funktion einer Versicherung anhand des Solidaritätsprinzips erklären.</label>
+    <label class="ow-item"><input type="checkbox"> … die drei Versicherungsarten aufzählen und diesen wichtige Versicherungen zuordnen.</label>
+    <label class="ow-item"><input type="checkbox"> … vier Leistungen der Grundversicherung der Krankenkasse aufzählen.</label>
+    <label class="ow-item"><input type="checkbox"> … drei Leistungen der Zusatzversicherung aufzählen.</label>
+    <label class="ow-item"><input type="checkbox"> … Begriffe Police, Prämie, Franchise und Selbstbehalt erklären.</label>
+    <label class="ow-item"><input type="checkbox"> … drei Sparmöglichkeiten bei der Krankenversicherungsprämie aufzählen.</label>
+  </div>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 3 «Meine Gesundheit» · Lebenssituation C</h2>
+  <p style="font-weight:700;margin-bottom:10px">Mit allfälligen Krankheiten und Unfällen umgehen</p>
+  <table>
+    <tr><td class="lz">SUK C1</td><td>Ich analysiere einen Unfallbericht aus der aktuellen Medienberichterstattung und bin in der Lage, einen eigenen Bericht zu verfassen.</td></tr>
+    <tr><td class="lz">GES C1</td><td>Ich unterscheide zwischen Krankheit, Nichtberufs- und Berufsunfällen und kenne die dazugehörigen Merkmale und Folgen.</td></tr>
+    <tr><td class="lz">SUK C2</td><td>Ich analysiere meine eigene Krankenversicherungssituation, indem ich meine Police untersuche und alternative Angebote prüfe.</td></tr>
+    <tr><td class="lz">GES C2</td><td>Ich verstehe die Funktionsweise der obligatorischen Krankenversicherung sowie Möglichkeiten, wie ich meine Kosten senken kann.</td></tr>
+    <tr><td class="lz">SUK C3</td><td>Ich formuliere zu einem aktuellen gesundheitspolitischen Thema meine Meinung.</td></tr>
+    <tr><td class="lz">GES C3</td><td>Ich löse Fallbeispiele von Krankenkassenabrechnungen mit unterschiedlichen Franchisen.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen (S. 31/34)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="303_Aufgaben.html"><strong>Übungen lösen</strong></a>.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
