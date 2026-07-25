@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>504 · Theorie: Multikulturelles Leben</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#E67F22; --t1-dark:#CA6F1E; --t1-light:#FDEBD0;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+.vertiefung-link{display:block;margin-top:10px;font-size:.82rem}
+.vertiefung-link a{color:var(--ink-soft);text-decoration:underline;text-decoration-style:dotted}
+.vertiefung-link a:hover{color:var(--t1)}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+.gesetz{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:#EEF1F5;border:1px solid var(--line);padding:2px 8px;border-radius:6px;white-space:nowrap}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.rechnung{font-family:'JetBrains Mono',monospace;font-size:.88rem;background:#1E2530;color:#E8ECF1;border-radius:10px;padding:14px 18px;margin:14px 0;overflow-x:auto}
+.rechnung b{color:#FFB4A8}
+details{border:1px solid var(--line);border-radius:10px;margin:12px 0;background:#FCFCFD}
+summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--t1-dark)}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .inner{padding:14px 16px;color:var(--ink-soft)}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+.ow-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;margin:6px 0;background:#FCFCFD;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;color:var(--ink-soft)}
+.ow-item input{margin-top:4px;accent-color:var(--t1)}
+.ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">504 · [TH]</span>
+  <h1>Theorie: Multikulturelles Leben</h1>
+  <a class="nav" href="504_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Die Schweiz ist gesellschaftlich vielfältig – geprägt durch Migration, Mehrsprachigkeit und unterschiedliche kulturelle Hintergründe. Diese Theorie zeigt, woher diese Vielfalt kommt und welche Folgen sie hat, was Diskriminierung im Alltag bedeutet, wie weit der Staat Grundrechte einschränken darf, was die Antirassismusstrafnorm schützt – und regt dazu an, die eigene kulturelle Prägung zu reflektieren.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">GES D1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">GES D1</span> Gesellschaftliche Vielfalt: Ursachen und Folgen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="504_[UE]_A01_Gesellschaftliche_Vielfalt_Ursachen_Folgen.html">A01</a>
+  </div>
+  <p class="einstieg">Dass in der Schweiz Menschen mit ganz unterschiedlichem Hintergrund zusammenleben, hat konkrete historische und wirtschaftliche Ursachen. Diese Vielfalt bringt sowohl Chancen als auch Reibungsflächen mit sich – wer beides kennt, kann bewusster damit umgehen.</p>
+  <h3>Woher kommt die gesellschaftliche Vielfalt der Schweiz?</h3>
+  <ul class="list">
+    <li><strong>Arbeitsmigration:</strong> Seit den 1950er-Jahren warb die Schweizer Wirtschaft gezielt ausländische Arbeitskräfte an (u.a. Süditalien, später weitere Länder).</li>
+    <li><strong>Personenfreizügigkeit</strong> mit der EU/EFTA seit 2002 erleichtert Zuwanderung aus Europa für Arbeit und Ausbildung.</li>
+    <li><strong>Flucht und Asyl:</strong> Menschen aus Konflikt- oder Krisenregionen suchen in der Schweiz Schutz.</li>
+    <li><strong>Binnenmobilität:</strong> Auch innerhalb der Schweiz führen die vier Landessprachen und regionale Kulturen zu Vielfalt.</li>
+  </ul>
+  <p>Ende 2025 lag der Anteil der ständigen ausländischen Wohnbevölkerung an der Gesamtbevölkerung der Schweiz bei rund <strong>26 %</strong> (rund 2,4 Mio. Personen, provisorische Zahlen).</p>
+  <h3>Chancen und Herausforderungen</h3>
+  <table class="tb">
+    <tr><th>Chancen</th><th>Herausforderungen</th></tr>
+    <tr><td>Vielfalt an Sprachkenntnissen und Perspektiven, gegenseitiges Lernen, unterschiedliche Lösungsansätze bei Problemen</td><td>Missverständnisse durch unterschiedliche Kommunikationsstile, unterschiedliche Wertvorstellungen, mögliche Vorurteile</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Gesellschaftliche Vielfalt ist kein Sonderfall, sondern seit Jahrzehnten Alltag in der Schweiz – entscheidend ist, wie konstruktiv damit umgegangen wird, z.B. im Lehrbetrieb oder in der Klasse.</div>
+  <p style="font-size:.85rem">Quelle: Bundesamt für Statistik (BFS), Ständige Wohnbevölkerung nach Staatsangehörigkeit, Stand Ende 2025 (provisorisch).</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Seit wann erleichtert ein Abkommen mit der EU/EFTA die Zuwanderung von Arbeitskräften aus Europa?</div>
+    <label>Seit 1950</label>
+    <label data-ok>Seit der Personenfreizügigkeit 2002</label>
+    <label>Erst seit 2020</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES D2</span> Diskriminierung im Alltag</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="504_[UE]_A02_Diskriminierung_Im_Alltag.html">A02</a>
+  </div>
+  <p class="einstieg">Diskriminierung bedeutet, eine Person aufgrund eines Merkmals (z.B. Herkunft, Hautfarbe, Religion) schlechter zu behandeln als andere – oft unbewusst und in ganz alltäglichen Situationen. Wer diese Formen kennt, erkennt sie auch dort, wo sie nicht offensichtlich sind.</p>
+  <h3>Wo Diskriminierung besonders häufig vorkommt</h3>
+  <ul class="list">
+    <li><strong>Stellensuche/Bewerbung:</strong> Ablehnung aufgrund eines ausländisch klingenden Namens, trotz gleicher Qualifikation.</li>
+    <li><strong>Wohnungssuche:</strong> Absagen von Vermietenden aufgrund von Herkunft oder Nationalität.</li>
+    <li><strong>Öffentlicher Raum/Alltag:</strong> abwertende Bemerkungen, Blicke, Vorurteile aufgrund des Aussehens oder der Sprache.</li>
+    <li><strong>Online/Social Media:</strong> Hasskommentare, Stereotypisierung ganzer Gruppen.</li>
+  </ul>
+  <div class="merk"><b>Merke:</b> Diskriminierung findet nicht nur direkt (offene Ablehnung), sondern auch <b>indirekt</b> statt – etwa durch Regeln oder Praktiken, die neutral wirken, aber bestimmte Gruppen faktisch benachteiligen.</div>
+  <h3>Was tun bei Diskriminierung?</h3>
+  <p>Wer selbst betroffen ist oder eine diskriminierende Situation beobachtet, kann das Gespräch suchen, den Vorfall dokumentieren oder sich an eine Beratungsstelle wenden – z.B. an eine kantonale oder kommunale <strong>Fachstelle für Rassismusbekämpfung/Integration</strong>. Wegschauen verstärkt das Problem, während Ansprechen oder Unterstützung anbieten die betroffene Person entlastet.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Eine Bewerbung wird abgelehnt, nachdem der Lehrbetrieb den ausländisch klingenden Namen der Bewerberin gesehen hat, obwohl die Qualifikation passt. Was ist das?</div>
+    <label>Ein normaler Entscheid des Betriebs</label>
+    <label data-ok>Ein möglicher Fall von Diskriminierung aufgrund der Herkunft</label>
+    <label>Rechtlich ohne Bedeutung, da Privatpersonen frei entscheiden dürfen</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">GES D3</span> Grenzen der Freiheiten &amp; Grundrechte</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="504_[UE]_A03_Grenzen_Der_Freiheiten_Grundrechte.html">A03</a>
+  </div>
+  <p class="einstieg">Grundrechte wie die persönliche Freiheit oder die Meinungsäusserungsfreiheit gelten nicht grenzenlos. Die Bundesverfassung legt klar fest, unter welchen Voraussetzungen der Staat sie einschränken darf – das schützt vor Willkür, ermöglicht aber auch Regelungen im öffentlichen Interesse.</p>
+  <h3>Die vier Voraussetzungen für eine zulässige Einschränkung</h3>
+  <p>Jede Einschränkung eines Grundrechts muss gemäss <span class="gesetz">Art. 36 BV</span> vier Voraussetzungen gleichzeitig erfüllen:</p>
+  <ul class="list">
+    <li><strong>Gesetzliche Grundlage:</strong> Die Einschränkung braucht eine Basis in einem Gesetz (bei schweren Eingriffen in einem Gesetz im formellen Sinn).</li>
+    <li><strong>Öffentliches Interesse oder Schutz der Grundrechte Dritter:</strong> Es muss ein nachvollziehbarer Grund vorliegen (z.B. öffentliche Sicherheit, Gesundheit).</li>
+    <li><strong>Verhältnismässigkeit:</strong> Die Massnahme muss geeignet, erforderlich und zumutbar sein – nicht mehr einschränken als nötig.</li>
+    <li><strong>Kerngehalt bleibt unantastbar:</strong> Der Wesensgehalt eines Grundrechts darf nie vollständig ausgehöhlt werden.</li>
+  </ul>
+  <div class="merk"><b>Merke:</b> Fehlt auch nur eine dieser vier Voraussetzungen, ist eine Einschränkung <b>unzulässig</b> – z.B. wenn eine Massnahme zwar ein legitimes Ziel verfolgt, aber unverhältnismässig ist.</div>
+  <p><em>Beispiel:</em> Ein Verbot von Gesichtsverhüllungen im öffentlichen Raum greift in die persönliche Freiheit ein und muss deshalb an allen vier Voraussetzungen von Art. 36 BV gemessen werden, um zulässig zu sein.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welche der folgenden Voraussetzungen gehört NICHT zu Art. 36 BV?</div>
+    <label>Gesetzliche Grundlage</label>
+    <label>Verhältnismässigkeit</label>
+    <label data-ok>Zustimmung der betroffenen Person</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">GES D2 · Ergänzend</span> Antirassismusstrafnorm</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="504_[UE]_A04_Antirassismusstrafnorm.html">A04</a>
+  </div>
+  <p class="einstieg">Die Antirassismusstrafnorm ist die konkrete strafrechtliche Antwort auf öffentliche Diskriminierung. Sie schützt gezielt vier Kategorien und macht bestimmte Handlungen strafbar – wichtig ist, ihre Grenzen zu kennen.</p>
+  <h3>Art. 261bis StGB: vier geschützte Kategorien</h3>
+  <p>Wer öffentlich zu Hass oder Diskriminierung aufruft, eine Ideologie propagiert, die planmässige Herabsetzung fördert oder Personen aufgrund folgender Merkmale in ihrer Menschenwürde verletzt, macht sich nach <span class="gesetz">Art. 261bis StGB</span> strafbar:</p>
+  <ul class="list">
+    <li><strong>Rasse</strong></li>
+    <li><strong>Ethnie</strong></li>
+    <li><strong>Religion</strong></li>
+    <li><strong>sexuelle Orientierung</strong> (seit der Volksabstimmung vom 9. Februar 2020, in Kraft seit 1. Juli 2020)</li>
+  </ul>
+  <div class="merk"><b>Merke:</b> Die Norm schützt vor <b>öffentlicher</b> Hetze und Diskriminierung – private Äusserungen im engen persönlichen Kreis fallen grundsätzlich nicht darunter. Die genaue rechtliche Beurteilung eines Einzelfalls nimmt immer ein Gericht vor.</div>
+  <p style="font-size:.85rem">Quelle: Schweizerisches Strafgesetzbuch (StGB), Art. 261bis; Bundeskanzlei, Abstimmungsergebnis vom 9. Februar 2020 zur Erweiterung um «sexuelle Orientierung».</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welches Merkmal wurde 2020 durch eine Volksabstimmung neu in die Antirassismusstrafnorm aufgenommen?</div>
+    <label>Religion</label>
+    <label>Ethnie</label>
+    <label data-ok>Sexuelle Orientierung</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">SUK D1</span> Meine Kultur ausdrücken</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="504_[UE]_A05_Meine_Kultur_Ausdruecken.html">A05</a>
+  </div>
+  <p class="einstieg">Nachdem gesellschaftliche Vielfalt, Diskriminierung und ihre rechtlichen Grenzen bekannt sind, lohnt sich der Blick auf die eigene kulturelle Prägung – und darauf, wie sich diese im Austausch mit anderen Kulturen zeigt.</p>
+  <p>Zur eigenen kulturellen Identität gehören z.B. Herkunft, Sprache(n), Werte, Familientraditionen oder Bräuche. Beim Formulieren helfen folgende Leitfragen:</p>
+  <ul class="list">
+    <li>Welche zwei bis drei kulturellen Bezugspunkte (Herkunft, Sprache, Werte, Traditionen) sind für die eigene Identität besonders wichtig – und weshalb?</li>
+    <li>In welcher konkreten Situation ist die eigene kulturelle Prägung schon einmal auf eine andere getroffen (z.B. im Lehrbetrieb, in der Freizeit)? Wie wurde damit umgegangen?</li>
+    <li>Was an anderen Kulturen fasziniert oder interessiert besonders?</li>
+  </ul>
+  <div class="merk"><b>Merke:</b> Diese Reflexion ist persönlich – wichtig ist eine ehrliche, konkrete Formulierung in eigenen Worten, nicht eine bestimmte «Musterantwort».</div>
+</section>
+
+<section>
+  <h2><span class="nr">SLP</span> Orientierungswissen – Ich kann …</h2>
+  <p>Direkt aus dem Schullehrplan (Thema 5, Lebenssituation D). Abhaken, was bereits sicher beherrscht wird – der Rest ist der individuelle Lernauftrag:</p>
+  <div id="ow">
+    <label class="ow-item"><input type="checkbox"> … die vier geschützten Kategorien der Antirassismusstrafnorm nennen.</label>
+  </div>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Punkte 1–11 des Orientierungswissens (Mietrecht, Konkubinat/Ehe/Güterrecht) stehen in Serie 502/503; Punkt 12 (Menschenrechte) folgt in Serie 505.</p>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 5 «Unser Zusammenleben» · Lebenssituation D</h2>
+  <p style="font-weight:700;margin-bottom:10px">Menschen aus anderen Kulturen begegnen</p>
+  <table>
+    <tr><td class="lz">GES D1</td><td>Ich zeige Merkmale unserer gesellschaftlichen Vielfalt auf und nenne deren Ursachen und Folgen.</td></tr>
+    <tr><td class="lz">GES D2</td><td>Ich entwickle mein Bewusstsein bezüglich Diskriminierung im Alltag weiter.</td></tr>
+    <tr><td class="lz">GES D3</td><td>Ich anerkenne die Grenzen meiner Freiheiten und Grundrechte in unserer Gesellschaft.</td></tr>
+    <tr><td class="lz">SUK D1</td><td>Ich bringe die Vielfalt meiner Kultur zum Ausdruck und lege dar, worauf ich stolz bin.</td></tr>
+    <tr><td class="lz">SUK D2</td><td>Ich setze mich mit anderen Kulturen auseinander und erläutere, was mich daran fasziniert.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen, Auflage 2026 (S. 47)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="504_Aufgaben.html"><strong>Übungen A01–A05 lösen</strong></a> → Kompetenznachweis Multikulturelles Leben.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>

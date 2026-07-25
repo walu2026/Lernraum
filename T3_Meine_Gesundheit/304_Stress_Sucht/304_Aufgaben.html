@@ -24,6 +24,12 @@
   .d-desc { font-size:12px; color:var(--g5); line-height:1.5; }
   .no-ue-banner { display:flex; align-items:center; gap:12px; padding:12px 16px; background:#FFFBEB; border:1px solid #FDE68A; border-radius:10px; margin-bottom:1.5rem; font-size:12px; color:#92400E; line-height:1.5; }
   .no-ue-banner span { font-size:22px; flex-shrink:0; }
+  .th-card { display:flex; align-items:center; gap:14px; background:white; border:2px solid var(--accent); border-radius:14px; padding:16px 18px; margin-bottom:1.75rem; text-decoration:none; color:inherit; transition:all .15s; }
+  .th-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.08); transform:translateY(-1px); }
+  .th-card .th-icon { font-size:26px; flex-shrink:0; }
+  .th-card .th-title { font-size:14px; font-weight:700; color:var(--g9); margin-bottom:2px; }
+  .th-card .th-desc { font-size:11.5px; color:var(--g5); }
+  .th-card .th-arrow { margin-left:auto; font-size:18px; color:var(--accent); }
   .toggle-bar { display:flex; gap:6px; margin-bottom:1.25rem; }
   .toggle-btn { display:flex; align-items:center; gap:6px; padding:7px 14px; border-radius:8px; border:1.5px solid var(--g3); background:white; font-size:12px; font-weight:600; color:var(--g5); cursor:pointer; transition:all .15s; }
   .toggle-btn.active { background:var(--accent); border-color:var(--accent); color:white; }
@@ -95,6 +101,15 @@
     </div>
   </div>
 
+  <a class="th-card" href="304_[TH]_Stress_Sucht_Resilienz.html">
+    <span class="th-icon">📖</span>
+    <span>
+      <div class="th-title">Theorie zu dieser Serie</div>
+      <div class="th-desc">Genuss &amp; Sucht, Betäubungsmittelgesetz, Zeit-/Energiemanagement, Resilienz</div>
+    </span>
+    <span class="th-arrow">→</span>
+  </a>
+
   <div class="toggle-bar">
     <button class="toggle-btn active" id="btnLz" onclick="showView('lz')">📚 Nach Lernzielen</button>
     <button class="toggle-btn" id="btnA"  onclick="showView('a')">🔢 Nach Aufgaben-Nr.</button>
@@ -105,10 +120,10 @@
     <div class="lz-list">
       <div class="lz-row" style="--fc:#27AE61">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES D2</span></div>
         <div class="lz-body">
           <div class="lz-title">Genuss &amp; Sucht</div>
-          <div class="lz-ziel">Ich unterscheide Genuss von Sucht, erkläre Entstehung und Folgen von Abhängigkeit und zeige Auswege auf.</div>
+          <div class="lz-ziel">Ich ordne meinen eigenen Umgang mit Suchtmitteln oder Verhaltensweisen in den vier Phasen auf dem Weg zu einer Sucht ein.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="304_[UE]_A01_Genuss_und_Sucht.html">A01 Genuss und Sucht</a>
             </div>
         </div>
@@ -116,7 +131,7 @@
       </div>
       <div class="lz-row" style="--fc:#27AE61">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">SUK D3</span></div>
         <div class="lz-body">
           <div class="lz-title">Betäubungsmittelgesetz</div>
           <div class="lz-ziel">Ich verstehe wichtige Bestimmungen des Betäubungsmittelgesetzes.</div>
@@ -126,7 +141,7 @@
       </div>
       <div class="lz-row" style="--fc:#27AE61">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">SUK D2</span></div>
         <div class="lz-body">
           <div class="lz-title">Konsumprotokoll Sucht-/Konsumverhalten</div>
           <div class="lz-ziel">Ich verfasse eine schriftliche Analyse über mein eigenes Verhalten im Umgang mit Suchtmitteln oder -aktivitäten.</div>
@@ -136,7 +151,7 @@
       </div>
       <div class="lz-row" style="--fc:#27AE61">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">SUK D1</span></div>
         <div class="lz-body">
           <div class="lz-title">Bedürfnisse &amp; Befindlichkeit</div>
           <div class="lz-ziel">Ich thematisiere meine Bedürfnisse und meine Befindlichkeit.</div>
@@ -146,7 +161,7 @@
       </div>
       <div class="lz-row" style="--fc:#27AE61">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">GES D1</span></div>
         <div class="lz-body">
           <div class="lz-title">Zeit- und Energiemanagement</div>
           <div class="lz-ziel">Ich wende Strategien des Zeit- und Energiemanagements in meinem Alltag an.</div>
@@ -156,7 +171,7 @@
       </div>
       <div class="lz-row" style="--fc:#27AE61">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">6</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">6</span><span class="lz-fach">GES D3</span></div>
         <div class="lz-body">
           <div class="lz-title">Resilienz: sieben Säulen</div>
           <div class="lz-ziel">Ich reflektiere meine Möglichkeiten zur Resilienzförderung im Alltag.</div>

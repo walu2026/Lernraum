@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>502 · Theorie: Ausziehen &amp; Mietrecht</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#E67F22; --t1-dark:#CA6F1E; --t1-light:#FDEBD0;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+.vertiefung-link{display:block;margin-top:10px;font-size:.82rem}
+.vertiefung-link a{color:var(--ink-soft);text-decoration:underline;text-decoration-style:dotted}
+.vertiefung-link a:hover{color:var(--t1)}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+.gesetz{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:#EEF1F5;border:1px solid var(--line);padding:2px 8px;border-radius:6px;white-space:nowrap}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.rechnung{font-family:'JetBrains Mono',monospace;font-size:.88rem;background:#1E2530;color:#E8ECF1;border-radius:10px;padding:14px 18px;margin:14px 0;overflow-x:auto}
+.rechnung b{color:#FFB4A8}
+details{border:1px solid var(--line);border-radius:10px;margin:12px 0;background:#FCFCFD}
+summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--t1-dark)}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .inner{padding:14px 16px;color:var(--ink-soft)}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+.ow-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;margin:6px 0;background:#FCFCFD;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;color:var(--ink-soft)}
+.ow-item input{margin-top:4px;accent-color:var(--t1)}
+.ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:14px 0}
+.stat-card{background:var(--t1-light);border-radius:10px;padding:12px 14px;text-align:center}
+.stat-card .num{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:1.3rem;color:var(--t1-dark)}
+.stat-card .lbl{font-size:.75rem;color:var(--ink-soft);margin-top:3px}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">502 · [TH]</span>
+  <h1>Theorie: Ausziehen &amp; Mietrecht</h1>
+  <a class="nav" href="502_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Der Auszug von zu Hause ist ein grosser Schritt – und bringt viele praktische und rechtliche Fragen mit sich. Diese Theorie zeigt, welche Wohnformen zur Wahl stehen und wie ein Budget dafür aussieht, welche Rechte und Pflichten Mieterinnen und Mieter sowie Vermietende haben, wie Mietzins, Kaution und Kündigung geregelt sind, welchen Schutz das Mietrecht bietet und wie sich die aktuelle Lage auf dem Schweizer Wohnungsmarkt darstellt.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">GES B2</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">GES B1 · SUK B1</span> Wohnformen, Budget &amp; Übernahme</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="502_[UE]_A01_Wohnformen.html">A17</a>
+    <a href="502_[UE]_A05_Uebernahmeprotokoll.html">A21</a>
+  </div>
+  <p class="einstieg">Wer auszieht, steht zunächst vor einer Grundsatzfrage: Welche Wohnform passt zur eigenen Situation – und lässt sich das Ganze auch finanziell tragen? Wer sich vorher ein realistisches Budget erstellt und beim Einzug korrekt vorgeht, startet mit deutlich weniger Stress und Ärger in die erste eigene Wohnung.</p>
+
+  <h3>Wohnformen im Vergleich</h3>
+  <table class="tb">
+    <tr><th>Wohnform</th><th>Merkmale</th></tr>
+    <tr><td><strong>Einzelwohnung</strong></td><td>Volle Unabhängigkeit und Privatsphäre, dafür allein für alle Kosten und Pflichten zuständig – meist die teuerste Variante.</td></tr>
+    <tr><td><strong>Wohngemeinschaft (WG)</strong></td><td>Miete und Nebenkosten werden geteilt, dazu soziale Kontakte im Alltag – dafür weniger Privatsphäre und Organisationsaufwand mit Mitbewohnenden.</td></tr>
+    <tr><td><strong>Wohnen bei den Eltern</strong></td><td>Meist die günstigste Variante, ermöglicht Sparen für später – dafür weniger Selbständigkeit und Mitspracherecht im Haushalt.</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Für Lernende ist eine WG aus finanziellen Gründen oft die realistischere Option als eine Einzelwohnung – der Kompromiss liegt zwischen Budget und Privatsphäre.</div>
+
+  <h3>Budget für die erste eigene Wohnung</h3>
+  <p>Vor dem Auszug lohnt sich eine ehrliche Budgetplanung. Zu den wichtigsten monatlichen Ausgabenposten gehören:</p>
+  <ul class="list">
+    <li>Miete inkl. Nebenkosten</li>
+    <li>Krankenkasse (Prämie)</li>
+    <li>Lebensmittel und Haushalt</li>
+    <li>Mobilität (ÖV-Abo, Fahrzeug)</li>
+    <li>Freizeit und persönliche Ausgaben</li>
+    <li>Rücklagen (z.B. für Anschaffungen, unerwartete Ausgaben)</li>
+  </ul>
+  <p>Als grobe Faustregel gilt: Die Wohnkosten (Miete + Nebenkosten) sollten nicht mehr als etwa ein Drittel des Nettoeinkommens beanspruchen – bei einem Lehrlingslohn bedeutet das häufig, dass eine Einzelwohnung finanziell (noch) nicht realistisch ist.</p>
+
+  <h3>Das Übernahmeprotokoll beim Einzug</h3>
+  <p>Beim Einzug wird gemeinsam mit der Vermieterschaft der Zustand der Wohnung in einem <strong>Übernahmeprotokoll</strong> (auch Mängelliste oder Einzugsprotokoll genannt) schriftlich festgehalten: Jeder bereits vorhandene Kratzer, Fleck oder Defekt wird notiert – am besten zusätzlich mit Fotos dokumentiert.</p>
+  <div class="merk"><b>Merke:</b> Nur was im Übernahmeprotokoll steht, kann beim Auszug nicht mehr als «vom Mieter verursacht» gelten. Ein sorgfältig ausgefülltes Protokoll schützt also vor unberechtigten Forderungen am Ende des Mietverhältnisses.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Wozu dient das Übernahmeprotokoll beim Einzug vor allem?</div>
+    <label>Es legt die Höhe der Miete für die nächsten Jahre fest</label>
+    <label data-ok>Es hält den Zustand der Wohnung fest und schützt beim Auszug vor unberechtigten Forderungen</label>
+    <label>Es ersetzt den Mietvertrag</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES B2 · SUK B2</span> Rechte, Pflichten &amp; Mängel im Mietverhältnis</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="502_[UE]_A02_Mieter_Vermieter_Pflichten.html">A18</a>
+    <a href="502_[UE]_A06_Mietrecht_Aussagen.html">A22</a>
+    <a href="502_[UE]_A07_OR_Miete.html">A23</a>
+    <a href="502_[UE]_A08_Maengel_Wohnung.html">A24</a>
+    <a href="502_[UE]_A09_Heizung_Mangel.html">A25</a>
+    <a href="502_[UE]_A10_Mieterhaftung.html">A26</a>
+  </div>
+  <p class="einstieg">Der Mietvertrag verpflichtet nicht nur die mietende Person – auch die Vermieterschaft hat klare gesetzliche Pflichten. Wer diese kennt, kann Störungen im Mietverhältnis frühzeitig erkennen, sie mit der Vermieterschaft konstruktiv klären und weiss, wer bei einem Mangel in der Wohnung zuständig ist.</p>
+
+  <h3>Pflichten von Mieter und Vermieter</h3>
+  <table class="tb">
+    <tr><th>Mieter/in</th><th>Vermieter/in</th></tr>
+    <tr><td>Mietzins pünktlich bezahlen · Wohnung sorgfältig behandeln · Mängel melden · kleinere Unterhaltsarbeiten selbst erledigen (z.B. Glühbirne wechseln) · Hausordnung einhalten · Wohnung ordnungsgemäss zurückgeben</td><td>Wohnung im vereinbarten Zustand übergeben und in diesem Zustand erhalten · grössere Reparaturen ausführen · Ruhe und ungestörten Gebrauch gewährleisten · Wohnung nicht ohne Vorankündigung betreten <span class="gesetz">OR 257h</span></td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Der Mietvertrag kann sich auf bewegliche wie auf unbewegliche Sachen beziehen <span class="gesetz">OR 253 ff.</span> Veränderungen an der Mietsache – auch wertvermehrende – darf der Mieter grundsätzlich nur mit Zustimmung der Vermieterschaft vornehmen <span class="gesetz">OR 260a</span>.</div>
+
+  <h3>Wer ist bei einem Mangel zuständig?</h3>
+  <p>Nicht jeder Defekt in der Wohnung ist automatisch Sache der Vermieterschaft. Bei <strong>kleinen, alltäglichen Verrichtungen</strong> (z.B. eine defekte Glühbirne) ist die mietende Person zuständig; bei <strong>grösseren Mängeln</strong> an fest eingebauten Installationen (z.B. Heizung, Backofen, Fensterdichtung, sanitäre Anlagen) liegt die Verantwortung bei der Vermieterschaft.</p>
+  <h3>Vorgehen bei einem erheblichen Mangel (z.B. Heizungsausfall)</h3>
+  <ul class="list">
+    <li><strong>1. Melden:</strong> Mangel sofort schriftlich melden und mit Fotos dokumentieren.</li>
+    <li><strong>2. Frist setzen:</strong> der Vermieterschaft eine angemessene Frist zur Behebung setzen.</li>
+    <li><strong>3. Reagiert sie nicht:</strong> Mietzinsreduktion oder Hinterlegung des Mietzinses prüfen.</li>
+    <li><strong>4. Bleibt der Konflikt bestehen:</strong> die Schlichtungsstelle einschalten.</li>
+  </ul>
+
+  <h3>Mieterhaftung: Abnützung oder Schaden?</h3>
+  <p>Mietende haften für Schäden, die sie <strong>absichtlich</strong> oder durch <strong>unsorgfältige Behandlung</strong> verursachen. Nicht haftbar sind sie hingegen für:</p>
+  <ul class="list">
+    <li>Schäden durch <strong>normale Abnützung</strong> bei üblichem Gebrauch (z.B. leicht verblasste Wandfarbe)</li>
+    <li>Mängel, die bereits beim Einzug bestanden und im Übernahmeprotokoll vermerkt sind</li>
+  </ul>
+
+  <div class="check">
+    <div class="q">Kurz-Check: In der Wohnung fällt die Heizung aus. Was ist der richtige erste Schritt?</div>
+    <label>Sofort selbst einen Handwerker beauftragen und die Rechnung dem Vermieter schicken</label>
+    <label data-ok>Den Mangel schriftlich melden, dokumentieren und eine Frist zur Behebung setzen</label>
+    <label>Abwarten, bis der Vermieter den Mangel von selbst bemerkt</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">GES B2 · B4</span> Mietzins, Kündigung &amp; Mieterschutz</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="502_[UE]_A11_Wohnungskuendigung.html">A27</a>
+    <a href="502_[UE]_A13_Wohnungsabgabe.html">A29</a>
+    <a href="502_[UE]_A14_Mietzinserhoehung.html">A30</a>
+    <a href="502_[UE]_A15_Mieterschutz.html">A31</a>
+  </div>
+  <p class="einstieg">Kündigungen und Mietzinserhöhungen sind an feste gesetzliche Fristen und Formvorschriften gebunden – wer sie nicht einhält, riskiert, dass die Kündigung oder Erhöhung ungültig ist. Das Schweizer Mietrecht sieht dafür gezielte Schutzmechanismen für Mietende vor.</p>
+
+  <h3>Kündigung des Mietverhältnisses</h3>
+  <table class="tb">
+    <tr><th>Punkt</th><th>Regel</th></tr>
+    <tr><td><strong>Kündigungsfrist</strong></td><td>Bei Wohnräumen gesetzliche Frist von in der Regel drei Monaten auf einen ortsüblichen Termin <span class="gesetz">OR 266</span>.</td></tr>
+    <tr><td><strong>Form der Kündigung</strong></td><td>Schriftlich; von der Vermieterschaft mit amtlich genehmigtem Formular <span class="gesetz">OR 266l, 266m, 266n, 266o</span>.</td></tr>
+    <tr><td><strong>Zugang</strong></td><td>Massgebend ist, wann die Kündigung bei der Gegenseite <strong>eintrifft</strong> – nicht das Datum, an dem sie abgeschickt wurde. Ein eingeschriebener Versand mit Empfangsbestätigung schafft Sicherheit.</td></tr>
+    <tr><td><strong>Fristversäumnis</strong></td><td>Wird die Frist verpasst oder die Form nicht eingehalten, gilt die Kündigung erst auf den nächstmöglichen gesetzlichen Termin.</td></tr>
+  </table>
+
+  <h3>Mietzinserhöhung</h3>
+  <p>Eine Mietzinserhöhung muss auf dem <strong>amtlichen Formular</strong>, mit <strong>Begründung</strong> und fristgerecht mitgeteilt werden – mindestens zehn Tage vor Beginn der Kündigungsfrist. Fehlt die vorgeschriebene Form, ist die Erhöhung <strong>unwirksam</strong>. Mietende können eine Erhöhung, die sie für ungerechtfertigt halten, innert Frist bei der <strong>Schlichtungsstelle</strong> anfechten.</p>
+
+  <h3>Wohnungsabgabe</h3>
+  <p>Beim Auszug wird die Wohnung wieder gemeinsam begutachtet und ein <strong>Abgabeprotokoll</strong> erstellt. Verglichen wird dabei mit dem Übernahmeprotokoll vom Einzug: Nur Schäden, die über die normale Abnützung hinausgehen und nicht bereits beim Einzug vorhanden waren, dürfen der mietenden Person verrechnet werden.</p>
+
+  <h3>Mieterschutz: drei Massnahmen</h3>
+  <div class="merk"><b>Merke – die drei Säulen des Mieterschutzes:</b>
+  <ul class="list" style="margin-top:8px">
+    <li><strong>Schutz vor missbräuchlichen Mietzinsen:</strong> überhöhte Mietzinse und Erhöhungen können angefochten werden.</li>
+    <li><strong>Anfechtung missbräuchlicher Kündigungen:</strong> Kündigungen, die gegen Treu und Glauben verstossen, können bei der Schlichtungsstelle angefochten werden.</li>
+    <li><strong>Erstreckung des Mietverhältnisses:</strong> bei einer Härtefallsituation kann das Mietverhältnis für eine gewisse Zeit verlängert werden.</li>
+  </ul>
+  </div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Eine Mietzinserhöhung wird nur mündlich mitgeteilt, ohne amtliches Formular. Ist das gültig?</div>
+    <label>Ja, mündlich reicht bei kleinen Erhöhungen</label>
+    <label data-ok>Nein – ohne amtliches Formular ist die Erhöhung unwirksam</label>
+    <label>Ja, sofern sie unter 5% liegt</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">GES B3</span> Kaution, Untermiete &amp; Versicherungen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="502_[UE]_A03_Mietkaution.html">A19</a>
+    <a href="502_[UE]_A04_Kautionsversicherung.html">A20</a>
+    <a href="502_[UE]_A12_Untermiete.html">A28</a>
+    <a href="502_[UE]_A16_Versicherungen_Wohnung.html">A32</a>
+  </div>
+  <p class="einstieg">Vor dem Einzug stellen sich weitere praktische Fragen: Wie hoch darf die Kaution sein und wie wird sie hinterlegt? Lohnt sich eine Kautionsversicherung? Was gilt bei einer Untermiete? Und welche Versicherungen braucht es für die erste eigene Wohnung wirklich?</p>
+
+  <h3>Mietkaution</h3>
+  <p>Die Mietkaution sichert berechtigte Forderungen der Vermieterschaft aus dem Mietverhältnis (z.B. ausstehende Mietzinse, Reparaturkosten). Sie darf bei Wohnräumen <strong>höchstens drei Monatsmieten</strong> betragen und muss auf einem <strong>Sperrkonto auf den Namen der mietenden Person</strong> hinterlegt werden. Eine Freigabe ist grundsätzlich nur mit Zustimmung beider Parteien oder aufgrund eines Entscheids möglich.</p>
+  <div class="rechnung">
+    Monatsmiete Fr. 2'000.– × <b>3</b> = <b>Fr. 6'000.–</b> maximale Kaution<br><br>
+    Verlangt der Vermieter Fr. 8'000.– Kaution, ist das <b>unzulässig</b> – der Betrag übersteigt die gesetzliche Höchstgrenze.
+  </div>
+
+  <h3>Kaution vs. Kautionsversicherung</h3>
+  <table class="tb">
+    <tr><th>Klassische Barkaution</th><th>Kautionsversicherung</th></tr>
+    <tr><td>Einmaliger Betrag auf Sperrkonto, gehört weiterhin der mietenden Person, wird bei Auszug (abzüglich berechtigter Forderungen) zurückerstattet</td><td>Statt einer Einzahlung wird eine jährliche Prämie bezahlt; schont die Liquidität beim Einzug, kostet über die Mietdauer aber meist mehr als eine Barkaution</td></tr>
+  </table>
+
+  <h3>Untermiete</h3>
+  <p>Wer die eigene Wohnung ganz oder teilweise weitervermietet, braucht dafür grundsätzlich die <strong>Zustimmung der Vermieterschaft</strong>. Die Hauptmieterin oder der Hauptmieter bleibt gegenüber der Vermieterschaft weiterhin für Mietzins und Schäden verantwortlich – auch wenn die Untermieterin oder der Untermieter den Schaden verursacht hat.</p>
+
+  <h3>Versicherungen für die erste eigene Wohnung</h3>
+  <table class="tb">
+    <tr><th>Versicherung</th><th>Deckt</th></tr>
+    <tr><td><strong>Hausratversicherung</strong></td><td>Schäden am eigenen Eigentum (Möbel, Kleider, Elektronik) durch Feuer, Wasser, Einbruch usw.</td></tr>
+    <tr><td><strong>Privathaftpflichtversicherung</strong></td><td>Schäden, die man versehentlich anderen Personen oder deren Eigentum zufügt (z.B. auslaufende Waschmaschine beschädigt die Nachbarwohnung).</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Ohne Privathaftpflichtversicherung können unabsichtlich verursachte Schäden bei anderen Personen schnell zu einer finanziell existenzbedrohenden Forderung werden.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Beim Fussballspielen in der Wohnung geht das Fenster der Nachbarwohnung zu Bruch. Welche Versicherung übernimmt das?</div>
+    <label>Die Hausratversicherung</label>
+    <label data-ok>Die Privathaftpflichtversicherung</label>
+    <label>Keine – das muss immer selbst bezahlt werden</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">SUK B3 · B4</span> Wohnungsmarkt &amp; Online-Wohnungssuche</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="502_[UE]_A17_Wohnungsmarkt_Wohnungsnot.html">A33</a>
+    <a href="502_[UE]_A18_Wohnungs_Online_Plattformen.html">A34</a>
+  </div>
+  <p class="einstieg">Die Wohnungssuche findet heute grösstenteils online statt – und sie findet in einem angespannten Markt statt. Wer die aktuelle Lage kennt und weiss, wie sich Online-Plattformen und Inserate richtig einschätzen lassen, ist bei der eigenen Wohnungssuche im Vorteil.</p>
+
+  <h3>Lage auf dem Schweizer Wohnungsmarkt</h3>
+  <div class="stat-grid">
+    <div class="stat-card"><div class="num">1,0%</div><div class="lbl">Leerwohnungsziffer Schweiz (Juni 2025)</div></div>
+    <div class="stat-card"><div class="num">48'455</div><div class="lbl">leerstehende Wohnungen gesamtschweizerisch</div></div>
+    <div class="stat-card"><div class="num">&lt;0,6%</div><div class="lbl">Leerstand in Zürich, Genf, Zug, Basel-Stadt</div></div>
+  </div>
+  <p>Die <strong>Leerwohnungsziffer</strong> misst, wie viele Wohnungen am Stichtag leer stehen und sofort bezogen werden könnten. Im Juni 2025 lag sie schweizweit bei nur 1,0 Prozent – dem tiefsten Stand seit zwölf Jahren. Fachleute sprechen ab einer Quote unter 1 Prozent von einer landesweiten «Wohnungsnot»; in grossen Stadtkantonen liegt der Leerstand bereits unter 0,6 Prozent («Wohnungsnotstand»).</p>
+  <h3>Ursachen und Folgen</h3>
+  <p>Die Wohnbevölkerung wächst schneller, als neue Wohnungen gebaut werden; zusätzlich verstärkt der Trend zu kleineren Haushalten die Nachfrage. Bauland ist knapp, Bauprojekte dauern oft mehrere Jahre. Für Wohnungssuchende bedeutet das: weniger Auswahl, mehr Bewerbungen pro Wohnung, steigende Mietzinse bei Wiedervermietung und mehr Konkurrenzdruck – besonders in grossen Zentren.</p>
+  <p style="font-size:.82rem;color:var(--ink-soft)">Quelle: Bundesamt für Wohnungswesen (BWO), Leerwohnungszählung 2025.</p>
+
+  <h3>Online-Plattformen für die Wohnungssuche</h3>
+  <table class="tb">
+    <tr><th>Plattform</th><th>Merkmale</th></tr>
+    <tr><td><strong>homegate.ch</strong></td><td>Eine der grössten Schweizer Immobilienplattformen, Miete und Kauf, viele Filtermöglichkeiten, Suchabo per E-Mail.</td></tr>
+    <tr><td><strong>immoscout24.ch</strong></td><td>Grosses Angebot, Bonitätsauskunft/Bewerbungsdossier direkt online möglich, App verfügbar.</td></tr>
+    <tr><td><strong>flatfox.ch</strong></td><td>Direktbewerbung ohne Makler bei vielen Inseraten, oft direkt von Verwaltungen.</td></tr>
+    <tr><td><strong>Soziale Netzwerke / Anzeigenblätter</strong></td><td>Oft private Vermieter, weniger Konkurrenz – aber Vorsicht vor Betrug.</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Bei privaten Inseraten in sozialen Netzwerken gilt besondere Vorsicht: keine Vorauszahlung ohne Besichtigung leisten, Angaben auf Plausibilität prüfen und wenn möglich vor einer Zusage persönlich besichtigen.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was gilt als deutliches Warnsignal für einen Betrugsversuch bei einem Online-Wohnungsinserat?</div>
+    <label>Es gibt viele Fotos der Wohnung</label>
+    <label data-ok>Es wird eine Vorauszahlung verlangt, ohne dass eine Besichtigung möglich ist</label>
+    <label>Die Wohnung liegt in der Nähe einer Bushaltestelle</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="nr">SLP</span> Orientierungswissen – Ich kann …</h2>
+  <p>Direkt aus dem Schullehrplan (Thema 5, Lebenssituation B). Abhaken, was bereits sicher beherrscht wird – der Rest ist der individuelle Lernauftrag:</p>
+  <div id="ow">
+    <label class="ow-item"><input type="checkbox"> … je drei Rechte und Pflichten der Mieterinnen und Mieter aufzählen.</label>
+    <label class="ow-item"><input type="checkbox"> … drei Pflichten der Vermietenden aufzählen.</label>
+    <label class="ow-item"><input type="checkbox"> … den Begriff und Zweck einer Mietkaution erklären.</label>
+    <label class="ow-item"><input type="checkbox"> … den Zweck einer Mängelliste für eine Wohnungsübernahme erklären.</label>
+    <label class="ow-item"><input type="checkbox"> … den Unterschied zwischen Mietzins und Nebenkosten aufzeigen.</label>
+    <label class="ow-item"><input type="checkbox"> … den Zweck einer Hausratversicherung erklären.</label>
+    <label class="ow-item"><input type="checkbox"> … den Zweck einer Privathaftpflichtversicherung erklären.</label>
+  </div>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Weitere Punkte des Orientierungswissens zu Thema 5 (Konkubinat/Ehe, Kindesverhältnis, Menschenrechte) betreffen die Lebenssituationen C–D und folgen in Serie 503.</p>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 5 «Unser Zusammenleben» · Lebenssituation B</h2>
+  <p style="font-weight:700;margin-bottom:10px">Das gewohnte Zuhause verlassen</p>
+  <table>
+    <tr><td class="lz">SUK B1</td><td>Ich diskutiere meine aktuelle Wohnsituation und mache mir Gedanken über Vor- und Nachteile eines möglichen Auszugs von zu Hause.</td></tr>
+    <tr><td class="lz">GES B1</td><td>Ich erstelle ein zukünftiges Budget für verschiedene Wohnformen und plane meine Ausgaben verantwortungsvoll.</td></tr>
+    <tr><td class="lz">SUK B2</td><td>Ich erkenne Störungen im Mietverhältnis und löse sie konstruktiv, indem ich mündlich oder schriftlich mit der Vermieterschaft kommuniziere.</td></tr>
+    <tr><td class="lz">GES B2</td><td>Ich prüfe meine Rechte und Pflichten als Mieterin oder Mieter sowie die Inhalte eines Mietvertrages und erläutere grundlegende Begriffe des Mietrechts anhand einfacher Fallbeispiele.</td></tr>
+    <tr><td class="lz">SUK B3</td><td>Ich analysiere aktuelle Herausforderungen auf dem schweizerischen Wohnungs- und Immobilienmarkt und präsentiere mögliche Lösungsansätze.</td></tr>
+    <tr><td class="lz">GES B3</td><td>Ich prüfe Versicherungslösungen für meinen zukünftigen Haushalt und ordne deren Leistungen ein.</td></tr>
+    <tr><td class="lz">SUK B4</td><td>Ich evaluiere Wohnungs-Online-Plattformen und beurteile Angebote aufgrund meiner Bedürfnisse.</td></tr>
+    <tr><td class="lz">GES B4</td><td>Ich bearbeite und löse praxisnahe Fallbeispiele zum Mietrecht und wende dabei die relevanten gesetzlichen Bestimmungen korrekt an.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen, Auflage 2026 (S. 45). Orientierungswissen: S. 49 (Punkte 1–7).</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="502_Aufgaben.html"><strong>Übungen A17–A34 lösen</strong></a> → Ausziehen &amp; Mietrecht vertiefen.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>

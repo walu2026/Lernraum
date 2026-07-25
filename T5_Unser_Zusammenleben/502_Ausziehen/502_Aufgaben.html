@@ -22,6 +22,12 @@
   .d-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:3px; }
   .d-title { font-family:'Barlow Condensed',sans-serif; font-size:26px; font-weight:800; text-transform:uppercase; color:var(--g9); line-height:1.1; margin-bottom:4px; }
   .d-desc { font-size:12px; color:var(--g5); line-height:1.5; }
+  .th-card { display:flex; align-items:center; gap:14px; background:white; border:2px solid var(--accent); border-radius:14px; padding:16px 18px; margin-bottom:1.75rem; text-decoration:none; color:inherit; transition:all .15s; }
+  .th-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.08); transform:translateY(-1px); }
+  .th-card .th-icon { font-size:26px; flex-shrink:0; }
+  .th-card .th-title { font-size:14px; font-weight:700; color:var(--g9); margin-bottom:2px; }
+  .th-card .th-desc { font-size:11.5px; color:var(--g5); }
+  .th-card .th-arrow { margin-left:auto; font-size:18px; color:var(--accent); }
   .no-ue-banner { display:flex; align-items:center; gap:12px; padding:12px 16px; background:#FFFBEB; border:1px solid #FDE68A; border-radius:10px; margin-bottom:1.5rem; font-size:12px; color:#92400E; line-height:1.5; }
   .no-ue-banner span { font-size:22px; flex-shrink:0; }
   .toggle-bar { display:flex; gap:6px; margin-bottom:1.25rem; }
@@ -95,6 +101,15 @@
     </div>
   </div>
 
+  <a class="th-card" href="502_[TH]_Ausziehen_Mietrecht.html">
+    <span class="th-icon">📖</span>
+    <span>
+      <div class="th-title">Theorie zu dieser Serie</div>
+      <div class="th-desc">Mietvertrag, Rechte &amp; Pflichten, Kaution, Kündigung, Mieterschutz – vor den Übungen lesen</div>
+    </span>
+    <span class="th-arrow">›</span>
+  </a>
+
   <div class="toggle-bar">
     <button class="toggle-btn active" id="btnLz" onclick="showView('lz')">📚 Nach Lernzielen</button>
     <button class="toggle-btn" id="btnA"  onclick="showView('a')">🔢 Nach Aufgaben-Nr.</button>
@@ -105,10 +120,10 @@
     <div class="lz-list">
       <div class="lz-row" style="--fc:#E67F22">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES B1 · SUK B1</span></div>
         <div class="lz-body">
           <div class="lz-title">Wohnformen &amp; Mietvertrag</div>
-          <div class="lz-ziel">Ich vergleiche Wohnformen und kenne die wichtigsten Bestandteile eines Mietvertrags.</div>
+          <div class="lz-ziel">Ich diskutiere meine aktuelle Wohnsituation und mache mir Gedanken über Vor- und Nachteile eines möglichen Auszugs von zu Hause (SUK), und ich erstelle ein zukünftiges Budget für verschiedene Wohnformen und plane meine Ausgaben verantwortungsvoll (GES).</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="502_[UE]_A01_Wohnformen.html">A17 Wohnformen und Budget</a>
             <a class="a-pill a-pill-link" href="502_[UE]_A05_Uebernahmeprotokoll.html">A21 Das Übernahmeprotokoll</a>
             </div>
@@ -117,10 +132,10 @@
       </div>
       <div class="lz-row" style="--fc:#E67F22">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES B2 · SUK B2</span></div>
         <div class="lz-body">
           <div class="lz-title">Rechte &amp; Pflichten</div>
-          <div class="lz-ziel">Ich erkläre die gegenseitigen Rechte und Pflichten von Mietern und Vermietern.</div>
+          <div class="lz-ziel">Ich erkenne Störungen im Mietverhältnis und löse sie konstruktiv, indem ich mündlich oder schriftlich mit der Vermieterschaft kommuniziere (SUK), und ich prüfe meine Rechte und Pflichten als Mieterin oder Mieter sowie die Inhalte eines Mietvertrages und erläutere grundlegende Begriffe des Mietrechts anhand einfacher Fallbeispiele (GES).</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="502_[UE]_A02_Mieter_Vermieter_Pflichten.html">A18 Pflichten von Mieter und Vermieter</a>
             <a class="a-pill a-pill-link" href="502_[UE]_A06_Mietrecht_Aussagen.html">A22 Mietrecht: richtig oder falsch?</a>
             <a class="a-pill a-pill-link" href="502_[UE]_A07_OR_Miete.html">A23 Mietrecht im Obligationenrecht (OR)</a>
@@ -133,10 +148,10 @@
       </div>
       <div class="lz-row" style="--fc:#E67F22">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">GES B2 · B4</span></div>
         <div class="lz-body">
           <div class="lz-title">Mietzins &amp; Kündigung</div>
-          <div class="lz-ziel">Ich beurteile Mietzinserhöhungen, Kündigungen und kenne den Mieterschutz.</div>
+          <div class="lz-ziel">Ich prüfe meine Rechte und Pflichten als Mieterin oder Mieter sowie die Inhalte eines Mietvertrages und erläutere grundlegende Begriffe des Mietrechts anhand einfacher Fallbeispiele, und ich bearbeite und löse praxisnahe Fallbeispiele zum Mietrecht und wende dabei die relevanten gesetzlichen Bestimmungen korrekt an.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="502_[UE]_A11_Wohnungskuendigung.html">A27 Wohnungskündigung: Fristen beachten</a>
             <a class="a-pill a-pill-link" href="502_[UE]_A13_Wohnungsabgabe.html">A29 Wohnungsabgabe: Was muss ich beachten?</a>
             <a class="a-pill a-pill-link" href="502_[UE]_A14_Mietzinserhoehung.html">A30 Mietzinserhöhung: Was ist zulässig?</a>
@@ -147,10 +162,10 @@
       </div>
       <div class="lz-row" style="--fc:#E67F22">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">GES B3</span></div>
         <div class="lz-body">
           <div class="lz-title">Kaution &amp; Versicherung</div>
-          <div class="lz-ziel">Ich erkläre Mietkaution, Kautionsversicherung und notwendige Wohnungsversicherungen.</div>
+          <div class="lz-ziel">Ich prüfe Versicherungslösungen für meinen zukünftigen Haushalt und ordne deren Leistungen ein.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="502_[UE]_A03_Mietkaution.html">A19 Die Mietkaution: Regeln und Berechnung</a>
             <a class="a-pill a-pill-link" href="502_[UE]_A04_Kautionsversicherung.html">A20 Mietkaution vs. Kautionsversicherung</a>
             <a class="a-pill a-pill-link" href="502_[UE]_A12_Untermiete.html">A28 Untermiete: Rechte und Pflichten</a>
@@ -161,10 +176,10 @@
       </div>
       <div class="lz-row" style="--fc:#E67F22">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">SUK B3 · B4</span></div>
         <div class="lz-body">
           <div class="lz-title">Wohnungsmarkt &amp; Online-Suche</div>
-          <div class="lz-ziel">Ich kenne die Lage auf dem Schweizer Wohnungsmarkt und kann Online-Plattformen für die Wohnungssuche vergleichen.</div>
+          <div class="lz-ziel">Ich analysiere aktuelle Herausforderungen auf dem schweizerischen Wohnungs- und Immobilienmarkt und präsentiere mögliche Lösungsansätze. Ich evaluiere Wohnungs-Online-Plattformen und beurteile Angebote aufgrund meiner Bedürfnisse.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="502_[UE]_A17_Wohnungsmarkt_Wohnungsnot.html">A33 Wohnungsmarkt und Wohnungsnot</a>
             <a class="a-pill a-pill-link" href="502_[UE]_A18_Wohnungs_Online_Plattformen.html">A34 Wohnungs-Online-Plattformen</a>
             </div>

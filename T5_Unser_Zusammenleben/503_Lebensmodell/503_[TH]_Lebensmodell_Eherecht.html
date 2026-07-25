@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>503 · Theorie: Lebensmodell &amp; Eherecht</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#E67F22; --t1-dark:#CA6F1E; --t1-light:#FDEBD0;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+.vertiefung-link{display:block;margin-top:10px;font-size:.82rem}
+.vertiefung-link a{color:var(--ink-soft);text-decoration:underline;text-decoration-style:dotted}
+.vertiefung-link a:hover{color:var(--t1)}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+.gesetz{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:#EEF1F5;border:1px solid var(--line);padding:2px 8px;border-radius:6px;white-space:nowrap}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.rechnung{font-family:'JetBrains Mono',monospace;font-size:.88rem;background:#1E2530;color:#E8ECF1;border-radius:10px;padding:14px 18px;margin:14px 0;overflow-x:auto}
+.rechnung b{color:#FFB4A8}
+details{border:1px solid var(--line);border-radius:10px;margin:12px 0;background:#FCFCFD}
+summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--t1-dark)}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .inner{padding:14px 16px;color:var(--ink-soft)}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+.ow-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;margin:6px 0;background:#FCFCFD;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;color:var(--ink-soft)}
+.ow-item input{margin-top:4px;accent-color:var(--t1)}
+.ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">503 · [TH]</span>
+  <h1>Theorie: Lebensmodell &amp; Eherecht</h1>
+  <a class="nav" href="503_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Ob Konkubinat, Ehe oder eine andere Form des Zusammenlebens – jedes Lebensmodell hat unterschiedliche rechtliche Konsequenzen, etwa beim Vermögen, bei Kindern oder im Todesfall. Diese Theorie vergleicht die wichtigsten Lebensformen, erklärt die drei Güterstände der Ehe, ordnet Rechte und Pflichten von Eltern ein und zeigt, wie die gesetzliche Erbfolge funktioniert.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">GES C1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">GES C1</span> Lebensformen: Konkubinat, Ehe und eingetragene Partnerschaft</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="503_[UE]_A01_Konkubinat.html">A3</a>
+    <a href="503_[UE]_A02_Ehe_Konkubinat.html">A4</a>
+    <a href="503_[UE]_A03_Verlobung_Heirat.html">A5</a>
+    <a href="503_[UE]_A05_Wohnort_Ehe.html">A7</a>
+    <a href="503_[UE]_A17_Zusammenleben.html">A17</a>
+  </div>
+  <p class="einstieg">Wer mit einer Partnerin oder einem Partner zusammenlebt, kann das rechtlich sehr unterschiedlich ausgestalten. Konkubinat und Ehe unterscheiden sich vor allem dort stark, wo es um Absicherung geht: bei Krankheit, Tod oder Trennung. Wer diese Unterschiede kennt, kann bewusst entscheiden, was zusätzlich geregelt werden muss.</p>
+  <h3>Konkubinat: grosse Freiheit, wenig automatischer Schutz</h3>
+  <p>Das Konkubinat – das Zusammenleben eines Paares ohne Trauung – ist im Gesetz nicht als eigene Rechtsform geregelt. Für die Partner gilt deshalb grösstenteils die allgemeine Vertragsfreiheit, aber auch: kaum automatischer gesetzlicher Schutz.</p>
+  <ul class="list">
+    <li>Keine gesetzliche <strong>Unterstützungspflicht</strong> zwischen den Partnern (anders als bei der Ehe).</li>
+    <li>Kein automatisches <strong>Erbrecht</strong> beim Tod des Partners/der Partnerin – ohne Testament oder Erbvertrag geht die Partnerin/der Partner leer aus.</li>
+    <li>Ärzte dürfen ohne Vollmacht (Patientenverfügung/Vorsorgeauftrag) bei Urteilsunfähigkeit keine Auskunft an den Konkubinatspartner geben.</li>
+    <li>Bei Auflösung der Gemeinschaft nimmt jede Person ihr eigenes Eigentum zurück; ein Konkubinatsvertrag kann gemeinsame Anschaffungen (z.B. Möbel, Wohnungseinrichtung) vorab regeln.</li>
+  </ul>
+  <div class="merk"><b>Merke:</b> Wer diese Lücken schliessen will, kann einen <b>Konkubinatsvertrag</b>, ein <b>Testament</b> oder einen <b>Vorsorgeauftrag/eine Patientenverfügung</b> erstellen – das Gesetz allein schützt Konkubinatspaare kaum.</div>
+  <h3>Ehe: automatischer Rechtsschutz</h3>
+  <p>Für eine Eheschliessung müssen beide Personen <strong>mindestens 18 Jahre alt und urteilsfähig</strong> sein, dürfen nicht bereits verheiratet und nicht in direkter Linie oder als Geschwister miteinander verwandt sein. Vor der Trauung ist ein <strong>Vorbereitungsverfahren beim Zivilstandsamt</strong> nötig. Mit der Heirat entstehen automatisch Rechte und Pflichten:</p>
+  <ul class="list">
+    <li>Gegenseitige <strong>Beistands- und Unterstützungspflicht</strong> <span class="gesetz">ZGB 159</span>.</li>
+    <li>Automatisches gesetzliches <strong>Erbrecht</strong> (siehe LZ 4).</li>
+    <li>Ein <strong>Güterstand</strong> gilt automatisch ab dem Hochzeitstag (siehe LZ 2).</li>
+    <li>Jede Person behält grundsätzlich ihren eigenen Namen; ein gemeinsamer Name kann gemeinsam erklärt werden.</li>
+  </ul>
+  <h3>Eingetragene Partnerschaft: seit «Ehe für alle» ausgelaufen</h3>
+  <p>Seit dem <strong>1. Juli 2022</strong> gilt in der Schweiz die «Ehe für alle»: Gleichgeschlechtliche Paare können heiraten. Seither können <strong>keine neuen eingetragenen Partnerschaften</strong> mehr begründet werden. Bereits bestehende eingetragene Partnerschaften bleiben gültig oder können auf Wunsch in eine Ehe umgewandelt werden.</p>
+  <p style="font-size:.85rem">Quelle: Eidgenössisches Departement für auswärtige Angelegenheiten (EDA), «Ehe für alle in der Schweiz» (Stand 1. Juli 2022).</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Ein unverheiratetes Paar lebt seit 5 Jahren zusammen. Einer der beiden stirbt plötzlich, ohne Testament. Was passiert mit dem Erbe?</div>
+    <label>Der Konkubinatspartner erbt automatisch wie ein Ehegatte</label>
+    <label data-ok>Der Konkubinatspartner erbt nichts – nur ein Testament oder Erbvertrag könnte ihn begünstigen</label>
+    <label>Das Erbe fällt automatisch an den Staat</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES C2 · C4</span> Ehe &amp; Güterrecht: Die drei Güterstände</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="503_[UE]_A04_Familienrecht_Aussagen.html">A6</a>
+    <a href="503_[UE]_A06_Haushaltsgeld.html">A8</a>
+    <a href="503_[UE]_A09_Gueterstaende.html">A11</a>
+    <a href="503_[UE]_A10_Errungenschaft_Eigengut.html">A12</a>
+    <a href="503_[UE]_A11_Gueterrecht_Aussagen.html">A13</a>
+    <a href="503_[UE]_A12_Gueterrecht_Erbe.html">A14</a>
+    <a href="503_[UE]_A14_Gueterrecht_Scheidung.html">A16</a>
+  </div>
+  <p class="einstieg">Sobald zwei Personen heiraten, gilt automatisch ein <strong>Güterstand</strong> – er legt fest, wem welches Vermögen während der Ehe gehört und wie es bei Scheidung oder Tod aufgeteilt wird. Ohne besondere Abmachung gilt der gesetzliche Standard; wer etwas anderes will, braucht einen Ehevertrag.</p>
+  <h3>Die drei Güterstände im Vergleich</h3>
+  <table class="tb">
+    <tr><th>Güterstand</th><th>Wie geregelt</th><th>Auswirkung bei Auflösung</th></tr>
+    <tr><td><strong>Errungenschaftsbeteiligung</strong></td><td>Gesetzlicher Standard <span class="gesetz">ZGB 181</span> – gilt automatisch ohne Ehevertrag</td><td>Jede Person behält ihr Eigengut; die während der Ehe erwirtschaftete Errungenschaft (der «Vorschlag») wird hälftig geteilt <span class="gesetz">ZGB 215</span></td></tr>
+    <tr><td><strong>Gütertrennung</strong></td><td>Nur mit Ehevertrag möglich <span class="gesetz">ZGB 247–251</span></td><td>Kein gemeinsames Vermögen, keine Teilung – jede Person behält, was ihr gehört</td></tr>
+    <tr><td><strong>Gütergemeinschaft</strong></td><td>Nur mit Ehevertrag möglich <span class="gesetz">ZGB 221–246</span></td><td>Praktisch das gesamte Vermögen beider Ehegatten wird zu gemeinsamem Eigentum (Gesamtgut)</td></tr>
+  </table>
+  <h3>Eigengut und Errungenschaft unterscheiden</h3>
+  <p>Bei der Errungenschaftsbeteiligung hat jede Person zwei «Vermögenstöpfe»:</p>
+  <table class="tb">
+    <tr><th>Eigengut</th><th>Errungenschaft</th></tr>
+    <tr><td>Vermögen von vor der Ehe, Erbschaften und Schenkungen (auch während der Ehe), persönliche Gegenstände</td><td>Während der Ehe entgeltlich erworbenes Vermögen – vor allem <strong>Arbeitserwerb</strong> (Lohn) und Erträge daraus</td></tr>
+  </table>
+  <p><em>Beispiel:</em> Eine Erbschaft bleibt Eigengut, der Lohn zählt zur Errungenschaft, ein Geschenk von Dritten ist meist Eigengut. Diese Unterscheidung ist bei einer Scheidung entscheidend, denn geteilt wird nur die Errungenschaft.</p>
+  <div class="rechnung">
+    <b>Vorschlag</b> = Errungenschaft − Schulden, die auf die Errungenschaft entfallen<br>
+    Bei Auflösung: jede Person erhält ihr Eigengut zurück + die <b>Hälfte</b> des gesamten Vorschlags beider Ehegatten
+  </div>
+  <div class="merk"><b>Merke:</b> Beim Tod eines Ehegatten wird zuerst der Güterstand aufgelöst (Vorschlag ausgeglichen) – <b>erst danach</b> steht fest, was überhaupt in den Nachlass fällt und geerbt werden kann (siehe LZ 4).</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Ein Ehepaar hat keinen Ehevertrag abgeschlossen. Welcher Güterstand gilt automatisch?</div>
+    <label>Gütertrennung</label>
+    <label data-ok>Errungenschaftsbeteiligung</label>
+    <label>Gütergemeinschaft</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">GES C3</span> Kinder &amp; Sorgerecht</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="503_[UE]_A07_Elterliche_Sorge.html">A9</a>
+    <a href="503_[UE]_A08_Kindesverhaeltnis.html">A10</a>
+  </div>
+  <p class="einstieg">Werden Eltern und Kinder rechtlich zueinander in Beziehung gesetzt, spricht man vom Kindesverhältnis. Daraus ergeben sich die elterliche Sorge und die Unterhaltspflicht – unabhängig davon, ob die Eltern verheiratet sind oder nicht.</p>
+  <h3>Wie entsteht das Kindesverhältnis?</h3>
+  <table class="tb">
+    <tr><th>Zur Mutter</th><th>Zum Vater</th></tr>
+    <tr><td>Automatisch durch die <strong>Geburt</strong> <span class="gesetz">ZGB 252</span></td><td>Durch <strong>Ehe mit der Mutter</strong>, durch <strong>Anerkennung</strong> beim Zivilstandsamt, oder durch <strong>gerichtliche Feststellung</strong> der Vaterschaft</td></tr>
+  </table>
+  <p>Das Kindesverhältnis hat weitreichende Folgen: Unterhaltsanspruch, Erbrecht, teilweise Namens- und Bürgerrecht. Bei unverheirateten Eltern erhält das Kind bei der Geburt automatisch den Ledignamen der Mutter, sofern die Eltern nicht gemeinsam erklären, dass es den Namen des Vaters tragen soll.</p>
+  <h3>Elterliche Sorge</h3>
+  <p>Die <strong>elterliche Sorge</strong> <span class="gesetz">ZGB 296 ff.</span> ist das Recht und die Pflicht der Eltern, für ein minderjähriges Kind zu sorgen, es zu erziehen, gesetzlich zu vertreten und wichtige Entscheidungen zu treffen. Sie gilt heute in der Regel <strong>gemeinsam</strong>, auch wenn die Eltern nicht verheiratet sind. Mit der <strong>Volljährigkeit (18 Jahre)</strong> endet die elterliche Sorge automatisch – die junge erwachsene Person entscheidet fortan selbst und kann eigenständig Verträge abschliessen.</p>
+  <div class="merk"><b>Merke:</b> Die <b>Unterhaltspflicht</b> der Eltern endet nicht zwingend mit der Volljährigkeit: Sie kann bis zum Abschluss einer <b>angemessenen ersten Ausbildung</b> weiterbestehen, soweit dies den Eltern zumutbar ist <span class="gesetz">ZGB 277 Abs. 2</span>.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Eine 18-jährige Person schliesst gerade ihre Erstausbildung ab und braucht dafür weiterhin finanzielle Unterstützung der Eltern. Ist das rechtlich möglich?</div>
+    <label>Nein – mit 18 endet jede Pflicht der Eltern automatisch</label>
+    <label data-ok>Ja – die Unterhaltspflicht kann bis zum Abschluss einer angemessenen Erstausbildung weiterbestehen</label>
+    <label>Nur wenn die Eltern noch die elterliche Sorge haben</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">GES C4 · Ergänzend</span> Erbrecht</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="503_[UE]_A13_Erbrecht_Tochter.html">A15</a>
+    <a href="503_[UE]_A12_Gueterrecht_Erbe.html">A14</a>
+  </div>
+  <p class="einstieg">Stirbt eine Person, ohne ein Testament zu hinterlassen, regelt das Gesetz automatisch, wer erbt – die gesetzliche Erbfolge. Ein Testament erlaubt Abweichungen davon, muss aber gewisse Mindestanteile (Pflichtteile) respektieren.</p>
+  <h3>Gesetzliche Erbfolge</h3>
+  <table class="tb">
+    <tr><th>Hinterlassene Erben</th><th>Aufteilung</th></tr>
+    <tr><td>Ehegatte/eingetragene Partnerin + <strong>Nachkommen</strong></td><td>Ehegatte <strong>1/2</strong>, Nachkommen <strong>1/2</strong> (unter sich zu gleichen Teilen)</td></tr>
+    <tr><td>Ehegatte + <strong>Eltern-Stamm</strong> (keine Nachkommen)</td><td>Ehegatte <strong>3/4</strong>, Eltern-Stamm <strong>1/4</strong></td></tr>
+    <tr><td>Ehegatte allein (keine Nachkommen, keine Eltern/Geschwister)</td><td>Ehegatte erhält <strong>alles</strong></td></tr>
+  </table>
+  <h3>Pflichtteile: Grenzen der Testierfreiheit</h3>
+  <p>Seit der Erbrechtsrevision, die am <strong>1. Januar 2023</strong> in Kraft trat, wurden die Pflichtteile deutlich reduziert – es gibt heute mehr Spielraum für ein individuelles Testament:</p>
+  <ul class="list">
+    <li><strong>Nachkommen:</strong> Pflichtteil <strong>1/2</strong> ihres gesetzlichen Erbanspruchs (vorher: 3/4) <span class="gesetz">ZGB 471</span>.</li>
+    <li><strong>Ehegatte/eingetragene Partnerin:</strong> Pflichtteil weiterhin <strong>1/2</strong> des gesetzlichen Erbanspruchs.</li>
+    <li><strong>Eltern:</strong> Pflichtteil vollständig <strong>abgeschafft</strong> (vorher: 1/2).</li>
+  </ul>
+  <div class="rechnung">
+    Beispiel: Erblasser hinterlässt Ehegatte + Kinder (gesetzlich je 1/2)<br>
+    Pflichtteil Ehegatte = 1/2 × 1/2 = <b>1/4</b> · Pflichtteil Kinder = 1/2 × 1/2 = <b>1/4</b><br>
+    → frei verfügbare Quote (für Testament) = <b>1/2</b> des Nachlasses
+  </div>
+  <div class="merk"><b>Merke:</b> Bevor überhaupt geerbt werden kann, muss bei verheirateten Personen zuerst der <b>Güterstand aufgelöst</b> werden (siehe LZ 2) – nur der Anteil des Erblassers am Vorschlag fällt in den Nachlass, nicht das ganze Vermögen des überlebenden Ehegatten.</div>
+  <p style="font-size:.85rem">Quelle: Revidiertes Erbrecht des Bundesgesetzbuchs (ZGB), in Kraft seit 1. Januar 2023 (Art. 471 ZGB).</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Seit 1. Januar 2023 gilt ein neues Pflichtteilsrecht. Was hat sich für die Eltern des Erblassers geändert?</div>
+    <label>Ihr Pflichtteil wurde erhöht</label>
+    <label data-ok>Ihr Pflichtteil wurde vollständig abgeschafft</label>
+    <label>Nichts, ihr Pflichtteil blieb bei 1/2</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">SUK C1</span> Mein Lebensmodell (Reflexion)</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="503_[UE]_A15_Mein_Zukuenftiges_Lebensmodell.html">A18</a>
+  </div>
+  <p class="einstieg">Nachdem Konkubinat, Ehe, Güterrecht und Erbrecht bekannt sind, lohnt sich der Blick nach vorn: Welches Lebensmodell passt zu den eigenen Wünschen und Vorstellungen? Es gibt dabei keine «richtige» Antwort.</p>
+  <p>Beim Nachdenken über das eigene, zukünftige Lebensmodell helfen folgende Leitfragen:</p>
+  <ul class="list">
+    <li>Welche gesellschaftlichen Vorbilder (Familie, Kultur, Religion, Medien) prägen die eigene Vorstellung von einem «normalen» oder «erstrebenswerten» Lebensmodell?</li>
+    <li>Wie stellt sich die Person das Zusammenleben in 10 Jahren vor – Partnerschaft, Ehe, Familie, oder bewusst offen?</li>
+    <li>Welche der zuvor behandelten rechtlichen Aspekte (Güterstand, Erbrecht, Unterhalt) wären für das eigene Modell besonders relevant?</li>
+  </ul>
+  <div class="merk"><b>Merke:</b> Diese Reflexion ist persönlich – wichtig ist eine ehrliche, begründete Formulierung in eigenen Worten, nicht eine bestimmte «Musterantwort».</div>
+</section>
+
+<section>
+  <h2><span class="nr">SLP</span> Orientierungswissen – Ich kann …</h2>
+  <p>Direkt aus dem Schullehrplan (Thema 5, Lebenssituation C). Abhaken, was bereits sicher beherrscht wird – der Rest ist der individuelle Lernauftrag:</p>
+  <div id="ow">
+    <label class="ow-item"><input type="checkbox"> … je zwei Vor- und Nachteile des Konkubinats nennen.</label>
+    <label class="ow-item"><input type="checkbox"> … vier rechtliche Wirkungen der Ehe aufzählen.</label>
+    <label class="ow-item"><input type="checkbox"> … die Begriffe Eigengut und Errungenschaft erklären.</label>
+    <label class="ow-item"><input type="checkbox"> … die zwei wichtigsten gesetzlichen Wirkungen des Kindesverhältnisses nennen.</label>
+  </div>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Punkte 1–7 des Orientierungswissens (Mietrecht/Versicherungen) folgen in Serie 502; Punkte 12–13 (Menschenrechte, Antirassismusstrafnorm) in Serie 504/505.</p>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 5 «Unser Zusammenleben» · Lebenssituation C</h2>
+  <p style="font-weight:700;margin-bottom:10px">Sich mit dem eigenen, zukünftigen Lebensmodell auseinandersetzen</p>
+  <table>
+    <tr><td class="lz">GES C1</td><td>Ich vergleiche verschiedene Formen des Zusammenlebens und verstehe deren rechtlichen Auswirkungen.</td></tr>
+    <tr><td class="lz">GES C2</td><td>Ich erläutere grundlegende Begriffe und Wirkungen des Eherechts anhand einfacher Fallbeispiele.</td></tr>
+    <tr><td class="lz">GES C3</td><td>Ich untersuche Rechte und Pflichten des Elternseins und leite mögliche Konsequenzen daraus ab.</td></tr>
+    <tr><td class="lz">GES C4</td><td>Ich bearbeite und löse praxisnahe Fallbeispiele zum Eherecht und wende dabei die relevanten gesetzlichen Bestimmungen korrekt an.</td></tr>
+    <tr><td class="lz">SUK C1</td><td>Ich drücke meine aktuellen persönlichen Wünsche und Vorstellungen für mein zukünftiges Lebensmodell aus.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen, Auflage 2026 (S. 46)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="503_Aufgaben.html"><strong>Übungen A3–A18 lösen</strong></a> → Kompetenznachweis Lebensmodell &amp; Eherecht.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
