@@ -24,6 +24,12 @@
   .d-desc { font-size:12px; color:var(--g5); line-height:1.5; }
   .no-ue-banner { display:flex; align-items:center; gap:12px; padding:12px 16px; background:#FFFBEB; border:1px solid #FDE68A; border-radius:10px; margin-bottom:1.5rem; font-size:12px; color:#92400E; line-height:1.5; }
   .no-ue-banner span { font-size:22px; flex-shrink:0; }
+  .th-card { display:flex; align-items:center; gap:14px; background:white; border:2px solid var(--accent); border-radius:14px; padding:16px 18px; margin-bottom:1.75rem; text-decoration:none; color:inherit; transition:all .15s; }
+  .th-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.08); transform:translateY(-1px); }
+  .th-card .th-icon { font-size:26px; flex-shrink:0; }
+  .th-card .th-title { font-size:14px; font-weight:700; color:var(--g9); margin-bottom:2px; }
+  .th-card .th-desc { font-size:11.5px; color:var(--g5); }
+  .th-card .th-arrow { margin-left:auto; font-size:18px; color:var(--accent); }
   .toggle-bar { display:flex; gap:6px; margin-bottom:1.25rem; }
   .toggle-btn { display:flex; align-items:center; gap:6px; padding:7px 14px; border-radius:8px; border:1.5px solid var(--g3); background:white; font-size:12px; font-weight:600; color:var(--g5); cursor:pointer; transition:all .15s; }
   .toggle-btn.active { background:var(--accent); border-color:var(--accent); color:white; }
@@ -95,6 +101,15 @@
     </div>
   </div>
 
+  <a class="th-card" href="403_[TH]_Vielseitigkeit_Schweiz.html">
+    <span class="th-icon">📖</span>
+    <span>
+      <div class="th-title">Theorie zu dieser Serie</div>
+      <div class="th-desc">Eckdaten, Heimat, Kulturerbe, Bevölkerungsdaten, Freiwilligenarbeit, Spannungsfelder</div>
+    </span>
+    <span class="th-arrow">→</span>
+  </a>
+
   <div class="toggle-bar">
     <button class="toggle-btn active" id="btnLz" onclick="showView('lz')">📚 Nach Lernzielen</button>
     <button class="toggle-btn" id="btnA"  onclick="showView('a')">🔢 Nach Aufgaben-Nr.</button>
@@ -105,10 +120,10 @@
     <div class="lz-list">
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES C1</span></div>
         <div class="lz-body">
           <div class="lz-title">Eckdaten Schweiz</div>
-          <div class="lz-ziel">Ich nenne wichtige geografische, demografische und wirtschaftliche Eckdaten der Schweiz.</div>
+          <div class="lz-ziel">Ich untersuche kulturelle Besonderheiten der Schweiz.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="403_[UE]_A01_Eckdaten_Schweiz.html">A01 Die Schweiz in Zahlen und Fakten</a>
             </div>
         </div>
@@ -116,10 +131,10 @@
       </div>
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">SUK C1</span></div>
         <div class="lz-body">
           <div class="lz-title">Heimat &amp; Identität</div>
-          <div class="lz-ziel">Ich reflektiere meinen Heimatbegriff und setze mich mit regionaler und nationaler Identität auseinander.</div>
+          <div class="lz-ziel">Ich beschreibe einen Ort, eine Gruppe oder ein Ereignis der Schweiz.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="403_[UE]_A02_Heimat.html">A02 Was bedeutet Heimat?</a>
             </div>
         </div>
@@ -127,7 +142,7 @@
       </div>
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">GES C1 · C2</span></div>
         <div class="lz-body">
           <div class="lz-title">Kulturelle Besonderheiten &amp; Orte</div>
           <div class="lz-ziel">Ich untersuche kulturelle Besonderheiten der Schweiz und entdecke kulturell bedeutsame Orte der Schweiz.</div>
@@ -137,17 +152,17 @@
       </div>
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">SUK+GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">SUK C3</span></div>
         <div class="lz-body">
           <div class="lz-title">Gesellschaftl. Entwicklungen: Daten</div>
-          <div class="lz-ziel">Ich analysiere gesellschaftliche Entwicklungen in der Schweiz anhand aktueller Daten (SUK) und ordne kulturelle Ausdrucksformen gesellschaftlich ein (GES).</div>
+          <div class="lz-ziel">Ich analysiere gesellschaftliche Entwicklungen in der Schweiz anhand aktueller Daten.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="403_[UE]_A04_Gesellschaftliche_Entwicklungen_Daten.html">A04 Gesellschaftl. Entwicklungen: Daten</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">SUK C4</span></div>
         <div class="lz-body">
           <div class="lz-title">Freiwilligenarbeit &amp; Engagement</div>
           <div class="lz-ziel">Ich beschreibe Beispiele freiwilliger gemeinnütziger Arbeit und reflektiere, welchen persönlichen und gesellschaftlichen Nutzen dieses Engagement hat.</div>
@@ -157,7 +172,7 @@
       </div>
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">6</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">6</span><span class="lz-fach">GES C4</span></div>
         <div class="lz-body">
           <div class="lz-title">Gesellschaftliche Spannungsfelder</div>
           <div class="lz-ziel">Ich analysiere gesellschaftliche Spannungsfelder und deren Ursachen.</div>

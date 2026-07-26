@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>403 · Theorie: Vielseitigkeit der Schweiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#297FB8; --t1-dark:#1B5D8A; --t1-light:#E3F0F9;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.9rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.2rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.75rem;background:var(--t1-light);padding:2px 7px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.9rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:8px 10px}
+.tb td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.stat-row{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0}
+.stat-tile{flex:1;min-width:110px;background:var(--t1-light);border-radius:10px;padding:10px 12px;text-align:center}
+.stat-tile .n{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--t1-dark);font-size:1.1rem}
+.stat-tile .l{font-size:.72rem;color:var(--ink-soft);margin-top:2px}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">403 · [TH]</span>
+  <h1>Theorie: Vielseitigkeit der Schweiz</h1>
+  <a class="nav" href="403_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Die Schweiz ist klein, aber vielfältig: vier Sprachen, unzählige Bräuche, wachsende und alternde Bevölkerung, gelebtes Ehrenamt und tiefe politische Gräben, die das Land trotzdem zusammenhalten. Diese Theorie zeigt zentrale Eckdaten, was «Heimat» bedeuten kann, kulturelle Besonderheiten und Orte, aktuelle Bevölkerungsdaten, die Rolle der Freiwilligenarbeit und gesellschaftliche Spannungsfelder.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES C1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">GES C1</span> Eckdaten Schweiz</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="403_[UE]_A01_Eckdaten_Schweiz.html">A01</a>
+  </div>
+  <p class="einstieg">Ein paar Grundzahlen helfen, die kulturellen Besonderheiten der Schweiz einzuordnen.</p>
+  <div class="stat-row">
+    <div class="stat-tile"><div class="n">≈9,1 Mio.</div><div class="l">Einwohner:innen</div></div>
+    <div class="stat-tile"><div class="n">≈25%</div><div class="l">Ausländeranteil</div></div>
+    <div class="stat-tile"><div class="n">26</div><div class="l">Kantone (20 Voll- + 6 Halbkantone)</div></div>
+    <div class="stat-tile"><div class="n">≈40'000 km²</div><div class="l">Fläche</div></div>
+  </div>
+  <div class="stat-row">
+    <div class="stat-tile"><div class="n">≈2/3</div><div class="l">der Fläche ist Alpenraum</div></div>
+    <div class="stat-tile"><div class="n">4</div><div class="l">Landessprachen (D/F/I/Rätoromanisch)</div></div>
+    <div class="stat-tile"><div class="n">5</div><div class="l">Nachbarstaaten</div></div>
+    <div class="stat-tile"><div class="n">Binnenstaat</div><div class="l">kein Meerzugang</div></div>
+  </div>
+  <div class="merk"><b>Merke:</b> Deutsch wird rund zehnmal häufiger gesprochen als Italienisch, Französisch von rund 20 % der Bevölkerung. Rätoromanisch ist die kleinste, aber offizielle vierte Landessprache. Die Schweiz ist eine <strong>halbdirekte Demokratie</strong>.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Wie viele Kantone hat die Schweiz, und wie setzen sie sich zusammen?</div>
+    <label>23 gleichwertige Kantone</label>
+    <label data-ok>26 Kantone: 20 Vollkantone und 6 Halbkantone</label>
+    <label>20 Kantone ohne Unterscheidung</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">SUK C1</span> Heimat &amp; Identität</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="403_[UE]_A02_Heimat.html">A02</a>
+  </div>
+  <p class="einstieg">«Heimat» bedeutet nicht für alle Menschen dasselbe.</p>
+  <p>Für Menschen, die in der Schweiz aufgewachsen sind, ist Heimat oft mit Landschaft, Dialekt und Kindheitserinnerungen verbunden. Zugewanderte können über Arbeit, Sprache und soziale Beziehungen eine weitere Heimat entwickeln.</p>
+  <div class="merk"><b>Merke:</b> Mehrere Heimaten gleichzeitig sind möglich und schliessen Integration nicht aus – Heimatgefühl und gesellschaftliche Zugehörigkeit lassen sich nicht auf einen einzigen Ort beschränken.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Schliesst eine neue Heimat in der Schweiz automatisch die alte Heimat aus?</div>
+    <label>Ja, man kann nur eine Heimat haben</label>
+    <label data-ok>Nein, mehrere Heimaten sind möglich und schliessen Integration nicht aus</label>
+    <label>Nur mit Schweizer Pass ist das möglich</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">GES C1 · C2</span> Kulturelle Besonderheiten &amp; Orte</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="403_[UE]_A03_Kulturelle_Besonderheiten_Orte.html">A03</a>
+  </div>
+  <p class="einstieg">Vier Landessprachen bedeuten auch vier kulturelle Prägungen – dazu kommen kantonale und lokale Traditionen, die sich selbst innerhalb einer Sprachregion stark unterscheiden können.</p>
+  <div class="merk"><b>Merke – UNESCO Immaterielles Kulturerbe:</b> Seit 2008 führt die Schweiz eine nationale «Liste der lebendigen Traditionen». Auf der UNESCO-Liste stehen u.&nbsp;a.: Fête des Vignerons (seit 2016), Basler Fasnacht (2017), Lawinenrisikomanagement (2018), Trockenmauerbau (2018), Alpinismus (2019), Uhrmacherkunst (2020), Alpaufzug (2023), Suonen/Bisses im Wallis (2023).</div>
+  <p><strong>Orte als Träger von Identität:</strong> Auch Landschaften und Orte prägen kulturelle Identität – Rheinfall und Bergpanoramen als Wahrzeichen, historische Altstädte wie Bern oder Luzern, Alpwirtschaft und Bergdörfer, in denen viele Traditionen bis heute gelebt werden.</p>
+  <div class="merk"><b>Merke:</b> «Die» Schweizer Kultur im engen Sinn gibt es nicht – die Schweiz besteht aus vielen regionalen Kulturen, die nebeneinander bestehen und sich gegenseitig beeinflussen.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Seit wann führt die Schweiz die «Liste der lebendigen Traditionen»?</div>
+    <label>Seit 1848</label>
+    <label data-ok>Seit 2008</label>
+    <label>Seit 2023</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">SUK C3</span> Gesellschaftliche Entwicklungen: Daten</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="403_[UE]_A04_Gesellschaftliche_Entwicklungen_Daten.html">A04</a>
+  </div>
+  <p class="einstieg">Die Schweiz wächst – und altert gleichzeitig.</p>
+  <div class="stat-row">
+    <div class="stat-tile"><div class="n">≈9,12 Mio.</div><div class="l">ständige Wohnbevölkerung Ende 2025</div></div>
+    <div class="stat-tile"><div class="n">+0,8%</div><div class="l">Bevölkerungswachstum 2025</div></div>
+    <div class="stat-tile"><div class="n">≈88%</div><div class="l">des Wachstums durch Zuwanderung</div></div>
+    <div class="stat-tile"><div class="n">77'900</div><div class="l">Lebendgeburten 2025</div></div>
+  </div>
+  <div class="merk"><b>Merke – Demografischer Wendepunkt:</b> 2025 überstieg erstmals die Zahl der Personen ab 65 Jahren (≈1,811 Mio.) die Zahl der unter 20-Jährigen (≈1,802 Mio.) – ein Zeichen fortschreitender gesellschaftlicher Alterung.</div>
+  <p>Eine wachsende und gleichzeitig alternde Bevölkerung fordert Sozialwerke (AHV, Pflege, Gesundheitswesen), Wohnungs- und Arbeitsmarkt heraus. Zuwanderung wirkt diesen Trends teilweise entgegen, da viele Zugewanderte im erwerbsfähigen Alter sind. <span style="font-size:.82rem">(Quelle: Bundesamt für Statistik BFS, Stand Ende 2025)</span></p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was zeigt der «demografische Wendepunkt» von 2025?</div>
+    <label>Die Schweiz schrumpft erstmals</label>
+    <label data-ok>Erstmals gibt es mehr Menschen ab 65 als unter 20 Jahren</label>
+    <label>Die Geburtenzahlen sind gestiegen</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">SUK C4</span> Freiwilligenarbeit &amp; Engagement</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="403_[UE]_A05_Freiwilligenarbeit_Engagement.html">A05</a>
+  </div>
+  <p class="einstieg">Freiwilligenarbeit ist unbezahlte Arbeit, die Menschen aus eigenem Antrieb für andere oder die Allgemeinheit leisten.</p>
+  <table class="tb">
+    <tr><th>Form</th><th>Beispiel</th></tr>
+    <tr><td><strong>Formell (institutionalisiert)</strong></td><td>Amt in Sportverein, Feuerwehr oder kirchlicher Organisation</td></tr>
+    <tr><td><strong>Informell</strong></td><td>Nachbarschaftshilfe, Betreuung von Verwandten, Unterstützung im Freundeskreis</td></tr>
+  </table>
+  <div class="stat-row">
+    <div class="stat-tile"><div class="n">41%</div><div class="l">engagieren sich formell</div></div>
+    <div class="stat-tile"><div class="n">51%</div><div class="l">leisten informelle Freiwilligenarbeit</div></div>
+    <div class="stat-tile"><div class="n">48%</div><div class="l">erhalten keine Entschädigung</div></div>
+  </div>
+  <div class="merk"><b>Merke:</b> Vereine, Feuerwehren, Rettungsdienste, Kirchgemeinden und ein grosser Teil der Angehörigenbetreuung würden ohne Freiwilligenarbeit nicht funktionieren. Sie stärkt zudem den gesellschaftlichen Zusammenhalt, indem sie Menschen unterschiedlichen Alters, Herkunft und Hintergrunds zusammenbringt. <span style="font-size:.82rem">(Quelle: Freiwilligen-Monitor Schweiz 2025)</span></div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was ist ein Beispiel für informelle Freiwilligenarbeit?</div>
+    <label>Ein Amt im Vorstand eines Sportvereins</label>
+    <label data-ok>Die Betreuung eines Nachbarskindes</label>
+    <label>Eine bezahlte Teilzeitstelle</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 6 ==================== -->
+<section>
+  <h2><span class="nr">GES C4</span> Gesellschaftliche Spannungsfelder</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="403_[UE]_A06_Gesellschaftliche_Spannungsfelder.html">A06</a>
+  </div>
+  <p class="einstieg">Die Schweiz gilt als geeinte Nation – ist aber gleichzeitig voller Gegensätze, die oft als «Gräben» bezeichnet werden.</p>
+  <table class="tb">
+    <tr><th>Graben</th><th>Zeigt sich bei</th></tr>
+    <tr><td><strong>Röstigraben</strong><br>Deutschschweiz ↔ Romandie/Tessin</td><td>Abstimmungen zu Sozialstaat, Umweltschutz, Migrationspolitik</td></tr>
+    <tr><td><strong>Stadt-Land-Graben</strong><br>städtische Zentren ↔ ländliche Regionen</td><td>Kinderbetreuung, Umweltschutz, internationale Öffnung – tendenziell wachsend</td></tr>
+  </table>
+  <div class="merk"><b>Merke – warum die Schweiz trotzdem zusammenhält:</b> Weil sich die verschiedenen Gräben (Sprache, Stadt/Land, Religion, Wirtschaft, Politik) nicht überall gleich verlaufen, entstehen immer wieder neue, wechselnde Mehrheiten und Allianzen statt fester Blöcke. Föderalismus, direkte Demokratie und die Konkordanz (Kompromissbereitschaft) helfen zusätzlich, Spannungsfelder auszuhalten statt eskalieren zu lassen.</div>
+  <p>Gesellschaftliche Spannungsfelder sind kein Zeichen einer «kaputten» Gesellschaft – sie gehören zu jeder pluralistischen Gesellschaft. Entscheidend ist der Umgang damit: Dialog, Kompromissbereitschaft und ausgleichende Institutionen.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Warum hält die Schweiz laut Michael Hermann trotz vieler Gräben zusammen?</div>
+    <label>Weil es in der Schweiz keine Konflikte gibt</label>
+    <label data-ok>Weil sich die verschiedenen Gräben nicht überall gleich verlaufen und so wechselnde Mehrheiten entstehen</label>
+    <label>Weil nur eine Partei regiert</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 4 «Unsere Schweiz» · Lebenssituation C</h2>
+  <p style="font-weight:700;margin-bottom:10px">In der Schweiz leben und ihrer Vielseitigkeit begegnen</p>
+  <table>
+    <tr><td class="lz">SUK C1</td><td>Ich beschreibe einen Ort, eine Gruppe oder ein Ereignis der Schweiz.</td></tr>
+    <tr><td class="lz">GES C1</td><td>Ich untersuche kulturelle Besonderheiten der Schweiz.</td></tr>
+    <tr><td class="lz">GES C2</td><td>Ich entdecke kulturell bedeutsame Orte der Schweiz.</td></tr>
+    <tr><td class="lz">SUK C3</td><td>Ich analysiere gesellschaftliche Entwicklungen in der Schweiz anhand aktueller Daten.</td></tr>
+    <tr><td class="lz">SUK C4</td><td>Ich beschreibe Beispiele freiwilliger gemeinnütziger Arbeit und reflektiere, welchen persönlichen und gesellschaftlichen Nutzen dieses Engagement hat.</td></tr>
+    <tr><td class="lz">GES C4</td><td>Ich analysiere gesellschaftliche Spannungsfelder und deren Ursachen.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">GES C3 («kulturelle Ausdrucksformen wie Kunst, Literatur oder Musik gesellschaftlich einordnen») ist derzeit durch keine eigene Übung abgedeckt und als Übungs-Lücke vermerkt.<br>Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen (S. 40)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="403_Aufgaben.html"><strong>Übungen lösen</strong></a>.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
