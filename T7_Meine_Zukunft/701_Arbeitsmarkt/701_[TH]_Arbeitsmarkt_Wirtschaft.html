@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>701 · Theorie: Arbeitsmarkt &amp; Wirtschaft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#6D3FA1; --t1-dark:#5B3488; --t1-light:#F0ECF6;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+.vertiefung-link{display:block;margin-top:10px;font-size:.82rem}
+.vertiefung-link a{color:var(--ink-soft);text-decoration:underline;text-decoration-style:dotted}
+.vertiefung-link a:hover{color:var(--t1)}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+.gesetz{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:#EEF1F5;border:1px solid var(--line);padding:2px 8px;border-radius:6px;white-space:nowrap}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.rechnung{font-family:'JetBrains Mono',monospace;font-size:.88rem;background:#1E2530;color:#E8ECF1;border-radius:10px;padding:14px 18px;margin:14px 0;overflow-x:auto}
+.rechnung b{color:#FFB4A8}
+details{border:1px solid var(--line);border-radius:10px;margin:12px 0;background:#FCFCFD}
+summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--t1-dark)}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .inner{padding:14px 16px;color:var(--ink-soft)}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+.ow-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;margin:6px 0;background:#FCFCFD;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;color:var(--ink-soft)}
+.ow-item input{margin-top:4px;accent-color:var(--t1)}
+.ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">701 · [TH]</span>
+  <h1>Theorie: Arbeitsmarkt &amp; Wirtschaft</h1>
+  <a class="nav" href="701_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Beim Übergang von der Lehre in die Arbeitswelt lohnt sich ein Grundverständnis wirtschaftlicher Zusammenhänge. Diese Theorie erklärt Produktionsfaktoren und Wirtschaftssektoren, zeigt, wie sich Preise auf einem Markt bilden, ordnet das Bruttoinlandprodukt und seine Grenzen ein, erklärt Konjunktur und Inflation, beleuchtet Arbeitslosigkeit und die Invalidenversicherung – und regt dazu an, die eigenen Kompetenzen und den eigenen Beitrag zum Unternehmenserfolg zu reflektieren.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">GES A2</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">GES A2</span> Produktionsfaktoren und Kapitalarten</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="701_[UE]_A01_Produktionsfaktoren.html">A4</a>
+    <a href="701_[UE]_A02_Kapitalarten.html">A12</a>
+  </div>
+  <p class="einstieg">Um Güter und Dienstleistungen herzustellen, braucht jeder Betrieb bestimmte Grundvoraussetzungen – die Produktionsfaktoren. In der modernen Wirtschaft kommt zu den drei klassischen Faktoren zunehmend ein vierter dazu.</p>
+  <h3>Die Produktionsfaktoren</h3>
+  <table class="tb">
+    <tr><th>Faktor</th><th>Beschreibung</th></tr>
+    <tr><td><strong>Boden</strong></td><td>Natürliche Ressourcen: Land, Rohstoffe, Energiequellen</td></tr>
+    <tr><td><strong>Arbeit</strong></td><td>Menschliche Arbeitskraft, körperlich und geistig</td></tr>
+    <tr><td><strong>Kapital</strong></td><td>Maschinen, Gebäude, Geld für Investitionen</td></tr>
+    <tr><td><strong>Wissen/Bildung</strong></td><td>Know-how, Technologie, unternehmerische Fähigkeiten – in der modernen Wirtschaft als vierter Faktor zunehmend zentral</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Klassisch werden oft nur Boden, Arbeit und Kapital genannt – Wissen/Bildung als vierter Faktor gewinnt aber gerade dort an Bedeutung, wo Digitalisierung und Automatisierung körperliche Arbeit ergänzen oder ersetzen (z.B. Präzisionslandwirtschaft, Datenanalyse).</div>
+  <h3>Kapitalarten</h3>
+  <table class="tb">
+    <tr><th>Realkapital</th><th>Geldkapital</th></tr>
+    <tr><td>Sachwerte: Maschinen, Gebäude, Fahrzeuge, Werkzeuge</td><td>Finanzielle Mittel: Bargeld, Bankguthaben, Wertschriften</td></tr>
+  </table>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Wie viele Produktionsfaktoren werden im Schullehrplan genannt (klassische drei + moderner vierter)?</div>
+    <label>Zwei</label>
+    <label>Drei</label>
+    <label data-ok>Vier</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES A2</span> Wirtschaftssektoren und Strukturwandel</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="701_[UE]_A03_Wirtschaftssektoren.html">A13</a>
+    <a href="701_[UE]_A04_Branchen_Sektoren.html">A14</a>
+  </div>
+  <p class="einstieg">Die Wirtschaft lässt sich in drei Sektoren gliedern – ihre relative Bedeutung hat sich in der Schweiz in den letzten Jahrzehnten stark verschoben.</p>
+  <h3>Die drei Wirtschaftssektoren</h3>
+  <table class="tb">
+    <tr><th>Sektor</th><th>Inhalt</th></tr>
+    <tr><td><strong>Primärsektor</strong></td><td>Land- und Forstwirtschaft, Rohstoffgewinnung</td></tr>
+    <tr><td><strong>Sekundärsektor</strong></td><td>Industrie und Gewerbe – Herstellung von Gütern</td></tr>
+    <tr><td><strong>Tertiärsektor</strong></td><td>Dienstleistungen: Handel, Gesundheit, Bildung, Finanzen</td></tr>
+  </table>
+  <h3>Der Strukturwandel</h3>
+  <p>Mechanisierung, Automatisierung, steigender Wohlstand und Globalisierung haben den <strong>Tertiärsektor</strong> in der Schweiz stark wachsen lassen. Die Landwirtschaft (Primärsektor) beschäftigt heute deutlich weniger Menschen als früher, kann dank Produktivitätssteigerung aber weiterhin viel produzieren. Zukunftschancen der Landwirtschaft liegen zunehmend in Nischenprodukten, Qualität und ökologischen Leistungen.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welcher Sektor ist in der Schweiz in den letzten 50 Jahren am stärksten gewachsen?</div>
+    <label>Primärsektor</label>
+    <label>Sekundärsektor</label>
+    <label data-ok>Tertiärsektor</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">GES A2</span> Markt und Preisbildung</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="701_[UE]_A19_Preisbildung.html">A19</a>
+    <a href="701_[UE]_A20_Angebot_Nachfrage.html">A20</a>
+    <a href="701_[UE]_A21_Marktgleichgewicht.html">A21 (Ergänzend)</a>
+  </div>
+  <p class="einstieg">Preise entstehen nicht willkürlich – sie bilden sich dort, wo sich Angebot und Nachfrage treffen.</p>
+  <h3>Wie sich der Marktpreis bildet</h3>
+  <ul class="list">
+    <li>Steigt die <strong>Nachfrage</strong> bei gleichbleibendem Angebot, steigt der Preis.</li>
+    <li>Sinkt die Nachfrage, sinkt der Preis.</li>
+    <li>Ein grösseres <strong>Angebot</strong> senkt den Preis tendenziell, ein kleineres erhöht ihn.</li>
+    <li>Das <strong>Marktgleichgewicht</strong> liegt dort, wo sich Angebots- und Nachfragekurve schneiden.</li>
+  </ul>
+  <div class="merk"><b>Merke:</b> Preisveränderungen (z.B. bei Energie oder Lebensmitteln) treffen Haushalte mit tiefem Einkommen stärker, weil Grundgüter dort einen grösseren Anteil des Budgets ausmachen.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was passiert mit dem Preis, wenn die Nachfrage steigt, das Angebot aber gleich bleibt?</div>
+    <label>Der Preis sinkt</label>
+    <label data-ok>Der Preis steigt</label>
+    <label>Der Preis bleibt unverändert</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">GES A2</span> BIP und Wirtschaftskreislauf</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="701_[UE]_A05_BIP_Schweiz.html">A16</a>
+    <a href="701_[UE]_A06_BIP_Vergleich.html">A17</a>
+    <a href="701_[UE]_A07_BIP_Nicht_Erfasst.html">A07</a>
+    <a href="701_[UE]_A08_Wohlfahrt.html">A08</a>
+    <a href="701_[UE]_A09_Lebensqualitaet.html">A09</a>
+    <a href="701_[UE]_A10_Lorenzkurve.html">A37</a>
+  </div>
+  <p class="einstieg">Das Bruttoinlandprodukt ist der wichtigste Massstab für die wirtschaftliche Leistung eines Landes – es hat aber deutliche Grenzen als Wohlstandsindikator.</p>
+  <h3>Was das BIP misst – und was nicht</h3>
+  <p>Das <strong>Bruttoinlandprodukt (BIP)</strong> misst den Gesamtwert aller Güter und Dienstleistungen, die innerhalb eines Landes in einem Jahr produziert werden. Grössere Einbrüche (z.B. 2009, 2020) hängen meist mit Finanzkrisen oder Pandemien zusammen.</p>
+  <div class="merk"><b>Merke:</b> Das BIP erfasst nur <b>marktmässig gehandelte</b> Leistungen. Unbezahlte Arbeit (Familienpflege, Freiwilligenarbeit), Umweltkosten und die Verteilung des Einkommens innerhalb der Bevölkerung bleiben unberücksichtigt – deshalb braucht es ergänzende Indikatoren für Wohlfahrt und Lebensqualität.</div>
+  <h3>Einkommensverteilung: die Lorenzkurve</h3>
+  <p>Die <strong>Lorenzkurve</strong> zeigt grafisch, wie ungleich Einkommen oder Vermögen innerhalb einer Bevölkerung verteilt sind – je stärker sie von der Gleichverteilungslinie abweicht, desto ungleicher ist die Verteilung.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welche Tätigkeit wird vom BIP NICHT erfasst?</div>
+    <label>Bezahlte Arbeit in einer Fabrik</label>
+    <label data-ok>Unbezahlte Kinderbetreuung durch Familienangehörige</label>
+    <label>Verkauf von Dienstleistungen an Kunden</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">GES A3</span> Konjunktur und Inflation</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="701_[UE]_A11_Konjunkturphasen.html">A39</a>
+    <a href="701_[UE]_A12_Konjunktur_Massnahmen.html">A40</a>
+    <a href="701_[UE]_A13_Inflation_Lueckentext.html">A41</a>
+    <a href="701_[UE]_A14_Warenkorb.html">A42</a>
+    <a href="701_[UE]_A18_Too_Big_To_Fail.html">A46</a>
+  </div>
+  <p class="einstieg">Die Wirtschaft entwickelt sich nicht gleichmässig, sondern in Wellen – den Konjunkturphasen. Gleichzeitig verändert sich laufend das allgemeine Preisniveau.</p>
+  <h3>Die vier Konjunkturphasen</h3>
+  <table class="tb">
+    <tr><th>Phase</th><th>Merkmale</th></tr>
+    <tr><td><strong>Aufschwung</strong></td><td>Wirtschaft wächst, Arbeitslosigkeit sinkt</td></tr>
+    <tr><td><strong>Hochkonjunktur</strong></td><td>Wirtschaft läuft auf Hochtouren, Kapazitäten sind ausgelastet</td></tr>
+    <tr><td><strong>Abschwung</strong></td><td>Wachstum verlangsamt sich, Arbeitslosigkeit steigt</td></tr>
+    <tr><td><strong>Rezession/Tiefstand</strong></td><td>Wirtschaftsleistung sinkt oder stagniert</td></tr>
+  </table>
+  <h3>Inflation und Landesindex der Konsumentenpreise (LIK)</h3>
+  <p><strong>Inflation</strong> bedeutet, dass das allgemeine Preisniveau über Zeit steigt – mit demselben Geldbetrag lassen sich weniger Güter kaufen, das Geld verliert an Kaufkraft. Gemessen wird sie über den <strong>Landesindex der Konsumentenpreise (LIK)</strong>, einen repräsentativen «Warenkorb» typischer Haushaltsausgaben.</p>
+  <div class="merk"><b>Aktuelle Zahlen (Stand Sommer 2026):</b> Die Teuerung lag 2025 bei rund <b>0,2 %</b>, für 2026 rechnet die SNB mit durchschnittlich rund <b>0,5 %</b> Inflation. Die Schweizerische Nationalbank (SNB) hat ihren Leitzins in zwei Schritten von 0,5 % auf <b>0,0 %</b> gesenkt.</div>
+  <h3>«Too Big To Fail»</h3>
+  <p>Manche Banken sind so gross und vernetzt, dass ihr Zusammenbruch das ganze Finanzsystem gefährden würde («systemrelevant»). Das führt zum Problem des <strong>Moral Hazard</strong>: Banken könnten grössere Risiken eingehen, wenn sie mit einer staatlichen Rettung rechnen. Nach der UBS-Rettung 2008 und der Übernahme der Credit Suisse 2023 wurde die Regulierung verschärft – systemrelevante Banken brauchen heute unter anderem Notfallpläne und zusätzliche Verlusttragfähigkeit.</p>
+  <p style="font-size:.85rem">Quelle: Bundesamt für Statistik (LIK); Schweizerische Nationalbank, Geldpolitische Lagebeurteilung vom 19. März 2026.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was bedeutet «Moral Hazard» im Zusammenhang mit systemrelevanten Banken?</div>
+    <label>Banken handeln automatisch besonders vorsichtig</label>
+    <label data-ok>Banken könnten grössere Risiken eingehen, weil sie mit staatlicher Rettung rechnen</label>
+    <label>Banken dürfen keine Kredite mehr vergeben</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 6 ==================== -->
+<section>
+  <h2><span class="nr">GES A3 · Ergänzend</span> Arbeitslosigkeit und Sozialversicherung</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="701_[UE]_A15_Arbeitslosigkeit.html">A43</a>
+    <a href="701_[UE]_A16_Arbeitslosenquote.html">A44</a>
+    <a href="701_[UE]_A17_IV_Eingliederung.html">A45</a>
+  </div>
+  <p class="einstieg">Konjunkturelle Schwankungen wirken sich direkt auf den Arbeitsmarkt aus. Nicht jede Arbeitslosigkeit hat dieselbe Ursache – und auch bei gesundheitlichen Einschränkungen setzt die Schweizer Sozialversicherung zuerst auf Eingliederung.</p>
+  <h3>Konjunkturelle vs. strukturelle Arbeitslosigkeit</h3>
+  <table class="tb">
+    <tr><th>Konjunkturelle Arbeitslosigkeit</th><th>Strukturelle Arbeitslosigkeit</th></tr>
+    <tr><td>Entsteht durch eine schwache Wirtschaftslage, geht bei Erholung der Konjunktur meist wieder zurück</td><td>Entsteht durch dauerhafte Veränderungen von Berufen/Branchen (z.B. Automatisierung), betrifft oft bestimmte Qualifikationen langfristig</td></tr>
+  </table>
+  <div class="merk"><b>Aktuelle Zahlen (Stand Mai 2026):</b> Die Arbeitslosenquote der Schweiz lag laut SECO bei <b>3,0 %</b> (rund 140'275 registrierte Arbeitslose).</div>
+  <h3>IV: «Eingliederung vor Rente»</h3>
+  <p>Die Invalidenversicherung (IV) versucht zuerst, eine Person mit gesundheitlicher Beeinträchtigung wieder ins Berufsleben einzugliedern (z.B. durch Umschulung oder Anpassung des Arbeitsplatzes), <strong>bevor</strong> eine IV-Rente ausgerichtet wird. Das kann langfristig Kosten senken und soziale Teilhabe ermöglichen, erzeugt aber auch Druck, wenn passende Stellen fehlen – die IV versucht dies mit Einzelfallbeurteilung und beruflicher Abklärung auszugleichen.</p>
+  <p style="font-size:.85rem">Quelle: Staatssekretariat für Wirtschaft (SECO), Arbeitsmarktstatistik (Stand Mai 2026).</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was bedeutet der Grundsatz «Eingliederung vor Rente» bei der IV?</div>
+    <label>Wer eine Beeinträchtigung hat, erhält automatisch eine Rente</label>
+    <label data-ok>Zuerst wird versucht, die Person wieder ins Berufsleben einzugliedern, bevor eine Rente ausgerichtet wird</label>
+    <label>Eine Rente wird nur bei vollständiger Erwerbsunfähigkeit geprüft</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 7 ==================== -->
+<section>
+  <h2><span class="nr">SUK A1 · GES A1</span> Selbsteinschätzung und gefragte Kompetenzen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="701_[UE]_A22_Selbsteinschaetzung_Gefragte_Kompetenzen.html">A22</a>
+  </div>
+  <p class="einstieg">Der Übergang von der Lehre in den Arbeitsmarkt gelingt besser, wenn die eigenen Stärken und Entwicklungsfelder bewusst reflektiert und mit den auf dem Arbeitsmarkt gefragten Kompetenzen verglichen werden.</p>
+  <p>Übliche Kompetenzbereiche für eine Selbsteinschätzung sind Fachkompetenz, Methodenkompetenz, Selbstkompetenz und Sozialkompetenz. Leitfragen für die eigene Standortbestimmung:</p>
+  <ul class="list">
+    <li>In welchem Kompetenzbereich besteht aktuell der grösste Entwicklungsbedarf – mit welchem konkreten Beispiel lässt sich das belegen?</li>
+    <li>Wo steht die Person heute, und welches konkrete Ziel setzt sie sich für den Übergang von der Lehre in die Arbeitswelt?</li>
+  </ul>
+  <div class="merk"><b>Merke:</b> Eine gute Standortbestimmung ist ehrlich, persönlich und enthält mindestens ein konkretes, realistisches Ziel – nicht nur eine allgemeine Selbsteinschätzung.</div>
+</section>
+
+<!-- ==================== LZ 8 ==================== -->
+<section>
+  <h2><span class="nr">SUK A2</span> Mein Beitrag zum Unternehmenserfolg</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="701_[UE]_A23_Mein_Beitrag_Unternehmenserfolg.html">A23</a>
+  </div>
+  <p class="einstieg">Der Produktionsfaktor «Arbeit» ist mehr als eine abstrakte volkswirtschaftliche Grösse – er beginnt bei der eigenen Leistung im Lehrbetrieb.</p>
+  <p>Gut ausgebildete, motivierte Arbeitskräfte tragen direkt zur Produktivität und Wertschöpfung eines Betriebs bei: bessere Ausbildung führt zu effizienterer, qualitativ hochwertigerer Arbeit – das nützt dem Betrieb und letztlich der gesamten Volkswirtschaft.</p>
+  <div class="merk"><b>Merke:</b> Eine gute persönliche Reflexion benennt sowohl eine konkrete eigene Stärke als auch einen konkreten Punkt, der bis zum Lehrabschluss noch verbessert werden soll.</div>
+</section>
+
+<section>
+  <h2><span class="nr">SLP</span> Orientierungswissen – Ich kann …</h2>
+  <p>Direkt aus dem Schullehrplan (Thema 7, Lebenssituation A). Abhaken, was bereits sicher beherrscht wird – der Rest ist der individuelle Lernauftrag:</p>
+  <div id="ow">
+    <label class="ow-item"><input type="checkbox"> … die vier Produktionsfaktoren aufzählen.</label>
+    <label class="ow-item"><input type="checkbox"> … die drei Wirtschaftssektoren beschreiben.</label>
+    <label class="ow-item"><input type="checkbox"> … die Auswirkung von Veränderungen von Angebot und Nachfrage auf den Preis erklären.</label>
+    <label class="ow-item"><input type="checkbox"> … die vier Phasen des Konjunkturzyklus nennen.</label>
+  </div>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Punkte 1–3 des Orientierungswissens (Arbeitsrecht, Kündigungsfristen) folgen in Serie 702; Punkte 4–7 und 12–14 (Steuern, Vorsorge) in Serie 703.</p>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 7 «Meine Zukunft» · Lebenssituation A</h2>
+  <p style="font-weight:700;margin-bottom:10px">Im Arbeitsmarkt ankommen</p>
+  <table>
+    <tr><td class="lz">GES A1</td><td>Ich untersuche, welche Kompetenzen im Arbeitsmarkt gefragt sind.</td></tr>
+    <tr><td class="lz">GES A2</td><td>Ich analysiere grundlegende Begriffe der Wirtschaft und ordne sie in entsprechende Zusammenhänge ein.</td></tr>
+    <tr><td class="lz">GES A3</td><td>Ich untersuche Ursachen konjunktureller Schwankungen und deren Auswirkungen auf den Arbeitsmarkt.</td></tr>
+    <tr><td class="lz">SUK A1</td><td>Ich führe eine Selbsteinschätzung durch und reflektiere auf dieser Grundlage meine Stärken und Schwächen.</td></tr>
+    <tr><td class="lz">SUK A2</td><td>Ich reflektiere meinen Beitrag zum wirtschaftlichen Erfolg eines Unternehmens und leite daraus Konsequenzen für mein berufliches Handeln ab.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen, Auflage 2026 (S. 59)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="701_Aufgaben.html"><strong>Übungen A4–A46 lösen</strong></a> → Kompetenznachweis Arbeitsmarkt &amp; Wirtschaft.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
