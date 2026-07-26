@@ -24,6 +24,12 @@
   .d-desc { font-size:12px; color:var(--g5); line-height:1.5; }
   .no-ue-banner { display:flex; align-items:center; gap:12px; padding:12px 16px; background:#FFFBEB; border:1px solid #FDE68A; border-radius:10px; margin-bottom:1.5rem; font-size:12px; color:#92400E; line-height:1.5; }
   .no-ue-banner span { font-size:22px; flex-shrink:0; }
+  .th-card { display:flex; align-items:center; gap:14px; background:white; border:2px solid var(--accent); border-radius:14px; padding:16px 18px; margin-bottom:1.75rem; text-decoration:none; color:inherit; transition:all .15s; }
+  .th-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.08); transform:translateY(-1px); }
+  .th-card .th-icon { font-size:26px; flex-shrink:0; }
+  .th-card .th-title { font-size:14px; font-weight:700; color:var(--g9); margin-bottom:2px; }
+  .th-card .th-desc { font-size:11.5px; color:var(--g5); }
+  .th-card .th-arrow { margin-left:auto; font-size:18px; color:var(--accent); }
   .toggle-bar { display:flex; gap:6px; margin-bottom:1.25rem; }
   .toggle-btn { display:flex; align-items:center; gap:6px; padding:7px 14px; border-radius:8px; border:1.5px solid var(--g3); background:white; font-size:12px; font-weight:600; color:var(--g5); cursor:pointer; transition:all .15s; }
   .toggle-btn.active { background:var(--accent); border-color:var(--accent); color:white; }
@@ -95,6 +101,15 @@
     </div>
   </div>
 
+  <a class="th-card" href="401_[TH]_Demokratie_Staatsaufbau.html">
+    <span class="th-icon">📖</span>
+    <span>
+      <div class="th-title">Theorie zu dieser Serie</div>
+      <div class="th-desc">Staatsformen, Geschichte, Staatsaufbau, Bundesorgane, Volksrechte, Gesetzgebung</div>
+    </span>
+    <span class="th-arrow">→</span>
+  </a>
+
   <div class="toggle-bar">
     <button class="toggle-btn active" id="btnLz" onclick="showView('lz')">📚 Nach Lernzielen</button>
     <button class="toggle-btn" id="btnA"  onclick="showView('a')">🔢 Nach Aufgaben-Nr.</button>
@@ -105,24 +120,24 @@
     <div class="lz-list">
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES A1</span></div>
         <div class="lz-body">
-          <div class="lz-title">Geschichte &amp; Verfassung</div>
-          <div class="lz-ziel">Ich erkläre zentrale Stationen der Schweizer Geschichte und die Grundzüge der Bundesverfassung.</div>
+          <div class="lz-title">Staatsformen</div>
+          <div class="lz-ziel">Ich erkenne eine Demokratie anhand verschiedener Merkmale.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="401_[UE]_A01_Staatsformen.html">A2 Staatsformen im Überblick</a>
             <a class="a-pill a-pill-link" href="401_[UE]_A02_Regierungsformen.html">A3 Demokratie und Diktatur: Merkmale zuordnen</a>
+            <a class="a-pill a-pill-link" href="401_[UE]_A03_Demokratie_Diktatur.html">A5 Demokratie vs. Diktatur: Vergleich</a>
             </div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES A2 · A6 · SUK A1</span></div>
         <div class="lz-body">
-          <div class="lz-title">Staatsformen</div>
-          <div class="lz-ziel">Ich vergleiche Staats- und Regierungsformen und ordne die Schweiz ein.</div>
-          <div class="lz-pills"><a class="a-pill a-pill-link" href="401_[UE]_A03_Demokratie_Diktatur.html">A5 Demokratie vs. Diktatur: Vergleich</a>
-            <a class="a-pill a-pill-link" href="401_[UE]_A04_Schweizer_Geschichte.html">A6 Wichtige Stationen der Schweizer Geschichte</a>
+          <div class="lz-title">Geschichte &amp; Verfassung</div>
+          <div class="lz-ziel">Ich befasse mich mit der Entwicklung von der historischen zur modernen Schweiz (GES), ich begründe die Bedeutung der Bundesverfassung (GES), und ich entnehme einem Video oder einem Text Informationen zu einem politischen Thema (SUK).</div>
+          <div class="lz-pills"><a class="a-pill a-pill-link" href="401_[UE]_A04_Schweizer_Geschichte.html">A6 Wichtige Stationen der Schweizer Geschichte</a>
             <a class="a-pill a-pill-link" href="401_[UE]_A05_Bundesverfassung.html">A7 Die Schweizer Bundesverfassung</a>
             </div>
         </div>
@@ -130,10 +145,10 @@
       </div>
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">GES A3 · A7</span></div>
         <div class="lz-body">
           <div class="lz-title">Staatsaufbau &amp; Gewalten</div>
-          <div class="lz-ziel">Ich erkläre die Gewaltenteilung auf Bundes-, Kantons- und Gemeindeebene.</div>
+          <div class="lz-ziel">Ich unterscheide die drei Staatsgewalten der Schweiz auf Bundesebene, und ich untersuche die drei Ebenen des Föderalismus der Schweiz.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="401_[UE]_A06_Gewaltenteilung.html">A8 Gewaltenteilung</a>
             <a class="a-pill a-pill-link" href="401_[UE]_A07_Ebenen_und_Gewalten.html">A9 Ebene und Gewalt: Situationen zuordnen</a>
             <a class="a-pill a-pill-link" href="401_[UE]_A08_Aufgaben_Bund_Kanton_Gemeinde.html">A10 Aufgaben von Bund, Kanton und Gemeinde</a>
@@ -144,10 +159,10 @@
       </div>
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">GES A3</span></div>
         <div class="lz-body">
           <div class="lz-title">Bundesorgane</div>
-          <div class="lz-ziel">Ich beschreibe Aufbau und Aufgaben von Parlament und Bundesrat.</div>
+          <div class="lz-ziel">Ich unterscheide die drei Staatsgewalten der Schweiz auf Bundesebene.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="401_[UE]_A10_Parlament.html">A13 Parlament</a>
             <a class="a-pill a-pill-link" href="401_[UE]_A11_Staende_Nationalrat.html">A14 Ständerat und Nationalrat im Vergleich</a>
             <a class="a-pill a-pill-link" href="401_[UE]_A12_Bundesrat.html">A15 Bundesrat</a>
@@ -158,10 +173,10 @@
       </div>
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">GES A2 · A4</span></div>
         <div class="lz-body">
           <div class="lz-title">Grundrechte &amp; Pflichten</div>
-          <div class="lz-ziel">Ich nenne zentrale Grundrechte und Bürgerpflichten.</div>
+          <div class="lz-ziel">Ich begründe die Bedeutung der Bundesverfassung, und ich ermittle Möglichkeiten, mich in einer Demokratie politisch einzubringen.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="401_[UE]_A14_Rechte_und_Pflichten.html">A17 Rechte und Pflichten</a>
             <a class="a-pill a-pill-link" href="401_[UE]_A15_Grundrechte.html">A18 Grundrechte</a>
             <a class="a-pill a-pill-link" href="401_[UE]_A16_Weitere_Grundrechte.html">A19 Weitere Grundrechte</a>
@@ -171,10 +186,10 @@
       </div>
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">6</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">6</span><span class="lz-fach">GES A4</span></div>
         <div class="lz-body">
           <div class="lz-title">Volksrechte &amp; Wahlen</div>
-          <div class="lz-ziel">Ich erkläre Initiative, Referendum, Wahlsysteme und wende das Stimmrecht an.</div>
+          <div class="lz-ziel">Ich ermittle Möglichkeiten, mich in einer Demokratie politisch einzubringen.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="401_[UE]_A17_Stimmrecht.html">A20 Stimmrecht</a>
             <a class="a-pill a-pill-link" href="401_[UE]_A18_Wahl_Mehrheiten.html">A21 Mehrheiten berechnen: Majorzwahl Herisau</a>
             <a class="a-pill a-pill-link" href="401_[UE]_A19_Formen_von_Mehr.html">A22 Formen von Mehr</a>
@@ -190,10 +205,10 @@
       </div>
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">7</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">7</span><span class="lz-fach">GES A5 · A8</span></div>
         <div class="lz-body">
           <div class="lz-title">Gesetzgebung &amp; Verbände</div>
-          <div class="lz-ziel">Ich beschreibe den Gesetzgebungsprozess und die Rolle von Parteien und Verbänden.</div>
+          <div class="lz-ziel">Ich verstehe das breite Spektrum der Parteienlandschaft der Schweiz und kann meine eigenen Werte darin positionieren, und ich erkläre die Rolle von Interessengemeinschaften und Verbänden.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="401_[UE]_A26_Gesetzgebung.html">A29 Der Schweizer Gesetzgebungsprozess</a>
             <a class="a-pill a-pill-link" href="401_[UE]_A27_Parteien_Smartspider.html">A30 Parteien Smartspider</a>
             <a class="a-pill a-pill-link" href="401_[UE]_A28_Waehleranteile.html">A35 Waehleranteile</a>
@@ -209,7 +224,7 @@
       </div>
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">8</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">8</span><span class="lz-fach">GES A9</span></div>
         <div class="lz-body">
           <div class="lz-title">Lobbyismus: Chancen &amp; Risiken</div>
           <div class="lz-ziel">Ich wäge Chancen und Risiken von Lobbyismus ab.</div>
@@ -243,7 +258,7 @@
       </a>
       <a class="a-row" href="401_[UE]_A03_Demokratie_Diktatur.html">
         <div class="a-bar"></div>
-        <div class="a-code"><span class="a-code-id">A5</span><span class="a-code-lz">LZ 2</span></div>
+        <div class="a-code"><span class="a-code-id">A5</span><span class="a-code-lz">LZ 1</span></div>
         <div class="a-body">
           <div class="a-title">Demokratie vs. Diktatur: Vergleich</div>
           <span class="a-type">🎯 Interaktiv</span>

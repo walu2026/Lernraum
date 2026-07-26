@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>401 · Theorie: Demokratie &amp; Staatsaufbau</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#297FB8; --t1-dark:#1B5D8A; --t1-light:#E3F0F9;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:880px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.9rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.2rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.75rem;background:var(--t1-light);padding:2px 7px;border-radius:6px;margin-right:4px;margin-bottom:3px;white-space:nowrap;display:inline-block}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:8px 10px}
+.tb td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.steps{counter-reset:step;padding:0;list-style:none;margin:14px 0}
+.steps li{counter-increment:step;position:relative;padding:8px 0 8px 40px;color:var(--ink-soft);border-bottom:1px solid var(--line)}
+.steps li:last-child{border-bottom:none}
+.steps li::before{content:counter(step);position:absolute;left:0;top:6px;width:26px;height:26px;background:var(--t1);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">401 · [TH]</span>
+  <h1>Theorie: Demokratie &amp; Staatsaufbau</h1>
+  <a class="nav" href="401_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Wie ist die Schweiz politisch aufgebaut, wer entscheidet was, und wie kann das Volk direkt mitbestimmen? Diese Theorie führt durch Staatsformen, Geschichte und Bundesverfassung, den dreistufigen Staatsaufbau mit Gewaltenteilung, die Bundesorgane, Grundrechte und Pflichten, die Volksrechte, den Gesetzgebungsprozess sowie Parteien, Verbände und Lobbyismus.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES A1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">GES A1</span> Staatsformen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="401_[UE]_A01_Staatsformen.html">A2</a>
+    <a href="401_[UE]_A02_Regierungsformen.html">A3</a>
+    <a href="401_[UE]_A03_Demokratie_Diktatur.html">A5</a>
+  </div>
+  <p class="einstieg">Staaten lassen sich nach ihrem inneren Aufbau und nach ihrer Regierungsform unterscheiden.</p>
+  <table class="tb">
+    <tr><th>Staatsform</th><th>Merkmal</th></tr>
+    <tr><td><strong>Bundesstaat</strong></td><td>Mehrere Teilstaaten (in der Schweiz: Kantone) mit eigenen Kompetenzen und teils eigenen Verfassungen; bestimmte Aufgaben übernimmt gemeinsam der Zentralstaat (Bund). Ermöglicht Vielfalt, braucht aber mehr Koordination.</td></tr>
+    <tr><td><strong>Einheitsstaat</strong></td><td>Eine zentrale Regierung setzt Regeln für das ganze Land einheitlich um; berücksichtigt regionale Unterschiede weniger.</td></tr>
+    <tr><td><strong>Staatenbund</strong></td><td>Ein loser Zusammenschluss selbständiger Staaten, die punktuell zusammenarbeiten, aber keine gemeinsame Zentralregierung haben.</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Die Schweiz wählte wegen ihrer sprachlichen und kulturellen Vielfalt die Form des Bundesstaats.</div>
+  <table class="tb">
+    <tr><th>Merkmal</th><th>Gehört zu</th></tr>
+    <tr><td>Die Staatsgewalt ist aufgeteilt</td><td>Demokratie</td></tr>
+    <tr><td>Politischer Wettbewerb zwischen Parteien, Bürgerrechte garantiert</td><td>Demokratie</td></tr>
+    <tr><td>Politisch Andersdenkende werden verfolgt, manipulierte Scheinwahlen</td><td>Diktatur</td></tr>
+    <tr><td>Desinformation durch staatlich kontrollierte Medien</td><td>Diktatur</td></tr>
+  </table>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Warum wählte die Schweiz die Form des Bundesstaats statt eines Einheitsstaats?</div>
+    <label>Weil das schneller und einfacher zu verwalten ist</label>
+    <label data-ok>Weil sie so ihrer sprachlichen und kulturellen Vielfalt gerecht wird und den Kantonen Selbstständigkeit lässt</label>
+    <label>Weil das Ausland es verlangte</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES A2 · A6 · SUK A1</span> Geschichte &amp; Verfassung</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="401_[UE]_A04_Schweizer_Geschichte.html">A6</a>
+    <a href="401_[UE]_A05_Bundesverfassung.html">A7</a>
+  </div>
+  <p class="einstieg">Das heutige politische System der Schweiz ist über fast zwei Jahrhunderte gewachsen.</p>
+  <ol class="steps">
+    <li><strong>1848</strong> – Gründung des Bundesstaats; die Kantone behalten dabei viel Selbstständigkeit.</li>
+    <li>Wenige Jahrzehnte später kommen <strong>Referendums-</strong> und <strong>Initiativrecht</strong> dazu – zwei Rechte, die die direkte Demokratie der Schweiz bis heute prägen.</li>
+    <li>Kurz nach dem <strong>2. Weltkrieg</strong> entsteht die AHV.</li>
+    <li><strong>1971</strong> erhalten Frauen das Stimm- und Wahlrecht auf Bundesebene – deutlich später als in vielen anderen Ländern.</li>
+    <li>Damals entsteht auch die <strong>Zauberformel</strong>: Die wichtigsten politischen Strömungen sollen im Bundesrat vertreten sein.</li>
+    <li><strong>2002</strong> stimmt das Volk in einer Referendumsabstimmung dem <strong>UNO-Beitritt</strong> zu; Annäherungsversuche an die EU scheiterten bisher, die Beziehung wird über <strong>Bilaterale Verträge</strong> geregelt.</li>
+  </ol>
+  <div class="merk"><b>Merke:</b> Die Bundesverfassung ist in sechs Titel gegliedert. Wer eine konkrete Frage hat – etwa zu Lohngleichheit, zum Verbot der Todesstrafe, zum Schutz der Persönlichkeit, zur Medienvielfalt oder zum Wohnsitzprinzip beim Stimmrecht – findet dazu einen passenden Artikel.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: In welchem Jahr erhielten Frauen das Stimm- und Wahlrecht auf Bundesebene?</div>
+    <label>1848</label>
+    <label data-ok>1971</label>
+    <label>2002</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">GES A3 · A7</span> Staatsaufbau &amp; Gewalten</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="401_[UE]_A06_Gewaltenteilung.html">A8</a>
+    <a href="401_[UE]_A07_Ebenen_und_Gewalten.html">A9</a>
+    <a href="401_[UE]_A08_Aufgaben_Bund_Kanton_Gemeinde.html">A10</a>
+    <a href="401_[UE]_A09_Aemter_Gewalten.html">A11</a>
+  </div>
+  <p class="einstieg">Die Schweiz kennt drei Staatsebenen und auf jeder Ebene drei Gewalten – zusammen ergibt das ein System gegenseitiger Kontrolle.</p>
+  <table class="tb">
+    <tr><th>Ebene</th><th>Legislative</th><th>Exekutive</th><th>Judikative</th></tr>
+    <tr><td><strong>Bund</strong></td><td>Bundesversammlung (National- &amp; Ständerat)</td><td>Bundesrat</td><td>Bundesgericht</td></tr>
+    <tr><td><strong>Kanton</strong></td><td>Kantonsrat / Kantonsparlament</td><td>Regierungsrat</td><td>Kantonsgericht</td></tr>
+    <tr><td><strong>Gemeinde</strong></td><td>Gemeindeversammlung / Gemeindeparlament</td><td>Gemeinderat</td><td>–</td></tr>
+  </table>
+  <div class="merk"><b>Merke – Sinn der Gewaltenteilung:</b> Sie teilt die staatliche Macht auf und ermöglicht gegenseitige Kontrolle – ein Schutzmechanismus gegen Machtmissbrauch. Fehlt eine unabhängige Justiz oder ein starkes Parlament, steigt die Gefahr von Willkür.</div>
+  <h3>Wer macht was: Bund, Kanton, Gemeinde</h3>
+  <table class="tb">
+    <tr><th>Ebene</th><th>Beispiele</th></tr>
+    <tr><td><strong>Bund</strong></td><td>Aussenpolitik, Militär, Zoll</td></tr>
+    <tr><td><strong>Kanton</strong></td><td>Polizei, Feuerwehr, Schule, Bau von Schulhäusern, Berufsbildung</td></tr>
+    <tr><td><strong>Gemeinde</strong></td><td>Kehrichtabfuhr, Wasserversorgung</td></tr>
+  </table>
+  <div class="merk"><b>Merke – Subsidiaritätsprinzip:</b> Aufgaben sollen möglichst von der untersten, bürgernahen Ebene erledigt werden. Erst wenn diese Ebene eine Aufgabe nicht ausreichend lösen kann, übernimmt die nächsthöhere Ebene – z.&nbsp;B. bleibt das Schulwesen wegen Sprache und regionalen Bedürfnissen kantonal, während die Armee eine einheitliche Lösung auf Bundesebene braucht.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welche Ebene ist gemäss Subsidiaritätsprinzip für eine Aufgabe zuständig, wenn sie dort gut gelöst werden kann?</div>
+    <label>Immer der Bund</label>
+    <label data-ok>Die unterste, bürgernahe Ebene</label>
+    <label>Immer die Gemeinde, unabhängig von der Aufgabe</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">GES A3</span> Bundesorgane</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="401_[UE]_A10_Parlament.html">A13</a>
+    <a href="401_[UE]_A11_Staende_Nationalrat.html">A14</a>
+    <a href="401_[UE]_A12_Bundesrat.html">A15</a>
+    <a href="401_[UE]_A13_Konkordanz.html">A16</a>
+  </div>
+  <p class="einstieg">Das Parlament (Legislative) und der Bundesrat (Exekutive) bilden zusammen mit dem Bundesgericht die drei Bundesgewalten.</p>
+  <table class="tb">
+    <tr><th>Kammer</th><th>Merkmale</th></tr>
+    <tr><td><strong>Nationalrat (NR)</strong></td><td>Volksvertretung, meistens Wahl im Proporzverfahren, jeder Kanton hat mindestens 1 Sitz zugute.</td></tr>
+    <tr><td><strong>Ständerat (SR)</strong></td><td>Jeder Vollkanton stellt 2 Mitglieder, meistens Wahl im Majorzverfahren.</td></tr>
+    <tr><td><strong>Beide zusammen</strong></td><td>Bilden die Bundesversammlung (Milizparlament) und wählen als «Vereinigte Bundesversammlung» u.&nbsp;a. den Bundesrat.</td></tr>
+  </table>
+  <h3>Der Bundesrat (Stand 2026)</h3>
+  <table class="tb">
+    <tr><th>Mitglied</th><th>Partei</th><th>Kanton</th></tr>
+    <tr><td>Martin Pfister</td><td>Die Mitte</td><td>ZG</td></tr>
+    <tr><td>Beat Jans</td><td>SP</td><td>BS</td></tr>
+    <tr><td>Guy Parmelin</td><td>SVP</td><td>VD</td></tr>
+    <tr><td>Ignazio Cassis</td><td>FDP</td><td>TI</td></tr>
+    <tr><td>Albert Rösti</td><td>SVP</td><td>BE</td></tr>
+    <tr><td>Karin Keller-Sutter</td><td>FDP</td><td>SG</td></tr>
+    <tr><td>Elisabeth Baume-Schneider</td><td>SP</td><td>JU</td></tr>
+  </table>
+  <div class="merk"><b>Merke – Konkordanzprinzip:</b> Der Bundesrat bindet die grössten politischen Kräfte gemeinsam in die Regierung ein (Zauberformel: aktuell 2 SVP, 2 SP, 2 FDP, 1 Mitte), statt dass eine Mehrheit über eine Opposition regiert. Das macht das System stabil, aber oft langsam. Im Gegensatz dazu steht das <strong>Oppositionsprinzip</strong> (z.&nbsp;B. Westminster-System UK): klare Verantwortung, schnellere Reformen, aber stärkere Polarisierung.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was bedeutet das Konkordanzprinzip im Schweizer Bundesrat?</div>
+    <label>Nur die stärkste Partei regiert allein</label>
+    <label data-ok>Die grössten politischen Kräfte werden gemeinsam in die Regierung eingebunden</label>
+    <label>Der Bundesrat wird vom Volk direkt gewählt</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">GES A2 · A4</span> Grundrechte &amp; Pflichten</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="401_[UE]_A14_Rechte_und_Pflichten.html">A17</a>
+    <a href="401_[UE]_A15_Grundrechte.html">A18</a>
+    <a href="401_[UE]_A16_Weitere_Grundrechte.html">A19</a>
+  </div>
+  <p class="einstieg">Rechte und Pflichten von Menschen in der Schweiz lassen sich in vier Kategorien einteilen.</p>
+  <table class="tb">
+    <tr><th>Kategorie</th><th>Beispiele</th></tr>
+    <tr><td><strong>GM – Grundrechte/Menschenrechte</strong><br><span style="font-size:.8rem">gelten für alle Menschen</span></td><td>Recht auf Leben, Glaubens- und Gewissensfreiheit, Anspruch auf Grundschulunterricht</td></tr>
+    <tr><td><strong>SR – Staatsbürgerliche Rechte</strong><br><span style="font-size:.8rem">an die Staatsbürgerschaft gebunden</span></td><td>Schutz vor Ausweisung/Ausschaffung, Niederlassungsfreiheit</td></tr>
+    <tr><td><strong>SP – Staatsbürgerliche Pflichten</strong></td><td>Steuerpflicht, Schulpflicht, Versicherungspflicht</td></tr>
+    <tr><td><strong>PR – Politische Rechte</strong></td><td>Stimm- und Wahlrecht</td></tr>
+  </table>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Zu welcher Kategorie gehört das Stimm- und Wahlrecht?</div>
+    <label>Grundrechte/Menschenrechte (GM)</label>
+    <label data-ok>Politische Rechte (PR)</label>
+    <label>Staatsbürgerliche Pflichten (SP)</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 6 ==================== -->
+<section>
+  <h2><span class="nr">GES A4</span> Volksrechte &amp; Wahlen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="401_[UE]_A17_Stimmrecht.html">A20</a>
+    <a href="401_[UE]_A18_Wahl_Mehrheiten.html">A21</a>
+    <a href="401_[UE]_A19_Formen_von_Mehr.html">A22</a>
+    <a href="401_[UE]_A20_Proporzwahl.html">A23</a>
+    <a href="401_[UE]_A21_Wahlverfahren.html">A24</a>
+    <a href="401_[UE]_A22_Wahllisten.html">A25</a>
+    <a href="401_[UE]_A23_Klassensprecherwahl.html">A26</a>
+    <a href="401_[UE]_A24_Initiative_Referendum.html">A27</a>
+    <a href="401_[UE]_A25_Doppeltes_Mehr.html">A28</a>
+  </div>
+  <p class="einstieg">Wer in der Schweiz auf Bundesebene stimmen und wählen darf, mitbestimmen kann und wie Mehrheiten gezählt werden – das regeln klare Regeln.</p>
+  <div class="merk"><b>Merke – Stimmrecht auf Bundesebene:</b> Schweizer Staatsbürgerschaft, Mindestalter 18 Jahre, keine Entmündigung wegen dauernder Urteilsunfähigkeit.</div>
+  <h3>Formen von «Mehr»</h3>
+  <table class="tb">
+    <tr><th>Form</th><th>Bedeutung</th></tr>
+    <tr><td><strong>Absolutes Mehr</strong></td><td>Mehr als die Hälfte aller gültigen Stimmen.</td></tr>
+    <tr><td><strong>Relatives Mehr</strong></td><td>Wer von mehreren Kandidierenden am meisten Stimmen erhält, auch ohne 50 % zu erreichen.</td></tr>
+    <tr><td><strong>Qualifiziertes Mehr</strong></td><td>Höhere Hürde als eine einfache Mehrheit, z.&nbsp;B. eine Zweidrittelmehrheit.</td></tr>
+    <tr><td><strong>Doppeltes Mehr</strong></td><td>Volksmehr (Mehrheit aller Abstimmenden) <strong>und</strong> Ständemehr (Mehrheit der Kantone) müssen zustimmen – nötig bei Verfassungsänderungen.</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Je wichtiger eine Entscheidung ist, desto höher kann die Mehrheitshürde sein, um Minderheiten zu schützen. Würde überall nur das relative Mehr gelten, könnte eine knappe Mehrheit die Verfassung leicht verändern.</div>
+  <h3>Volksinitiative vs. fakultatives Referendum</h3>
+  <table class="tb">
+    <tr><th></th><th>Volksinitiative</th><th>Fakultatives Referendum</th></tr>
+    <tr><td><strong>Zweck</strong></td><td>Neue Verfassungsbestimmung vorschlagen</td><td>Ein vom Parlament beschlossenes Gesetz zur Volksabstimmung bringen</td></tr>
+    <tr><td><strong>Unterschriften</strong></td><td>100'000 innert 18 Monaten</td><td>50'000 innert 100 Tagen</td></tr>
+    <tr><td><strong>Nötige Mehrheit</strong></td><td>Doppeltes Mehr (Volk und Stände)</td><td>Volksmehr</td></tr>
+  </table>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welche Mehrheit braucht eine Volksinitiative, um angenommen zu werden?</div>
+    <label>Nur das Volksmehr</label>
+    <label data-ok>Das doppelte Mehr – Volk und Stände</label>
+    <label>Nur das Ständemehr</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 7 ==================== -->
+<section>
+  <h2><span class="nr">GES A5 · A8</span> Gesetzgebung &amp; Verbände</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="401_[UE]_A26_Gesetzgebung.html">A29</a>
+    <a href="401_[UE]_A27_Parteien_Smartspider.html">A30</a>
+    <a href="401_[UE]_A28_Waehleranteile.html">A35</a>
+    <a href="401_[UE]_A29_Verbaende.html">A36</a>
+    <a href="401_[UE]_A30_Branchenverbaende.html">A37</a>
+  </div>
+  <p class="einstieg">Bis aus einer Idee ein geltendes Gesetz wird, durchläuft der Vorschlag acht Stationen.</p>
+  <ol class="steps">
+    <li>Anstoss durch Bundesrat oder Parlament</li>
+    <li>Vorentwurf durch Fachleute in einer Expertenkommission</li>
+    <li>Vernehmlassung in Kantonen, bei Parteien, Verbänden usw.</li>
+    <li>Definitiver Entwurf mit Botschaft ans Parlament</li>
+    <li>Behandlung im National- und Ständerat</li>
+    <li>Veröffentlichung mit Referendumsfrist</li>
+    <li>Volksabstimmung, wenn das Referendum ergriffen wurde</li>
+    <li>Inkrafttreten des Gesetzes</li>
+  </ol>
+  <div class="merk"><b>Merke:</b> Die Bevölkerung kann über Vernehmlassungen, Interessenvertretung, Volksinitiativen und Referenden Einfluss nehmen. Das macht den Prozess gründlich und demokratisch legitimiert, aber auch langsam.</div>
+  <h3>Parteien im politischen Spektrum</h3>
+  <table class="tb">
+    <tr><th>Partei</th><th>Grundausrichtung</th></tr>
+    <tr><td>SVP – Schweizerische Volkspartei</td><td>Rechtskonservativ</td></tr>
+    <tr><td>SP – Sozialdemokratische Partei</td><td>Links, sozialpolitisch</td></tr>
+    <tr><td>Die Mitte</td><td>Politische Mitte</td></tr>
+    <tr><td>FDP – Die Liberalen</td><td>Wirtschaftsliberal</td></tr>
+    <tr><td>Grüne – Grüne Partei der Schweiz</td><td>Ökologisch, links</td></tr>
+  </table>
+  <h3>Verbände</h3>
+  <p>Verbände vertreten organisierte Interessen gegenüber Politik und Verwaltung – z.&nbsp;B. Arbeitnehmer- und Arbeitgeberverbände sowie Verbände in den Bereichen Verkehr, Wohnen, Umwelt und Menschenrechte. Sie nehmen an Vernehmlassungen teil und betreiben Lobbying.</p>
+  <div class="merk"><b>Merke:</b> Gut organisierte Verbände sind wichtig für eine differenzierte Demokratie, haben aber oft mehr Einfluss als schlecht organisierte Bevölkerungsgruppen.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: An welcher Stelle des Gesetzgebungsprozesses können Kantone, Parteien und Verbände offiziell Stellung nehmen?</div>
+    <label>Beim Inkrafttreten</label>
+    <label data-ok>Bei der Vernehmlassung</label>
+    <label>Erst nach der Volksabstimmung</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 8 ==================== -->
+<section>
+  <h2><span class="nr">GES A9</span> Lobbyismus: Chancen &amp; Risiken</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="401_[UE]_A31_Lobbyismus_Chancen_Risiken.html">A31</a>
+  </div>
+  <p class="einstieg">Der Begriff «Lobbyismus» stammt vom englischen «lobby» (Vorhalle), wo Interessenvertreter früher auf Politiker warteten. Gemeint ist die organisierte Einflussnahme von Verbänden und Interessengruppen auf politische Entscheidungen.</p>
+  <p><strong>Zugang zum Bundeshaus:</strong> Jedes Ratsmitglied kann zwei Personen einen dauerhaften Zutrittsausweis verschaffen – diese Badges gehen oft an Lobbyistinnen und Lobbyisten.</p>
+  <table class="tb">
+    <tr><th>Chancen</th><th>Risiken</th></tr>
+    <tr><td>Fachwissen fliesst in die Gesetzgebung ein; auch kleinere Anliegen finden Gehör; direkter Austausch zwischen Politik und Praxis</td><td>Keine Offenlegungspflicht für Aufträge/Honorare; finanzstarke Akteure haben mehr Zugang; Gefahr einseitiger Einflussnahme</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Die Staatengruppe GRECO (Staatengruppe des Europarats gegen Korruption) kritisiert am Schweizer System vor allem die fehlenden Transparenzregeln – es besteht keine Pflicht, Lobbying-Aufträge und Honorare offenzulegen.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was kritisiert die Staatengruppe GRECO am Schweizer Lobbying-System?</div>
+    <label>Dass Lobbying grundsätzlich verboten ist</label>
+    <label data-ok>Die fehlende Pflicht, Aufträge und Honorare offenzulegen</label>
+    <label>Dass zu wenige Personen Zutritt zum Bundeshaus haben</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 4 «Unsere Schweiz» · Lebenssituation A</h2>
+  <p style="font-weight:700;margin-bottom:10px">In einer Demokratie leben, Politik als alltäglich erfahren</p>
+  <table>
+    <tr><td class="lz">SUK A1</td><td>Ich entnehme einem Video oder einem Text Informationen zu einem politischen Thema.</td></tr>
+    <tr><td class="lz">GES A1</td><td>Ich erkenne eine Demokratie anhand verschiedener Merkmale.</td></tr>
+    <tr><td class="lz">GES A2</td><td>Ich begründe die Bedeutung der Bundesverfassung.</td></tr>
+    <tr><td class="lz">GES A3</td><td>Ich unterscheide die drei Staatsgewalten der Schweiz auf Bundesebene.</td></tr>
+    <tr><td class="lz">GES A4</td><td>Ich ermittle Möglichkeiten, mich in einer Demokratie politisch einzubringen.</td></tr>
+    <tr><td class="lz">GES A5</td><td>Ich verstehe das breite Spektrum der Parteienlandschaft der Schweiz und kann meine eigenen Werte darin positionieren.</td></tr>
+    <tr><td class="lz">GES A6</td><td>Ich befasse mich mit der Entwicklung von der historischen zur modernen Schweiz.</td></tr>
+    <tr><td class="lz">GES A7</td><td>Ich untersuche die drei Ebenen des Föderalismus der Schweiz.</td></tr>
+    <tr><td class="lz">GES A8</td><td>Ich erkläre die Rolle von Interessengemeinschaften und Verbänden.</td></tr>
+    <tr><td class="lz">GES A9</td><td>Ich wäge Chancen und Risiken von Lobbyismus ab.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen (S. 37/38)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="401_Aufgaben.html"><strong>Übungen lösen</strong></a>.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
