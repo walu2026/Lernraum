@@ -24,6 +24,12 @@
   .d-desc { font-size:12px; color:var(--g5); line-height:1.5; }
   .no-ue-banner { display:flex; align-items:center; gap:12px; padding:12px 16px; background:#FFFBEB; border:1px solid #FDE68A; border-radius:10px; margin-bottom:1.5rem; font-size:12px; color:#92400E; line-height:1.5; }
   .no-ue-banner span { font-size:22px; flex-shrink:0; }
+  .th-card { display:flex; align-items:center; gap:14px; background:white; border:2px solid var(--accent); border-radius:14px; padding:16px 18px; margin-bottom:1.75rem; text-decoration:none; color:inherit; transition:all .15s; }
+  .th-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.08); transform:translateY(-1px); }
+  .th-card .th-icon { font-size:26px; flex-shrink:0; }
+  .th-card .th-title { font-size:14px; font-weight:700; color:var(--g9); margin-bottom:2px; }
+  .th-card .th-desc { font-size:11.5px; color:var(--g5); }
+  .th-card .th-arrow { margin-left:auto; font-size:18px; color:var(--accent); }
   .toggle-bar { display:flex; gap:6px; margin-bottom:1.25rem; }
   .toggle-btn { display:flex; align-items:center; gap:6px; padding:7px 14px; border-radius:8px; border:1.5px solid var(--g3); background:white; font-size:12px; font-weight:600; color:var(--g5); cursor:pointer; transition:all .15s; }
   .toggle-btn.active { background:var(--accent); border-color:var(--accent); color:white; }
@@ -95,6 +101,15 @@
     </div>
   </div>
 
+  <a class="th-card" href="402_[TH]_Meinungsbildung_Medien.html">
+    <span class="th-icon">📖</span>
+    <span>
+      <div class="th-title">Theorie zu dieser Serie</div>
+      <div class="th-desc">Medienwirkung, Meinungsfreiheit, Fake News, vierte Gewalt, Algorithmen, Argumentation</div>
+    </span>
+    <span class="th-arrow">→</span>
+  </a>
+
   <div class="toggle-bar">
     <button class="toggle-btn active" id="btnLz" onclick="showView('lz')">📚 Nach Lernzielen</button>
     <button class="toggle-btn" id="btnA"  onclick="showView('a')">🔢 Nach Aufgaben-Nr.</button>
@@ -105,10 +120,10 @@
     <div class="lz-list">
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES B2</span></div>
         <div class="lz-body">
           <div class="lz-title">Massenmedien</div>
-          <div class="lz-ziel">Ich erkläre die Rolle der Massenmedien in der Demokratie.</div>
+          <div class="lz-ziel">Ich untersuche, wie meine politische Haltung durch mein Umfeld und die Medien geprägt wird.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="402_[UE]_A01_Massenmedien.html">A12 Massenmedien</a>
             </div>
         </div>
@@ -116,7 +131,7 @@
       </div>
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES B4</span></div>
         <div class="lz-body">
           <div class="lz-title">Medien als vierte Gewalt</div>
           <div class="lz-ziel">Ich untersuche die Rolle der Medien als vierte Gewalt im Staat.</div>
@@ -126,7 +141,7 @@
       </div>
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">GES B1</span></div>
         <div class="lz-body">
           <div class="lz-title">Meinungsfreiheit und Grenzen</div>
           <div class="lz-ziel">Ich erkenne die Bedeutung und die Grenzen der Meinungsfreiheit.</div>
@@ -136,7 +151,7 @@
       </div>
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">GES+SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">GES B3 · SUK B4</span></div>
         <div class="lz-body">
           <div class="lz-title">Verlässliche Quellen / Fake News</div>
           <div class="lz-ziel">Ich unterscheide zwischen verlässlichen und fragwürdigen Informationsquellen für die Meinungsbildung (GES) und bin mir der Gefahr von Manipulation und Desinformation bewusst (SUK).</div>
@@ -146,7 +161,7 @@
       </div>
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">GES</span></div>
+        <div class="lz-num"><span class="lz-num-digit">5</span><span class="lz-fach">GES B5</span></div>
         <div class="lz-body">
           <div class="lz-title">Algorithmen &amp; digitale Technologien</div>
           <div class="lz-ziel">Ich erkenne, wie digitale Technologien politische Entscheidungsprozesse beeinflussen können.</div>
@@ -156,7 +171,7 @@
       </div>
       <div class="lz-row" style="--fc:#297FB8">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">6</span><span class="lz-fach">SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">6</span><span class="lz-fach">SUK B3</span></div>
         <div class="lz-body">
           <div class="lz-title">Pro-/Kontra-Argumente entwickeln</div>
           <div class="lz-ziel">Ich entwickle zu einem politischen oder gesellschaftlichen Thema verschiedene Pro- und Kontra-Argumente.</div>
