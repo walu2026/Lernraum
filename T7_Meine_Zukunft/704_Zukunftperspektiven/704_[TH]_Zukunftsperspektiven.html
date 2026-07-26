@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>704 · Theorie: Zukunftsperspektiven</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#6D3FA1; --t1-dark:#5B3488; --t1-light:#F0ECF6;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+.vertiefung-link{display:block;margin-top:10px;font-size:.82rem}
+.vertiefung-link a{color:var(--ink-soft);text-decoration:underline;text-decoration-style:dotted}
+.vertiefung-link a:hover{color:var(--t1)}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+.gesetz{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:#EEF1F5;border:1px solid var(--line);padding:2px 8px;border-radius:6px;white-space:nowrap}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.rechnung{font-family:'JetBrains Mono',monospace;font-size:.88rem;background:#1E2530;color:#E8ECF1;border-radius:10px;padding:14px 18px;margin:14px 0;overflow-x:auto}
+.rechnung b{color:#FFB4A8}
+details{border:1px solid var(--line);border-radius:10px;margin:12px 0;background:#FCFCFD}
+summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--t1-dark)}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .inner{padding:14px 16px;color:var(--ink-soft)}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+.ow-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;margin:6px 0;background:#FCFCFD;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;color:var(--ink-soft)}
+.ow-item input{margin-top:4px;accent-color:var(--t1)}
+.ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">704 · [TH]</span>
+  <h1>Theorie: Zukunftsperspektiven</h1>
+  <a class="nav" href="704_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Die Arbeitswelt verändert sich laufend – wer das erkennt und sich aktiv weiterentwickelt, gestaltet die eigene Zukunft besser mit. Diese Theorie ordnet den wirtschaftlichen Strukturwandel ein, zeigt Weiterbildungswege nach der Lehre, hilft beim Formulieren einer persönlichen Zukunftsvision, erklärt Megatrends unserer Zeit – und ordnet Chancen und Risiken von KI und Technik für den eigenen Beruf ein.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">GES D1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">GES D1 · Ergänzend</span> Strukturwandel in der Schweizer Wirtschaft</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="704_[UE]_A02_Strukturwandel.html">A21</a>
+  </div>
+  <p class="einstieg">Digitalisierung und Automatisierung verändern laufend, welche Berufe entstehen und welche verschwinden – wer das versteht, kann die eigene Weiterbildung gezielter planen.</p>
+  <p>Berufe verschwinden meist nicht schlagartig, sondern <strong>wandeln sich</strong>: Routinetätigkeiten gehen zurück, während neue Spezialisierungen entstehen. Junge Berufsleute brauchen deshalb neben fachlichen zunehmend auch <strong>soziale und digitale Kompetenzen</strong>, um mit diesem Wandel Schritt zu halten.</p>
+  <div class="merk"><b>Merke:</b> Strukturwandel ist kein einmaliges Ereignis, sondern ein <b>dauerhafter Prozess</b> – die eigene Weiterbildungsstrategie sollte deshalb nicht auf einen einmaligen Abschluss ausgerichtet sein, sondern auf lebenslanges Lernen.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was passiert mit Berufen durch den Strukturwandel meist?</div>
+    <label>Sie verschwinden immer sofort vollständig</label>
+    <label data-ok>Sie wandeln sich – Routinetätigkeiten gehen zurück, neue Spezialisierungen entstehen</label>
+    <label>Sie bleiben über Jahrzehnte völlig unverändert</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES D1</span> Weiterbildungswege nach der Lehre</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="704_[UE]_A01_Weiterbildungswege.html">A1</a>
+  </div>
+  <p class="einstieg">Nach dem Lehrabschluss stehen verschiedene Weiterbildungswege offen – welcher passt, hängt von den eigenen Zielen, der Zeit und den Kosten ab.</p>
+  <table class="tb">
+    <tr><th>Weg</th><th>Ausrichtung</th></tr>
+    <tr><td><strong>Berufsmaturität</strong></td><td>Öffnet den Weg an eine Fachhochschule – eher akademisch</td></tr>
+    <tr><td><strong>Fachhochschule (FH)</strong></td><td>Vertieft eine Fachrichtung akademisch, oft berufsbegleitend möglich</td></tr>
+    <tr><td><strong>Eidgenössischer Fachausweis / Diplom</strong></td><td>Vertieft die Berufspraxis auf höherer Berufsbildungsstufe</td></tr>
+    <tr><td><strong>Kurse/Zertifikate</strong></td><td>Erweitern gezielt einzelne Kompetenzen, meist kurzfristig</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Bei der Wahl einer Weiterbildung zählen vor allem <b>Kosten, Zeitaufwand</b> und die Frage, ob das persönliche Ziel eher <b>praktisch oder akademisch</b> ausgerichtet ist.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welcher Weiterbildungsweg öffnet typischerweise den Zugang zur Fachhochschule?</div>
+    <label>Eidgenössischer Fachausweis</label>
+    <label data-ok>Berufsmaturität</label>
+    <label>Ein einzelner Kurzkurs</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">SUK D1</span> Zukunftsvision: Ich in 10 Jahren</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="704_[UE]_A05_Zukunftsvision_Ich_In_10_Jahren.html">A05</a>
+  </div>
+  <p class="einstieg">Eine persönliche Zukunftsvision hilft, eigene Ziele zu klären – auch wenn sich gesellschaftliche Entwicklungen nicht vollständig vorhersagen lassen.</p>
+  <p>Beim Formulieren einer eigenen Zukunftsvision lohnt sich der Blick auf mehrere Dimensionen gleichzeitig:</p>
+  <ul class="list">
+    <li><strong>Beruf</strong> – Position, Weiterbildung, Branche</li>
+    <li><strong>Wohnen</strong> – Wohnform, Ort</li>
+    <li><strong>Fähigkeiten</strong> – neue Kompetenzen, Sprachen</li>
+    <li><strong>Freizeit/Werte</strong> – was persönlich wichtig ist</li>
+  </ul>
+  <p>Gesellschaftliche Entwicklungen wie der Wandel der Arbeitswelt durch KI, der demografische Wandel oder der Klimawandel können die eigene Vision beeinflussen und sollten mitgedacht werden.</p>
+  <div class="merk"><b>Merke:</b> Eine gute Zukunftsvision ist <b>konkret und realistisch</b> – sie beschreibt mindestens zwei der vier Dimensionen greifbar, statt vage zu bleiben.</div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">SUK D2 · GES D2</span> Megatrends unserer Zeit</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="704_[UE]_A03_Megatrends.html">A03</a>
+  </div>
+  <p class="einstieg">Megatrends sind langfristige, tiefgreifende Entwicklungen, die Wirtschaft, Gesellschaft und Umwelt gleichzeitig verändern – und sich meist schon heute im eigenen Alltag bemerkbar machen.</p>
+  <h3>Beispiel Digitalisierung</h3>
+  <table class="tb">
+    <tr><th>Auswirkung auf die Wirtschaft</th><th>Auswirkung auf Gesellschaft/Umwelt</th></tr>
+    <tr><td>Automatisierung von Arbeitsplätzen, neue Geschäftsmodelle</td><td>Veränderte soziale Kontakte, neue Formen der Kommunikation</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Ein Megatrend lässt sich am besten verstehen, wenn eine konkrete Auswirkung auf die <b>eigene</b> Lebenswelt (Alltag oder Lehrbetrieb) benannt wird – nicht nur abstrakt auf gesamtgesellschaftlicher Ebene.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was zeichnet einen Megatrend aus?</div>
+    <label>Er betrifft nur eine einzelne Branche kurzfristig</label>
+    <label data-ok>Er ist eine langfristige Entwicklung, die Wirtschaft, Gesellschaft und Umwelt gleichzeitig verändert</label>
+    <label>Er lässt sich nur in der Politik beobachten</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">GES D3</span> KI und Technik im eigenen Beruf</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="704_[UE]_A04_KI_Technik_In_Meinem_Beruf.html">A04</a>
+  </div>
+  <p class="einstieg">Künstliche Intelligenz verändert Berufsfelder unterschiedlich stark – Chancen und Risiken lassen sich am besten anhand des eigenen Berufs konkret einschätzen.</p>
+  <h3>Chancen und Risiken</h3>
+  <table class="tb">
+    <tr><th>Chancen</th><th>Risiken</th></tr>
+    <tr><td>Zeitersparnis bei Routineaufgaben, neue Werkzeuge und Möglichkeiten</td><td>Wegfall von Einstiegsaufgaben, höhere Anforderungen an digitale Kompetenzen</td></tr>
+  </table>
+  <div class="merk"><b>Aktuelle Zahlen:</b> Laut PwC AI Jobs Barometer 2026 entstanden 2025 rund 9'000 neue KI-bezogene Stellen in der Schweiz. Der jobs.ch KI-Report 2026 zeigt gleichzeitig einen Rückgang von rund 16 % bei Junior-Büroberufen gegenüber der Vor-KI-Phase – in Berufsfeldern wie Handwerk oder Pflege ist die Auswirkung bisher deutlich geringer.</div>
+  <h3>Sich vorbereiten</h3>
+  <p>Sinnvolle Vorbereitungsschritte auf die Veränderungen durch KI sind gezielte Weiterbildung, aktives Ausprobieren neuer Tools und ein Fokus auf Fähigkeiten, die schwer automatisierbar sind (z.B. zwischenmenschliche Kommunikation, praktisches Handwerk, komplexe Problemlösung).</p>
+  <p style="font-size:.85rem">Quelle: PwC AI Jobs Barometer 2026; jobs.ch KI Report 2026.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welche Fähigkeiten sind laut Theorie besonders schwer durch KI zu automatisieren?</div>
+    <label>Routineaufgaben in der Bürokommunikation</label>
+    <label data-ok>Zwischenmenschliche Kommunikation, praktisches Handwerk und komplexe Problemlösung</label>
+    <label>Einfache Dateneingabe</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="nr">SLP</span> Orientierungswissen</h2>
+  <p style="font-size:.9rem">Für Thema 7, Lebenssituation D («Sich in einer Welt des Wandels weiterentwickeln») führt der Schullehrplan kein eigenes Orientierungswissen auf – die Orientierungswissen-Punkte 1–14 zu Thema 7 betreffen ausschliesslich die Lebenssituationen A–C (Serien 701–703).</p>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 7 «Meine Zukunft» · Lebenssituation D</h2>
+  <p style="font-weight:700;margin-bottom:10px">Sich in einer Welt des Wandels weiterentwickeln</p>
+  <table>
+    <tr><td class="lz">SUK D1</td><td>Ich entwickle meine persönliche berufliche Zukunftsvision.</td></tr>
+    <tr><td class="lz">GES D1</td><td>Ich analysiere berufliche Entwicklungs- und Weiterbildungsmöglichkeiten.</td></tr>
+    <tr><td class="lz">SUK D2</td><td>Ich beschreibe beispielhaft, wie ein Megatrend meinen Alltag konkret beeinflusst und leite daraus mögliche Konsequenzen für mein zukünftiges Handeln ab.</td></tr>
+    <tr><td class="lz">GES D2</td><td>Ich ermittle, wie Megatrends Wirtschaft, Gesellschaft und Umwelt verändern.</td></tr>
+    <tr><td class="lz">GES D3</td><td>Ich stelle für meinen Beruf Chancen und Risiken gegenüber, welche sich durch technische Entwicklungen inklusive künstlicher Intelligenz ergeben.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen, Auflage 2026 (S. 62)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="704_Aufgaben.html"><strong>Übungen A1, A3–A5, A21 lösen</strong></a> → Kompetenznachweis Zukunftsperspektiven.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
