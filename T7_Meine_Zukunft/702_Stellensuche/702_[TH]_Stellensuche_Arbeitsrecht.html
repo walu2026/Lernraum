@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>702 · Theorie: Stellensuche &amp; Arbeitsrecht</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#6D3FA1; --t1-dark:#5B3488; --t1-light:#F0ECF6;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+.vertiefung-link{display:block;margin-top:10px;font-size:.82rem}
+.vertiefung-link a{color:var(--ink-soft);text-decoration:underline;text-decoration-style:dotted}
+.vertiefung-link a:hover{color:var(--t1)}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+.gesetz{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:#EEF1F5;border:1px solid var(--line);padding:2px 8px;border-radius:6px;white-space:nowrap}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.rechnung{font-family:'JetBrains Mono',monospace;font-size:.88rem;background:#1E2530;color:#E8ECF1;border-radius:10px;padding:14px 18px;margin:14px 0;overflow-x:auto}
+.rechnung b{color:#FFB4A8}
+details{border:1px solid var(--line);border-radius:10px;margin:12px 0;background:#FCFCFD}
+summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--t1-dark)}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .inner{padding:14px 16px;color:var(--ink-soft)}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+.ow-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;margin:6px 0;background:#FCFCFD;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;color:var(--ink-soft)}
+.ow-item input{margin-top:4px;accent-color:var(--t1)}
+.ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">702 · [TH]</span>
+  <h1>Theorie: Stellensuche &amp; Arbeitsrecht</h1>
+  <a class="nav" href="702_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Eine Stelle zu finden und einen Arbeitsvertrag richtig einzuordnen, gehört zu den ersten grossen Schritten nach der Lehre. Diese Theorie zeigt, wie ein überzeugendes Bewerbungsdossier aussieht, welche Gesetze für den Arbeitsvertrag gelten, was bei Arbeitszeit und Kündigung zu beachten ist, welche Rolle Gesamtarbeitsverträge und Gewerkschaften spielen – und wie der Einsatz von KI bei der Rekrutierung rechtlich einzuschätzen ist.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">GES B2</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">SUK B1 · B2 · GES B1</span> Bewerbung und Vorstellungsgespräch</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="702_[UE]_A01_Bewerbungsdossier.html">A1</a>
+    <a href="702_[UE]_A02_Vorstellungsgespraech.html">A2</a>
+  </div>
+  <p class="einstieg">Ein überzeugendes Bewerbungsdossier und eine gute Vorbereitung auf das Vorstellungsgespräch entscheiden oft darüber, ob eine Bewerbung erfolgreich ist.</p>
+  <h3>Das Bewerbungsdossier</h3>
+  <p>Ein vollständiges Dossier enthält in der Regel: <strong>Motivationsschreiben</strong>, <strong>Lebenslauf</strong>, Zeugnisse/Arbeitszeugnisse und ggf. ein Portfolio. Bei einer <strong>Blindbewerbung</strong> (ohne ausgeschriebene Stelle) müssen Motivationsschreiben und Lebenslauf besonders klar begründen, warum die Person zum Betrieb passt – sie zeigt Eigeninitiative und kann so vor der offiziellen Konkurrenz zum Zug kommen.</p>
+  <h3>Das Vorstellungsgespräch</h3>
+  <p>Typische Interviewfragen testen mehr, als sie auf den ersten Blick zeigen:</p>
+  <table class="tb">
+    <tr><th>Frage</th><th>Was wirklich geprüft wird</th></tr>
+    <tr><td>«Wo sehen Sie sich in fünf Jahren?»</td><td>Ob die eigenen Ziele zur Stelle passen</td></tr>
+    <tr><td>«Was ist Ihre grösste Schwäche?»</td><td>Selbstreflexion und Entwicklungsbereitschaft</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Gute Antworten im Vorstellungsgespräch sind ehrlich, konkret und zeigen, was die Person aus Erfahrungen gelernt hat – auswendig gelernte Floskeln überzeugen weniger als glaubwürdige, persönliche Beispiele.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was zeichnet eine Blindbewerbung im Vergleich zu einer regulären Bewerbung besonders aus?</div>
+    <label>Sie braucht kein Motivationsschreiben</label>
+    <label data-ok>Sie erfolgt ohne ausgeschriebene Stelle und muss besonders klar begründen, warum die Person passt</label>
+    <label>Sie wird ausschliesslich telefonisch eingereicht</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES B2 · B3</span> Der Einzelarbeitsvertrag (EAV)</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="702_[UE]_A03_Arbeitsvertrag_Gesetze.html">A3</a>
+    <a href="702_[UE]_A04_Lohn_Gesetz.html">A4</a>
+    <a href="702_[UE]_A05_EAV_Aussagen.html">A5</a>
+    <a href="702_[UE]_A08_Arbeitsvertrag_pruefen.html">A8</a>
+    <a href="702_[UE]_A13_EAV_Rechtsfaelle.html">A13</a>
+  </div>
+  <p class="einstieg">Für den Arbeitsvertrag sind mehrere Gesetze gleichzeitig relevant – wer sie kennt, kann einen Arbeitsvertrag richtig einordnen und Rechtsfälle sicherer beurteilen.</p>
+  <h3>Mehrere Gesetzesebenen gleichzeitig</h3>
+  <table class="tb">
+    <tr><th>Regelungsebene</th><th>Inhalt</th></tr>
+    <tr><td><span class="gesetz">OR</span> (Einzelarbeitsvertrag)</td><td>Grundregeln zu Lohn, Kündigung, Pflichten beider Seiten</td></tr>
+    <tr><td><span class="gesetz">ArG</span> (Arbeitsgesetz + Verordnungen)</td><td>Arbeitsschutz: Arbeitszeit, Pausen, Ruhezeiten</td></tr>
+    <tr><td>Gesamtarbeitsvertrag (GAV)</td><td>Zusätzliche, oft bessere Standards für eine Branche/einen Betrieb</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Ob eine Vertragsklausel zulässig ist, hängt davon ab, ob eine gesetzliche Norm <b>zwingend</b> oder <b>dispositiv</b> (abänderbar) ist. Zwingende Mindeststandards dürfen durch den Arbeitsvertrag nie unterschritten werden – sie schützen die schwächere Vertragspartei vor ungleicher Verhandlungsmacht.</div>
+  <div class="vertiefung-link">→ Vertiefung: <a href="702_[TH_UE]_Arbeitsrecht_index.html">Arbeitsrecht in der Schweiz</a> (ausführliches Nachschlagewerk mit Film, Lernkarten und Quiz)</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was passiert, wenn ein Arbeitsvertrag einen zwingenden gesetzlichen Mindeststandard unterschreitet?</div>
+    <label>Der ganze Vertrag wird ungültig</label>
+    <label data-ok>Diese Vertragsklausel ist nichtig, es gilt stattdessen das Gesetz</label>
+    <label>Das ist grundsätzlich erlaubt, wenn beide Seiten unterschreiben</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">GES B2</span> Arbeitszeit und Vertragsende</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="702_[UE]_A06_Arbeitszeit.html">A6</a>
+    <a href="702_[UE]_A07_Pausen_Ruhezeit.html">A7</a>
+    <a href="702_[UE]_A12_Vertragsende.html">A12</a>
+  </div>
+  <p class="einstieg">Wie viel gearbeitet werden darf und wie ein Arbeitsverhältnis endet, ist gesetzlich klar geregelt – auch wenn im Alltag oft Unsicherheit über die genauen Regeln besteht.</p>
+  <h3>Überstunden vs. Überzeit</h3>
+  <table class="tb">
+    <tr><th>Überstunden</th><th>Überzeit</th></tr>
+    <tr><td>Arbeit über die <strong>vertragliche/betriebsübliche</strong> Arbeitszeit hinaus – meist durch Freizeit ausgeglichen oder mit Zuschlag entschädigt</td><td>Arbeit über die <strong>gesetzliche Höchstarbeitszeit</strong> hinaus (je nach Arbeitnehmergruppe 45 oder 50 Std./Woche) – nur begrenzt zulässig</td></tr>
+  </table>
+  <h3>Wie ein Arbeitsverhältnis endet</h3>
+  <table class="tb">
+    <tr><th>Form</th><th>Regel</th></tr>
+    <tr><td><strong>Ordentliche Kündigung</strong></td><td>Mit Frist, z.B. 1 Monat im ersten Dienstjahr <span class="gesetz">OR 335c</span>, sofern Vertrag/GAV nichts anderes vorsehen</td></tr>
+    <tr><td><strong>Fristlose Kündigung</strong></td><td>Nur aus <strong>wichtigem Grund</strong> zulässig; ist sie ungerechtfertigt, drohen Lohnansprüche und eine Entschädigung bis zu sechs Monatslöhnen</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Pausen und Ruhezeiten sind im Arbeitsgesetz <span class="gesetz">ArG Art. 15</span> zwingend geregelt – sie schützen die Gesundheit und dürfen nicht wegverhandelt werden.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Wann darf ein Arbeitsverhältnis fristlos gekündigt werden?</div>
+    <label>Jederzeit, ohne Angabe von Gründen</label>
+    <label data-ok>Nur aus einem wichtigen Grund</label>
+    <label>Nur während der Probezeit</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">GES B2 · Ergänzend</span> GAV und Gewerkschaften</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="702_[UE]_A09_GAV_Vorteil.html">A9</a>
+    <a href="702_[UE]_A10_GAV_Aussagen.html">A10</a>
+    <a href="702_[UE]_A11_Friedenspflicht.html">A11</a>
+  </div>
+  <p class="einstieg">Ein Gesamtarbeitsvertrag kann für Arbeitnehmende deutlich bessere Bedingungen bringen als der gesetzliche Mindeststandard – dafür gilt während seiner Laufzeit ein besonderes Stillhalteabkommen.</p>
+  <h3>Was ein GAV regeln kann</h3>
+  <p>Ein <strong>Gesamtarbeitsvertrag (GAV)</strong> ist eine Vereinbarung zwischen Arbeitgeberverbänden und Gewerkschaften, die für eine ganze Branche oder einen Betrieb gemeinsame Mindeststandards festlegt – z.B. zu <strong>Mindestlöhnen, Ferien, Arbeitszeit</strong> und Weiterbildung. Ob ein GAV für einen Betrieb gilt, lässt sich über Branche, Arbeitgeberverband, Gewerkschaft oder eine GAV-Datenbank prüfen.</p>
+  <h3>Die Friedenspflicht</h3>
+  <p>Während der Laufzeit eines GAV verzichten Arbeitgeber und Arbeitnehmende auf <strong>Streiks und Aussperrungen</strong> zu Themen, die im GAV geregelt sind («Friedenspflicht»). Das gibt Unternehmen Planungssicherheit, schwächt aber gleichzeitig das Druckmittel Streik auf Arbeitnehmerseite.</p>
+  <div class="merk"><b>Merke:</b> Ob die Friedenspflicht ausgewogen ist, hängt davon ab, ob der GAV im Gegenzug starke Rechte und faire Verhandlungsbedingungen für die Arbeitnehmerseite sichert.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was bedeutet die «Friedenspflicht» im Zusammenhang mit einem GAV?</div>
+    <label>Der Arbeitgeber darf keine neuen Mitarbeitenden einstellen</label>
+    <label data-ok>Während der GAV-Laufzeit wird auf Streiks/Aussperrungen zu geregelten Themen verzichtet</label>
+    <label>Gewerkschaften dürfen keine Lohnforderungen mehr stellen</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">GES B4</span> KI und neue Rekrutierungsformen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="702_[UE]_A14_KI_Neue_Rekrutierungsformen.html">A14</a>
+  </div>
+  <p class="einstieg">Immer mehr Unternehmen setzen KI-Systeme zur Vorauswahl von Bewerbungen ein. Ein eigenes, umfassendes KI-Gesetz gibt es in der Schweiz bisher nicht – bestehende Gesetze bieten aber schon heute einen gewissen Schutz.</p>
+  <h3>Rechtliche Einschätzung heute</h3>
+  <ul class="list">
+    <li>Das <strong>Datenschutzgesetz (DSG)</strong> gilt direkt auch für Datenbearbeitung durch KI-Systeme.</li>
+    <li>Das <strong>Gleichstellungsgesetz</strong> verbietet Diskriminierung, auch wenn diese durch einen Algorithmus statt durch eine Person erfolgt.</li>
+    <li>Mögliche Risiken für Bewerbende: versteckte Diskriminierung durch algorithmische Verzerrung (Bias), mangelnde Transparenz darüber, dass überhaupt eine KI entscheidet, fehlerhafte Auswahlkriterien, fehlender menschlicher Ermessensspielraum.</li>
+  </ul>
+  <div class="merk"><b>Aktueller Stand der KI-Regulierung Schweiz (Sommer 2026):</b> Der Bundesrat hat am 12. Februar 2025 einen Grundsatzentscheid gefällt: Die Schweiz orientiert sich an der Ratifikation der <strong>KI-Konvention des Europarats</strong>, ergänzt um sektorspezifische Massnahmen. Eine Vernehmlassungsvorlage mit gesetzlichen Massnahmen zu Transparenz, Datenschutz, Nichtdiskriminierung und Aufsicht soll bis <strong>Ende 2026</strong> vorliegen – ein eigenständiges, umfassendes Schweizer KI-Gesetz existiert bis dahin noch nicht.</div>
+  <p style="font-size:.85rem">Quelle: Bundesamt für Justiz, Grundsatzentscheid des Bundesrates vom 12. Februar 2025 zur KI-Regulierung (Stand April 2026).</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Gibt es in der Schweiz (Stand Sommer 2026) bereits ein eigenständiges KI-Gesetz?</div>
+    <label>Ja, seit 2025 in Kraft</label>
+    <label data-ok>Nein – eine Vernehmlassungsvorlage wird erst bis Ende 2026 erwartet</label>
+    <label>Ja, die Schweiz übernimmt direkt den EU AI Act</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="nr">SLP</span> Orientierungswissen – Ich kann …</h2>
+  <p>Direkt aus dem Schullehrplan (Thema 7, Lebenssituation B). Abhaken, was bereits sicher beherrscht wird – der Rest ist der individuelle Lernauftrag:</p>
+  <div id="ow">
+    <label class="ow-item"><input type="checkbox"> … drei Pflichten der Arbeitnehmenden gegenüber den Arbeitgebenden nennen.</label>
+    <label class="ow-item"><input type="checkbox"> … drei Pflichten der Arbeitgebenden gegenüber den Arbeitnehmenden nennen.</label>
+    <label class="ow-item"><input type="checkbox"> … drei konkrete Unzeiten für eine Kündigung aufzählen.</label>
+  </div>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Punkte 4–7 und 12–14 des Orientierungswissens (Steuern, Vorsorge) folgen in Serie 703; Punkte 8–11 (Produktionsfaktoren, Konjunktur) stehen bereits in Serie 701.</p>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 7 «Meine Zukunft» · Lebenssituation B</h2>
+  <p style="font-weight:700;margin-bottom:10px">Eine Stelle suchen und einen Arbeitsvertrag abschliessen</p>
+  <table>
+    <tr><td class="lz">SUK B1</td><td>Ich erstelle zeitgemässe Bewerbungsunterlagen.</td></tr>
+    <tr><td class="lz">GES B1</td><td>Ich bewerbe mich auf ein konkretes Stellenangebot.</td></tr>
+    <tr><td class="lz">SUK B2</td><td>Ich erarbeite mir Kompetenzen für das erfolgreiche Auftreten in Bewerbungsgesprächen.</td></tr>
+    <tr><td class="lz">GES B2</td><td>Ich untersuche zentrale arbeitsrechtliche Bestimmungen.</td></tr>
+    <tr><td class="lz">GES B3</td><td>Ich analysiere Rechtsfälle im Zusammenhang mit dem Arbeitsvertrag.</td></tr>
+    <tr><td class="lz">GES B4</td><td>Ich untersuche aktuelle Entwicklungen bei der Rekrutierung von Arbeitskräften und überprüfe, wie diese rechtlich einzuschätzen sind.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen, Auflage 2026 (S. 60)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="702_Aufgaben.html"><strong>Übungen A1–A14 lösen</strong></a> → Kompetenznachweis Stellensuche &amp; Arbeitsrecht.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
