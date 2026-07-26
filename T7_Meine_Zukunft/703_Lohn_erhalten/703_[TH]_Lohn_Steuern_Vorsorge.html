@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>703 · Theorie: Lohn, Steuern &amp; Vorsorge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#6D3FA1; --t1-dark:#5B3488; --t1-light:#F0ECF6;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+.vertiefung-link{display:block;margin-top:10px;font-size:.82rem}
+.vertiefung-link a{color:var(--ink-soft);text-decoration:underline;text-decoration-style:dotted}
+.vertiefung-link a:hover{color:var(--t1)}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+.gesetz{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:#EEF1F5;border:1px solid var(--line);padding:2px 8px;border-radius:6px;white-space:nowrap}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.rechnung{font-family:'JetBrains Mono',monospace;font-size:.88rem;background:#1E2530;color:#E8ECF1;border-radius:10px;padding:14px 18px;margin:14px 0;overflow-x:auto}
+.rechnung b{color:#FFB4A8}
+details{border:1px solid var(--line);border-radius:10px;margin:12px 0;background:#FCFCFD}
+summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--t1-dark)}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .inner{padding:14px 16px;color:var(--ink-soft)}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+.ow-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;margin:6px 0;background:#FCFCFD;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;color:var(--ink-soft)}
+.ow-item input{margin-top:4px;accent-color:var(--t1)}
+.ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">703 · [TH]</span>
+  <h1>Theorie: Lohn, Steuern &amp; Vorsorge</h1>
+  <a class="nav" href="703_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Vom Lohn bleibt nach Steuern und Vorsorgebeiträgen ein Nettobetrag übrig – wie viel, hängt von Steuersystem, Vorsorgeplanung und finanziellen Entscheidungen ab. Diese Theorie zeigt die Staatsfinanzen im Überblick, erklärt Steuerarten und Steuerprogression, ordnet Geldanlagen nach Rendite und Risiko ein, erklärt den Vorsorgeausweis der Pensionskasse und die Finanzierung von Wohneigentum – und übt das Einordnen eines Finanzartikels.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">GES C1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">GES · Ergänzend</span> Staatsfinanzen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="703_[UE]_A01_Bundesfinanzen.html">A5</a>
+    <a href="703_[UE]_A16_Staatsschulden.html">A20</a>
+    <a href="703_[UE]_A17_Staatsfinanzierung.html">A21</a>
+  </div>
+  <p class="einstieg">Auch der Staat hat ein Budget: Einnahmen (v.a. Steuern) stehen Ausgaben (v.a. soziale Wohlfahrt, Bildung, Verkehr) gegenüber. Damit die Schulden nicht unkontrolliert wachsen, gilt in der Schweiz eine besondere Regel.</p>
+  <h3>Einnahmen und Ausgaben des Bundes</h3>
+  <p>Zu den grössten Ausgabenbereichen des Bundes gehören <strong>soziale Wohlfahrt</strong> (z.B. AHV, IV), <strong>Verkehr</strong> sowie <strong>Bildung und Forschung</strong>. Welche Bereiche zu viel oder zu wenig Mittel erhalten, ist letztlich eine politische Wertentscheidung.</p>
+  <h3>Die Schuldenbremse</h3>
+  <p>Die <strong>Schuldenbremse</strong> ist eine Regel in der Bundesverfassung: Die Ausgaben des Bundes müssen sich über einen ganzen <strong>Konjunkturzyklus</strong> hinweg an den Einnahmen orientieren, damit die Staatsschulden nicht dauerhaft ansteigen. Sie fördert finanzielle Stabilität und Generationengerechtigkeit, schränkt aber den finanziellen Handlungsspielraum in Krisenzeiten ein – Ausnahmeschulden (z.B. in einer Krise) müssen später wieder abgebaut werden.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was verlangt die Schweizer Schuldenbremse?</div>
+    <label>Der Bund darf nie Schulden machen</label>
+    <label data-ok>Ausgaben und Einnahmen müssen sich über einen Konjunkturzyklus hinweg ausgleichen</label>
+    <label>Nur die Kantone müssen ausgeglichen budgetieren</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES C1</span> Steuern: Arten, Progression und Steuererklärung</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="703_[UE]_A02_Steuerarten.html">A6</a>
+    <a href="703_[UE]_A03_Steuern_Lueckentext.html">A7</a>
+    <a href="703_[UE]_A04_Begriffe_Steuererklaerung.html">A8</a>
+    <a href="703_[UE]_A05_Steuererklaerung_Vreni.html">A9</a>
+    <a href="703_[UE]_A06_Verrechnungssteuer.html">A10</a>
+    <a href="703_[UE]_A07_Steuerprogression.html">A11</a>
+  </div>
+  <p class="einstieg">Steuern lassen sich nach mehreren Kriterien unterscheiden – wer die Grundlagen kennt, kann die eigene Steuererklärung besser verstehen und ausfüllen.</p>
+  <h3>Direkte und indirekte Steuern</h3>
+  <table class="tb">
+    <tr><th>Direkte Steuern</th><th>Indirekte Steuern</th></tr>
+    <tr><td>Richten sich unmittelbar nach einer Person, z.B. <strong>Einkommens-</strong> und <strong>Vermögenssteuer</strong>. Die steuerpflichtige Person weiss genau, wie viel sie schuldet.</td><td>Fallen beim <strong>Konsum</strong> an, z.B. die <strong>Mehrwertsteuer</strong> (Normalsatz 8,1 %, reduzierter Satz für viele Lebensmittel 2,6 %). Belasten tiefe Einkommen relativ stärker.</td></tr>
+  </table>
+  <h3>Steuerprogression</h3>
+  <p>Bei der <strong>Steuerprogression</strong> steigt der Steuersatz mit wachsendem Einkommen. Eine <strong>Flat Tax</strong> (einheitlicher Steuersatz für alle Einkommen) würde das System vereinfachen, aber die Umverteilungswirkung der Progression schwächen.</p>
+  <div class="merk"><b>Aktuell (Stand 2026):</b> Am 8. März 2026 hat das Schweizer Stimmvolk die <b>Individualbesteuerung</b> mit rund 54 % Ja-Stimmen angenommen. Künftig wird das Einkommen jeder Person unabhängig vom Zivilstand einzeln besteuert – Ehepaare und vergleichbare unverheiratete Paare werden damit steuerlich gleichgestellt («Abschaffung der Heiratsstrafe»). Die Umsetzung auf Bundes-, Kantons- und Gemeindeebene muss spätestens 2032 in Kraft treten.</div>
+  <div class="vertiefung-link">→ Vertiefung: <a href="703_[TH-UE]_LJ730_Individualbesteuerung.html">Individualbesteuerung – was die Abstimmung vom 8.3.2026 verändert</a></div>
+  <p style="font-size:.85rem">Quelle: SRF/swissinfo.ch, Abstimmungsresultate vom 8. März 2026.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was wurde am 8. März 2026 an der Urne entschieden?</div>
+    <label>Die Einführung einer Flat Tax</label>
+    <label data-ok>Die Einführung der Individualbesteuerung (Ende der «Heiratsstrafe»)</label>
+    <label>Die Abschaffung der Mehrwertsteuer</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">GES · Ergänzend</span> Geldanlage: Rendite, Risiko und Anlageformen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="703_[UE]_A08_Rendite_Risiko.html">A12</a>
+    <a href="703_[UE]_A09_Anlagestrategien.html">A13</a>
+    <a href="703_[UE]_A10_Kassaobligation.html">A14</a>
+    <a href="703_[UE]_A11_Aktien.html">A15</a>
+    <a href="703_[UE]_A12_Obligationen_Aktien.html">A16</a>
+    <a href="703_[UE]_A13_Zinsen_recherchieren.html">A17</a>
+    <a href="703_[UE]_A14_Sichere_Geldanlage.html">A18</a>
+    <a href="703_[UE]_A15_Anlagetipp.html">A19</a>
+  </div>
+  <p class="einstieg">Wer Geld anlegt, muss immer zwischen erwarteter Rendite, Risiko und Verfügbarkeit (Liquidität) abwägen.</p>
+  <h3>Der Zusammenhang zwischen Rendite und Risiko</h3>
+  <p>Grundsätzlich gilt: Je höher die erwartete <strong>Rendite</strong> einer Anlage, desto höher ist in der Regel auch das <strong>Risiko</strong>, Geld zu verlieren. Sichere Anlagen wie Sparkonten bieten meist eine tiefe Rendite, riskantere Anlagen wie Aktien können höhere Gewinne, aber auch grössere Verluste bringen.</p>
+  <table class="tb">
+    <tr><th>Obligation (Kassaobligation)</th><th>Aktie</th></tr>
+    <tr><td>Wertpapier, mit dem ein Unternehmen/Staat Fremdkapital aufnimmt; feste Verzinsung, tieferes Risiko</td><td>Anteilschein an einem Unternehmen (Eigenkapital); Wertschwankungen, höheres Risiko, potenziell höhere Rendite</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> «Hohe Rendite bei null Risiko» ist ein klassisches <b>Warnsignal für Betrug</b>, da Rendite und Risiko immer zusammenhängen. Schutz bieten unabhängige Recherche, keine Entscheidungen unter Zeitdruck und eine zweite Meinung einholen.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was sollte bei einem Anlageangebot mit «garantiert hoher Rendite und null Risiko» misstrauisch machen?</div>
+    <label>Nichts, solche Angebote sind normal</label>
+    <label data-ok>Rendite und Risiko hängen immer zusammen – ein solches Angebot ist ein typisches Betrugssignal</label>
+    <label>Nur der hohe Mindestbetrag ist verdächtig</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">GES C3</span> Den Vorsorgeausweis der Pensionskasse analysieren</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="703_[UE]_A18_Vorsorgeausweis_PK_Analysieren.html">A22</a>
+  </div>
+  <p class="einstieg">Der Vorsorgeausweis der Pensionskasse zeigt, wie gut die eigene Altersvorsorge über die 2. Säule abgesichert ist – und lässt sich nur richtig einordnen, wenn das Drei-Säulen-Prinzip bekannt ist.</p>
+  <h3>Das Drei-Säulen-Prinzip</h3>
+  <table class="tb">
+    <tr><th>Säule</th><th>Zweck</th></tr>
+    <tr><td><strong>1. Säule</strong> (AHV/IV, staatlich)</td><td>Sichert das Existenzminimum</td></tr>
+    <tr><td><strong>2. Säule</strong> (Pensionskasse, beruflich)</td><td>Sichert zusammen mit der 1. Säule den gewohnten Lebensstandard nach der Pensionierung</td></tr>
+    <tr><td><strong>3. Säule</strong> (privat, freiwillig)</td><td>Ergänzt die ersten beiden Säulen individuell, z.B. über die Säule 3a</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Wer den eigenen Vorsorgeausweis regelmässig prüft und früh mit dem Sparen beginnt (auch über die 3. Säule), kann Vorsorgelücken frühzeitig erkennen und schliessen.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welche Säule des Drei-Säulen-Prinzips ist freiwillig und privat?</div>
+    <label>1. Säule</label>
+    <label>2. Säule</label>
+    <label data-ok>3. Säule</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">SUK C4 · GES C6</span> Wohneigentum finanzieren</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="703_[UE]_A19_Wohneigentum_Finanzieren.html">A23</a>
+  </div>
+  <p class="einstieg">Wohneigentum zu kaufen, ist eine der grössten finanziellen Entscheidungen im Leben – Banken verlangen dafür klare Mindeststandards bei Eigenkapital und Tragbarkeit.</p>
+  <h3>Die wichtigsten Finanzierungsregeln</h3>
+  <ul class="list">
+    <li><strong>Eigenkapital:</strong> mindestens 20 % des Kaufpreises, davon mindestens 10 % «hart» (nicht aus der Pensionskasse).</li>
+    <li><strong>Tragbarkeit:</strong> die Wohnkosten (Zins, Amortisation, Nebenkosten) dürfen in der Regel höchstens <strong>1/3 des Einkommens</strong> ausmachen.</li>
+    <li><strong>Kalkulatorischer Zinssatz:</strong> Banken rechnen für die Tragbarkeitsberechnung mit einem Zinssatz von rund <strong>5 %</strong> – deutlich höher als der tatsächliche Hypothekarzins.</li>
+  </ul>
+  <div class="merk"><b>Merke:</b> Der hohe kalkulatorische Zinssatz dient als <b>Sicherheitspuffer</b>: Steigen die Zinsen künftig an, soll die Tragbarkeit trotzdem noch gegeben sein – das schützt sowohl die Bank als auch die Käuferin/den Käufer vor einer Überschuldung.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Wie viel Eigenkapital wird beim Kauf von Wohneigentum in der Schweiz mindestens verlangt?</div>
+    <label>5 % des Kaufpreises</label>
+    <label data-ok>20 % des Kaufpreises, davon mindestens 10 % «hart»</label>
+    <label>50 % des Kaufpreises</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 6 ==================== -->
+<section>
+  <h2><span class="nr">GES C2</span> Einen Finanzartikel analysieren</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="703_[UE]_A20_Finanzartikel_Analysieren.html">A24</a>
+  </div>
+  <p class="einstieg">Finanzwirtschaftliche Zeitungsartikel enthalten oft Fachbegriffe – wer die Kernaussage herausfiltern und auf die eigene finanzielle Situation beziehen kann, profitiert am meisten davon.</p>
+  <p>Beim Analysieren eines Finanzartikels helfen folgende Leitfragen:</p>
+  <ul class="list">
+    <li>Was ist die Kernaussage des Artikels, verständlich zusammengefasst?</li>
+    <li>Welche Personengruppe ist von der beschriebenen Entwicklung besonders betroffen – und warum?</li>
+    <li>Welche persönliche finanzielle Entscheidung könnte durch diese Information beeinflusst werden?</li>
+  </ul>
+  <div class="merk"><b>Merke:</b> Eine gute Zusammenfassung ist verständlich für Personen ohne Vorwissen und vermeidet unerklärte Fachbegriffe – gibt aber die Kernaussage des Originalartikels korrekt wieder.</div>
+</section>
+
+<section>
+  <h2><span class="nr">SLP</span> Orientierungswissen – Ich kann …</h2>
+  <p>Direkt aus dem Schullehrplan (Thema 7, Lebenssituation C). Abhaken, was bereits sicher beherrscht wird – der Rest ist der individuelle Lernauftrag:</p>
+  <div id="ow">
+    <label class="ow-item"><input type="checkbox"> … fünf notwendige Unterlagen für das Ausfüllen einer Steuererklärung aufzählen.</label>
+    <label class="ow-item"><input type="checkbox"> … drei steuerliche Abzugsmöglichkeiten benennen.</label>
+    <label class="ow-item"><input type="checkbox"> … das Drei-Säulen-Prinzip der Altersvorsorge erklären.</label>
+    <label class="ow-item"><input type="checkbox"> … zwei Vorteile des Sparens mit der dritten Säule nennen.</label>
+    <label class="ow-item"><input type="checkbox"> … direkte und indirekte Steuern unterscheiden.</label>
+    <label class="ow-item"><input type="checkbox"> … die Mehrwertsteuer erklären.</label>
+    <label class="ow-item"><input type="checkbox"> … die Steuerprogression erklären.</label>
+  </div>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Punkte 1–3 des Orientierungswissens (Arbeitsrecht, Kündigungsfristen) stehen in Serie 702; Punkte 8–11 (Produktionsfaktoren, Konjunktur) in Serie 701.</p>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 7 «Meine Zukunft» · Lebenssituation C</h2>
+  <p style="font-weight:700;margin-bottom:10px">Einen vollen Lohn erhalten und damit umsichtig planen</p>
+  <table>
+    <tr><td class="lz">SUK C1</td><td>Ich beschreibe die Grundlagen des Steuersystems.</td></tr>
+    <tr><td class="lz">GES C1</td><td>Ich verwende die Wegleitung meines Wohnkantons, um die Steuererklärung ausfüllen zu können.</td></tr>
+    <tr><td class="lz">SUK C2</td><td>Ich stelle meine Steuerunterlagen zusammen und bereite die Einreichung der Steuererklärung vor.</td></tr>
+    <tr><td class="lz">GES C2</td><td>Ich entnehme aus einem finanzwirtschaftlichen Zeitungsartikel die wichtigsten Informationen und kann diese in Bezug auf meine persönlichen finanziellen Entscheidungen einordnen.</td></tr>
+    <tr><td class="lz">SUK C3</td><td>Ich entwerfe und vergleiche Strategien für eine sichere finanzielle Zukunft.</td></tr>
+    <tr><td class="lz">GES C3</td><td>Ich analysiere einen Vorsorgeausweis einer Pensionskasse und beurteile die darin enthaltenen Leistungen in Bezug auf verschiedene Lebenssituationen.</td></tr>
+    <tr><td class="lz">SUK C4</td><td>Ich ermittle beispielhaft Möglichkeiten zur Finanzierung von Wohneigentum und skizziere diese in einer Übersicht.</td></tr>
+    <tr><td class="lz">SUK C5</td><td>Ich vergleiche Vor- und Nachteile verschiedener Anlagevarianten für meine zukünftige finanzielle Situation.</td></tr>
+    <tr><td class="lz">GES C6</td><td>Ich zeige auf, welche finanzielle Basis es für die Finanzierung von Wohneigentum braucht.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen, Auflage 2026 (S. 61)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="703_Aufgaben.html"><strong>Übungen A5–A24 lösen</strong></a> → Kompetenznachweis Lohn, Steuern &amp; Vorsorge.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
