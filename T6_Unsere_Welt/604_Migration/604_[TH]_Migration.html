@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>604 · Theorie: Migration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#8D44AF; --t1-dark:#6D3488; --t1-light:#F3E9F8;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+.vertiefung-link{display:block;margin-top:10px;font-size:.82rem}
+.vertiefung-link a{color:var(--ink-soft);text-decoration:underline;text-decoration-style:dotted}
+.vertiefung-link a:hover{color:var(--t1)}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+.gesetz{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:#EEF1F5;border:1px solid var(--line);padding:2px 8px;border-radius:6px;white-space:nowrap}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.rechnung{font-family:'JetBrains Mono',monospace;font-size:.88rem;background:#1E2530;color:#E8ECF1;border-radius:10px;padding:14px 18px;margin:14px 0;overflow-x:auto}
+.rechnung b{color:#FFB4A8}
+details{border:1px solid var(--line);border-radius:10px;margin:12px 0;background:#FCFCFD}
+summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--t1-dark)}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .inner{padding:14px 16px;color:var(--ink-soft)}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+.ow-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;margin:6px 0;background:#FCFCFD;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;color:var(--ink-soft)}
+.ow-item input{margin-top:4px;accent-color:var(--t1)}
+.ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">604 · [TH]</span>
+  <h1>Theorie: Migration</h1>
+  <a class="nav" href="604_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Migration prägt die Schweiz seit Jahrzehnten – als Ziel- und als Herkunftsland zugleich. Diese Theorie ordnet das weltweite Bevölkerungswachstum ein, erklärt Push- und Pull-Faktoren von Migration, zeigt das Schweizer Asylverfahren und die rechtlichen Unterschiede zwischen Status, ordnet die Bedeutung der bilateralen Verträge mit der EU ein, wirft einen Blick auf Auslandschweizerinnen und -schweizer – und regt dazu an, Migrationsgeschichten und die Bedeutung von Migration im eigenen Berufsfeld zu reflektieren.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">GES D1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">GES D1</span> Weltweites Bevölkerungswachstum</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="604_[UE]_A01_Bevoelkerungswachstum.html">A25</a>
+  </div>
+  <p class="einstieg">Die Weltbevölkerung wächst nicht überall gleich – manche Regionen wachsen stark, andere schrumpfen. Diese Unterschiede sind ein wichtiger Hintergrund für globale Migrationsbewegungen.</p>
+  <h3>Wachstum und Rückgang – zwei Seiten derselben Entwicklung</h3>
+  <table class="tb">
+    <tr><th>Starkes Bevölkerungswachstum</th><th>Bevölkerungsrückgang (z.B. Europa)</th></tr>
+    <tr><td>Kann Ressourcenknappheit, Urbanisierung und Umweltbelastung verstärken</td><td>Führt zu Alterung der Gesellschaft, Fachkräftemangel und weniger wirtschaftlicher Dynamik</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Migration kann junge Arbeitskräfte aus wachsenden Regionen in alternde Gesellschaften bringen und so den demografischen Wandel teilweise ausgleichen – sie schafft gleichzeitig aber auch Integrationsaufgaben für die Zielländer.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welches Problem entsteht typischerweise durch Bevölkerungsrückgang, wie ihn viele europäische Länder erleben?</div>
+    <label>Ressourcenknappheit und Umweltbelastung</label>
+    <label data-ok>Alterung der Gesellschaft und Fachkräftemangel</label>
+    <label>Übermässig schnelle Urbanisierung</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES D1</span> Migrationsursachen: Push- und Pull-Faktoren</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="604_[UE]_A02_Migrationstroeme.html">A26</a>
+    <a href="604_[UE]_A03_Push_Pull_Faktoren.html">A27</a>
+  </div>
+  <p class="einstieg">Menschen migrieren selten grundlos – meist wirken «abstossende» Faktoren im Herkunftsland und «anziehende» Faktoren im Zielland zusammen. Zudem weicht die mediale Wahrnehmung von Migrationsströmen oft von den tatsächlichen Zahlen ab.</p>
+  <h3>Push- und Pull-Faktoren</h3>
+  <table class="tb">
+    <tr><th>Push-Faktoren (stossen ab)</th><th>Pull-Faktoren (ziehen an)</th></tr>
+    <tr><td>Krieg, Verfolgung, Klimafolgen, wirtschaftliche Not, fehlende Perspektiven</td><td>Sicherheit, Arbeitsmöglichkeiten, soziale Netzwerke (Familie, Community)</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Menschen migrieren oft trotz grosser Risiken, wenn der Verbleib im Herkunftsland noch weniger Aussicht auf Sicherheit oder Zukunft bietet als die Migration selbst.</div>
+  <h3>Wahrnehmung vs. Realität</h3>
+  <p>Medien zeigen oft dramatische Fluchtszenen Richtung Europa – dabei bleiben die meisten Schutzsuchenden weltweit in <strong>Nachbarstaaten</strong> oder Ländern mit tiefem bis mittlerem Einkommen. Diese Verzerrung kann dazu führen, dass die Zuwanderung nach Europa in der öffentlichen Wahrnehmung überschätzt wird – mit der Folge von Pauschalisierungen und politischen Überreaktionen.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Wo bleiben laut den tatsächlichen Zahlen die meisten weltweiten Schutzsuchenden?</div>
+    <label>Überwiegend in Europa</label>
+    <label data-ok>Überwiegend in Nachbarstaaten oder Ländern mit tiefem/mittlerem Einkommen</label>
+    <label>Überwiegend in Nordamerika</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">GES D1 · Ergänzend</span> Asyl und Recht in der Schweiz</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="604_[UE]_A04_Asylverfahren.html">A28</a>
+    <a href="604_[UE]_A08_Asyl_Einbuergerung.html">A32</a>
+  </div>
+  <p class="einstieg">«Migrant/in», «Asylsuchende/r», «Flüchtling» und «eingebürgerte Person» sind rechtlich unterschiedliche Status mit jeweils eigenen Rechten und Pflichten. Diese Unterscheidung ist wichtig, um Fehlinformationen und Diskriminierung vorzubeugen.</p>
+  <h3>Der Ablauf des Schweizer Asylverfahrens</h3>
+  <p>Nach dem Asylgesuch durchläuft eine Person typischerweise: Unterbringung in einem <strong>Bundesasylzentrum</strong>, Anhörung, Entscheid der Behörden und – falls nötig – eine <strong>Beschwerdemöglichkeit</strong>. Im beschleunigten Verfahren besteht Anspruch auf kostenlose Rechtsvertretung.</p>
+  <h3>Drei rechtlich unterschiedliche Status</h3>
+  <table class="tb">
+    <tr><th>Status</th><th>Rechtliche Situation</th></tr>
+    <tr><td><strong>Asylsuchende Person</strong></td><td>Befindet sich noch im laufenden Verfahren, hat nur eingeschränkte Rechte</td></tr>
+    <tr><td><strong>Anerkannter Flüchtling</strong></td><td>Erhält einen Schutzstatus mit weitergehenden Rechten (u.a. Aufenthalt, teils Familiennachzug)</td></tr>
+    <tr><td><strong>Eingebürgerte Person</strong></td><td>Besitzt die volle Staatsbürgerschaft inklusive Stimm- und Wahlrecht</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> «Migration», «Asylsuche» und «Flucht» werden oft synonym verwendet, meinen aber Verschiedenes: <b>Migration</b> ist der Oberbegriff für jeden Wohnortwechsel über eine Grenze; <b>Flucht</b> bezeichnet die erzwungene Migration vor Krieg/Verfolgung; <b>Asylsuche</b> ist das rechtliche Verfahren, mit dem eine Person in der Schweiz um Schutz ersucht.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was unterscheidet eine asylsuchende Person rechtlich von einer eingebürgerten Person?</div>
+    <label>Es gibt keinen Unterschied, beide haben dieselben Rechte</label>
+    <label data-ok>Die asylsuchende Person befindet sich noch im Verfahren mit eingeschränkten Rechten, die eingebürgerte Person hat volle Staatsbürgerrechte (z.B. Stimmrecht)</label>
+    <label>Nur eingebürgerte Personen dürfen in der Schweiz bleiben</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">GES D2</span> Migrationspolitik und Zuwanderung aus der EU</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="604_[UE]_A05_Migrationspolitik.html">A29</a>
+    <a href="604_[UE]_A07_Zuwanderung_EU.html">A31</a>
+  </div>
+  <p class="einstieg">Ein grosser Teil der Zuwanderung in die Schweiz erfolgt aus EU/EFTA-Staaten – geregelt durch die bilateralen Verträge. Diese Verträge werden laufend weiterentwickelt, aktuell im Rahmen eines neuen Vertragspakets.</p>
+  <h3>Die wichtigsten Verträge im Überblick</h3>
+  <table class="tb">
+    <tr><th>Vertrag</th><th>Inhalt</th></tr>
+    <tr><td><strong>Personenfreizügigkeit</strong> (Bilaterale I, seit 2002)</td><td>Erleichtert Aufenthalt und Arbeit für Personen aus EU/EFTA-Staaten in der Schweiz und umgekehrt</td></tr>
+    <tr><td><strong>Schengen/Dublin</strong> (Bilaterale II, operativ seit Dezember 2008)</td><td>Schengen: Wegfall systematischer Grenzkontrollen, gemeinsame Aussengrenzsicherung. Dublin: regelt, welcher Staat für ein Asylgesuch zuständig ist</td></tr>
+  </table>
+  <p>Wirtschaftssektoren wie <strong>Gesundheit, Bau, Gastronomie, Landwirtschaft und IT</strong> sind besonders stark auf Zuwanderung aus EU-Ländern angewiesen. Die Personenfreizügigkeit kann Fachkräftemangel lindern, löst aber auch gesellschaftliche Debatten zu Löhnen, Wohnraum und Integration aus.</p>
+  <div class="merk"><b>Aktuelle Entwicklung («Bilaterale III», Stand Sommer 2026):</b> Der Bundesrat hat am 13. März 2026 ein neues Vertragspaket mit der EU zuhanden des Parlaments verabschiedet, das die bestehenden bilateralen Verträge absichert und um drei neue Bereiche (Strom, Gesundheit, Lebensmittelsicherheit) erweitert. Das Paket wird aktuell im Parlament beraten; ob es dem fakultativen oder dem obligatorischen Referendum untersteht, ist noch offen. Bis zu einer allfälligen Volksabstimmung bleiben die bestehenden Verträge (Personenfreizügigkeit, Schengen/Dublin) unverändert in Kraft.</div>
+  <p style="font-size:.85rem">Quelle: admin.ch, «Paket Schweiz-EU» (Stand März 2026).</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was regelt das Dublin-Abkommen?</div>
+    <label>Den Wegfall der Grenzkontrollen zwischen Schengen-Staaten</label>
+    <label data-ok>Welcher Staat für ein Asylgesuch zuständig ist</label>
+    <label>Die Personenfreizügigkeit für Arbeitskräfte</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">GES D2 · Ergänzend</span> Auslandschweizerinnen und Auslandschweizer</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="604_[UE]_A06_Auslandschweizer.html">A30</a>
+  </div>
+  <p class="einstieg">Migration ist keine Einbahnstrasse: Auch aus der Schweiz wandern regelmässig Menschen aus – ein Blick, der beim Thema Migration oft vergessen geht.</p>
+  <p>Viele Auslandschweizerinnen und Auslandschweizer leben in <strong>Deutschland, Frankreich, den USA oder Australien</strong> – oft wegen Sprache, Arbeit oder persönlichen Beziehungen. Die hohe Zahl an Auslandschweizern zeigt, dass auch die Schweizer Bevölkerung selbst mobil ist.</p>
+  <div class="merk"><b>Merke:</b> Wer über Migration spricht, sollte nicht nur die Zuwanderung in die Schweiz, sondern auch die eigene Auswanderung mitdenken – Migration betrifft die Schweiz in beide Richtungen.</div>
+</section>
+
+<!-- ==================== LZ 6 ==================== -->
+<section>
+  <h2><span class="nr">SUK D1</span> Migrationsgeschichten</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="604_[UE]_A09_Migrationsgeschichten.html">A09</a>
+  </div>
+  <p class="einstieg">Hinter jeder Migrationsstatistik stehen persönliche Geschichten. Das Gespräch mit einer migrierten Person macht abstrakte Push-/Pull-Faktoren konkret erfahrbar.</p>
+  <p>Beim Führen und Auswerten eines solchen Gesprächs helfen folgende Leitfragen:</p>
+  <ul class="list">
+    <li>Welchem Push-/Pull-Faktor (wirtschaftlich, politisch, familiär, ökologisch) lässt sich der Migrationsgrund der Person zuordnen?</li>
+    <li>Was waren die wichtigsten Erfahrungen bei Ankunft und Integration?</li>
+    <li>Welche persönliche Erkenntnis lässt sich aus dem Gespräch ziehen?</li>
+  </ul>
+  <div class="merk"><b>Merke:</b> Ein gutes Porträt ist respektvoll, sachlich und folgt einer klaren Struktur: Herkunft – Grund der Migration – Erfahrungen – persönliche Erkenntnis.</div>
+</section>
+
+<!-- ==================== LZ 7 ==================== -->
+<section>
+  <h2><span class="nr">GES D3</span> Migration in meinem Berufsfeld</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="604_[UE]_A10_Migration_In_Meinem_Berufsfeld.html">A10</a>
+  </div>
+  <p class="einstieg">Migration ist kein abstraktes Thema fernab des eigenen Alltags – viele Berufsfelder wären ohne Migration in ihrer heutigen Form kaum denkbar.</p>
+  <p>Zur Beurteilung, welche Rolle Migration im eigenen Berufsfeld spielt, lohnt sich der Blick auf mögliche Argumente:</p>
+  <ul class="list">
+    <li>Anteil ausländischer Arbeitskräfte im Beruf/in der Branche</li>
+    <li>Abhängigkeit von internationalen Lieferketten oder Rohstoffen</li>
+    <li>Bedeutung des Exportmarkts für den eigenen Betrieb</li>
+    <li>Fachkräftemangel im eigenen Berufsfeld</li>
+  </ul>
+  <div class="merk"><b>Merke:</b> Eine gute Beurteilung nimmt klar Stellung und stützt sich auf mindestens zwei plausible, berufsfeldbezogene Argumente – nicht nur auf einen allgemeinen Eindruck.</div>
+</section>
+
+<section>
+  <h2><span class="nr">SLP</span> Orientierungswissen – Ich kann …</h2>
+  <p>Direkt aus dem Schullehrplan (Thema 6, Lebenssituation D). Abhaken, was bereits sicher beherrscht wird – der Rest ist der individuelle Lernauftrag:</p>
+  <div id="ow">
+    <label class="ow-item"><input type="checkbox"> … je drei Push- und Pullfaktoren aufzählen.</label>
+    <label class="ow-item"><input type="checkbox"> … den Zweck der bilateralen Verträge zwischen der Schweiz und der EU erklären.</label>
+    <label class="ow-item"><input type="checkbox"> … den Unterschied zwischen den Begriffen Migration, Asylsuche und Flucht erklären.</label>
+  </div>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Punkte 1–4 des Orientierungswissens (Treibhauseffekt/Klima) stehen in Serie 602; Punkte 5–6 (internationale Zusammenarbeit, Freihandel) in Serie 603.</p>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 6 «Unsere Welt» · Lebenssituation D</h2>
+  <p style="font-weight:700;margin-bottom:10px">Migration im Alltag erleben</p>
+  <table>
+    <tr><td class="lz">GES D1</td><td>Ich zeige verschiedene Ursachen für Migration auf und beurteile deren Folgen.</td></tr>
+    <tr><td class="lz">GES D2</td><td>Ich erkläre die Auswirkungen der bilateralen Verträge mit der EU auf die Ein- und Auswanderung der Schweiz.</td></tr>
+    <tr><td class="lz">GES D3</td><td>Ich analysiere die Auswirkungen der Migration in meinem Berufsfeld.</td></tr>
+    <tr><td class="lz">SUK D1</td><td>Ich setze mich mit Migrationsgeschichten auseinander und formuliere meine Erkenntnisse daraus.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen, Auflage 2026 (S. 55)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="604_Aufgaben.html"><strong>Übungen A09, A10, A25–A32 lösen</strong></a> → Kompetenznachweis Migration.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
