@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 · Theorie: Medien &amp; KI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#297FB8; --t1-dark:#1B5D8A; --t1-light:#E3F0F9;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.9rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.2rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.75rem;background:var(--t1-light);padding:2px 7px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.9rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:8px 10px}
+.tb td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.steps{counter-reset:step;padding:0;list-style:none;margin:14px 0}
+.steps li{counter-increment:step;position:relative;padding:8px 0 8px 40px;color:var(--ink-soft);border-bottom:1px solid var(--line)}
+.steps li:last-child{border-bottom:none}
+.steps li::before{content:counter(step);position:absolute;left:0;top:6px;width:26px;height:26px;background:var(--t1);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">404 · [TH]</span>
+  <h1>Theorie: Medien &amp; KI</h1>
+  <a class="nav" href="404_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Von der Zeitung bis zum KI-Chatbot: Medien haben sich radikal gewandelt, aber ihre Grundfunktionen bleiben. Diese Theorie zeigt, was Medien sind und wie sie sich entwickelt haben, wie sich Mediengattungen im Wandel unterscheiden, was Internet und Smartphone im Alltag bedeuten, welche Rolle Medien für die Demokratie spielen, wie Künstliche Intelligenz (inkl. Smart Farming) genutzt wird, wie Datenschutz funktioniert und wie man sich respektvoll und sicher im Netz verhält.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Diese Kachel folgt teils dem <strong>Schullehrplan Landwirtschaft</strong> (Codes <span class="nr" style="display:inline">LW A/B/C</span>), teils einem allgemeinen Medienkunde-Dossier ohne eigenen SLP-Code. Details am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2>Was sind Medien? Geschichte und Funktionen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="404_[UE]_A04_Was_sind_Medien_Geschichte_Funktionen.html">A04</a>
+  </div>
+  <p class="einstieg">Medien sind Kommunikationsmittel: Mit ihrer Hilfe tauschen Menschen Informationen aus – als Text, Bild, Ton oder Kombination davon.</p>
+  <ol class="steps">
+    <li><strong>ca. 1450</strong> – moderner Buchdruck: Beginn der Massenmedien</li>
+    <li><strong>1920er-Jahre</strong> – Radio</li>
+    <li><strong>ab 1950er-Jahre</strong> – Fernsehen</li>
+    <li><strong>letzte 20 Jahre</strong> – Internet, Smartphone, Social-Media-Plattformen</li>
+  </ol>
+  <div class="merk"><b>Merke – Nutzen-und-Belohnungsansatz:</b> Mediennutzung erfüllt vier Grundbedürfnisse – Unterhaltung, persönliche Identität, soziale Interaktion/Integration und Information. Oft erfüllt dieselbe Nutzung gleich mehrere davon. Gemäss JIM-Studie verbringen 12- bis 19-Jährige durchschnittlich über 4 Stunden täglich mit Medien.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Womit begann die Geschichte der Massenmedien?</div>
+    <label>Mit der Erfindung des Radios</label>
+    <label data-ok>Mit dem modernen Buchdruck um 1450</label>
+    <label>Mit dem Internet</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2>Mediengattungen im Wandel</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="404_[UE]_A06_Mediengattungen_im_Wandel.html">A06</a>
+  </div>
+  <p class="einstieg">Eine Zeitungstitelseite enthält typische Elemente: Schlagzeile (führt zum Aufmacher-Artikel), kurze Meldungen, ein sachlicher Bericht, ein meinungsbetonter Kommentar und das rechtlich vorgeschriebene Impressum.</p>
+  <table class="tb">
+    <tr><th>Begriff</th><th>Bedeutung</th></tr>
+    <tr><td><strong>Linear</strong></td><td>Fester Sendeplan (klassisches Fernsehen)</td></tr>
+    <tr><td><strong>Nicht-linear</strong></td><td>Jederzeit abrufbar (Streaming-Mediathek)</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> 72 % der Jugendlichen schauen noch mehrmals wöchentlich lineares Fernsehen, aber 90 % auch Videos im Internet. Kino unterscheidet sich vom «Couch-Fernsehen» durch grosse Leinwand, Ton, ungestörte Konzentration und gemeinsames Erlebnis. Bei zu grosser Auswahl entstehen «Opportunitätskosten»: Je mehr Optionen, desto schwieriger die Entscheidung und desto grösser das Gefühl, etwas zu verpassen.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was bedeutet «nicht-linear» bei Medien?</div>
+    <label>Fester Sendeplan wie beim klassischen Fernsehen</label>
+    <label data-ok>Jederzeit abrufbar, z.B. eine Streaming-Mediathek</label>
+    <label>Nur für lineare Zeitungen gültig</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2>Internet und Smartphone im Alltag</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="404_[UE]_A07_Internet_Smartphone_im_Alltag.html">A07</a>
+  </div>
+  <p class="einstieg">Das Internet gilt als «All-in-one-Medium»: Es vereint praktisch alle vorherigen Medienformen (Text, Bild, Ton, Video) an einem Ort und macht sie jederzeit abrufbar. Rund 65 % aller Menschen weltweit nutzen es, mit steigender Tendenz – in Finnland ist der Internetzugang seit 2010 gesetzlich als Grundrecht verankert.</p>
+  <p><strong>2007</strong> kam mit dem iPhone das erste Smartphone mit Multi-Touch-Screen auf den Markt und vereint seither Funktionen, die früher auf viele Geräte verteilt waren: Kamera, Radio, Wecker, Navigationsgerät, Taschenrechner, Zeitung.</p>
+  <div class="merk"><b>Merke:</b> <strong>FOMO</strong> («Fear of missing out») bezeichnet die Angst, durch fehlende ständige Erreichbarkeit etwas im sozialen Umfeld zu verpassen. <strong>Suchmaschinen</strong> gelten als «Gatekeeper», weil sie entscheiden, welche Informationen wir überhaupt finden – ein einzelner Anbieter vereint in Deutschland über 90 % aller Suchanfragen auf sich.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Warum gelten Suchmaschinen als «Gatekeeper»?</div>
+    <label>Weil sie das Internet erfunden haben</label>
+    <label data-ok>Weil sie entscheiden, welche Informationen wir im Internet überhaupt finden</label>
+    <label>Weil sie nur auf dem Smartphone funktionieren</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">LW A</span> Medien und Demokratie</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="404_[UE]_A05_Medien_und_Demokratie.html">A05</a>
+  </div>
+  <p class="einstieg">Medien filtern und wählen Informationen aus, weshalb sie auch «Gatekeeper» genannt werden. Weil sie die drei Staatsgewalten kontrollieren und öffentlich kritisieren können, spricht man auch von der «vierten Gewalt».</p>
+  <div class="merk"><b>Merke – Pressefreiheit:</b> das Recht von Journalist:innen, ungehindert zu recherchieren, zu berichten und zu kommentieren. Gefährdet wird sie u.&nbsp;a. durch Selbstzensur, einseitige Themenwahl, wirtschaftlichen Druck und Medienkonzentration.</div>
+  <p>Historisch wurden praktisch alle neuen Medien zunächst misstrauisch beäugt – Buch, Radio, Fernsehen, Computerspiele, Smartphones. Mit Social Media wurden Konsumierende zu «Content Creators»: Das ermöglicht mehr Menschen eine Stimme, kann aber auch Falschinformationen und Hetze schnell verbreiten – die Beziehung zwischen Social Media und Demokratie ist deshalb ambivalent.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Warum werden Medien auch als «vierte Gewalt» bezeichnet?</div>
+    <label>Weil sie eine eigene Staatsgewalt bilden</label>
+    <label data-ok>Weil sie die drei Staatsgewalten kontrollieren und öffentlich kritisieren können</label>
+    <label>Weil es vier grosse Medienkonzerne gibt</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">LW B</span> Künstliche Intelligenz im Alltag</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="404_[UE]_A01_Kuenstliche_Intelligenz_Alltag.html">A01</a>
+  </div>
+  <p class="einstieg">«Schwache KI» löst heute klar umrissene, wiederkehrende Probleme (Sprache übersetzen, Route berechnen, Fotos zuordnen). An «starker KI», die wie ein Mensch flexibel denken könnte, wird weiterhin geforscht.</p>
+  <div class="merk"><b>Merke – Smart Farming:</b> Landwirtschaftliche Betriebe setzen zunehmend auf Drohnen (Zustand von Feldern erfassen), Sensoren (bedarfsgerechte Bewässerung/Düngung) und automatisierte Melk-/Fütterungssysteme. Ziel: Ressourcen (Wasser, Dünger, Futter) gezielter einsetzen und Arbeit erleichtern.</div>
+  <p><strong>Chancen:</strong> Zeitersparnis, weniger Fehler, neue Möglichkeiten. <strong>Risiken:</strong> Abhängigkeit von Technologie/Anbietern, hohe Anschaffungskosten, Fehleinschätzungen der KI, Kompetenzverlust bei zu starker Verlässlichkeit, unklare Transparenz der Algorithmen.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was ist ein Beispiel für Smart Farming?</div>
+    <label>Ein Buchhaltungsprogramm ohne KI</label>
+    <label data-ok>Drohnen und Sensoren, die Felder erfassen und Bewässerung/Düngung steuern</label>
+    <label>Ein klassisches, unautomatisiertes Melksystem</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 6 ==================== -->
+<section>
+  <h2><span class="nr">LW C</span> Datenschutz und digitale Spuren</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="404_[UE]_A02_Datenschutz_Digitale_Spuren.html">A02</a>
+  </div>
+  <p class="einstieg">In der Schweiz gilt das <strong>Recht auf informationelle Selbstbestimmung</strong>: Jede Person darf grundsätzlich selbst bestimmen, an wen sie ihre persönlichen Daten weitergibt und wer diese verwenden darf – geregelt im Datenschutzgesetz (DSG) und im Persönlichkeitsrecht des Zivilgesetzbuches.</p>
+  <div class="merk"><b>Merke – digitale Spuren:</b> Schon aus Fotos, Beiträgen, Likes und Kommentaren lässt sich eine Person recht genau beschreiben. Cookies und Tracking-Tools verfolgen das Nutzungsverhalten über die Zeit und erstellen Interessenprofile, z.&nbsp;B. für personalisierte Werbung.</div>
+  <p><strong>Privatsphäre schützen:</strong> Privatsphäre-Einstellungen von Social-Media-Profilen überprüfen/anpassen, weniger persönliche Informationen öffentlich teilen, Cookie-Einstellungen kritisch prüfen, bewusste Handy-Pausen («Handyfasten»).</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was bedeutet das Recht auf informationelle Selbstbestimmung?</div>
+    <label>Der Staat entscheidet, welche Daten veröffentlicht werden</label>
+    <label data-ok>Jede Person darf selbst bestimmen, an wen sie ihre Daten weitergibt</label>
+    <label>Unternehmen dürfen Daten uneingeschränkt nutzen</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 7 ==================== -->
+<section>
+  <h2><span class="nr">LW C</span> Respektvoll und sicher im Netz</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="404_[UE]_A03_Respektvoll_Sicher_im_Netz.html">A03</a>
+  </div>
+  <p class="einstieg">«Hate Speech» sind abwertende oder angreifende Kommentare im Netz gegen Personen oder Gruppen – oft getarnt als Humor oder gestützt auf Stereotype. Über die Hälfte der Jugendlichen ist gemäss JIM-Studie im letzten Monat bereits Hassbotschaften begegnet.</p>
+  <div class="merk"><b>Merke – STOP-BLOCK-TELL-Technik bei Cyber-Mobbing:</b><br><strong>STOP</strong> – nicht auf Provokationen antworten, Beweise (Screenshots) sichern.<br><strong>BLOCK</strong> – die angreifende Person blockieren/melden.<br><strong>TELL</strong> – sich einer Vertrauensperson mitteilen, nicht alleine bleiben.</div>
+  <p>Hate Speech und Cyber-Mobbing sind keine «Kavaliersdelikte»: Ehrverletzungen, Drohungen, Beschimpfungen und Rassendiskriminierung können in der Schweiz strafrechtlich verfolgt werden.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was ist der erste Schritt der STOP-BLOCK-TELL-Technik?</div>
+    <label>Sofort öffentlich zurückschreiben</label>
+    <label data-ok>Nicht auf Provokationen reagieren und Beweise sichern</label>
+    <label>Das eigene Profil löschen</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 8 ==================== -->
+<section>
+  <h2>Social Media, Influencer und Intermediäre</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="404_[UE]_A08_Social_Media_Influencer_Intermediaere.html">A08</a>
+  </div>
+  <p class="einstieg">Soziale Medien erfüllen gemäss dem Psychologen Klaus Grawe vier Grundbedürfnisse: Bindung, Orientierung/Kontrolle, Selbstwerterhöhung und Lustgewinn.</p>
+  <p><strong>Influencer/-innen</strong> machen offen oder verdeckt Werbung für Meinungen oder Produkte. Anders als klassische Werbung wirkt diese oft persönlicher und vertrauenswürdiger, weil sie in den Alltag der Influencer/-innen eingebettet ist – die Grenze zwischen echter Empfehlung und bezahlter Werbung kann dabei verwischen.</p>
+  <div class="merk"><b>Merke – Medienintermediäre:</b> Digitalkonzerne (grosse Suchmaschinen-/Social-Media-Betreiber) verlinken und zeigen journalistische Inhalte anderer Medienunternehmen an und verdienen damit Werbegeld, ohne die Inhalte selbst zu produzieren. Umstritten ist, ob sie den ursprünglichen Medienhäusern dafür eine Entschädigung zahlen sollten.</div>
+  <p>Schattenseiten: Vergleichsdruck, Suchtpotenzial, Desinformation, mangelnde Transparenz bei Werbung. Ein reflektierter Umgang bedeutet, sich dieser Mechanismen bewusst zu sein.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was ist ein Medienintermediär?</div>
+    <label>Ein Verlag, der eigene Zeitungen druckt</label>
+    <label data-ok>Ein Digitalkonzern, der fremde journalistische Inhalte verlinkt und damit Werbegeld verdient</label>
+    <label>Eine staatliche Medienaufsicht</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<div class="lernziel">
+  <h2>Quellen-Bezug · Thema 4 «Unsere Schweiz» / Kachel 404</h2>
+  <p style="font-weight:700;margin-bottom:10px">Schullehrplan Landwirtschaft (LW), Thema 4 «Medien durchschauen»</p>
+  <table>
+    <tr><td class="lz">LW A</td><td>Ich kann die Wichtigkeit unabhängiger Medien für meine Meinungsbildung und für unsere Gesellschaft erläutern.</td></tr>
+    <tr><td class="lz">LW B</td><td>Ich kann den Nutzen und die Risiken neuer Technologien auf mein Leben beurteilen.</td></tr>
+    <tr><td class="lz">LW C</td><td>Ich kann mich respektvoll und fair im Netz verhalten; ich kann meine Privatsphäre auf sozialen Plattformen gezielt schützen; ich kann die Bedeutung von Datenschutz erklären und rechtliche Rahmenbedingungen beschreiben und anwenden.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">LZ 1, 2, 3 und 8 (Medienbegriff, -geschichte, Mediengattungen, Internet/Smartphone, Social Media/Intermediäre) stammen aus einem allgemeinen Medienkunde-Dossier (Fileccia, «Medien für Einsteiger», bpb) und sind nicht direkt einem einzelnen SLP-Kompetenzcode zugeordnet – sie bilden das nötige Grundlagenwissen für die LW-Kompetenzen A–C.<br>Quelle: Nationaler Schullehrplan ABU-LW EFZ, Thema 4 «Medien durchschauen» (S. 17–18); ergänzend Fileccia, «Medien für Einsteiger» (bpb), JIM-Studie (mpfs.de).</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="404_Aufgaben.html"><strong>Übungen lösen</strong></a>.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
