@@ -22,6 +22,12 @@
   .d-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:3px; }
   .d-title { font-family:'Barlow Condensed',sans-serif; font-size:26px; font-weight:800; text-transform:uppercase; color:var(--g9); line-height:1.1; margin-bottom:4px; }
   .d-desc { font-size:12px; color:var(--g5); line-height:1.5; }
+  .th-card { display:flex; align-items:center; gap:14px; background:white; border:2px solid var(--accent); border-radius:14px; padding:16px 18px; margin-bottom:1.75rem; text-decoration:none; color:inherit; transition:all .15s; }
+  .th-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.08); transform:translateY(-1px); }
+  .th-card .th-icon { font-size:26px; flex-shrink:0; }
+  .th-card .th-title { font-size:14px; font-weight:700; color:var(--g9); margin-bottom:2px; }
+  .th-card .th-desc { font-size:11.5px; color:var(--g5); }
+  .th-card .th-arrow { margin-left:auto; font-size:18px; color:var(--accent); }
   .toggle-bar { display:flex; gap:6px; margin-bottom:1.25rem; }
   .toggle-btn { display:flex; align-items:center; gap:6px; padding:7px 14px; border-radius:8px; border:1.5px solid var(--g3); background:white; font-size:12px; font-weight:600; color:var(--g5); cursor:pointer; transition:all .15s; }
   .toggle-btn.active { background:var(--accent); border-color:var(--accent); color:white; }
@@ -72,6 +78,15 @@
       </div>
     </div>
   </div>
+
+  <a class="th-card" href="505_[TH]_Gesellschaft_Mitgestalten.html">
+    <span class="th-icon">📖</span>
+    <span>
+      <div class="th-title">Theorie zu dieser Serie</div>
+      <div class="th-desc">Menschenrechte/EMRK, Werte & Normen, Vereinslandschaft, internationale Organisationen – vor den Übungen lesen</div>
+    </span>
+    <span class="th-arrow">›</span>
+  </a>
 
   <div class="toggle-bar">
     <button class="toggle-btn active" id="btnLz" onclick="showView('lz')">📚 Nach Lernzielen</button>
