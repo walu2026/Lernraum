@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>602 · Theorie: Ökologie &amp; Klimawandel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#8D44AF; --t1-dark:#6D3488; --t1-light:#F3E9F8;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);padding:2px 8px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+.vertiefung-link{display:block;margin-top:10px;font-size:.82rem}
+.vertiefung-link a{color:var(--ink-soft);text-decoration:underline;text-decoration-style:dotted}
+.vertiefung-link a:hover{color:var(--t1)}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+.gesetz{font-family:'JetBrains Mono',monospace;font-size:.82rem;background:#EEF1F5;border:1px solid var(--line);padding:2px 8px;border-radius:6px;white-space:nowrap}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:9px 12px}
+.tb td{border:1px solid var(--line);padding:9px 12px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.rechnung{font-family:'JetBrains Mono',monospace;font-size:.88rem;background:#1E2530;color:#E8ECF1;border-radius:10px;padding:14px 18px;margin:14px 0;overflow-x:auto}
+.rechnung b{color:#FFB4A8}
+details{border:1px solid var(--line);border-radius:10px;margin:12px 0;background:#FCFCFD}
+summary{cursor:pointer;padding:12px 16px;font-weight:600;color:var(--t1-dark)}
+details[open] summary{border-bottom:1px solid var(--line)}
+details .inner{padding:14px 16px;color:var(--ink-soft)}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+.ow-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;margin:6px 0;background:#FCFCFD;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;color:var(--ink-soft)}
+.ow-item input{margin-top:4px;accent-color:var(--t1)}
+.ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">602 · [TH]</span>
+  <h1>Theorie: Ökologie &amp; Klimawandel</h1>
+  <a class="nav" href="602_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Der Klimawandel und der Umgang mit knappen Ressourcen gehören zu den grössten Herausforderungen unserer Zeit. Diese Theorie erklärt den Treibhauseffekt und seine Folgen, ordnet den eigenen ökologischen Fussabdruck ein, zeigt staatliche Steuerungsinstrumente wie das Verursacherprinzip, thematisiert den sorgfältigen Umgang mit Wasser, stellt die Schweizer Energiestrategie vor – und regt dazu an, einen eigenen Standpunkt zu Klimafragen zu entwickeln.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">GES B1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== LZ 1 ==================== -->
+<section>
+  <h2><span class="nr">SUK B3</span> Der ökologische Fussabdruck</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="602_[UE]_A01_Oekologischer_Fussabdruck.html">A26</a>
+  </div>
+  <p class="einstieg">Der ökologische Fussabdruck zeigt, wie viel produktive Fläche der Erde nötig wäre, um den eigenen Lebensstil dauerhaft zu ermöglichen. Er macht den persönlichen Beitrag zu globalen Umweltproblemen konkret messbar.</p>
+  <h3>Fussabdruck vs. Biokapazität</h3>
+  <p>Der ökologische Fussabdruck der Schweiz ist rund <strong>drei- bis viermal so gross</strong> wie ihre eigene Biokapazität (die Fläche, die die Schweiz selbst zur Verfügung stellen kann) – obwohl das Land als «grün» gilt. Hauptverantwortlich dafür sind:</p>
+  <ul class="list">
+    <li><strong>Fleischkonsum</strong> und Ernährung allgemein</li>
+    <li><strong>Flugreisen</strong> und Autofahrten</li>
+    <li><strong>Heizung</strong> von Gebäuden</li>
+    <li><strong>Konsumgüter</strong> wie Kleidung und Elektronik – deren Umweltbelastung grösstenteils im Ausland (Produktion) entsteht</li>
+  </ul>
+  <div class="merk"><b>Merke:</b> Ein grosser Teil des Schweizer Fussabdrucks entsteht <b>im Ausland</b>, weil viele konsumierte Güter dort hergestellt werden – der Fussabdruck zählt trotzdem zur Schweiz, weil er durch den hiesigen Konsum verursacht wird.</div>
+  <p>Wirksame persönliche Hebel zur Reduktion sind vor allem weniger Fleischkonsum und weniger Flugreisen, da diese überdurchschnittlich viel zum Fussabdruck beitragen.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Warum gilt der ökologische Fussabdruck der Schweiz als hoch, obwohl das Land oft als «grün» wahrgenommen wird?</div>
+    <label>Weil die Schweiz besonders viel Fläche für Landwirtschaft hat</label>
+    <label data-ok>Weil ein grosser Teil der Umweltbelastung durch Konsum (Fleisch, Flüge, Güter) im Ausland entsteht</label>
+    <label>Weil die Biokapazität der Schweiz besonders klein ist im weltweiten Vergleich</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 2 ==================== -->
+<section>
+  <h2><span class="nr">GES B1</span> Klimawandel: Treibhauseffekt und Folgen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="602_[UE]_A02_Treibhauseffekt.html">A27</a>
+    <a href="602_[UE]_A03_Globale_Erwaermung.html">A28</a>
+  </div>
+  <p class="einstieg">Der Treibhauseffekt ist ein natürlicher Prozess – erst die massive Zunahme von Treibhausgasen durch menschliche Aktivität hat ihn verstärkt und zur globalen Erwärmung geführt.</p>
+  <h3>Wie der Treibhauseffekt entsteht</h3>
+  <p>Gase wie <strong>CO₂</strong> in der Atmosphäre halten die Sonnenwärme auf der Erde zurück – ähnlich wie das Glas eines Treibhauses. Durch das Verbrennen fossiler Energieträger hat sich die Menge dieser Gase seit der Industrialisierung stark erhöht, wodurch sich die Erde stärker erwärmt als ohne menschlichen Einfluss.</p>
+  <h3>Folgen der globalen Erwärmung</h3>
+  <table class="tb">
+    <tr><th>Bereich</th><th>Konkrete Folgen</th></tr>
+    <tr><td><strong>Weltweit</strong></td><td>Extremwetter (Hitzewellen, Starkregen), Meeresspiegelanstieg, Verlust von Lebensräumen und Arten</td></tr>
+    <tr><td><strong>Schweiz</strong></td><td>Gletscherschwund (Auswirkung auf Trinkwasser, Tourismus, Wasserkraft), Trockenheit, Hagel, Spätfröste, veränderte Schädlingszyklen in der Landwirtschaft</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Hitzewellen und Extremwetter treffen nicht alle gleich stark – Menschen mit wenig finanziellen Mitteln oder mit viel Arbeit im Freien sind oft stärker betroffen.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welches Gas trägt hauptsächlich zum verstärkten Treibhauseffekt durch menschliche Aktivität bei?</div>
+    <label>Sauerstoff (O₂)</label>
+    <label data-ok>Kohlendioxid (CO₂)</label>
+    <label>Stickstoff (N₂)</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 3 ==================== -->
+<section>
+  <h2><span class="nr">GES B2</span> Energie: fossile Energieträger und Energieverbrauch</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="602_[UE]_A04_Fossile_Energietraeger.html">A29</a>
+    <a href="602_[UE]_A05_Energieverbrauch.html">A30</a>
+  </div>
+  <p class="einstieg">Fossile Energieträger sind bis heute die wichtigste Energiequelle der Weltwirtschaft – gleichzeitig sind sie der Hauptgrund für den Klimawandel. Der Ausstieg ist technisch möglich, aber in manchen Bereichen besonders schwierig.</p>
+  <h3>Was sind fossile Energieträger?</h3>
+  <p><strong>Erdöl, Erdgas und Kohle</strong> entstanden über Jahrmillionen aus abgestorbenen Pflanzen und Tieren. Sie liefern zuverlässig Energie für Verkehr, Heizung und Industrie – bei ihrer Verbrennung wird jedoch CO₂ freigesetzt, das zur Klimaerwärmung beiträgt.</p>
+  <h3>Wo der Ausstieg besonders schwierig ist</h3>
+  <ul class="list">
+    <li><strong>Verkehr:</strong> Ladeinfrastruktur, Netzausbau, Kosten und Verfügbarkeit von Fahrzeugen bremsen den Umstieg.</li>
+    <li><strong>Gebäudeheizungen:</strong> hohe Investitionskosten, Gebäudezustand, Fachkräftemangel.</li>
+    <li><strong>Langstreckenflüge:</strong> bisher kaum klimafreundliche Alternativen verfügbar.</li>
+  </ul>
+  <div class="merk"><b>Merke:</b> Neben technischen Hindernissen bremsen auch <b>bestehende Infrastruktur</b> und <b>politische Akzeptanz</b> den Wandel – der Umstieg ist nicht nur eine technische, sondern auch eine gesellschaftliche Herausforderung.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: In welchem Bereich gilt der Ausstieg aus fossiler Energie als besonders schwierig?</div>
+    <label>Bei der Beleuchtung von Wohnungen</label>
+    <label data-ok>Bei Langstreckenflügen</label>
+    <label>Beim Kochen mit Strom</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 4 ==================== -->
+<section>
+  <h2><span class="nr">SUK B2</span> Staatliche Instrumente &amp; Nachhaltigkeit</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="602_[UE]_A06_Umweltinstrumente.html">A31</a>
+    <a href="602_[UE]_A07_Nachhaltigkeit.html">A32</a>
+  </div>
+  <p class="einstieg">Der Staat setzt verschiedene Instrumente ein, um Umweltbelastungen zu steuern – von Preisanreizen bis zu Verboten. Dahinter steht oft ein einfaches Prinzip: Wer die Umwelt belastet, soll auch dafür bezahlen.</p>
+  <h3>Das Verursacherprinzip</h3>
+  <p>Das <strong>Verursacherprinzip</strong> besagt: Wer eine Umweltbelastung verursacht, soll auch für die Kosten dafür aufkommen – statt dass die Allgemeinheit die Folgekosten trägt. Beispiel: Firmen oder Personen, die CO₂ ausstossen, zahlen eine Abgabe.</p>
+  <h3>Marktwirtschaftliche vs. ordnungsrechtliche Instrumente</h3>
+  <table class="tb">
+    <tr><th>Marktwirtschaftlich (z.B. CO₂-Abgabe)</th><th>Ordnungsrechtlich (z.B. Verbote, Grenzwerte)</th></tr>
+    <tr><td>Setzt Preisanreize, beeinflusst viele einzelne Entscheidungen flexibel</td><td>Schafft klare Mindestregeln, weniger flexibel, aber eindeutig durchsetzbar</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Für besonders schädliche, klar vermeidbare Praktiken eignen sich <b>Regeln/Verbote</b> besser; für viele kleine Einzelentscheidungen (z.B. Konsumverhalten) wirken <b>Abgaben</b> oft besser.</div>
+  <h3>Die drei Dimensionen der Nachhaltigkeit</h3>
+  <table class="tb">
+    <tr><th>Ökologisch</th><th>Wirtschaftlich</th><th>Sozial</th></tr>
+    <tr><td>Ressourcen schonen, z.B. Recycling</td><td>Langfristig tragfähig wirtschaften statt kurzfristiger Gewinnmaximierung</td><td>Gerechte Teilhabe aller, z.B. faire Arbeitsbedingungen</td></tr>
+  </table>
+  <p><em>Beispiel Landwirtschaft:</em> Ein Biobetrieb verzichtet ökologisch auf Pestizide, muss aber mit tieferen Erträgen und höheren Preisen rechnen; faire Löhne sind sozial sinnvoll, erhöhen aber ebenfalls die Kosten. Nachhaltigkeit verlangt deshalb ständige Abwägungen zwischen den drei Dimensionen.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was besagt das Verursacherprinzip?</div>
+    <label>Der Staat trägt alle Umweltkosten</label>
+    <label data-ok>Wer eine Umweltbelastung verursacht, soll dafür auch bezahlen</label>
+    <label>Nur Unternehmen dürfen die Umwelt belasten, Privatpersonen nicht</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 5 ==================== -->
+<section>
+  <h2><span class="nr">SUK B1</span> Wasser: sorgfältig mit einer wertvollen Ressource umgehen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="602_[UE]_A08_Wasser.html">A33</a>
+    <a href="602_[UE]_A09_Wassermangel.html">A34</a>
+    <a href="602_[UE]_A10_Wasserverbrauch.html">A35</a>
+    <a href="602_[UE]_A11_Wasser_sparen.html">A36</a>
+    <a href="602_[UE]_A12_Persoenlicher_Wasserverbrauch.html">A37</a>
+  </div>
+  <p class="einstieg">Obwohl die Schweiz reich an Trinkwasser ist, ist sorgfältiger Umgang damit auch hier wichtig – weltweit ist Wasserknappheit bereits heute für viele Menschen Realität.</p>
+  <h3>Wasser als wertvolle Ressource – auch in der Schweiz</h3>
+  <ul class="list">
+    <li>Trockenheit, Nitratbelastung, Mikroplastik und veränderte Niederschlagsmuster können die Wasserversorgung auch hierzulande gefährden.</li>
+    <li>Aufbereitung und Instandhaltung der Wasserversorgungsnetze kosten viel Geld und Energie.</li>
+    <li>Quellen zu schützen ist meist günstiger, als Wasser nachträglich aufwendig zu reinigen.</li>
+  </ul>
+  <h3>Weltweiter Wassermangel</h3>
+  <p>International ist die Situation deutlich angespannter: In vielen Regionen der Welt ist der Zugang zu sauberem Trinkwasser nicht gesichert, während der Wasserverbrauch pro Kopf zwischen Ländern stark variiert – abhängig von Klima, Landwirtschaft und Lebensstandard.</p>
+  <div class="merk"><b>Merke:</b> Wasser sparen im Alltag (kurze Duschzeiten, Wassersparhähne, sparsame Haushaltsgeräte) hat in der Schweiz vor allem einen <b>Vorbild- und Ressourcenschutz-Effekt</b> – die eigentliche Knappheit betrifft primär andere Weltregionen.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Weshalb gilt Trinkwasser auch in der «wasserreichen» Schweiz als wertvolle Ressource?</div>
+    <label>Weil die Schweiz Wasser importieren muss</label>
+    <label data-ok>Weil Trockenheit, Verschmutzung und der Unterhalt der Netze Kosten und Risiken verursachen</label>
+    <label>Weil in der Schweiz eine gesetzliche Wasserrationierung gilt</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 6 ==================== -->
+<section>
+  <h2><span class="nr">GES B4</span> Energiestrategie Schweiz</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="602_[UE]_A13_2000_Watt_Gesellschaft.html">A38</a>
+    <a href="602_[UE]_A14_Energiestrategie.html">A39</a>
+    <a href="602_[UE]_A15_Energiestrategie_Bereiche.html">A40</a>
+  </div>
+  <p class="einstieg">Die Schweiz versucht seit einigen Jahren, ihre Energieversorgung klimaverträglicher und sicherer zu gestalten. Zwei zentrale Konzepte und ein aktueller politischer Prozess prägen die Debatte.</p>
+  <h3>Die 2000-Watt-Gesellschaft</h3>
+  <p>Das Konzept der <strong>2000-Watt-Gesellschaft</strong> beschreibt das Ziel, den durchschnittlichen Energieverbrauch pro Person weltweit nachhaltig auf 2000 Watt Dauerleistung zu senken. Für die Schweiz würde das bedeuten: weniger Flüge und Autofahrten, effizienteres Heizen, weniger Fleischkonsum und weniger Neukäufe. Besonders gefordert wären Vielreisende, Autofahrende und Bewohnerinnen/Bewohner grosser Häuser.</p>
+  <h3>Energiestrategie 2050</h3>
+  <p>Das Schweizer Stimmvolk nahm am <strong>21. Mai 2017</strong> die Energiestrategie 2050 an (58,2 % Ja-Stimmen). Ihre Grundpfeiler: mehr Energieeffizienz, mehr erneuerbare Energien (Sonne, Wind, Wasser) und ein <strong>Verbot des Baus neuer Kernkraftwerke</strong> – bestehende AKW durften weiterlaufen, solange sie sicher sind.</p>
+  <div class="merk"><b>Aktuelle Entwicklung (Stand Sommer 2026):</b> National- und Ständerat haben in der Sommersession 2026 einem indirekten Gegenvorschlag zur Volksinitiative «Jederzeit Strom für alle (Blackout stoppen)» zugestimmt, der das Neubauverbot für Kernkraftwerke von 2017 <b>wieder aufheben</b> würde. Ob und wann diese Gesetzesänderung tatsächlich in Kraft tritt, ist zum jetzigen Zeitpunkt noch offen – möglich ist ein Referendum, zudem könnte die Initiative selbst noch 2026/2027 zur Volksabstimmung kommen. Das Neubauverbot ist damit politisch stark umstritten, aber rechtlich noch nicht aufgehoben.</div>
+  <p style="font-size:.85rem">Quelle: Chronologie der Schweizer Atomdebatte, Parlamentsdienste (Stand Sommersession 2026).</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Ist das Verbot für den Bau neuer Kernkraftwerke in der Schweiz (Stand Sommer 2026) bereits rechtlich aufgehoben?</div>
+    <label>Ja, seit 2017</label>
+    <label data-ok>Nein – Parlament hat einer Aufhebung erst zugestimmt, das weitere Verfahren (evtl. Referendum/Abstimmung) ist noch offen</label>
+    <label>Ja, seit der Abstimmung 2017 gilt bereits das Gegenteil</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== LZ 7 ==================== -->
+<section>
+  <h2><span class="nr">GES B3</span> Standpunkt zu Klimafragen</h2>
+  <div class="ue-link">Dazu passende Übungen:
+    <a href="602_[UE]_A16_Standpunkt_Klimafragen.html">A16</a>
+  </div>
+  <p class="einstieg">Klimafragen lösen bei vielen Jugendlichen Sorgen aus – gleichzeitig zeigen aktuelle Studien, dass sich diese Sorge über die Zeit verändert. Ein eigener, begründeter Standpunkt braucht sowohl Faktenwissen als auch Reflexion der eigenen Haltung.</p>
+  <h3>Klimasorge bei Jugendlichen: ein wechselndes Bild</h3>
+  <p>Gemäss der Sinus-Jugendstudie/BARMER 2025 ist die Klimaangst bei 14- bis 17-Jährigen von 39 % auf 31 % gesunken. Die Studie von Pro Juventute Schweiz 2026 zeigt: rund ein Drittel der Jugendlichen ist weiterhin besorgt – ein Wert, der seit 2024 stabil geblieben ist.</p>
+  <h3>Mögliche Gründe für den Rückgang der Klimasorge</h3>
+  <ul class="list">
+    <li>Gewöhnungseffekt/Ermüdung nach jahrelanger medialer Dauerpräsenz des Themas</li>
+    <li>Andere aktuelle Krisen rücken in den Vordergrund</li>
+    <li>Stärkeres Gefühl von Handlungsfähigkeit/Resilienz</li>
+    <li>Wahrgenommene Fortschritte bei Klimamassnahmen</li>
+  </ul>
+  <div class="merk"><b>Merke:</b> Ein guter eigener Standpunkt nimmt klar Stellung und stützt sich auf mindestens zwei nachvollziehbare Argumente – unabhängig davon, ob er eher besorgt oder eher zuversichtlich ausfällt.</div>
+  <p style="font-size:.85rem">Quelle: Sinus-Jugendstudie/BARMER 2025; Pro Juventute Schweiz, Jugendstudie 2026.</p>
+</section>
+
+<section>
+  <h2><span class="nr">SLP</span> Orientierungswissen – Ich kann …</h2>
+  <p>Direkt aus dem Schullehrplan (Thema 6, Lebenssituation B). Abhaken, was bereits sicher beherrscht wird – der Rest ist der individuelle Lernauftrag:</p>
+  <div id="ow">
+    <label class="ow-item"><input type="checkbox"> … anhand einer Skizze die Entstehung des Treibhauseffektes erklären.</label>
+    <label class="ow-item"><input type="checkbox"> … drei Ursachen für den Klimawandel aufzählen.</label>
+    <label class="ow-item"><input type="checkbox"> … vier ökologische Auswirkungen des Klimawandels nennen.</label>
+    <label class="ow-item"><input type="checkbox"> … die Grundidee des Verursacherprinzips im Bereich der Ökologie erklären.</label>
+  </div>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Punkte 5–9 des Orientierungswissens (internationale Zusammenarbeit, Freihandel, Migration) folgen in Serie 603/604.</p>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 6 «Unsere Welt» · Lebenssituation B</h2>
+  <p style="font-weight:700;margin-bottom:10px">Gemeinsame Lösungen für ökologische Herausforderungen finden</p>
+  <table>
+    <tr><td class="lz">SUK B1</td><td>Ich entnehme fachlichen Texten zu Klima- und Umweltfragen gezielt relevante Informationen.</td></tr>
+    <tr><td class="lz">SUK B2</td><td>Ich erkläre ökologische Sachverhalte mithilfe von Fachbegriffen.</td></tr>
+    <tr><td class="lz">SUK B3</td><td>Ich reflektiere meine Lebensgewohnheiten und beurteile, welchen Beitrag ich zur Lösung ökologischer Herausforderungen leisten kann.</td></tr>
+    <tr><td class="lz">GES B1</td><td>Ich erkläre Ursachen und Zusammenhänge ökologischer Veränderungen und die Folgen für unseren Lebensraum.</td></tr>
+    <tr><td class="lz">GES B2</td><td>Ich ordne die Auswirkungen des Klimawandels global und auf die Schweiz ein.</td></tr>
+    <tr><td class="lz">GES B3</td><td>Ich nehme einen Standpunkt zu Umwelt- und Klimafragen ein und begründe diesen.</td></tr>
+    <tr><td class="lz">GES B4</td><td>Ich bewerte aktuelle politische oder gesellschaftliche Massnahmen zum Klima- und Umweltschutz und schätze ihre Wirksamkeit ein.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen, Auflage 2026 (S. 53)</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="602_Aufgaben.html"><strong>Übungen A26–A40 (und A16) lösen</strong></a> → Kompetenznachweis Ökologie &amp; Klimawandel.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
