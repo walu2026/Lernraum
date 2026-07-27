@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>601 · Theorie: Weltgeschehen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#8D44AF; --t1-dark:#6C3483; --t1-light:#F1E5F7;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+.lernziel{background:var(--card);border:2px solid var(--t1);border-radius:12px;padding:20px 22px;margin-bottom:28px}
+.lernziel h2{color:var(--t1);font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.lernziel table{width:100%;border-collapse:collapse;font-size:.9rem}
+.lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
+.lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--t1);font-weight:700;white-space:nowrap}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section h2{font-size:1.2rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
+.ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
+.ue-link a{color:var(--t1);text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:.75rem;background:var(--t1-light);padding:2px 7px;border-radius:6px;margin-right:4px;white-space:nowrap}
+.ue-link a:hover{background:var(--t1);color:#fff}
+.einstieg{font-size:.95rem;color:var(--ink-soft);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.seiten-einstieg{font-size:1rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 22px;margin-bottom:22px}
+section h3{font-size:1rem;font-weight:700;margin:18px 0 8px}
+section p{margin-bottom:12px;color:var(--ink-soft)}
+section p strong{color:var(--ink)}
+ul.list{padding-left:22px;color:var(--ink-soft);margin-bottom:12px}
+ul.list li{margin:5px 0}
+.merk{background:var(--t1-light);border-left:4px solid var(--t1);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.merk b{color:var(--t1-dark)}
+table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.9rem}
+.tb th{background:var(--t1);color:#fff;text-align:left;padding:8px 10px}
+.tb td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;color:var(--ink-soft)}
+.tb tr:nth-child(even) td{background:#FAFBFC}
+.beispiel{background:#FAFBFC;border:1px solid var(--line);border-radius:10px;padding:14px 18px;margin:14px 0;font-size:.92rem}
+.beispiel .quelle{font-weight:700;color:var(--t1-dark)}
+.check{background:#F2F5F9;border-radius:10px;padding:16px 18px;margin-top:18px}
+.check .q{font-weight:700;margin-bottom:10px}
+.check label{display:block;padding:8px 12px;margin:6px 0;background:#fff;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;transition:.15s}
+.check label:hover{border-color:var(--t1)}
+.check label.right{background:var(--ok-bg);border-color:var(--ok)}
+.check label.wrong{background:var(--err-bg);border-color:var(--err)}
+.check .fb{margin-top:8px;font-size:.9rem;font-weight:600;display:none}
+.check .fb.show{display:block}
+a{color:var(--t1)}
+@media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .check{display:none}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="tag">601 · [TH]</span>
+  <h1>Theorie: Weltgeschehen</h1>
+  <a class="nav" href="601_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Diese Kachel ist anders als die meisten anderen: Statt festen Fakten geht es um <strong>Skills</strong>, mit denen sich das aktuelle Weltgeschehen dauerhaft verfolgen und einordnen lässt – Ereignisse einordnen, Quellen prüfen, Schlagzeilen vergleichen, komplexe Nachrichten vereinfachen. Die Übungen sind bewusst als <strong>wiederverwendbare Vorlagen</strong> gebaut, die immer wieder mit den Nachrichten der aktuellen Woche gefüllt werden.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES A1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
+
+<!-- ==================== V01 ==================== -->
+<section>
+  <h2><span class="nr">GES A1 · A2</span> Wochenrückblick: regional, national, international</h2>
+  <div class="ue-link">Dazu passende Übung:
+    <a href="601_[UE]_V01_Wochenrueckblick_Regional_National_International.html">V01</a>
+  </div>
+  <p class="einstieg">Ereignisse lassen sich nach ihrer <strong>Reichweite</strong> ordnen: regional/kantonal, national/schweizweit, international. Ein Ereignis kann auf mehreren Ebenen gleichzeitig Bedeutung haben.</p>
+  <div class="beispiel">
+    <div class="quelle">Beispiel: Bergsturz von Blatten (Mai 2025)</div>
+    <table class="tb" style="margin-top:8px">
+      <tr><th>Regional</th><td>Bergsturz mit Gletscherabbruch zerstört das Dorf Blatten (Kanton Wallis) grösstenteils.</td></tr>
+      <tr><th>National</th><td>Bund und Kanton unterstützen den Wiederaufbau; versicherter Schaden ca. Fr.&nbsp;255&nbsp;Mio.</td></tr>
+      <tr><th>International</th><td>Internationale Medien greifen das Ereignis als Beispiel für Gletscherschwund und Permafrost-Auftauen auf.</td></tr>
+    </table>
+  </div>
+  <p>Ein Wochenrückblick auf allen drei Ebenen zeigt, dass lokale Ereignisse oft mit grösseren, überregionalen Entwicklungen verbunden sind.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Auf wie vielen Ebenen kann ein einzelnes Ereignis gleichzeitig relevant sein?</div>
+    <label>Nur auf einer Ebene</label>
+    <label data-ok>Auf mehreren Ebenen gleichzeitig – z.B. regional und international</label>
+    <label>Nie auf internationaler Ebene</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== V02 ==================== -->
+<section>
+  <h2><span class="nr">SUK A1</span> Quellencheck: Glaubwürdigkeit prüfen</h2>
+  <div class="ue-link">Dazu passende Übung:
+    <a href="601_[UE]_V02_Quellencheck_Glaubwuerdigkeit.html">V02</a>
+  </div>
+  <p class="einstieg">Eine Nachrichtenquelle lässt sich anhand klarer Kriterien systematisch auf ihre Glaubwürdigkeit prüfen.</p>
+  <table class="tb">
+    <tr><th>Kriterium</th><th>Frage</th></tr>
+    <tr><td><strong>Autor/Quelle</strong></td><td>Ist Autor bzw. Herausgeber erkennbar?</td></tr>
+    <tr><td><strong>Datum</strong></td><td>Ist das Publikationsdatum aktuell und nachvollziehbar?</td></tr>
+    <tr><td><strong>Fakten oder Meinung</strong></td><td>Überwiegen sachliche Fakten oder wertende Formulierungen?</td></tr>
+    <tr><td><strong>Quellenvergleich</strong></td><td>Bestätigen mehrere unabhängige Quellen dieselben Angaben?</td></tr>
+    <tr><td><strong>Eigeninteresse</strong></td><td>Gibt es ein erkennbares kommerzielles oder politisches Eigeninteresse?</td></tr>
+  </table>
+  <div class="merk"><b>Merke:</b> Je mehr dieser Kriterien eine Quelle erfüllt (erkennbarer Autor, aktuelles Datum, überwiegend Fakten, Bestätigung durch andere Quellen, kein verdecktes Eigeninteresse), desto glaubwürdiger ist sie einzuschätzen.</div>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welches Kriterium gehört NICHT zum systematischen Quellencheck?</div>
+    <label>Ob das Datum aktuell und nachvollziehbar ist</label>
+    <label>Ob andere Quellen dieselben Angaben bestätigen</label>
+    <label data-ok>Ob der Artikel viele Bilder enthält</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== V03 ==================== -->
+<section>
+  <h2><span class="nr">SUK A2</span> Schlagzeilen vergleichen</h2>
+  <div class="ue-link">Dazu passende Übung:
+    <a href="601_[UE]_V03_Schlagzeilen_Vergleichen.html">V03</a>
+  </div>
+  <p class="einstieg">Verschiedene Medien berichten über dasselbe Ereignis oft mit sehr unterschiedlicher Wortwahl und Wirkung.</p>
+  <div class="beispiel">
+    <div class="quelle">Beispiel: drei Schlagzeilen zum Bergsturz Blatten</div>
+    <p style="margin-top:8px"><strong>Blick:</strong> «Katastrophe im Lötschtal: Bergsturz zerstört Walliser Dorf Blatten» – emotional, dramatisierend (Boulevard-Stil).</p>
+    <p><strong>NZZ:</strong> «Bergsturz im Wallis: bisher grösster Gletscherabbruch begräbt Teile von Blatten» – sachlich, fachlich einordnend.</p>
+    <p><strong>Watson (Rückblick):</strong> «Vor einem Jahr zerstörte ein Bergsturz das Dorf Blatten – ein Rückblick» – rückblickend-einordnend statt aktuell berichtend.</p>
+  </div>
+  <p>Beim Vergleich lohnt sich der Blick auf: dramatisierende vs. sachliche Wortwahl, aktive vs. passive Formulierung, und erkennbare Wertungen im Text.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Welcher Stil verwendet eher dramatisierende Wörter wie «Katastrophe»?</div>
+    <label>Der sachliche NZZ-Stil</label>
+    <label data-ok>Der Boulevard-Stil</label>
+    <label>Der rückblickende Stil</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<!-- ==================== V04 ==================== -->
+<section>
+  <h2>Eine Nachricht einfach erklären</h2>
+  <div class="ue-link">Dazu passende Übung:
+    <a href="601_[UE]_V04_Nachricht_Einfach_Erklaert.html">V04</a>
+  </div>
+  <p class="einstieg">Komplexe Nachrichtentexte lassen sich in einfache, verständliche Sprache übersetzen, ohne den Kerninhalt zu verlieren.</p>
+  <div class="beispiel">
+    <div class="quelle">Beispiel: Bergsturz Blatten – komplex vs. einfach</div>
+    <p style="margin-top:8px"><strong>Original:</strong> «Dem Ereignis gingen mehrere Fels- und Bergstürze aus dem Gebiet des Bietschhorns auf den Birchgletscher voraus, welcher schliesslich unter der zusätzlichen Belastung von mehreren Millionen Kubikmetern Schutt kollabierte.»</p>
+    <p><strong>Einfach erklärt:</strong> «Seit Jahren fielen immer wieder Felsbrocken von einem Berg auf einen Gletscher im Wallis. Der Gletscher wurde dadurch immer schwerer und instabiler. Am 28.&nbsp;Mai&nbsp;2025 brach er schliesslich zusammen und begrub das Dorf Blatten unter Schutt und Eis.»</p>
+  </div>
+  <p><strong>Vorgehen:</strong> zuerst schwierige Wörter und Fachbegriffe markieren, dann Satz für Satz in kurze, einfache Sätze mit bekannten Wörtern übersetzen, ohne wichtige Fakten (Datum, Ort, Ursache, Folge) wegzulassen.</p>
+
+  <div class="check">
+    <div class="q">Kurz-Check: Was ist beim Vereinfachen einer Nachricht wichtig?</div>
+    <label>Möglichst viele Fachbegriffe beibehalten</label>
+    <label data-ok>Wichtige Fakten wie Datum, Ort und Ursache trotz einfacher Sprache erhalten</label>
+    <label>Den Text möglichst kurz und ohne Fakten halten</label>
+    <div class="fb"></div>
+  </div>
+</section>
+
+<div class="lernziel">
+  <h2>SLP-Bezug · Thema 6 «Unsere Welt» · Lebenssituation A</h2>
+  <p style="font-weight:700;margin-bottom:10px">Das aktuelle Weltgeschehen verfolgen</p>
+  <table>
+    <tr><td class="lz">SUK A1</td><td>Ich vergleiche Informationen aus unterschiedlichen Quellen und schätze ihre Glaubwürdigkeit ein.</td></tr>
+    <tr><td class="lz">GES A1</td><td>Ich ordne aktuelle Ereignisse aus meiner Region, der Schweiz und der Welt ein und erkläre die Hintergründe.</td></tr>
+    <tr><td class="lz">SUK A2</td><td>Ich filtere die wichtigsten Informationen zum aktuellen Weltgeschehen aus Berichterstattungen heraus.</td></tr>
+    <tr><td class="lz">GES A2</td><td>Ich verfolge Entwicklungen auf lokaler, nationaler und internationaler Ebene und beurteile deren Auswirkungen auf das eigene Leben und die Schweiz.</td></tr>
+  </table>
+  <p style="font-size:.82rem;color:var(--ink-soft);margin-top:10px">Die vier Übungen dieser Serie sind bewusst als «wiederverwendbare Vorlagen» angelegt: Die Beispiele auf dieser Theorieseite (Bergsturz Blatten, Mai 2025) sind fest, das eigene Aktualitäts-Beispiel in den Übungen wird jeweils mit den Nachrichten der aktuellen Woche gefüllt. Das Thema «Weltgeschehen» begleitet Lernende über alle Lehrjahre hinweg – für die tagesaktuelle Einordnung siehe zusätzlich die separate Aktualität-Rubrik der Lehrperson.<br>Quelle: Schullehrplan Allgemeinbildung, vierjährige Grundbildung, Kanton St.Gallen (S. 52).</p>
+</div>
+
+<section style="border-color:var(--t1)">
+  <h2>Weiter geht's</h2>
+  <p>Theorie sitzt? → <a href="601_Aufgaben.html"><strong>Übungen lösen</strong></a>.</p>
+</section>
+
+</div>
+<script>
+document.querySelectorAll('.check').forEach(c=>{
+  const fb=c.querySelector('.fb');
+  c.querySelectorAll('label').forEach(l=>{
+    l.addEventListener('click',()=>{
+      if(c.dataset.done)return;
+      c.dataset.done=1;
+      const ok=l.hasAttribute('data-ok');
+      l.classList.add(ok?'right':'wrong');
+      if(!ok)c.querySelector('[data-ok]').classList.add('right');
+      fb.textContent=ok?'✔ Richtig!':'✘ Nicht ganz – die grün markierte Antwort stimmt.';
+      fb.style.color=ok?'var(--ok)':'var(--err)';
+      fb.classList.add('show');
+    });
+  });
+});
+</script>
+</body>
+</html>
