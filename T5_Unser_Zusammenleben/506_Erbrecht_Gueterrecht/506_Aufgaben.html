@@ -22,6 +22,12 @@
   .d-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--accent); margin-bottom:3px; }
   .d-title { font-family:'Barlow Condensed',sans-serif; font-size:26px; font-weight:800; text-transform:uppercase; color:var(--g9); line-height:1.1; margin-bottom:4px; }
   .d-desc { font-size:12px; color:var(--g5); line-height:1.5; }
+  .th-card { display:flex; align-items:center; gap:14px; background:white; border:2px solid var(--accent); border-radius:14px; padding:16px 18px; margin-bottom:1.75rem; text-decoration:none; color:inherit; transition:all .15s; }
+  .th-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.08); transform:translateY(-1px); }
+  .th-card .th-icon { font-size:26px; flex-shrink:0; }
+  .th-card .th-title { font-size:14px; font-weight:700; color:var(--g9); margin-bottom:2px; }
+  .th-card .th-desc { font-size:11.5px; color:var(--g5); }
+  .th-card .th-arrow { margin-left:auto; font-size:18px; color:var(--accent); }
   .toggle-bar { display:flex; gap:6px; margin-bottom:1.25rem; }
   .toggle-btn { display:flex; align-items:center; gap:6px; padding:7px 14px; border-radius:8px; border:1.5px solid var(--g3); background:white; font-size:12px; font-weight:600; color:var(--g5); cursor:pointer; transition:all .15s; }
   .toggle-btn.active { background:var(--accent); border-color:var(--accent); color:white; }
@@ -73,6 +79,15 @@
     </div>
   </div>
 
+  <a class="th-card" href="506_[TH]_Erbrecht_Gueterrecht.html">
+    <span class="th-icon">📖</span>
+    <span>
+      <div class="th-title">Theorie zu dieser Serie</div>
+      <div class="th-desc">Güterrecht, Erbrecht & Pflichtteil, Bäuerliches Bodenrecht, Betriebsübergabe</div>
+    </span>
+    <span class="th-arrow">→</span>
+  </a>
+
   <div class="toggle-bar">
     <button class="toggle-btn active" id="btnLz" onclick="showView('lz')">📚 Nach Lernzielen</button>
     <button class="toggle-btn" id="btnA"  onclick="showView('a')">🔢 Nach Aufgaben-Nr.</button>
@@ -83,17 +98,17 @@
     <div class="lz-list">
       <div class="lz-row" style="--fc:#E67F22">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">1</span><span class="lz-fach">LW D</span></div>
         <div class="lz-body">
           <div class="lz-title">Güterrecht: Errungenschaftsbeteiligung</div>
-          <div class="lz-ziel">Ich kann erklären, was das Güterrecht regelt, und die Grundzüge der güterrechtlichen Auseinandersetzung bei einer Scheidung oder beim Tod eines Ehepartners nachvollziehen.</div>
+          <div class="lz-ziel">Ich kann erklären, was das Güterrecht regelt, und berechnen, welche Auswirkungen es für eine Scheidung hat.</div>
           <div class="lz-pills"><a class="a-pill a-pill-link" href="506_[UE]_A01_Gueterrecht_Errungenschaftsbeteiligung.html">A01 Güterrecht</a></div>
         </div>
         <div class="lz-arrow"></div>
       </div>
       <div class="lz-row" style="--fc:#E67F22">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">2</span><span class="lz-fach">LW D</span></div>
         <div class="lz-body">
           <div class="lz-title">Erbrecht &amp; Testament</div>
           <div class="lz-ziel">Ich kenne die gesetzliche Erbfolge und den Unterschied zwischen Pflichtteil und frei verfügbarer Quote, und ich kann eine einfache Erbteilung berechnen.</div>
@@ -103,7 +118,7 @@
       </div>
       <div class="lz-row" style="--fc:#E67F22">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">3</span><span class="lz-fach">LW D</span></div>
         <div class="lz-body">
           <div class="lz-title">Bäuerliches Bodenrecht</div>
           <div class="lz-ziel">Ich kann die Auswirkungen der Sonderbehandlung durch das Bäuerliche Bodenrecht auf die betroffenen Personen erkennen und reflektieren.</div>
@@ -113,7 +128,7 @@
       </div>
       <div class="lz-row" style="--fc:#E67F22">
         <div class="lz-bar"></div>
-        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">GES/SUK</span></div>
+        <div class="lz-num"><span class="lz-num-digit">4</span><span class="lz-fach">LW D</span></div>
         <div class="lz-body">
           <div class="lz-title">Betriebsübergabe: Faire Erbteilung?</div>
           <div class="lz-ziel">Ich kann Massnahmen, die einem Todesfall folgen, begründen und einschätzen, ob eine Erbteilung fair verläuft – und abwägen, ob ich auf mein allfälliges Recht bestehen würde oder nicht.</div>
