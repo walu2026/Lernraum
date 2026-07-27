@@ -74,7 +74,8 @@
   .empty-hint { padding:20px; text-align:center; font-size:13px; color:var(--g5); background:white; border-radius:10px; border:1px dashed var(--g3); }
 
   .ls-inactive-list { display:flex; flex-direction:column; gap:6px; margin-bottom:2rem; }
-  .ls-inactive { display:grid; grid-template-columns:4px 52px 1fr; align-items:stretch; background:white; border-radius:10px; border:1px solid var(--g3); overflow:hidden; opacity:.5; }
+  .ls-inactive { display:grid; grid-template-columns:4px 52px 1fr; align-items:stretch; background:white; border-radius:10px; border:1px solid var(--g3); overflow:hidden; opacity:.5; text-decoration:none; color:inherit; cursor:pointer; transition:opacity .15s, box-shadow .15s, border-color .15s, transform .15s; }
+  .ls-inactive:hover { opacity:1; box-shadow:0 2px 10px rgba(0,0,0,.07); border-color:#cbd5e1; transform:translateX(3px); }
   .ls-inactive-bar { background:var(--g3); }
   .ls-inactive-code { display:flex; align-items:center; justify-content:center; font-family:'Barlow Condensed',sans-serif; font-size:18px; font-weight:800; color:var(--g5); background:#FAFAFA; border-right:1px solid var(--g3); min-width:52px; }
   .ls-inactive-body { padding:10px 14px; }
@@ -329,30 +330,30 @@
 
   <div class="section-label">Weitere Unterkapitel – Thema 3</div>
   <div class="ls-inactive-list">
-    <div class="ls-inactive">
+    <a class="ls-inactive" href="../301_Gesundheitsfaktoren/301_Aufgaben.html">
       <div class="ls-inactive-bar"></div>
       <div class="ls-inactive-code">301</div>
       <div class="ls-inactive-body">
         <div class="ls-inactive-title">Gesundheitsfaktoren</div>
         <div class="ls-inactive-hint">→ 301 Gesundheit</div>
       </div>
-    </div>
-    <div class="ls-inactive">
+    </a>
+    <a class="ls-inactive" href="../303_Krankenkasse/303_Aufgaben.html">
       <div class="ls-inactive-bar"></div>
       <div class="ls-inactive-code">303</div>
       <div class="ls-inactive-body">
         <div class="ls-inactive-title">Kranken- &amp; Unfallversicherung</div>
         <div class="ls-inactive-hint">→ 303 Krankenkasse</div>
       </div>
-    </div>
-    <div class="ls-inactive">
+    </a>
+    <a class="ls-inactive" href="../304_Stress_Sucht/304_Aufgaben.html">
       <div class="ls-inactive-bar"></div>
       <div class="ls-inactive-code">304</div>
       <div class="ls-inactive-body">
         <div class="ls-inactive-title">Stress &amp; Sucht</div>
         <div class="ls-inactive-hint">→ 304 Stress/Sucht</div>
       </div>
-    </div>
+    </a>
   </div>
 </div>
 <script>
