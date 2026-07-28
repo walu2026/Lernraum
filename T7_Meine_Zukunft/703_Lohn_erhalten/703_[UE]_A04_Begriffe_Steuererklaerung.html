@@ -308,11 +308,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_sb">Erklären Sie in eigenen Worten, was ein «Abzug» in der Steuererklärung ist.</div>
-  <textarea id="ko_suk_sb" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Erklaere in eigenen Worten, was ein 'Abzug' in der Steuererklaerung ist."
-    data-ki-loesung="Ein Abzug ist ein Betrag, den man vom Bruttoeinkommen abziehen darf, bevor die Steuer berechnet wird, zum Beispiel für Berufskosten, Krankenkassenprämien oder Beiträge an die Säule 3a. Abzüge senken das steuerbare Einkommen und damit die zu zahlende Steuer."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_sb">✓ Mögliche Antwort: Ein Abzug ist ein Betrag, den man vom Bruttoeinkommen abziehen darf, bevor die Steuer berechnet wird, zum Beispiel für Berufskosten, Krankenkassenprämien oder Beiträge an die Säule 3a. Abzüge senken das steuerbare Einkommen und damit die zu zahlende Steuer.</div>
+  <div class="ko-text" id="ko_text_suk_sb">Ein Bekannter füllt seine erste Steuererklärung aus und versteht nicht, was ein «Abzug» ist. Erklären Sie es ihm in 3–4 Sätzen.</div>
+  <textarea id="ko_suk_sb" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ein Bekannter fuellt seine erste Steuererklaerung aus und versteht nicht, was ein 'Abzug' ist. Erklaeren Sie es ihm in 3-4 Saetzen."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert. Beispiel: 'Ein Abzug ist ein Betrag, den man vom Bruttoeinkommen abziehen darf, bevor die Steuer berechnet wird, zum Beispiel fuer Berufskosten, Krankenkassenpraemien oder Beitraege an die Saeule 3a. Abzuege senken das steuerbare Einkommen und damit die zu zahlende Steuer.'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_sb">Eine gute Erklärung ist einfach formuliert: Abzüge (z.B. Berufskosten, Säule 3a) senken das steuerbare Einkommen und damit die Steuer.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_sb']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -622,7 +622,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}

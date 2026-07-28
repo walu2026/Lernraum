@@ -291,11 +291,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_sf19">Nennen Sie zwei Einnahmequellen des Staates und erklären Sie diese in eigenen Worten.</div>
-  <textarea id="ko_suk_sf19" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Nenne zwei Einnahmequellen des Staates und erklaere diese in eigenen Worten."
-    data-ki-loesung="Zum Beispiel: Steuereinnahmen (Einkommens-, Vermögens- und Mehrwertsteuer, die von Bürgerinnen, Bürgern und Unternehmen erhoben werden) und Gebühren (Entgelte für bestimmte staatliche Leistungen, z.B. Pass oder Führerausweis)."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_sf19">✓ Mögliche Antwort: Steuereinnahmen (Einkommens-, Vermögens- und Mehrwertsteuer, die von Bürgerinnen, Bürgern und Unternehmen erhoben werden) und Gebühren (Entgelte für bestimmte staatliche Leistungen, z.B. Pass oder Führerausweis).</div>
+  <div class="ko-text" id="ko_text_suk_sf19">Ein jüngeres Geschwister fragt Sie, woher der Staat sein Geld eigentlich bekommt. Nennen Sie ihm zwei Einnahmequellen des Staates und erklären Sie diese in 3–4 Sätzen.</div>
+  <textarea id="ko_suk_sf19" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ein juengeres Geschwister fragt, woher der Staat sein Geld bekommt. Nennen Sie ihm zwei Einnahmequellen des Staates und erklaeren Sie diese in 3-4 Saetzen."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert. Beispiel: 'Zum Beispiel Steuereinnahmen (Einkommens-, Vermoegens- und Mehrwertsteuer, die von Buergerinnen, Buergern und Unternehmen erhoben werden) und Gebuehren (Entgelte fuer bestimmte staatliche Leistungen, z.B. Pass oder Fuehrerausweis).'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_sf19">Eine gute Erklärung ist einfach formuliert: Steuern (Einkommen, Vermögen, Mehrwertsteuer) und Gebühren (z.B. für Pass oder Führerausweis) sind zwei zentrale Einnahmequellen.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_sf19']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -605,7 +605,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
