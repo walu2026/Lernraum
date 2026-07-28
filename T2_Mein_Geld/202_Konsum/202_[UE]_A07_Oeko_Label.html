@@ -233,8 +233,20 @@
     </tbody>
   </table>
 
+<div class="ko-box reveal" style="animation-delay:.16s">
+  <div class="ko-label">💬 Kompetenzorientierte Frage (Gesellschaft)</div>
+  <div class="ko-text" id="ko_text_ges_oeko">Erklären Sie den Unterschied zwischen einem unabhängig geprüften Label (z.B. Bio Suisse, MSC) und einer blossen Werbeaussage wie «umweltfreundlich». Woran erkennt man, ob ein Label tatsächlich unabhängig kontrolliert wird?</div>
+  <textarea id="ko_ges_oeko" rows="5" placeholder="Meine Antwort …"
+    data-ki-aufgabe="Erklaeren Sie den Unterschied zwischen einem unabhaengig geprueften Label (z.B. Bio Suisse, MSC) und einer blossen Werbeaussage wie 'umweltfreundlich'. Woran erkennt man, ob ein Label tatsaechlich unabhaengig kontrolliert wird?"
+    data-ki-loesung="Ein unabhaengig geprueftes Label wird von einer externen, neutralen Stelle nach festgelegten Kriterien zertifiziert und regelmaessig kontrolliert (z.B. Bio Suisse, MSC). Eine reine Werbeaussage wie 'umweltfreundlich' ist dagegen eine Selbstdeklaration ohne Pruefung durch Aussenstehende. Erkennbar ist eine echte Zertifizierung an Angaben zur pruefenden Organisation und den konkreten Kriterien, nicht nur an einem Logo."></textarea>
+  <div class="sol-inline" id="sol_ko_ges_oeko">✓ Mögliche Antwort: Ein unabhängig geprüftes Label wird von einer externen, neutralen Stelle nach festgelegten Kriterien zertifiziert und regelmässig kontrolliert (z.B. Bio Suisse, MSC). Eine reine Werbeaussage wie «umweltfreundlich» ist dagegen eine Selbstdeklaration ohne Prüfung durch Aussenstehende. Erkennbar ist eine echte Zertifizierung an Angaben zur prüfenden Organisation und den konkreten Kriterien, nicht nur an einem Logo.</div>
+  <div class="block-reset-row" style="text-align:right;margin-top:7px;">
+    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_ges_oeko']);return false;">↺ Nur diese Frage zurücksetzen</a>
+  </div>
+</div>
+
 <div class="ko-box reveal" style="animation-delay:.2s">
-  <div class="ko-label">💬 Kompetenzorientierte Frage</div>
+  <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
   <div class="ko-text" id="ko_text_202_[UE]_A07">Beurteile: Sind Öko-Labels ein verlässliches Instrument für nachhaltigen Konsum – oder dienen sie hauptsächlich dem Marketing («Greenwashing»)? Nimm Stellung mit konkreten Beispielen aus der Tabelle und erkläre, woran du ein glaubwürdiges Label erkennst.</div>
   <textarea id="ko_26" rows="5" placeholder="Meine Antwort …"
     data-ki-aufgabe="Beurteile: Sind Öko-Labels ein verlässliches Instrument für nachhaltigen Konsum – oder dienen sie hauptsächlich dem Marketing («Greenwashing»)? Nimm Stellung mit konkreten Beispielen aus der Tabelle und erkläre, woran du ein glaubwürdiges Label erkennst."
@@ -561,7 +573,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
@@ -642,7 +654,7 @@ function renderSpellResult(data,originalText,rb){
     rb.innerHTML=html;
   }
   window.kiFeedbackKlick=async function(btn){
-    const ta=document.querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
+    const ta=btn.closest('.ko-box').querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
     const aufgabe=ta.getAttribute('data-ki-aufgabe')||'',loesung=ta.getAttribute('data-ki-loesung')||'',antwort=ta.value.trim();
     const rb=document.getElementById('kiFeedbackResult');
     if(!antwort){rb.innerHTML='<div class="kf-feedback-box kf-error"><span class="kf-feedback-label">Hinweis</span><p>Bitte zuerst eine Antwort schreiben.</p></div>';return;}
