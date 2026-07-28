@@ -329,11 +329,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_bsz">Ordnen Sie Ihren eigenen Lehrberuf einem Wirtschaftssektor zu und begründen Sie Ihre Wahl in eigenen Worten.</div>
-  <textarea id="ko_suk_bsz" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Ordne deinen eigenen Lehrberuf einem Wirtschaftssektor zu und begruende deine Wahl in eigenen Worten."
-    data-ki-loesung="Die Zuordnung hängt vom konkreten Beruf ab (z.B. Landwirt/in = Primärsektor, Anlagen- und Apparatebauer/in = Sekundärsektor, Kauffrau/Kaufmann = Tertiärsektor). Wichtig ist eine plausible Begründung anhand der Haupttätigkeit."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_bsz">✓ Individuelle Antwort möglich. Wichtig: Sektor korrekt gemäss Haupttätigkeit des eigenen Berufs zugeordnet und begründet.</div>
+  <div class="ko-text" id="ko_text_suk_bsz">Ein Austauschschüler fragt Sie, zu welchem Wirtschaftssektor Ihr Lehrberuf gehört. Ordnen Sie ihn zu und begründen Sie Ihre Wahl in 2–3 Sätzen.</div>
+  <textarea id="ko_suk_bsz" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ein Austauschschueler fragt Sie, zu welchem Wirtschaftssektor Ihr Lehrberuf gehoert. Ordnen Sie ihn zu und begruenden Sie Ihre Wahl in 2-3 Saetzen."
+    data-ki-loesung="Eine gute Antwort ordnet den eigenen Beruf plausibel einem Sektor zu und begruendet dies anhand der Haupttaetigkeit (z.B. Landwirt/in = Primaersektor, Anlagen- und Apparatebauer/in = Sekundaersektor, Kauffrau/Kaufmann = Tertiaersektor)."></textarea>
+  <div class="sol-inline" id="sol_ko_suk_bsz">Eine gute Antwort ordnet den eigenen Beruf plausibel einem Sektor zu und begründet dies anhand der Haupttätigkeit.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_bsz']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -643,7 +643,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}

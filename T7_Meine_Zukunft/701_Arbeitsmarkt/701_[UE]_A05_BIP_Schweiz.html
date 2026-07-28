@@ -245,11 +245,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_a42">Erklären Sie in eigenen Worten, was das BIP misst.</div>
-  <textarea id="ko_suk_a42" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Erklaere in eigenen Worten, was das BIP misst."
-    data-ki-loesung="Das BIP (Bruttoinlandprodukt) misst den Gesamtwert aller Güter und Dienstleistungen, die innerhalb eines Landes in einem Jahr produziert werden. Es gilt als wichtiger Massstab für die wirtschaftliche Leistung eines Landes."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_a42">✓ Mögliche Antwort: Das BIP (Bruttoinlandprodukt) misst den Gesamtwert aller Güter und Dienstleistungen, die innerhalb eines Landes in einem Jahr produziert werden. Es gilt als wichtiger Massstab für die wirtschaftliche Leistung eines Landes.</div>
+  <div class="ko-text" id="ko_text_suk_a42">Ein Bekannter hat vom BIP gehört, weiss aber nicht, was das ist. Erklären Sie es ihm in 2–3 einfachen Sätzen.</div>
+  <textarea id="ko_suk_a42" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ein Bekannter hat vom BIP gehoert, weiss aber nicht, was das ist. Erklaeren Sie es ihm in 2-3 einfachen Saetzen."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert. Beispiel: 'Das BIP misst den Gesamtwert aller Gueter und Dienstleistungen, die in einem Land in einem Jahr produziert werden. Es zeigt, wie stark die Wirtschaft eines Landes ist.'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_a42">Eine gute Erklärung ist einfach formuliert. Beispiel: «Das BIP misst den Gesamtwert aller Güter und Dienstleistungen, die in einem Land in einem Jahr produziert werden. Es zeigt, wie stark die Wirtschaft eines Landes ist.»</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_a42']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -559,7 +559,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
