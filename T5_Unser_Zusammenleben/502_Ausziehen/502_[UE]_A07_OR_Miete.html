@@ -264,11 +264,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_or">Erklären Sie in eigenen Worten, was das Obligationenrecht (OR) im Bereich der Miete regelt.</div>
-  <textarea id="ko_suk_or" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Erklaere in eigenen Worten, was das Obligationenrecht (OR) im Bereich der Miete regelt."
-    data-ki-loesung="Das Obligationenrecht enthält die gesetzlichen Bestimmungen zum Mietvertrag, zum Beispiel zu Rechten und Pflichten von Mieter und Vermieter, zu Mängeln, zur Mietzinsgestaltung sowie zu Kündigungsfristen und -terminen."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_or">✓ Mögliche Antwort: Das Obligationenrecht enthält die gesetzlichen Bestimmungen zum Mietvertrag, zum Beispiel zu Rechten und Pflichten von Mieter und Vermieter, zu Mängeln, zur Mietzinsgestaltung sowie zu Kündigungsfristen und -terminen.</div>
+  <div class="ko-text" id="ko_text_suk_or">Ein Bekannter ohne Vorkenntnisse fragt Sie, was das Obligationenrecht (OR) mit Mietverhältnissen zu tun hat. Erklären Sie es ihm in 3–4 einfachen Sätzen.</div>
+  <textarea id="ko_suk_or" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ein Bekannter ohne Vorkenntnisse fragt Sie, was das Obligationenrecht (OR) mit Mietverhaeltnissen zu tun hat. Erklaeren Sie es ihm in 3-4 einfachen Saetzen."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert. Beispiel: 'Das Obligationenrecht enthaelt die gesetzlichen Regeln zum Mietvertrag - zum Beispiel zu Rechten und Pflichten von Mieter und Vermieter, zu Maengeln, zum Mietzins und zu Kuendigungsfristen.'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_or">Eine gute Erklärung ist einfach formuliert. Beispiel: «Das Obligationenrecht enthält die gesetzlichen Regeln zum Mietvertrag – zum Beispiel zu Rechten und Pflichten von Mieter und Vermieter, zu Mängeln, zum Mietzins und zu Kündigungsfristen.»</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_or']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -578,7 +578,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}

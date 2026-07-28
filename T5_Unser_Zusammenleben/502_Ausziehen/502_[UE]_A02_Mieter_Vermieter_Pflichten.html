@@ -249,11 +249,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_p22">Nennen Sie je eine Pflicht des Mieters und des Vermieters und erklären Sie diese in eigenen Worten.</div>
-  <textarea id="ko_suk_p22" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Nenne je eine Pflicht des Mieters und des Vermieters und erklaere diese in eigenen Worten."
-    data-ki-loesung="Der Mieter muss den Mietzins pünktlich bezahlen und sorgfältig mit der Wohnung umgehen. Der Vermieter muss die Wohnung in gebrauchsfähigem Zustand übergeben und Mängel, die er zu vertreten hat, beheben."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_p22">✓ Mögliche Antwort: Der Mieter muss den Mietzins pünktlich bezahlen und sorgfältig mit der Wohnung umgehen. Der Vermieter muss die Wohnung in gebrauchsfähigem Zustand übergeben und Mängel, die er zu vertreten hat, beheben.</div>
+  <div class="ko-text" id="ko_text_suk_p22">Ein jüngerer Bekannter zieht bald zum ersten Mal aus. Erklären Sie ihm in 3–4 Sätzen je eine Pflicht des Mieters und des Vermieters.</div>
+  <textarea id="ko_suk_p22" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ein juengerer Bekannter zieht bald zum ersten Mal aus. Erklaeren Sie ihm in 3-4 Saetzen je eine Pflicht des Mieters und des Vermieters."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert. Beispiel: 'Als Mieter musst du den Mietzins puenktlich bezahlen und sorgfaeltig mit der Wohnung umgehen. Dein Vermieter muss dir die Wohnung in brauchbarem Zustand uebergeben und Maengel beheben, fuer die er verantwortlich ist.'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_p22">Eine gute Erklärung ist einfach formuliert. Beispiel: «Als Mieter musst du den Mietzins pünktlich bezahlen und sorgfältig mit der Wohnung umgehen. Dein Vermieter muss dir die Wohnung in brauchbarem Zustand übergeben und Mängel beheben, für die er verantwortlich ist.»</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_p22']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -563,7 +563,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}

@@ -251,11 +251,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_v32">Erklären Sie in eigenen Worten, was eine Privathaftpflichtversicherung ist.</div>
-  <textarea id="ko_suk_v32" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Erklaere in eigenen Worten, was eine Privathaftpflichtversicherung ist."
-    data-ki-loesung="Eine Privathaftpflichtversicherung deckt Schäden, die man versehentlich anderen Personen oder deren Eigentum zufügt, zum Beispiel wenn man beim Fussballspielen ein Fenster einschlägt oder eine überlaufende Badewanne die Wohnung darunter beschädigt."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_v32">✓ Mögliche Antwort: Eine Privathaftpflichtversicherung deckt Schäden, die man versehentlich anderen Personen oder deren Eigentum zufügt, zum Beispiel wenn man beim Fussballspielen ein Fenster einschlägt oder eine überlaufende Badewanne die Wohnung darunter beschädigt.</div>
+  <div class="ko-text" id="ko_text_suk_v32">Ihr Geschwister zieht bald aus und fragt Sie, wozu es eine Privathaftpflichtversicherung braucht. Erklären Sie es in 3–4 einfachen Sätzen.</div>
+  <textarea id="ko_suk_v32" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ihr Geschwister zieht bald aus und fragt Sie, wozu es eine Privathaftpflichtversicherung braucht. Erklaeren Sie es in 3-4 einfachen Saetzen."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert und nennt ein Beispiel. Beispiel: 'Eine Privathaftpflichtversicherung zahlt, wenn du aus Versehen anderen Personen oder deren Eigentum einen Schaden zufuegst - zum Beispiel wenn du beim Fussballspielen ein Fenster einschlaegst oder eine ueberlaufende Badewanne die Wohnung darunter beschaedigt.'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_v32">Eine gute Erklärung ist einfach formuliert und nennt ein Beispiel: zahlt bei versehentlich verursachten Schäden an anderen Personen/deren Eigentum.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_v32']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -565,7 +565,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}

@@ -279,11 +279,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_ms">Nennen Sie drei Massnahmen des Schweizer Mieterschutzes und erklären Sie diese in eigenen Worten.</div>
-  <textarea id="ko_suk_ms" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Nenne drei Massnahmen des Schweizer Mieterschutzes und erklaere diese in eigenen Worten."
-    data-ki-loesung="Zum Beispiel: Kündigungsschutz (Kündigungen müssen Fristen, Termine und teils Formvorschriften einhalten), Anfechtung missbräuchlicher Mietzinse (bei Schlichtungsstellen möglich), und Schutz vor missbräuchlichen Kündigungen bei Familiensituationen oder laufenden Verfahren."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_ms">✓ Mögliche Antwort: Kündigungsschutz (Kündigungen müssen Fristen, Termine und teils Formvorschriften einhalten), Anfechtung missbräuchlicher Mietzinse (bei Schlichtungsstellen möglich), und Schutz vor missbräuchlichen Kündigungen bei Familiensituationen oder laufenden Verfahren.</div>
+  <div class="ko-text" id="ko_text_suk_ms">Ein Bekannter aus dem Ausland kennt den Schweizer Mieterschutz nicht. Erklären Sie ihm in 4–6 Sätzen drei Massnahmen davon.</div>
+  <textarea id="ko_suk_ms" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ein Bekannter aus dem Ausland kennt den Schweizer Mieterschutz nicht. Erklaeren Sie ihm in 4-6 Saetzen drei Massnahmen davon."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert und nennt drei konkrete Massnahmen, z.B.: Kuendigungsschutz (Kuendigungen muessen Fristen, Termine und teils Formvorschriften einhalten), Anfechtung missbraeuchlicher Mietzinse (bei Schlichtungsstellen moeglich), und Schutz vor missbraeuchlichen Kuendigungen bei Familiensituationen oder laufenden Verfahren."></textarea>
+  <div class="sol-inline" id="sol_ko_suk_ms">Eine gute Erklärung ist einfach formuliert und nennt drei konkrete Massnahmen: Kündigungsschutz, Anfechtung missbräuchlicher Mietzinse, Schutz vor missbräuchlichen Kündigungen.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_ms']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -593,7 +593,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
