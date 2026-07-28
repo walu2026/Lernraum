@@ -262,11 +262,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_ir">Erklären Sie in eigenen Worten den Unterschied zwischen Initiative und Referendum.</div>
-  <textarea id="ko_suk_ir" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Erklaere in eigenen Worten den Unterschied zwischen Initiative und Referendum."
-    data-ki-loesung="Mit einer Volksinitiative können Bürgerinnen und Bürger eine Änderung der Verfassung vorschlagen (100'000 Unterschriften nötig). Mit einem Referendum kann das Volk verlangen, dass über ein bereits vom Parlament beschlossenes Gesetz abgestimmt wird (50'000 Unterschriften nötig)."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_ir">✓ Mögliche Antwort: Mit einer Volksinitiative können Bürgerinnen und Bürger eine Änderung der Verfassung vorschlagen (100'000 Unterschriften nötig). Mit einem Referendum kann das Volk verlangen, dass über ein bereits vom Parlament beschlossenes Gesetz abgestimmt wird (50'000 Unterschriften nötig).</div>
+  <div class="ko-text" id="ko_text_suk_ir">Eine Austauschperson liest von einer «Volksinitiative» und einem «Referendum» und fragt Sie nach dem Unterschied. Erklären Sie es ihr in 3–4 Sätzen.</div>
+  <textarea id="ko_suk_ir" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Eine Austauschperson liest von einer 'Volksinitiative' und einem 'Referendum' und fragt nach dem Unterschied. Erklaeren Sie es ihr in 3-4 Saetzen."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert. Beispiel: 'Mit einer Volksinitiative koennen Buergerinnen und Buerger eine Aenderung der Verfassung vorschlagen (100000 Unterschriften noetig). Mit einem Referendum kann das Volk verlangen, dass ueber ein bereits vom Parlament beschlossenes Gesetz abgestimmt wird (50000 Unterschriften noetig).'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_ir">Eine gute Erklärung ist einfach formuliert: Initiative = Verfassungsänderung vorschlagen (100'000 Unterschriften), Referendum = Abstimmung über ein Gesetz verlangen (50'000 Unterschriften).</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_ir']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -576,7 +576,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}

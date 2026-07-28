@@ -239,11 +239,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_sr20">Erklären Sie in eigenen Worten, wer in der Schweiz auf Bundesebene stimmberechtigt ist.</div>
-  <textarea id="ko_suk_sr20" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Erklaere in eigenen Worten, wer in der Schweiz auf Bundesebene stimmberechtigt ist."
-    data-ki-loesung="Auf Bundesebene stimmberechtigt sind Schweizer Bürgerinnen und Bürger, die mindestens 18 Jahre alt sind, das Schweizer Bürgerrecht besitzen und nicht wegen dauernder Urteilsunfähigkeit vom Stimmrecht ausgeschlossen sind."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_sr20">✓ Mögliche Antwort: Auf Bundesebene stimmberechtigt sind Schweizer Bürgerinnen und Bürger, die mindestens 18 Jahre alt sind, das Schweizer Bürgerrecht besitzen und nicht wegen dauernder Urteilsunfähigkeit vom Stimmrecht ausgeschlossen sind.</div>
+  <div class="ko-text" id="ko_text_suk_sr20">Eine Austauschperson fragt Sie, wer in der Schweiz auf Bundesebene überhaupt abstimmen darf. Erklären Sie es ihr in 3–4 Sätzen.</div>
+  <textarea id="ko_suk_sr20" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Eine Austauschperson fragt, wer in der Schweiz auf Bundesebene abstimmen darf. Erklaeren Sie es ihr in 3-4 Saetzen."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert. Beispiel: 'Auf Bundesebene stimmberechtigt sind Schweizer Buergerinnen und Buerger, die mindestens 18 Jahre alt sind, das Schweizer Buergerrecht besitzen und nicht wegen dauernder Urteilsunfaehigkeit vom Stimmrecht ausgeschlossen sind.'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_sr20">Eine gute Erklärung ist einfach formuliert: stimmberechtigt sind Schweizer Bürgerinnen und Bürger ab 18 Jahren mit Urteilsfähigkeit.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_sr20']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -553,7 +553,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}

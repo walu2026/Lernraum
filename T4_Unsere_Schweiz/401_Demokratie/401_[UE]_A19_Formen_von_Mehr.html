@@ -259,11 +259,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_m22">Erklären Sie in eigenen Worten den Unterschied zwischen «relativem Mehr» und «absolutem Mehr».</div>
-  <textarea id="ko_suk_m22" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Erklaere in eigenen Worten den Unterschied zwischen 'relativem Mehr' und 'absolutem Mehr'."
-    data-ki-loesung="Beim relativen Mehr gewinnt die Option mit den meisten Stimmen, auch wenn sie keine 50 Prozent erreicht. Beim absoluten Mehr braucht es mehr als die Hälfte aller gültigen Stimmen, sonst kommt es zu einem zweiten Wahlgang."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_m22">✓ Mögliche Antwort: Beim relativen Mehr gewinnt die Option mit den meisten Stimmen, auch wenn sie keine 50 Prozent erreicht. Beim absoluten Mehr braucht es mehr als die Hälfte aller gültigen Stimmen, sonst kommt es zu einem zweiten Wahlgang.</div>
+  <div class="ko-text" id="ko_text_suk_m22">Ein Kollege verwechselt bei Wahlergebnissen ständig «relatives Mehr» und «absolutes Mehr». Erklären Sie ihm in 3–4 Sätzen den Unterschied.</div>
+  <textarea id="ko_suk_m22" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ein Kollege verwechselt bei Wahlergebnissen staendig 'relatives Mehr' und 'absolutes Mehr'. Erklaeren Sie ihm in 3-4 Saetzen den Unterschied."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert. Beispiel: 'Beim relativen Mehr gewinnt die Option mit den meisten Stimmen, auch wenn sie keine 50 Prozent erreicht. Beim absoluten Mehr braucht es mehr als die Haelfte aller gueltigen Stimmen, sonst kommt es zu einem zweiten Wahlgang.'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_m22">Eine gute Erklärung ist einfach formuliert: relatives Mehr = meiste Stimmen gewinnen, absolutes Mehr = mehr als die Hälfte aller Stimmen nötig.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_m22']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -573,7 +573,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}

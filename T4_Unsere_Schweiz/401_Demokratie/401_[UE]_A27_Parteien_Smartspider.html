@@ -259,11 +259,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_p30">Erklären Sie in eigenen Worten, was der «Smartspider» zeigt und wie er verwendet wird.</div>
-  <textarea id="ko_suk_p30" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Erklaere in eigenen Worten, was der 'Smartspider' zeigt und wie er verwendet wird."
-    data-ki-loesung="Der Smartspider ist eine grafische Darstellung, die zeigt, wie eine Partei oder Person in verschiedenen politischen Themenbereichen (z.B. liberal, links-rechts, ökologisch) positioniert ist. Er wird genutzt, um politische Profile zu vergleichen, z.B. bei Wahlen."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_p30">✓ Mögliche Antwort: Der Smartspider ist eine grafische Darstellung, die zeigt, wie eine Partei oder Person in verschiedenen politischen Themenbereichen (z.B. liberal, links-rechts, ökologisch) positioniert ist. Er wird genutzt, um politische Profile zu vergleichen, z.B. bei Wahlen.</div>
+  <div class="ko-text" id="ko_text_suk_p30">Ein Bekannter hat vor den Wahlen einen «Smartspider» auf einer Website ausgefüllt und fragt Sie, was das eigentlich zeigt. Erklären Sie es ihm in 3–4 Sätzen.</div>
+  <textarea id="ko_suk_p30" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ein Bekannter hat vor den Wahlen einen 'Smartspider' auf einer Website ausgefuellt und fragt, was das zeigt. Erklaeren Sie es ihm in 3-4 Saetzen."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert. Beispiel: 'Der Smartspider ist eine grafische Darstellung, die zeigt, wie eine Partei oder Person in verschiedenen politischen Themenbereichen (z.B. liberal, links-rechts, oekologisch) positioniert ist. Er wird genutzt, um politische Profile zu vergleichen, z.B. bei Wahlen.'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_p30">Eine gute Erklärung ist einfach formuliert: Smartspider zeigt grafisch die politische Positionierung einer Partei/Person in mehreren Themenbereichen, zum Vergleichen.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_p30']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -573,7 +573,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
