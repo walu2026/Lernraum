@@ -242,8 +242,8 @@
   <div class="ko-text" id="ko_text_suk_303_[UE]_A01">Verfassen Sie einen kurzen Erklärtext (4–5 Sätze) für eine Person, die neu in die Schweiz gezogen ist: Was bedeutet das Solidaritätsprinzip in der Krankenversicherung?</div>
   <textarea id="ko_suk_a10" rows="5" placeholder="Meine Antwort …"
     data-ki-aufgabe="Verfassen Sie einen kurzen Erklaertext (4-5 Saetze) fuer eine Person, die neu in die Schweiz gezogen ist: Was bedeutet das Solidaritaetsprinzip in der Krankenversicherung?"
-    data-ki-loesung="Ein guter Erklärtext beschreibt verständlich, dass alle Versicherten unabhängig von Alter und Gesundheitszustand die gleiche Prämie zahlen und Gesunde so die Kosten von Kranken mittragen."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_a10">✓ Ein guter Erklärtext beschreibt verständlich, dass alle Versicherten unabhängig von Alter und Gesundheitszustand die gleiche Prämie zahlen und Gesunde so die Kosten von Kranken mittragen.</div>
+    data-ki-loesung="Ein guter Erklärtext beschreibt verständlich, dass alle Versicherten in der gleichen Prämienregion und Altersgruppe unabhängig von ihrem individuellen Gesundheitszustand die gleiche Prämie zahlen und Gesunde so die Kosten von Kranken mittragen."></textarea>
+  <div class="sol-inline" id="sol_ko_suk_a10">✓ Ein guter Erklärtext beschreibt verständlich, dass alle Versicherten in der gleichen Prämienregion und Altersgruppe unabhängig von ihrem individuellen Gesundheitszustand die gleiche Prämie zahlen und Gesunde so die Kosten von Kranken mittragen.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_a10']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -553,7 +553,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
@@ -634,7 +634,7 @@ function renderSpellResult(data,originalText,rb){
     rb.innerHTML=html;
   }
   window.kiFeedbackKlick=async function(btn){
-    const ta=document.querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
+    const ta=btn.closest('.ko-box').querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
     const aufgabe=ta.getAttribute('data-ki-aufgabe')||'',loesung=ta.getAttribute('data-ki-loesung')||'',antwort=ta.value.trim();
     const rb=document.getElementById('kiFeedbackResult');
     if(!antwort){rb.innerHTML='<div class="kf-feedback-box kf-error"><span class="kf-feedback-label">Hinweis</span><p>Bitte zuerst eine Antwort schreiben.</p></div>';return;}
