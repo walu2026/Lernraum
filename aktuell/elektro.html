@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Aktuell · Strom &amp; Netz im Wandel (Elektro)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
+  :root {
+    --t1: #D97706; --t1-light: #FCE8C8; --t1-lighter: #FDF3E4; --t1-dark: #92400E;
+    --bg: #FBF8F4; --paper: #FFFFFF; --ink: #20221F; --ink-light: #7A7468; --rule: #ECE6DA;
+    --green: #1F8045; --green-light: #E9F7EE; --gold: #B8860B;
+    --accent: var(--t1); --accent-light: var(--t1-lighter);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .nav-table{width:100%;background:#f7f7f7;border-bottom:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444}
+  .nav-table td{padding:6px 10px}
+  .nav-table a{color:#444;text-decoration:none}
+  .nav-table a.up{color:var(--t1-dark);font-size:14px}
+  .muster-banner{background:#FFFBEB;border-bottom:1px solid #FDE68A;color:#92400E;font-size:.85rem;padding:10px 22px;text-align:center}
+  .wahlpflicht-banner{background:var(--t1-lighter);border-bottom:1px solid var(--t1-light);color:var(--t1-dark);font-size:.82rem;padding:9px 22px;text-align:center;font-weight:600}
+  .top-bar { background: linear-gradient(120deg, #F59E0B 0%, #D97706 40%, #92400E 100%); color: white; padding: 14px 22px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,.18); }
+  .top-bar h1 { font-size: 16px; font-weight: 700; flex: 1; min-width: 130px; letter-spacing: -.01em; }
+  .tag-pill{font-family:'JetBrains Mono',monospace;font-size:.72rem;background:rgba(255,255,255,.2);padding:3px 10px;border-radius:999px;letter-spacing:.05em}
+  .nw { display: flex; align-items: center; gap: 8px; }
+  .nw label { font-size: 12px; opacity: .9; font-weight: 500; }
+  .nw input { padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.15); color: white; font-size: 13px; width: 160px; font-family: inherit; }
+  .nw input::placeholder { color: rgba(255,255,255,.55); }
+  .nw input:focus { outline: none; border-color: rgba(255,255,255,.7); background: rgba(255,255,255,.22); }
+  .btn { padding: 8px 15px; border-radius: 999px; border: none; font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; transition: filter .15s, transform .12s; white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; }
+  .btn:hover { transform: translateY(-1px); filter: brightness(1.07); }
+  .btn:active { transform: translateY(0) scale(.97); }
+  .btn-check { background: white; color: var(--t1-dark); }
+  .btn-ghost { background: rgba(255,255,255,.18); color: white; }
+  .btn-ghost:hover { background: rgba(255,255,255,.28); }
+  .btn-dl { background: rgba(255,255,255,.94); color: var(--t1-dark); font-weight: 700; }
+  .btn-copy { background: rgba(255,255,255,.18); color: white; }
+  .btn-copy:hover { background: rgba(255,255,255,.28); }
+  .btn-copy.copied { background: var(--green); }
+  .spell-btn-main { background: rgba(255,255,255,.18); color: white; }
+  .spell-btn-main:hover { background: rgba(255,255,255,.28); }
+  #copyToast { position: fixed; top: 68px; right: 18px; z-index: 9999; background: var(--green); color: white; padding: 9px 16px; border-radius: 999px; font-family: inherit; font-size: 13px; font-weight: 600; box-shadow: 0 4px 16px rgba(0,0,0,.22); opacity: 0; transform: translateY(-8px); transition: all .25s; pointer-events: none; }
+  #copyToast.show { opacity: 1; transform: translateY(0); }
+  .ws { max-width: 880px; margin: 0 auto; padding: 34px 26px 60px; }
+  .lebenswelt-ref { font-size: 12px; font-weight: 600; color: var(--t1-dark); margin-bottom: 5px; font-family: 'JetBrains Mono', monospace; }
+  .task-title { display: block; font-size: 23px; font-weight: 800; color: var(--ink); letter-spacing: -.012em; margin-bottom: 20px; }
+  .lz-box { background: var(--t1-lighter); border-radius: 14px; padding: 14px 18px; margin-bottom: 6px; font-size: 14.5px; color: #3a362f; position: relative; overflow: hidden; }
+  .lz-box::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--t1); border-radius: 14px 0 0 14px; }
+  .lz-box strong { color: var(--t1-dark); font-weight: 700; }
+  .ws > p, p.auftrag { font-size: 15px; margin-bottom: 14px; font-weight: 500; }
+  .ws > p strong { color: var(--t1-dark); font-weight: 700; }
+  .section-label { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700; color: var(--t1-dark); text-transform: uppercase; letter-spacing: .06em; margin: 20px 0 10px; }
+  table.tb{width:100%;border-collapse:collapse;margin:10px 0 20px;font-size:14px}
+  .tb th{background:var(--t1);color:#fff;text-align:left;padding:8px 12px}
+  .tb td{border:1px solid var(--rule);padding:8px 12px;color:#3a362f}
+  .tb tr:nth-child(even) td{background:#FAFAF7}
+  .beispiel-box { background: var(--t1-lighter); border-radius: 10px; padding: 12px 16px; margin: 10px 0 16px; font-size: 13.5px; }
+  table.ex { width: 100% !important; border-collapse: separate !important; border-spacing: 0 8px !important; font-size: 14.5px; margin: 6px 0 24px !important; }
+  table.ex thead th { background: transparent !important; color: var(--ink-light) !important; font-family: 'JetBrains Mono', monospace; font-size: 10px !important; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; text-align: left; padding: 0 14px 6px !important; }
+  table.ex tbody tr { background: var(--paper); border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.04); transition: box-shadow .2s, transform .2s; }
+  table.ex tbody tr:has(textarea:focus) { box-shadow: 0 4px 16px rgba(0,0,0,.1); transform: translateY(-1px); }
+  table.ex tbody td { padding: 13px 14px !important; vertical-align: top; border: none !important; }
+  table.ex tbody td:first-child { border-radius: 12px 0 0 12px; }
+  table.ex tbody td:last-child { border-radius: 0 12px 12px 0; }
+  table.ex td strong { display: inline-block; font-weight: 700; color: var(--t1-dark); font-size: 13px; background: var(--t1-lighter); padding: 3px 9px; border-radius: 999px; }
+  table.ex textarea { width: 100% !important; border: 1.5px solid var(--rule) !important; border-radius: 9px !important; background: var(--bg) !important; font-family: inherit !important; font-size: 14px !important; padding: 8px 11px !important; resize: vertical; margin-top: 5px; transition: border-color .18s, box-shadow .18s; }
+  table.ex textarea:focus { outline: none; border-color: var(--t1) !important; background: white !important; box-shadow: 0 0 0 3px var(--t1-light); }
+  .sol-inline-sm, .sol-inline { display: none; background: var(--green-light) !important; border-radius: 8px !important; padding: 8px 11px !important; margin-top: 7px !important; font-size: 13px !important; font-weight: 500; color: #135c2c !important; user-select: none; -webkit-user-select: none; }
+  .sol-inline-sm.visible, .sol-inline.visible { display: block; }
+  .sol-inline-sm.sol-empty-hint, .sol-inline.sol-empty-hint,
+  .sol-inline-sm.sol-unplausibel-hint, .sol-inline.sol-unplausibel-hint { background: #FDF6E3 !important; color: #8a6500 !important; font-style: italic; }
+  .ko-box { background: var(--paper) !important; border-radius: 16px !important; padding: 20px 22px !important; box-shadow: 0 2px 10px rgba(0,0,0,.05); margin-top: 26px !important; position: relative; overflow: hidden; }
+  .ko-box::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--t1); }
+  .ko-box:has(textarea:focus) { box-shadow: 0 6px 20px rgba(0,0,0,.1); }
+  .ko-label { font-family: 'JetBrains Mono', monospace !important; font-size: 11px !important; font-weight: 700; color: var(--t1-dark) !important; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px !important; display: block; }
+  .ko-text { font-size: 14.5px !important; color: var(--ink) !important; margin-bottom: 14px !important; font-weight: 500; line-height: 1.65 !important; }
+  .ko-box textarea { width: 100% !important; min-height: 88px; border: 1.5px solid var(--rule) !important; border-radius: 11px !important; padding: 11px 13px !important; font-family: inherit !important; font-size: 14.5px !important; resize: vertical; background: var(--bg) !important; }
+  .ko-box textarea:focus { outline: none; border-color: var(--t1) !important; background: white !important; box-shadow: 0 0 0 3px var(--t1-light); }
+  .ki-toggle-row { display: flex; align-items: center; gap: 8px; margin: 10px 0 12px; flex-wrap: wrap; }
+  .ki-toggle-label { font-size: 12px; font-weight: 600; color: var(--ink); }
+  .ki-switch { position: relative; width: 40px; height: 22px; border-radius: 999px; background: #DDD6C8; cursor: pointer; transition: background .18s; flex-shrink: 0; display: inline-block; vertical-align: middle; }
+  .ki-switch.on { background: var(--t1); }
+  .ki-switch-knob { position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: left .18s; box-shadow: 0 1px 2px rgba(0,0,0,.22); }
+  .ki-switch.on .ki-switch-knob { left: 20px; }
+  .ki-modus-pill { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: #ECE6DA; color: #7A7468; }
+  .ki-modus-pill.on { background: var(--t1-light); color: var(--t1-dark); }
+  .btn-ki { background: #fff; color: var(--t1-dark); box-shadow: 0 0 0 1.5px var(--t1) inset; }
+  .btn-ki:hover:not(:disabled) { background: var(--t1-light); }
+  .btn-ki:disabled { opacity: .45; cursor: not-allowed; box-shadow: 0 0 0 1.5px #DDD6C8 inset; }
+  .kf-feedback-box { margin-top: 11px; padding: 11px 13px; background: #fff; border-left: 3px solid #1565C0; border-radius: 0 8px 8px 0; font-size: 13.5px; line-height: 1.6; user-select: none; -webkit-user-select: none; }
+  .kf-feedback-box.kf-error { border-left-color: var(--t1); }
+  .kf-feedback-box p { margin: 0; }
+  .kf-feedback-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: #1565C0; margin-bottom: 5px; display: block; }
+  .kf-error .kf-feedback-label { color: var(--t1-dark); }
+  .block-reset-link { font-size: 11px; color: #9a948a; text-decoration: none; }
+  .block-reset-link:hover { color: var(--t1-dark); text-decoration: underline; }
+  .btn-row { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 26px !important; }
+  .btn-row .btn-check { background: var(--gold); color: white; }
+  .btn-row .btn-ghost { background: var(--paper); color: var(--ink); border: 1.5px solid var(--rule); }
+  .btn-row .btn-dl { background: var(--t1); color: white; }
+  .btn-row .spell-btn-main { background: var(--t1-lighter); color: var(--t1-dark); }
+  .spell-limit-note { display: none; margin-bottom: 8px; padding: 7px 13px; background: var(--t1-lighter); border: 1px dashed var(--t1-light); border-radius: 9px; font-size: 11px; font-weight: 500; color: var(--t1-dark); font-family: 'JetBrains Mono', monospace; }
+  .spell-limit-note.show { display: block; }
+  .spell-result { display: none; margin-top: 7px; font-size: 12.5px; border-radius: 9px; padding: 9px 13px; line-height: 1.5; position: relative; }
+  .spell-result.show { display: block; }
+  .spell-result.spell-ok { background: var(--green-light); color: #1e5c23; }
+  .spell-result.spell-issues { background: #FDF6E3; color: #6b4d10; }
+  .spell-result.spell-error { background: var(--t1-lighter); color: var(--t1-dark); }
+  .spell-result ul { margin: 4px 0 0; padding-left: 16px; }
+  .spell-result li { margin-bottom: 4px; }
+  .spell-result .spell-orig { text-decoration: underline wavy var(--t1); }
+  .spell-result .spell-fix { color: #1565C0; font-weight: 600; }
+  .spell-close-btn { position: absolute; top: 5px; right: 7px; width: 19px; height: 19px; border-radius: 50%; border: none; background: rgba(0,0,0,.08); color: inherit; font-size: 11px; line-height: 19px; text-align: center; cursor: pointer; padding: 0; }
+  .spell-highlighted-text { margin: 5px 0 7px; padding: 7px 11px; background: var(--bg); border-radius: 7px; line-height: 1.6; }
+  .spell-highlighted-text mark.spell-mark { background: transparent; color: var(--t1); font-weight: 700; text-decoration: underline wavy var(--t1); text-decoration-thickness: 1.5px; cursor: help; }
+  .paste-warn { border-color: var(--t1) !important; background: var(--t1-lighter) !important; }
+  .paste-msg { display: none; font-size: 11.5px; font-family: 'JetBrains Mono', monospace; color: var(--t1-dark); background: var(--t1-lighter); border: 1px solid var(--t1-light); border-radius: 8px; padding: 4px 9px; margin-top: 3px; font-weight: 600; }
+  .paste-msg.show { display: block; }
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { animation: fadeInUp .5s cubic-bezier(.16,.84,.44,1) both; }
+  @media (prefers-reduced-motion: reduce) { .reveal { animation: none; } }
+  .quelle-box{font-size:12px;color:var(--ink-light);font-family:'JetBrains Mono',monospace;margin-top:12px;margin-bottom:0;}
+  .quelle-box a{color:var(--t1);text-decoration:underline}
+  .quelle-box a:hover{color:var(--t1-dark)}
+  @media print {
+    .top-bar, .nav-table, .muster-banner, .wahlpflicht-banner { display: none; }
+    .ws { box-shadow: none; border: none; margin: 0; padding: 0; max-width: 100%; }
+    table.ex tbody tr { page-break-inside: avoid; break-inside: avoid; box-shadow: none; }
+    @page { margin: 15mm 12mm; size: A4 portrait; }
+  }
+</style>
+</head>
+<body>
+<table class="nav-table"><tr>
+<td style="text-align:left;width:33%"><a href="wirtschaft.html">← Wirtschaft</a></td>
+<td style="text-align:center;width:34%"><a class="up" href="../index.html" title="Zur Übersicht">↑</a></td>
+<td style="text-align:right;width:33%"><span style="color:#ccc">Übersicht →</span></td>
+</tr></table>
+<div class="muster-banner">📋 Muster-Ausgabe zur Diskussion — noch nicht ins Portal eingebunden.</div>
+<div class="wahlpflicht-banner">⚡ Wahlpflicht-Thema Berufsgruppe: Diese Seite ist ein Beispiel für den 4. Slot, der nicht bei jeder Klasse gleich aussieht, sondern zur Lehrberuf-Zusammensetzung passt (hier: Elektroinstallation). Wird nur gebaut, wenn die Klasse dazu passt.</div>
+<div class="top-bar">
+  <span class="tag-pill">AKTUELL · WAHLPFLICHT</span>
+  <h1>Strom &amp; Netz im Wandel</h1>
+  <div class="nw"><label>Name:</label><input id="studentName" type="text" placeholder="Vorname Nachname" autocomplete="name"></div>
+  <button class="btn btn-check" onclick="checkAll()">Überprüfen</button>
+  <button class="btn spell-btn-main" onclick="checkAllSpelling(this)">Rechtschreibung</button>
+  <button class="btn btn-copy" id="copyBtn" onclick="copyAllToClipboard()">📋 Kopieren</button>
+</div>
+<div id="copyToast">✓ In Zwischenablage kopiert</div>
+
+<div class="ws">
+  <div class="lebenswelt-ref">AKTUELL 30.06.–27.07.2026 — Berufsgruppe Elektro (passt zu 703, Aussenhandel/Energie; alternativ zu 401)</div>
+  <div class="task-title">Smart Meter, Solarpflicht, Netzausbau: was sich für Elektroinstallateur:innen 2026 ändert</div>
+  <div class="lz-box reveal" style="animation-delay:.02s"><strong>Worum es geht:</strong> Drei Entwicklungen treffen die Stromversorgung der Schweiz gleichzeitig: Bis Ende 2027 müssen die Energieversorger mindestens 80% der Stromzähler durch Smart Meter ersetzt haben. Seit 2026 gilt für viele Neubauten eine Solarpflicht («Mantelerlass», Volksabstimmung 9.6.2024). Und weil Photovoltaik, Wärmepumpen und E-Autos das Verteilnetz stärker belasten, müssen die Netzbetreiber Milliarden in den Ausbau investieren. Für angehende Elektroinstallateur:innen heisst das: neue Aufgabenfelder.</div>
+
+  <p>Gleichzeitig sinken die Strompreise 2026 leicht — die Entwicklung ist also nicht einheitlich «teurer» oder «billiger», sondern vor allem: technisch komplexer.</p>
+  <p class="quelle-box">Quellen: <a href="https://www.elcom.admin.ch/de/newnsb/8nuE_fvwnfqCu8OHNOwKu" target="_blank" rel="noopener">ElCom, «Leicht sinkende Strompreise 2026»</a>; <a href="https://www.uvek.admin.ch/de/sichere-stromversorgung" target="_blank" rel="noopener">UVEK, «Sichere Stromversorgung»</a>; <a href="https://www.esti.admin.ch/inhalte/240304_TKI-Entscheid_Smartmeter_v25-03-14.pdf" target="_blank" rel="noopener">ESTI, Smart-Meter-Rollout-Entscheid</a>; <a href="https://www.weu.be.ch/de/start/themen/energie/solarpflicht.html" target="_blank" rel="noopener">Kanton Bern, Solarpflicht ab 2026</a>; <a href="https://rawi.lu.ch/-/media/RAWI/Dokumente/Downloads/baubewilligungen/Merkblatt_Solaranlagen.pdf" target="_blank" rel="noopener">Kanton Luzern, Merkblatt Solaranlagen</a>.</p>
+
+  <div class="section-label">Strompreise im Vergleich</div>
+  <table class="tb">
+    <tr><th>Jahr</th><th>Entwicklung</th><th>Ø Preis Haushalt (Grundversorgung)</th></tr>
+    <tr><td>2026</td><td>−4%</td><td>27,7 Rp./kWh</td></tr>
+    <tr><td>2027 (Prognose, Branchenumfrage)</td><td>weitere −6%</td><td>noch nicht offiziell</td></tr>
+  </table>
+  <div class="beispiel-box"><strong>Merke:</strong> Trotz sinkender Preise steigen die Netzausbaukosten: Weil Photovoltaik, Wärmepumpen und E-Autos Erzeugung und Verbrauch im Verteilnetz erhöhen, müssen die Verteilnetzbetreiber bis 2050 rund CHF 30 Mrd. (Basisszenario) zusätzlich investieren.</div>
+
+  <div class="section-label">Sachfragen</div>
+  <table class="ex">
+    <thead><tr><th style="width:38%">Frage</th><th style="text-align:left;">Ihre Antwort</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>a</strong> Bis wann müssen die Energieversorger laut gesetzlicher Vorgabe mindestens 80% der Stromzähler durch Smart Meter ersetzt haben?</td>
+        <td>
+          <textarea class="cell-ta" id="ta_a1" rows="2" placeholder="Meine Antwort …"></textarea>
+          <div class="sol-inline-sm" id="sol_a1">Bis Ende 2027 — als Teil der Energiestrategie 2050.</div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>b</strong> Was schreibt der «Mantelerlass» (Volksabstimmung vom 9. Juni 2024) ab 2026 für viele Neubauten vor?</td>
+        <td>
+          <textarea class="cell-ta" id="ta_a2" rows="2" placeholder="Meine Antwort …"></textarea>
+          <div class="sol-inline-sm" id="sol_a2">Eine Solarpflicht: Neubauten ab 300 m² Nutzfläche müssen eine Anlage zur Solarenergienutzung installieren. Die genaue Umsetzung regeln die Kantone unterschiedlich.</div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>c</strong> Nennen Sie ein Beispiel, wie stark sich die kantonalen Vorgaben zur Solarpflicht unterscheiden können.</td>
+        <td>
+          <textarea class="cell-ta" id="ta_a3" rows="2" placeholder="Meine Antwort …"></textarea>
+          <div class="sol-inline-sm" id="sol_a3">Bern verlangt Solarenergienutzung auf mind. 10% der Nutzfläche bei Neubauten; Luzern verlangt bei Neubauten mind. 50% der Dachfläche (bzw. 25% bei Sanierungen) — deutlich strenger.</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+<div class="ko-box reveal" style="animation-delay:.2s">
+  <div class="ko-label">💬 Auftrag &amp; Stellungnahme</div>
+  <div class="ko-text" id="ko_text_ges">Solarpflicht, Smart-Meter-Rollout und mehr E-Autos verändern gleichzeitig, was Elektroinstallateur:innen tun. Beschreiben Sie an einem Beispiel aus Ihrem Lehrbetrieb oder Wohnort, wo Sie diesen Wandel bereits beobachten — und was das für Ihre Ausbildung bedeutet.</div>
+  <textarea id="ko_ges" rows="6" placeholder="Meine Antwort …"
+    data-ki-aufgabe="Solarpflicht, Smart-Meter-Rollout und mehr E-Autos veraendern gleichzeitig, was Elektroinstallateur:innen tun. Beschreiben Sie an einem Beispiel aus Ihrem Lehrbetrieb oder Wohnort, wo Sie diesen Wandel bereits beobachten - und was das fuer Ihre Ausbildung bedeutet."
+    data-ki-loesung="Beispiele koennten sein: Montage von Wallboxen fuer E-Autos in Mehrfamilienhaeusern, Anschluss neuer Photovoltaik-Anlagen ans Netz bei Neubauten wegen der Solarpflicht, oder Austausch alter Stromzaehler gegen Smart Meter inkl. Einrichtung der Kundenschnittstelle (KS2) fuer private Energiemanagementsysteme. Fuer die Ausbildung bedeutet das: neue Kompetenzen rund um Netzanschluss, Digitalisierung und Energiemanagement werden zunehmend gefragt."></textarea>
+  <div class="ki-toggle-row" id="kiToggleArea" style="display:none">
+    <span class="ki-toggle-label">KI-Modus</span>
+    <div class="ki-switch" id="kiModeToggle" role="switch" aria-checked="false" tabindex="0"
+      onclick="kiModeUmschalten(this)"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();kiModeUmschalten(this);}"
+    ><div class="ki-switch-knob"></div></div>
+    <span class="ki-modus-pill" data-ki-pill>Modus: Rechtschreibprüfung (LanguageTool)</span>
+  </div>
+  <div id="kiFeedbackBtnArea" style="display:none;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+    <button class="btn btn-ki" id="kiFeedbackBtn" onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
+  </div>
+  <div id="kiFeedbackResult"></div>
+  <div class="sol-inline" id="sol_ko_ges">✓ Mögliche Antwort: Beispiele könnten sein: Montage von Wallboxen für E-Autos in Mehrfamilienhäusern, Anschluss neuer Photovoltaik-Anlagen ans Netz bei Neubauten wegen der Solarpflicht, oder Austausch alter Stromzähler gegen Smart Meter inkl. Einrichtung der Kundenschnittstelle (KS2) für private Energiemanagementsysteme. Für die Ausbildung bedeutet das: neue Kompetenzen rund um Netzanschluss, Digitalisierung und Energiemanagement werden zunehmend gefragt.</div>
+  <div class="block-reset-row" style="text-align:right;margin-top:7px;">
+    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_ges']);return false;">↺ Nur diese Frage zurücksetzen</a>
+  </div>
+</div>
+
+  <div id="spellGlobalLimitNote" class="spell-limit-note">⚠ Rechtschreibung: Erkennt nicht alle Fehler (z.B. Zeichensetzung, Satzanfang).</div>
+  <div class="btn-row">
+    <button class="btn spell-btn-main" onclick="checkAllSpelling(this)">Rechtschreibung</button>
+    <button class="btn btn-check" onclick="checkAll()">Überprüfen</button>
+    <button class="btn btn-ghost" onclick="printAsPDF()">Als PDF drucken</button>
+    <button class="btn btn-dl" onclick="downloadFile()">Speichern</button>
+    <button class="btn btn-ghost" onclick="resetAll()">Zurücksetzen</button>
+  </div>
+  <p style="color:var(--ink-light);font-size:11.5px;font-family:'JetBrains Mono',monospace;margin-top:28px;border-top:1px solid var(--rule);padding-top:12px;">
+    <span id="footerName"></span> · Aktuell · Wahlpflicht Berufsgruppe (Beispiel Elektro) · Eigenständig recherchiert (WebSearch/WebFetch, Juli 2026) — keine Übernahme urheberrechtlich geschützter Inhalte Dritter.
+  </p>
+  <p style="margin-top:6px;">
+    <a href="#" id="erweiterteNutzungLink" onclick="erweiterteNutzungUmschalten();return false;" style="font-size:11px;color:#b0aa9c;text-decoration:none;">⚙ Erweiterte Nutzung</a>
+  </p>
+</div>
+<script>
+const SAFE_FN = 'AKTUELL_2026-07_elektro';
+function istPlausibleAntwort(text) {
+  const t = (text||'').trim(), ol = t.replace(/\s+/g,'');
+  if (ol.length < 8) return false;
+  if ((t.match(/[a-zA-ZäöüÄÖÜ]/g)||[]).length < 2) return false;
+  if (/(.)\1{2,}/.test(ol.toLowerCase()) && new Set(ol.toLowerCase()).size <= 2) return false;
+  if (/(asdf|qwer|qwert|zxcv)/i.test(ol)) return false;
+  return t.split(/\s+/).filter(w=>w.length>=4).some(function(w) { const nb=w.replace(/[^a-zA-ZäöüÄÖÜ]/g,''); return nb.length>=4 && new Set(nb.toLowerCase()).size>=3; });
+}
+function checkAll() {
+  document.querySelectorAll('textarea').forEach(function(ta) {
+    const isKo = ta.closest('.ko-box') !== null;
+    if(isKo) return;
+    const id = ta.id;
+    const sol = document.getElementById('sol_' + id.replace(/^ta_/, ''));
+    if(!sol) return;
+    if(!sol.dataset.origText) sol.dataset.origText = sol.textContent;
+    const w = ta.value.trim();
+    if(!w) {
+      sol.textContent = 'Bitte zuerst Text eingeben.';
+      sol.classList.remove('sol-unplausibel-hint');
+      sol.classList.add('visible', 'sol-empty-hint');
+      ta.style.borderColor = '#c0392b';
+    } else if(!istPlausibleAntwort(w)) {
+      sol.textContent = 'Bitte eine ernsthafte Antwort eingeben.';
+      sol.classList.remove('sol-empty-hint');
+      sol.classList.add('visible', 'sol-unplausibel-hint');
+      ta.style.borderColor = '#c0392b';
+    } else {
+      sol.classList.remove('sol-empty-hint', 'sol-unplausibel-hint');
+      const loesung = sol.dataset.origText || '';
+      sol.textContent = loesung.trim() ? loesung : '✓ Eigene Antwort (keine Musterlösung hinterlegt)';
+      sol.classList.add('visible');
+      ta.style.borderColor = '#2a7a3a';
+    }
+  });
+  document.querySelectorAll('.ko-box textarea').forEach(function(ta) {
+    const sol = document.getElementById('sol_' + ta.id);
+    if(!sol) return;
+    if(!sol.dataset.origText) sol.dataset.origText = sol.textContent;
+    if(!ta.value.trim()) {
+      sol.textContent = 'Keine Antwort eingegeben – Musterlösung wird nach dem Ausfüllen angezeigt.';
+      sol.classList.add('visible', 'sol-empty-hint');
+      sol.classList.remove('sol-unplausibel-hint');
+    } else {
+      sol.textContent = sol.dataset.origText;
+      sol.classList.add('visible');
+      sol.classList.remove('sol-empty-hint', 'sol-unplausibel-hint');
+    }
+  });
+}
+function resetAll() {
+  document.querySelectorAll('textarea').forEach(function(el){el.value='';el.style.borderColor='';});
+  document.querySelectorAll('.sol-inline,.sol-inline-sm').forEach(function(el){el.classList.remove('visible','sol-empty-hint','sol-unplausibel-hint');if(el.dataset.origText){el.textContent=el.dataset.origText;delete el.dataset.origText;}});
+  document.querySelectorAll('.paste-warn').forEach(function(el){el.classList.remove('paste-warn');});
+  document.querySelectorAll('.paste-msg.show').forEach(function(el){el.classList.remove('show');});
+  document.querySelectorAll('.spell-result').forEach(function(el){el.className='spell-result';el.textContent='';});
+  const kr=document.getElementById('kiFeedbackResult');if(kr)kr.innerHTML='';
+  try{localStorage.removeItem('abu_autosave_'+SAFE_FN);}catch(e){}
+}
+function resetBlock(triggerLink,textareaIds) {
+  if(!confirm('Nur diesen Auftrag zurücksetzen?'))return;
+  textareaIds.forEach(function(id){
+    const ta=document.getElementById(id);if(!ta)return;
+    ta.value='';ta.style.borderColor='';
+    const sol=document.getElementById('sol_'+id);
+    if(sol){sol.classList.remove('visible','sol-empty-hint','sol-unplausibel-hint');if(sol.dataset.origText){sol.textContent=sol.dataset.origText;delete sol.dataset.origText;}}
+  });
+  const kr=document.getElementById('kiFeedbackResult');if(kr)kr.innerHTML='';
+}
+function printAsPDF() {
+  const n=document.getElementById('studentName').value.trim();
+  const fn=document.getElementById('footerName');if(fn)fn.textContent=n;
+  document.title=n?SAFE_FN+'_'+n.replace(/\s+/g,'_'):SAFE_FN;
+  window.focus();setTimeout(function(){try{window.print();}catch(e){alert('Bitte Strg+P verwenden.');}},80);
+}
+function collectVals(v){document.querySelectorAll('textarea[id]').forEach(function(el){v[el.id]=el.value;});}
+function restoreVals(v){Object.keys(v).forEach(function(k){if(k==='name')return;const el=document.getElementById(k);if(el)el.value=v[k];});}
+async function downloadFile() {
+  const name=document.getElementById('studentName').value.trim();
+  if(!name){alert('Bitte zuerst Vor- und Nachname eingeben!');document.getElementById('studentName').focus();return;}
+  const v={};collectVals(v);v.name=name;
+  const fn=document.getElementById('footerName');if(fn)fn.textContent=name;
+  document.documentElement.setAttribute('data-saved-values',JSON.stringify(v).replace(/"/g,'&quot;'));
+  const html=document.documentElement.outerHTML;
+  const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+  const sn=SAFE_FN+'_'+name.replace(/\s+/g,'_')+'.html';
+  if(window.showSaveFilePicker){try{const h=await window.showSaveFilePicker({suggestedName:sn,types:[{description:'HTML-Datei',accept:{'text/html':['.html']}}]});const w=await h.createWritable();await w.write(blob);await w.close();return;}catch(err){if(err&&err.name==='AbortError')return;}}
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=sn;a.click();
+}
+function copyAllToClipboard() {
+  const ws=document.querySelector('.ws');let out=[];
+  const tt=ws.querySelector('.task-title');if(tt)out.push(tt.textContent.trim(),'');
+  ws.querySelectorAll('table.ex tbody tr').forEach(function(tr){
+    const cells=tr.querySelectorAll('td');if(!cells.length)return;
+    const label=cells[0].textContent.replace(/\s+/g,' ').trim();
+    const ta=tr.querySelector('textarea');
+    if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
+  });
+  ws.querySelectorAll('.ko-box').forEach(function(kb){
+    const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');
+    if(kt)out.push('💬 '+kt.textContent.trim());
+    out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');
+  });
+  const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
+  const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
+  function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(show).catch(function(){});
+}
+function attachPasteWarning(){
+  document.querySelectorAll('textarea').forEach(function(ta){
+    if(ta.dataset.pasteWatched)return;ta.dataset.pasteWatched='1';
+    let msg=ta.nextElementSibling;
+    if(!msg||!msg.classList.contains('paste-msg')){msg=document.createElement('div');msg.className='paste-msg';msg.textContent='⚠ Text eingefügt – bitte in eigenen Worten formulieren.';ta.insertAdjacentElement('afterend',msg);}
+    let pf=[];
+    ta.addEventListener('paste',function(e){let pt='';try{pt=(e.clipboardData||window.clipboardData).getData('text');}catch(err){}if(pt&&pt.trim()!=='')pf.push(pt.trim());ta.classList.add('paste-warn');msg.classList.add('show');});
+    ta.addEventListener('input',function(){if(!ta.value.trim()){pf=[];ta.classList.remove('paste-warn');msg.classList.remove('show');return;}pf=pf.filter(function(f){return ta.value.indexOf(f)!==-1;});if(!pf.length){ta.classList.remove('paste-warn');msg.classList.remove('show');}});
+  });
+}
+attachPasteWarning();
+function ensureSpellResultBox(ta){let ins=ta;if(ta.nextElementSibling&&ta.nextElementSibling.classList.contains('paste-msg'))ins=ta.nextElementSibling;let rb=ins.nextElementSibling;if(!rb||!rb.classList.contains('spell-result')){rb=document.createElement('div');rb.className='spell-result';ins.insertAdjacentElement('afterend',rb);}return rb;}
+function showGlobalSpellLimitNote(){const n=document.getElementById('spellGlobalLimitNote');if(n)n.classList.add('show');}
+function checkAllSpelling(triggerBtn){
+  const tas=Array.from(document.querySelectorAll('textarea')).filter(function(ta){return(ta.value||'').trim()!=='';});
+  if(!tas.length){alert('Es wurde noch kein Text eingegeben.');return;}
+  showGlobalSpellLimitNote();
+  if(triggerBtn){triggerBtn.disabled=true;triggerBtn.dataset.origLabel=triggerBtn.dataset.origLabel||triggerBtn.textContent;triggerBtn.textContent='⏳ Prüfe '+tas.length+' Antwort'+(tas.length===1?'':'en')+' …';}
+  let remaining=tas.length;
+  function done(){remaining--;if(remaining<=0&&triggerBtn){triggerBtn.disabled=false;triggerBtn.textContent=triggerBtn.dataset.origLabel;}}
+  tas.forEach(function(ta){runSpellcheck(ta,ensureSpellResultBox(ta),done);});
+}
+function runSpellcheck(ta,rb,onDone){
+  const text=(ta.value||'').trim();if(!text){if(onDone)onDone();return;}
+  rb.className='spell-result show';rb.textContent='Wird geprüft …';
+  const p=new URLSearchParams();p.append('text',text);p.append('language','de-CH');
+  fetch('https://api.languagetool.org/v2/check',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:p.toString()})
+  .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+  .then(function(d){renderSpellResult(d,text,rb);})
+  .catch(function(){rb.className='spell-result show spell-error';rb.textContent='⚠ Prüfung aktuell nicht möglich.';})
+  .finally(function(){if(onDone)onDone();});
+}
+function escapeHtml(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+function renderSpellResult(data,originalText,rb){
+  const matches=(data&&data.matches)||[];
+  if(!matches.length){rb.className='spell-result show spell-ok';rb.innerHTML='';const cb=document.createElement('button');cb.className='spell-close-btn';cb.type='button';cb.textContent='✕';cb.onclick=function(){rb.classList.remove('show');};rb.appendChild(cb);const ok=document.createElement('span');ok.textContent='✓ Keine Fehler gefunden.';rb.appendChild(ok);return;}
+  rb.className='spell-result show spell-issues';rb.innerHTML='';
+  const cb=document.createElement('button');cb.className='spell-close-btn';cb.type='button';cb.textContent='✕';cb.onclick=function(){rb.classList.remove('show');};rb.appendChild(cb);
+  const sum=document.createElement('div');sum.textContent='⚠ '+matches.length+' mögliche(r) Fehler:';rb.appendChild(sum);
+  const hl=document.createElement('div');hl.className='spell-highlighted-text';
+  let html='',pos=0;
+  matches.slice().sort(function(a,b){return a.offset-b.offset;}).forEach(function(m){
+    if(m.offset<pos)return;html+=escapeHtml(originalText.substring(pos,m.offset));
+    html+='<mark class="spell-mark" title="'+(m.shortMessage||m.message||'')+'">'+escapeHtml(originalText.substring(m.offset,m.offset+m.length))+'</mark>';
+    pos=m.offset+m.length;
+  });
+  html+=escapeHtml(originalText.substring(pos));hl.innerHTML=html;rb.appendChild(hl);
+  const list=document.createElement('ul');
+  matches.slice(0,12).forEach(function(m){
+    const li=document.createElement('li');
+    const os=document.createElement('span');os.className='spell-orig';os.textContent=originalText.substring(m.offset,m.offset+m.length);li.appendChild(os);
+    if(m.replacements&&m.replacements.length){const ar=document.createTextNode(' → ');li.appendChild(ar);const fs=document.createElement('span');fs.className='spell-fix';fs.textContent=m.replacements.slice(0,3).map(function(r){return r.value;}).join(' / ');li.appendChild(fs);}
+    const ms=document.createElement('div');ms.style.cssText='font-size:11px;color:#7a6a4a;margin-top:1px;';ms.textContent=m.shortMessage||m.message||'';li.appendChild(ms);
+    list.appendChild(li);
+  });
+  rb.appendChild(list);
+}
+window.kiModeUmschalten=function(el){
+  const aktiv=!el.classList.contains('on');el.classList.toggle('on',aktiv);el.setAttribute('aria-checked',aktiv?'true':'false');
+  const kb=document.getElementById('kiFeedbackBtn');if(kb)kb.disabled=!aktiv;
+  document.querySelectorAll('[data-ki-pill]').forEach(function(p){p.textContent=aktiv?'Modus: KI-Feedback verfügbar':'Modus: Rechtschreibprüfung (LanguageTool)';p.classList.toggle('on',aktiv);});
+};
+window.kiFeedbackKlick=function(btn){
+  const rb=document.getElementById('kiFeedbackResult');
+  rb.innerHTML='<div class="kf-feedback-box kf-error"><span class="kf-feedback-label">Hinweis</span><p>KI-Feedback ist in diesem Muster noch nicht an den Produktions-Worker angebunden (bewusst deaktiviert, solange die Aktualität-Kachel nicht offiziell live ist).</p></div>';
+};
+const ERWEITERT_KEY = 'abu_erweiterte_nutzung_aktuell';
+function wendeErweiterteNutzungAn() {
+  const aktiv = localStorage.getItem(ERWEITERT_KEY) === '1';
+  const kta = document.getElementById('kiToggleArea'); if (kta) kta.style.display = aktiv ? 'flex' : 'none';
+  const kba = document.getElementById('kiFeedbackBtnArea'); if (kba) kba.style.display = aktiv ? 'flex' : 'none';
+  const link = document.getElementById('erweiterteNutzungLink'); if (link) link.textContent = aktiv ? '⚙ Erweiterte Nutzung (an)' : '⚙ Erweiterte Nutzung';
+}
+function erweiterteNutzungUmschalten() {
+  const aktuell = localStorage.getItem(ERWEITERT_KEY) === '1';
+  if (!aktuell) { const e = prompt('Passwort:'); if (!e || e !== 'abu') { if (e !== null) alert('Falsches Passwort.'); return; } }
+  try { localStorage.setItem(ERWEITERT_KEY, aktuell ? '0' : '1'); } catch(e) {}
+  wendeErweiterteNutzungAn();
+}
+document.addEventListener('DOMContentLoaded', wendeErweiterteNutzungAn);
+document.addEventListener('copy',function(e){
+  const sel=window.getSelection();if(!sel||!sel.rangeCount)return;
+  const node=sel.getRangeAt(0).commonAncestorContainer;
+  const el=node.nodeType===1?node:node.parentElement;
+  if(el&&el.closest('.sol-inline,.sol-inline-sm,.kf-feedback-box'))e.preventDefault();
+});
+</script>
+</body>
+</html>
