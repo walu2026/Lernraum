@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="slp2026-thema" content="2">
+<meta name="slp2026-ls" content="B">
+<meta name="slp2026-ges" content="B1">
+<meta name="slp2026-suk" content="—">
+<meta name="slp2026-status" content="kern">
+<meta name="slp2026-efz3" content="kern">
+<meta name="slp2026-format" content="erklaerung">
+<meta name="slp2026-ow" content="—">
 <title>202-03 · Güterarten</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
@@ -219,11 +227,21 @@
   <div class="sol-inline-sm" id="b30_score"></div>
 
 <div class="ko-box reveal" style="animation-delay:.2s">
-  <div class="ko-label">💬 Kompetenzorientierte Frage</div>
+  <div class="ko-label">💬 Kompetenzorientierte Frage (Gesellschaft)</div>
   <div class="ko-text" id="ko_text_202_[UE]_A03">Wähle ein Gut oder eine Dienstleistung aus deinem Alltag. Ordne es mindestens zwei Kategorien der Tabelle zu und begründe die Einordnung. Erkläre ausserdem: Kann sich die Kategorie eines Gutes je nach Situation oder Person verändern – und wenn ja, wie?</div>
-  <textarea id="ko_30" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Wähle ein Gut oder eine Dienstleistung aus deinem Alltag. Ordne es mindestens zwei Kategorien der Tabelle zu und begründe die Einordnung. Erkläre ausserdem: Kann sich die Kategorie eines Gutes je nach Situation oder Person verändern – und wenn ja, wie?"
-    data-ki-loesung="Wasser ist in der Schweiz häufig ein freies Gut, in trockenen Gebieten aber ein wirtschaftliches Gut. Ein Auto ist für eine Privatperson ein Konsumgut, für einen Kurier dagegen ein Produktionsgut. Die Einordnung hängt also von Situation und Nutzung ab."></textarea>
+  <textarea id="ko_30" rows="5" placeholder="Meine Antwort …"></textarea>
+  <div class="sol-inline" id="sol_ko_30">✓ Individuelle Antwort möglich. Beispiel: Wasser ist in der Schweiz häufig ein freies Gut, in trockenen Gebieten aber ein wirtschaftliches Gut. Ein Auto ist für eine Privatperson ein Konsumgut, für einen Kurier dagegen ein Produktionsgut. Die Einordnung hängt also von Situation und Nutzung ab.</div>
+  <div class="block-reset-row" style="text-align:right;margin-top:7px;">
+    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_30']);return false;">↺ Nur diese Frage zurücksetzen</a>
+  </div>
+</div>
+
+<div class="ko-box reveal" style="animation-delay:.24s">
+  <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
+  <div class="ko-text" id="ko_text_suk_202_[UE]_A03">Erkläre einer Person, die neu in die Schweiz gezogen ist, in 3–4 einfachen Sätzen, warum Trinkwasser hier meist kostenlos wirkt, obwohl es eigentlich ein wirtschaftliches Gut ist.</div>
+  <textarea id="ko_suk_202a03" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Erklaere einer Person, die neu in die Schweiz gezogen ist, in 3-4 einfachen Saetzen, warum Trinkwasser hier meist kostenlos wirkt, obwohl es eigentlich ein wirtschaftliches Gut ist."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert und verstaendlich: In der Schweiz gibt es genug Wasser, deshalb kostet es fast nichts, obwohl es eigentlich ein wirtschaftliches Gut ist (man muss es aufbereiten und liefern). In Gebieten mit wenig Wasser ist es viel teurer. Beispiel: 'Bei uns gibt es so viel Wasser, dass es fast nichts kostet - aber jemand muss es trotzdem sauber machen und liefern, das kostet Geld.'"></textarea>
   <div class="ki-toggle-row" id="kiToggleArea" style="display:none">
     <span class="ki-toggle-label">KI-Modus</span>
     <div class="ki-switch" id="kiModeToggle" role="switch" aria-checked="false" tabindex="0"
@@ -236,9 +254,9 @@
     <button class="btn btn-ki" id="kiFeedbackBtn" onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
   </div>
   <div id="kiFeedbackResult"></div>
-  <div class="sol-inline" id="sol_ko_30">✓ Individuelle Antwort möglich. Beispiel: Wasser ist in der Schweiz häufig ein freies Gut, in trockenen Gebieten aber ein wirtschaftliches Gut. Ein Auto ist für eine Privatperson ein Konsumgut, für einen Kurier dagegen ein Produktionsgut. Die Einordnung hängt also von Situation und Nutzung ab.</div>
+  <div class="sol-inline" id="sol_ko_suk_202a03">Eine gute Erklärung ist einfach formuliert: nennt Verfügbarkeit als Grund für den tiefen Preis, erwähnt trotzdem anfallende Kosten (Aufbereitung/Lieferung). Beispiel: «Bei uns gibt es so viel Wasser, dass es fast nichts kostet – aber jemand muss es trotzdem sauber machen und liefern, das kostet Geld.»</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
-    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_30']);return false;">↺ Nur diese Frage zurücksetzen</a>
+    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_202a03']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
 </div>
 
@@ -546,7 +564,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}

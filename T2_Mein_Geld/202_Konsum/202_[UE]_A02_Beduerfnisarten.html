@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="slp2026-thema" content="2">
+<meta name="slp2026-ls" content="B">
+<meta name="slp2026-ges" content="—">
+<meta name="slp2026-suk" content="—">
+<meta name="slp2026-status" content="kern">
+<meta name="slp2026-efz3" content="kern">
+<meta name="slp2026-format" content="nachricht">
+<meta name="slp2026-ow" content="—">
 <title>202-02 · Bedürfnisarten</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
@@ -219,11 +227,21 @@
   <div class="sol-inline-sm" id="b29_score"></div>
 
 <div class="ko-box reveal" style="animation-delay:.2s">
-  <div class="ko-label">💬 Kompetenzorientierte Frage</div>
+  <div class="ko-label">💬 Kompetenzorientierte Frage (Gesellschaft)</div>
   <div class="ko-text" id="ko_text_202_[UE]_A02">Denke an eine Kaufentscheidung oder einen Wunsch aus deinem Alltag. Ordne dieses Bedürfnis den zutreffenden Kategorien aus der Tabelle zu. Erkläre dabei: Können einem Bedürfnis gleichzeitig mehrere Arten zugeordnet werden – und was bedeutet das für das Konsumverhalten?</div>
-  <textarea id="ko_29" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Denke an eine Kaufentscheidung oder einen Wunsch aus deinem Alltag. Ordne dieses Bedürfnis den zutreffenden Kategorien aus der Tabelle zu. Erkläre dabei: Können einem Bedürfnis gleichzeitig mehrere Arten zugeordnet werden – und was bedeutet das für das Konsumverhalten?"
-    data-ki-loesung="Ein Smartphone kann gleichzeitig ein Individual-, Luxus- und materielles Bedürfnis sein. Es erfüllt persönliche Wünsche, kostet Geld und ist nicht zwingend zum Überleben nötig. Das zeigt, dass Kaufentscheidungen meist mehrere Bedürfnisse gleichzeitig betreffen."></textarea>
+  <textarea id="ko_29" rows="5" placeholder="Meine Antwort …"></textarea>
+  <div class="sol-inline" id="sol_ko_29">✓ Individuelle Antwort möglich. Beispiel: Ein Smartphone kann gleichzeitig ein Individual-, Luxus- und materielles Bedürfnis sein. Es erfüllt persönliche Wünsche, kostet Geld und ist nicht zwingend zum Überleben nötig. Das zeigt, dass Kaufentscheidungen meist mehrere Bedürfnisse gleichzeitig betreffen.</div>
+  <div class="block-reset-row" style="text-align:right;margin-top:7px;">
+    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_29']);return false;">↺ Nur diese Frage zurücksetzen</a>
+  </div>
+</div>
+
+<div class="ko-box reveal" style="animation-delay:.24s">
+  <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
+  <div class="ko-text" id="ko_text_suk_202_[UE]_A02">Ihre Freundin überlegt, ein teures Marken-T-Shirt zu kaufen, obwohl sie knapp bei Kasse ist. Schreiben Sie ihr eine kurze, freundliche Nachricht: Handelt es sich eher um ein Bedürfnis oder einen Wunsch – und was raten Sie ihr?</div>
+  <textarea id="ko_suk_202a02" rows="5" placeholder="Meine Nachricht …"
+    data-ki-aufgabe="Ihre Freundin ueberlegt, ein teures Marken-T-Shirt zu kaufen, obwohl sie knapp bei Kasse ist. Schreiben Sie ihr eine kurze, freundliche Nachricht: Handelt es sich eher um ein Beduerfnis oder einen Wunsch - und was raten Sie ihr?"
+    data-ki-loesung="Eine gute Nachricht ist freundlich, nicht belehrend und konkret: ordnet das T-Shirt als Wunsch (nicht Grundbeduerfnis) ein, gibt einen praktischen Rat (z.B. warten, sparen, Alternative). Beispiel: 'Hey, das T-Shirt ist ja eher ein Wunsch, kein Muss - vielleicht lohnt es sich, noch etwas zu sparen, bevor du es kaufst?'"></textarea>
   <div class="ki-toggle-row" id="kiToggleArea" style="display:none">
     <span class="ki-toggle-label">KI-Modus</span>
     <div class="ki-switch" id="kiModeToggle" role="switch" aria-checked="false" tabindex="0"
@@ -236,9 +254,9 @@
     <button class="btn btn-ki" id="kiFeedbackBtn" onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
   </div>
   <div id="kiFeedbackResult"></div>
-  <div class="sol-inline" id="sol_ko_29">✓ Individuelle Antwort möglich. Beispiel: Ein Smartphone kann gleichzeitig ein Individual-, Luxus- und materielles Bedürfnis sein. Es erfüllt persönliche Wünsche, kostet Geld und ist nicht zwingend zum Überleben nötig. Das zeigt, dass Kaufentscheidungen meist mehrere Bedürfnisse gleichzeitig betreffen.</div>
+  <div class="sol-inline" id="sol_ko_suk_202a02">Eine gute Nachricht ist freundlich, nicht belehrend und konkret: ordnet Bedürfnis/Wunsch ein, gibt einen praktischen Rat. Beispiel: «Hey, das T-Shirt ist ja eher ein Wunsch, kein Muss – vielleicht lohnt es sich, noch etwas zu sparen, bevor du es kaufst?»</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
-    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_29']);return false;">↺ Nur diese Frage zurücksetzen</a>
+    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_202a02']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
 </div>
 
@@ -546,7 +564,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
