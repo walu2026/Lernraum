@@ -279,11 +279,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_ek">Nennen Sie zwei rechtliche Unterschiede zwischen Ehe und Konkubinat und erklären Sie diese in eigenen Worten.</div>
-  <textarea id="ko_suk_ek" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Nenne zwei rechtliche Unterschiede zwischen Ehe und Konkubinat und erklaere diese in eigenen Worten."
-    data-ki-loesung="Zum Beispiel: gesetzliches Erbrecht (Ehegatten erben automatisch, Konkubinatspartner nicht ohne Testament) und Unterhaltspflicht (Ehepartner sind sich gegenseitig zu Unterstützung verpflichtet, bei Konkubinat besteht diese Pflicht grundsätzlich nicht)."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_ek">✓ Mögliche Antwort: Gesetzliches Erbrecht (Ehegatten erben automatisch, Konkubinatspartner nicht ohne Testament) und Unterhaltspflicht (Ehepartner sind sich gegenseitig zu Unterstützung verpflichtet, bei Konkubinat besteht diese Pflicht grundsätzlich nicht).</div>
+  <div class="ko-text" id="ko_text_suk_ek">Ein Freund überlegt, ob Heiraten oder Konkubinat rechtlich einen Unterschied macht. Erklären Sie ihm in 4–5 Sätzen zwei rechtliche Unterschiede zwischen Ehe und Konkubinat.</div>
+  <textarea id="ko_suk_ek" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ein Freund ueberlegt, ob Heiraten oder Konkubinat rechtlich einen Unterschied macht. Erklaeren Sie ihm in 4-5 Saetzen zwei rechtliche Unterschiede zwischen Ehe und Konkubinat."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert und nennt zwei konkrete Unterschiede, z.B.: gesetzliches Erbrecht (Ehegatten erben automatisch, Konkubinatspartner nicht ohne Testament) und Unterhaltspflicht (Ehepartner sind sich gegenseitig zu Unterstuetzung verpflichtet, bei Konkubinat grundsaetzlich nicht)."></textarea>
+  <div class="sol-inline" id="sol_ko_suk_ek">Eine gute Erklärung ist einfach formuliert und nennt zwei konkrete Unterschiede: gesetzliches Erbrecht und Unterhaltspflicht.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_ek']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -593,7 +593,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}

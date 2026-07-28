@@ -259,11 +259,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_vh">Erklären Sie in eigenen Worten, welche Voraussetzungen für eine Eheschliessung in der Schweiz erfüllt sein müssen.</div>
-  <textarea id="ko_suk_vh" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Erklaere in eigenen Worten, welche Voraussetzungen fuer eine Eheschliessung in der Schweiz erfuellt sein muessen."
-    data-ki-loesung="Für eine Eheschliessung müssen beide Personen mindestens 18 Jahre alt und urteilsfähig sein, dürfen nicht bereits verheiratet sein und dürfen nicht in direkter Linie oder als Geschwister miteinander verwandt sein. Zudem ist ein Vorbereitungsverfahren beim Zivilstandsamt nötig."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_vh">✓ Mögliche Antwort: Für eine Eheschliessung müssen beide Personen mindestens 18 Jahre alt und urteilsfähig sein, dürfen nicht bereits verheiratet sein und dürfen nicht in direkter Linie oder als Geschwister miteinander verwandt sein. Zudem ist ein Vorbereitungsverfahren beim Zivilstandsamt nötig.</div>
+  <div class="ko-text" id="ko_text_suk_vh">Ein Bekannter aus dem Ausland möchte in der Schweiz heiraten und fragt Sie nach den Voraussetzungen. Erklären Sie sie ihm in 4–5 Sätzen.</div>
+  <textarea id="ko_suk_vh" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ein Bekannter aus dem Ausland moechte in der Schweiz heiraten und fragt Sie nach den Voraussetzungen. Erklaeren Sie sie ihm in 4-5 Saetzen."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert und vollstaendig. Beispiel: 'Fuer eine Eheschliessung muesst ihr beide mindestens 18 Jahre alt und urteilsfaehig sein, duerft nicht bereits verheiratet sein und nicht in direkter Linie oder als Geschwister miteinander verwandt sein. Ausserdem braucht es ein Vorbereitungsverfahren beim Zivilstandsamt.'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_vh">Eine gute Erklärung ist einfach formuliert und vollständig: Mindestalter 18, Urteilsfähigkeit, nicht bereits verheiratet, keine zu nahe Verwandtschaft, Vorbereitungsverfahren beim Zivilstandsamt.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_vh']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -573,7 +573,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}

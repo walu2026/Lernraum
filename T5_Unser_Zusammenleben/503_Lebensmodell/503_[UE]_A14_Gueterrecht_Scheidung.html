@@ -247,11 +247,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_a16">Erklären Sie in eigenen Worten, was mit «Vorschlag» im Güterrecht gemeint ist.</div>
-  <textarea id="ko_suk_a16" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Erklaere in eigenen Worten, was mit 'Vorschlag' im Gueterrecht gemeint ist."
-    data-ki-loesung="Der Vorschlag ist der Betrag, um den die Errungenschaft eines Ehegatten die Schulden übersteigt, also der Reingewinn, der während der Ehe erwirtschaftet wurde. Bei der Errungenschaftsbeteiligung wird dieser Vorschlag zwischen den Ehegatten hälftig aufgeteilt."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_a16">✓ Mögliche Antwort: Der Vorschlag ist der Betrag, um den die Errungenschaft eines Ehegatten die Schulden übersteigt, also der Reingewinn, der während der Ehe erwirtschaftet wurde. Bei der Errungenschaftsbeteiligung wird dieser Vorschlag zwischen den Ehegatten hälftig aufgeteilt.</div>
+  <div class="ko-text" id="ko_text_suk_a16">Ein Bekannter steht vor einer Scheidung und versteht den Begriff «Vorschlag» im Güterrecht nicht. Erklären Sie es ihm in 3–4 einfachen Sätzen.</div>
+  <textarea id="ko_suk_a16" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ein Bekannter steht vor einer Scheidung und versteht den Begriff 'Vorschlag' im Gueterrecht nicht. Erklaeren Sie es ihm in 3-4 einfachen Saetzen."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert. Beispiel: 'Der Vorschlag ist der Betrag, um den deine Errungenschaft die Schulden uebersteigt - also der Reingewinn, den du waehrend der Ehe erwirtschaftet hast. Bei der Errungenschaftsbeteiligung wird dieser Vorschlag zwischen euch haelftig aufgeteilt.'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_a16">Eine gute Erklärung ist einfach formuliert. Beispiel: «Der Vorschlag ist der Betrag, um den deine Errungenschaft die Schulden übersteigt – also der Reingewinn, den du während der Ehe erwirtschaftet hast. Bei der Errungenschaftsbeteiligung wird dieser Vorschlag zwischen euch hälftig aufgeteilt.»</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_a16']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -561,7 +561,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
