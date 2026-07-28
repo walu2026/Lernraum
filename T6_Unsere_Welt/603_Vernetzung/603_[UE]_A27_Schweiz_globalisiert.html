@@ -239,11 +239,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_g26">Nennen Sie zwei Schweizer Branchen, die besonders stark vom Weltmarkt abhängig sind, und begründen Sie kurz weshalb.</div>
-  <textarea id="ko_suk_g26" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Nenne zwei Schweizer Branchen, die besonders stark vom Weltmarkt abhaengig sind, und begruende kurz weshalb."
-    data-ki-loesung="Die Pharmaindustrie exportiert einen Grossteil ihrer Produkte ins Ausland und ist auf globale Märkte angewiesen. Die Uhrenindustrie verkauft ebenfalls hauptsächlich an internationale Kundschaft, weshalb Wechselkurse und ausländische Nachfrage ihren Erfolg stark beeinflussen."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_g26">✓ Mögliche Antwort: Die Pharmaindustrie exportiert einen Grossteil ihrer Produkte ins Ausland und ist auf globale Märkte angewiesen. Die Uhrenindustrie verkauft ebenfalls hauptsächlich an internationale Kundschaft, weshalb Wechselkurse und ausländische Nachfrage ihren Erfolg stark beeinflussen.</div>
+  <div class="ko-text" id="ko_text_suk_g26">Ein Bekannter überlegt sich eine Lehre in einer exportabhängigen Branche und fragt Sie um Rat. Nennen Sie ihm zwei Schweizer Branchen, die besonders stark vom Weltmarkt abhängig sind, und begründen Sie kurz weshalb.</div>
+  <textarea id="ko_suk_g26" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ein Bekannter ueberlegt sich eine Lehre in einer exportabhaengigen Branche und fragt Sie um Rat. Nennen Sie ihm zwei Schweizer Branchen, die besonders stark vom Weltmarkt abhaengig sind, und begruenden Sie kurz weshalb."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert und nennt zwei Branchen mit Begruendung, z.B.: Die Pharmaindustrie exportiert einen Grossteil ihrer Produkte ins Ausland und ist auf globale Maerkte angewiesen. Die Uhrenindustrie verkauft ebenfalls hauptsaechlich an internationale Kundschaft, weshalb Wechselkurse und auslaendische Nachfrage ihren Erfolg stark beeinflussen."></textarea>
+  <div class="sol-inline" id="sol_ko_suk_g26">Eine gute Erklärung ist einfach formuliert und nennt zwei Branchen mit Begründung: z. B. Pharma und Uhrenindustrie.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_g26']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -553,7 +553,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}

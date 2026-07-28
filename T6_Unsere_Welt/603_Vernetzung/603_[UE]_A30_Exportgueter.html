@@ -243,11 +243,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_g29">Nennen Sie in eigenen Worten die drei wichtigsten Export- und Importgütergruppen der Schweiz.</div>
-  <textarea id="ko_suk_g29" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Nenne in eigenen Worten die drei wichtigsten Export- und Importguetergruppen der Schweiz."
-    data-ki-loesung="Zu den wichtigsten Exportgütern zählen Pharma- und Chemieprodukte, Maschinen sowie Uhren. Bei den Importen sind es unter anderem Fahrzeuge, Energieträger und ebenfalls Chemieprodukte."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_g29">✓ Mögliche Antwort: Zu den wichtigsten Exportgütern zählen Pharma- und Chemieprodukte, Maschinen sowie Uhren. Bei den Importen sind es unter anderem Fahrzeuge, Energieträger und ebenfalls Chemieprodukte.</div>
+  <div class="ko-text" id="ko_text_suk_g29">Ein Austauschschüler fragt Sie, was die Schweiz vor allem exportiert und importiert. Erklären Sie es ihm in 3–4 Sätzen.</div>
+  <textarea id="ko_suk_g29" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ein Austauschschueler fragt Sie, was die Schweiz vor allem exportiert und importiert. Erklaeren Sie es ihm in 3-4 Saetzen."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert. Beispiel: 'Die Schweiz exportiert vor allem Pharma- und Chemieprodukte, Maschinen und Uhren. Importiert werden unter anderem Fahrzeuge, Energietraeger und ebenfalls Chemieprodukte.'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_g29">Eine gute Erklärung ist einfach formuliert. Beispiel: «Die Schweiz exportiert vor allem Pharma- und Chemieprodukte, Maschinen und Uhren. Importiert werden unter anderem Fahrzeuge, Energieträger und ebenfalls Chemieprodukte.»</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_g29']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -557,7 +557,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}

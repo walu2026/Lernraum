@@ -307,11 +307,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_a21">Erklären Sie in eigenen Worten den Unterschied zwischen einem Industrieland und einem Entwicklungsland anhand von zwei Merkmalen.</div>
-  <textarea id="ko_suk_a21" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Erklaere in eigenen Worten den Unterschied zwischen einem Industrieland und einem Entwicklungsland anhand von zwei Merkmalen."
-    data-ki-loesung="Industrieländer haben meist ein hohes Pro-Kopf-Einkommen, gut ausgebaute Infrastruktur, ein starkes Bildungs- und Gesundheitssystem und einen hohen Anteil an Industrie und Dienstleistungen. Entwicklungsländer haben oft ein tieferes Einkommen, schwächere Infrastruktur und einen grösseren Anteil der Bevölkerung in der Landwirtschaft."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_a21">✓ Mögliche Antwort: Industrieländer haben meist ein hohes Pro-Kopf-Einkommen, gut ausgebaute Infrastruktur, ein starkes Bildungs- und Gesundheitssystem und einen hohen Anteil an Industrie und Dienstleistungen. Entwicklungsländer haben oft ein tieferes Einkommen, schwächere Infrastruktur und einen grösseren Anteil der Bevölkerung in der Landwirtschaft.</div>
+  <div class="ko-text" id="ko_text_suk_a21">Ein jüngeres Geschwister fragt Sie, was ein Industrieland von einem Entwicklungsland unterscheidet. Erklären Sie es ihm anhand von zwei Merkmalen in 3–4 Sätzen.</div>
+  <textarea id="ko_suk_a21" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ein juengeres Geschwister fragt Sie, was ein Industrieland von einem Entwicklungsland unterscheidet. Erklaeren Sie es ihm anhand von zwei Merkmalen in 3-4 Saetzen."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert und nennt zwei Merkmale. Beispiel: 'Industrielaender haben meist ein hohes Einkommen pro Person und eine gut ausgebaute Infrastruktur wie Strassen und Schulen. Entwicklungslaender haben oft ein tieferes Einkommen und schwaechere Infrastruktur, und viele Menschen arbeiten dort in der Landwirtschaft.'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_a21">Eine gute Erklärung ist einfach formuliert und nennt zwei Merkmale: Einkommen und Infrastruktur/Wirtschaftsstruktur.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_a21']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -621,7 +621,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}

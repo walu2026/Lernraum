@@ -242,11 +242,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_ikrk">Erklären Sie in eigenen Worten, was das IKRK ist und welche Aufgabe es hat.</div>
-  <textarea id="ko_suk_ikrk" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Erklaere in eigenen Worten, was das IKRK ist und welche Aufgabe es hat."
-    data-ki-loesung="Das IKRK (Internationales Komitee vom Roten Kreuz) ist eine neutrale humanitäre Organisation mit Sitz in Genf. Es schützt und unterstützt Opfer von bewaffneten Konflikten, besucht Kriegsgefangene und hilft, das humanitäre Völkerrecht durchzusetzen."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_ikrk">✓ Mögliche Antwort: Das IKRK (Internationales Komitee vom Roten Kreuz) ist eine neutrale humanitäre Organisation mit Sitz in Genf. Es schützt und unterstützt Opfer von bewaffneten Konflikten, besucht Kriegsgefangene und hilft, das humanitäre Völkerrecht durchzusetzen.</div>
+  <div class="ko-text" id="ko_text_suk_ikrk">Ein jüngeres Geschwister hat vom IKRK gehört, weiss aber nicht, was das ist. Erklären Sie es ihm in 3–4 einfachen Sätzen.</div>
+  <textarea id="ko_suk_ikrk" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ein juengeres Geschwister hat vom IKRK gehoert, weiss aber nicht, was das ist. Erklaeren Sie es ihm in 3-4 einfachen Saetzen."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert. Beispiel: 'Das IKRK ist eine neutrale Hilfsorganisation mit Sitz in Genf. Es hilft und schuetzt Menschen, die unter Kriegen leiden, besucht Kriegsgefangene und sorgt dafuer, dass die Regeln des humanitaeren Voelkerrechts eingehalten werden.'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_ikrk">Eine gute Erklärung ist einfach formuliert. Beispiel: «Das IKRK ist eine neutrale Hilfsorganisation mit Sitz in Genf. Es hilft und schützt Menschen, die unter Kriegen leiden, besucht Kriegsgefangene und sorgt dafür, dass die Regeln des humanitären Völkerrechts eingehalten werden.»</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_ikrk']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -556,7 +556,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}

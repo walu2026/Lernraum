@@ -246,11 +246,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_b14">Nennen Sie zwei Bereiche, die durch die Bilateralen II geregelt werden, und erklären Sie diese in eigenen Worten.</div>
-  <textarea id="ko_suk_b14" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Nenne zwei Bereiche, die durch die Bilateralen II geregelt werden, und erklaere diese in eigenen Worten."
-    data-ki-loesung="Zum Beispiel Schengen/Dublin (erleichtertes Reisen ohne Grenzkontrollen und gemeinsame Regelung von Asylverfahren) und Betrugsbekämpfung (Zusammenarbeit gegen Zoll- und Steuerbetrug). Auch Umwelt oder Bildung gehören zu den Bilateralen II."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_b14">✓ Mögliche Antwort: Schengen/Dublin (erleichtertes Reisen ohne Grenzkontrollen und gemeinsame Regelung von Asylverfahren) und Betrugsbekämpfung (Zusammenarbeit gegen Zoll- und Steuerbetrug). Auch Umwelt oder Bildung gehören zu den Bilateralen II.</div>
+  <div class="ko-text" id="ko_text_suk_b14">Ein Freund fragt Sie, was die Bilateralen II eigentlich regeln. Nennen Sie ihm zwei Bereiche und erklären Sie diese in 3–4 Sätzen.</div>
+  <textarea id="ko_suk_b14" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ein Freund fragt Sie, was die Bilateralen II eigentlich regeln. Nennen Sie ihm zwei Bereiche und erklaeren Sie diese in 3-4 Saetzen."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert und nennt zwei konkrete Bereiche, z.B.: Schengen/Dublin (erleichtertes Reisen ohne Grenzkontrollen und gemeinsame Regelung von Asylverfahren) und Betrugsbekaempfung (Zusammenarbeit gegen Zoll- und Steuerbetrug)."></textarea>
+  <div class="sol-inline" id="sol_ko_suk_b14">Eine gute Erklärung ist einfach formuliert und nennt zwei konkrete Bereiche: z. B. Schengen/Dublin und Betrugsbekämpfung.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_b14']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -560,7 +560,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
