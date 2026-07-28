@@ -251,11 +251,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_ui">Erklären Sie in eigenen Worten, was das Verursacherprinzip ist und wie es beim Umweltschutz angewendet wird.</div>
-  <textarea id="ko_suk_ui" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Erklaere in eigenen Worten, was das Verursacherprinzip ist und wie es beim Umweltschutz angewendet wird."
-    data-ki-loesung="Das Verursacherprinzip besagt, dass wer eine Umweltbelastung verursacht, auch für die Kosten dafür aufkommen soll. Zum Beispiel zahlen Firmen oder Personen, die CO2 ausstossen, eine Abgabe, statt dass die Allgemeinheit die Folgekosten trägt."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_ui">✓ Mögliche Antwort: Das Verursacherprinzip besagt, dass wer eine Umweltbelastung verursacht, auch für die Kosten dafür aufkommen soll. Zum Beispiel zahlen Firmen oder Personen, die CO2 ausstossen, eine Abgabe, statt dass die Allgemeinheit die Folgekosten trägt.</div>
+  <div class="ko-text" id="ko_text_suk_ui">Ein Bekannter fragt Sie, warum Firmen für CO2-Ausstoss zahlen müssen. Erklären Sie ihm in 3–4 einfachen Sätzen, was das Verursacherprinzip ist und wie es beim Umweltschutz angewendet wird.</div>
+  <textarea id="ko_suk_ui" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Ein Bekannter fragt Sie, warum Firmen fuer CO2-Ausstoss zahlen muessen. Erklaeren Sie ihm in 3-4 einfachen Saetzen, was das Verursacherprinzip ist und wie es beim Umweltschutz angewendet wird."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert und nennt ein Beispiel. Beispiel: 'Das Verursacherprinzip heisst: Wer eine Umweltbelastung verursacht, soll auch dafuer bezahlen - statt dass alle anderen die Folgekosten tragen. Deshalb zahlen Firmen, die CO2 ausstossen, eine Abgabe.'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_ui">Eine gute Erklärung ist einfach formuliert und nennt ein Beispiel. Beispiel: «Das Verursacherprinzip heisst: Wer eine Umweltbelastung verursacht, soll auch dafür bezahlen – statt dass alle anderen die Folgekosten tragen. Deshalb zahlen Firmen, die CO2 ausstossen, eine Abgabe.»</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_ui']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -565,7 +565,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}

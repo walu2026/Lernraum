@@ -244,11 +244,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_n37">Erklären Sie in eigenen Worten die drei Dimensionen der Nachhaltigkeit (ökologisch, wirtschaftlich, sozial) anhand je eines eigenen Beispiels.</div>
-  <textarea id="ko_suk_n37" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Erklaere in eigenen Worten die drei Dimensionen der Nachhaltigkeit (oekologisch, wirtschaftlich, sozial) anhand je eines eigenen Beispiels."
-    data-ki-loesung="Ökologisch bedeutet z.B. Ressourcen schonen (Recycling), wirtschaftlich bedeutet langfristig tragfähig wirtschaften (faire Löhne statt kurzfristiger Gewinnmaximierung), sozial bedeutet gerechte Teilhabe aller (z.B. faire Arbeitsbedingungen für alle Mitarbeitenden)."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_n37">✓ Mögliche Antwort: Ökologisch bedeutet z.B. Ressourcen schonen (Recycling), wirtschaftlich bedeutet langfristig tragfähig wirtschaften (faire Löhne statt kurzfristiger Gewinnmaximierung), sozial bedeutet gerechte Teilhabe aller (z.B. faire Arbeitsbedingungen für alle Mitarbeitenden).</div>
+  <div class="ko-text" id="ko_text_suk_n37">Erklären Sie einer Person ohne Vorwissen in 4–6 Sätzen die drei Dimensionen der Nachhaltigkeit (ökologisch, wirtschaftlich, sozial) anhand je eines eigenen Beispiels.</div>
+  <textarea id="ko_suk_n37" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Erklaeren Sie einer Person ohne Vorwissen in 4-6 Saetzen die drei Dimensionen der Nachhaltigkeit (oekologisch, wirtschaftlich, sozial) anhand je eines eigenen Beispiels."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert und nennt je ein konkretes Beispiel: Oekologisch bedeutet z.B. Ressourcen schonen (Recycling), wirtschaftlich bedeutet langfristig tragfaehig wirtschaften (faire Loehne statt kurzfristiger Gewinnmaximierung), sozial bedeutet gerechte Teilhabe aller (z.B. faire Arbeitsbedingungen fuer alle Mitarbeitenden)."></textarea>
+  <div class="sol-inline" id="sol_ko_suk_n37">Eine gute Erklärung ist einfach formuliert und nennt je ein konkretes Beispiel: ökologisch (z. B. Recycling), wirtschaftlich (z. B. faire Löhne statt kurzfristiger Gewinnmaximierung), sozial (z. B. faire Arbeitsbedingungen für alle).</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_n37']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -558,7 +558,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}

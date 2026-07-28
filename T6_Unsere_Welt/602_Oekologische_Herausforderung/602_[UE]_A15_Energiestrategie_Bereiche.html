@@ -245,11 +245,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_e40">Nennen und erläutern Sie in eigenen Worten die drei Bereiche der Energiestrategie 2050.</div>
-  <textarea id="ko_suk_e40" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Nenne und erlaeutere in eigenen Worten die drei Bereiche der Energiestrategie 2050."
-    data-ki-loesung="Die drei Bereiche sind: Energieeffizienz (weniger Energie verbrauchen), Ausbau erneuerbarer Energien (z.B. Sonne, Wind, Wasser, Biomasse) und der geordnete Ausstieg aus der Kernenergie (keine neuen Kernkraftwerke, bestehende dürfen sicher weiterlaufen)."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_e40">✓ Mögliche Antwort: Die drei Bereiche sind: Energieeffizienz (weniger Energie verbrauchen), Ausbau erneuerbarer Energien (z.B. Sonne, Wind, Wasser, Biomasse) und der geordnete Ausstieg aus der Kernenergie (keine neuen Kernkraftwerke, bestehende dürfen sicher weiterlaufen).</div>
+  <div class="ko-text" id="ko_text_suk_e40">Erklären Sie einem Bekannten, der noch nie davon gehört hat, in 3–4 einfachen Sätzen die drei Bereiche der Energiestrategie 2050.</div>
+  <textarea id="ko_suk_e40" rows="5" placeholder="Meine Erklärung …"
+    data-ki-aufgabe="Erklaeren Sie einem Bekannten, der noch nie davon gehoert hat, in 3-4 einfachen Saetzen die drei Bereiche der Energiestrategie 2050."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert und nennt alle drei Bereiche: Energieeffizienz (weniger Energie verbrauchen), Ausbau erneuerbarer Energien (z.B. Sonne, Wind, Wasser, Biomasse) und der geordnete Ausstieg aus der Kernenergie (keine neuen Kernkraftwerke, bestehende duerfen sicher weiterlaufen)."></textarea>
+  <div class="sol-inline" id="sol_ko_suk_e40">Eine gute Erklärung ist einfach formuliert und nennt alle drei Bereiche: Energieeffizienz, Ausbau erneuerbarer Energien und geordneter Ausstieg aus der Kernenergie.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_e40']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -559,7 +559,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
