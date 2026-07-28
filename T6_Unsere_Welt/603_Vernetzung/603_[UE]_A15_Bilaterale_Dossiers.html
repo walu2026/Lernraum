@@ -261,11 +261,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_r15">Ordnen Sie in eigenen Worten drei Dossiers ihrem jeweiligen Themenbereich zu und beschreiben Sie kurz deren Inhalt.</div>
+  <div class="ko-text" id="ko_text_suk_r15">Eine Lernende aus einer anderen Branche fragt Sie, was die Bilateralen Verträge überhaupt umfassen. Ordnen Sie ihr in eigenen Worten drei Dossiers ihrem jeweiligen Themenbereich zu und beschreiben Sie ihr kurz deren Inhalt.</div>
   <textarea id="ko_suk_r15" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Ordne in eigenen Worten drei Dossiers ihrem jeweiligen Themenbereich zu und beschreibe kurz deren Inhalt."
-    data-ki-loesung="Zum Beispiel: Landwirtschaftsabkommen (erleichterter Handel mit Agrarprodukten), Personenfreizügigkeit (Recht auf Wohn- und Arbeitsortswahl), Landverkehrsabkommen (Regelung des grenzüberschreitenden Strassen- und Schienenverkehrs)."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_r15">✓ Mögliche Antwort: Landwirtschaftsabkommen (erleichterter Handel mit Agrarprodukten), Personenfreizügigkeit (Recht auf Wohn- und Arbeitsortswahl), Landverkehrsabkommen (Regelung des grenzüberschreitenden Strassen- und Schienenverkehrs).</div>
+    data-ki-aufgabe="Eine Lernende aus einer anderen Branche fragt Sie, was die Bilateralen Vertraege ueberhaupt umfassen. Ordnen Sie ihr in eigenen Worten drei Dossiers ihrem jeweiligen Themenbereich zu und beschreiben Sie ihr kurz deren Inhalt."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert. Beispiel: 'Das Landwirtschaftsabkommen erleichtert den Handel mit Agrarprodukten. Die Personenfreizuegigkeit regelt das Recht auf freie Wohn- und Arbeitsortswahl. Das Landverkehrsabkommen regelt den grenzueberschreitenden Strassen- und Schienenverkehr.'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_r15">✓ Eine gute Erklärung an die Lernende ist einfach formuliert und nennt drei Dossiers korrekt. Beispiel: «Landwirtschaftsabkommen (Handel mit Agrarprodukten), Personenfreizügigkeit (Recht auf Wohn-/Arbeitsortswahl), Landverkehrsabkommen (Strassen-/Schienenverkehr).»</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_r15']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -575,7 +575,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
@@ -656,7 +656,7 @@ function renderSpellResult(data,originalText,rb){
     rb.innerHTML=html;
   }
   window.kiFeedbackKlick=async function(btn){
-    const ta=document.querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
+    const ta=btn.closest('.ko-box').querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
     const aufgabe=ta.getAttribute('data-ki-aufgabe')||'',loesung=ta.getAttribute('data-ki-loesung')||'',antwort=ta.value.trim();
     const rb=document.getElementById('kiFeedbackResult');
     if(!antwort){rb.innerHTML='<div class="kf-feedback-box kf-error"><span class="kf-feedback-label">Hinweis</span><p>Bitte zuerst eine Antwort schreiben.</p></div>';return;}

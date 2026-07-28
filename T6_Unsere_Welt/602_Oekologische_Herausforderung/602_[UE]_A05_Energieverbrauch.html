@@ -279,11 +279,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_a28">Formulieren Sie in eigenen Worten drei Tipps, mit denen ein Haushalt seinen Energieverbrauch spürbar senken könnte, und begründen Sie diese kurz.</div>
+  <div class="ko-text" id="ko_text_suk_a28">Ihre Mitbewohnerin/Ihr Mitbewohner möchte im WG-Alltag Energie sparen und bittet Sie um Tipps. Schreiben Sie ihr/ihm eine kurze Nachricht (ca. 5 Sätze) mit drei konkreten Tipps, mit denen der Haushalt seinen Energieverbrauch spürbar senken könnte, und begründen Sie diese kurz.</div>
   <textarea id="ko_suk_a28" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Formuliere in eigenen Worten drei Tipps, mit denen ein Haushalt seinen Energieverbrauch spuerbar senken koennte, und begruende diese kurz."
-    data-ki-loesung="Mögliche Tipps: Heizung um 1-2 Grad senken und richtig lüften (spart viel Heizenergie), Geräte im Standby ausschalten statt laufen zu lassen (vermeidet unnötigen Dauerverbrauch), auf ÖV oder Velo statt Auto umsteigen (senkt den Energieverbrauch im Verkehr)."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_a28">✓ Mögliche Antwort: Heizung um 1-2 Grad senken und richtig lüften (spart viel Heizenergie), Geräte im Standby ausschalten statt laufen zu lassen (vermeidet unnötigen Dauerverbrauch), auf ÖV oder Velo statt Auto umsteigen (senkt den Energieverbrauch im Verkehr).</div>
+    data-ki-aufgabe="Ihre Mitbewohnerin/Ihr Mitbewohner moechte im WG-Alltag Energie sparen und bittet Sie um Tipps. Schreiben Sie ihr/ihm eine kurze Nachricht (ca. 5 Saetze) mit drei konkreten Tipps, mit denen der Haushalt seinen Energieverbrauch spuerbar senken koennte, und begruenden Sie diese kurz."
+    data-ki-loesung="Eine gute Nachricht ist konkret und leicht umsetzbar formuliert. Beispiel: 'Heizung um 1-2 Grad senken und richtig lueften spart viel Heizenergie. Geraete im Standby ganz ausschalten statt laufen zu lassen vermeidet unnoetigen Dauerverbrauch. Auf OeV oder Velo statt Auto umsteigen senkt den Energieverbrauch im Verkehr.'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_a28">✓ Eine gute Nachricht an die Mitbewohnerin/den Mitbewohner nennt drei konkrete, alltagstaugliche Tipps mit kurzer Begründung. Beispiel: «Heizung um 1–2 Grad senken und richtig lüften, Geräte im Standby ganz ausschalten, auf ÖV/Velo statt Auto umsteigen.»</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_a28']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -593,7 +593,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
@@ -674,7 +674,7 @@ function renderSpellResult(data,originalText,rb){
     rb.innerHTML=html;
   }
   window.kiFeedbackKlick=async function(btn){
-    const ta=document.querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
+    const ta=btn.closest('.ko-box').querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
     const aufgabe=ta.getAttribute('data-ki-aufgabe')||'',loesung=ta.getAttribute('data-ki-loesung')||'',antwort=ta.value.trim();
     const rb=document.getElementById('kiFeedbackResult');
     if(!antwort){rb.innerHTML='<div class="kf-feedback-box kf-error"><span class="kf-feedback-label">Hinweis</span><p>Bitte zuerst eine Antwort schreiben.</p></div>';return;}

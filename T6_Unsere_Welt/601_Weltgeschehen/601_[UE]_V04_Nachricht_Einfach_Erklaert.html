@@ -235,10 +235,10 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk">Schreiben Sie nun Ihre eigene, vereinfachte Erklärung des Textausschnitts aus Schritt 1 (max. 4–5 kurze Sätze, keine Fachwörter ohne Erklärung).</div>
+  <div class="ko-text" id="ko_text_suk">Eine Bekannte, die erst seit Kurzem Deutsch lernt, hat den Nachrichtentext aus Schritt 1 nicht verstanden und bittet Sie um eine einfache Erklärung. Schreiben Sie ihr diese Erklärung in 4–5 kurzen, einfachen Sätzen (keine Fachwörter ohne Erklärung).</div>
   <textarea id="ko_suk" rows="7" placeholder="Meine einfache Erklärung …"
-    data-ki-aufgabe="Schreiben Sie Ihre eigene, vereinfachte Erklaerung des gewaehlten Textausschnitts (max. 4-5 kurze Saetze, keine Fachwoerter ohne Erklaerung)."
-    data-ki-loesung="Eine gute Erklaerung verwendet kurze, einfache Saetze, vermeidet unerklaerte Fachbegriffe und gibt den Kerninhalt des Originaltextes korrekt wieder."></textarea>
+    data-ki-aufgabe="Eine Bekannte, die erst seit Kurzem Deutsch lernt, hat den Nachrichtentext nicht verstanden und bittet Sie um eine einfache Erklaerung. Schreiben Sie ihr diese Erklaerung in 4-5 kurzen, einfachen Saetzen (keine Fachwoerter ohne Erklaerung)."
+    data-ki-loesung="Eine gute Erklaerung ist einfach formuliert. Beispiel fuer den Aufbau: 'In der Nachricht geht es um ... Das bedeutet, dass ... Wichtig zu wissen ist, dass ...' Kurze, einfache Saetze, keine unerklaerten Fachbegriffe, und der Kerninhalt des Originaltextes wird korrekt wiedergegeben."></textarea>
   <div class="ki-toggle-row" id="kiToggleArea" style="display:none">
     <span class="ki-toggle-label">KI-Modus</span>
     <div class="ki-switch" id="kiModeToggle" role="switch" aria-checked="false" tabindex="0"
@@ -251,7 +251,7 @@
     <button class="btn btn-ki" id="kiFeedbackBtn" onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
   </div>
   <div id="kiFeedbackResult"></div>
-  <div class="sol-inline" id="sol_ko_suk">Eine gute Erklärung verwendet kurze, einfache Sätze, vermeidet unerklärte Fachbegriffe und gibt den Kerninhalt des Originaltextes korrekt wieder.</div>
+  <div class="sol-inline" id="sol_ko_suk">Eine gute Erklärung nennt den Kerninhalt in kurzen, einfachen Sätzen ohne unerklärte Fachwörter — adressiert an eine Person, die noch wenig Deutsch spricht. Beispiel: «In der Nachricht geht es um … Das bedeutet, dass …»</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
