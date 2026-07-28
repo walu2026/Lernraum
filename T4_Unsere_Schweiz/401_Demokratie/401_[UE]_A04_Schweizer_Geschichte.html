@@ -246,11 +246,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk_gesch">Nennen Sie drei wichtige Stationen der Schweizer Geschichte und beschreiben Sie diese in eigenen Worten kurz.</div>
+  <div class="ko-text" id="ko_text_suk_gesch">Eine Austauschperson aus dem Ausland interessiert sich für die Schweizer Geschichte. Erklären Sie ihr in einer kurzen Nachricht (4–5 Sätze) drei wichtige Stationen der Schweizer Geschichte in eigenen Worten.</div>
   <textarea id="ko_suk_gesch" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Nenne drei wichtige Stationen der Schweizer Geschichte und beschreibe diese in eigenen Worten kurz."
-    data-ki-loesung="Zum Beispiel: 1291 Bundesbrief (Ursprung der Eidgenossenschaft), 1848 Bundesverfassung (Gründung des modernen Bundesstaates), 1971 Einführung des Frauenstimmrechts auf Bundesebene."></textarea>
-  <div class="sol-inline" id="sol_ko_suk_gesch">✓ Mögliche Antwort: 1291 Bundesbrief (Ursprung der Eidgenossenschaft), 1848 Bundesverfassung (Gründung des modernen Bundesstaates), 1971 Einführung des Frauenstimmrechts auf Bundesebene.</div>
+    data-ki-aufgabe="Eine Austauschperson aus dem Ausland interessiert sich fuer die Schweizer Geschichte. Erklaeren Sie ihr in einer kurzen Nachricht (4-5 Saetze) drei wichtige Stationen der Schweizer Geschichte in eigenen Worten."
+    data-ki-loesung="Eine gute Erklärung ist einfach formuliert. Beispiel: 'Die Schweizer Geschichte kennt einige wichtige Stationen: 1291 unterschrieben die ersten Kantone den Bundesbrief – das gilt als Ursprung der Eidgenossenschaft. 1848 erhielt die Schweiz ihre Bundesverfassung und wurde zum modernen Bundesstaat. Und erst 1971 durften Frauen auf Bundesebene erstmals abstimmen und wählen.'"></textarea>
+  <div class="sol-inline" id="sol_ko_suk_gesch">✓ Kriterien: verständliche Nachricht an eine aussenstehende Person, mindestens drei korrekte Stationen genannt (z.B. 1291 Bundesbrief, 1848 Bundesverfassung, 1971 Frauenstimmrecht). Beispiel: «1291 Bundesbrief, 1848 Bundesverfassung, 1971 Frauenstimmrecht auf Bundesebene.»</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_gesch']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -560,7 +560,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
+  ws.querySelectorAll('.ko-box').forEach(function(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');});
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
@@ -641,7 +641,7 @@ function renderSpellResult(data,originalText,rb){
     rb.innerHTML=html;
   }
   window.kiFeedbackKlick=async function(btn){
-    const ta=document.querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
+    const ta=btn.closest('.ko-box').querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
     const aufgabe=ta.getAttribute('data-ki-aufgabe')||'',loesung=ta.getAttribute('data-ki-loesung')||'',antwort=ta.value.trim();
     const rb=document.getElementById('kiFeedbackResult');
     if(!antwort){rb.innerHTML='<div class="kf-feedback-box kf-error"><span class="kf-feedback-label">Hinweis</span><p>Bitte zuerst eine Antwort schreiben.</p></div>';return;}
