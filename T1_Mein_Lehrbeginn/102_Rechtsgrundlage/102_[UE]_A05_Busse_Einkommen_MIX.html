@@ -72,6 +72,7 @@
     min-width: 140px;
     letter-spacing: -.01em;
   }
+  .top-bar h1 .ls-tag { font-size:12px; font-weight:500; opacity:.8; letter-spacing:0; }
   .nw { display: flex; align-items: center; gap: 8px; }
   .nw label { font-size: 12.5px; opacity: .9; font-weight: 500; font-family: inherit; }
   .nw input {
@@ -566,7 +567,7 @@
   <div class="topic-check">
     <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
   </div>
-  <h1>Mein Lehrbeginn</h1>
+  <h1>Mein Lehrbeginn <span class="ls-tag">· Lebenssituation B</span></h1>
   <div class="nw"><label>Name:</label><input id="studentName" type="text" placeholder="Vorname Nachname" autocomplete="name"></div>
   <div class="nw"><label>Klasse:</label><input id="studentKlasse" type="text" placeholder="z.B. 3a" style="width:70px;"></div>
   <button class="btn btn-check" onclick="checkAll()">Überprüfen</button>
