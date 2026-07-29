@@ -3,15 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="slp2026-thema" content="4">
-<meta name="slp2026-ls" content="A">
-<meta name="slp2026-ges" content="A9">
-<meta name="slp2026-suk" content="A9">
-<meta name="slp2026-status" content="kern">
-<meta name="slp2026-efz3" content="ergaenzend">
-<meta name="slp2026-format" content="chancen-risiken">
-<meta name="slp2026-ow" content="—">
-<title>401-31 · Lobbyismus: Chancen und Risiken</title>
+<title>401-31 · Politische Grundhaltungen erkennen</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
   :root {
@@ -71,6 +63,8 @@
   table.ex td strong { display: inline-block; font-weight: 700; color: var(--t1-dark); font-size: 13px; background: var(--t1-lighter); padding: 3px 9px; border-radius: 999px; }
   table.ex textarea, table.ex input[type=text] { width: 100% !important; border: 1.5px solid var(--rule) !important; border-radius: 9px !important; background: var(--bg) !important; font-family: inherit !important; font-size: 14px !important; padding: 8px 11px !important; resize: vertical; margin-top: 5px; transition: border-color .18s, box-shadow .18s; }
   table.ex textarea:focus, table.ex input[type=text]:focus { outline: none; border-color: var(--t1) !important; background: white !important; box-shadow: 0 0 0 3px var(--t1-light); }
+  .ex-select { border: 1.5px solid var(--rule); border-radius: 8px; background: var(--bg); font-family: inherit; font-size: 13.5px; padding: 6px 10px; cursor: pointer; margin-top: 4px; }
+  .ex-select:focus { outline: none; border-color: var(--t1); box-shadow: 0 0 0 3px var(--t1-light); }
   .sol-inline-sm, .sol-inline { display: none; background: var(--green-light) !important; border-radius: 8px !important; padding: 8px 11px !important; margin-top: 7px !important; font-size: 13px !important; font-weight: 500; color: #135c2c !important; user-select: none; -webkit-user-select: none; }
   .sol-inline-sm.visible, .sol-inline.visible { display: block; }
   .sol-inline-sm.sol-empty-hint, .sol-inline.sol-empty-hint,
@@ -131,15 +125,6 @@
   .reveal { animation: fadeInUp .5s cubic-bezier(.16,.84,.44,1) both; }
   @media (prefers-reduced-motion: reduce) { .reveal { animation: none; } }
   .punkte-box, .punkte-summe-zeile { display: none; }
-  .cr-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 12px; margin-bottom: 20px; }
-  .cr-card { border-radius: 12px; padding: 14px 16px; }
-  .cr-card.chance { background: var(--green-light); border: 1.5px solid #b8e6c4; }
-  .cr-card.risiko { background: #FDF6E3; border: 1.5px solid #f0e0a8; }
-  .cr-card strong { display: block; font-size: 13px; margin-bottom: 6px; }
-  .cr-card.chance strong { color: #1e5c23; }
-  .cr-card.risiko strong { color: #8a6500; }
-  .cr-card ul { padding-left: 18px; font-size: 13px; color: #3a362f; }
-  .cr-card li { margin-bottom: 4px; }
   @media print {
     .top-bar { display: none; }
     .score-banner { display: none !important; }
@@ -149,15 +134,54 @@
     .punkte-summe-zeile { display: block !important; margin-top: 20px; padding-top: 10px; border-top: 2px solid #333; font-size: 14px; font-weight: 700; text-align: right; }
     @page { margin: 15mm 12mm; size: A4 portrait; }
   }
+
+  /* ── Alte Textarea-Klassen → v10.3 Stil ── */
+  textarea.cell-ta, textarea.free-text, textarea.freitext,
+  textarea:not(.ko-box textarea) {
+    width: 100% !important;
+    border: 1.5px solid var(--rule) !important;
+    border-radius: 9px !important;
+    background: var(--bg) !important;
+    font-family: inherit !important;
+    font-size: 14px !important;
+    padding: 8px 11px !important;
+    resize: vertical;
+    min-height: 70px;
+    box-sizing: border-box;
+    transition: border-color .18s, box-shadow .18s;
+  }
+  textarea.cell-ta:focus, textarea.free-text:focus, textarea.freitext:focus {
+    outline: none;
+    border-color: var(--t1) !important;
+    background: white !important;
+    box-shadow: 0 0 0 3px var(--t1-light);
+  }
+  /* Alte select-Klassen */
+  select.lueck-sel, select.match-sel {
+    border: 1.5px solid var(--rule);
+    border-radius: 8px;
+    background: var(--bg);
+    font-family: inherit;
+    font-size: 13.5px;
+    padding: 5px 9px;
+    cursor: pointer;
+  }
+  select.lueck-sel:focus, select.match-sel:focus {
+    outline: none;
+    border-color: var(--t1);
+    box-shadow: 0 0 0 3px var(--t1-light);
+  }
+  select.correct-sel { border-color: #2a7a3a !important; background: #eaf5ec !important; }
+  select.wrong-sel   { border-color: #c0392b !important; background: #faeaea !important; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 </head>
 <body>
 <table width="100%" style="background:#f7f7f7;border-bottom:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;">
 <tr>
-<td style="padding:6px 10px;text-align:left;width:33%;"><a href="401_[UE]_A30_Branchenverbaende.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
+<td style="padding:6px 10px;text-align:left;width:33%;"><a href="401_[UE]_A30_Parteienspektrum.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
 <td style="padding:6px 10px;text-align:center;width:34%;"><a href="401_Aufgaben.html" style="color:#8b1a1a;text-decoration:none;font-size:14px;" title="Zur Übersicht">&#8593;</a></td>
-<td style="padding:6px 10px;text-align:right;width:33%;"><a href="401_[UE]_A38_Links_Rechts.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
+<td style="padding:6px 10px;text-align:right;width:33%;"><a href="401_[UE]_A32_Parteien_Ansichten.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
 </tr>
 </table>
 
@@ -182,89 +206,81 @@
 
 <div class="ws">
   <div class="lebenswelt-ref">401 Demokratie & Politik — In einer Demokratie leben</div>
-  <div class="task-title">401-31 · Lobbyismus: Chancen und Risiken</div>
-  <div class="lz-box reveal" style="animation-delay:.02s"><strong>Lernziel:</strong> Ich kann erklären, was Lobbyismus ist, wie er im Schweizer Bundeshaus organisiert ist, und Chancen sowie Risiken dieser Einflussnahme benennen.</div>
-  <div class="meta-row">K3–K4 · EFZ3 ergänzend</div>
-<p style="font-size:15px;margin-bottom:12px;"><strong style="color:var(--t1-dark);">Auftrag:</strong> Lesen Sie den Text zum Lobbyismus in der Schweiz und beantworten Sie die folgenden Fragen.</p>
-
-  <div class="section-label">Sachtext</div>
-  <div style="background:var(--paper);border:1.5px solid var(--rule);border-radius:12px;padding:18px 22px;margin-bottom:20px;font-size:14.5px;line-height:1.65;color:#3a362f;">
-    <p style="font-weight:800;color:var(--t1-dark);margin-bottom:8px;">Was ist Lobbyismus?</p>
-    <p>Als Lobbyismus bezeichnet man den organisierten Versuch von Verbänden, Unternehmen oder Interessengruppen, auf politische Entscheidungen Einfluss zu nehmen — zum Beispiel bei der Beratung von Gesetzen im Parlament. Der Begriff stammt aus dem Englischen ("lobby" = Vorhalle), weil sich Interessenvertreter früher in den Wandelhallen von Parlamentsgebäuden aufhielten, um mit Politikerinnen und Politikern ins Gespräch zu kommen.</p>
-    <p style="font-weight:700;color:var(--t1-dark);margin-top:14px;">Wie funktioniert Lobbying im Schweizer Bundeshaus?</p>
-    <p>Jedes Mitglied des National- oder Ständerats kann zwei Personen einen dauerhaften Zutrittsausweis (Badge) fürs Bundeshaus geben. Diese Ausweise gehen oft an Lobbyistinnen und Lobbyisten, die dadurch direkten Zugang zu den Ratsmitgliedern erhalten. Wer diese Badges erhält, ist öffentlich einsehbar; welche Aufträge und Honorare dahinterstehen, muss aber nicht offengelegt werden. Die Organisation Lobbywatch dokumentiert seit 2014, welche Interessenbindungen Parlamentsmitglieder haben und wem sie Zutritt zum Bundeshaus verschaffen.</p>
-    <p style="font-weight:700;color:var(--t1-dark);margin-top:14px;">Chancen von Lobbyismus</p>
-    <p>Lobbyistinnen und Lobbyisten bringen Fachwissen und praktische Erfahrung in politische Debatten ein, das Parlamentsmitglieder nicht zu jedem Thema selbst haben können. So können Gesetze fundierter und praxisnäher ausgestaltet werden. Auch kleine Verbände oder Anliegen können sich über Lobbying Gehör verschaffen.</p>
-    <p style="font-weight:700;color:var(--t1-dark);margin-top:14px;">Risiken von Lobbyismus</p>
-    <p>Kritisiert wird vor allem die fehlende Transparenz: Es besteht keine Pflicht, Aufträge und Bezahlung offenzulegen. Das schafft die Gefahr, dass finanzstarke Organisationen mehr Einfluss erhalten als Organisationen mit wenig Geld — unabhängig davon, wie wichtig ihr Anliegen für die Gesellschaft ist. Die internationale Staatengruppe gegen Korruption (GRECO) fordert deshalb seit Jahren strengere Transparenzregeln für das Schweizer Parlament.</p>
-    <p style="font-size:12px;color:var(--ink-light);font-family:'JetBrains Mono',monospace;margin-top:12px;margin-bottom:0;">Quellen: SRF, «Lobbying in der Schweiz — Einen Badge fürs Bundeshaus, bitte» (2023); Lobbywatch.ch.</p>
-  </div>
-
-  <div class="section-label">Chancen und Risiken im Überblick</div>
-  <div class="cr-grid">
-    <div class="cr-card chance">
-      <strong>✓ Chancen</strong>
-      <ul><li>Fachwissen fliesst in die Gesetzgebung ein</li><li>Auch kleinere Anliegen finden Gehör</li><li>Direkter Austausch zwischen Politik und Praxis</li></ul>
-    </div>
-    <div class="cr-card risiko">
-      <strong>⚠ Risiken</strong>
-      <ul><li>Keine Offenlegungspflicht für Aufträge/Honorare</li><li>Finanzstarke Akteure haben mehr Zugang</li><li>Gefahr der einseitigen Einflussnahme</li></ul>
-    </div>
-  </div>
-
-  <div class="section-label">Sachfragen</div>
+  <div class="task-title">401-31 · Politische Grundhaltungen erkennen</div>
+  <div class="lz-box reveal" style="animation-delay:.02s"><strong>Lernziel:</strong> Ich kann politische Grundhaltungen beschreiben und Aussagen zuordnen.</div>
+  <div class="meta-row">K2–K3</div>
+<p style="font-size:15px;margin-bottom:12px;"><strong style="color:var(--t1-dark);">Auftrag:</strong> Ordnen Sie jeder Aussage eine politische Grundhaltung zu: <strong>links / rechts / liberal / konservativ</strong></p>
   <table class="ex">
-    <thead><tr><th style="width:38%">Frage</th><th style="text-align:left;">Ihre Antwort</th></tr></thead>
-    <tbody>
-      <tr>
-        <td><strong>1</strong> Was bedeutet der Begriff «Lobbyismus», und woher stammt er?</td>
-        <td>
-          <textarea class="cell-ta" id="ta_a1" rows="3" placeholder="Meine Antwort …"></textarea>
-          <div class="sol-inline-sm" id="sol_a1">Organisierte Einflussnahme von Verbänden/Interessengruppen auf politische Entscheidungen; der Begriff kommt vom englischen "lobby" (Vorhalle), wo Interessenvertreter früher auf Politiker warteten.</div>
-        </td>
-      </tr>
-      <tr>
-        <td><strong>2</strong> Wie erhalten Lobbyistinnen und Lobbyisten Zugang zum Schweizer Bundeshaus?</td>
-        <td>
-          <textarea class="cell-ta" id="ta_a2" rows="3" placeholder="Meine Antwort …"></textarea>
-          <div class="sol-inline-sm" id="sol_a2">Jedes Ratsmitglied kann zwei Personen einen dauerhaften Zutrittsausweis (Badge) verschaffen; diese gehen oft an Lobbyistinnen und Lobbyisten.</div>
-        </td>
-      </tr>
-      <tr>
-        <td><strong>3</strong> Nennen Sie je eine Chance und ein Risiko des Lobbyismus.</td>
-        <td>
-          <textarea class="cell-ta" id="ta_a3" rows="3" placeholder="Meine Antwort …"></textarea>
-          <div class="sol-inline-sm" id="sol_a3">Chance: Fachwissen fliesst in die Gesetzgebung ein / kleinere Anliegen finden Gehör. Risiko: fehlende Transparenz bei Aufträgen und Honoraren / ungleicher Einfluss je nach finanziellen Mitteln.</div>
-        </td>
-      </tr>
-      <tr>
-        <td><strong>4</strong> Was kritisiert die Staatengruppe GRECO am Schweizer System?</td>
-        <td>
-          <textarea class="cell-ta" id="ta_a4" rows="2" placeholder="Meine Antwort …"></textarea>
-          <div class="sol-inline-sm" id="sol_a4">Die fehlenden Transparenzregeln — es besteht keine Pflicht, Lobbying-Aufträge und Honorare offenzulegen.</div>
-        </td>
-      </tr>
-    </tbody>
+    <thead><tr><th style="width:65%;">Aussage</th><th>Grundhaltung</th></tr></thead>
+    <tbody><tr>
+  <td style="font-size:14px;">1. Die Militärausgaben sollten um die Hälfte gestrichen werden, um die <abbr title="Alters- und Hinterlassenenversicherung">AHV</abbr>-Ausgaben zu sichern.</td>
+  <td>
+    <select class="ex-select" id="ha0" data-correct="links">
+      <option value="">—</option>
+      <option value="links">Links</option>
+      <option value="rechts">Rechts</option>
+      <option value="liberal">Liberal</option>
+      <option value="konservativ">Konservativ</option>
+    </select>
+    <div class="sol-inline-sm" id="bHA0"></div>
+  </td>
+</tr><tr>
+  <td style="font-size:14px;">4. Eine Mitbestimmung der Arbeitnehmenden würde vielen Betrieben gar nicht schaden.</td>
+  <td>
+    <select class="ex-select" id="ha3" data-correct="links">
+      <option value="">—</option>
+      <option value="links">Links</option>
+      <option value="rechts">Rechts</option>
+      <option value="liberal">Liberal</option>
+      <option value="konservativ">Konservativ</option>
+    </select>
+    <div class="sol-inline-sm" id="bHA3"></div>
+  </td>
+</tr><tr>
+  <td style="font-size:14px;">3. Für die Bewahrung unserer Neutralität braucht es eine gut gerüstete Armee.</td>
+  <td>
+    <select class="ex-select" id="ha2" data-correct="konservativ">
+      <option value="">—</option>
+      <option value="links">Links</option>
+      <option value="rechts">Rechts</option>
+      <option value="liberal">Liberal</option>
+      <option value="konservativ">Konservativ</option>
+    </select>
+    <div class="sol-inline-sm" id="bHA2"></div>
+  </td>
+</tr><tr>
+  <td style="font-size:14px;">2. Der Staat soll möglichst wenig in die Wirtschaft eingreifen, die reguliert sich von selber.</td>
+  <td>
+    <select class="ex-select" id="ha1" data-correct="liberal">
+      <option value="">—</option>
+      <option value="links">Links</option>
+      <option value="rechts">Rechts</option>
+      <option value="liberal">Liberal</option>
+      <option value="konservativ">Konservativ</option>
+    </select>
+    <div class="sol-inline-sm" id="bHA1"></div>
+  </td>
+</tr><tr>
+  <td style="font-size:14px;">5. Asylsuchende müssen zu Zwangsarbeit ohne Lohn verpflichtet werden.</td>
+  <td>
+    <select class="ex-select" id="ha4" data-correct="rechts">
+      <option value="">—</option>
+      <option value="links">Links</option>
+      <option value="rechts">Rechts</option>
+      <option value="liberal">Liberal</option>
+      <option value="konservativ">Konservativ</option>
+    </select>
+    <div class="sol-inline-sm" id="bHA4"></div>
+  </td>
+</tr></tbody>
   </table>
 
 <div class="ko-box reveal" style="animation-delay:.2s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Gesellschaft)</div>
-  <div class="ko-text" id="ko_text_ges">Diskutieren Sie: Sollte es in der Schweiz eine Pflicht geben, Lobbying-Aufträge und Honorare offenzulegen? Nennen Sie ein Argument dafür und eines dagegen, bevor Sie Ihre eigene Meinung begründen.</div>
-  <textarea id="ko_ges" rows="6" placeholder="Meine Diskussion …"
-    data-ki-aufgabe="Diskutieren Sie: Sollte es in der Schweiz eine Pflicht geben, Lobbying-Auftraege und Honorare offenzulegen? Nennen Sie ein Argument dafuer und eines dagegen, bevor Sie Ihre eigene Meinung begruenden."
-    data-ki-loesung="Eine gute Antwort nennt ein plausibles Argument dafür (z.B. mehr Transparenz, Vertrauen in die Politik) und eines dagegen (z.B. Geschäftsgeheimnisse, Verwaltungsaufwand) und begründet danach eine eigene, klare Position."></textarea>
-  <div class="sol-inline" id="sol_ko_ges">Eine gute Antwort nennt ein plausibles Argument dafür (z.B. mehr Transparenz, Vertrauen in die Politik) und eines dagegen (z.B. Geschäftsgeheimnisse, Verwaltungsaufwand) und begründet danach eine eigene, klare Position.</div>
-  <div class="block-reset-row" style="text-align:right;margin-top:7px;">
-    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_ges']);return false;">↺ Nur diese Frage zurücksetzen</a>
-  </div>
-</div>
-
-<div class="ko-box reveal" style="animation-delay:.28s">
-  <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk">Verfassen Sie eine kurze Stellungnahme (5–8 Sätze): Ist Lobbyismus grundsätzlich eher demokratiefördernd oder eher demokratiegefährdend? Begründen Sie mit einem Beispiel aus dem Text.</div>
-  <textarea id="ko_suk" rows="6" placeholder="Meine Stellungnahme …"
-    data-ki-aufgabe="Verfassen Sie eine kurze Stellungnahme (5-8 Saetze): Ist Lobbyismus grundsaetzlich eher demokratiefoerdernd oder eher demokratiegefaehrdend? Begruenden Sie mit einem Beispiel aus dem Text."
-    data-ki-loesung="Eine gute Stellungnahme nennt eine klare eigene Position, begründet sie nachvollziehbar und bezieht sich auf mindestens ein Beispiel aus dem Text (z.B. Fachwissen-Einbringung als Chance, fehlende Transparenz als Risiko)."></textarea>
+  <div class="ko-text" id="ko_text_402_[UE]_A04">Erkläre den Unterschied zwischen «liberal» und «konservativ» als politische Haltungen. Nenne je ein Beispiel aus der aktuellen Schweizer Politik, das eine liberale und eine konservative Position veranschaulicht.</div>
+  <textarea id="ko_ha" rows="5" placeholder="Meine Antwort …"
+    data-ki-aufgabe="Erkläre den Unterschied zwischen «liberal» und «konservativ» als politische Haltungen. Nenne je ein Beispiel aus der aktuellen Schweizer Politik, das eine liberale und eine konservative Position veranschaulicht."
+    data-ki-loesung="Liberal bedeutet meist individuelle Freiheit, Eigenverantwortung und eine zurückhaltende Rolle des Staates. Konservativ betont Tradition, Stabilität und bewährte Institutionen. Eine Partei kann wirtschaftlich liberal und gesellschaftlich konservativ sein."></textarea>
   <div class="ki-toggle-row" id="kiToggleArea" style="display:none">
     <span class="ki-toggle-label">KI-Modus</span>
     <div class="ki-switch" id="kiModeToggle" role="switch" aria-checked="false" tabindex="0"
@@ -277,9 +293,21 @@
     <button class="btn btn-ki" id="kiFeedbackBtn" onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
   </div>
   <div id="kiFeedbackResult"></div>
-  <div class="sol-inline" id="sol_ko_suk">Eine gute Stellungnahme nennt eine klare eigene Position, begründet sie nachvollziehbar und bezieht sich auf mindestens ein Beispiel aus dem Text (z.B. Fachwissen-Einbringung als Chance, fehlende Transparenz als Risiko).</div>
+  <div class="sol-inline" id="sol_ko_ha">✓ Mögliche Antwort: Liberal bedeutet meist individuelle Freiheit, Eigenverantwortung und eine zurückhaltende Rolle des Staates. Konservativ betont Tradition, Stabilität und bewährte Institutionen. Eine Partei kann wirtschaftlich liberal und gesellschaftlich konservativ sein.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
-    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk']);return false;">↺ Nur diese Frage zurücksetzen</a>
+    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_ha']);return false;">↺ Nur diese Frage zurücksetzen</a>
+  </div>
+</div>
+
+<div class="ko-box reveal" style="animation-delay:.28s">
+  <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
+  <div class="ko-text" id="ko_text_suk_402_[UE]_A04">Verfassen Sie einen kurzen Text (4–5 Sätze), in dem Sie beschreiben, ob Sie sich selbst eher als liberal oder konservativ einschätzen und warum.</div>
+  <textarea id="ko_suk_ha" rows="5" placeholder="Meine Antwort …"
+    data-ki-aufgabe="Verfassen Sie einen kurzen Text (4-5 Saetze), in dem Sie beschreiben, ob Sie sich selbst eher als liberal oder konservativ einschaetzen und warum."
+    data-ki-loesung="Ein guter Text nennt eine klare eigene Einschätzung und begründet sie mit einem konkreten Beispiel aus dem eigenen Alltag oder einer politischen Haltung."></textarea>
+  <div class="sol-inline" id="sol_ko_suk_ha">✓ Ein guter Text nennt eine klare eigene Einschätzung und begründet sie mit einem konkreten Beispiel aus dem eigenen Alltag oder einer politischen Haltung.</div>
+  <div class="block-reset-row" style="text-align:right;margin-top:7px;">
+    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_ha']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
 </div>
 
@@ -303,7 +331,7 @@
   </p>
 </div>
 <script>
-const SAFE_FN = '401_[UE]_A31_Lobbyismus_Chancen_Risiken';
+const SAFE_FN = '401_[UE]_A31_Politische_Haltungen';
 const SUPABASE_URL = 'https://lrpaomltzrfgtupzeooq.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_Q9t2s4kLLNy--Tkm8EwLBQ_CbHJo9G-';
 const WORKER_URL = 'https://twilight-butterfly-5015.uwalser75.workers.dev/feedback';
@@ -363,17 +391,24 @@ function einsendenModusUmschalten() {
   try { localStorage.setItem(EINSENDEN_KEY, aktuell ? '0' : '1'); } catch(e) {}
   wendeEinsendenModusAn();
 }
-document.addEventListener('DOMContentLoaded', function() { wendePruefungsModusAn(); wendeErweiterteNutzungAn(); wendeEinsendenModusAn(); });
+document.addEventListener('DOMContentLoaded', function() {
+  // Sol-div Originaltexte einmalig sichern
+  document.querySelectorAll('.sol-inline, .sol-inline-sm').forEach(function(el) {
+    el.dataset.origText = el.textContent;
+  });
+  wendePruefungsModusAn(); wendeErweiterteNutzungAn(); wendeEinsendenModusAn();
+});
 
 function istPlausibleAntwort(text) {
   const t = (text||'').trim(), ol = t.replace(/\s+/g,'');
   if (ol.length < 8) return false;
   if ((t.match(/[a-zA-ZäöüÄÖÜ]/g)||[]).length < 2) return false;
-  if (/(.)\1{2,}/.test(ol.toLowerCase()) && new Set(ol.toLowerCase()).size <= 2) return false;
+  if (/(.)\\1{2,}/.test(ol.toLowerCase()) && new Set(ol.toLowerCase()).size <= 2) return false;
   if (/(asdf|qwer|qwert|zxcv)/i.test(ol)) return false;
   return t.split(/\s+/).filter(w=>w.length>=4).some(function(w) { const nb=w.replace(/[^a-zA-ZäöüÄÖÜ]/g,''); return nb.length>=4 && new Set(nb.toLowerCase()).size>=3; });
 }
 function checkAll() {
+  // ── Selects mit data-correct ──
   document.querySelectorAll('select[data-correct]').forEach(function(sel) {
     const correct = sel.getAttribute('data-correct');
     const val = sel.value;
@@ -389,23 +424,29 @@ function checkAll() {
     sel.style.borderColor = ok ? '#2a7a3a' : '#c0392b';
     sel.style.background = ok ? '#eaf5ec' : '#faeaea';
     if(sol) {
-      if(!sol.dataset.origText) sol.dataset.origText = sol.textContent;
       sol.textContent = ok ? ('✔ ' + correct) : ('✘ Lösung: ' + correct);
       sol.classList.add('visible');
+      sol.style.display = 'block';
       sol.style.color = ok ? '#135c2c' : '#8b1a1a';
     }
   });
+  // ── Alle Textareas (ausser KO) ──
   document.querySelectorAll('textarea').forEach(function(ta) {
+    // KO-Textarea separat behandelt
     const isKo = ta.closest('.ko-box') !== null;
     if(isKo) return;
+    // Sol-div suchen: zuerst via ID-Konvention, dann als nächstes Geschwister
     const id = ta.id;
     let sol = null;
+    // Versuch 1: sol_ + id (ohne ta_-Präfix)
     const solId1 = 'sol_' + id.replace(/^ta_/, '');
     sol = document.getElementById(solId1);
+    // Versuch 2: b + id ohne führendes 'a' (altes Muster: ta=aX_y → sol=bX_y)
     if(!sol) {
       const solId2 = 'b' + id.replace(/^a/, '');
       sol = document.getElementById(solId2);
     }
+    // Versuch 3: nächstes sol-inline Geschwister
     if(!sol) {
       let sib = ta.nextElementSibling;
       while(sib) {
@@ -414,40 +455,45 @@ function checkAll() {
       }
     }
     if(!sol) return;
-    if(!sol.dataset.origText) sol.dataset.origText = sol.textContent;
     const w = ta.value.trim();
     if(!w) {
       sol.textContent = 'Bitte zuerst Text eingeben.';
       sol.classList.remove('sol-unplausibel-hint');
       sol.classList.add('visible', 'sol-empty-hint');
+      sol.style.display = 'block';
       ta.style.borderColor = '#c0392b';
     } else if(!istPlausibleAntwort(w)) {
       sol.textContent = 'Bitte eine ernsthafte Antwort eingeben.';
       sol.classList.remove('sol-empty-hint');
       sol.classList.add('visible', 'sol-unplausibel-hint');
+      sol.style.display = 'block';
       ta.style.borderColor = '#c0392b';
     } else {
       sol.classList.remove('sol-empty-hint', 'sol-unplausibel-hint');
       const loesung = sol.dataset.origText || '';
       sol.textContent = loesung.trim() ? loesung : '✓ Eigene Antwort (keine Musterlösung hinterlegt)';
       sol.classList.add('visible');
+      sol.style.display = 'block';
       ta.style.borderColor = '#2a7a3a';
     }
   });
+  // ── KO-Textarea ──
   document.querySelectorAll('.ko-box textarea').forEach(function(ta) {
     const sol = document.getElementById('sol_' + ta.id);
     if(!sol) return;
-    if(!sol.dataset.origText) sol.dataset.origText = sol.textContent;
     if(!ta.value.trim()) {
       sol.textContent = 'Keine Antwort eingegeben – Musterlösung wird nach dem Ausfüllen angezeigt.';
       sol.classList.add('visible', 'sol-empty-hint');
       sol.classList.remove('sol-unplausibel-hint');
+      sol.style.display = 'block';
     } else {
       sol.textContent = sol.dataset.origText;
       sol.classList.add('visible');
       sol.classList.remove('sol-empty-hint', 'sol-unplausibel-hint');
+      sol.style.display = 'block';
     }
   });
+  // ── Radio ──
   const rfG = {};
   document.querySelectorAll('input[type=radio][data-rf-correct]').forEach(function(inp){rfG[inp.name]=true;});
   Object.keys(rfG).forEach(function(name){
@@ -457,6 +503,7 @@ function checkAll() {
     radios.forEach(function(r){const row=r.closest('tr');if(!row)return;if(checked){row.style.background=(checked.value===checked.dataset.rfCorrect)?'#eaf5ec':'#faeaea';}else{row.style.background='#fdf3e3';}});
     if(solTr){if(checked){solTr.style.display='table-row';solTr.classList.add('visible');}else{solTr.style.display='none';solTr.classList.remove('visible');}}
   });
+  // ── Checkboxen ──
   document.querySelectorAll('input[type=checkbox][data-cb-correct]').forEach(function(inp){
     const correct=inp.dataset.cbCorrect==='true';
     const lbl=document.getElementById('lbl_cb_'+inp.id.replace('cb_',''));
@@ -470,7 +517,7 @@ function resetAll() {
   if(pruefungsModusIstAktiv()){alert('Zurücksetzen ist während der Standortbestimmung gesperrt.');return;}
   document.querySelectorAll('textarea,input[type=text]').forEach(function(el){el.value='';el.style.borderColor='';el.style.borderBottomColor='';});
   document.querySelectorAll('input[type=radio],input[type=checkbox]').forEach(function(el){el.checked=false;});
-  document.querySelectorAll('.sol-inline,.sol-inline-sm').forEach(function(el){el.classList.remove('visible','sol-empty-hint','sol-unplausibel-hint');if(el.dataset.origText){el.textContent=el.dataset.origText;delete el.dataset.origText;}});
+  document.querySelectorAll('.sol-inline,.sol-inline-sm').forEach(function(el){el.classList.remove('visible','sol-empty-hint','sol-unplausibel-hint');el.style.display='';if(el.dataset.origText){el.textContent=el.dataset.origText;delete el.dataset.origText;}});
   document.querySelectorAll('.sol-tr').forEach(function(el){el.style.display='none';el.classList.remove('visible');});
   document.querySelectorAll('tr').forEach(function(el){el.style.background='';});
   document.querySelectorAll('label[id^="lbl_cb_"]').forEach(function(el){el.style.background='';});
@@ -513,7 +560,6 @@ function fuegePunkteboxenEin() {
   document.querySelectorAll('.punkte-box,.punkte-summe-zeile').forEach(function(el){el.remove();});
   let pt=0;
   document.querySelectorAll('textarea[id^="ta_"],input[type=text][id^="ta_"]').forEach(function(f){pt+=2;const b=document.createElement('span');b.className='punkte-box';b.textContent='___ / 2 P.';f.insertAdjacentElement('afterend',b);});
-  document.querySelectorAll('.ko-box textarea').forEach(function(f){pt+=2;const b=document.createElement('span');b.className='punkte-box';b.textContent='___ / 2 P.';f.insertAdjacentElement('afterend',b);});
   const rfG={};document.querySelectorAll('input[type=radio][data-rf-correct]').forEach(function(i){rfG[i.name]=true;});
   Object.keys(rfG).forEach(function(name){pt+=1;const lr=document.querySelector('input[name="'+name+'"]:last-of-type');if(lr){const b=document.createElement('span');b.className='punkte-box';b.textContent='___ / 1 P.';const row=lr.closest('tr');if(row)row.appendChild(document.createElement('td')).appendChild(b);}});
   document.querySelectorAll('input[type=checkbox][data-cb-correct]').forEach(function(i){pt+=1;const lbl=document.getElementById('lbl_cb_'+i.id.replace('cb_',''));if(lbl){const b=document.createElement('span');b.className='punkte-box';b.textContent='___ / 1 P.';lbl.appendChild(b);}});
@@ -536,7 +582,6 @@ async function downloadFile() {
 function berechneAuswertung() {
   const a={felder_total:0,felder_ausgefuellt:0,text_geloest:0,text_total:0,mc_bearbeitet:0,mc_richtig:0,mc_total:0};
   document.querySelectorAll('textarea[id^="ta_"],input[type=text][id^="ta_"]').forEach(function(f){a.felder_total++;a.text_total++;const w=f.value.trim();if(w)a.felder_ausgefuellt++;if(istPlausibleAntwort(w))a.text_geloest++;});
-  document.querySelectorAll('.ko-box textarea').forEach(function(f){a.felder_total++;a.text_total++;const w=f.value.trim();if(w)a.felder_ausgefuellt++;if(istPlausibleAntwort(w))a.text_geloest++;});
   const rfG={};document.querySelectorAll('input[type=radio][data-rf-correct]').forEach(function(i){rfG[i.name]=true;});
   Object.keys(rfG).forEach(function(name){a.felder_total++;a.mc_total++;const c=document.querySelector('input[name="'+name+'"]:checked');if(c){a.felder_ausgefuellt++;a.mc_bearbeitet++;if(c.value===c.dataset.rfCorrect)a.mc_richtig++;}});
   document.querySelectorAll('input[type=checkbox][data-cb-correct]').forEach(function(i){a.felder_total++;a.mc_total++;if(i.checked){a.felder_ausgefuellt++;a.mc_bearbeitet++;if(i.dataset.cbCorrect==='true')a.mc_richtig++;}});
@@ -570,11 +615,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  ws.querySelectorAll('.ko-box').forEach(function(kb){
-    const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');
-    if(kt)out.push('💬 '+kt.textContent.trim());
-    out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');
-  });
+  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
@@ -655,7 +696,7 @@ function renderSpellResult(data,originalText,rb){
     rb.innerHTML=html;
   }
   window.kiFeedbackKlick=async function(btn){
-    const ta=btn.closest('.ko-box').querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
+    const ta=document.querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
     const aufgabe=ta.getAttribute('data-ki-aufgabe')||'',loesung=ta.getAttribute('data-ki-loesung')||'',antwort=ta.value.trim();
     const rb=document.getElementById('kiFeedbackResult');
     if(!antwort){rb.innerHTML='<div class="kf-feedback-box kf-error"><span class="kf-feedback-label">Hinweis</span><p>Bitte zuerst eine Antwort schreiben.</p></div>';return;}
@@ -703,9 +744,9 @@ document.addEventListener('copy',function(e){
 </script>
 <table width="100%" style="background:#f7f7f7;border-top:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;">
 <tr>
-<td style="padding:6px 10px;text-align:left;width:33%;"><a href="401_[UE]_A30_Branchenverbaende.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
+<td style="padding:6px 10px;text-align:left;width:33%;"><a href="401_[UE]_A30_Parteienspektrum.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
 <td style="padding:6px 10px;text-align:center;width:34%;"><a href="401_Aufgaben.html" style="color:#8b1a1a;text-decoration:none;font-size:14px;" title="Zur Übersicht">&#8593;</a></td>
-<td style="padding:6px 10px;text-align:right;width:33%;"><a href="401_[UE]_A38_Links_Rechts.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
+<td style="padding:6px 10px;text-align:right;width:33%;"><a href="401_[UE]_A32_Parteien_Ansichten.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
 </tr>
 </table>
 </body>
