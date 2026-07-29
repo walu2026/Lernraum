@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>101-02 Mein Lehrvertrag</title>
+<title>101-04 - Gesetzliche Grundlagen</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
 
@@ -111,6 +111,10 @@
   .btn-copy { background: rgba(255,255,255,.18); color: white; }
   .btn-copy:hover { background: rgba(255,255,255,.28); }
   .btn-copy.copied { background: var(--green); color: white; }
+  .btn-send { background: rgba(255,255,255,.94); color: #1a7a3c; font-weight: 700; }
+  .btn-send:hover { background: #fff; }
+  .btn-send:disabled { opacity: .5; cursor: not-allowed; }
+  .btn-send.sent { background: var(--green); color: white; }
   .spell-btn-main { background: rgba(255,255,255,.18); color: white; }
   .spell-btn-main:hover { background: rgba(255,255,255,.28); }
 
@@ -252,43 +256,6 @@
     outline: none; border-color: var(--t1) !important; background: white !important; box-shadow: 0 0 0 4px var(--t1-light);
   }
 
-  /* ── RADIO/CHECKBOX-FRAGEN (Zuordnung, Richtig/Falsch, Multiple Choice) ──
-     Im Referenz-Design (101-01) nicht enthalten, da dort nur Tabelle +
-     Kompetenzfrage vorkommen. Ergänzt für 101-03/09/13/14, 102-01/02/09 usw.,
-     die Radio-Button- oder Checkbox-basierte Aufgaben enthalten. */
-  table.ex input[type=radio] {
-    width: 19px; height: 19px;
-    accent-color: var(--t1);
-    cursor: pointer;
-  }
-  table.ex tr.sol-tr {
-    display: none;
-  }
-  table.ex tr.sol-tr.visible {
-    display: table-row;
-  }
-  table.ex tr.sol-tr td {
-    background: transparent !important;
-    padding: 4px 16px 12px !important;
-  }
-  table.ex tr.sol-tr .sol-inline-sm {
-    margin: 0 !important;
-  }
-
-  /* Multiple-Choice-Labels (Checkbox-Auswahl, z.B. 101-14 Auftrag 1) */
-  label[id^="lbl_cb_"] {
-    transition: background .2s ease;
-  }
-  label[id^="lbl_cb_"] input[type=checkbox] {
-    width: 19px; height: 19px;
-    accent-color: var(--t1);
-    cursor: pointer;
-    flex-shrink: 0;
-  }
-  label[id^="lbl_cb_"] + .sol-inline-sm {
-    margin-bottom: 10px !important;
-  }
-
   /* ── SOLUTION BOXES (.visible toggled by checkAll()) ── */
   .sol-inline-sm, .sol-inline {
     display: grid;
@@ -304,6 +271,9 @@
     color: #135c2c !important;
     overflow: hidden;
     transition: grid-template-rows .32s ease, opacity .28s ease, padding .32s ease, margin-top .32s ease;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
   }
   .sol-inline-sm::before, .sol-inline::before { content: ''; min-height: 0; display: block; }
   .sol-inline-sm.visible, .sol-inline.visible {
@@ -314,6 +284,12 @@
     margin-top: 8px !important;
   }
   .sol-inline-sm.visible::before, .sol-inline.visible::before { content: none; }
+  .sol-inline-sm.sol-empty-hint, .sol-inline.sol-empty-hint,
+  .sol-inline-sm.sol-unplausibel-hint, .sol-inline.sol-unplausibel-hint {
+    background: #FDF6E3 !important;
+    color: #8a6500 !important;
+    font-style: italic;
+  }
 
   /* ── KOMPETENZORIENTIERTE FRAGE BOX ── */
   .ko-box {
@@ -326,6 +302,32 @@
     overflow: hidden;
     transition: box-shadow .2s ease;
   }
+
+  /* ── KI-Feedback: Toggle, Button, Ergebnis-Boxen ── */
+  .ki-toggle-row { display: flex; align-items: center; gap: 8px; margin: 10px 0 14px; flex-wrap: wrap; }
+  .ki-toggle-label { font-size: 12.5px; font-weight: 600; color: var(--ink); }
+  .ki-switch { position: relative; width: 42px; height: 23px; border-radius: 999px; background: #DDD6C8; cursor: pointer; transition: background .18s; flex-shrink: 0; display: inline-block; vertical-align: middle; }
+  .ki-switch.on { background: var(--t1); }
+  .ki-switch-knob { position: absolute; top: 2.5px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: left .18s; box-shadow: 0 1px 2px rgba(0,0,0,.25); }
+  .ki-switch.on .ki-switch-knob { left: 21px; }
+  .ki-modus-pill { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #ECE6DA; color: #7A7468; }
+  .ki-modus-pill.on { background: var(--t1-light); color: var(--t1-dark); }
+  .btn-ki { background: #fff; color: var(--t1-dark); box-shadow: 0 0 0 1.5px var(--t1) inset; }
+  .btn-ki:hover:not(:disabled) { background: var(--t1-light); }
+  .btn-ki:disabled { opacity: .45; cursor: not-allowed; box-shadow: 0 0 0 1.5px #DDD6C8 inset; }
+  .kf-feedback-box { margin-top: 12px; padding: 12px 14px; background: #fff; border-left: 3px solid #1565C0; border-radius: 0 8px 8px 0; font-size: 13.5px; line-height: 1.6; user-select: none; -webkit-user-select: none; -moz-user-select: none; }
+  .kf-feedback-box.kf-pattern { border-left-color: #B8860B; background: #FDF6E3; }
+  .kf-feedback-box.kf-error { border-left-color: var(--t1); }
+  .kf-feedback-box p { margin: 0; }
+  .kf-feedback-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: #1565C0; margin-bottom: 6px; display: block; }
+  .kf-pattern .kf-feedback-label { color: #8a6500; }
+  .kf-error .kf-feedback-label { color: var(--t1-dark); }
+  .kf-mini-ex { margin-top: 8px; padding: 8px 10px; background: #fff; border: 1px dashed #B8860B; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; }
+  .kf-loading { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #7A7468; margin-top: 10px; }
+  .kf-spin { width: 13px; height: 13px; border: 2px solid #ECE6DA; border-top-color: var(--t1); border-radius: 50%; animation: kf-spin .7s linear infinite; }
+  @keyframes kf-spin { to { transform: rotate(360deg); } }
+  .block-reset-link { font-size: 11px; color: #9a948a; text-decoration: none; }
+  .block-reset-link:hover { color: var(--t1-dark); text-decoration: underline; }
   .ko-box:has(textarea:focus) { box-shadow: 0 6px 20px rgba(192,57,43,.12); }
   .ko-box::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--t1); }
   .ko-label {
@@ -394,6 +396,7 @@
     border-radius: 10px;
     padding: 10px 14px;
     line-height: 1.5;
+    position: relative;
   }
   .spell-result.show { display: block; }
   .spell-result.spell-ok { background: var(--green-light); color: #1e5c23; }
@@ -403,6 +406,14 @@
   .spell-result li { margin-bottom: 5px; }
   .spell-result .spell-orig { text-decoration: underline wavy var(--t1); }
   .spell-result .spell-fix { color: #1565C0; font-weight: 600; }
+  .spell-close-btn {
+    position: absolute; top: 6px; right: 8px;
+    width: 20px; height: 20px; border-radius: 50%;
+    border: none; background: rgba(0,0,0,.08); color: inherit;
+    font-size: 11px; line-height: 20px; text-align: center;
+    cursor: pointer; padding: 0;
+  }
+  .spell-close-btn:hover { background: rgba(0,0,0,.18); }
   .spell-highlighted-text {
     margin: 6px 0 8px;
     padding: 8px 12px;
@@ -456,6 +467,22 @@
     .reveal { animation: none; }
   }
 
+  .punkte-box, .punkte-summe-zeile { display: none; }
+
+  .sol-tr { display: none; }
+  .sol-tr.visible td { background: var(--green-light) !important; border-radius: 0 0 14px 14px; padding: 10px 16px !important; font-size: 13px; color: #135c2c; font-weight: 500; }
+
+  .cb-grid { display: flex; flex-direction: column; gap: 10px; margin: 8px 0 28px; }
+  .cb-item { display: flex; align-items: flex-start; gap: 12px; background: var(--paper); border-radius: 14px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(0,0,0,.04); cursor: pointer; transition: box-shadow .2s ease; }
+  .cb-item:hover { box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+  .cb-item input[type=checkbox] { width: 20px; height: 20px; accent-color: var(--t1); cursor: pointer; flex-shrink: 0; margin-top: 2px; }
+  .cb-item-body { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+  .cb-item-text { font-size: 14.5px; font-weight: 600; color: var(--ink); }
+
+  table.ex .rf-row td { text-align: center; vertical-align: middle; }
+  table.ex .rf-row td:first-child { text-align: left; font-size: 14.5px; font-weight: 500; }
+  table.ex .rf-row input[type=radio] { width: 19px; height: 19px; accent-color: var(--t1); cursor: pointer; }
+
   @media print {
     .top-bar { display: none; }
     .score-banner { display: none !important; }
@@ -490,71 +517,15 @@
        abgeschnittenem Text an den Kanten führt. */
     @page { margin: 15mm 12mm; size: A4 portrait; }
   }
-  .punkte-box, .punkte-summe-zeile { display: none; }
-  .btn-send { background: rgba(255,255,255,.94); color: #1a7a3c; font-weight: 700; }
-  .btn-send:hover { background: #fff; }
-  .btn-send:disabled { opacity: .5; cursor: not-allowed; }
-  .btn-send.sent { background: var(--green); color: white; }
-
-  /* ── Schritt 2: KI-Feedback, Kopierschutz, Plausibilitäts-Hinweise ── */
-  .sol-inline-sm, .sol-inline {
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-  }
-  .sol-inline-sm.sol-empty-hint, .sol-inline.sol-empty-hint,
-  .sol-inline-sm.sol-unplausibel-hint, .sol-inline.sol-unplausibel-hint {
-    background: #FDF6E3 !important;
-    color: #8a6500 !important;
-    font-style: italic;
-  }
-  .spell-result { position: relative; }
-  .spell-close-btn {
-    position: absolute; top: 6px; right: 8px;
-    width: 20px; height: 20px; border-radius: 50%;
-    border: none; background: rgba(0,0,0,.08); color: inherit;
-    font-size: 11px; line-height: 20px; text-align: center;
-    cursor: pointer; padding: 0;
-  }
-  .spell-close-btn:hover { background: rgba(0,0,0,.18); }
-  .block-reset-link { font-size: 11px; color: #9a948a; text-decoration: none; }
-  .block-reset-link:hover { color: var(--t1-dark); text-decoration: underline; }
-
-  /* ── KI-Feedback: Toggle, Button, Ergebnis-Boxen ── */
-  .ki-toggle-row { display: flex; align-items: center; gap: 8px; margin: 10px 0 14px; flex-wrap: wrap; }
-  .ki-toggle-label { font-size: 12.5px; font-weight: 600; color: var(--ink); }
-  .ki-switch { position: relative; width: 42px; height: 23px; border-radius: 999px; background: #DDD6C8; cursor: pointer; transition: background .18s; flex-shrink: 0; display: inline-block; vertical-align: middle; }
-  .ki-switch.on { background: var(--t1); }
-  .ki-switch-knob { position: absolute; top: 2.5px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: left .18s; box-shadow: 0 1px 2px rgba(0,0,0,.25); }
-  .ki-switch.on .ki-switch-knob { left: 21px; }
-  .ki-modus-pill { font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: #ECE6DA; color: #7A7468; }
-  .ki-modus-pill.on { background: var(--t1-light); color: var(--t1-dark); }
-  .btn-ki { background: #fff; color: var(--t1-dark); box-shadow: 0 0 0 1.5px var(--t1) inset; }
-  .btn-ki:hover:not(:disabled) { background: var(--t1-light); }
-  .btn-ki:disabled { opacity: .45; cursor: not-allowed; box-shadow: 0 0 0 1.5px #DDD6C8 inset; }
-  .kf-feedback-box { margin-top: 12px; padding: 12px 14px; background: #fff; border-left: 3px solid #1565C0; border-radius: 0 8px 8px 0; font-size: 13.5px; line-height: 1.6; user-select: none; -webkit-user-select: none; -moz-user-select: none; }
-  .kf-feedback-box.kf-pattern { border-left-color: #B8860B; background: #FDF6E3; }
-  .kf-feedback-box.kf-error { border-left-color: var(--t1); }
-  .kf-feedback-box p { margin: 0; }
-  .kf-feedback-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: #1565C0; margin-bottom: 6px; display: block; }
-  .kf-pattern .kf-feedback-label { color: #8a6500; }
-  .kf-error .kf-feedback-label { color: var(--t1-dark); }
-  .kf-mini-ex { margin-top: 8px; padding: 8px 10px; background: #fff; border: 1px dashed #B8860B; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 12.5px; }
-  .kf-loading { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: #7A7468; margin-top: 10px; }
-  .kf-spin { width: 13px; height: 13px; border: 2px solid #ECE6DA; border-top-color: var(--t1); border-radius: 50%; animation: kf-spin .7s linear infinite; }
-  @keyframes kf-spin { to { transform: rotate(360deg); } }
-
-  /* ── Erweiterte Nutzung / Abgabe-Modus Footer-Links ── */
-  .badge-detail { font-size: 11px; color: #7A7468; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 </head>
 <body>
 <table width="100%" style="background:#f7f7f7;border-bottom:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;">
 <tr>
-<td style="padding:6px 10px;text-align:left;width:33%;"><a href="101_[UE]_A01_Berufsbildung_Gesetze_MIX.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
+<td style="padding:6px 10px;text-align:left;width:33%;"><a href="101_[UE]_A03_Zustaendigkeit_Gesetze_MIX.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
 <td style="padding:6px 10px;text-align:center;width:34%;"><a href="101_Aufgaben.html" style="color:#8b1a1a;text-decoration:none;font-size:14px;" title="Zur Übersicht">&#8593;</a></td>
-<td style="padding:6px 10px;text-align:right;width:33%;"><a href="101_[UE]_A03_Vertragspflichten_MIX.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
+<td style="padding:6px 10px;text-align:right;width:33%;"><a href="101_[UE]_A05_Rechtsquellen_Nachtrag(1).html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
 </tr>
 </table>
 
@@ -575,19 +546,22 @@
   <button class="btn btn-send" id="sendBtn" onclick="antwortenEinsenden(this)">✉ Antworten einsenden</button>
 </div>
 <div id="copyToast">✓ In Zwischenablage kopiert</div>
-<div class="ws" style="border-left-color: var(--t1);">
-  <div class="lebenswelt-ref">101 Lehrvertrag & Rechte/Pflichten — Eine Lehre beginnen – Rechte und Pflichten verstehen</div>
-  <div class="task-title">101-02 · Mein Lehrvertrag</div>
-  <div class="lz-box reveal" style="animation-delay:.02s"><strong>Lernziel:</strong> Ich kann meinen Lehrvertrag lesen, wichtige Angaben herausarbeiten und mit den gesetzlichen Vorgaben vergleichen.</div>
-  <div class="meta-row" style="font-size:12px;color:#888;font-family:'JetBrains Mono',monospace;margin-bottom:20px;">K2–K3</div>
-<p style="margin-bottom:8px;"><strong style="color:var(--t1-dark);">Auftrag:</strong> Nehmen Sie Ihren Lehrvertrag zur Hand. Füllen Sie die Tabelle aus und vergleichen Sie mit einer Mitlernenden / einem Mitlernenden:</p><table class="ex" style="width:100%;border-collapse:collapse;margin:8px 0;"><colgroup><col style="width:150px"><col style="width:auto"></colgroup><thead><tr><th>Bereich</th><th>Ihr Lehrvertrag</th></tr></thead><tbody><tr><td>Beruf / Lehrzeit</td><td><textarea id="ta_a2r1" rows="2" style="width:100%;border:none;background:transparent;font-family:'Source Serif 4',serif;font-size:13px;resize:vertical;"></textarea><div class="sol-inline-sm" id="sol_a2r1">Individuelle Antwort – Lehrperson vergleicht mit echtem Lehrvertrag.</div></td></tr><tr><td>Lohn 1. LJ</td><td><textarea id="ta_a2r2" rows="2" style="width:100%;border:none;background:transparent;font-family:'Source Serif 4',serif;font-size:13px;resize:vertical;"></textarea><div class="sol-inline-sm" id="sol_a2r2">Vergleich mit branchenüblichem Richtwert (OR 345a¹ OR 344a2).</div></td></tr><tr><td>Lohn 2. LJ</td><td><textarea id="ta_a2r3" rows="2" style="width:100%;border:none;background:transparent;font-family:'Source Serif 4',serif;font-size:13px;resize:vertical;"></textarea><div class="sol-inline-sm" id="sol_a2r3">Vergleich mit branchenüblichem Richtwert (OR 345a¹ OR 344a2).</div></td></tr><tr><td>Ferien</td><td><textarea id="ta_a2r4" rows="2" style="width:100%;border:none;background:transparent;font-family:'Source Serif 4',serif;font-size:13px;resize:vertical;"></textarea><div class="sol-inline-sm" id="sol_a2r4">Mind. 5 Wochen unter 20 J. (OR 345a³).</div></td></tr><tr><td>Probezeit</td><td><textarea id="ta_a2r5" rows="2" style="width:100%;border:none;background:transparent;font-family:'Source Serif 4',serif;font-size:13px;resize:vertical;"></textarea><div class="sol-inline-sm" id="sol_a2r5">1–3 Monate gesetzlich vorgesehen (OR 344a 3).</div></td></tr><tr><td>Berufsschule</td><td><textarea id="ta_a2r6" rows="2" style="width:100%;border:none;background:transparent;font-family:'Source Serif 4',serif;font-size:13px;resize:vertical;"></textarea><div class="sol-inline-sm" id="sol_a2r6">Besuch ist Pflicht (BBG 21).</div></td></tr></tbody></table><div class="ko-box reveal" style="animation-delay:0.24s"><div class="ko-label">💬 Kompetenzorientierte Frage (Gesellschaft)</div><div class="ko-text" id="ko_text_ges_a02">Vergleichen Sie in der Tabelle oben Ihren Lohn und Ihre Probezeit mit den gesetzlichen Vorgaben. Erklären Sie, weshalb es wichtig ist, den eigenen Lehrvertrag mit dem Gesetz zu vergleichen, und was gilt, wenn der Lehrvertrag von der lernenden Person ungünstigere Angaben enthält als das Gesetz.</div><textarea id="ko_ges_a02" rows="5" placeholder="Meine Antwort …" data-ki-aufgabe="Vergleichen Sie in der Tabelle oben Ihren Lohn und Ihre Probezeit mit den gesetzlichen Vorgaben. Erklaeren Sie, weshalb es wichtig ist, den eigenen Lehrvertrag mit dem Gesetz zu vergleichen, und was gilt, wenn der Lehrvertrag von der lernenden Person ungünstigere Angaben enthaelt als das Gesetz." data-ki-loesung="Der Vergleich zeigt, ob der Betrieb die gesetzlichen Mindestvorgaben einhaelt (z. B. mind. 5 Wochen Ferien unter 20 Jahren nach OR 345a Abs. 3, Probezeit 1-3 Monate nach OR 344a Abs. 3). Enthaelt der Lehrvertrag fuer die lernende Person ungünstigere Angaben als das Gesetz, gilt das Guenstigkeitsprinzip: Das Gesetz setzt sich durch. Lernende sollten eine solche Abweichung ansprechen, notfalls mit Unterstuetzung der Eltern, des kantonalen Berufsbildungsamts oder des Berufsverbands."></textarea>
-  <div class="sol-inline" id="sol_ko_ges_a02" style="background:#fff;border-left-color:#1565C0;">✓ Mögliche Antwort: Der Vergleich zeigt, ob der Betrieb die gesetzlichen Mindestvorgaben einhält (z. B. mind. 5 Wochen Ferien unter 20 Jahren nach OR 345a Abs. 3, Probezeit 1–3 Monate nach OR 344a Abs. 3). Enthält der Lehrvertrag ungünstigere Angaben als das Gesetz, gilt das Günstigkeitsprinzip: Das Gesetz setzt sich durch. Lernende sollten eine solche Abweichung ansprechen, notfalls mit Unterstützung der Eltern, des kantonalen Berufsbildungsamts oder des Berufsverbands.</div>
-  <div class="block-reset-row" style="text-align:right;margin-top:7px;">
-    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_ges_a02']);return false;">↺ Nur diese Frage zurücksetzen</a>
-  </div>
-</div>
 
-<div class="ko-box reveal" style="animation-delay:0.28s"><div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div><div class="ko-text" id="ko_text_suk_a02">Ihr Lohn liegt unter dem branchenüblichen Richtwert. Schreiben Sie eine kurze Nachricht (3–5 Sätze) an Ihren Berufsbildner, in der Sie sachlich nach einer Anpassung fragen. Beziehen Sie sich auf den Gesetzesartikel.</div><textarea id="ta_ko_u1" rows="4" style="width:100%;border:1px solid #90CAF9;border-radius:5px;padding:8px;font-family:'Source Serif 4',serif;font-size:14px;resize:vertical;" data-ki-aufgabe="Ihr Lohn liegt unter dem branchenüblichen Richtwert. Schreiben Sie eine kurze Nachricht (3–5 Sätze) an Ihren Berufsbildner, in der Sie sachlich nach einer Anpassung fragen. Beziehen Sie sich auf den Gesetzesartikel." data-ki-loesung="Beispiel: «Guten Tag, ich habe festgestellt, dass mein Lohn unter dem branchenüblichen Richtwert liegt. Gemäss OR Art. 345a habe ich Anspruch auf angemessene Entlöhnung. Ich würde mich über ein Gespräch freuen.»"></textarea>
+<div class="ws" style="border-left-color: var(--t1);">
+  <div class="lebenswelt-ref">101 Lehrvertrag &amp; Rechte/Pflichten — Eine Lehre beginnen – Rechte und Pflichten verstehen</div>
+  <div class="task-title">101-04 · Gesetzliche Grundlagen</div>
+  <div class="lz-box reveal" style="animation-delay:.02s"><strong>Lernziel:</strong> Ich kann angeben, in welchen Gesetzen die rechtlichen Grundlagen zur Berufsbildung geregelt sind.</div>
+  <div class="meta-row" style="font-size:12px;color:#888;font-family:'JetBrains Mono',monospace;margin-bottom:20px;">K2</div>
+<p style="margin-bottom:8px;"><strong style="color:var(--t1-dark);">Auftrag:</strong> Joel hat im Lehrbetrieb einen Streit mit seinem Berufsbildner und möchte in den Gesetzen nachschauen, wer im Recht ist. Er ist sich aber nicht sicher, in welchen Gesetzen er überhaupt fündig wird. Kreuzen Sie an, in welchen der folgenden Gesetze Bestimmungen zum Lehrvertrag und zur Berufsbildung zu finden sind:</p>
+<div class="cb-grid">
+<label class="cb-item" id="lbl_cb_a7_or"><input type="checkbox" id="cb_a7_or" data-cb-correct="true"><div class="cb-item-body"><span class="cb-item-text">OR – Obligationenrecht</span><div class="sol-inline-sm" id="sol_a7_or">Richtig – das OR regelt den Lehrvertrag selbst (Art. 344 ff.).</div></div></label>
+<label class="cb-item" id="lbl_cb_a7_zgb"><input type="checkbox" id="cb_a7_zgb" data-cb-correct="false"><div class="cb-item-body"><span class="cb-item-text">ZGB – Zivilgesetzbuch</span><div class="sol-inline-sm" id="sol_a7_zgb">Nicht einschlägig – das ZGB regelt z.B. Familien- und Erbrecht, nicht den Lehrvertrag.</div></div></label>
+<label class="cb-item" id="lbl_cb_a7_bbg"><input type="checkbox" id="cb_a7_bbg" data-cb-correct="true"><div class="cb-item-body"><span class="cb-item-text">BBG – Berufsbildungsgesetz</span><div class="sol-inline-sm" id="sol_a7_bbg">Richtig – das BBG regelt die Berufsbildung allgemein, inkl. Pflichten von Betrieb und Schule.</div></div></label>
+<label class="cb-item" id="lbl_cb_a7_arg"><input type="checkbox" id="cb_a7_arg" data-cb-correct="true"><div class="cb-item-body"><span class="cb-item-text">ArG – Arbeitsgesetz</span><div class="sol-inline-sm" id="sol_a7_arg">Richtig – das ArG enthält Schutzbestimmungen wie Arbeitszeit und Pausen, auch für Lernende.</div></div></label>
+<label class="cb-item" id="lbl_cb_a7_stgb"><input type="checkbox" id="cb_a7_stgb" data-cb-correct="false"><div class="cb-item-body"><span class="cb-item-text">StGB – Strafgesetzbuch</span><div class="sol-inline-sm" id="sol_a7_stgb">Nicht einschlägig – das StGB regelt strafbare Handlungen, nicht den normalen Lehrvertrags-Alltag.</div></div></label>
+</div>
+<div class="ko-box reveal" style="animation-delay:.2s"><div class="ko-label">💬 Kompetenzorientierte Frage (Gesellschaft)</div><div class="ko-text" id="ko_text_ges_a07">Lernender Sven arbeitet in einem Take-away-Betrieb und soll neu regelmässig bis Mitternacht arbeiten. Welches Gesetz schützt ihn hier in erster Linie vor zu langen Arbeitszeiten, und welche Schutzmassnahmen sieht dieses Gesetz allgemein für jugendliche Arbeitnehmende vor?</div><textarea id="ko_ges_a07" rows="4" style="width:100%;border:1px solid #90CAF9;border-radius:5px;padding:8px;font-family:'Source Serif 4',serif;font-size:14px;resize:vertical;" data-ki-aufgabe="Lernender Sven arbeitet in einem Take-away-Betrieb und soll neu regelmaessig bis Mitternacht arbeiten. Welches Gesetz schuetzt ihn hier in erster Linie vor zu langen Arbeitszeiten, und welche Schutzmassnahmen sieht dieses Gesetz allgemein fuer jugendliche Arbeitnehmende vor?" data-ki-loesung="Massgebend ist das Arbeitsgesetz (ArG). Es schuetzt jugendliche Arbeitnehmende zum Beispiel durch eine beschraenkte Hoechstarbeitszeit sowie durch Einschraenkungen bei Nacht-, Sonntags- und gefaehrlicher Arbeit. Diese Vorschriften bestehen, weil Jugendliche sich noch in der koerperlichen und geistigen Entwicklung befinden und deshalb besonders vor Ueberlastung und Gesundheitsrisiken geschuetzt werden sollen."></textarea><div class="sol-inline visible" id="sol_ko_ges_a07" style="background:#fff;border-left-color:#1565C0;">✓ Mögliche Antwort: Massgebend ist das Arbeitsgesetz (ArG). Es schützt jugendliche Arbeitnehmende zum Beispiel durch eine beschränkte Höchstarbeitszeit sowie durch Einschränkungen bei Nacht-, Sonntags- und gefährlicher Arbeit. Diese Vorschriften bestehen, weil Jugendliche sich noch in der körperlichen und geistigen Entwicklung befinden und deshalb besonders vor Überlastung und Gesundheitsrisiken geschützt werden sollen.</div><div class="block-reset-row" style="text-align:right;margin:6px 0 4px;"><a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_ges_a07']);return false;">↺ Nur diesen Auftrag zurücksetzen</a></div></div>
+<div class="ko-box reveal" style="animation-delay:.24s"><div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div><div class="ko-text" id="ko_text_u0">Joel überlegt, ob er bei seinem Streit mit dem Lehrbetrieb auch im Strafgesetzbuch (StGB) nachschauen sollte. Erklären Sie Joel in 2–3 Sätzen, weshalb das StGB für seinen Fall in der Regel nicht die richtige Anlaufstelle ist und welche Gesetze stattdessen massgebend sind.</div><textarea id="ta_ko_u0" rows="4" style="width:100%;border:1px solid #90CAF9;border-radius:5px;padding:8px;font-family:'Source Serif 4',serif;font-size:14px;resize:vertical;" data-ki-aufgabe="Joel überlegt, ob er bei seinem Streit mit dem Lehrbetrieb auch im Strafgesetzbuch (StGB) nachschauen sollte. Erklären Sie Joel in 2–3 Sätzen, weshalb das StGB für seinen Fall in der Regel nicht die richtige Anlaufstelle ist und welche Gesetze stattdessen massgebend sind." data-ki-loesung="Das StGB regelt strafbare Handlungen wie Diebstahl oder Körperverletzung, nicht aber den normalen Streit zwischen Lehrbetrieb und Lernenden. Für Fragen rund um den Lehrvertrag und die Berufsbildung sind das OR (Lehrvertrag), das BBG (Berufsbildung allgemein) und das ArG (Arbeitsbedingungen, Schutzbestimmungen) massgebend."></textarea>
   <div class="ki-toggle-row" id="kiToggleArea">
     <span class="ki-toggle-label">KI-Modus</span>
     <div class="ki-switch" id="kiModeToggle" role="switch" aria-checked="false" tabindex="0" onclick="kiModeUmschalten(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();kiModeUmschalten(this);}"><div class="ki-switch-knob"></div></div>
@@ -597,23 +571,28 @@
     <button class="btn btn-ki" id="kiFeedbackBtn" onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
   </div>
   <div id="kiFeedbackResult"></div>
-<div class="sol-inline" id="sol_ko_u1" style="background:#fff;border-left-color:#1565C0;">Beispiel: «Guten Tag, ich habe festgestellt, dass mein Lohn unter dem branchenüblichen Richtwert liegt. Gemäss OR Art. 345a habe ich Anspruch auf angemessene Entlöhnung. Ich würde mich über ein Gespräch freuen.»</div>
-  <div class="block-reset-row" style="text-align:right;margin-top:7px;">
-    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ta_ko_u1']);return false;">↺ Nur diese Frage zurücksetzen</a>
-  </div>
+<div class="sol-inline" id="sol_ko_u0" style="background:#fff;border-left-color:#1565C0;">Das StGB regelt strafbare Handlungen wie Diebstahl oder Körperverletzung, nicht aber den normalen Streit zwischen Lehrbetrieb und Lernenden. Für Fragen rund um den Lehrvertrag und die Berufsbildung sind das OR (Lehrvertrag), das BBG (Berufsbildung allgemein) und das ArG (Arbeitsbedingungen, Schutzbestimmungen) massgebend.</div>
+  <div class="block-reset-row" style="text-align:right;margin-top:8px;"><a href="#" class="block-reset-link" onclick="resetBlock(this, ['ta_ko_u0']); return false;">↺ Nur diesen Auftrag zurücksetzen</a></div>
 </div>
   <div id="spellGlobalLimitNote" class="spell-limit-note">⚠ Rechtschreibung: Erkennt nicht alle Fehler (z.B. Zeichensetzung, Satzanfang, Grammatikfehler).</div>
   <div class="btn-row" style="margin-top:24px;display:flex;gap:10px;flex-wrap:wrap;">
     <button class="btn spell-btn-main" id="spellCheckAllBtn" onclick="checkAllSpelling(this)">Rechtschreibung</button>
   
     <button class="btn btn-check" onclick="checkAll()">Überprüfen</button>
-    <button class="btn btn-ghost" onclick="resetAll()">Zurücksetzen</button>
     <button class="btn btn-ghost" onclick="printAsPDF()">Als PDF drucken</button>
     <button class="btn btn-dl" onclick="downloadFile()">Speichern</button>
+    <button class="btn btn-ghost" onclick="resetAll()">Zurücksetzen</button>
   </div>
-  <p style="color:var(--ink-light);font-size:12px;font-family:'JetBrains Mono',monospace;margin-top:28px;border-top:1px solid var(--rule);padding-top:12px;">
-    <span id="footerName"></span> · 101-02 – Lehrvertrag · Thema 1: Mein Lehrbeginn</p>
-<p style="margin-top:6px;"><a href="#" id="erweiterteNutzungLink" onclick="erweiterteNutzungUmschalten(); return false;" style="font-size:11px;color:#b0aa9c;text-decoration:none;">⚙ Erweiterte Nutzung</a>&nbsp;·&nbsp;<a href="#" id="einsendenModusLink" onclick="einsendenModusUmschalten(); return false;" style="font-size:11px;color:#b0aa9c;text-decoration:none;">✉ Abgabe-Modus</a>&nbsp;·&nbsp;<a href="#" id="pruefungsModusLink" onclick="pruefungsModusUmschalten(); return false;" style="font-size:11px;color:#b0aa9c;text-decoration:none;">📝 Standortbestimmung</a></p>
+  <p style="color:#5a5a52;font-size:12px;font-family:'JetBrains Mono',monospace;margin-top:28px;border-top:1px solid #ccc9be;padding-top:12px;">
+    <span id="footerName"></span> · 101-04 – Gesetzliche Grundlagen · Thema 1: Mein Lehrbeginn
+  </p>
+  <p style="margin-top:6px;">
+    <a href="#" id="erweiterteNutzungLink" onclick="erweiterteNutzungUmschalten(); return false;" style="font-size:11px;color:#b0aa9c;text-decoration:none;">⚙ Erweiterte Nutzung</a>
+    &nbsp;·&nbsp;
+    <a href="#" id="einsendenModusLink" onclick="einsendenModusUmschalten(); return false;" style="font-size:11px;color:#b0aa9c;text-decoration:none;">✉ Abgabe-Modus</a>
+    &nbsp;·&nbsp;
+    <a href="#" id="pruefungsModusLink" onclick="pruefungsModusUmschalten(); return false;" style="font-size:11px;color:#b0aa9c;text-decoration:none;">📝 Standortbestimmung</a>
+  </p>
 </div>
 <script>
 /* ════════════════════════════════════════════════════════════════
@@ -631,59 +610,6 @@ function pruefungsModusIstAktiv() {
 }
 
 /* ════════════════════════════════════════════════════════════════
-   STANDORTBESTIMMUNG – blendet Überprüfen, Rechtschreibung und KI aus
-   ════════════════════════════════════════════════════════════════
-   Eigenes, drittes Passwort. Wird aktiviert, wenn eine Datei als
-   echte Standortbestimmung/Test eingesetzt wird, statt als normale
-   Übung mit Hilfsmitteln. Hat Vorrang vor "Erweiterte Nutzung":
-   Solange die Standortbestimmung aktiv ist, bleibt der KI-Bereich
-   versteckt, auch wenn das KI-Passwort separat eingegeben wurde.
-   Einbahnstrasse: einmal aktiviert, kein Zurückschalten mehr möglich.
-   ════════════════════════════════════════════════════════════════ */
-function wendePruefungsModusAn() {
-  const aktiv = pruefungsModusIstAktiv();
-
-  document.querySelectorAll('.btn-check, .spell-btn-main').forEach(function(btn) {
-    btn.style.display = aktiv ? 'none' : '';
-  });
-  const limitNote = document.getElementById('spellGlobalLimitNote');
-  if (limitNote) limitNote.style.display = aktiv ? 'none' : '';
-
-  document.querySelectorAll('.btn-ghost').forEach(function(btn) {
-    if (btn.textContent.trim() === 'Zurücksetzen') btn.style.display = aktiv ? 'none' : '';
-  });
-  document.querySelectorAll('.block-reset-row').forEach(function(el) {
-    el.style.display = aktiv ? 'none' : '';
-  });
-
-  const link = document.getElementById('pruefungsModusLink');
-  if (link) {
-    if (PRUEFUNGS_MODUS_FEST) {
-      link.style.display = 'none';
-    } else {
-      link.textContent = aktiv ? '📝 Standortbestimmung (aktiv, gesperrt)' : '📝 Standortbestimmung';
-    }
-  }
-
-  wendeErweiterteNutzungAn();
-}
-
-function pruefungsModusUmschalten() {
-  if (PRUEFUNGS_MODUS_FEST) return;
-  const aktuell = localStorage.getItem(PRUEFUNG_KEY) === '1';
-  if (aktuell) {
-    alert('Die Standortbestimmung ist aktiv und kann nicht mehr ausgeschaltet werden.');
-    return;
-  }
-  const eingabe = prompt('Passwort für die Standortbestimmung:');
-  if (eingabe === null) return;
-  if (eingabe !== PRUEFUNG_PASSWORT) { alert('Falsches Passwort.'); return; }
-  try { localStorage.setItem(PRUEFUNG_KEY, '1'); } catch (e) {}
-  wendePruefungsModusAn();
-}
-
-
-/* ════════════════════════════════════════════════════════════════
    ERWEITERTE NUTZUNG (nur KI-Modus)
    ════════════════════════════════════════════════════════════════
    Standardmässig ist der KI-Modus ausgeblendet, damit die Datei für
@@ -699,6 +625,8 @@ const ERWEITERT_PASSWORT = "abu"; // <- hier dein eigenes Passwort eintragen
 
 function wendeErweiterteNutzungAn() {
   const aktiv = localStorage.getItem(ERWEITERT_KEY) === '1';
+  // Standortbestimmung hat Vorrang: KI-Bereich bleibt versteckt, auch wenn
+  // "Erweiterte Nutzung" zuvor aktiviert wurde.
   const pruefungAktiv = pruefungsModusIstAktiv();
   const kiSichtbar = aktiv && !pruefungAktiv;
 
@@ -721,6 +649,65 @@ function erweiterteNutzungUmschalten() {
   }
   try { localStorage.setItem(ERWEITERT_KEY, aktuell ? '0' : '1'); } catch (e) {}
   wendeErweiterteNutzungAn();
+}
+
+/* ════════════════════════════════════════════════════════════════
+   PRÜFUNGS-MODUS – blendet Überprüfen, Rechtschreibung und KI aus
+   ════════════════════════════════════════════════════════════════
+   Eigenes, drittes Passwort. Wird aktiviert, wenn eine Datei als
+   echter Test/Prüfung eingesetzt wird, statt als normale Übung mit
+   Hilfsmitteln. Hat Vorrang vor "Erweiterte Nutzung": Solange
+   Standortbestimmung aktiv ist, bleibt der KI-Bereich versteckt, auch
+   wenn das KI-Passwort separat eingegeben wurde.
+   ════════════════════════════════════════════════════════════════ */
+function wendePruefungsModusAn() {
+  const aktiv = pruefungsModusIstAktiv();
+
+  // Überprüfen + Rechtschreibung ausblenden (oben UND unten)
+  document.querySelectorAll('.btn-check, .spell-btn-main').forEach(function(btn) {
+    btn.style.display = aktiv ? 'none' : '';
+  });
+  const limitNote = document.getElementById('spellGlobalLimitNote');
+  if (limitNote) limitNote.style.display = aktiv ? 'none' : '';
+
+  // Zurücksetzen (global + pro Auftrag) ausblenden, damit während einer
+  // Prüfung niemand (versehentlich oder absichtlich) Antworten löscht
+  document.querySelectorAll('.btn-ghost').forEach(function(btn) {
+    if (btn.textContent.trim() === 'Zurücksetzen') btn.style.display = aktiv ? 'none' : '';
+  });
+  document.querySelectorAll('.block-reset-row').forEach(function(el) {
+    el.style.display = aktiv ? 'none' : '';
+  });
+
+  const link = document.getElementById('pruefungsModusLink');
+  if (link) {
+    if (PRUEFUNGS_MODUS_FEST) {
+      // Fest aktiviert: nichts mehr umzuschalten, Link verschwindet ganz
+      link.style.display = 'none';
+    } else {
+      link.textContent = aktiv ? '📝 Standortbestimmung (aktiv, gesperrt)' : '📝 Standortbestimmung';
+    }
+  }
+
+  // KI-Sichtbarkeit neu berechnen, da Standortbestimmung Vorrang hat
+  wendeErweiterteNutzungAn();
+}
+
+function pruefungsModusUmschalten() {
+  if (PRUEFUNGS_MODUS_FEST) return; // fest aktiviert, kein Umschalten möglich
+  const aktuell = localStorage.getItem(PRUEFUNG_KEY) === '1';
+  if (aktuell) {
+    // Einbahnstrasse: einmal aktiviert, gibt es kein Zurückschalten mehr -
+    // auch nicht mit dem Passwort. Verhindert, dass ein Lernender, der das
+    // Passwort kennt, den Modus während der Prüfung selbst wieder ausschaltet.
+    alert('Die Standortbestimmung ist aktiv und kann nicht mehr ausgeschaltet werden.');
+    return;
+  }
+  const eingabe = prompt('Passwort für die Standortbestimmung:');
+  if (eingabe === null) return;
+  if (eingabe !== PRUEFUNG_PASSWORT) { alert('Falsches Passwort.'); return; }
+  try { localStorage.setItem(PRUEFUNG_KEY, '1'); } catch (e) {}
+  wendePruefungsModusAn();
 }
 
 /* ════════════════════════════════════════════════════════════════
@@ -767,7 +754,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-const SAFE_FN = '101_[UE]_A02_Mein_Lehrvertrag_MIX';
+const SAFE_FN = '101_[UE]_A04_Gesetze_Berufsbildung_Nachtrag';
 
 // Stufe-1-Plausibilitätsprüfung (rein regelbasiert, keine KI, keine Kosten):
 // Prüft, ob ein eingegebener Text überhaupt eine ernsthafte Antwort sein
@@ -924,6 +911,7 @@ function resetAll() {
   try { localStorage.removeItem('abu_eingesendet_' + SAFE_FN); } catch (e) {}
   const sendBtn = document.getElementById('sendBtn');
   if (sendBtn) { sendBtn.disabled = false; sendBtn.classList.remove('sent'); sendBtn.textContent = '✉ Antworten einsenden'; }
+  // Punkte-Boxen (vom PDF-Druck) wieder entfernen, falls vorhanden
   document.querySelectorAll('.punkte-box, .punkte-summe-zeile').forEach(function(el) { el.remove(); });
 }
 
@@ -978,12 +966,15 @@ function printAsPDF() {
   if (fn) fn.textContent = n;
 
   if (pruefungsModusIstAktiv()) {
+    // Bei aktiver Standortbestimmung: eigener Titel (Standortbestimmung + Name + Datum)
+    // und Punkte-Boxen pro Aufgabe als Korrekturhilfe.
     const heute = new Date().toLocaleDateString('de-CH');
     document.title = n
       ? 'Standortbestimmung – ' + n + ' – ' + heute
       : 'Standortbestimmung – ' + heute;
     fuegePunkteboxenEin();
   } else {
+    // Normale Übung: bisheriges, einfaches Verhalten - kein Punkte-Layout
     document.title = n ? SAFE_FN + '_' + n.replace(/\s+/g,'_') : SAFE_FN;
     document.querySelectorAll('.punkte-box, .punkte-summe-zeile').forEach(function(el) { el.remove(); });
   }
@@ -992,13 +983,20 @@ function printAsPDF() {
   setTimeout(function() { try { window.print(); } catch(e) { alert('Bitte Strg+P verwenden.'); } }, 80);
 }
 
+// Fügt pro Aufgabe eine Punkte-Box ein (nur im Druck sichtbar, siehe CSS) -
+// Textfelder = 2 Punkte, Multiple-Choice (Radio/Checkbox) = 1 Punkt.
+// Die tatsächlich erreichte Punktzahl trägt die Lehrperson von Hand ein -
+// dies ist bewusst KEINE automatische inhaltliche Bewertung, da freie
+// Texte nicht zuverlässig maschinell auf Richtigkeit geprüft werden können.
 function fuegePunkteboxenEin() {
+  // Vorherige Boxen entfernen, falls schon einmal eingefügt (z.B. erneuter Druck)
   document.querySelectorAll('.punkte-box, .punkte-summe-zeile').forEach(function(el) { el.remove(); });
 
   let punkteTotal = 0;
   const PUNKTE_TEXT = 2;
   const PUNKTE_MC = 1;
 
+  // Freie Textfelder (Tabellen-Textareas, Text-Inputs, Kompetenzfrage)
   document.querySelectorAll('textarea[id^="ta_"], input[type=text][id^="ta_"]').forEach(function(feld) {
     punkteTotal += PUNKTE_TEXT;
     const box = document.createElement('span');
@@ -1007,6 +1005,7 @@ function fuegePunkteboxenEin() {
     feld.insertAdjacentElement('afterend', box);
   });
 
+  // Radio-Gruppen (eine Box pro Gruppe, nicht pro einzelnem Radio-Button)
   const rfGroups = {};
   document.querySelectorAll('input[type=radio][data-rf-correct]').forEach(function(inp) {
     rfGroups[inp.name] = true;
@@ -1023,6 +1022,7 @@ function fuegePunkteboxenEin() {
     }
   });
 
+  // Checkbox-Fragen (eine Box pro Checkbox, da jede einzeln bewertbar ist)
   document.querySelectorAll('input[type=checkbox][data-cb-correct]').forEach(function(inp) {
     punkteTotal += PUNKTE_MC;
     const lbl = document.getElementById('lbl_cb_' + inp.id.replace('cb_', ''));
@@ -1034,6 +1034,7 @@ function fuegePunkteboxenEin() {
     }
   });
 
+  // Summenzeile am Ende des Arbeitsbereichs einfügen
   const ws = document.querySelector('.ws');
   if (ws) {
     const summe = document.createElement('div');
@@ -1042,7 +1043,6 @@ function fuegePunkteboxenEin() {
     ws.appendChild(summe);
   }
 }
-
 
 function collectVals(v) {
   document.querySelectorAll('textarea[id], input[type=text][id]').forEach(function(el) { v[el.id] = el.value; });
@@ -2264,12 +2264,13 @@ document.addEventListener('copy', function(e) {
     const b = document.getElementById('iframeBanner');
     if (b) b.style.display = 'block';
   }
-})();</script>
+})();
+</script>
 <table width="100%" style="background:#f7f7f7;border-top:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;">
 <tr>
-<td style="padding:6px 10px;text-align:left;width:33%;"><a href="101_[UE]_A01_Berufsbildung_Gesetze_MIX.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
+<td style="padding:6px 10px;text-align:left;width:33%;"><a href="101_[UE]_A03_Zustaendigkeit_Gesetze_MIX.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
 <td style="padding:6px 10px;text-align:center;width:34%;"><a href="101_Aufgaben.html" style="color:#8b1a1a;text-decoration:none;font-size:14px;" title="Zur Übersicht">&#8593;</a></td>
-<td style="padding:6px 10px;text-align:right;width:33%;"><a href="101_[UE]_A03_Vertragspflichten_MIX.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
+<td style="padding:6px 10px;text-align:right;width:33%;"><a href="101_[UE]_A05_Rechtsquellen_Nachtrag(1).html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
 </tr>
 </table>
 </body>
