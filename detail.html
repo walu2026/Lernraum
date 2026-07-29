@@ -28,6 +28,7 @@
   .d-big-num { font-family:'Barlow Condensed',sans-serif; font-size:64px; font-weight:800; line-height:1; opacity:0.18; flex-shrink:0; min-width:60px; }
   .d-label { font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; margin-bottom:3px; }
   .d-title { font-family:'Barlow Condensed',sans-serif; font-size:28px; font-weight:800; text-transform:uppercase; color:var(--g9); letter-spacing:-0.3px; line-height:1.1; margin-bottom:5px; }
+  .d-ls { font-size:13px; font-weight:800; letter-spacing:0.2px; margin-bottom:6px; display:none; }
   .d-desc { font-size:12px; color:var(--g5); line-height:1.5; }
 
   .file-cards { display:flex; flex-direction:column; gap:10px; }
@@ -65,6 +66,7 @@
       <div>
         <div class="d-label" id="dLabel"></div>
         <div class="d-title" id="dTitle"></div>
+        <div class="d-ls" id="dLs"></div>
         <div class="d-desc" id="dDesc"></div>
       </div>
     </div>
@@ -76,39 +78,39 @@
 
 <script>
 const DATA = {
-  '101':{ tc:'#C0392B', tbg:'#FDDBD9', label:'Thema 1 · Mein Lehrbeginn', title:'Lehrvertrag & Rechte/Pflichten', desc:'Eine Lehre beginnen – Rechte und Pflichten verstehen und wahrnehmen', pre:'110' },
-  '102':{ tc:'#C0392B', tbg:'#FDDBD9', label:'Thema 1 · Mein Lehrbeginn', title:'Rechtsgrundlagen', desc:'In einen neuen Lebensabschnitt eintreten und die eigene Rolle finden', pre:'120' },
-  '103':{ tc:'#C0392B', tbg:'#FDDBD9', label:'Thema 1 · Mein Lehrbeginn', title:'Kommunikation & Konflikte', desc:'Den Alltag zwischen Beruf, Schule und Privatleben organisieren', pre:'130' },
-  '201':{ tc:'#E67E22', tbg:'#FCE9D4', label:'Thema 2 · Mein Geld', title:'Lohn & Budget', desc:'Einen Lohn erhalten, ausgeben und sparen', pre:'210' },
-  '202':{ tc:'#E67E22', tbg:'#FCE9D4', label:'Thema 2 · Mein Geld', title:'Konsum & Werbung', desc:'Durch Umfeld und Medien im Konsumverhalten beeinflusst werden', pre:'220' },
-  '203':{ tc:'#E67E22', tbg:'#FCE9D4', label:'Thema 2 · Mein Geld', title:'Kaufvertrag', desc:'Einkaufen und Verträge abschliessen', pre:'230' },
-  '204':{ tc:'#E67E22', tbg:'#FCE9D4', label:'Thema 2 · Mein Geld', title:'Investition & Finanzierung', desc:'Grössere Anschaffungen planen und finanzieren', pre:'240' },
+  '101':{ tc:'#C0392B', tbg:'#FDDBD9', label:'Thema 1 · Mein Lehrbeginn', title:'Lehrvertrag & Rechte/Pflichten', ls:'Lebenssituation A', desc:'Eine Lehre beginnen – Rechte und Pflichten verstehen und wahrnehmen', pre:'110' },
+  '102':{ tc:'#C0392B', tbg:'#FDDBD9', label:'Thema 1 · Mein Lehrbeginn', title:'Rechtsgrundlagen', ls:'Lebenssituation B', desc:'In einen neuen Lebensabschnitt eintreten und die eigene Rolle finden', pre:'120' },
+  '103':{ tc:'#C0392B', tbg:'#FDDBD9', label:'Thema 1 · Mein Lehrbeginn', title:'Kommunikation & Konflikte', ls:'Lebenssituation C', desc:'Den Alltag zwischen Beruf, Schule und Privatleben organisieren', pre:'130' },
+  '201':{ tc:'#E67E22', tbg:'#FCE9D4', label:'Thema 2 · Mein Geld', title:'Lohn & Budget', ls:'Lebenssituation A', desc:'Einen Lohn erhalten, ausgeben und sparen', pre:'210' },
+  '202':{ tc:'#E67E22', tbg:'#FCE9D4', label:'Thema 2 · Mein Geld', title:'Konsum & Werbung', ls:'Lebenssituation B', desc:'Durch Umfeld und Medien im Konsumverhalten beeinflusst werden', pre:'220' },
+  '203':{ tc:'#E67E22', tbg:'#FCE9D4', label:'Thema 2 · Mein Geld', title:'Kaufvertrag', ls:'Lebenssituation C', desc:'Einkaufen und Verträge abschliessen', pre:'230' },
+  '204':{ tc:'#E67E22', tbg:'#FCE9D4', label:'Thema 2 · Mein Geld', title:'Investition & Finanzierung', ls:'Lebenssituation D', desc:'Grössere Anschaffungen planen und finanzieren', pre:'240' },
   '205':{ tc:'#E67E22', tbg:'#FCE9D4', label:'Thema 2 · Mein Geld', title:'Steuern & Vorsorge', desc:'Steuern verstehen und für die Altersvorsorge planen', pre:'250' },
   '206':{ tc:'#E67E22', tbg:'#FCE9D4', label:'Thema 2 · Mein Geld', title:'Mobilität', desc:'Ein Fahrzeug kaufen, versichern und sicher unterwegs sein', pre:'260' },
-  '301':{ tc:'#27AE60', tbg:'#D4F7E2', label:'Thema 3 · Meine Gesundheit', title:'Gesundheitsfaktoren', desc:'Verschiedene Faktoren wie Körper, Psyche und Sozialleben', pre:'310' },
-  '302':{ tc:'#27AE60', tbg:'#D4F7E2', label:'Thema 3 · Meine Gesundheit', title:'Prävention', desc:'Verantwortung für die Gesundheit tragen', pre:'320' },
-  '303':{ tc:'#27AE60', tbg:'#D4F7E2', label:'Thema 3 · Meine Gesundheit', title:'Krankenkasse & Versicherung', desc:'Mit allfälligen Krankheiten und Unfällen umgehen', pre:'330' },
-  '304':{ tc:'#27AE60', tbg:'#D4F7E2', label:'Thema 3 · Meine Gesundheit', title:'Stress, Sucht & Resilienz', desc:'Mit psychischen Herausforderungen und Suchtverhalten umgehen', pre:'340' },
-  '305':{ tc:'#27AE60', tbg:'#D4F7E2', label:'Thema 3 · Meine Gesundheit', title:'Gewalt & Zivilcourage', desc:'Auf Gewaltsituationen treffen', pre:'350' },
+  '301':{ tc:'#27AE60', tbg:'#D4F7E2', label:'Thema 3 · Meine Gesundheit', title:'Gesundheitsfaktoren', ls:'Lebenssituation A', desc:'Verschiedene Faktoren wie Körper, Psyche und Sozialleben', pre:'310' },
+  '302':{ tc:'#27AE60', tbg:'#D4F7E2', label:'Thema 3 · Meine Gesundheit', title:'Prävention', ls:'Lebenssituation B', desc:'Verantwortung für die Gesundheit tragen', pre:'320' },
+  '303':{ tc:'#27AE60', tbg:'#D4F7E2', label:'Thema 3 · Meine Gesundheit', title:'Krankenkasse & Versicherung', ls:'Lebenssituation C', desc:'Mit allfälligen Krankheiten und Unfällen umgehen', pre:'330' },
+  '304':{ tc:'#27AE60', tbg:'#D4F7E2', label:'Thema 3 · Meine Gesundheit', title:'Stress, Sucht & Resilienz', ls:'Lebenssituation D', desc:'Mit psychischen Herausforderungen und Suchtverhalten umgehen', pre:'340' },
+  '305':{ tc:'#27AE60', tbg:'#D4F7E2', label:'Thema 3 · Meine Gesundheit', title:'Gewalt & Zivilcourage', ls:'Lebenssituation E', desc:'Auf Gewaltsituationen treffen', pre:'350' },
   '306':{ tc:'#27AE60', tbg:'#D4F7E2', label:'Thema 3 · Meine Gesundheit', title:'Verhütung & Sexualität', desc:'Verantwortungsvoll mit der eigenen Sexualität umgehen', pre:'360' },
-  '401':{ tc:'#2980B9', tbg:'#D4E9F9', label:'Thema 4 · Unsere Schweiz', title:'Demokratie & Politik', desc:'In einer Demokratie leben und Politik als alltäglich erfahren', pre:'410' },
-  '402':{ tc:'#2980B9', tbg:'#D4E9F9', label:'Thema 4 · Unsere Schweiz', title:'Meinungsbildung & Medien', desc:'Auf verschiedene Meinungen und Haltungen treffen', pre:'420' },
-  '403':{ tc:'#2980B9', tbg:'#D4E9F9', label:'Thema 4 · Unsere Schweiz', title:'Vielseitigkeit der Schweiz', desc:'In der Schweiz leben und ihrer Vielseitigkeit begegnen', pre:'430' },
+  '401':{ tc:'#2980B9', tbg:'#D4E9F9', label:'Thema 4 · Unsere Schweiz', title:'Demokratie & Politik', ls:'Lebenssituation A', desc:'In einer Demokratie leben und Politik als alltäglich erfahren', pre:'410' },
+  '402':{ tc:'#2980B9', tbg:'#D4E9F9', label:'Thema 4 · Unsere Schweiz', title:'Meinungsbildung & Medien', ls:'Lebenssituation B', desc:'Auf verschiedene Meinungen und Haltungen treffen', pre:'420' },
+  '403':{ tc:'#2980B9', tbg:'#D4E9F9', label:'Thema 4 · Unsere Schweiz', title:'Vielseitigkeit der Schweiz', ls:'Lebenssituation C', desc:'In der Schweiz leben und ihrer Vielseitigkeit begegnen', pre:'430' },
   '404':{ tc:'#2980B9', tbg:'#D4E9F9', label:'Thema 4 · Unsere Schweiz', title:'Medien & KI', desc:'KI-Werkzeuge nutzen und die eigenen Daten schützen', pre:'440' },
-  '501':{ tc:'#F39C12', tbg:'#FCF0CD', label:'Thema 5 · Unser Zusammenleben', title:'Beziehungen', desc:'Beziehungen eingehen, pflegen und beenden', pre:'510' },
-  '502':{ tc:'#F39C12', tbg:'#FCF0CD', label:'Thema 5 · Unser Zusammenleben', title:'Ausziehen & Mietrecht', desc:'Das gewohnte Zuhause verlassen', pre:'520' },
-  '503':{ tc:'#F39C12', tbg:'#FCF0CD', label:'Thema 5 · Unser Zusammenleben', title:'Lebensmodelle & Eherecht', desc:'Sich mit dem eigenen Lebensmodell auseinandersetzen', pre:'530' },
-  '504':{ tc:'#F39C12', tbg:'#FCF0CD', label:'Thema 5 · Unser Zusammenleben', title:'Multikulturelles Leben', desc:'Menschen aus anderen Kulturen begegnen', pre:'540' },
-  '505':{ tc:'#F39C12', tbg:'#FCF0CD', label:'Thema 5 · Unser Zusammenleben', title:'Gesellschaft mitgestalten', desc:'Eine lebenswerte Gesellschaft mitgestalten', pre:'550' },
+  '501':{ tc:'#F39C12', tbg:'#FCF0CD', label:'Thema 5 · Unser Zusammenleben', title:'Beziehungen', ls:'Lebenssituation A', desc:'Beziehungen eingehen, pflegen und beenden', pre:'510' },
+  '502':{ tc:'#F39C12', tbg:'#FCF0CD', label:'Thema 5 · Unser Zusammenleben', title:'Ausziehen & Mietrecht', ls:'Lebenssituation B', desc:'Das gewohnte Zuhause verlassen', pre:'520' },
+  '503':{ tc:'#F39C12', tbg:'#FCF0CD', label:'Thema 5 · Unser Zusammenleben', title:'Lebensmodelle & Eherecht', ls:'Lebenssituation C', desc:'Sich mit dem eigenen Lebensmodell auseinandersetzen', pre:'530' },
+  '504':{ tc:'#F39C12', tbg:'#FCF0CD', label:'Thema 5 · Unser Zusammenleben', title:'Multikulturelles Leben', ls:'Lebenssituation D', desc:'Menschen aus anderen Kulturen begegnen', pre:'540' },
+  '505':{ tc:'#F39C12', tbg:'#FCF0CD', label:'Thema 5 · Unser Zusammenleben', title:'Gesellschaft mitgestalten', ls:'Lebenssituation E', desc:'Eine lebenswerte Gesellschaft mitgestalten', pre:'550' },
   '506':{ tc:'#F39C12', tbg:'#FCF0CD', label:'Thema 5 · Unser Zusammenleben', title:'Erbrecht & Güterrecht', desc:'Erbschaft, Güterrecht und Betriebsübergabe verstehen', pre:'560' },
-  '601':{ tc:'#8E44AD', tbg:'#EDD9F7', label:'Thema 6 · Unsere Welt', title:'Weltgeschehen', desc:'Das aktuelle Weltgeschehen verfolgen', pre:'610' },
-  '602':{ tc:'#8E44AD', tbg:'#EDD9F7', label:'Thema 6 · Unsere Welt', title:'Ökologie & Klimawandel', desc:'Gemeinsam Lösungen für ökologische Herausforderungen finden', pre:'620' },
-  '603':{ tc:'#8E44AD', tbg:'#EDD9F7', label:'Thema 6 · Unsere Welt', title:'Globale Vernetzung', desc:'Mit der ganzen Welt vernetzt sein', pre:'630' },
-  '604':{ tc:'#8E44AD', tbg:'#EDD9F7', label:'Thema 6 · Unsere Welt', title:'Migration', desc:'Migration im Alltag erleben', pre:'640' },
-  '701':{ tc:'#6C3483', tbg:'#E2D3F0', label:'Thema 7 · Meine Zukunft', title:'Arbeitsmarkt & Wirtschaft', desc:'Im Arbeitsmarkt ankommen', pre:'710' },
-  '702':{ tc:'#6C3483', tbg:'#E2D3F0', label:'Thema 7 · Meine Zukunft', title:'Stellensuche & Bewerbung', desc:'Eine Stelle suchen und Arbeitsvertrag abschliessen', pre:'720' },
-  '703':{ tc:'#6C3483', tbg:'#E2D3F0', label:'Thema 7 · Meine Zukunft', title:'Lohn, Steuern & Vorsorge', desc:'Einen vollen Lohn erhalten und damit umsichtig planen', pre:'730' },
-  '704':{ tc:'#6C3483', tbg:'#E2D3F0', label:'Thema 7 · Meine Zukunft', title:'Zukunftsperspektiven', desc:'Sich in einer Welt des Wandels weiterentwickeln', pre:'740' },
+  '601':{ tc:'#8E44AD', tbg:'#EDD9F7', label:'Thema 6 · Unsere Welt', title:'Weltgeschehen', ls:'Lebenssituation A', desc:'Das aktuelle Weltgeschehen verfolgen', pre:'610' },
+  '602':{ tc:'#8E44AD', tbg:'#EDD9F7', label:'Thema 6 · Unsere Welt', title:'Ökologie & Klimawandel', ls:'Lebenssituation B', desc:'Gemeinsam Lösungen für ökologische Herausforderungen finden', pre:'620' },
+  '603':{ tc:'#8E44AD', tbg:'#EDD9F7', label:'Thema 6 · Unsere Welt', title:'Globale Vernetzung', ls:'Lebenssituation C', desc:'Mit der ganzen Welt vernetzt sein', pre:'630' },
+  '604':{ tc:'#8E44AD', tbg:'#EDD9F7', label:'Thema 6 · Unsere Welt', title:'Migration', ls:'Lebenssituation D', desc:'Migration im Alltag erleben', pre:'640' },
+  '701':{ tc:'#6C3483', tbg:'#E2D3F0', label:'Thema 7 · Meine Zukunft', title:'Arbeitsmarkt & Wirtschaft', ls:'Lebenssituation A', desc:'Im Arbeitsmarkt ankommen', pre:'710' },
+  '702':{ tc:'#6C3483', tbg:'#E2D3F0', label:'Thema 7 · Meine Zukunft', title:'Stellensuche & Bewerbung', ls:'Lebenssituation B', desc:'Eine Stelle suchen und Arbeitsvertrag abschliessen', pre:'720' },
+  '703':{ tc:'#6C3483', tbg:'#E2D3F0', label:'Thema 7 · Meine Zukunft', title:'Lohn, Steuern & Vorsorge', ls:'Lebenssituation C', desc:'Einen vollen Lohn erhalten und damit umsichtig planen', pre:'730' },
+  '704':{ tc:'#6C3483', tbg:'#E2D3F0', label:'Thema 7 · Meine Zukunft', title:'Zukunftsperspektiven', ls:'Lebenssituation D', desc:'Sich in einer Welt des Wandels weiterentwickeln', pre:'740' },
   // T8 Qualifikationsverfahren
   '801':{ tc:'#1a5276', tbg:'#d6eaf8', label:'Thema 8 · Qualifikationsverfahren', title:'Mein Lehrbeginn',      desc:'Wiederholung und Prüfungsvorbereitung – Thema 1', pre:'801' },
   '802':{ tc:'#1a5276', tbg:'#d6eaf8', label:'Thema 8 · Qualifikationsverfahren', title:'Mein Geld',            desc:'Wiederholung und Prüfungsvorbereitung – Thema 2', pre:'802' },
@@ -285,6 +287,9 @@ window.onload = function() {
   document.getElementById('dLabel').style.color = d.tc;
   document.getElementById('dLabel').textContent = d.label;
   document.getElementById('dTitle').textContent = d.title;
+  const dLs = document.getElementById('dLs');
+  if (d.ls) { dLs.style.color = d.tc; dLs.textContent = d.ls; dLs.style.display = 'block'; }
+  else { dLs.style.display = 'none'; }
   document.getElementById('dDesc').textContent = d.desc;
 
   // T9 und T10: nur ein Ordner pro Kachel, kein Theorie/Übungen/Quiz
