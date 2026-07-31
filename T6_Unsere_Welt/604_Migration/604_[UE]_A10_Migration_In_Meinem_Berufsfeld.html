@@ -228,6 +228,15 @@
   <textarea id="ko_suk_604_10" rows="5" placeholder="Meine Nachricht …"
     data-ki-aufgabe="Eine Bekannte im Ausland interessiert sich fuer eine Stelle in Ihrem Berufsfeld in der Schweiz. Schreiben Sie ihr eine kurze Nachricht: Was sollte sie ueber die Bedeutung internationaler Fachkraefte in diesem Beruf wissen?"
     data-ki-loesung="Eine gute Nachricht ist freundlich, konkret und informativ: nennt kurz, wie wichtig internationale Fachkraefte/Zusammenarbeit in diesem Berufsfeld sind. Beispiel: 'Hey, in unserer Branche arbeiten viele Leute aus dem Ausland - ohne sie wuerde es an Fachkraeften fehlen. Deine Erfahrung waere sicher gefragt!'"></textarea>
+  <div class="ki-toggle-row" id="kiToggleArea" style="display:none">
+    <span class="ki-toggle-label">KI-Modus</span>
+    <div class="ki-switch" id="kiModeToggle" role="switch" aria-checked="false" tabindex="0" onclick="kiModeUmschalten(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();kiModeUmschalten(this);}"><div class="ki-switch-knob"></div></div>
+    <span class="ki-modus-pill" data-ki-pill>Modus: Rechtschreibprüfung (LanguageTool)</span>
+  </div>
+  <div id="kiFeedbackBtnArea" style="display:none;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+    <button class="btn btn-ki" id="kiFeedbackBtn" onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
+  </div>
+  <div id="kiFeedbackResult"></div>
   <div class="sol-inline" id="sol_ko_suk_604_10">Eine gute Nachricht ist freundlich, konkret und informativ: nennt kurz, wie wichtig internationale Fachkräfte in diesem Berufsfeld sind. Beispiel: «Hey, in unserer Branche arbeiten viele Leute aus dem Ausland – ohne sie würde es an Fachkräften fehlen. Deine Erfahrung wäre sicher gefragt!»</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_604_10']);return false;">↺ Nur diese Frage zurücksetzen</a>
