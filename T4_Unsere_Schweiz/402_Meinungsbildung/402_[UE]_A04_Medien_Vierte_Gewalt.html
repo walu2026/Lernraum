@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="slp2026-thema" content="4">
 <meta name="slp2026-ls" content="B">
-<meta name="slp2026-ges" content="B3">
-<meta name="slp2026-suk" content="B4">
+<meta name="slp2026-ges" content="B4">
+<meta name="slp2026-suk" content="—">
 <meta name="slp2026-status" content="kern">
 <meta name="slp2026-efz3" content="kern">
-<meta name="slp2026-format" content="faktencheck">
-<meta name="slp2026-ow" content="—">
-<title>402-07 · Verlässliche Quellen / Fake News</title>
+<meta name="slp2026-format" content="sachtext">
+<meta name="slp2026-ow" content="4.7">
+<title>402-04 · Medien als vierte Gewalt</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
   :root {
@@ -132,12 +132,10 @@
   .reveal { animation: fadeInUp .5s cubic-bezier(.16,.84,.44,1) both; }
   @media (prefers-reduced-motion: reduce) { .reveal { animation: none; } }
   .punkte-box, .punkte-summe-zeile { display: none; }
-  .check-list { margin: 8px 0 4px; padding-left: 0; list-style: none; counter-reset: chk; }
-  .check-list li { padding: 8px 0 8px 32px; position: relative; border-bottom: 1px dashed var(--rule); }
-  .check-list li:last-child { border-bottom: none; }
-  .check-list li::before { content: counter(chk); counter-increment: chk; position: absolute; left: 0; top: 8px; width: 20px; height: 20px; border-radius: 50%; background: var(--t1); color: white; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
-  .check-list strong { color: var(--t1-dark); }
-  .beispiel-box { background: var(--t1-lighter); border-radius: 10px; padding: 12px 16px; margin: 10px 0 16px; font-size: 13.5px; }
+  .funktion-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin: 10px 0 6px; }
+  .funktion-cell { border: 1.5px solid var(--rule); border-radius: 10px; padding: 12px 14px; font-size: 13px; }
+  .funktion-cell strong { display: block; color: var(--t1-dark); margin-bottom: 4px; font-size: 12.5px; }
+  @media (max-width:640px) { .funktion-grid { grid-template-columns: 1fr; } }
   @media print {
     .top-bar { display: none; }
     .score-banner { display: none !important; }
@@ -153,9 +151,9 @@
 <body>
 <table width="100%" style="background:#f7f7f7;border-bottom:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;">
 <tr>
-<td style="padding:6px 10px;text-align:left;width:33%;"><a href="402_[UE]_A06_Meinungsfreiheit_Grenzen.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
+<td style="padding:6px 10px;text-align:left;width:33%;"><a href="402_[UE]_A03_Verlaessliche_Quellen_Fake_News.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
 <td style="padding:6px 10px;text-align:center;width:34%;"><a href="402_Aufgaben.html" style="color:#8b1a1a;text-decoration:none;font-size:14px;" title="Zur Übersicht">&#8593;</a></td>
-<td style="padding:6px 10px;text-align:right;width:33%;"><a href="402_[UE]_A08_Medien_Vierte_Gewalt.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
+<td style="padding:6px 10px;text-align:right;width:33%;"><a href="402_[UE]_A05_Algorithmen_Digitale_Technologien.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
 </tr>
 </table>
 
@@ -180,59 +178,57 @@
 
 <div class="ws">
   <div class="lebenswelt-ref">402 Meinungsbildung & Medien — Auf verschiedene Meinungen und Haltungen treffen</div>
-  <div class="task-title">402-07 · Verlässliche Quellen / Fake News</div>
-  <div class="lz-box reveal" style="animation-delay:.02s"><strong>Lernziel:</strong> Ich kann mithilfe eines Qualitäts- und Glaubwürdigkeitschecks beurteilen, ob eine Online-Information vertrauenswürdig ist.</div>
-  <div class="meta-row">K3–K4</div>
-<p style="font-size:15px;margin-bottom:12px;"><strong style="color:var(--t1-dark);">Auftrag:</strong> Lesen Sie den Qualitäts- und Glaubwürdigkeitscheck und beantworten Sie die folgenden Fragen. Wenden Sie den Check anschliessend auf das Fallbeispiel an.</p>
+  <div class="task-title">402-04 · Medien als vierte Gewalt</div>
+  <div class="lz-box reveal" style="animation-delay:.02s"><strong>Lernziel:</strong> Ich kenne die drei Hauptfunktionen der Medien und kann erklären, was mit «Vierter Gewalt» gemeint ist.</div>
+  <div class="meta-row">K2–K3</div>
+<p style="font-size:15px;margin-bottom:12px;"><strong style="color:var(--t1-dark);">Auftrag:</strong> Lesen Sie den Text zu den Funktionen der Medien und beantworten Sie die folgenden Fragen.</p>
 
-  <div class="section-label">Faktencheck-Methode</div>
+  <div class="section-label">Sachtext</div>
   <div style="background:var(--paper);border:1.5px solid var(--rule);border-radius:12px;padding:18px 22px;margin-bottom:20px;font-size:14.5px;line-height:1.65;color:#3a362f;">
-    <p style="font-weight:800;color:var(--t1-dark);margin-bottom:10px;">Der Qualitäts- und Glaubwürdigkeitscheck</p>
-    <p>Wenn Sie im Internet auf widersprüchliche Informationen stossen, hilft ein systematischer Check, die verlässlichere Quelle zu erkennen:</p>
-    <ol class="check-list">
-      <li><strong>Informationen ermitteln</strong> – Welche Informationen liefert die Seite zum Thema genau?</li>
-      <li><strong>Autor/Urheber herausfinden</strong> – Wer steckt dahinter (Privatperson, Behörde, Firma, öffentlich-rechtlicher oder privater Medienanbieter, Verein …)? Meist zu finden unter «Impressum» oder «Kontakt».</li>
-      <li><strong>Aktualität prüfen</strong> – Wie aktuell ist die Information? Kein angegebenes Datum ist kein gutes Zeichen.</li>
-      <li><strong>Quellenherkunft prüfen</strong> – Wird angegeben, woher die Information stammt?</li>
-      <li><strong>Quellenvergleich</strong> – Bestätigen andere seriöse Seiten diese Information?</li>
-      <li><strong>Erscheinungsbild beachten</strong> – Stimmen Rechtschreibung und Zeichensetzung? Achtung: Ein schönes Layout kann auch über unseriöse Inhalte hinwegtäuschen.</li>
-    </ol>
-    <p style="font-size:12px;color:var(--ink-light);font-family:'JetBrains Mono',monospace;margin-top:12px;margin-bottom:0;">Qualitäts- und Glaubwürdigkeitscheck (Quelle: ABU-Themenkreise, „Recherchieren von Echtheit der Information").</p>
+    <p style="font-weight:800;color:var(--t1-dark);margin-bottom:8px;">Medien als «Vierte Gewalt»</p>
+    <p>In der Schweiz wird die Staatsgewalt klassisch in drei Teile aufgeteilt: Legislative (Parlament, erlässt Gesetze), Exekutive (Regierung/Verwaltung, setzt sie um) und Judikative (Gerichte, wenden sie an). Medien gehören formell nicht zu diesen drei Gewalten, üben aber in der Praxis eine so wichtige Kontrollfunktion aus, dass sie oft als «Vierte Gewalt» bezeichnet werden.</p>
+    <p style="font-weight:700;color:var(--t1-dark);margin-top:14px;">Drei zentrale Funktionen der Medien</p>
+    <div class="funktion-grid">
+      <div class="funktion-cell"><strong>Information</strong>Die Bevölkerung über Ereignisse, Politik und Gesellschaft informieren.</div>
+      <div class="funktion-cell"><strong>Kontrolle</strong>Machthaber und Institutionen kritisch beobachten, Missstände aufdecken («Vierte Gewalt»).</div>
+      <div class="funktion-cell"><strong>Meinungsbildung</strong>Ein Forum für unterschiedliche Meinungen bieten und so die öffentliche Debatte ermöglichen.</div>
+    </div>
+    <p style="margin-top:12px;">Damit Medien diese Kontrollfunktion überhaupt wahrnehmen können, braucht es unabhängige, freie Medien (siehe Meinungs- und Medienfreiheit) sowie Organisationen, die sich für Pressefreiheit einsetzen, zum Beispiel «Reporter ohne Grenzen».</p>
+    <p style="font-weight:700;color:var(--t1-dark);margin-top:14px;">Rechte und Pflichten der Medien</p>
+    <p>Journalistinnen und Journalisten haben das Recht, frei zu recherchieren und zu berichten – gleichzeitig gilt der Presserat als Selbstkontrollorgan, das die Einhaltung journalistischer Sorgfaltspflichten (z. B. Wahrheitssuche, Trennung von Fakten und Kommentar) überwacht.</p>
+    <p style="font-size:12px;color:var(--ink-light);font-family:'JetBrains Mono',monospace;margin-top:12px;margin-bottom:0;">Zusammenfassung zu den drei Medienfunktionen und dem Konzept «Vierte Gewalt».</p>
   </div>
-
-  <div class="section-label">Fallbeispiel</div>
-  <div class="beispiel-box">Auf einer Website ohne erkennbaren Absender wird behauptet, ein bestimmtes Lebensmittel sei «wissenschaftlich erwiesen» krebserregend. Es gibt kein Publikationsdatum, keine Quellenangabe, dafür viele Rechtschreibfehler. Eine Recherche auf drei anerkannten Gesundheitsportalen findet keine Bestätigung dieser Behauptung.</div>
 
   <div class="section-label">Sachfragen</div>
   <table class="ex">
     <thead><tr><th style="width:38%">Frage</th><th style="text-align:left;">Ihre Antwort</th></tr></thead>
     <tbody>
       <tr>
-        <td><strong>1</strong> Wo findet man normalerweise Angaben zum Autor bzw. Urheber einer Website?</td>
+        <td><strong>1</strong> Nennen Sie die drei klassischen Staatsgewalten.</td>
         <td>
           <textarea class="cell-ta" id="ta_a1" rows="3" placeholder="Meine Antwort …"></textarea>
-          <div class="sol-inline-sm" id="sol_a1">Meist auf der Seite «Impressum» unter «Kontakt».</div>
+          <div class="sol-inline-sm" id="sol_a1">Legislative (Parlament), Exekutive (Regierung/Verwaltung), Judikative (Gerichte).</div>
         </td>
       </tr>
       <tr>
-        <td><strong>2</strong> Weshalb ist ein fehlendes Veröffentlichungsdatum ein Warnsignal?</td>
+        <td><strong>2</strong> Nennen Sie die drei Hauptfunktionen der Medien.</td>
         <td>
-          <textarea class="cell-ta" id="ta_a2" rows="3" placeholder="Meine Antwort …"></textarea>
-          <div class="sol-inline-sm" id="sol_a2">Weil man ohne Datum nicht beurteilen kann, wie aktuell und damit wie relevant die Information noch ist – seriöse Quellen geben in der Regel ein Datum an.</div>
+          <textarea class="cell-ta" id="ta_a2" rows="3" placeholder="Funktion 1, 2, 3 …"></textarea>
+          <div class="sol-inline-sm" id="sol_a2">Information, Kontrolle, Meinungsbildung.</div>
         </td>
       </tr>
       <tr>
-        <td><strong>3</strong> Wenden Sie den Check auf das Fallbeispiel an: Nennen Sie mindestens drei Warnsignale, die im Beispiel auf eine unseriöse Quelle hindeuten.</td>
+        <td><strong>3</strong> Was ist mit «Vierter Gewalt» gemeint?</td>
         <td>
-          <textarea class="cell-ta" id="ta_a3" rows="3" placeholder="Warnsignal 1, 2, 3 …"></textarea>
-          <div class="sol-inline-sm" id="sol_a3">Kein erkennbarer Absender/Autor, kein Publikationsdatum, keine Quellenangabe, viele Rechtschreibfehler, keine Bestätigung durch andere seriöse Quellen.</div>
+          <textarea class="cell-ta" id="ta_a3" rows="3" placeholder="Meine Antwort …"></textarea>
+          <div class="sol-inline-sm" id="sol_a3">Die Bezeichnung für die wichtige Kontrollfunktion der Medien: Sie beobachten Machthaber und Institutionen kritisch und decken Missstände auf, ohne formell zu den drei Staatsgewalten zu gehören.</div>
         </td>
       </tr>
       <tr>
-        <td><strong>4</strong> Weshalb ist ein schönes, professionelles Layout allein kein Beweis für Seriosität?</td>
+        <td><strong>4</strong> Welche Rolle spielt der Presserat gemäss Text?</td>
         <td>
           <textarea class="cell-ta" id="ta_a4" rows="3" placeholder="Meine Antwort …"></textarea>
-          <div class="sol-inline-sm" id="sol_a4">Weil auch unseriöse oder falsche Inhalte mit gutem Design und ansprechendem Layout präsentiert werden können – das Layout sagt nichts über den Wahrheitsgehalt aus.</div>
+          <div class="sol-inline-sm" id="sol_a4">Er ist ein Selbstkontrollorgan der Medien, das die Einhaltung journalistischer Sorgfaltspflichten überwacht (z. B. Wahrheitssuche, Trennung von Fakten und Kommentar).</div>
         </td>
       </tr>
     </tbody>
@@ -240,11 +236,11 @@
 
 <div class="ko-box reveal" style="animation-delay:.2s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Gesellschaft)</div>
-  <div class="ko-text" id="ko_text_ges">Ein Kollege teilt in einer Chatgruppe eine reisserische Schlagzeile von einer unbekannten Website, ohne die Quelle zu hinterfragen. Beurteilen Sie sein Vorgehen anhand des Qualitäts- und Glaubwürdigkeitschecks.</div>
+  <div class="ko-text" id="ko_text_ges">Ein Zeitungsbericht deckt auf, dass eine Gemeindebehörde öffentliche Gelder zweckentfremdet hat. Beurteilen Sie: Welche der drei Medienfunktionen zeigt sich hier besonders deutlich, und weshalb ist diese Funktion für eine Demokratie wichtig?</div>
   <textarea id="ko_ges" rows="5" placeholder="Meine Beurteilung …"
-    data-ki-aufgabe="Ein Kollege teilt in einer Chatgruppe eine reisserische Schlagzeile von einer unbekannten Website, ohne die Quelle zu hinterfragen. Beurteilen Sie sein Vorgehen anhand des Qualitäts- und Glaubwürdigkeitschecks."
-    data-ki-loesung="Das Vorgehen ist riskant: Ohne den Check (Autor/Urheber, Aktualität, Quellenherkunft, Quellenvergleich, Erscheinungsbild) durchzuführen, lässt sich nicht beurteilen, ob die Information verlässlich ist. Reisserische Schlagzeilen sind zudem oft ein Hinweis auf gezielte Manipulation oder Fake News."></textarea>
-  <div class="sol-inline" id="sol_ko_ges">Das Vorgehen ist riskant: Ohne den Check (Autor/Urheber, Aktualität, Quellenherkunft, Quellenvergleich, Erscheinungsbild) durchzuführen, lässt sich nicht beurteilen, ob die Information verlässlich ist. Reisserische Schlagzeilen sind zudem oft ein Hinweis auf gezielte Manipulation oder Fake News.</div>
+    data-ki-aufgabe="Ein Zeitungsbericht deckt auf, dass eine Gemeindebehörde öffentliche Gelder zweckentfremdet hat. Beurteilen Sie: Welche der drei Medienfunktionen zeigt sich hier besonders deutlich, und weshalb ist diese Funktion für eine Demokratie wichtig?"
+    data-ki-loesung="Hier zeigt sich die Kontrollfunktion (Vierte Gewalt): Medien decken Missstände bei Behörden auf, die sonst möglicherweise unentdeckt blieben. Das ist für die Demokratie wichtig, weil es Machtmissbrauch erschwert und die Bevölkerung informiert, was wiederum politische Konsequenzen ermöglicht."></textarea>
+  <div class="sol-inline" id="sol_ko_ges">Hier zeigt sich die Kontrollfunktion (Vierte Gewalt): Medien decken Missstände bei Behörden auf, die sonst möglicherweise unentdeckt blieben. Das ist für die Demokratie wichtig, weil es Machtmissbrauch erschwert und die Bevölkerung informiert, was wiederum politische Konsequenzen ermöglicht.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_ges']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -252,10 +248,10 @@
 
 <div class="ko-box reveal" style="animation-delay:.28s">
   <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk">Verfassen Sie einen kurzen Faktencheck-Bericht (6–10 Sätze) zum Fallbeispiel oben: Kommen Sie zum Schluss «vertrauenswürdig» oder «nicht vertrauenswürdig», und begründen Sie mit mindestens drei Kriterien aus dem Check.</div>
-  <textarea id="ko_suk" rows="6" placeholder="Mein Faktencheck-Bericht …"
-    data-ki-aufgabe="Verfassen Sie einen kurzen Faktencheck-Bericht (6-10 Sätze) zum Fallbeispiel oben: Kommen Sie zum Schluss 'vertrauenswürdig' oder 'nicht vertrauenswürdig', und begründen Sie mit mindestens drei Kriterien aus dem Check."
-    data-ki-loesung="Ein guter Bericht kommt zum Schluss 'nicht vertrauenswürdig' und begründet dies mit mindestens drei Kriterien: fehlender Autor/Urheber, fehlendes Datum, fehlende Quellenangabe, Rechtschreibfehler, keine Bestätigung durch andere Quellen."></textarea>
+  <div class="ko-text" id="ko_text_suk">Verfassen Sie einen kurzen Leserbrief (5–8 Sätze) an eine Zeitung: Weshalb ist eine freie Presse für eine Demokratie unverzichtbar? Nutzen Sie mindestens zwei Begriffe aus dem Text.</div>
+  <textarea id="ko_suk" rows="5" placeholder="Mein Leserbrief …"
+    data-ki-aufgabe="Verfassen Sie einen kurzen Leserbrief (5-8 Saetze) an eine Zeitung: Weshalb ist eine freie Presse fuer eine Demokratie unverzichtbar? Nutzen Sie mindestens zwei Begriffe aus dem Text."
+    data-ki-loesung="Ein guter Leserbrief nennt mindestens zwei der drei Medienfunktionen (Information, Kontrolle, Meinungsbildung) und erklaert nachvollziehbar, weshalb diese fuer die Demokratie wichtig sind (z.B. Machtmissbrauch aufdecken, informierte Buergerinnen und Buerger, oeffentliche Debatte)."></textarea>
   <div class="ki-toggle-row" id="kiToggleArea" style="display:none">
     <span class="ki-toggle-label">KI-Modus</span>
     <div class="ki-switch" id="kiModeToggle" role="switch" aria-checked="false" tabindex="0"
@@ -268,7 +264,7 @@
     <button class="btn btn-ki" id="kiFeedbackBtn" onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
   </div>
   <div id="kiFeedbackResult"></div>
-  <div class="sol-inline" id="sol_ko_suk">Ein guter Bericht kommt zum Schluss «nicht vertrauenswürdig» und begründet dies mit mindestens drei Kriterien: fehlender Autor/Urheber, fehlendes Datum, fehlende Quellenangabe, Rechtschreibfehler, keine Bestätigung durch andere Quellen.</div>
+  <div class="sol-inline" id="sol_ko_suk">Ein guter Leserbrief nennt mindestens zwei der drei Medienfunktionen (Information, Kontrolle, Meinungsbildung) und erklärt nachvollziehbar, weshalb diese für die Demokratie wichtig sind (z. B. Machtmissbrauch aufdecken, informierte Bürgerinnen und Bürger, öffentliche Debatte).</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
@@ -283,7 +279,7 @@
     <button class="btn btn-ghost" onclick="resetAll()">Zurücksetzen</button>
   </div>
   <p style="color:var(--ink-light);font-size:11.5px;font-family:'JetBrains Mono',monospace;margin-top:28px;border-top:1px solid var(--rule);padding-top:12px;">
-    <span id="footerName"></span> · 402-07 · Unsere Schweiz
+    <span id="footerName"></span> · 402-04 · Unsere Schweiz
   </p>
   <p style="margin-top:6px;">
     <a href="#" id="erweiterteNutzungLink" onclick="erweiterteNutzungUmschalten();return false;" style="font-size:11px;color:#b0aa9c;text-decoration:none;">⚙ Erweiterte Nutzung</a>
@@ -294,7 +290,7 @@
   </p>
 </div>
 <script>
-const SAFE_FN = '402_[UE]_A07_Verlaessliche_Quellen_Fake_News';
+const SAFE_FN = '402_[UE]_A04_Medien_Vierte_Gewalt';
 const SUPABASE_URL = 'https://lrpaomltzrfgtupzeooq.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_Q9t2s4kLLNy--Tkm8EwLBQ_CbHJo9G-';
 const WORKER_URL = 'https://twilight-butterfly-5015.uwalser75.workers.dev/feedback';
@@ -694,9 +690,9 @@ document.addEventListener('copy',function(e){
 </script>
 <table width="100%" style="background:#f7f7f7;border-top:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;">
 <tr>
-<td style="padding:6px 10px;text-align:left;width:33%;"><a href="402_[UE]_A06_Meinungsfreiheit_Grenzen.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
+<td style="padding:6px 10px;text-align:left;width:33%;"><a href="402_[UE]_A03_Verlaessliche_Quellen_Fake_News.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
 <td style="padding:6px 10px;text-align:center;width:34%;"><a href="402_Aufgaben.html" style="color:#8b1a1a;text-decoration:none;font-size:14px;" title="Zur Übersicht">&#8593;</a></td>
-<td style="padding:6px 10px;text-align:right;width:33%;"><a href="402_[UE]_A08_Medien_Vierte_Gewalt.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
+<td style="padding:6px 10px;text-align:right;width:33%;"><a href="402_[UE]_A05_Algorithmen_Digitale_Technologien.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
 </tr>
 </table>
 </body>
