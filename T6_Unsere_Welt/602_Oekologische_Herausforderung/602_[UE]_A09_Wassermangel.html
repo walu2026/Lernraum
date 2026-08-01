@@ -126,6 +126,12 @@
   .reveal { animation: fadeInUp .5s cubic-bezier(.16,.84,.44,1) both; }
   @media (prefers-reduced-motion: reduce) { .reveal { animation: none; } }
   .punkte-box, .punkte-summe-zeile { display: none; }
+  .img-lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(20,18,15,.88); z-index: 10000; align-items: center; justify-content: center; padding: 24px; cursor: zoom-out; }
+  .img-lightbox-overlay.show { display: flex; }
+  .img-lightbox-overlay img { max-width: 96vw; max-height: 92vh; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,.4); cursor: default; }
+  .img-lightbox-close { position: fixed; top: 16px; right: 20px; width: 40px; height: 40px; border-radius: 50%; border: none; background: rgba(255,255,255,.15); color: #fff; font-size: 20px; cursor: pointer; z-index: 10001; }
+  .img-lightbox-close:hover { background: rgba(255,255,255,.28); }
+  @media print { .img-lightbox-overlay { display: none !important; } }
   @media print {
     .top-bar { display: none; }
     .score-banner { display: none !important; }
@@ -204,6 +210,10 @@
 </div>
 <div id="copyToast">✓ In Zwischenablage kopiert</div>
 <div class="score-banner" id="scoreBanner"></div>
+<div class="img-lightbox-overlay" id="imgLightboxOverlay" onclick="closeImgLightbox()">
+  <button class="img-lightbox-close" type="button" onclick="event.stopPropagation();closeImgLightbox()" aria-label="Schliessen">✕</button>
+  <img id="imgLightboxImg" src="" alt="">
+</div>
 
 <div class="ws">
   <div class="lebenswelt-ref">602 Ökologie & Klimawandel — Lösungen für ökologische Herausforderungen finden</div>
@@ -214,7 +224,8 @@
 
   <div class="section-label">Grafik: Weltweiter Wassermangel</div>
   <div style="background:var(--paper);border:1.5px solid var(--rule);border-radius:12px;padding:20px 22px;margin-bottom:20px;">
-    <img src="602_A09_Weltweiter_Wassermangel.png" alt="Infografik: Weltweiter Wassermangel — Zugang zu Trinkwasser 2000–2024, Wasserknappheit nach Region, Süsswasserentnahmen nach Sektor, Fortschritt in der Versorgung" style="width:100%;height:auto;border-radius:8px;display:block;">
+    <img src="602_A09_Weltweiter_Wassermangel.png" alt="Infografik: Weltweiter Wassermangel — Zugang zu Trinkwasser 2000–2024, Wasserknappheit nach Region, Süsswasserentnahmen nach Sektor, Fortschritt in der Versorgung" style="width:100%;height:auto;border-radius:8px;display:block;cursor:zoom-in;" onclick="openImgLightbox(this.src, this.alt)" title="Klicken zum Vergrössern">
+    <p style="font-size:10.5px;color:#b0aa9c;margin-top:6px;text-align:center;">🔍 Zum Vergrössern anklicken</p>
     <p style="font-size:11px;color:#7A7468;font-family:'JetBrains Mono',monospace;margin-top:10px;text-align:center;">Quellen: WHO/UNICEF Joint Monitoring Programme (JMP) 2025; Mekonnen &amp; Hoekstra (2016); FAO AQUASTAT (Datenstand 2022).</p>
   </div>
 
@@ -223,6 +234,10 @@
     <textarea class="free-text" id="w30a" rows="3" placeholder="1. ... / 2. ..."></textarea><div class="sol-inline-sm" id="bW30a"></div></div>
     <div><label style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);">b) Mögliche Probleme des Wassermangels</label>
     <textarea class="free-text" id="w30b" rows="3" placeholder="..."></textarea><div class="sol-inline-sm" id="bW30b"></div></div>
+    <div><label style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);">c) Welche Weltregion hat seit dem Jahr 2000 den grössten Fortschritt bei der Trinkwasserversorgung gemacht, welche den kleinsten? Nennen Sie die Prozentpunkte.</label>
+    <textarea class="free-text" id="w30c" rows="3" placeholder="..."></textarea><div class="sol-inline-sm" id="bW30c">Grössten Fortschritt: Ostasien &amp; Pazifik (+26 Prozentpunkte). Kleinsten Fortschritt: Europa &amp; Zentralasien (+8 Prozentpunkte). Zum Vergleich: Weltweit liegt der Durchschnitt bei +14 Prozentpunkten.</div></div>
+    <div><label style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--accent);">d) Berechnen Sie den Unterschied zwischen städtischem und ländlichem Trinkwasserzugang im Jahr 2000 und im Jahr 2024. Ist die Kluft zwischen Stadt und Land grösser oder kleiner geworden?</label>
+    <textarea class="free-text" id="w30d" rows="3" placeholder="..."></textarea><div class="sol-inline-sm" id="bW30d">2000: 81 % (Städtisch) − 40 % (Ländlich) = 41 Prozentpunkte Unterschied. 2024: 92 % (Städtisch) − rund 60–61 % (Ländlich) = rund 31 Prozentpunkte Unterschied. Die Kluft zwischen Stadt und Land ist damit kleiner geworden, bleibt aber weiterhin deutlich.</div></div>
   </div>
 
 <div class="ko-box reveal" style="animation-delay:.2s">
@@ -542,6 +557,16 @@ async function antwortenEinsenden(btn) {
 const SENT_KEY='abu_eingesendet_'+SAFE_FN;
 function markiereAlsEingesendet(btn){try{localStorage.setItem(SENT_KEY,'1');}catch(e){}btn.textContent='✓ Eingesendet';btn.classList.add('sent');btn.disabled=true;}
 (function(){if(localStorage.getItem(SENT_KEY)==='1'){document.addEventListener('DOMContentLoaded',function(){const b=document.getElementById('sendBtn');if(b){b.textContent='✓ Eingesendet';b.classList.add('sent');b.disabled=true;}});}})();
+function openImgLightbox(src,alt){
+  const ov=document.getElementById('imgLightboxOverlay');const img=document.getElementById('imgLightboxImg');
+  if(!ov||!img)return;
+  img.src=src;img.alt=alt||'';ov.classList.add('show');
+}
+function closeImgLightbox(){
+  const ov=document.getElementById('imgLightboxOverlay');
+  if(ov)ov.classList.remove('show');
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeImgLightbox();});
 function copyAllToClipboard() {
   const ws=document.querySelector('.ws');let out=[];
   const tt=ws.querySelector('.task-title');if(tt)out.push(tt.textContent.trim(),'');
