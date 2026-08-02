@@ -174,6 +174,8 @@
   }
   select.correct-sel { border-color: #2a7a3a !important; background: #eaf5ec !important; }
   select.wrong-sel   { border-color: #c0392b !important; background: #faeaea !important; }
+  .sol-tr { display: none; }
+  .sol-tr.visible td { background: var(--green-light) !important; border-radius: 0 0 14px 14px; padding: 10px 16px !important; font-size: 13px; color: #135c2c; font-weight: 500; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 </head>
@@ -217,50 +219,43 @@
     <div style="background:var(--accent);color:white;padding:10px 14px;border-radius:5px;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;">GG – Gütergemeinschaft</div>
   </div>
   <table class="ex">
-    <thead><tr><th style="width:55%;">Aussage</th><th>GT</th><th>EB</th><th>GG</th><th></th></tr></thead>
-    <tbody><tr>
-  <td style="font-size:14px;">6. Kein gemeinsames Vermögen</td>
-  <td style="text-align:center;"><input type="radio" name="rg5" value="GT"></td>
-  <td style="text-align:center;"><input type="radio" name="rg5" value="EB"></td>
-  <td style="text-align:center;"><input type="radio" name="rg5" value="GG"></td>
-  <td><div class="sol-inline-sm" id="bG5"></div></td>
-</tr><tr>
-  <td style="font-size:14px;">4. Gilt, wenn nichts anderes vereinbart</td>
-  <td style="text-align:center;"><input type="radio" name="rg3" value="GT"></td>
-  <td style="text-align:center;"><input type="radio" name="rg3" value="EB"></td>
-  <td style="text-align:center;"><input type="radio" name="rg3" value="GG"></td>
-  <td><div class="sol-inline-sm" id="bG3"></div></td>
-</tr><tr>
-  <td style="font-size:14px;">3. Ordentlicher Güterstand</td>
-  <td style="text-align:center;"><input type="radio" name="rg2" value="GT"></td>
-  <td style="text-align:center;"><input type="radio" name="rg2" value="EB"></td>
-  <td style="text-align:center;"><input type="radio" name="rg2" value="GG"></td>
-  <td><div class="sol-inline-sm" id="bG2"></div></td>
-</tr><tr>
-  <td style="font-size:14px;">5. Grösster Teil des Ehevermögens gemeinsam</td>
-  <td style="text-align:center;"><input type="radio" name="rg4" value="GT"></td>
-  <td style="text-align:center;"><input type="radio" name="rg4" value="EB"></td>
-  <td style="text-align:center;"><input type="radio" name="rg4" value="GG"></td>
-  <td><div class="sol-inline-sm" id="bG4"></div></td>
-</tr><tr>
-  <td style="font-size:14px;">2. Ehevertrag notwendig</td>
-  <td style="text-align:center;"><input type="radio" name="rg1" value="GT"></td>
-  <td style="text-align:center;"><input type="radio" name="rg1" value="EB"></td>
-  <td style="text-align:center;"><input type="radio" name="rg1" value="GG"></td>
-  <td><div class="sol-inline-sm" id="bG1"></div></td>
-</tr><tr>
+    <thead><tr><th style="width:55%;">Aussage</th><th>GT</th><th>EB</th><th>GG</th></tr></thead>
+    <tbody><tr id="row_rg0">
   <td style="font-size:14px;">1. Gesetzlicher Güterstand</td>
-  <td style="text-align:center;"><input type="radio" name="rg0" value="GT"></td>
-  <td style="text-align:center;"><input type="radio" name="rg0" value="EB"></td>
-  <td style="text-align:center;"><input type="radio" name="rg0" value="GG"></td>
-  <td><div class="sol-inline-sm" id="bG0"></div></td>
-</tr><tr>
+  <td style="text-align:center;"><input type="radio" name="rg0" value="GT" data-rf-correct="EB"></td>
+  <td style="text-align:center;"><input type="radio" name="rg0" value="EB" data-rf-correct="EB"></td>
+  <td style="text-align:center;"><input type="radio" name="rg0" value="GG" data-rf-correct="EB"></td>
+</tr><tr id="trsol_rg0" class="sol-tr"><td colspan="4">Errungenschaftsbeteiligung – der ordentliche Güterstand gemäss Art. 181 ZGB, der automatisch gilt, wenn kein Ehevertrag abgeschlossen wird.</td></tr><tr id="row_rg1">
+  <td style="font-size:14px;">2. Bei Scheidung kein Ausgleich des Vermögenszuwachses</td>
+  <td style="text-align:center;"><input type="radio" name="rg1" value="GT" data-rf-correct="GT"></td>
+  <td style="text-align:center;"><input type="radio" name="rg1" value="EB" data-rf-correct="GT"></td>
+  <td style="text-align:center;"><input type="radio" name="rg1" value="GG" data-rf-correct="GT"></td>
+</tr><tr id="trsol_rg1" class="sol-tr"><td colspan="4">Gütertrennung – da kein gemeinsames Vermögen besteht, gibt es bei Auflösung auch keinen Vorschlagsausgleich wie bei der Errungenschaftsbeteiligung.</td></tr><tr id="row_rg2">
+  <td style="font-size:14px;">3. Ordentlicher Güterstand</td>
+  <td style="text-align:center;"><input type="radio" name="rg2" value="GT" data-rf-correct="EB"></td>
+  <td style="text-align:center;"><input type="radio" name="rg2" value="EB" data-rf-correct="EB"></td>
+  <td style="text-align:center;"><input type="radio" name="rg2" value="GG" data-rf-correct="EB"></td>
+</tr><tr id="trsol_rg2" class="sol-tr"><td colspan="4">Errungenschaftsbeteiligung – Art. 181 ZGB nennt sie ausdrücklich den «ordentlichen Güterstand».</td></tr><tr id="row_rg3">
+  <td style="font-size:14px;">4. Gilt, wenn nichts anderes vereinbart</td>
+  <td style="text-align:center;"><input type="radio" name="rg3" value="GT" data-rf-correct="EB"></td>
+  <td style="text-align:center;"><input type="radio" name="rg3" value="EB" data-rf-correct="EB"></td>
+  <td style="text-align:center;"><input type="radio" name="rg3" value="GG" data-rf-correct="EB"></td>
+</tr><tr id="trsol_rg3" class="sol-tr"><td colspan="4">Errungenschaftsbeteiligung – sie tritt automatisch ein, ausser die Ehegatten vereinbaren per Ehevertrag Gütertrennung oder Gütergemeinschaft.</td></tr><tr id="row_rg4">
+  <td style="font-size:14px;">5. Grösster Teil des Ehevermögens gemeinsam</td>
+  <td style="text-align:center;"><input type="radio" name="rg4" value="GT" data-rf-correct="GG"></td>
+  <td style="text-align:center;"><input type="radio" name="rg4" value="EB" data-rf-correct="GG"></td>
+  <td style="text-align:center;"><input type="radio" name="rg4" value="GG" data-rf-correct="GG"></td>
+</tr><tr id="trsol_rg4" class="sol-tr"><td colspan="4">Gütergemeinschaft – das meiste Vermögen beider Ehegatten wird zum gemeinsamen Gesamtgut, nur wenige Vermögenswerte bleiben Sondergut.</td></tr><tr id="row_rg5">
+  <td style="font-size:14px;">6. Kein gemeinsames Vermögen</td>
+  <td style="text-align:center;"><input type="radio" name="rg5" value="GT" data-rf-correct="GT"></td>
+  <td style="text-align:center;"><input type="radio" name="rg5" value="EB" data-rf-correct="GT"></td>
+  <td style="text-align:center;"><input type="radio" name="rg5" value="GG" data-rf-correct="GT"></td>
+</tr><tr id="trsol_rg5" class="sol-tr"><td colspan="4">Gütertrennung – jeder Ehegatte behält sein Vermögen vollständig getrennt, es entsteht kein gemeinsames Eigentum.</td></tr><tr id="row_rg6">
   <td style="font-size:14px;">7. Meist verwendeter Güterstand</td>
-  <td style="text-align:center;"><input type="radio" name="rg6" value="GT"></td>
-  <td style="text-align:center;"><input type="radio" name="rg6" value="EB"></td>
-  <td style="text-align:center;"><input type="radio" name="rg6" value="GG"></td>
-  <td><div class="sol-inline-sm" id="bG6"></div></td>
-</tr></tbody>
+  <td style="text-align:center;"><input type="radio" name="rg6" value="GT" data-rf-correct="EB"></td>
+  <td style="text-align:center;"><input type="radio" name="rg6" value="EB" data-rf-correct="EB"></td>
+  <td style="text-align:center;"><input type="radio" name="rg6" value="GG" data-rf-correct="EB"></td>
+</tr><tr id="trsol_rg6" class="sol-tr"><td colspan="4">Errungenschaftsbeteiligung – da die meisten Ehepaare keinen Ehevertrag abschliessen, bleiben sie im gesetzlichen Güterstand.</td></tr></tbody>
   </table>
 
 <div class="ko-box reveal" style="animation-delay:.2s">
