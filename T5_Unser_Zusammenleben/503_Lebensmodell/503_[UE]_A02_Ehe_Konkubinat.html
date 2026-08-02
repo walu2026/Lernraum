@@ -174,6 +174,8 @@
   }
   select.correct-sel { border-color: #2a7a3a !important; background: #eaf5ec !important; }
   select.wrong-sel   { border-color: #c0392b !important; background: #faeaea !important; }
+  .sol-tr { display: none; }
+  .sol-tr.visible td { background: var(--green-light) !important; border-radius: 0 0 14px 14px; padding: 10px 16px !important; font-size: 13px; color: #135c2c; font-weight: 500; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 </head>
@@ -213,45 +215,52 @@
 <p style="font-size:15px;margin-bottom:12px;"><strong style="color:var(--t1-dark);">Auftrag:</strong></p>
 
 
-<p style="font-size:15px;margin-bottom:14px;">Entscheiden Sie: Trifft die Aussage auf die <strong>Ehe (E)</strong>, das <strong>Konkubinat (K)</strong> oder auf <strong>beide (B)</strong> zu?</p>
+<p style="font-size:15px;margin-bottom:14px;">Entscheiden Sie: Trifft die Aussage auf die <strong>Ehe (E)</strong> oder auf das <strong>Konkubinat (K)</strong> zu?</p>
   <table class="ex">
-    <thead><tr><th style="width:65%;">Aussage</th><th>Ehe</th><th>Konkubinat</th><th></th></tr></thead>
-    <tbody><tr>
-  <td style="font-size:14px;">7. Gemeinsame schriftliche Erklärung notwendig für gemeinsame elterliche Sorge</td>
-  <td style="text-align:center;"><input type="radio" name="ek6" value="E"></td>
-  <td style="text-align:center;"><input type="radio" name="ek6" value="K"></td>
-  <td><div class="sol-inline-sm" id="bEK6"></div></td>
-</tr><tr>
+    <thead><tr><th style="width:75%;">Aussage</th><th>Ehe</th><th>Konkubinat</th></tr></thead>
+    <tbody><tr id="row_ek0">
   <td style="font-size:14px;">1. Elterliche Sorge bei der Mutter (wenn nicht anders vereinbart)</td>
-  <td style="text-align:center;"><input type="radio" name="ek0" value="E"></td>
-  <td style="text-align:center;"><input type="radio" name="ek0" value="K"></td>
-  <td><div class="sol-inline-sm" id="bEK0"></div></td>
-</tr><tr>
-  <td style="font-size:14px;">6. Elterliche Sorge immer beim Vater und der Mutter</td>
-  <td style="text-align:center;"><input type="radio" name="ek5" value="E"></td>
-  <td style="text-align:center;"><input type="radio" name="ek5" value="K"></td>
-  <td><div class="sol-inline-sm" id="bEK5"></div></td>
-</tr><tr>
-  <td style="font-size:14px;">3. Automatischer Anspruch auf eine Witwen- oder Witwerrente</td>
-  <td style="text-align:center;"><input type="radio" name="ek2" value="E"></td>
-  <td style="text-align:center;"><input type="radio" name="ek2" value="K"></td>
-  <td><div class="sol-inline-sm" id="bEK2"></div></td>
-</tr><tr>
-  <td style="font-size:14px;">5. Kein gegenseitiges gesetzliches Erbrecht ohne Testament</td>
-  <td style="text-align:center;"><input type="radio" name="ek4" value="E"></td>
-  <td style="text-align:center;"><input type="radio" name="ek4" value="K"></td>
-  <td><div class="sol-inline-sm" id="bEK4"></div></td>
-</tr><tr>
-  <td style="font-size:14px;">4. Bei Tod des Partners gesetzliche Erbansprüche</td>
-  <td style="text-align:center;"><input type="radio" name="ek3" value="E"></td>
-  <td style="text-align:center;"><input type="radio" name="ek3" value="K"></td>
-  <td><div class="sol-inline-sm" id="bEK3"></div></td>
-</tr><tr>
+  <td style="text-align:center;"><input type="radio" name="ek0" value="E" data-rf-correct="K"></td>
+  <td style="text-align:center;"><input type="radio" name="ek0" value="K" data-rf-correct="K"></td>
+</tr>
+<tr id="trsol_ek0" class="sol-tr"><td colspan="3">Konkubinat – ohne gemeinsame Erklärung liegt die elterliche Sorge automatisch bei der Mutter.</td></tr>
+<tr id="row_ek1">
   <td style="font-size:14px;">2. Gründung und Auflösung ohne Formalitäten</td>
-  <td style="text-align:center;"><input type="radio" name="ek1" value="E"></td>
-  <td style="text-align:center;"><input type="radio" name="ek1" value="K"></td>
-  <td><div class="sol-inline-sm" id="bEK1"></div></td>
-</tr></tbody>
+  <td style="text-align:center;"><input type="radio" name="ek1" value="E" data-rf-correct="K"></td>
+  <td style="text-align:center;"><input type="radio" name="ek1" value="K" data-rf-correct="K"></td>
+</tr>
+<tr id="trsol_ek1" class="sol-tr"><td colspan="3">Konkubinat – für Beginn und Ende sind keine Formalitäten nötig, im Gegensatz zur Ehe (Trauung/Scheidung).</td></tr>
+<tr id="row_ek2">
+  <td style="font-size:14px;">3. Automatischer Anspruch auf eine Witwen- oder Witwerrente</td>
+  <td style="text-align:center;"><input type="radio" name="ek2" value="E" data-rf-correct="E"></td>
+  <td style="text-align:center;"><input type="radio" name="ek2" value="K" data-rf-correct="E"></td>
+</tr>
+<tr id="trsol_ek2" class="sol-tr"><td colspan="3">Ehe – nur Ehegatten bzw. eingetragene Partner haben automatisch Anspruch auf eine Witwen- oder Witwerrente.</td></tr>
+<tr id="row_ek3">
+  <td style="font-size:14px;">4. Bei Tod des Partners gesetzliche Erbansprüche</td>
+  <td style="text-align:center;"><input type="radio" name="ek3" value="E" data-rf-correct="E"></td>
+  <td style="text-align:center;"><input type="radio" name="ek3" value="K" data-rf-correct="E"></td>
+</tr>
+<tr id="trsol_ek3" class="sol-tr"><td colspan="3">Ehe – Ehegatten haben von Gesetzes wegen ein gegenseitiges Erbrecht.</td></tr>
+<tr id="row_ek4">
+  <td style="font-size:14px;">5. Kein gegenseitiges gesetzliches Erbrecht ohne Testament</td>
+  <td style="text-align:center;"><input type="radio" name="ek4" value="E" data-rf-correct="K"></td>
+  <td style="text-align:center;"><input type="radio" name="ek4" value="K" data-rf-correct="K"></td>
+</tr>
+<tr id="trsol_ek4" class="sol-tr"><td colspan="3">Konkubinat – ohne Testament erben Konkubinatspartner nichts voneinander.</td></tr>
+<tr id="row_ek5">
+  <td style="font-size:14px;">6. Elterliche Sorge immer beim Vater und der Mutter</td>
+  <td style="text-align:center;"><input type="radio" name="ek5" value="E" data-rf-correct="E"></td>
+  <td style="text-align:center;"><input type="radio" name="ek5" value="K" data-rf-correct="E"></td>
+</tr>
+<tr id="trsol_ek5" class="sol-tr"><td colspan="3">Ehe – bei verheirateten Eltern gilt die gemeinsame elterliche Sorge automatisch für beide Elternteile.</td></tr>
+<tr id="row_ek6">
+  <td style="font-size:14px;">7. Gemeinsame schriftliche Erklärung notwendig für gemeinsame elterliche Sorge</td>
+  <td style="text-align:center;"><input type="radio" name="ek6" value="E" data-rf-correct="K"></td>
+  <td style="text-align:center;"><input type="radio" name="ek6" value="K" data-rf-correct="K"></td>
+</tr>
+<tr id="trsol_ek6" class="sol-tr"><td colspan="3">Konkubinat – unverheiratete Eltern benötigen eine gemeinsame schriftliche Erklärung beim Zivilstandsamt für die gemeinsame elterliche Sorge.</td></tr>
+</tbody>
   </table>
 
 <div class="ko-box reveal" style="animation-delay:.2s">
