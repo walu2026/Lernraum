@@ -519,6 +519,26 @@ function berechneAuswertung() {
 function normalisiereKlasse(roh){let k=roh.trim().replace(/\s+/g,'');const m=k.match(/^(.*\d)([a-zA-Z])$/);return m?m[1].toUpperCase()+m[2].toLowerCase():k.toUpperCase();}
 let supabaseClient=null;
 function getSupabaseClient(){if(!supabaseClient&&window.supabase)supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);return supabaseClient;}
+function generiereBelegCode(){
+  const alphabet='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  const bytes=new Uint8Array(8);
+  (window.crypto||window.msCrypto).getRandomValues(bytes);
+  let code='';
+  for(let i=0;i<8;i++){code+=alphabet[bytes[i]%alphabet.length];}
+  return code.slice(0,4)+'-'+code.slice(4);
+}
+const BELEGCODE_KEY='abu_belegcode_'+SAFE_FN;
+function zeigeBelegCode(code){
+  let el=document.getElementById('belegCodeAnzeige');
+  if(!el){
+    el=document.createElement('div');
+    el.id='belegCodeAnzeige';
+    el.style.cssText='margin-top:8px;font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--t1-dark);background:var(--t1-lighter);display:inline-block;padding:5px 12px;border-radius:8px;';
+    const sb=document.getElementById('sendBtn');
+    if(sb)sb.insertAdjacentElement('afterend',el);
+  }
+  el.textContent='Beleg-Code: '+code+' (bitte notieren, für "Meine Einsendungen")';
+}
 async function antwortenEinsenden(btn) {
   const name=document.getElementById('studentName').value.trim();if(!name){alert('Bitte zuerst Namen eingeben!');document.getElementById('studentName').focus();return;}
   const kEl=document.getElementById('studentKlasse');const kRoh=kEl?kEl.value.trim():'';if(!kRoh){alert('Bitte Klasse eingeben!');if(kEl)kEl.focus();return;}
@@ -526,13 +546,14 @@ async function antwortenEinsenden(btn) {
   const client=getSupabaseClient();if(!client){alert('Senden aktuell nicht möglich.');return;}
   const v={};collectVals(v);delete v.studentName;delete v.studentKlasse;
   const auswertung=berechneAuswertung();
+  const code=generiereBelegCode();
   const alt=btn.dataset.origLabel||btn.textContent;btn.dataset.origLabel=alt;btn.disabled=true;btn.textContent='Wird gesendet…';
-  try{const{error}=await client.from('antworten').insert([{name:name,klasse:klasse,datei:SAFE_FN,antworten:v,auswertung:auswertung}]);if(error)throw error;markiereAlsEingesendet(btn);}
+  try{const{error}=await client.from('antworten').insert([{name:name,klasse:klasse,datei:SAFE_FN,antworten:v,auswertung:auswertung,beleg_code:code}]);if(error)throw error;try{localStorage.setItem(BELEGCODE_KEY,code);}catch(e){}markiereAlsEingesendet(btn,code);}
   catch(err){alert('Senden fehlgeschlagen.('+((err&&err.message)?err.message:'unbekannt')+')');btn.textContent=alt;btn.disabled=false;}
 }
 const SENT_KEY='abu_eingesendet_'+SAFE_FN;
-function markiereAlsEingesendet(btn){try{localStorage.setItem(SENT_KEY,'1');}catch(e){}btn.textContent='✓ Eingesendet';btn.classList.add('sent');btn.disabled=true;}
-(function(){if(localStorage.getItem(SENT_KEY)==='1'){document.addEventListener('DOMContentLoaded',function(){const b=document.getElementById('sendBtn');if(b){b.textContent='✓ Eingesendet';b.classList.add('sent');b.disabled=true;}});}})();
+function markiereAlsEingesendet(btn,code){try{localStorage.setItem(SENT_KEY,'1');}catch(e){}btn.textContent='✓ Eingesendet';btn.classList.add('sent');btn.disabled=true;if(code)zeigeBelegCode(code);}
+(function(){if(localStorage.getItem(SENT_KEY)==='1'){document.addEventListener('DOMContentLoaded',function(){const b=document.getElementById('sendBtn');if(b){b.textContent='✓ Eingesendet';b.classList.add('sent');b.disabled=true;}const code=localStorage.getItem(BELEGCODE_KEY);if(code)zeigeBelegCode(code);});}})();
 function copyAllToClipboard() {
   const ws=document.querySelector('.ws');let out=[];
   const tt=ws.querySelector('.task-title');if(tt)out.push(tt.textContent.trim(),'');
