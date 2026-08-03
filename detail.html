@@ -298,9 +298,9 @@ window.onload = function() {
   const files = (isT9 || isT10)
     ? [ { key: id+'_Theorie', icon:'📁', cls:'fi-t', name: d.title, hint:'SharePoint-Ordner öffnen' } ]
     : [
-        { key: id+'_Theorie',  icon:'📘', cls:'fi-t', name: d.pre+'_Theorie '+d.title,  hint:'Erklärungen, Grundlagen' },
-        { key: id+'_Übungen',  icon:'✏️', cls:'fi-e', name: d.pre+'_Übungen '+d.title,  hint:'Interaktive Übungen nach Lernzielen' },
-        { key: id+'_Quiz',     icon:'🧠', cls:'fi-q', name: d.pre+'_Quiz '+d.title,      hint:'Lernkontrolle, Self-Check' },
+        { key: id+'_Theorie',  icon:'📘', cls:'fi-t', name: id+'_Theorie '+d.title,  hint:'Erklärungen, Grundlagen' },
+        { key: id+'_Übungen',  icon:'✏️', cls:'fi-e', name: id+'_Übungen '+d.title,  hint:'Interaktive Übungen nach Lernzielen' },
+        { key: id+'_Quiz',     icon:'🧠', cls:'fi-q', name: id+'_Quiz '+d.title,      hint:'Lernkontrolle, Self-Check' },
       ];
 
   const container = document.getElementById('fileCards');
