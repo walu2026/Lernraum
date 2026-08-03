@@ -3,15 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="slp2026-thema" content="3">
-<meta name="slp2026-ls" content="B">
-<meta name="slp2026-ges" content="B7">
-<meta name="slp2026-suk" content="—">
-<meta name="slp2026-status" content="kern">
-<meta name="slp2026-efz3" content="ergaenzend">
-<meta name="slp2026-format" content="sachtext">
-<meta name="slp2026-ow" content="—">
-<title>302-10 · Stigmatisierung psychischer Erkrankungen</title>
+<title>302-11 · Sexualität: Normen und gesellschaftliche Haltungen</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
   :root {
@@ -22,11 +14,10 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-  .top-bar { background: linear-gradient(120deg, #48c17c 0%, #27AE61 40%, #1E8449 100%); color: white; padding: 14px 22px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,.18); }
+  .top-bar { background: linear-gradient(120deg, #4fc182 0%, #27AE61 40%, #1E8449 100%); color: white; padding: 14px 22px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,.18); }
   .topic-check { width: 30px; height: 30px; border-radius: 10px; background: rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .topic-check svg { width: 17px; height: 17px; }
   .top-bar h1 { font-size: 16px; font-weight: 700; flex: 1; min-width: 130px; letter-spacing: -.01em; }
-  .top-bar h1 .ls-tag { font-size:12px; font-weight:500; opacity:.8; letter-spacing:0; }
   .nw { display: flex; align-items: center; gap: 8px; }
   .nw label { font-size: 12px; opacity: .9; font-weight: 500; }
   .nw input { padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.15); color: white; font-size: 13px; width: 160px; font-family: inherit; }
@@ -72,6 +63,8 @@
   table.ex td strong { display: inline-block; font-weight: 700; color: var(--t1-dark); font-size: 13px; background: var(--t1-lighter); padding: 3px 9px; border-radius: 999px; }
   table.ex textarea, table.ex input[type=text] { width: 100% !important; border: 1.5px solid var(--rule) !important; border-radius: 9px !important; background: var(--bg) !important; font-family: inherit !important; font-size: 14px !important; padding: 8px 11px !important; resize: vertical; margin-top: 5px; transition: border-color .18s, box-shadow .18s; }
   table.ex textarea:focus, table.ex input[type=text]:focus { outline: none; border-color: var(--t1) !important; background: white !important; box-shadow: 0 0 0 3px var(--t1-light); }
+  .ex-select { border: 1.5px solid var(--rule); border-radius: 8px; background: var(--bg); font-family: inherit; font-size: 13.5px; padding: 6px 10px; cursor: pointer; margin-top: 4px; }
+  .ex-select:focus { outline: none; border-color: var(--t1); box-shadow: 0 0 0 3px var(--t1-light); }
   .sol-inline-sm, .sol-inline { display: none; background: var(--green-light) !important; border-radius: 8px !important; padding: 8px 11px !important; margin-top: 7px !important; font-size: 13px !important; font-weight: 500; color: #135c2c !important; user-select: none; -webkit-user-select: none; }
   .sol-inline-sm.visible, .sol-inline.visible { display: block; }
   .sol-inline-sm.sol-empty-hint, .sol-inline.sol-empty-hint,
@@ -141,15 +134,54 @@
     .punkte-summe-zeile { display: block !important; margin-top: 20px; padding-top: 10px; border-top: 2px solid #333; font-size: 14px; font-weight: 700; text-align: right; }
     @page { margin: 15mm 12mm; size: A4 portrait; }
   }
+
+  /* ── Alte Textarea-Klassen → v10.3 Stil ── */
+  textarea.cell-ta, textarea.free-text, textarea.freitext,
+  textarea:not(.ko-box textarea) {
+    width: 100% !important;
+    border: 1.5px solid var(--rule) !important;
+    border-radius: 9px !important;
+    background: var(--bg) !important;
+    font-family: inherit !important;
+    font-size: 14px !important;
+    padding: 8px 11px !important;
+    resize: vertical;
+    min-height: 70px;
+    box-sizing: border-box;
+    transition: border-color .18s, box-shadow .18s;
+  }
+  textarea.cell-ta:focus, textarea.free-text:focus, textarea.freitext:focus {
+    outline: none;
+    border-color: var(--t1) !important;
+    background: white !important;
+    box-shadow: 0 0 0 3px var(--t1-light);
+  }
+  /* Alte select-Klassen */
+  select.lueck-sel, select.match-sel {
+    border: 1.5px solid var(--rule);
+    border-radius: 8px;
+    background: var(--bg);
+    font-family: inherit;
+    font-size: 13.5px;
+    padding: 5px 9px;
+    cursor: pointer;
+  }
+  select.lueck-sel:focus, select.match-sel:focus {
+    outline: none;
+    border-color: var(--t1);
+    box-shadow: 0 0 0 3px var(--t1-light);
+  }
+  select.correct-sel { border-color: #2a7a3a !important; background: #eaf5ec !important; }
+  select.wrong-sel   { border-color: #c0392b !important; background: #faeaea !important; }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 </head>
 <body>
 <table width="100%" style="background:#f7f7f7;border-bottom:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;">
 <tr>
-<td style="padding:6px 10px;text-align:left;width:33%;"><a href="302_[UE]_A09_Werte_Freundschaft_Partnerschaft.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
+<td style="padding:6px 10px;text-align:left;width:33%;"><a href="302_[UE]_A10_Stigmatisierung_Psychische_Erkrankungen.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
 <td style="padding:6px 10px;text-align:center;width:34%;"><a href="302_Aufgaben.html" style="color:#8b1a1a;text-decoration:none;font-size:14px;" title="Zur Übersicht">&#8593;</a></td>
-<td style="padding:6px 10px;text-align:right;width:33%;"><a href="302_[UE]_A11_Sexualitaet.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
+<td style="padding:6px 10px;text-align:right;width:33%;"><a href="302_[UE]_A12_Verhuetung_Beschaffung_Anwendung.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
 </tr>
 </table>
 
@@ -161,7 +193,7 @@
   <div class="topic-check">
     <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
   </div>
-  <h1>Meine Gesundheit <span class="ls-tag">· Lebenssituation B</span></h1>
+  <h1>Meine Gesundheit</h1>
   <div class="nw"><label>Name:</label><input id="studentName" type="text" placeholder="Vorname Nachname" autocomplete="name"></div>
   <div class="nw" id="klasseNw" style="display:none"><label>Klasse:</label><input id="studentKlasse" type="text" placeholder="z.B. LW3a" style="width:80px;"></div>
   <button class="btn btn-check" onclick="checkAll()">Überprüfen</button>
@@ -174,68 +206,67 @@
 
 <div class="ws">
   <div class="lebenswelt-ref">302 Prävention — Verantwortung für die Gesundheit tragen</div>
-  <div class="task-title">302-10 · Stigmatisierung psychischer Erkrankungen</div>
-  <div class="lz-box reveal" style="animation-delay:.02s"><strong>Lernziel:</strong> Ich kann erklären, was Stigmatisierung psychischer Erkrankungen bedeutet, welche Folgen sie hat und wie ich selbst zu einem respektvollen Umgang beitragen kann.</div>
-  <div class="meta-row">K2–K3</div>
-<p style="font-size:15px;margin-bottom:12px;"><strong style="color:var(--t1-dark);">Auftrag:</strong> Lesen Sie den Sachtext zu Stigmatisierung psychischer Erkrankungen und beantworten Sie die folgenden Fragen.</p>
+  <div class="task-title">302-11 · Sexualität: Normen und gesellschaftliche Haltungen</div>
+  <div class="lz-box reveal" style="animation-delay:.02s"><strong>Lernziel:</strong> Ich kann gesellschaftliche Normen und Tabus rund um Sexualität benennen und kritisch reflektieren.</div>
+  <div class="meta-row">K3–K4</div>
 
-  <div class="section-label">Sachtext</div>
-  <div style="background:var(--paper);border:1.5px solid var(--rule);border-radius:12px;padding:18px 22px;margin-bottom:20px;font-size:14.5px;line-height:1.65;color:#3a362f;">
-    <p style="font-weight:800;color:var(--t1-dark);margin-bottom:8px;">Stigmatisierung psychischer Erkrankungen</p>
-    <p>Psychische Erkrankungen wie Depressionen, Angststörungen oder Burnout sind weit verbreitet – Studien gehen davon aus, dass ein grosser Teil der Bevölkerung im Lauf des Lebens davon betroffen ist. Trotzdem werden Betroffene häufig anders behandelt als Menschen mit körperlichen Erkrankungen: Sie werden mit Vorurteilen konfrontiert, als «schwach» oder «nicht belastbar» abgestempelt oder aus Angst vor solchen Reaktionen meiden sie es, offen über ihre Erkrankung zu sprechen. Dieses Phänomen nennt man Stigmatisierung.</p>
-    <p style="font-weight:700;color:var(--t1-dark);margin-top:14px;">Folgen der Stigmatisierung</p>
-    <p>Stigmatisierung kann dazu führen, dass Betroffene aus Scham keine professionelle Hilfe suchen, ihre Erkrankung verheimlichen oder sich sozial zurückziehen. Das verzögert oft die Behandlung und verstärkt die Belastung zusätzlich.</p>
-    <p style="font-weight:700;color:var(--t1-dark);margin-top:14px;">Was gegen Stigmatisierung hilft</p>
-    <p>Offene, sachliche Gespräche über psychische Gesundheit, korrekte Informationen statt Vorurteile, und eine Sprache, die die Person nicht auf ihre Erkrankung reduziert (z. B. «eine Person mit Depression» statt «ein Depressiver»), tragen dazu bei, Stigmatisierung abzubauen. Auch im Lehrbetrieb oder in der Klasse kann ein respektvoller, unaufgeregter Umgang viel bewirken.</p>
-    <p style="font-size:12px;color:var(--ink-light);font-family:'JetBrains Mono',monospace;margin-top:12px;margin-bottom:0;">Sachtext zu Stigmatisierung psychischer Erkrankungen und Ansätzen zu deren Abbau.</p>
+<div style="background:var(--accent-light);padding:14px 18px;border-radius:6px;margin-bottom:18px;font-size:15px;line-height:1.8;">
+    Diskutiert die Thesen in Kleingruppen. Tragt Ja oder Nein ein und notiert eure Diskussionsergebnisse.
   </div>
-
-  <div class="section-label">Sachfragen</div>
   <table class="ex">
-    <thead><tr><th style="width:38%">Frage</th><th style="text-align:left;">Ihre Antwort</th></tr></thead>
-    <tbody>
-      <tr>
-        <td><strong>1</strong> Was bedeutet «Stigmatisierung» im Zusammenhang mit psychischen Erkrankungen?</td>
-        <td>
-          <textarea class="cell-ta" id="ta_a1" rows="3" placeholder="Meine Antwort …"></textarea>
-          <div class="sol-inline-sm" id="sol_a1">Betroffene werden mit Vorurteilen konfrontiert und anders (schlechter) behandelt als Menschen mit körperlichen Erkrankungen, z. B. als «schwach» abgestempelt.</div>
-        </td>
-      </tr>
-      <tr>
-        <td><strong>2</strong> Nennen Sie eine mögliche Folge von Stigmatisierung für Betroffene.</td>
-        <td>
-          <textarea class="cell-ta" id="ta_a2" rows="3" placeholder="Meine Antwort …"></textarea>
-          <div class="sol-inline-sm" id="sol_a2">Zum Beispiel: Betroffene suchen aus Scham keine professionelle Hilfe, verheimlichen die Erkrankung oder ziehen sich sozial zurück.</div>
-        </td>
-      </tr>
-      <tr>
-        <td><strong>3</strong> Nennen Sie zwei Massnahmen, die laut Text gegen Stigmatisierung helfen können.</td>
-        <td>
-          <textarea class="cell-ta" id="ta_a3" rows="3" placeholder="Massnahme 1, Massnahme 2 …"></textarea>
-          <div class="sol-inline-sm" id="sol_a3">Zum Beispiel: offene, sachliche Gespräche führen, korrekte Informationen statt Vorurteile verbreiten, eine Sprache verwenden, die die Person nicht auf die Erkrankung reduziert.</div>
-        </td>
-      </tr>
-    </tbody>
+    <thead><tr><th style="width:65%;">These</th><th>Ja</th><th>Nein</th><th></th></tr></thead>
+    <tbody><tr>
+  <td style="font-size:14px;">1. Lustvolle, befriedigende Sexualität, die Spass macht, ist nicht angeboren. Sie muss gelernt werden.</td>
+  <td style="text-align:center;"><input type="radio" name="rs0" value="ja"></td>
+  <td style="text-align:center;"><input type="radio" name="rs0" value="nein"></td>
+  <td><div class="sol-inline-sm" id="bS0"></div></td>
+</tr><tr>
+  <td style="font-size:14px;">2. Das Bedürfnis nach Sexualität ist bei Mann und Frau gleich gross.</td>
+  <td style="text-align:center;"><input type="radio" name="rs1" value="ja"></td>
+  <td style="text-align:center;"><input type="radio" name="rs1" value="nein"></td>
+  <td><div class="sol-inline-sm" id="bS1"></div></td>
+</tr><tr>
+  <td style="font-size:14px;">3. Ein Penis im erregten Zustand ist durchschnittlich etwa 14,5 cm lang.</td>
+  <td style="text-align:center;"><input type="radio" name="rs2" value="ja"></td>
+  <td style="text-align:center;"><input type="radio" name="rs2" value="nein"></td>
+  <td><div class="sol-inline-sm" id="bS2"></div></td>
+</tr><tr>
+  <td style="font-size:14px;">4. Frauen und Männer können Geschlechtskrankheiten haben, ohne es zu merken.</td>
+  <td style="text-align:center;"><input type="radio" name="rs3" value="ja"></td>
+  <td style="text-align:center;"><input type="radio" name="rs3" value="nein"></td>
+  <td><div class="sol-inline-sm" id="bS3"></div></td>
+</tr><tr>
+  <td style="font-size:14px;">5. Penetration führt bei der Frau am schnellsten zum Orgasmus.</td>
+  <td style="text-align:center;"><input type="radio" name="rs4" value="ja"></td>
+  <td style="text-align:center;"><input type="radio" name="rs4" value="nein"></td>
+  <td><div class="sol-inline-sm" id="bS4"></div></td>
+</tr><tr>
+  <td style="font-size:14px;">6. Die «Pille danach» kann sinnvollerweise bis zu 1 Woche nach dem Geschlechtsverkehr eingenommen werden.</td>
+  <td style="text-align:center;"><input type="radio" name="rs5" value="ja"></td>
+  <td style="text-align:center;"><input type="radio" name="rs5" value="nein"></td>
+  <td><div class="sol-inline-sm" id="bS5"></div></td>
+</tr><tr>
+  <td style="font-size:14px;">7. Ob jemand schwul, lesbisch oder transsexuell ist, hängt von verschiedenen Faktoren ab.</td>
+  <td style="text-align:center;"><input type="radio" name="rs6" value="ja"></td>
+  <td style="text-align:center;"><input type="radio" name="rs6" value="nein"></td>
+  <td><div class="sol-inline-sm" id="bS6"></div></td>
+</tr><tr>
+  <td style="font-size:14px;">8. Wenn ich eine neue Beziehung eingehe und ohne Gummi schlafen will, sollte ich vorher immer einen HIV-Test machen.</td>
+  <td style="text-align:center;"><input type="radio" name="rs7" value="ja"></td>
+  <td style="text-align:center;"><input type="radio" name="rs7" value="nein"></td>
+  <td><div class="sol-inline-sm" id="bS7"></div></td>
+</tr></tbody>
   </table>
+  <p style="font-size:15px;margin-bottom:12px;"><strong style="color:var(--t1-dark);">Auftrag:</strong></p>
+<div class="section-label" style="margin-top:28px;">Diskussionsnotizen</div>
+  <textarea class="free-text" id="diskussion" rows="5" placeholder="Unsere Diskussionsergebnisse aus der Gruppe..."></textarea>
 
 <div class="ko-box reveal" style="animation-delay:.2s">
-  <div class="ko-label">💬 Kompetenzorientierte Frage (Gesellschaft)</div>
-  <div class="ko-text" id="ko_text_ges">In der Lehrfirma sagt ein Kollege über eine abwesende Mitlernende: «Die hat wohl wieder ihre Depression, die soll sich mal zusammenreissen.» Beurteilen Sie diese Aussage und erklären Sie, was daran problematisch ist.</div>
-  <textarea id="ko_ges" rows="5" placeholder="Meine Beurteilung …"
-    data-ki-aufgabe="In der Lehrfirma sagt ein Kollege über eine abwesende Mitlernende: 'Die hat wohl wieder ihre Depression, die soll sich mal zusammenreissen.' Beurteilen Sie diese Aussage und erklären Sie, was daran problematisch ist."
-    data-ki-loesung="Die Aussage ist stigmatisierend: Sie unterstellt, die Betroffene könnte die Erkrankung willentlich abstellen, was Depressionen nicht gerecht wird. Solche Aussagen verstärken Scham und Vorurteile und erschweren es Betroffenen, offen über ihre Erkrankung zu sprechen oder Hilfe zu suchen."></textarea>
-  <div class="sol-inline" id="sol_ko_ges">Die Aussage ist stigmatisierend: Sie unterstellt, die Betroffene könnte die Erkrankung willentlich abstellen, was Depressionen nicht gerecht wird. Solche Aussagen verstärken Scham und Vorurteile und erschweren es Betroffenen, offen über ihre Erkrankung zu sprechen oder Hilfe zu suchen.</div>
-  <div class="block-reset-row" style="text-align:right;margin-top:7px;">
-    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_ges']);return false;">↺ Nur diese Frage zurücksetzen</a>
-  </div>
-</div>
-
-<div class="ko-box reveal" style="animation-delay:.28s">
-  <div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div>
-  <div class="ko-text" id="ko_text_suk">Formulieren Sie eine respektvolle, sachliche Antwort (4–6 Sätze) auf die Aussage des Kollegen aus der vorigen Frage.</div>
-  <textarea id="ko_suk" rows="5" placeholder="Meine Antwort …"
-    data-ki-aufgabe="Formulieren Sie eine respektvolle, sachliche Antwort (4-6 Sätze) auf die Aussage des Kollegen aus der vorigen Frage."
-    data-ki-loesung="Eine gute Antwort widerspricht sachlich und ohne Vorwurf, erklärt kurz, dass psychische Erkrankungen nicht einfach 'weggewünscht' werden können, und plädiert für einen respektvollen Umgang – ohne den Kollegen blosszustellen."></textarea>
+  <div class="ko-label">💬 Kompetenzorientierte Frage</div>
+  <div class="ko-text" id="ko_text_302_[UE]_A11">Analysiere: Weshalb variiert der gesellschaftliche Umgang mit Sexualität je nach Kultur, Generation oder Religion so stark? Welche Folgen hat eine offene vs. eine tabuisierte Thematisierung auf die sexuelle Gesundheit und das Wohlbefinden von Jugendlichen?</div>
+  <textarea id="ko_sex" rows="5" placeholder="Meine Antwort …"
+    data-ki-aufgabe="Analysiere: Weshalb variiert der gesellschaftliche Umgang mit Sexualität je nach Kultur, Generation oder Religion so stark? Welche Folgen hat eine offene vs. eine tabuisierte Thematisierung auf die sexuelle Gesundheit und das Wohlbefinden von Jugendlichen?"
+    data-ki-loesung="Der Umgang mit Sexualität hängt von Religion, Tradition, Generation und persönlichen Schamgrenzen ab. Tabus können zu wenig Aufklärung, höheren STI-Risiken und Scham führen. Eine offene, respektvolle Thematisierung fördert Gesundheitskompetenz und Selbstbestimmung."></textarea>
   <div class="ki-toggle-row" id="kiToggleArea" style="display:none">
     <span class="ki-toggle-label">KI-Modus</span>
     <div class="ki-switch" id="kiModeToggle" role="switch" aria-checked="false" tabindex="0"
@@ -248,9 +279,9 @@
     <button class="btn btn-ki" id="kiFeedbackBtn" onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
   </div>
   <div id="kiFeedbackResult"></div>
-  <div class="sol-inline" id="sol_ko_suk">Eine gute Antwort widerspricht sachlich und ohne Vorwurf, erklärt kurz, dass psychische Erkrankungen nicht einfach «weggewünscht» werden können, und plädiert für einen respektvollen Umgang – ohne den Kollegen blosszustellen.</div>
+  <div class="sol-inline" id="sol_ko_sex">✓ Mögliche Antwort: Der Umgang mit Sexualität hängt von Religion, Tradition, Generation und persönlichen Schamgrenzen ab. Tabus können zu wenig Aufklärung, höheren STI-Risiken und Scham führen. Eine offene, respektvolle Thematisierung fördert Gesundheitskompetenz und Selbstbestimmung.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
-    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk']);return false;">↺ Nur diese Frage zurücksetzen</a>
+    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_sex']);return false;">↺ Nur diese Frage zurücksetzen</a>
   </div>
 </div>
 
@@ -263,7 +294,7 @@
     <button class="btn btn-ghost" onclick="resetAll()">Zurücksetzen</button>
   </div>
   <p style="color:var(--ink-light);font-size:11.5px;font-family:'JetBrains Mono',monospace;margin-top:28px;border-top:1px solid var(--rule);padding-top:12px;">
-    <span id="footerName"></span> · 302-10 · Meine Gesundheit
+    <span id="footerName"></span> · 302-11 · Meine Gesundheit
   </p>
   <p style="margin-top:6px;">
     <a href="#" id="erweiterteNutzungLink" onclick="erweiterteNutzungUmschalten();return false;" style="font-size:11px;color:#b0aa9c;text-decoration:none;">⚙ Erweiterte Nutzung</a>
@@ -274,7 +305,7 @@
   </p>
 </div>
 <script>
-const SAFE_FN = '302_[UE]_A10_Stigmatisierung_Psychische_Erkrankungen';
+const SAFE_FN = '302_[UE]_A11_Sexualitaet';
 const SUPABASE_URL = 'https://lrpaomltzrfgtupzeooq.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_Q9t2s4kLLNy--Tkm8EwLBQ_CbHJo9G-';
 const WORKER_URL = 'https://twilight-butterfly-5015.uwalser75.workers.dev/feedback';
@@ -334,17 +365,24 @@ function einsendenModusUmschalten() {
   try { localStorage.setItem(EINSENDEN_KEY, aktuell ? '0' : '1'); } catch(e) {}
   wendeEinsendenModusAn();
 }
-document.addEventListener('DOMContentLoaded', function() { wendePruefungsModusAn(); wendeErweiterteNutzungAn(); wendeEinsendenModusAn(); });
+document.addEventListener('DOMContentLoaded', function() {
+  // Sol-div Originaltexte einmalig sichern
+  document.querySelectorAll('.sol-inline, .sol-inline-sm').forEach(function(el) {
+    el.dataset.origText = el.textContent;
+  });
+  wendePruefungsModusAn(); wendeErweiterteNutzungAn(); wendeEinsendenModusAn();
+});
 
 function istPlausibleAntwort(text) {
   const t = (text||'').trim(), ol = t.replace(/\s+/g,'');
   if (ol.length < 8) return false;
   if ((t.match(/[a-zA-ZäöüÄÖÜ]/g)||[]).length < 2) return false;
-  if (/(.)\1{2,}/.test(ol.toLowerCase()) && new Set(ol.toLowerCase()).size <= 2) return false;
+  if (/(.)\\1{2,}/.test(ol.toLowerCase()) && new Set(ol.toLowerCase()).size <= 2) return false;
   if (/(asdf|qwer|qwert|zxcv)/i.test(ol)) return false;
   return t.split(/\s+/).filter(w=>w.length>=4).some(function(w) { const nb=w.replace(/[^a-zA-ZäöüÄÖÜ]/g,''); return nb.length>=4 && new Set(nb.toLowerCase()).size>=3; });
 }
 function checkAll() {
+  // ── Selects mit data-correct ──
   document.querySelectorAll('select[data-correct]').forEach(function(sel) {
     const correct = sel.getAttribute('data-correct');
     const val = sel.value;
@@ -360,23 +398,29 @@ function checkAll() {
     sel.style.borderColor = ok ? '#2a7a3a' : '#c0392b';
     sel.style.background = ok ? '#eaf5ec' : '#faeaea';
     if(sol) {
-      if(!sol.dataset.origText) sol.dataset.origText = sol.textContent;
       sol.textContent = ok ? ('✔ ' + correct) : ('✘ Lösung: ' + correct);
       sol.classList.add('visible');
+      sol.style.display = 'block';
       sol.style.color = ok ? '#135c2c' : '#8b1a1a';
     }
   });
+  // ── Alle Textareas (ausser KO) ──
   document.querySelectorAll('textarea').forEach(function(ta) {
+    // KO-Textarea separat behandelt
     const isKo = ta.closest('.ko-box') !== null;
     if(isKo) return;
+    // Sol-div suchen: zuerst via ID-Konvention, dann als nächstes Geschwister
     const id = ta.id;
     let sol = null;
+    // Versuch 1: sol_ + id (ohne ta_-Präfix)
     const solId1 = 'sol_' + id.replace(/^ta_/, '');
     sol = document.getElementById(solId1);
+    // Versuch 2: b + id ohne führendes 'a' (altes Muster: ta=aX_y → sol=bX_y)
     if(!sol) {
       const solId2 = 'b' + id.replace(/^a/, '');
       sol = document.getElementById(solId2);
     }
+    // Versuch 3: nächstes sol-inline Geschwister
     if(!sol) {
       let sib = ta.nextElementSibling;
       while(sib) {
@@ -385,40 +429,45 @@ function checkAll() {
       }
     }
     if(!sol) return;
-    if(!sol.dataset.origText) sol.dataset.origText = sol.textContent;
     const w = ta.value.trim();
     if(!w) {
       sol.textContent = 'Bitte zuerst Text eingeben.';
       sol.classList.remove('sol-unplausibel-hint');
       sol.classList.add('visible', 'sol-empty-hint');
+      sol.style.display = 'block';
       ta.style.borderColor = '#c0392b';
     } else if(!istPlausibleAntwort(w)) {
       sol.textContent = 'Bitte eine ernsthafte Antwort eingeben.';
       sol.classList.remove('sol-empty-hint');
       sol.classList.add('visible', 'sol-unplausibel-hint');
+      sol.style.display = 'block';
       ta.style.borderColor = '#c0392b';
     } else {
       sol.classList.remove('sol-empty-hint', 'sol-unplausibel-hint');
       const loesung = sol.dataset.origText || '';
       sol.textContent = loesung.trim() ? loesung : '✓ Eigene Antwort (keine Musterlösung hinterlegt)';
       sol.classList.add('visible');
+      sol.style.display = 'block';
       ta.style.borderColor = '#2a7a3a';
     }
   });
+  // ── KO-Textarea ──
   document.querySelectorAll('.ko-box textarea').forEach(function(ta) {
     const sol = document.getElementById('sol_' + ta.id);
     if(!sol) return;
-    if(!sol.dataset.origText) sol.dataset.origText = sol.textContent;
     if(!ta.value.trim()) {
       sol.textContent = 'Keine Antwort eingegeben – Musterlösung wird nach dem Ausfüllen angezeigt.';
       sol.classList.add('visible', 'sol-empty-hint');
       sol.classList.remove('sol-unplausibel-hint');
+      sol.style.display = 'block';
     } else {
       sol.textContent = sol.dataset.origText;
       sol.classList.add('visible');
       sol.classList.remove('sol-empty-hint', 'sol-unplausibel-hint');
+      sol.style.display = 'block';
     }
   });
+  // ── Radio ──
   const rfG = {};
   document.querySelectorAll('input[type=radio][data-rf-correct]').forEach(function(inp){rfG[inp.name]=true;});
   Object.keys(rfG).forEach(function(name){
@@ -428,6 +477,7 @@ function checkAll() {
     radios.forEach(function(r){const row=r.closest('tr');if(!row)return;if(checked){row.style.background=(checked.value===checked.dataset.rfCorrect)?'#eaf5ec':'#faeaea';}else{row.style.background='#fdf3e3';}});
     if(solTr){if(checked){solTr.style.display='table-row';solTr.classList.add('visible');}else{solTr.style.display='none';solTr.classList.remove('visible');}}
   });
+  // ── Checkboxen ──
   document.querySelectorAll('input[type=checkbox][data-cb-correct]').forEach(function(inp){
     const correct=inp.dataset.cbCorrect==='true';
     const lbl=document.getElementById('lbl_cb_'+inp.id.replace('cb_',''));
@@ -441,7 +491,7 @@ function resetAll() {
   if(pruefungsModusIstAktiv()){alert('Zurücksetzen ist während der Standortbestimmung gesperrt.');return;}
   document.querySelectorAll('textarea,input[type=text]').forEach(function(el){el.value='';el.style.borderColor='';el.style.borderBottomColor='';});
   document.querySelectorAll('input[type=radio],input[type=checkbox]').forEach(function(el){el.checked=false;});
-  document.querySelectorAll('.sol-inline,.sol-inline-sm').forEach(function(el){el.classList.remove('visible','sol-empty-hint','sol-unplausibel-hint');if(el.dataset.origText){el.textContent=el.dataset.origText;delete el.dataset.origText;}});
+  document.querySelectorAll('.sol-inline,.sol-inline-sm').forEach(function(el){el.classList.remove('visible','sol-empty-hint','sol-unplausibel-hint');el.style.display='';if(el.dataset.origText){el.textContent=el.dataset.origText;delete el.dataset.origText;}});
   document.querySelectorAll('.sol-tr').forEach(function(el){el.style.display='none';el.classList.remove('visible');});
   document.querySelectorAll('tr').forEach(function(el){el.style.background='';});
   document.querySelectorAll('label[id^="lbl_cb_"]').forEach(function(el){el.style.background='';});
@@ -484,7 +534,6 @@ function fuegePunkteboxenEin() {
   document.querySelectorAll('.punkte-box,.punkte-summe-zeile').forEach(function(el){el.remove();});
   let pt=0;
   document.querySelectorAll('textarea[id^="ta_"],input[type=text][id^="ta_"]').forEach(function(f){pt+=2;const b=document.createElement('span');b.className='punkte-box';b.textContent='___ / 2 P.';f.insertAdjacentElement('afterend',b);});
-  document.querySelectorAll('.ko-box textarea').forEach(function(f){pt+=2;const b=document.createElement('span');b.className='punkte-box';b.textContent='___ / 2 P.';f.insertAdjacentElement('afterend',b);});
   const rfG={};document.querySelectorAll('input[type=radio][data-rf-correct]').forEach(function(i){rfG[i.name]=true;});
   Object.keys(rfG).forEach(function(name){pt+=1;const lr=document.querySelector('input[name="'+name+'"]:last-of-type');if(lr){const b=document.createElement('span');b.className='punkte-box';b.textContent='___ / 1 P.';const row=lr.closest('tr');if(row)row.appendChild(document.createElement('td')).appendChild(b);}});
   document.querySelectorAll('input[type=checkbox][data-cb-correct]').forEach(function(i){pt+=1;const lbl=document.getElementById('lbl_cb_'+i.id.replace('cb_',''));if(lbl){const b=document.createElement('span');b.className='punkte-box';b.textContent='___ / 1 P.';lbl.appendChild(b);}});
@@ -507,7 +556,6 @@ async function downloadFile() {
 function berechneAuswertung() {
   const a={felder_total:0,felder_ausgefuellt:0,text_geloest:0,text_total:0,mc_bearbeitet:0,mc_richtig:0,mc_total:0};
   document.querySelectorAll('textarea[id^="ta_"],input[type=text][id^="ta_"]').forEach(function(f){a.felder_total++;a.text_total++;const w=f.value.trim();if(w)a.felder_ausgefuellt++;if(istPlausibleAntwort(w))a.text_geloest++;});
-  document.querySelectorAll('.ko-box textarea').forEach(function(f){a.felder_total++;a.text_total++;const w=f.value.trim();if(w)a.felder_ausgefuellt++;if(istPlausibleAntwort(w))a.text_geloest++;});
   const rfG={};document.querySelectorAll('input[type=radio][data-rf-correct]').forEach(function(i){rfG[i.name]=true;});
   Object.keys(rfG).forEach(function(name){a.felder_total++;a.mc_total++;const c=document.querySelector('input[name="'+name+'"]:checked');if(c){a.felder_ausgefuellt++;a.mc_bearbeitet++;if(c.value===c.dataset.rfCorrect)a.mc_richtig++;}});
   document.querySelectorAll('input[type=checkbox][data-cb-correct]').forEach(function(i){a.felder_total++;a.mc_total++;if(i.checked){a.felder_ausgefuellt++;a.mc_bearbeitet++;if(i.dataset.cbCorrect==='true')a.mc_richtig++;}});
@@ -541,11 +589,7 @@ function copyAllToClipboard() {
     const ta=tr.querySelector('textarea,input[type=text]');
     if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
   });
-  ws.querySelectorAll('.ko-box').forEach(function(kb){
-    const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');
-    if(kt)out.push('💬 '+kt.textContent.trim());
-    out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');
-  });
+  const kb=ws.querySelector('.ko-box');if(kb){const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');if(kt)out.push('💬 '+kt.textContent.trim());out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');}
   const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
   const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
   function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
@@ -626,7 +670,7 @@ function renderSpellResult(data,originalText,rb){
     rb.innerHTML=html;
   }
   window.kiFeedbackKlick=async function(btn){
-    const ta=btn.closest('.ko-box').querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
+    const ta=document.querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
     const aufgabe=ta.getAttribute('data-ki-aufgabe')||'',loesung=ta.getAttribute('data-ki-loesung')||'',antwort=ta.value.trim();
     const rb=document.getElementById('kiFeedbackResult');
     if(!antwort){rb.innerHTML='<div class="kf-feedback-box kf-error"><span class="kf-feedback-label">Hinweis</span><p>Bitte zuerst eine Antwort schreiben.</p></div>';return;}
@@ -674,9 +718,9 @@ document.addEventListener('copy',function(e){
 </script>
 <table width="100%" style="background:#f7f7f7;border-top:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;">
 <tr>
-<td style="padding:6px 10px;text-align:left;width:33%;"><a href="302_[UE]_A09_Werte_Freundschaft_Partnerschaft.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
+<td style="padding:6px 10px;text-align:left;width:33%;"><a href="302_[UE]_A10_Stigmatisierung_Psychische_Erkrankungen.html" style="color:#444;text-decoration:none;">&#8592; Vorherige Übung</a></td>
 <td style="padding:6px 10px;text-align:center;width:34%;"><a href="302_Aufgaben.html" style="color:#8b1a1a;text-decoration:none;font-size:14px;" title="Zur Übersicht">&#8593;</a></td>
-<td style="padding:6px 10px;text-align:right;width:33%;"><a href="302_[UE]_A11_Sexualitaet.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
+<td style="padding:6px 10px;text-align:right;width:33%;"><a href="302_[UE]_A12_Verhuetung_Beschaffung_Anwendung.html" style="color:#444;text-decoration:none;">Nächste Übung &#8594;</a></td>
 </tr>
 </table>
 </body>
