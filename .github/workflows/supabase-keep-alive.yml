@@ -1,0 +1,33 @@
+name: Supabase Keep-Alive
+
+# Verhindert, dass das Supabase-Projekt (Free-Tier) wegen 7 Tagen ohne
+# API-Zugriff automatisch pausiert wird. Fuehrt zweimal woechentlich eine
+# harmlose, lesende Anfrage aus (nur ein SELECT mit limit=1, keine
+# Schreibzugriffe). Der verwendete Schluessel ist der oeffentliche
+# "publishable"-Key, der ohnehin bereits in jeder Uebungsdatei im Klartext
+# steht - kein Sicherheitsrisiko durch diese Datei.
+
+on:
+  schedule:
+    - cron: '0 6 * * 1,4'  # jeden Montag und Donnerstag, 06:00 UTC
+  workflow_dispatch: {}     # manuelles Ausloesen ueber die GitHub-UI moeglich
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Supabase REST API anpingen
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            -H "apikey: ${SUPABASE_KEY}" \
+            -H "Authorization: Bearer ${SUPABASE_KEY}" \
+            "https://lrpaomltzrfgtupzeooq.supabase.co/rest/v1/antworten?select=id&limit=1")
+          echo "HTTP Status: $STATUS"
+          if [ "$STATUS" -ge 200 ] && [ "$STATUS" -lt 500 ]; then
+            echo "OK - Projekt ist aktiv erreichbar."
+          else
+            echo "Warnung: unerwarteter Status $STATUS - evtl. pausiert oder Netzwerkproblem."
+            exit 1
+          fi
+        env:
+          SUPABASE_KEY: sb_publishable_Q9t2s4kLLNy--Tkm8EwLBQ_CbHJo9G-
