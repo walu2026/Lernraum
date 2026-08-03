@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>204 · Test: Investition &amp; Finanzierung – Standortbestimmung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#1F638F; --t1-dark:#174C6E; --t1-light:#E7EFF5;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.te-nav{background:#f7f7f7;border-bottom:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;width:100%;border-collapse:collapse}
+.te-nav td{padding:6px 10px}
+.te-nav a{color:var(--t1-dark);text-decoration:none}
+.topbar{background:var(--ink);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1);padding:3px 10px;border-radius:6px}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.wrap{max-width:780px;margin:0 auto;padding:26px 18px 80px}
+.meta{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:22px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.meta label{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);display:block;margin-bottom:4px}
+.meta input{width:100%;font:inherit;padding:9px 12px;border:1.5px solid var(--line);border-radius:8px}
+.hinweis{background:#FFF8E6;border:1px solid #E8D9A0;border-radius:10px;padding:12px 16px;margin-bottom:22px;font-size:.92rem;color:#7A6215}
+.q{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:16px;position:relative}
+.q .head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
+.q .txt{font-weight:700;font-size:1.02rem}
+.q .ptbox{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--ink-soft);border:1.5px solid var(--line);border-radius:8px;padding:3px 10px;white-space:nowrap}
+.q label{display:block;padding:9px 12px;margin:6px 0;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;font-size:.96rem}
+.q label:has(input:checked){border-color:var(--t1);background:var(--t1-light)}
+.q input[type=radio],.q input[type=checkbox]{margin-right:9px}
+.q textarea{width:100%;min-height:84px;font:inherit;font-size:.95rem;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;resize:vertical}
+.q.correct{border-color:var(--ok)} .q.partial{border-color:#E8A100} .q.incorrect{border-color:var(--err)}
+.sol{display:none;margin-top:12px;padding:12px 16px;border-radius:10px;background:var(--ok-bg);color:#1B5E20;font-size:.92rem}
+.sol b{display:block;margin-bottom:4px}
+.show-sol .sol{display:block}
+.tfrow{display:flex;align-items:center;gap:14px;padding:8px 12px;margin:6px 0;border:1.5px solid var(--line);border-radius:8px;font-size:.95rem}
+.tfrow span{flex:1}
+.tfrow label{border:none;padding:2px 6px;margin:0}
+.submitbar{position:sticky;bottom:0;background:#fff;border-top:2px solid var(--line);padding:14px 18px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+button.btn{font:inherit;font-weight:700;padding:12px 24px;border-radius:10px;border:none;cursor:pointer;background:var(--t1);color:#fff}
+button.btn:hover{background:var(--t1-dark)}
+button.btn:disabled{opacity:.4;cursor:default}
+.result{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.05rem}
+.result .note{padding:4px 12px;border-radius:8px;background:var(--ink);color:#fff;margin-left:8px}
+@media print{.submitbar,.hinweis,.te-nav{display:none}.sol{display:block}}
+</style>
+</head>
+<body>
+<table class="te-nav" width="100%">
+<tr>
+<td style="text-align:left;width:33%"><a href="204_[QZ]_Investition_Finanzierung.html">&#8592; Quiz</a></td>
+<td style="text-align:center;width:34%"><a href="../../detail.html#204">&#8593; Übersicht 204</a></td>
+<td style="text-align:right;width:33%"></td>
+</tr>
+</table>
+<div class="topbar">
+  <span class="tag">204 · [TE]</span>
+  <h1>Test: Investition &amp; Finanzierung – Standortbestimmung</h1>
+</div>
+<div class="wrap">
+
+<div class="meta">
+  <div><label>Name</label><input id="mName" placeholder="Vorname Name"></div>
+  <div><label>Klasse</label><input id="mKlasse" placeholder="z.B. LW1a"></div>
+</div>
+
+<div class="hinweis">⏱ Richtzeit: 20 Minuten · Max. 20 Punkte · <strong>Prüfungsmodus:</strong> Kein Feedback während des Tests – die Auswertung erscheint erst nach der Abgabe.</div>
+
+<form id="test">
+
+<div class="q" data-type="mc" data-a="1" data-p="2">
+  <div class="head"><div class="txt">1. Wer bleibt beim Leasing während der ganzen Vertragsdauer Eigentümer/in der Sache?</div><div class="ptbox">/2 P.</div></div>
+  <label><input type="radio" name="q1" value="0">Die leasende Person</label>
+  <label><input type="radio" name="q1" value="1">Die Leasinggesellschaft</label>
+  <label><input type="radio" name="q1" value="2">Niemand, das Eigentum ist offen</label>
+  <div class="sol"><b>Lösung: B</b>Leasing ist rechtlich eine Miete – die leasende Person ist nur Besitzerin.</div>
+</div>
+
+<div class="q" data-type="mc" data-a="1" data-p="2">
+  <div class="head"><div class="txt">2. Bei welcher Abschreibungsmethode sinkt der Wert anfangs am stärksten?</div><div class="ptbox">/2 P.</div></div>
+  <label><input type="radio" name="q2" value="0">Linear</label>
+  <label><input type="radio" name="q2" value="1">Degressiv</label>
+  <label><input type="radio" name="q2" value="2">Bei beiden gleich</label>
+  <div class="sol"><b>Lösung: B</b>Degressiv verlangsamt sich erst mit der Zeit.</div>
+</div>
+
+<div class="q" data-type="tf" data-p="4">
+  <div class="head"><div class="txt">3. Richtig oder falsch? Kreuze an.</div><div class="ptbox">/4 P.</div></div>
+  <div class="tfrow" data-a="R"><span>Ein breit gestreuter ETF senkt das Risiko gegenüber einer Einzelaktie.</span><label><input type="radio" name="q3a" value="R">R</label><label><input type="radio" name="q3a" value="F">F</label></div>
+  <div class="tfrow" data-a="F"><span>Konsumkredite dürfen laut KKG mit beliebig hohem Zins belastet werden.</span><label><input type="radio" name="q3b" value="R">R</label><label><input type="radio" name="q3b" value="F">F</label></div>
+  <div class="tfrow" data-a="R"><span>«Sich selbst zuerst bezahlen» funktioniert meist besser als «übrig gebliebenes Geld sparen».</span><label><input type="radio" name="q3c" value="R">R</label><label><input type="radio" name="q3c" value="F">F</label></div>
+  <div class="tfrow" data-a="F"><span>Beim Leasing wird man automatisch Eigentümer/in, sobald die letzte Rate bezahlt ist.</span><label><input type="radio" name="q3d" value="R">R</label><label><input type="radio" name="q3d" value="F">F</label></div>
+  <div class="sol"><b>Lösung: R / F / R / F</b>KKG begrenzt den Zins auf 15%; beim Leasing braucht es eine separate Kaufoption.</div>
+</div>
+
+<div class="q" data-type="multi" data-a="0,1,3" data-p="3">
+  <div class="head"><div class="txt">4. Was gehört zu einer systematischen Finanzierungsplanung? (3 richtige)</div><div class="ptbox">/3 P.</div></div>
+  <label><input type="checkbox" name="q4" value="0">Eigenkapital</label>
+  <label><input type="checkbox" name="q4" value="1">Fremdkapitalanteil</label>
+  <label><input type="checkbox" name="q4" value="2">Die Marke des Fahrzeugs</label>
+  <label><input type="checkbox" name="q4" value="3">Monatliche Raten und Gesamtkosten</label>
+  <label><input type="checkbox" name="q4" value="4">Die Farbe des Fahrzeugs</label>
+  <div class="sol"><b>Lösung: A, B, D</b>Eigenkapital, Fremdkapital, monatliche Raten und Gesamtkosten über die Laufzeit.</div>
+</div>
+
+<div class="q" data-type="mc" data-a="2" data-p="2">
+  <div class="head"><div class="txt">5. Fallbeispiel: Welcher Faktor gehört NICHT zu den zentralen Abwägungen bei einer Autofinanzierung?</div><div class="ptbox">/2 P.</div></div>
+  <label><input type="radio" name="q5" value="0">Gesamtkosten</label>
+  <label><input type="radio" name="q5" value="1">Eigentumsfrage</label>
+  <label><input type="radio" name="q5" value="2">Die Lieblingsfarbe des Verkäufers</label>
+  <div class="sol"><b>Lösung: C</b>Relevant sind Gesamtkosten, Eigentumsfrage, Verschuldungsrisiko und Liquidität.</div>
+</div>
+
+<div class="q" data-type="mc" data-a="0" data-p="2">
+  <div class="head"><div class="txt">6. Beim Konsumkredit: Wer hat sofort Eigentum an der gekauften Sache?</div><div class="ptbox">/2 P.</div></div>
+  <label><input type="radio" name="q6" value="0">Die kaufende Person – die Bank hat nur eine Geldforderung</label>
+  <label><input type="radio" name="q6" value="1">Die Bank, bis der Kredit abbezahlt ist</label>
+  <label><input type="radio" name="q6" value="2">Niemand, bis die letzte Rate bezahlt ist</label>
+  <div class="sol"><b>Lösung: A</b>Anders als beim Leasing überträgt der Konsumkredit sofort das Eigentum.</div>
+</div>
+
+<div class="q" data-type="free" data-p="2" data-kw="zinseszins;wieder;ertrag;jahr">
+  <div class="head"><div class="txt">7. Erkläre in einem Satz, was der Zinseszinseffekt bedeutet.</div><div class="ptbox">/2 P.</div></div>
+  <textarea name="q7" placeholder="Deine Antwort …"></textarea>
+  <div class="sol"><b>Musterlösung</b>Nicht entnommene Erträge erwirtschaften selbst wieder Erträge – über viele Jahre wächst das Kapital dadurch überproportional.</div>
+</div>
+
+<div class="q" data-type="free" data-p="3" data-kw="barkauf;leasing;kredit;konsumkredit;ratenkauf">
+  <div class="head"><div class="txt">8. Nenne drei verschiedene Finanzierungs-/Kaufarten für eine grössere Anschaffung.</div><div class="ptbox">/3 P.</div></div>
+  <textarea name="q8" placeholder="1. …&#10;2. …&#10;3. …"></textarea>
+  <div class="sol"><b>Musterlösung (je 1 P.)</b>Barkauf · Konsumkredit/Ratenkauf · Leasing · Kleinkredit.</div>
+</div>
+
+</form>
+
+</div>
+<div class="submitbar">
+  <div class="result" id="res">Noch nicht abgegeben</div>
+  <button class="btn" id="submitBtn" onclick="evaluate()">Test abgeben</button>
+</div>
+
+<script>
+// TODO Produktion: Supabase-Submit wie bei den [UE] – Tabelle antworten (name, klasse, datei=SAFE_FN, antworten, auswertung)
+function evaluate(){
+  const name=document.getElementById('mName').value.trim();
+  if(!name){alert('Bitte Name eingeben.');return}
+  let got=0,max=0;
+  document.querySelectorAll('.q').forEach(q=>{
+    const p=+q.dataset.p; max+=p; let score=0;
+    const type=q.dataset.type;
+    if(type==='mc'){
+      const sel=q.querySelector('input:checked');
+      if(sel&&sel.value===q.dataset.a)score=p;
+    }else if(type==='tf'){
+      const rows=[...q.querySelectorAll('.tfrow')];
+      const per=p/rows.length;
+      rows.forEach(r=>{const s=r.querySelector('input:checked');if(s&&s.value===r.dataset.a)score+=per});
+    }else if(type==='multi'){
+      const want=q.dataset.a.split(',');
+      const sel=[...q.querySelectorAll('input:checked')].map(i=>i.value);
+      const hits=sel.filter(v=>want.includes(v)).length;
+      const wrong=sel.length-hits;
+      score=Math.max(0,(hits-wrong))/want.length*p;
+    }else if(type==='free'){
+      const txt=(q.querySelector('textarea').value||'').toLowerCase();
+      const kws=q.dataset.kw.split(';');
+      const hits=kws.filter(k=>txt.includes(k)).length;
+      score=Math.min(p,Math.round(hits/Math.max(2,Math.ceil(kws.length/2))*p*10)/10);
+      score=Math.min(score,p);
+    }
+    score=Math.round(score*2)/2;
+    got+=score;
+    q.classList.remove('correct','partial','incorrect');
+    q.classList.add(score>=p?'correct':score>0?'partial':'incorrect');
+    q.querySelector('.ptbox').textContent=score+'/'+p+' P.';
+  });
+  got=Math.round(got*2)/2;
+  const note=Math.round((got/max*5+1)*10)/10;
+  document.body.classList.add('show-sol');
+  document.getElementById('res').innerHTML=`${got}/${max} Punkte <span class="note">Note ${note.toFixed(1)}</span>`;
+  document.getElementById('submitBtn').textContent='Ausdrucken / PDF';
+  document.getElementById('submitBtn').onclick=()=>window.print();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

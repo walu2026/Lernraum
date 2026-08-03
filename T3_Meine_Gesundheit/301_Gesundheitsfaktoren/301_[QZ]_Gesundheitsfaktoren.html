@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>301 · Quiz: Gesundheitsfaktoren-Arena</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#27AE61; --t1-dark:#1E8449; --t1-light:#E8F8EF;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+  --gold:#B8860B;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}
+.qz-nav{background:#f7f7f7;border-bottom:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;width:100%;border-collapse:collapse}
+.qz-nav td{padding:6px 10px}
+.qz-nav a{color:var(--t1-dark);text-decoration:none}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:680px;margin:0 auto;padding:26px 18px 70px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;box-shadow:0 2px 10px rgba(30,37,48,.05)}
+.hud{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.hud .box{flex:1;min-width:110px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;text-align:center}
+.hud .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-soft)}
+.hud .val{font-family:'JetBrains Mono',monospace;font-size:1.25rem;font-weight:700}
+.hud .val.streak-hot{color:var(--t1)}
+.progress{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:20px}
+.progress i{display:block;height:100%;background:var(--t1);width:0;transition:width .35s}
+.level-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:99px;margin-bottom:12px;letter-spacing:.06em}
+.lv1{background:#E8F0E9;color:var(--ok)} .lv2{background:#FFF4E0;color:var(--gold)} .lv3{background:var(--t1-light);color:var(--t1)}
+.qtext{font-size:1.18rem;font-weight:700;margin-bottom:20px;line-height:1.5}
+.opts button{display:block;width:100%;text-align:left;padding:14px 16px;margin:9px 0;background:#FCFCFD;border:2px solid var(--line);border-radius:10px;font:inherit;font-size:1rem;cursor:pointer;transition:.15s}
+.opts button:hover:not(:disabled){border-color:var(--t1);transform:translateX(3px)}
+.opts button:disabled{cursor:default;opacity:.85}
+.opts button.right{background:var(--ok-bg);border-color:var(--ok);font-weight:700}
+.opts button.wrong{background:var(--err-bg);border-color:var(--err)}
+.opts button.gone{opacity:.25}
+.fb{margin-top:14px;padding:12px 16px;border-radius:10px;font-size:.94rem;display:none}
+.fb.show{display:block}
+.fb.good{background:var(--ok-bg);color:var(--ok)} .fb.bad{background:var(--err-bg);color:var(--err)}
+.actions{display:flex;gap:10px;margin-top:20px}
+button.btn{font:inherit;font-weight:700;padding:12px 22px;border-radius:10px;border:none;cursor:pointer}
+.btn-main{background:var(--t1);color:#fff}
+.btn-main:hover{background:var(--t1-dark)}
+.btn-joker{background:#fff;border:2px solid var(--gold);color:var(--gold)}
+.btn-joker:disabled{opacity:.35;cursor:default}
+.center{text-align:center}
+.big{font-size:2rem;font-weight:800;margin:10px 0}
+.rank{font-size:3rem;margin:6px 0}
+.subtitle{color:var(--ink-soft);margin-bottom:22px}
+.pop{animation:pop .35s ease}
+@keyframes pop{0%{transform:scale(.85);opacity:0}100%{transform:scale(1);opacity:1}}
+.bonus-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.75rem;background:#FFF4E0;color:var(--gold);padding:2px 10px;border-radius:99px;margin-left:8px}
+@media print{.qz-nav{display:none}}
+</style>
+</head>
+<body>
+<table class="qz-nav" width="100%">
+<tr>
+<td style="text-align:left;width:33%"><a href="301_[TH]_Gesundheitsfaktoren.html">&#8592; Theorie</a></td>
+<td style="text-align:center;width:34%"><a href="../../detail.html#301">&#8593; Übersicht 301</a></td>
+<td style="text-align:right;width:33%"><a href="301_[TE]_Gesundheitsfaktoren.html">Test &#8594;</a></td>
+</tr>
+</table>
+<div class="topbar">
+  <span class="tag">301 · [QZ]</span>
+  <h1>Gesundheitsfaktoren-Arena</h1>
+  <a class="nav" href="301_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+  <div class="hud" id="hud" style="display:none">
+    <div class="box"><div class="lbl">Frage</div><div class="val" id="hQ">–</div></div>
+    <div class="box"><div class="lbl">Punkte</div><div class="val" id="hP">0</div></div>
+    <div class="box"><div class="lbl">Serie</div><div class="val" id="hS">0</div></div>
+  </div>
+  <div class="progress" id="prog" style="display:none"><i id="progFill"></i></div>
+
+  <div class="card" id="stage">
+    <div class="center">
+      <div class="rank">🌱</div>
+      <div class="big">Gesundheitsfaktoren-Arena</div>
+      <p class="subtitle">12 Fragen · 3 Levels · Streak-Bonus ab 3 richtigen in Serie · 1 Joker (50:50).<br>Von der WHO-Definition bis zu Anzeichen von Belastung – wie weit kommst du?</p>
+      <button class="btn btn-main" onclick="start()">Quiz starten</button>
+    </div>
+  </div>
+
+</div>
+<script>
+const QUESTIONS=[
+ // Level 1
+ {lv:1,q:"Welche drei Dimensionen umfasst die WHO-Definition von Gesundheit?",o:["Nur körperlich","Körperlich, psychisch und sozial","Nur psychisch und finanziell"],a:1,fb:"Vollständiges körperliches, geistiges und soziales Wohlbefinden – nicht nur das Fehlen von Krankheit."},
+ {lv:1,q:"Zu welcher Ebene gehört sozialer Rückzug von Freunden und Familie?",o:["Körperlich","Psychisch","Sozial"],a:2,fb:"Sozialer Rückzug ist ein typisches Anzeichen auf der sozialen Ebene."},
+ {lv:1,q:"Welches typische körperliche Anzeichen gehört zu gesundheitlicher Belastung?",o:["Schlafprobleme, Kopfschmerzen, Erschöpfung","Bessere Konzentration","Mehr soziale Kontakte"],a:0,fb:"Diese drei zählen zu den häufigsten körperlichen Anzeichen."},
+ {lv:1,q:"Welche Aussage zur WHO-Definition von Gesundheit ist korrekt?",o:["Gesundheit ist nur die Abwesenheit von Krankheit","Gesundheit ist mehr als die Abwesenheit von Krankheit oder Gebrechen","Gesundheit betrifft nur den Körper"],a:1,fb:"Die WHO fasst Gesundheit deutlich breiter als «nicht krank sein»."},
+ // Level 2
+ {lv:2,q:"Warum lässt sich «vollständiges Wohlbefinden in allen drei Dimensionen» laut Theorie eher als Ideal verstehen?",o:["Weil es täglich neu erreicht werden muss","Weil es selten dauerhaft gleichzeitig erreichbar ist – Gesundheit schwankt über die Zeit","Weil die WHO-Definition veraltet ist"],a:1,fb:"Gesundheit ist eher ein veränderlicher Zustand als ein fixer Endzustand."},
+ {lv:2,q:"Wie beeinflussen sich die drei Dimensionen der Gesundheit gegenseitig?",o:["Gar nicht, sie sind unabhängig","Sie beeinflussen sich gegenseitig, z.B. kann eine körperliche Erkrankung zu weniger sozialen Kontakten führen","Nur die psychische Dimension zählt wirklich"],a:1,fb:"Ein erfüllendes soziales Umfeld kann umgekehrt auch körperliches Wohlbefinden stärken."},
+ {lv:2,q:"Welches psychische Anzeichen gehört zu gesundheitlicher Belastung?",o:["Reizbarkeit und Konzentrationsprobleme","Mehr Energie als sonst","Bessere Laune als üblich"],a:0,fb:"Reizbarkeit, Konzentrationsprobleme und Niedergeschlagenheit sind typische psychische Anzeichen."},
+ {lv:2,q:"Was berichtet Gesundheitsförderung Schweiz zu psychischen Belastungen bei Jugendlichen?",o:["Sie nehmen ab","Sie nehmen zu, v.a. Erschöpfung und Druckgefühl","Es gibt keine Daten dazu"],a:1,fb:"Besonders häufig werden Erschöpfung, Druckgefühl und Niedergeschlagenheit berichtet."},
+ // Level 3
+ {lv:3,q:"Eine Person zeigt gleichzeitig Rückzug von Freunden, Reizbarkeit und Schlafprobleme. Was zeigt das?",o:["Das ist reiner Zufall, ohne Zusammenhang","Gesundheitliche Belastung zeigt sich meist gleichzeitig auf mehreren Ebenen","Nur die soziale Ebene ist betroffen"],a:1,fb:"Körperliche, psychische und soziale Anzeichen treten oft gemeinsam auf."},
+ {lv:3,q:"Warum lässt sich Gesundheit laut Theorie eher als «veränderlicher Zustand» statt als fixer Endzustand verstehen?",o:["Weil sie über die Zeit schwankt, statt dauerhaft erreicht zu werden","Weil sie nur im Alter relevant wird","Weil sie gesetzlich definiert ist"],a:0,fb:"Diese Sichtweise passt besser zum Alltag als ein starres Ideal."},
+ {lv:3,q:"Eine Person hat ein stabiles soziales Umfeld, aber anhaltende Schlafprobleme. Was zeigt das über die drei Dimensionen?",o:["Sie beeinflussen sich, sind aber nicht zwingend alle gleichzeitig gleich stark betroffen","Wenn eine Dimension gut ist, sind es automatisch alle","Schlafprobleme zählen nicht zur Gesundheit"],a:0,fb:"Die Dimensionen hängen zusammen, verlaufen aber nicht immer synchron."},
+ {lv:3,q:"Was gehört laut Theorie zu den sozialen Anzeichen gesundheitlicher Belastung?",o:["Leistungsabfall in Schule oder Lehrbetrieb und Vernachlässigung von Hobbys","Nur körperliche Schmerzen","Ausschliesslich finanzielle Probleme"],a:0,fb:"Auch Leistungsabfall und Rückzug gehören zu den sozialen Anzeichen."}
+];
+const RANKS=[
+ {min:0,icon:"🌱",name:"Einsteiger",txt:"Solider Start – Theorie nochmals lesen und nochmals antreten!"},
+ {min:60,icon:"🩺",name:"Gesundheits-Kenner",txt:"Stark! Den Gesundheitsbegriff und seine Anzeichen kennst du schon gut."},
+ {min:85,icon:"💚",name:"Wohlbefinden-Ass",txt:"Top! Du erkennst Belastung früh – bei dir und bei anderen."}
+];
+const BASE=10, STREAK_AT=3, SPEED_MS=8000, SPEED_PTS=5;
+let order=[],i=0,pts=0,streak=0,best=0,joker=1,tStart=0,correctCount=0,locked=false;
+const $=id=>document.getElementById(id);
+
+function shuffle(a){for(let j=a.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[a[j],a[k]]=[a[k],a[j]]}return a}
+
+function start(){
+  order=[...shuffle(QUESTIONS.filter(q=>q.lv==1)),...shuffle(QUESTIONS.filter(q=>q.lv==2)),...shuffle(QUESTIONS.filter(q=>q.lv==3))];
+  i=0;pts=0;streak=0;best=0;joker=1;correctCount=0;
+  $('hud').style.display='flex';$('prog').style.display='block';
+  render();
+}
+
+function render(){
+  locked=false;
+  const q=order[i];
+  $('hQ').textContent=(i+1)+'/'+order.length;
+  $('hP').textContent=pts;
+  $('hS').textContent=streak+(streak>=STREAK_AT?' 🔥':'');
+  $('hS').classList.toggle('streak-hot',streak>=STREAK_AT);
+  $('progFill').style.width=(i/order.length*100)+'%';
+  const lvClass='lv'+q.lv, lvName=['','Level 1 · Aufwärmen','Level 2 · Anwenden','Level 3 · Fälle knacken'][q.lv];
+  $('stage').innerHTML=`
+    <span class="level-badge ${lvClass}">${lvName}</span>
+    <div class="qtext pop">${q.q}</div>
+    <div class="opts" id="opts">${q.o.map((o,idx)=>`<button onclick="pick(${idx},this)">${o}</button>`).join('')}</div>
+    <div class="fb" id="fb"></div>
+    <div class="actions">
+      <button class="btn btn-joker" id="jBtn" ${joker?'':'disabled'} onclick="useJoker()">50:50 Joker (${joker})</button>
+      <button class="btn btn-main" id="next" style="display:none" onclick="nextQ()">Weiter →</button>
+    </div>`;
+  tStart=Date.now();
+}
+
+function useJoker(){
+  if(!joker||locked)return;
+  joker=0;$('jBtn').disabled=true;$('jBtn').textContent='50:50 Joker (0)';
+  const q=order[i],btns=[...document.querySelectorAll('#opts button')];
+  const wrong=btns.map((b,idx)=>idx).filter(idx=>idx!=q.a);
+  shuffle(wrong).slice(0,q.o.length-2).forEach(idx=>{btns[idx].classList.add('gone');btns[idx].disabled=true});
+}
+
+function pick(idx,btn){
+  if(locked)return;locked=true;
+  const q=order[i],btns=[...document.querySelectorAll('#opts button')];
+  btns.forEach(b=>b.disabled=true);
+  const ok=idx===q.a, fast=Date.now()-tStart<SPEED_MS;
+  const fb=$('fb');
+  if(ok){
+    correctCount++;streak++;best=Math.max(best,streak);
+    let gain=BASE*q.lv, tags='';
+    if(streak>=STREAK_AT){gain*=2;tags+='<span class="bonus-tag">Streak ×2</span>'}
+    if(fast){gain+=SPEED_PTS;tags+='<span class="bonus-tag">Tempo +5</span>'}
+    pts+=gain;
+    btn.classList.add('right');
+    fb.className='fb show good';fb.innerHTML=`✔ Richtig! +${gain} ${tags}<br>${q.fb}`;
+  }else{
+    streak=0;
+    btn.classList.add('wrong');btns[q.a].classList.add('right');
+    fb.className='fb show bad';fb.innerHTML=`✘ Daneben. ${q.fb}`;
+  }
+  $('hP').textContent=pts;$('hS').textContent=streak;
+  $('next').style.display='inline-block';
+  $('next').textContent=(i===order.length-1)?'Auswertung →':'Weiter →';
+}
+
+function nextQ(){ i++; i<order.length?render():finish(); }
+
+function finish(){
+  $('progFill').style.width='100%';
+  const maxPts=order.reduce((s,q)=>s+BASE*q.lv,0);
+  const pct=Math.min(100,Math.round(pts/maxPts*100));
+  const rank=[...RANKS].reverse().find(r=>pct>=r.min);
+  $('stage').innerHTML=`
+    <div class="center pop">
+      <div class="rank">${rank.icon}</div>
+      <div class="big">${rank.name}</div>
+      <p class="subtitle">${rank.txt}</p>
+      <div class="hud" style="justify-content:center">
+        <div class="box"><div class="lbl">Punkte</div><div class="val">${pts}</div></div>
+        <div class="box"><div class="lbl">Richtig</div><div class="val">${correctCount}/${order.length}</div></div>
+        <div class="box"><div class="lbl">Beste Serie</div><div class="val">${best}</div></div>
+      </div>
+      <div class="actions" style="justify-content:center">
+        <button class="btn btn-main" onclick="start()">Nochmals spielen</button>
+      </div>
+    </div>`;
+}
+</script>
+</body>
+</html>
