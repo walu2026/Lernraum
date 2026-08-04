@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>302 · Quiz: Prävention-Arena</title>
+<title>403 · Quiz: Schweiz-Arena</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --t1:#27AE61; --t1-dark:#1E8449; --t1-light:#E8F8EF;
+  --t1:#297FB8; --t1-dark:#1B5D8A; --t1-light:#E3F0F9;
   --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA;
   --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
   --gold:#B8860B;
@@ -56,31 +56,21 @@ button.btn{font:inherit;font-weight:700;padding:12px 22px;border-radius:10px;bor
 .pop{animation:pop .35s ease}
 @keyframes pop{0%{transform:scale(.85);opacity:0}100%{transform:scale(1);opacity:1}}
 .bonus-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.75rem;background:#FFF4E0;color:var(--gold);padding:2px 10px;border-radius:99px;margin-left:8px}
-.extras{margin-top:22px}
-.extras h2{font-size:.95rem;font-weight:800;color:var(--ink);margin-bottom:6px}
-.extras-hint{font-size:.8rem;color:var(--ink-soft);margin-bottom:12px}
-.extras-hint a{color:var(--t1)}
-.extras-item{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;text-decoration:none;color:inherit;transition:.15s}
-.extras-item:hover{border-color:var(--t1);transform:translateX(3px)}
-.extras-tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;background:var(--t1-light);color:var(--t1);padding:3px 8px;border-radius:6px;white-space:nowrap}
-.extras-body{flex:1;font-size:.88rem;color:var(--ink-soft);line-height:1.4}
-.extras-body b{color:var(--ink);font-size:.94rem}
-.extras-arrow{color:var(--ink-soft);font-size:1.1rem}
 @media print{.qz-nav{display:none}}
 </style>
 </head>
 <body>
 <table class="qz-nav" width="100%">
 <tr>
-<td style="text-align:left;width:33%"><a href="302_[TH]_Praevention.html">&#8592; Theorie</a></td>
-<td style="text-align:center;width:34%"><a href="../../detail.html#302">&#8593; Übersicht 302</a></td>
-<td style="text-align:right;width:33%"><a href="302_[TE]_Praevention.html">Test &#8594;</a></td>
+<td style="text-align:left;width:33%"><a href="403_[TH]_Vielseitigkeit_Schweiz.html">&#8592; Theorie</a></td>
+<td style="text-align:center;width:34%"><a href="../../detail.html#403">&#8593; Übersicht 403</a></td>
+<td style="text-align:right;width:33%"><a href="403_[TE]_Vielseitigkeit_Schweiz.html">Test &#8594;</a></td>
 </tr>
 </table>
 <div class="topbar">
-  <span class="tag">302 · [QZ]</span>
-  <h1>Prävention-Arena</h1>
-  <a class="nav" href="302_Aufgaben.html">→ Zu den Übungen</a>
+  <span class="tag">403 · [QZ]</span>
+  <h1>Schweiz-Arena</h1>
+  <a class="nav" href="403_Aufgaben.html">→ Zu den Übungen</a>
 </div>
 <div class="wrap">
 
@@ -93,46 +83,36 @@ button.btn{font:inherit;font-weight:700;padding:12px 22px;border-radius:10px;bor
 
   <div class="card" id="stage">
     <div class="center">
-      <div class="rank">🥦</div>
-      <div class="big">Prävention-Arena</div>
-      <p class="subtitle">12 Fragen · 3 Levels · Streak-Bonus ab 3 richtigen in Serie · 1 Joker (50:50).<br>Von der Lebensmittelpyramide bis zur Stigmatisierung – wie weit kommst du?</p>
+      <div class="rank">🇨🇭</div>
+      <div class="big">Schweiz-Arena</div>
+      <p class="subtitle">12 Fragen · 3 Levels · Streak-Bonus ab 3 richtigen in Serie · 1 Joker (50:50).<br>Von Eckdaten bis Röstigraben – wie weit kommst du?</p>
       <button class="btn btn-main" onclick="start()">Quiz starten</button>
     </div>
-  </div>
-
-  <div class="extras">
-    <h2>🔗 Weitere Lernspiele &amp; Videos</h2>
-    <p class="extras-hint">Externe, manuell geprüfte Angebote – passend zu einzelnen Übungen. Öffnen in neuem Tab, ausserhalb des ABU-Portals.</p>
-    <a class="extras-item" href="https://learningapps.org/24095522" target="_blank" rel="noopener">
-      <span class="extras-tag">A02 · A03</span>
-      <span class="extras-body"><b>🎮 Gesundheit erhalten und fördern – Prävention und Rehabilitation</b><br>LearningApps · Zuordnungs-Übung: Massnahmen den drei Präventionsstufen zuordnen.</span>
-      <span class="extras-arrow">↗</span>
-    </a>
   </div>
 
 </div>
 <script>
 const QUESTIONS=[
  // Level 1
- {lv:1,q:"Ein Skitourengänger prüft zuerst den Lawinenlagebericht, passt danach die Route an und nimmt zuletzt ein LVS-Gerät sowie eine Rettungsversicherung mit. Welchem Modell folgt er?",o:["Erkennen → Vermeiden → Absichern","Absichern → Vermeiden → Erkennen","Vermeiden → Absichern → Erkennen"],a:0,fb:"Erst die Gefahren erkennen, dann vermeiden, zuletzt verbleibende Risiken absichern."},
- {lv:1,q:"Eine Hausärztin führt eine Vorsorgeuntersuchung durch, um eine Erkrankung möglichst frühzeitig zu entdecken. Zu welcher Präventionsstufe gehört das?",o:["Primärprävention","Sekundärprävention","Tertiärprävention"],a:1,fb:"Sekundärprävention erkennt ein Problem früh – im Unterschied zur Primärprävention, die es verhindert."},
- {lv:1,q:"Ein Jugendlicher isst aktuell 2 Portionen Gemüse/Früchte pro Tag. Wie viele Portionen fehlen ihm bis zur Tagesempfehlung der Lebensmittelpyramide?",o:["1 Portion","3 Portionen","8 Portionen"],a:1,fb:"Die Pyramide empfiehlt 5 Portionen täglich – bei 2 fehlen also 3."},
- {lv:1,q:"Ein Paar streitet immer wieder, weil gemachte Versprechen gebrochen werden. Welcher zentrale Beziehungswert fehlt hier am ehesten?",o:["Vertrauen","Risikoüberschätzung","Tertiärprävention"],a:0,fb:"Vertrauen ist neben Ehrlichkeit und Respekt ein zentraler Wert in Beziehungen."},
+ {lv:1,q:"Basel-Stadt und Appenzell Innerrhoden sind Halbkantone mit je einer halben Standesstimme. Was gilt für die übrigen 20 Kantone?",o:["Sie haben ebenfalls nur eine halbe Standesstimme","Sie sind Vollkantone mit je einer ganzen Standesstimme","Sie haben gar keine Standesstimme"],a:1,fb:"26 Kantone: 20 Vollkantone und 6 Halbkantone."},
+ {lv:1,q:"Fatima ist in Sri Lanka geboren, lebt seit 15 Jahren in Bern und fühlt sich beiden Ländern zugehörig. Schliesst das eine gelungene Integration in der Schweiz aus?",o:["Ja, nur eine Heimat ist gleichzeitig möglich","Nein, mehrere Heimaten sind möglich und schliessen Integration nicht aus","Nur mit Schweizer Pass wäre das möglich"],a:1,fb:"Heimatgefühl lässt sich nicht auf einen einzigen Ort beschränken."},
+ {lv:1,q:"Die Basler Fasnacht steht seit 2017 auf der UNESCO-Liste. Seit wann führt die Schweiz überhaupt die nationale «Liste der lebendigen Traditionen», auf der solche Bräuche zuerst erfasst werden?",o:["Seit 1848","Seit 2008","Seit 2023"],a:1,fb:"Es ist die nationale Umsetzung des UNESCO-Konzepts des immateriellen Kulturerbes."},
+ {lv:1,q:"Herr Meier hilft seiner Nachbarin regelmässig unentgeltlich beim Einkaufen, ohne dass das über einen Verein organisiert ist. Um welche Form der Freiwilligenarbeit handelt es sich?",o:["Formelle Freiwilligenarbeit","Informelle Freiwilligenarbeit","Bezahlte Teilzeitarbeit"],a:1,fb:"Informelle Freiwilligenarbeit ist nicht institutionalisiert."},
  // Level 2
- {lv:2,q:"Eine Person hat grosse Angst vor einer neuen Impftechnologie, fährt aber täglich ohne Bedenken foehnzügig Auto. Welches Phänomen zeigt sich hier?",o:["Eine objektive, gut begründete Gefahreneinschätzung","Risikoüberschätzung von Unbekanntem bei gleichzeitiger Unterschätzung von Gewohntem","Ein Beispiel für Tertiärprävention"],a:1,fb:"Neue Risiken werden oft überschätzt, vertraute wie Autofahren eher unterschätzt."},
- {lv:2,q:"Ein Produkt wirbt gross mit «100% natürlich», die Zutatenliste zeigt aber Zucker an erster Stelle. Was zeigt dieses Beispiel?",o:["Werbeaufschriften sind zuverlässiger als die Zutatenliste","Die Zutatenliste ist ehrlicher als Werbeversprechen","Zucker an erster Stelle bedeutet automatisch wenig Zucker im Produkt"],a:1,fb:"Die nach Menge sortierte Zutatenliste gibt ehrlichere Auskunft als Werbeaufschriften."},
- {lv:2,q:"Eine Person postet auf Social Media nur Fotos von Ferien und Erfolgen. Beim Vergleich mit dem eigenen Alltag wirkt das Leben der Person «perfekter». Was erklärt diese Wirkung am besten?",o:["Social Media zeigt immer den vollständigen Alltag einer Person","Es werden meist nur sorgfältig ausgewählte Höhepunkte gezeigt, nicht der ganze Alltag","Dieses Phänomen betrifft ausschliesslich Prominente"],a:1,fb:"Man vergleicht das eigene vollständige Leben mit den ausgewählten Glanzmomenten anderer."},
- {lv:2,q:"Eine Person mit einer psychischen Erkrankung verschweigt diese im Lehrbetrieb aus Angst vor Vorurteilen. Was ist die wahrscheinlichste Folge laut Theorie?",o:["Schnellere professionelle Hilfe durch das Verschweigen","Verzögerte Behandlung, weil die Erkrankung verheimlicht wird","Die Erkrankung heilt dadurch automatisch schneller"],a:1,fb:"Stigmatisierung führt oft dazu, dass Betroffene keine Hilfe suchen – das verzögert die Behandlung."},
+ {lv:2,q:"BFS-Zahlen von 2025 zeigen: Es gibt erstmals mehr Personen ab 65 Jahren als unter 20-Jährige. Wie nennt man diesen Befund?",o:["Die Schweiz schrumpft erstmals","Den demografischen Wendepunkt – Zeichen fortschreitender Alterung","Einen einmaligen statistischen Ausreisser ohne Bedeutung"],a:1,fb:"Ein Zeichen fortschreitender gesellschaftlicher Alterung."},
+ {lv:2,q:"Ein Journalist schreibt: «Trotz Röstigraben, Stadt-Land-Graben und religiösen Unterschieden bricht die Schweiz nicht auseinander.» Was ist laut Theorie der Hauptgrund dafür?",o:["Es gibt in der Schweiz praktisch keine echten Konflikte","Die verschiedenen Gräben verlaufen nicht überall gleich, dadurch entstehen wechselnde Mehrheiten statt fester Blöcke","Nur eine einzige Partei regiert das Land"],a:1,fb:"Föderalismus, direkte Demokratie und Konkordanz helfen zusätzlich, Spannungsfelder auszuhalten."},
+ {lv:2,q:"Ein Deutschschweizer Journalist verfasst einen Artikel nur auf Deutsch, obwohl die Schweiz mehrere Landessprachen kennt. Wie viele sind das genau?",o:["Drei","Vier","Fünf"],a:1,fb:"Deutsch, Französisch, Italienisch und Rätoromanisch."},
+ {lv:2,q:"Bei einer Abstimmung zur Sozialpolitik stimmen Romandie und Tessin deutlich anders als die Deutschschweiz. Welcher Begriff beschreibt diese kulturelle Grenze?",o:["Stadt-Land-Graben","Röstigraben","Territorialitätsprinzip"],a:1,fb:"Er zeigt sich z.B. bei Abstimmungen zu Sozialstaat, Umweltschutz oder Migrationspolitik."},
  // Level 3
- {lv:3,q:"Person A kauft im Winter importierte Erdbeeren, Person B saisonales und regionales Gemüse. Welche Aussage trifft am ehesten zu?",o:["Person B kauft meist teurer und ungesünder ein","Person B kauft durch kürzere Transportwege oft günstiger, frischer und ökologischer ein","Beide Varianten sind aus Gesundheitssicht identisch"],a:1,fb:"Saisonal-regionales Einkaufen verbindet meist Gesundheit, Budget und Nachhaltigkeit."},
- {lv:3,q:"Ein Betrieb organisiert eine Skitour: zuerst wird der Lawinenlagebericht geprüft, dann die Route angepasst, zuletzt werden LVS-Geräte verteilt und eine Rettungsversicherung abgeschlossen. Welcher Teil entspricht dem Schritt «Absichern»?",o:["Den Lawinenlagebericht prüfen","LVS-Geräte verteilen und die Rettungsversicherung abschliessen","Die Route im Voraus anpassen"],a:1,fb:"Absichern bedeutet, verbleibende Risiken durch Vorsichtsmassnahmen oder Versicherungen abzufedern."},
- {lv:3,q:"Eine Person mit Depression wird im Gespräch als «labil» bezeichnet und zieht sich daraufhin komplett zurück, statt Hilfe zu suchen. Welches Konzept beschreibt diesen Mechanismus am treffendsten?",o:["Sekundärprävention", "Stigmatisierung mit der Folge von Rückzug und verzögerter Behandlung","Risikoüberschätzung"],a:1,fb:"Vorurteile und abwertende Zuschreibungen führen zu Rückzug – ein typisches Stigmatisierungs-Muster."},
- {lv:3,q:"In einer Gruppe wird über Sexualität kaum offen gesprochen, Aufklärung findet praktisch nicht statt. Was ist laut Theorie eine wahrscheinliche Folge?",o:["Automatisch eine bessere sexuelle Gesundheit","Weniger Aufklärung und ein höheres Risiko für sexuell übertragbare Infektionen","Keinerlei Auswirkung auf die Gesundheit"],a:1,fb:"Tabuisierung senkt den Aufklärungsstand und erhöht dadurch das STI-Risiko."}
+ {lv:3,q:"Bei Abstimmungen zu Kinderbetreuung und internationaler Öffnung stimmen städtische Zentren regelmässig anders als ländliche Regionen – mit wachsender Tendenz. Welcher Graben zeigt sich hier?",o:["Der Stadt-Land-Graben","Der Röstigraben","Der Sprachgraben"],a:0,fb:"Dieser Graben gilt als tendenziell wachsend."},
+ {lv:3,q:"2025 wuchs die Schweizer Bevölkerung um 0,8% bei 77'900 Lebendgeburten. Was begünstigt dieses Wachstum gemäss BFS-Zahlen am stärksten?",o:["Höhere Geburtenraten als in Nachbarländern","Zuwanderung – sie macht rund 88% des Wachstums aus","Weniger Auswanderung von Schweizer:innen"],a:1,fb:"Der grösste Wachstumsanteil kommt aus Zuwanderung."},
+ {lv:3,q:"Ein Tourist wundert sich, dass die Schweiz trotz vieler Seen keinen direkten Meerzugang hat. Wie nennt man einen solchen Staat?",o:["Binnenstaat","Küstenstaat","Insularstaat"],a:0,fb:"Die Schweiz grenzt an 5 Nachbarstaaten, hat aber kein Meer."},
+ {lv:3,q:"In einer Klassendiskussion heisst es: «Dass es Spannungsfelder zwischen Stadt und Land gibt, zeigt, dass unsere Gesellschaft im Kern kaputt ist.» Was entgegnet die Theorie darauf am ehesten?",o:["Zustimmung – Spannungsfelder sind ein Krisensymptom","Widerspruch – Spannungsfelder gehören zu jeder pluralistischen Gesellschaft, entscheidend ist der Umgang damit","Die Schweiz kennt gar keine solchen Spannungsfelder"],a:1,fb:"Entscheidend ist der Umgang damit: Dialog und Kompromissbereitschaft."}
 ];
 const RANKS=[
- {min:0,icon:"🌱",name:"Einsteiger",txt:"Solider Start – Theorie nochmals lesen und nochmals antreten!"},
- {min:60,icon:"🥗",name:"Präventions-Kenner",txt:"Stark! Ernährung, Risiken und Medieneinfluss sitzen schon gut."},
- {min:85,icon:"🥦",name:"Präventions-Ass",txt:"Top! Du übernimmst Eigenverantwortung für deine Gesundheit."}
+ {min:0,icon:"🏔️",name:"Einsteiger",txt:"Solider Start – Theorie nochmals lesen und nochmals antreten!"},
+ {min:60,icon:"🧀",name:"Schweiz-Kenner",txt:"Stark! Eckdaten und Gräben der Schweiz sitzen schon gut."},
+ {min:85,icon:"🇨🇭",name:"Schweiz-Ass",txt:"Top! Du kennst die Vielseitigkeit der Schweiz bestens."}
 ];
 const BASE=10, STREAK_AT=3, SPEED_MS=8000, SPEED_PTS=5;
 let order=[],i=0,pts=0,streak=0,best=0,joker=1,tStart=0,correctCount=0,locked=false;

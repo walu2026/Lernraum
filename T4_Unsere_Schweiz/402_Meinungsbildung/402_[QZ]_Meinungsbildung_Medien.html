@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>302 · Quiz: Prävention-Arena</title>
+<title>402 · Quiz: Medien-Arena</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --t1:#27AE61; --t1-dark:#1E8449; --t1-light:#E8F8EF;
+  --t1:#297FB8; --t1-dark:#1B5D8A; --t1-light:#E3F0F9;
   --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA;
   --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
   --gold:#B8860B;
@@ -72,15 +72,15 @@ button.btn{font:inherit;font-weight:700;padding:12px 22px;border-radius:10px;bor
 <body>
 <table class="qz-nav" width="100%">
 <tr>
-<td style="text-align:left;width:33%"><a href="302_[TH]_Praevention.html">&#8592; Theorie</a></td>
-<td style="text-align:center;width:34%"><a href="../../detail.html#302">&#8593; Übersicht 302</a></td>
-<td style="text-align:right;width:33%"><a href="302_[TE]_Praevention.html">Test &#8594;</a></td>
+<td style="text-align:left;width:33%"><a href="402_[TH]_Meinungsbildung_Medien.html">&#8592; Theorie</a></td>
+<td style="text-align:center;width:34%"><a href="../../detail.html#402">&#8593; Übersicht 402</a></td>
+<td style="text-align:right;width:33%"><a href="402_[TE]_Meinungsbildung_Medien.html">Test &#8594;</a></td>
 </tr>
 </table>
 <div class="topbar">
-  <span class="tag">302 · [QZ]</span>
-  <h1>Prävention-Arena</h1>
-  <a class="nav" href="302_Aufgaben.html">→ Zu den Übungen</a>
+  <span class="tag">402 · [QZ]</span>
+  <h1>Medien-Arena</h1>
+  <a class="nav" href="402_Aufgaben.html">→ Zu den Übungen</a>
 </div>
 <div class="wrap">
 
@@ -93,9 +93,9 @@ button.btn{font:inherit;font-weight:700;padding:12px 22px;border-radius:10px;bor
 
   <div class="card" id="stage">
     <div class="center">
-      <div class="rank">🥦</div>
-      <div class="big">Prävention-Arena</div>
-      <p class="subtitle">12 Fragen · 3 Levels · Streak-Bonus ab 3 richtigen in Serie · 1 Joker (50:50).<br>Von der Lebensmittelpyramide bis zur Stigmatisierung – wie weit kommst du?</p>
+      <div class="rank">📰</div>
+      <div class="big">Medien-Arena</div>
+      <p class="subtitle">12 Fragen · 3 Levels · Streak-Bonus ab 3 richtigen in Serie · 1 Joker (50:50).<br>Von Agenda-Setting bis Filterblase – wie weit kommst du?</p>
       <button class="btn btn-main" onclick="start()">Quiz starten</button>
     </div>
   </div>
@@ -103,9 +103,9 @@ button.btn{font:inherit;font-weight:700;padding:12px 22px;border-radius:10px;bor
   <div class="extras">
     <h2>🔗 Weitere Lernspiele &amp; Videos</h2>
     <p class="extras-hint">Externe, manuell geprüfte Angebote – passend zu einzelnen Übungen. Öffnen in neuem Tab, ausserhalb des ABU-Portals.</p>
-    <a class="extras-item" href="https://learningapps.org/24095522" target="_blank" rel="noopener">
-      <span class="extras-tag">A02 · A03</span>
-      <span class="extras-body"><b>🎮 Gesundheit erhalten und fördern – Prävention und Rehabilitation</b><br>LearningApps · Zuordnungs-Übung: Massnahmen den drei Präventionsstufen zuordnen.</span>
+    <a class="extras-item" href="https://learningapps.org/19893723" target="_blank" rel="noopener">
+      <span class="extras-tag">A03</span>
+      <span class="extras-body"><b>🎮 Erkennen von Fake News und seriösen Inhalten im Internet</b><br>LearningApps · Übung zur Quellen- und Glaubwürdigkeitsprüfung.</span>
       <span class="extras-arrow">↗</span>
     </a>
   </div>
@@ -114,25 +114,25 @@ button.btn{font:inherit;font-weight:700;padding:12px 22px;border-radius:10px;bor
 <script>
 const QUESTIONS=[
  // Level 1
- {lv:1,q:"Ein Skitourengänger prüft zuerst den Lawinenlagebericht, passt danach die Route an und nimmt zuletzt ein LVS-Gerät sowie eine Rettungsversicherung mit. Welchem Modell folgt er?",o:["Erkennen → Vermeiden → Absichern","Absichern → Vermeiden → Erkennen","Vermeiden → Absichern → Erkennen"],a:0,fb:"Erst die Gefahren erkennen, dann vermeiden, zuletzt verbleibende Risiken absichern."},
- {lv:1,q:"Eine Hausärztin führt eine Vorsorgeuntersuchung durch, um eine Erkrankung möglichst frühzeitig zu entdecken. Zu welcher Präventionsstufe gehört das?",o:["Primärprävention","Sekundärprävention","Tertiärprävention"],a:1,fb:"Sekundärprävention erkennt ein Problem früh – im Unterschied zur Primärprävention, die es verhindert."},
- {lv:1,q:"Ein Jugendlicher isst aktuell 2 Portionen Gemüse/Früchte pro Tag. Wie viele Portionen fehlen ihm bis zur Tagesempfehlung der Lebensmittelpyramide?",o:["1 Portion","3 Portionen","8 Portionen"],a:1,fb:"Die Pyramide empfiehlt 5 Portionen täglich – bei 2 fehlen also 3."},
- {lv:1,q:"Ein Paar streitet immer wieder, weil gemachte Versprechen gebrochen werden. Welcher zentrale Beziehungswert fehlt hier am ehesten?",o:["Vertrauen","Risikoüberschätzung","Tertiärprävention"],a:0,fb:"Vertrauen ist neben Ehrlichkeit und Respekt ein zentraler Wert in Beziehungen."},
+ {lv:1,q:"Eine Zeitung berichtet drei Tage lang gross über einen Rohrbruch in der Stadt, während eine wichtige Abstimmungsvorlage kaum erwähnt wird. Welcher Mechanismus zeigt sich hier?",o:["Framing – wie ein Thema eingeordnet wird","Agenda-Setting – welche Themen überhaupt Beachtung finden","Das Persönlichkeitsrecht der Redaktion"],a:1,fb:"Agenda-Setting entscheidet über die Themenauswahl, nicht darüber, wie ein Thema dargestellt wird (das wäre Framing)."},
+ {lv:1,q:"Eine Lokalzeitung deckt auf, dass eine Gemeindeverwaltung öffentliche Gelder falsch verbucht hat. Welche Medienfunktion zeigt sich hier am deutlichsten?",o:["Information","Kontrolle","Meinungsbildung"],a:1,fb:"Die Kontrollfunktion macht Medien zur «vierten Gewalt»."},
+ {lv:1,q:"Auf Saras Social-Media-Feed erscheinen seit Monaten fast nur noch Beiträge, die ihre bisherige politische Meinung bestätigen. Wie nennt man dieses Phänomen?",o:["Agenda-Setting","Filterblase","Vierte Gewalt"],a:1,fb:"Algorithmen zeigen bevorzugt passende Inhalte an."},
+ {lv:1,q:"In einem Leserbrief steht: «Handyverbote an Schulen sind sinnvoll (These), weil sie die Konzentration fördern (Begründung).» Was fehlt noch zu einem vollständigen Argument?",o:["Ein Gegenargument","Ein konkretes Beispiel/Beleg","Eine zweite These"],a:1,fb:"Erst ein konkretes Beispiel macht die Begründung greifbar und nachvollziehbar."},
  // Level 2
- {lv:2,q:"Eine Person hat grosse Angst vor einer neuen Impftechnologie, fährt aber täglich ohne Bedenken foehnzügig Auto. Welches Phänomen zeigt sich hier?",o:["Eine objektive, gut begründete Gefahreneinschätzung","Risikoüberschätzung von Unbekanntem bei gleichzeitiger Unterschätzung von Gewohntem","Ein Beispiel für Tertiärprävention"],a:1,fb:"Neue Risiken werden oft überschätzt, vertraute wie Autofahren eher unterschätzt."},
- {lv:2,q:"Ein Produkt wirbt gross mit «100% natürlich», die Zutatenliste zeigt aber Zucker an erster Stelle. Was zeigt dieses Beispiel?",o:["Werbeaufschriften sind zuverlässiger als die Zutatenliste","Die Zutatenliste ist ehrlicher als Werbeversprechen","Zucker an erster Stelle bedeutet automatisch wenig Zucker im Produkt"],a:1,fb:"Die nach Menge sortierte Zutatenliste gibt ehrlichere Auskunft als Werbeaufschriften."},
- {lv:2,q:"Eine Person postet auf Social Media nur Fotos von Ferien und Erfolgen. Beim Vergleich mit dem eigenen Alltag wirkt das Leben der Person «perfekter». Was erklärt diese Wirkung am besten?",o:["Social Media zeigt immer den vollständigen Alltag einer Person","Es werden meist nur sorgfältig ausgewählte Höhepunkte gezeigt, nicht der ganze Alltag","Dieses Phänomen betrifft ausschliesslich Prominente"],a:1,fb:"Man vergleicht das eigene vollständige Leben mit den ausgewählten Glanzmomenten anderer."},
- {lv:2,q:"Eine Person mit einer psychischen Erkrankung verschweigt diese im Lehrbetrieb aus Angst vor Vorurteilen. Was ist die wahrscheinlichste Folge laut Theorie?",o:["Schnellere professionelle Hilfe durch das Verschweigen","Verzögerte Behandlung, weil die Erkrankung verheimlicht wird","Die Erkrankung heilt dadurch automatisch schneller"],a:1,fb:"Stigmatisierung führt oft dazu, dass Betroffene keine Hilfe suchen – das verzögert die Behandlung."},
+ {lv:2,q:"Ein Nutzer schreibt öffentlich wiederholt, eine bestimmte Lehrperson sei «unfähig und sollte gefeuert werden», ohne Belege zu nennen. Er beruft sich auf die Meinungsfreiheit. Stimmt das?",o:["Ja, jede Meinung ist vollständig geschützt","Nein – gezielte Herabwürdigung einer bestimmten Person ist keine geschützte Meinungsäusserung","Nur wenn die Person namentlich genannt wird, ist es strafbar"],a:1,fb:"Meinungsfreiheit schützt Meinungen, nicht gezielte Herabwürdigung – das kann eine Ehrverletzung sein."},
+ {lv:2,q:"Eine Webseite zu einem Gesundheitsthema ist professionell gestaltet, mit Logo und ansprechendem Layout – Autor und Datum fehlen jedoch. Wie ist die Seriosität einzuschätzen?",o:["Sehr seriös, das Layout beweist Professionalität","Fragwürdig – fehlender Autor und fehlendes Datum sind Warnsignale, unabhängig vom Layout","Seriös, weil ein Logo vorhanden ist"],a:1,fb:"Ein schönes Layout sagt nichts über den Wahrheitsgehalt aus; die Warnsignale bleiben bestehen."},
+ {lv:2,q:"Der Bundesrat möchte per Erlass eine regierungskritische Zeitung verbieten lassen. Welcher Verfassungsartikel verhindert das direkt?",o:["Art. 16 BV (Meinungsfreiheit)","Art. 17 BV (Medienfreiheit – Zensur ist verboten)","Art. 261bis StGB (Rassismusstrafnorm)"],a:1,fb:"Art. 17 BV schützt konkret die Medien vor Zensur; Art. 16 BV regelt die allgemeine Meinungsfreiheit."},
+ {lv:2,q:"Eine Zeitung vermischt in einem Artikel Fakten und Meinung, ohne dies zu kennzeichnen, und verletzt damit journalistische Sorgfaltspflichten. Welche Institution könnte deswegen eine Rüge aussprechen?",o:["Das Bundesgericht","Der Presserat","Der Bundesrat"],a:1,fb:"Der Presserat ist das Selbstkontrollorgan der Medien für solche Sorgfaltspflichten."},
  // Level 3
- {lv:3,q:"Person A kauft im Winter importierte Erdbeeren, Person B saisonales und regionales Gemüse. Welche Aussage trifft am ehesten zu?",o:["Person B kauft meist teurer und ungesünder ein","Person B kauft durch kürzere Transportwege oft günstiger, frischer und ökologischer ein","Beide Varianten sind aus Gesundheitssicht identisch"],a:1,fb:"Saisonal-regionales Einkaufen verbindet meist Gesundheit, Budget und Nachhaltigkeit."},
- {lv:3,q:"Ein Betrieb organisiert eine Skitour: zuerst wird der Lawinenlagebericht geprüft, dann die Route angepasst, zuletzt werden LVS-Geräte verteilt und eine Rettungsversicherung abgeschlossen. Welcher Teil entspricht dem Schritt «Absichern»?",o:["Den Lawinenlagebericht prüfen","LVS-Geräte verteilen und die Rettungsversicherung abschliessen","Die Route im Voraus anpassen"],a:1,fb:"Absichern bedeutet, verbleibende Risiken durch Vorsichtsmassnahmen oder Versicherungen abzufedern."},
- {lv:3,q:"Eine Person mit Depression wird im Gespräch als «labil» bezeichnet und zieht sich daraufhin komplett zurück, statt Hilfe zu suchen. Welches Konzept beschreibt diesen Mechanismus am treffendsten?",o:["Sekundärprävention", "Stigmatisierung mit der Folge von Rückzug und verzögerter Behandlung","Risikoüberschätzung"],a:1,fb:"Vorurteile und abwertende Zuschreibungen führen zu Rückzug – ein typisches Stigmatisierungs-Muster."},
- {lv:3,q:"In einer Gruppe wird über Sexualität kaum offen gesprochen, Aufklärung findet praktisch nicht statt. Was ist laut Theorie eine wahrscheinliche Folge?",o:["Automatisch eine bessere sexuelle Gesundheit","Weniger Aufklärung und ein höheres Risiko für sexuell übertragbare Infektionen","Keinerlei Auswirkung auf die Gesundheit"],a:1,fb:"Tabuisierung senkt den Aufklärungsstand und erhöht dadurch das STI-Risiko."}
+ {lv:3,q:"Du findest online einen Artikel ohne Autorenangabe und ohne Publikationsdatum, mit reisserischen Formulierungen. Zwei seriöse Nachrichtenportale berichten nicht darüber. Was ist die plausibelste Einschätzung?",o:["Die Quelle ist zuverlässig, weil sie am schnellsten berichtete","Mehrere Warnsignale zusammen sprechen für eine unseriöse Quelle","Das fehlende Datum ist unwichtig, solange der Inhalt plausibel klingt"],a:1,fb:"Fehlender Autor, fehlendes Datum und fehlende Bestätigung durch andere Quellen verstärken sich gegenseitig als Warnsignale."},
+ {lv:3,q:"Ein Social-Media-Algorithmus zeigt einem Nutzer über Monate fast nur noch Beiträge einer politischen Richtung. Vor den nächsten Wahlen hält er seine eigene Position für «die einzig vernünftige». Welches Risiko von Algorithmen zeigt sich hier?",o:["Bessere Informiertheit durch Personalisierung","Verstärkung von Vorurteilen und geringere Meinungsvielfalt","Automatisch garantierter Datenschutz"],a:1,fb:"Filterblasen verstärken Vorurteile und verringern die Wahrnehmung anderer Standpunkte."},
+ {lv:3,q:"In einer Pro-/Kontra-Debatte zu einer Kennzeichnungspflicht für Fake News heisst es: «Sie hilft, weil Nutzer:innen gewarnt werden, bevor sie ungeprüft teilen – siehe die viral verbreiteten Falschmeldungen während der letzten Wahlen.» Welchen Baustein liefert der letzte Teil des Satzes?",o:["Die These","Die Begründung","Das Beispiel/den Beleg"],a:2,fb:"Der Verweis auf ein konkretes Ereignis macht die Begründung greifbar – das ist die Funktion des Beispiels."},
+ {lv:3,q:"Ein Journalist deckt Korruption in einer Behörde auf, obwohl er formell weder Legislative, Exekutive noch Judikative angehört. Warum spricht man trotzdem von der «vierten Gewalt»?",o:["Weil Medien formell eine vierte Staatsgewalt bilden","Weil sie eine informelle Kontrollfunktion ausüben, ohne formell zu den drei Staatsgewalten zu gehören","Weil es historisch genau vier Staatsgewalten gab"],a:1,fb:"«Vierte Gewalt» ist eine informelle Zuschreibung, keine formale Staatsgewalt."}
 ];
 const RANKS=[
- {min:0,icon:"🌱",name:"Einsteiger",txt:"Solider Start – Theorie nochmals lesen und nochmals antreten!"},
- {min:60,icon:"🥗",name:"Präventions-Kenner",txt:"Stark! Ernährung, Risiken und Medieneinfluss sitzen schon gut."},
- {min:85,icon:"🥦",name:"Präventions-Ass",txt:"Top! Du übernimmst Eigenverantwortung für deine Gesundheit."}
+ {min:0,icon:"📻",name:"Einsteiger",txt:"Solider Start – Theorie nochmals lesen und nochmals antreten!"},
+ {min:60,icon:"📰",name:"Medien-Kenner",txt:"Stark! Quellenkritik und Meinungsfreiheit sitzen schon gut."},
+ {min:85,icon:"🔍",name:"Medien-Ass",txt:"Top! Filterblasen und Fake News legen dich nicht mehr rein."}
 ];
 const BASE=10, STREAK_AT=3, SPEED_MS=8000, SPEED_PTS=5;
 let order=[],i=0,pts=0,streak=0,best=0,joker=1,tStart=0,correctCount=0,locked=false;

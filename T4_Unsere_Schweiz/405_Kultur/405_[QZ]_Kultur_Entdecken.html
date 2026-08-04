@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>302 · Quiz: Prävention-Arena</title>
+<title>405 · Quiz: Kultur-Arena</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --t1:#27AE61; --t1-dark:#1E8449; --t1-light:#E8F8EF;
+  --t1:#297FB8; --t1-dark:#1F6898; --t1-light:#D6EAF8;
   --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA;
   --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
   --gold:#B8860B;
@@ -72,15 +72,15 @@ button.btn{font:inherit;font-weight:700;padding:12px 22px;border-radius:10px;bor
 <body>
 <table class="qz-nav" width="100%">
 <tr>
-<td style="text-align:left;width:33%"><a href="302_[TH]_Praevention.html">&#8592; Theorie</a></td>
-<td style="text-align:center;width:34%"><a href="../../detail.html#302">&#8593; Übersicht 302</a></td>
-<td style="text-align:right;width:33%"><a href="302_[TE]_Praevention.html">Test &#8594;</a></td>
+<td style="text-align:left;width:33%"><a href="405_[TH]_Kultur_Entdecken.html">&#8592; Theorie</a></td>
+<td style="text-align:center;width:34%"><a href="../../detail.html#405">&#8593; Übersicht 405</a></td>
+<td style="text-align:right;width:33%"><a href="405_[TE]_Kultur_Entdecken.html">Test &#8594;</a></td>
 </tr>
 </table>
 <div class="topbar">
-  <span class="tag">302 · [QZ]</span>
-  <h1>Prävention-Arena</h1>
-  <a class="nav" href="302_Aufgaben.html">→ Zu den Übungen</a>
+  <span class="tag">405 · [QZ]</span>
+  <h1>Kultur-Arena</h1>
+  <a class="nav" href="405_Aufgaben.html">→ Zu den Übungen</a>
 </div>
 <div class="wrap">
 
@@ -93,9 +93,9 @@ button.btn{font:inherit;font-weight:700;padding:12px 22px;border-radius:10px;bor
 
   <div class="card" id="stage">
     <div class="center">
-      <div class="rank">🥦</div>
-      <div class="big">Prävention-Arena</div>
-      <p class="subtitle">12 Fragen · 3 Levels · Streak-Bonus ab 3 richtigen in Serie · 1 Joker (50:50).<br>Von der Lebensmittelpyramide bis zur Stigmatisierung – wie weit kommst du?</p>
+      <div class="rank">🎭</div>
+      <div class="big">Kultur-Arena</div>
+      <p class="subtitle">12 Fragen · 3 Levels · Streak-Bonus ab 3 richtigen in Serie · 1 Joker (50:50).<br>Von Kunstformen bis Kants Ästhetik – wie weit kommst du?</p>
       <button class="btn btn-main" onclick="start()">Quiz starten</button>
     </div>
   </div>
@@ -103,9 +103,9 @@ button.btn{font:inherit;font-weight:700;padding:12px 22px;border-radius:10px;bor
   <div class="extras">
     <h2>🔗 Weitere Lernspiele &amp; Videos</h2>
     <p class="extras-hint">Externe, manuell geprüfte Angebote – passend zu einzelnen Übungen. Öffnen in neuem Tab, ausserhalb des ABU-Portals.</p>
-    <a class="extras-item" href="https://learningapps.org/24095522" target="_blank" rel="noopener">
-      <span class="extras-tag">A02 · A03</span>
-      <span class="extras-body"><b>🎮 Gesundheit erhalten und fördern – Prävention und Rehabilitation</b><br>LearningApps · Zuordnungs-Übung: Massnahmen den drei Präventionsstufen zuordnen.</span>
+    <a class="extras-item" href="https://learningapps.org/534971" target="_blank" rel="noopener">
+      <span class="extras-tag">A05</span>
+      <span class="extras-body"><b>🎮 Kunstzeitstrahl</b><br>LearningApps · Übung zur chronologischen Einordnung von Kunstepochen.</span>
       <span class="extras-arrow">↗</span>
     </a>
   </div>
@@ -114,25 +114,25 @@ button.btn{font:inherit;font-weight:700;padding:12px 22px;border-radius:10px;bor
 <script>
 const QUESTIONS=[
  // Level 1
- {lv:1,q:"Ein Skitourengänger prüft zuerst den Lawinenlagebericht, passt danach die Route an und nimmt zuletzt ein LVS-Gerät sowie eine Rettungsversicherung mit. Welchem Modell folgt er?",o:["Erkennen → Vermeiden → Absichern","Absichern → Vermeiden → Erkennen","Vermeiden → Absichern → Erkennen"],a:0,fb:"Erst die Gefahren erkennen, dann vermeiden, zuletzt verbleibende Risiken absichern."},
- {lv:1,q:"Eine Hausärztin führt eine Vorsorgeuntersuchung durch, um eine Erkrankung möglichst frühzeitig zu entdecken. Zu welcher Präventionsstufe gehört das?",o:["Primärprävention","Sekundärprävention","Tertiärprävention"],a:1,fb:"Sekundärprävention erkennt ein Problem früh – im Unterschied zur Primärprävention, die es verhindert."},
- {lv:1,q:"Ein Jugendlicher isst aktuell 2 Portionen Gemüse/Früchte pro Tag. Wie viele Portionen fehlen ihm bis zur Tagesempfehlung der Lebensmittelpyramide?",o:["1 Portion","3 Portionen","8 Portionen"],a:1,fb:"Die Pyramide empfiehlt 5 Portionen täglich – bei 2 fehlen also 3."},
- {lv:1,q:"Ein Paar streitet immer wieder, weil gemachte Versprechen gebrochen werden. Welcher zentrale Beziehungswert fehlt hier am ehesten?",o:["Vertrauen","Risikoüberschätzung","Tertiärprävention"],a:0,fb:"Vertrauen ist neben Ehrlichkeit und Respekt ein zentraler Wert in Beziehungen."},
+ {lv:1,q:"Am Alpaufzug tragen die Teilnehmenden traditionelle Trachten und pflegen einen jahrhundertealten Brauch. Zu welcher Kunstform zählt das am ehesten?",o:["Darstellende Kunst","Körperkunst / Tradition","Literatur"],a:1,fb:"Trachten, Tattoos, Bräuche und Feste zählen zur Körperkunst/Tradition."},
+ {lv:1,q:"In einem Gespräch wird erwähnt, dass Rätoromanisch von unter 1% der Bevölkerung gesprochen wird. Welche Aussage trifft daher am ehesten zu?",o:["Rätoromanisch ist die am stärksten gefährdete Landessprache","Rätoromanisch ist die meistgesprochene Landessprache","Rätoromanisch wird von der Hälfte der Schweiz gesprochen"],a:0,fb:"Rätoromanisch wird von unter 1% der Bevölkerung gesprochen und gilt als gefährdet."},
+ {lv:1,q:"Vor der Erfindung der Notenschrift wurde Musik meist mündlich von Generation zu Generation weitergegeben. Was ermöglichte die Notenschrift zusätzlich?",o:["Musik erstmals für ein Massenpublikum zugänglich zu machen","Komplexe Kompositionen genau festzuhalten und weiterzugeben","Die Erfindung des Alphorns"],a:1,fb:"Erst die spätere Aufnahmetechnik brachte Musik für ein Massenpublikum."},
+ {lv:1,q:"Ein Betrachter sagt über eine abstrakte Skulptur: «Sie gefällt mir einfach durch ihre Form – einen praktischen Nutzen braucht sie dafür nicht.» Welche philosophische Position beschreibt das am besten?",o:["Kants «Zweckmässigkeit ohne Zweck»","Platons Mimesis-Theorie","Die religiöse Kunstauffassung des Mittelalters"],a:0,fb:"Kants Ästhetik-Position aus der Aufklärung."},
  // Level 2
- {lv:2,q:"Eine Person hat grosse Angst vor einer neuen Impftechnologie, fährt aber täglich ohne Bedenken foehnzügig Auto. Welches Phänomen zeigt sich hier?",o:["Eine objektive, gut begründete Gefahreneinschätzung","Risikoüberschätzung von Unbekanntem bei gleichzeitiger Unterschätzung von Gewohntem","Ein Beispiel für Tertiärprävention"],a:1,fb:"Neue Risiken werden oft überschätzt, vertraute wie Autofahren eher unterschätzt."},
- {lv:2,q:"Ein Produkt wirbt gross mit «100% natürlich», die Zutatenliste zeigt aber Zucker an erster Stelle. Was zeigt dieses Beispiel?",o:["Werbeaufschriften sind zuverlässiger als die Zutatenliste","Die Zutatenliste ist ehrlicher als Werbeversprechen","Zucker an erster Stelle bedeutet automatisch wenig Zucker im Produkt"],a:1,fb:"Die nach Menge sortierte Zutatenliste gibt ehrlichere Auskunft als Werbeaufschriften."},
- {lv:2,q:"Eine Person postet auf Social Media nur Fotos von Ferien und Erfolgen. Beim Vergleich mit dem eigenen Alltag wirkt das Leben der Person «perfekter». Was erklärt diese Wirkung am besten?",o:["Social Media zeigt immer den vollständigen Alltag einer Person","Es werden meist nur sorgfältig ausgewählte Höhepunkte gezeigt, nicht der ganze Alltag","Dieses Phänomen betrifft ausschliesslich Prominente"],a:1,fb:"Man vergleicht das eigene vollständige Leben mit den ausgewählten Glanzmomenten anderer."},
- {lv:2,q:"Eine Person mit einer psychischen Erkrankung verschweigt diese im Lehrbetrieb aus Angst vor Vorurteilen. Was ist die wahrscheinlichste Folge laut Theorie?",o:["Schnellere professionelle Hilfe durch das Verschweigen","Verzögerte Behandlung, weil die Erkrankung verheimlicht wird","Die Erkrankung heilt dadurch automatisch schneller"],a:1,fb:"Stigmatisierung führt oft dazu, dass Betroffene keine Hilfe suchen – das verzögert die Behandlung."},
+ {lv:2,q:"Im Tessin gilt traditionell Italienisch als Amtssprache, obwohl viele Zugezogene aus der Deutschschweiz stammen. Welches Prinzip erklärt, warum trotzdem Italienisch die Amtssprache bleibt?",o:["Das Territorialitätsprinzip – in jeder Region gilt grundsätzlich die dort traditionell gesprochene Sprache","Das Prinzip der freien Sprachwahl","Das Subsidiaritätsprinzip"],a:0,fb:"Es prägt die Sprachregionen der Schweiz."},
+ {lv:2,q:"Ein antiker Philosoph beschreibt, wie ein Theaterstück beim Publikum eine seelische Reinigung bewirken kann. Welcher Denker und welcher Begriff passen dazu?",o:["Platon – Mimesis, misstrauisch betrachtet","Aristoteles – Katharsis, seelische Reinigung","Kant – Zweckmässigkeit ohne Zweck"],a:1,fb:"Platon sah Kunst eher als Nachahmung, Aristoteles betonte die Katharsis."},
+ {lv:2,q:"Simon besucht ein Museum vor Ort und beschreibt danach die Live-Atmosphäre und die direkte Begegnung mit den Werken – etwas, das ihm ein virtueller Rundgang zuhause fehlte. Was unterscheidet reale von virtuellen Kulturerlebnissen laut Theorie?",o:["Reale bieten unmittelbare Eindrücke und soziale Atmosphäre, virtuelle sind jederzeit zugänglich, aber weniger intensiv","Virtuelle Erlebnisse sind grundsätzlich intensiver als reale","Es gibt keinen bedeutsamen Unterschied"],a:0,fb:"Beide Formen haben ihre eigenen Vor- und Nachteile."},
+ {lv:2,q:"Ein Renaissance-Maler stellt erstmals nicht mehr nur religiöse Szenen, sondern auch das Individuum und seine Gefühlswelt in den Mittelpunkt. Welche Position zur Kunst zeigt sich hier?",o:["Kunst nur im Dienst der Religion","Humanismus – Kunst als Ausdruck des Individuums","Ein vollständiger Bruch mit jeder Tradition"],a:1,fb:"Das Mittelalter sah Kunst noch im Dienst der Religion."},
  // Level 3
- {lv:3,q:"Person A kauft im Winter importierte Erdbeeren, Person B saisonales und regionales Gemüse. Welche Aussage trifft am ehesten zu?",o:["Person B kauft meist teurer und ungesünder ein","Person B kauft durch kürzere Transportwege oft günstiger, frischer und ökologischer ein","Beide Varianten sind aus Gesundheitssicht identisch"],a:1,fb:"Saisonal-regionales Einkaufen verbindet meist Gesundheit, Budget und Nachhaltigkeit."},
- {lv:3,q:"Ein Betrieb organisiert eine Skitour: zuerst wird der Lawinenlagebericht geprüft, dann die Route angepasst, zuletzt werden LVS-Geräte verteilt und eine Rettungsversicherung abgeschlossen. Welcher Teil entspricht dem Schritt «Absichern»?",o:["Den Lawinenlagebericht prüfen","LVS-Geräte verteilen und die Rettungsversicherung abschliessen","Die Route im Voraus anpassen"],a:1,fb:"Absichern bedeutet, verbleibende Risiken durch Vorsichtsmassnahmen oder Versicherungen abzufedern."},
- {lv:3,q:"Eine Person mit Depression wird im Gespräch als «labil» bezeichnet und zieht sich daraufhin komplett zurück, statt Hilfe zu suchen. Welches Konzept beschreibt diesen Mechanismus am treffendsten?",o:["Sekundärprävention", "Stigmatisierung mit der Folge von Rückzug und verzögerter Behandlung","Risikoüberschätzung"],a:1,fb:"Vorurteile und abwertende Zuschreibungen führen zu Rückzug – ein typisches Stigmatisierungs-Muster."},
- {lv:3,q:"In einer Gruppe wird über Sexualität kaum offen gesprochen, Aufklärung findet praktisch nicht statt. Was ist laut Theorie eine wahrscheinliche Folge?",o:["Automatisch eine bessere sexuelle Gesundheit","Weniger Aufklärung und ein höheres Risiko für sexuell übertragbare Infektionen","Keinerlei Auswirkung auf die Gesundheit"],a:1,fb:"Tabuisierung senkt den Aufklärungsstand und erhöht dadurch das STI-Risiko."}
+ {lv:3,q:"An einer Hausfassade im Engadin ist ein aufwendiges Sgraffito-Muster eingeritzt. Zu welcher Kunstform zählt diese Technik?",o:["Bildende Kunst","Darstellende Kunst","Musik"],a:0,fb:"Sgraffito ist eine Form der Fassadenmalerei, also bildende Kunst."},
+ {lv:3,q:"In einer Klasse wird diskutiert, welche Landessprache am häufigsten gesprochen wird: Deutsch (~62%) oder Französisch (~23%). Was zeigt dieser Vergleich zusätzlich zu Italienisch (~8%) und Rätoromanisch (unter 1%)?",o:["Deutsch ist mit deutlichem Abstand die meistgesprochene Landessprache", "Französisch ist häufiger als Deutsch","Alle vier Sprachen werden etwa gleich häufig gesprochen"],a:0,fb:"Deutsch liegt mit deutlichem Abstand vorne."},
+ {lv:3,q:"Ein mittelalterlicher Freskenmaler durfte seine Werke nur für Kirchen und im Auftrag religiöser Institutionen gestalten. Wie sah das Mittelalter die Rolle der Kunst?",o:["Kunst im Dienst der Religion, kein Selbstzweck","Kunst als Ausdruck des Individuums","Kunst um der Kunst willen"],a:0,fb:"Erst die Renaissance brachte den humanistischen Blick auf das Individuum."},
+ {lv:3,q:"Ein Musikprogramm generiert vollautomatisch einen neuen Song, ohne dass ein Mensch die einzelnen Noten geschrieben hat. Welche offene Frage stellt sich laut Theorie dabei besonders?",o:["Ob KI überhaupt Töne erzeugen kann","Die Frage nach der Autorenschaft – wer gilt als Urheber/in des Werks?","Ob Musik in Zukunft verboten wird"],a:1,fb:"Wer ist Urheber/in, wenn eine KI ein Werk erzeugt?"}
 ];
 const RANKS=[
- {min:0,icon:"🌱",name:"Einsteiger",txt:"Solider Start – Theorie nochmals lesen und nochmals antreten!"},
- {min:60,icon:"🥗",name:"Präventions-Kenner",txt:"Stark! Ernährung, Risiken und Medieneinfluss sitzen schon gut."},
- {min:85,icon:"🥦",name:"Präventions-Ass",txt:"Top! Du übernimmst Eigenverantwortung für deine Gesundheit."}
+ {min:0,icon:"🎨",name:"Einsteiger",txt:"Solider Start – Theorie nochmals lesen und nochmals antreten!"},
+ {min:60,icon:"🎻",name:"Kultur-Kenner",txt:"Stark! Kunstformen und Sprachenvielfalt sitzen schon gut."},
+ {min:85,icon:"🎭",name:"Kultur-Ass",txt:"Top! Von der Antike bis zur KI-Kunst kennst du dich aus."}
 ];
 const BASE=10, STREAK_AT=3, SPEED_MS=8000, SPEED_PTS=5;
 let order=[],i=0,pts=0,streak=0,best=0,joker=1,tStart=0,correctCount=0,locked=false;
