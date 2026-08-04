@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Lehrperson · Einsendungen-Übersicht · ABU Lernraum</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --t1: #4A5568; --t1-dark: #2D3748; --t1-light: #E2E8F0; --t1-lighter: #F7FAFC;
+    --bg: #FBF8F4; --paper: #FFFFFF; --ink: #20221F; --ink-light: #7A7468; --rule: #ECE6DA;
+    --green: #1F8045; --green-light: #E9F7EE; --err: #C0392B; --err-light: #FDECEA;
+    --violet: #5B21B6; --violet-light: #EDE9FE;
+  }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; line-height: 1.6; }
+  .top-bar { background: linear-gradient(120deg, #3B2F63 0%, #2D3748 60%, #1A202C 100%); color: white; padding: 16px 22px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .top-bar h1 { font-size: 18px; font-weight: 700; }
+  .top-bar a { color: rgba(255,255,255,.85); font-size: 13px; text-decoration: none; }
+  .top-bar a:hover { color: white; text-decoration: underline; }
+  .badge-lp { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; background: var(--violet-light); color: var(--violet); padding: 4px 10px; border-radius: 20px; }
+  .ws { max-width: 780px; margin: 0 auto; padding: 34px 26px 60px; }
+  .intro { font-size: 14.5px; color: var(--ink-light); margin-bottom: 22px; line-height: 1.65; }
+  .card { background: var(--paper); border-radius: 14px; padding: 22px 24px; box-shadow: 0 2px 10px rgba(0,0,0,.05); margin-bottom: 20px; }
+  label { display: block; font-size: 12.5px; font-weight: 600; color: var(--t1-dark); margin: 14px 0 5px; }
+  label:first-child { margin-top: 0; }
+  input[type=text] { width: 100%; border: 1.5px solid var(--rule); border-radius: 9px; background: var(--bg); font-family: inherit; font-size: 14.5px; padding: 10px 12px; }
+  input[type=text]:focus { outline: none; border-color: var(--t1); background: white; box-shadow: 0 0 0 3px var(--t1-light); }
+  .btn { margin-top: 18px; padding: 12px 22px; border-radius: 999px; border: none; background: var(--t1-dark); color: white; font-weight: 700; font-size: 14.5px; cursor: pointer; font-family: inherit; }
+  .btn:hover { filter: brightness(1.1); }
+  .btn:disabled { opacity: .5; cursor: not-allowed; }
+  .btn-ghost { background: none; border: 1.5px solid var(--rule); color: var(--ink); }
+  .msg { margin-top: 14px; padding: 10px 14px; border-radius: 9px; font-size: 13.5px; display: none; }
+  .msg.show { display: block; }
+  .msg.err { background: var(--err-light); color: var(--err); }
+  .msg.info { background: var(--t1-lighter); color: var(--t1-dark); }
+  .mode-row { display: flex; gap: 8px; margin-bottom: 18px; }
+  .mode-btn { flex: 1; padding: 10px; border-radius: 10px; border: 1.5px solid var(--rule); background: var(--paper); color: var(--ink-light); font-family: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer; }
+  .mode-btn.active { background: var(--t1-dark); color: white; border-color: var(--t1-dark); }
+  .mode-panel { display: none; }
+  .mode-panel.show { display: block; }
+  .stat-row { display: flex; gap: 14px; margin-bottom: 18px; flex-wrap: wrap; }
+  .stat { background: var(--paper); border-radius: 12px; padding: 14px 18px; box-shadow: 0 2px 10px rgba(0,0,0,.05); flex: 1; min-width: 120px; }
+  .stat .n { font-size: 24px; font-weight: 800; color: var(--t1-dark); }
+  .stat .l { font-size: 12px; color: var(--ink-light); }
+  .empty { background: var(--paper); border-radius: 14px; padding: 30px 24px; text-align: center; color: var(--ink-light); font-size: 14.5px; }
+  .thema-group { margin-bottom: 22px; }
+  .thema-title { font-size: 13px; font-weight: 700; color: var(--t1-dark); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 8px; padding-left: 2px; }
+  .row-card { background: var(--paper); border-radius: 12px; padding: 13px 16px; box-shadow: 0 1px 6px rgba(0,0,0,.04); margin-bottom: 8px; cursor: pointer; }
+  .row-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .row-head .name { font-size: 14px; font-weight: 700; color: var(--ink); }
+  .row-head .titel { font-size: 12px; color: var(--ink-light); }
+  .row-head .titel a { color: var(--t1-dark); text-decoration: none; }
+  .row-head .titel a:hover { text-decoration: underline; }
+  .meta { font-size: 11.5px; color: var(--ink-light); font-family: 'JetBrains Mono', monospace; margin-top: 2px; }
+  .badge { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--green-light); color: #135c2c; white-space: nowrap; }
+  .detail { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--rule); }
+  .detail.show { display: block; }
+  .qa { background: var(--bg); border-radius: 10px; padding: 10px 12px; margin-bottom: 6px; }
+  .qa .q { font-size: 11px; font-weight: 700; color: var(--t1-dark); text-transform: uppercase; letter-spacing: .03em; margin-bottom: 4px; }
+  .qa .a { font-size: 13.5px; color: var(--ink); white-space: pre-wrap; }
+  .qa .a.empty { color: var(--ink-light); font-style: italic; }
+  .lock { text-align: center; padding: 60px 20px; }
+  .lock p { color: var(--ink-light); font-size: 14.5px; margin-bottom: 18px; }
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <h1>🔑 Einsendungen-Übersicht</h1>
+  <a href="index.html">⌂ Startseite</a>
+</div>
+<div class="ws">
+
+  <div id="lockScreen" class="lock">
+    <span class="badge-lp">Lehrperson</span>
+    <p style="margin-top:14px;">Diese Seite zeigt Einsendungen von Lernenden und ist passwortgeschützt.</p>
+    <button class="btn" onclick="freischalten()">Freischalten</button>
+  </div>
+
+  <div id="content" style="display:none;">
+    <p class="intro">Übersicht über eingesendete Übungen — nach <strong>Klasse</strong> (alle Übungen einer Klasse) oder nach <strong>Übung</strong> (wer aus welcher Klasse hat diese Übung schon abgegeben). Klicke auf einen Eintrag, um die einzelnen Antworten zu sehen.</p>
+
+    <div class="mode-row">
+      <button class="mode-btn active" id="modeBtnKlasse" onclick="wechsleModus('klasse')">Nach Klasse</button>
+      <button class="mode-btn" id="modeBtnDatei" onclick="wechsleModus('datei')">Nach Übung</button>
+    </div>
+
+    <div class="card mode-panel show" id="panelKlasse">
+      <label for="inpKlasse">Klasse</label>
+      <input type="text" id="inpKlasse" placeholder="z.B. LW3a">
+      <button class="btn" id="btnKlasse" onclick="ladeKlasse()">Anzeigen</button>
+      <div class="msg" id="msgKlasse"></div>
+    </div>
+
+    <div class="card mode-panel" id="panelDatei">
+      <label for="inpDatei">Übung</label>
+      <input type="text" id="inpDatei" list="dateiListe" placeholder="Dateiname oder Titel tippen …">
+      <datalist id="dateiListe"></datalist>
+      <label for="inpDateiKlasse">Klasse (optional, filtert)</label>
+      <input type="text" id="inpDateiKlasse" placeholder="leer lassen = alle Klassen">
+      <button class="btn" id="btnDatei" onclick="ladeDatei()">Anzeigen</button>
+      <div class="msg" id="msgDatei"></div>
+    </div>
+
+    <div id="results"></div>
+  </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+const SUPABASE_URL = 'https://lrpaomltzrfgtupzeooq.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_Q9t2s4kLLNy--Tkm8EwLBQ_CbHJo9G-';
+let supabaseClient = null;
+function getClient(){ if(!supabaseClient && window.supabase) supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY); return supabaseClient; }
+
+// Eigenes, von "Erweiterte Nutzung" (Lernende) getrenntes Passwort.
+// Direkt hier änderbar - wie ueberall im Portal nur ein sanfter Zugriffsschutz, keine echte Sicherheit.
+const LEHRER_KEY = 'abu_lehrperson_modus';
+const LEHRER_PASSWORT = 'lehrer2026';
+
+function freischalten(){
+  if (localStorage.getItem(LEHRER_KEY) === '1') { zeigeContent(); return; }
+  const e = prompt('Lehrperson-Passwort:');
+  if (!e) return;
+  if (e !== LEHRER_PASSWORT) { alert('Falsches Passwort.'); return; }
+  try { localStorage.setItem(LEHRER_KEY, '1'); } catch(e) {}
+  zeigeContent();
+}
+function zeigeContent(){
+  document.getElementById('lockScreen').style.display = 'none';
+  document.getElementById('content').style.display = 'block';
+  ladeDateiListe();
+}
+
+function normalisiereKlasse(roh){ let k=roh.trim().replace(/\s+/g,''); const m=k.match(/^(.*\d)([a-zA-Z])$/); return m?m[1].toUpperCase()+m[2].toLowerCase():k.toUpperCase(); }
+
+function wechsleModus(m){
+  document.getElementById('modeBtnKlasse').classList.toggle('active', m==='klasse');
+  document.getElementById('modeBtnDatei').classList.toggle('active', m==='datei');
+  document.getElementById('panelKlasse').classList.toggle('show', m==='klasse');
+  document.getElementById('panelDatei').classList.toggle('show', m==='datei');
+  document.getElementById('results').innerHTML = '';
+}
+
+let uebungenIndex = {};
+async function ladeDateiListe(){
+  try {
+    const res = await fetch('uebungen_index.json');
+    uebungenIndex = await res.json();
+    const dl = document.getElementById('dateiListe');
+    dl.innerHTML = '';
+    Object.keys(uebungenIndex).sort().forEach(function(safeFn){
+      const opt = document.createElement('option');
+      opt.value = safeFn;
+      dl.appendChild(opt);
+    });
+  } catch(e) { /* Index nicht ladbar - Freitext-Eingabe funktioniert trotzdem */ }
+}
+
+function zeigeMsg(id, text, art){
+  const box = document.getElementById(id);
+  box.textContent = text;
+  box.className = 'msg show ' + (art||'info');
+}
+function verstecke(el){ el.classList.remove('show'); }
+
+function themaVon(pfad){
+  const m = pfad && pfad.match(/^(T\d)_/);
+  const namen = {
+    T1:'Mein Lehrbeginn', T2:'Mein Geld', T3:'Meine Gesundheit', T4:'Unsere Schweiz',
+    T5:'Unser Zusammenleben', T6:'Unsere Welt', T7:'Meine Zukunft', T8:'Qualifikationsverfahren'
+  };
+  return m ? (namen[m[1]] || m[1]) : 'Weitere';
+}
+
+async function ladeKlasse(){
+  const klasseRoh = document.getElementById('inpKlasse').value.trim();
+  const results = document.getElementById('results');
+  results.innerHTML = '';
+  verstecke(document.getElementById('msgKlasse'));
+  if(!klasseRoh){ zeigeMsg('msgKlasse', 'Bitte Klasse eingeben.', 'err'); return; }
+  const klasse = normalisiereKlasse(klasseRoh);
+  const client = getClient();
+  if(!client){ zeigeMsg('msgKlasse', 'Verbindung aktuell nicht möglich.', 'err'); return; }
+  const btn = document.getElementById('btnKlasse');
+  const alt = btn.textContent; btn.disabled = true; btn.textContent = 'Lade…';
+  try {
+    const { data, error } = await client.rpc('get_submissions_by_klasse', { p_klasse: klasse });
+    if (error) throw error;
+    if (!data || data.length === 0) { zeigeMsg('msgKlasse', 'Keine Einsendungen für Klasse "' + klasse + '" gefunden.', 'info'); return; }
+    renderGruppiertNachDatei(data, results);
+  } catch(err) {
+    zeigeMsg('msgKlasse', 'Abfrage fehlgeschlagen. (' + ((err&&err.message)?err.message:'unbekannt') + ')', 'err');
+  } finally {
+    btn.disabled = false; btn.textContent = alt;
+  }
+}
+
+async function ladeDatei(){
+  const datei = document.getElementById('inpDatei').value.trim();
+  const klasseRoh = document.getElementById('inpDateiKlasse').value.trim();
+  const results = document.getElementById('results');
+  results.innerHTML = '';
+  verstecke(document.getElementById('msgDatei'));
+  if(!datei){ zeigeMsg('msgDatei', 'Bitte Übung eingeben/auswählen.', 'err'); return; }
+  const klasse = klasseRoh ? normalisiereKlasse(klasseRoh) : null;
+  const client = getClient();
+  if(!client){ zeigeMsg('msgDatei', 'Verbindung aktuell nicht möglich.', 'err'); return; }
+  const btn = document.getElementById('btnDatei');
+  const alt = btn.textContent; btn.disabled = true; btn.textContent = 'Lade…';
+  try {
+    const { data, error } = await client.rpc('get_submissions_by_datei', { p_datei: datei, p_klasse: klasse });
+    if (error) throw error;
+    if (!data || data.length === 0) { zeigeMsg('msgDatei', 'Keine Einsendungen für diese Übung gefunden.', 'info'); return; }
+    renderFlacheListe(data, results, datei);
+  } catch(err) {
+    zeigeMsg('msgDatei', 'Abfrage fehlgeschlagen. (' + ((err&&err.message)?err.message:'unbekannt') + ')', 'err');
+  } finally {
+    btn.disabled = false; btn.textContent = alt;
+  }
+}
+
+function auswertungBadge(a){
+  a = a || {};
+  const geloest = (a.text_geloest||0) + (a.mc_richtig||0);
+  const total = (a.text_total||0) + (a.mc_total||0);
+  return geloest + ' / ' + total;
+}
+
+function renderGruppiertNachDatei(rows, container){
+  const stat = document.createElement('div');
+  stat.className = 'stat-row';
+  stat.innerHTML = '<div class="stat"><div class="n">' + rows.length + '</div><div class="l">Einsendungen total</div></div>' +
+    '<div class="stat"><div class="n">' + new Set(rows.map(r=>r.datei)).size + '</div><div class="l">verschiedene Übungen</div></div>';
+  container.appendChild(stat);
+
+  const gruppen = {};
+  rows.forEach(function(r){ (gruppen[r.datei] = gruppen[r.datei] || []).push(r); });
+  Object.keys(gruppen).sort().forEach(function(datei){
+    const pfad = uebungenIndex[datei];
+    const g = document.createElement('div');
+    g.className = 'thema-group';
+    const titelHtml = pfad ? '<a href="'+pfad+'" target="_blank">'+datei.replace(/_/g,' ')+'</a>' : datei.replace(/_/g,' ');
+    g.innerHTML = '<div class="thema-title">' + titelHtml + ' (' + themaVon(pfad) + ')</div>';
+    gruppen[datei].sort(function(a,b){ return a.name.localeCompare(b.name); }).forEach(function(r){ g.appendChild(baueZeile(r)); });
+    container.appendChild(g);
+  });
+}
+
+function renderFlacheListe(rows, container, datei){
+  const pfad = uebungenIndex[datei];
+  const stat = document.createElement('div');
+  stat.className = 'stat-row';
+  stat.innerHTML = '<div class="stat"><div class="n">' + rows.length + '</div><div class="l">Einsendungen zu dieser Übung</div></div>';
+  container.appendChild(stat);
+  const g = document.createElement('div');
+  g.className = 'thema-group';
+  const titelHtml = pfad ? '<a href="'+pfad+'" target="_blank">'+datei.replace(/_/g,' ')+'</a>' : datei.replace(/_/g,' ');
+  g.innerHTML = '<div class="thema-title">' + titelHtml + '</div>';
+  rows.sort(function(a,b){ return a.klasse.localeCompare(b.klasse) || a.name.localeCompare(b.name); }).forEach(function(r){ g.appendChild(baueZeile(r, true)); });
+  container.appendChild(g);
+}
+
+function baueZeile(r, zeigeKlasse){
+  const row = document.createElement('div');
+  row.className = 'row-card';
+  const zeit = new Date(r.created_at).toLocaleString('de-CH');
+  row.innerHTML =
+    '<div class="row-head">' +
+      '<div><div class="name">' + escapeHtml(r.name) + (zeigeKlasse ? ' <span style="color:var(--ink-light);font-weight:500;">· ' + escapeHtml(r.klasse) + '</span>' : '') + '</div>' +
+      '<div class="meta">' + zeit + '</div></div>' +
+      '<span class="badge">' + auswertungBadge(r.auswertung) + '</span>' +
+    '</div>' +
+    '<div class="detail" id="det_' + r.beleg_code + '"></div>';
+  row.addEventListener('click', function(){ toggleDetail(r); });
+  return row;
+}
+
+function toggleDetail(r){
+  const box = document.getElementById('det_' + r.beleg_code);
+  if (!box) return;
+  const opening = !box.classList.contains('show');
+  box.classList.toggle('show');
+  if (opening && !box.dataset.filled) {
+    box.dataset.filled = '1';
+    const antworten = r.antworten || {};
+    let html = '';
+    Object.keys(antworten).forEach(function(key){
+      const val = antworten[key];
+      if (typeof val === 'string' || typeof val === 'boolean') {
+        const text = (typeof val === 'boolean') ? (val ? 'Ja' : 'Nein') : val.trim();
+        html += '<div class="qa"><div class="q">' + escapeHtml(key) + '</div><div class="a' + (text?'':' empty') + '">' + escapeHtml(text || '(nicht beantwortet)') + '</div></div>';
+      }
+    });
+    box.innerHTML = html || '<div class="qa"><div class="a empty">Keine Textantworten vorhanden.</div></div>';
+  }
+}
+
+function escapeHtml(s){ const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+
+document.addEventListener('DOMContentLoaded', function(){
+  if (localStorage.getItem(LEHRER_KEY) === '1') { zeigeContent(); document.getElementById('lockScreen').style.display='none'; }
+});
+</script>
+</body>
+</html>
