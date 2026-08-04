@@ -250,6 +250,18 @@
   <textarea id="ko_ges" rows="6" placeholder="Meine Begründung …"
     data-ki-aufgabe="Weshalb reicht es nicht aus, Menschenrechte nur feierlich zu erklaeren (wie in der UDHR), sondern es braucht zusaetzlich rechtlich bindende und durchsetzbare Instrumente wie die EMRK? Begruenden Sie Ihre Antwort."
     data-ki-loesung="Eine gute Antwort erklärt, dass eine unverbindliche Erklärung ohne Sanktions-/Durchsetzungsmechanismus von Staaten ignoriert werden könnte; erst ein bindender Vertrag mit einem Gericht (EGMR), das Urteile fällen kann, sorgt für echte Konsequenzen bei Verletzungen und schützt Einzelpersonen wirksam."></textarea>
+<div class="ki-toggle-row" data-ki-toggle style="display:none">
+    <span class="ki-toggle-label">KI-Modus</span>
+    <div class="ki-switch" data-ki-switch role="switch" aria-checked="false" tabindex="0"
+      onclick="kiModeUmschalten(this)"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();kiModeUmschalten(this);}"
+    ><div class="ki-switch-knob"></div></div>
+    <span class="ki-modus-pill" data-ki-pill>Modus: Rechtschreibprüfung (LanguageTool)</span>
+  </div>
+  <div data-ki-feedback-btn-area style="display:none;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+    <button class="btn btn-ki" data-ki-feedback-btn onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
+  </div>
+  <div data-ki-result></div>
   <div class="sol-inline" id="sol_ko_ges">Eine gute Antwort erklärt, dass eine unverbindliche Erklärung ohne Sanktions-/Durchsetzungsmechanismus von Staaten ignoriert werden könnte; erst ein bindender Vertrag mit einem Gericht (EGMR), das Urteile fällen kann, sorgt für echte Konsequenzen bei Verletzungen und schützt Einzelpersonen wirksam.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_ges']);return false;">↺ Nur diese Frage zurücksetzen</a>
@@ -262,18 +274,18 @@
   <textarea id="ko_suk" rows="6" placeholder="Meine Zusammenfassung …"
     data-ki-aufgabe="Fassen Sie in 5-8 Saetzen zusammen, was die EMRK fuer die Schweiz konkret bedeutet."
     data-ki-loesung="Eine gute Zusammenfassung nennt: Beitritt 1974, rechtliche Bindung, Möglichkeit der individuellen Beschwerde an den EGMR, Verpflichtung der Schweiz, EGMR-Urteile umzusetzen und die Gesetzgebung/Praxis entsprechend anzupassen."></textarea>
-  <div class="ki-toggle-row" id="kiToggleArea" style="display:none">
+  <div class="ki-toggle-row" data-ki-toggle style="display:none">
     <span class="ki-toggle-label">KI-Modus</span>
-    <div class="ki-switch" id="kiModeToggle" role="switch" aria-checked="false" tabindex="0"
+    <div class="ki-switch" data-ki-switch role="switch" aria-checked="false" tabindex="0"
       onclick="kiModeUmschalten(this)"
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();kiModeUmschalten(this);}"
     ><div class="ki-switch-knob"></div></div>
     <span class="ki-modus-pill" data-ki-pill>Modus: Rechtschreibprüfung (LanguageTool)</span>
   </div>
-  <div id="kiFeedbackBtnArea" style="display:none;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
-    <button class="btn btn-ki" id="kiFeedbackBtn" onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
+  <div data-ki-feedback-btn-area style="display:none;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+    <button class="btn btn-ki" data-ki-feedback-btn onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
   </div>
-  <div id="kiFeedbackResult"></div>
+  <div data-ki-result></div>
   <div class="sol-inline" id="sol_ko_suk">Eine gute Zusammenfassung nennt: Beitritt 1974, rechtliche Bindung, Möglichkeit der individuellen Beschwerde an den EGMR, Verpflichtung der Schweiz, EGMR-Urteile umzusetzen und die Gesetzgebung/Praxis entsprechend anzupassen.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk']);return false;">↺ Nur diese Frage zurücksetzen</a>
@@ -318,8 +330,8 @@ const ERWEITERT_PASSWORT = "abu";
 function wendeErweiterteNutzungAn() {
   const aktiv = localStorage.getItem(ERWEITERT_KEY) === '1';
   const kiSichtbar = aktiv && !pruefungsModusIstAktiv();
-  const kta = document.getElementById('kiToggleArea'); if (kta) kta.style.display = kiSichtbar ? 'flex' : 'none';
-  const kba = document.getElementById('kiFeedbackBtnArea'); if (kba) kba.style.display = kiSichtbar ? 'flex' : 'none';
+  document.querySelectorAll('[data-ki-toggle]').forEach(function(el){el.style.display=kiSichtbar?'flex':'none';});
+  document.querySelectorAll('[data-ki-feedback-btn-area]').forEach(function(el){el.style.display=kiSichtbar?'flex':'none';});
   const link = document.getElementById('erweiterteNutzungLink'); if (link) link.textContent = aktiv ? '⚙ Erweiterte Nutzung (an)' : '⚙ Erweiterte Nutzung';
 }
 function erweiterteNutzungUmschalten() {
@@ -474,8 +486,8 @@ function resetAll() {
   document.querySelectorAll('.paste-warn').forEach(function(el){el.classList.remove('paste-warn');});
   document.querySelectorAll('.paste-msg.show').forEach(function(el){el.classList.remove('show');});
   document.querySelectorAll('.spell-result').forEach(function(el){el.className='spell-result';el.textContent='';});
-  const kr=document.getElementById('kiFeedbackResult');if(kr)kr.innerHTML='';
-  const kt=document.getElementById('kiModeToggle');if(kt&&kt.classList.contains('on'))kiModeUmschalten(kt);
+  document.querySelectorAll('[data-ki-result]').forEach(function(el){el.innerHTML='';});
+  document.querySelectorAll('[data-ki-switch].on').forEach(function(el){kiModeUmschalten(el);});
   try{localStorage.removeItem('abu_eingesendet_'+SAFE_FN);}catch(e){}
   const sb=document.getElementById('sendBtn');if(sb){sb.disabled=false;sb.classList.remove('sent');sb.textContent='✉ Einsenden';}
   document.querySelectorAll('.punkte-box,.punkte-summe-zeile').forEach(function(el){el.remove();});
@@ -497,7 +509,9 @@ function resetBlock(triggerLink,textareaIds) {
     }
     ta.classList.remove('paste-warn');
   });
-  const kr=document.getElementById('kiFeedbackResult');if(kr)kr.innerHTML='';
+  
+
+  textareaIds.forEach(function(id){var ta=document.getElementById(id);var box=ta&&ta.closest('.ko-box');if(!box)return;var kr=box.querySelector('[data-ki-result]');if(kr)kr.innerHTML='';});
 }
 function printAsPDF() {
   const n=document.getElementById('studentName').value.trim();
@@ -673,9 +687,10 @@ function renderSpellResult(data,originalText,rb){
     rb.innerHTML=html;
   }
   window.kiFeedbackKlick=async function(btn){
-    const ta=btn.closest('.ko-box').querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
+    const box = btn.closest('.ko-box');
+    const ta=box.querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
     const aufgabe=ta.getAttribute('data-ki-aufgabe')||'',loesung=ta.getAttribute('data-ki-loesung')||'',antwort=ta.value.trim();
-    const rb=document.getElementById('kiFeedbackResult');
+    const rb=box.querySelector('[data-ki-result]');
     if(!antwort){rb.innerHTML='<div class="kf-feedback-box kf-error"><span class="kf-feedback-label">Hinweis</span><p>Bitte zuerst eine Antwort schreiben.</p></div>';return;}
     btn.disabled=true;const alt=btn.textContent;btn.textContent='Analysiere…';
     rb.innerHTML='<div class="kf-loading"><div class="kf-spin"></div>KI analysiert Antwort…</div>';
@@ -684,9 +699,10 @@ function renderSpellResult(data,originalText,rb){
     finally{btn.disabled=false;btn.textContent=alt;}
   };
   window.kiModeUmschalten=function(el){
+    const box = el.closest('.ko-box');
     const aktiv=!el.classList.contains('on');el.classList.toggle('on',aktiv);el.setAttribute('aria-checked',aktiv?'true':'false');
-    const kb=document.getElementById('kiFeedbackBtn');if(kb)kb.disabled=!aktiv;
-    document.querySelectorAll('[data-ki-pill]').forEach(function(p){p.textContent=aktiv?'Modus: KI-Feedback verfügbar':'Modus: Rechtschreibprüfung (LanguageTool)';p.classList.toggle('on',aktiv);});
+    const kb=box.querySelector('[data-ki-feedback-btn]');if(kb)kb.disabled=!aktiv;
+    box.querySelectorAll('[data-ki-pill]').forEach(function(p){p.textContent=aktiv?'Modus: KI-Feedback verfügbar':'Modus: Rechtschreibprüfung (LanguageTool)';p.classList.toggle('on',aktiv);});
   };
   window.erfasseFehlerInHistorie=erfasse;
 })();

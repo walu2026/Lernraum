@@ -583,25 +583,37 @@
   <button class="btn btn-send" id="sendBtn" onclick="antwortenEinsenden(this)">✉ Antworten einsenden</button>
 </div>
 <div id="copyToast">✓ In Zwischenablage kopiert</div>
+
+<div class="side-nav side-nav-prev"><a href="102_[UE]_A09_Strafrecht_MIX.html" title="Vorherige Übung">&#8592;</a></div>
+<div class="side-nav side-nav-next"><a href="102_[UE]_A11_Ethik_Dilemma.html" title="Nächste Übung">&#8594;</a></div>
 <div class="ws" style="border-left-color: var(--t1);">
   <div class="lebenswelt-ref">102 Rechtsgrundlagen — In einen neuen Lebensabschnitt eintreten</div>
   <div class="task-title">102-10 · Rechtsgrundlagen – Fälle beurteilen</div>
   <div class="lz-box reveal" style="animation-delay:.02s"><strong>Lernziel:</strong> Ich kann Rechtsfälle beurteilen und meine Antwort mit Gesetzesartikel begründen.</div>
   <div class="meta-row" style="font-size:12px;color:#888;font-family:'JetBrains Mono',monospace;margin-bottom:20px;">K3–K4</div>
 <p style="margin-bottom:8px;"><strong style="color:var(--t1-dark);">Auftrag:</strong> Beurteilen Sie bei den folgenden Rechtsfällen, ob ein gültiger Vertrag zustande gekommen ist. Begründen Sie Ihre Antwort mit Gesetzesartikel:</p><table class="ex" style="width:100%;border-collapse:collapse;margin:8px 0;"><colgroup><col style="width:45%"><col style="width:55%"></colgroup><thead><tr><th>Fall</th><th>Beurteilung / Begründung / Artikel</th></tr></thead><tbody><tr><td style="font-size:13px;">Aurora (16) kauft mit Lehrlingslohn eine Jeans.</td><td><textarea id="ta_a10b1" rows="3" style="width:100%;border:none;background:transparent;font-family:'Source Serif 4',serif;font-size:13px;resize:vertical;"></textarea><div class="sol-inline-sm" id="sol_a10b1">Zulässig – ZGB 323 (Lohn zur freien Verfügung). Alltägliches Geschäft.</div></td></tr><tr><td style="font-size:13px;">Cyrill (17) unterschreibt ohne Wissen der Eltern einen Handyvertrag.</td><td><textarea id="ta_a10b2" rows="3" style="width:100%;border:none;background:transparent;font-family:'Source Serif 4',serif;font-size:13px;resize:vertical;"></textarea><div class="sol-inline-sm" id="sol_a10b2">Schwebend unwirksam (ZGB 19). Eltern müssen genehmigen oder ablehnen.</div></td></tr><tr><td style="font-size:13px;">Patrick (22) kauft betrunken ein Motorrad online.</td><td><textarea id="ta_a10b3" rows="3" style="width:100%;border:none;background:transparent;font-family:'Source Serif 4',serif;font-size:13px;resize:vertical;"></textarea><div class="sol-inline-sm" id="sol_a10b3">Anfechtbar – selbstverschuldet fehlende Urteilsfähigkeit durch Alkohol (ZGB 16).</div></td></tr><tr><td style="font-size:13px;">Selina (80, demenzkrank) schenkt ihr Haus dem Nachbarn.</td><td><textarea id="ta_a10b4" rows="3" style="width:100%;border:none;background:transparent;font-family:'Source Serif 4',serif;font-size:13px;resize:vertical;"></textarea><div class="sol-inline-sm" id="sol_a10b4">Ungültig – fehlende Urteilsfähigkeit wegen Demenz (ZGB 16). Schenkung nichtig.</div></td></tr></tbody></table><div class="ko-box reveal" style="animation-delay:0.24s"><div class="ko-label">💬 Kompetenzorientierte Frage (Gesellschaft)</div><div class="ko-text">Entwerfen Sie selbst einen Rechtsfall, der Urteilsfähigkeit, Handlungsfähigkeit und Vertragsrecht kombiniert. Beschreiben Sie den Fall und geben Sie die Lösung mit Begründung und Gesetzesartikel an. (ca. 8–10 Sätze)</div><textarea id="ta_ko_u20" rows="4" style="width:100%;border:1px solid #90CAF9;border-radius:5px;padding:8px;font-family:'Source Serif 4',serif;font-size:14px;resize:vertical;" data-ki-aufgabe="Entwerfen Sie selbst einen Rechtsfall, der Urteilsfaehigkeit, Handlungsfaehigkeit und Vertragsrecht kombiniert. Beschreiben Sie den Fall und geben Sie die Loesung mit Begruendung und Gesetzesartikel an. (ca. 8-10 Saetze)" data-ki-loesung="Individuelle kreative Antwort. Alle drei Konzepte korrekt eingebaut + Loesung mit Artikel."></textarea>
+<div class="ki-toggle-row" data-ki-toggle>
+    <span class="ki-toggle-label">KI-Modus</span>
+    <div class="ki-switch" data-ki-switch role="switch" aria-checked="false" tabindex="0" onclick="kiModeUmschalten(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();kiModeUmschalten(this);}"><div class="ki-switch-knob"></div></div>
+    <span class="ki-modus-pill" data-ki-pill>Modus: Rechtschreibprüfung (LanguageTool)</span>
+  </div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px;" data-ki-feedback-btn-area>
+    <button class="btn btn-ki" data-ki-feedback-btn onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
+  </div>
+  <div data-ki-result></div>
 <div class="sol-inline" id="sol_ko_u20" style="background:#fff;border-left-color:#1565C0;">Individuelle kreative Antwort. Alle drei Konzepte korrekt eingebaut + Lösung mit Artikel.</div>
 <div class="block-reset-row" style="text-align:right;margin-top:7px;"><a href="#" class="block-reset-link" onclick="resetBlock(this,['ta_ko_u20']);return false;">↺ Nur diese Frage zurücksetzen</a></div>
 </div><div class="ko-box reveal" style="margin-top:16px;animation-delay:0.32s"><div class="ko-label">Fallbeispiel: Der «schnelle» E-Bike-Kauf</div><div class="ko-text">Jan (17, Lernender) kauft beim Händler ein E-Bike für Fr.&nbsp;5'000.–. Er unterschreibt den Vertrag selbstständig. Seine Eltern sind geschockiert und wollen das Bike sofort zurückgeben. Der Händler weigert sich, da Jan voll urteilsfähig sei und unterschrieben habe. Wie ist die Rechtslage?<br><br><strong>Lösung und Begründung:</strong> Der Kaufvertrag ist schwebend unwirksam. Jan ist zwar urteilsfähig (Art. 16 ZGB), aufgrund seines Alters von 17 Jahren aber nur beschränkt handlungsfähig (Art. 19 ZGB). Da ein Kauf für Fr.&nbsp;5'000.– kein alltägliches Geschäft aus dem eigenen Lehrlingslohn ist (Art. 323 ZGB), braucht es zwingend die Zustimmung der Eltern. Da diese die Genehmigung verweigern, ist kein Vertrag zustande gekommen (Art. 19 Abs. 2 ZGB) und das E-Bike muss gegen Rückzahlung des Geldes retourniert werden.</div></div>
 <div class="ko-box reveal" style="margin-top:16px;animation-delay:0.40s"><div class="ko-label">💬 Kompetenzorientierte Frage (Sprache und Kommunikation)</div><div class="ko-text">Ein Bekannter (16) hat online für CHF 400 In-App-Käufe getätigt und mit der Kreditkarte seiner Eltern bezahlt, ohne sie zu fragen. Er fragt Sie, ob die Eltern das Geld zurückfordern können. Erklären Sie es ihm in 3–5 Sätzen.</div><textarea id="ta_ko_suk_a10" rows="4" style="width:100%;border:1px solid #90CAF9;border-radius:5px;padding:8px;font-family:'Source Serif 4',serif;font-size:14px;resize:vertical;" data-ki-aufgabe="Ein Bekannter (16) hat online fuer CHF 400 In-App-Kaeufe getaetigt und mit der Kreditkarte seiner Eltern bezahlt, ohne sie zu fragen. Er fragt Sie, ob die Eltern das Geld zurueckfordern koennen. Erklaeren Sie es ihm in 3-5 Saetzen." data-ki-loesung="Eine gute Erklaerung ist einfach formuliert. Beispiel: 'Ja, das ist moeglich. Als 16-Jaehriger bist du nur beschraenkt handlungsfaehig (Art. 19 ZGB), grosse oder ungewoehnliche Ausgaben wie CHF 400 In-App-Kaeufe gehoeren nicht zu den alltaeglichen Geschaeften aus eigenem Sackgeld (Art. 323 ZGB). Ohne Zustimmung der Eltern ist der Kauf schwebend unwirksam, die Eltern koennen die Genehmigung verweigern und eine Rueckerstattung verlangen.'"></textarea>
-  <div class="ki-toggle-row" id="kiToggleArea">
+  <div class="ki-toggle-row" data-ki-toggle>
     <span class="ki-toggle-label">KI-Modus</span>
-    <div class="ki-switch" id="kiModeToggle" role="switch" aria-checked="false" tabindex="0" onclick="kiModeUmschalten(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();kiModeUmschalten(this);}"><div class="ki-switch-knob"></div></div>
+    <div class="ki-switch" data-ki-switch role="switch" aria-checked="false" tabindex="0" onclick="kiModeUmschalten(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();kiModeUmschalten(this);}"><div class="ki-switch-knob"></div></div>
     <span class="ki-modus-pill" data-ki-pill>Modus: Rechtschreibprüfung (LanguageTool)</span>
   </div>
-  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px;" id="kiFeedbackBtnArea">
-    <button class="btn btn-ki" id="kiFeedbackBtn" onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px;" data-ki-feedback-btn-area>
+    <button class="btn btn-ki" data-ki-feedback-btn onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
   </div>
-  <div id="kiFeedbackResult"></div>
+  <div data-ki-result></div>
 <div class="sol-inline-sm" id="sol_ko_suk_a10" style="background:#fff;border-left-color:#1565C0;">Eine gute Erklärung ist einfach formuliert: Als beschränkt Handlungsfähiger (Art. 19 ZGB) braucht es für Ausgaben, die über das alltägliche Taschengeld-Geschäft hinausgehen (Art. 323 ZGB), die Zustimmung der Eltern. Beispiel: «Ja, deine Eltern können das Geld zurückfordern. CHF 400 In-App-Käufe sind kein alltägliches Geschäft aus deinem Sackgeld – ohne ihre Zustimmung ist der Kauf schwebend unwirksam.»</div>
 <div class="block-reset-row" style="text-align:right;margin-top:7px;"><a href="#" class="block-reset-link" onclick="resetBlock(this,['ta_ko_suk_a10']);return false;">↺ Nur diese Frage zurücksetzen</a></div>
 </div>
@@ -705,11 +717,9 @@ function wendeErweiterteNutzungAn() {
   const pruefungAktiv = pruefungsModusIstAktiv();
   const kiSichtbar = aktiv && !pruefungAktiv;
 
-  const kiToggleArea = document.getElementById('kiToggleArea');
-  if (kiToggleArea) kiToggleArea.style.display = kiSichtbar ? 'flex' : 'none';
+  document.querySelectorAll('[data-ki-toggle]').forEach(function(el){el.style.display=kiSichtbar?'flex':'none';});
 
-  const kiBtnArea = document.getElementById('kiFeedbackBtnArea');
-  if (kiBtnArea) kiBtnArea.style.display = kiSichtbar ? 'flex' : 'none';
+  document.querySelectorAll('[data-ki-feedback-btn-area]').forEach(function(el){el.style.display=kiSichtbar?'flex':'none';});
 
   const link = document.getElementById('erweiterteNutzungLink');
   if (link) link.textContent = aktiv ? '⚙ Erweiterte Nutzung (an)' : '⚙ Erweiterte Nutzung';
@@ -918,10 +928,8 @@ function resetAll() {
   document.querySelectorAll('.paste-msg.show').forEach(function(el) { el.classList.remove('show'); });
   // KI-Feedback: Ergebnis-Box leeren und Toggle auf "aus" zurücksetzen
   document.querySelectorAll('.spell-result').forEach(function(el) { el.className = 'spell-result'; el.textContent = ''; });
-  const kiResult = document.getElementById('kiFeedbackResult');
-  if (kiResult) kiResult.innerHTML = '';
-  const kiToggle = document.getElementById('kiModeToggle');
-  if (kiToggle && kiToggle.classList.contains('on')) { kiModeUmschalten(kiToggle); }
+  document.querySelectorAll('[data-ki-result]').forEach(function(el){el.innerHTML='';});
+  document.querySelectorAll('[data-ki-switch].on').forEach(function(el){kiModeUmschalten(el);});
   // Einsende-Sperre aufheben, damit nach einem vollständigen Reset wieder
   // neu eingesendet werden kann
   try { localStorage.removeItem('abu_eingesendet_' + SAFE_FN); } catch (e) {}
@@ -968,11 +976,9 @@ function resetBlock(triggerLink, textareaIds) {
     ta.classList.remove('paste-warn');
   });
 
-  // Falls dieser Block die Kompetenzfrage ist: auch deren KI-Feedback-Box leeren
-  if (textareaIds.indexOf('ta_ko_u0') !== -1) {
-    const kiResult = document.getElementById('kiFeedbackResult');
-    if (kiResult) kiResult.innerHTML = '';
-  }
+  
+
+  textareaIds.forEach(function(id){var ta=document.getElementById(id);var box=ta&&ta.closest('.ko-box');if(!box)return;var kr=box.querySelector('[data-ki-result]');if(kr)kr.innerHTML='';});
 }
 
 function printAsPDF() {
@@ -2112,13 +2118,14 @@ function renderSpellResult(data, originalText, resultBox) {
   }
 
   window.kiFeedbackKlick = async function (btn) {
-    const ta = btn.closest('.ko-box').querySelector('textarea[data-ki-aufgabe]');
+    const box = btn.closest('.ko-box');
+    const ta = box.querySelector('textarea[data-ki-aufgabe]');
     if (!ta) return;
 
     const aufgabe = ta.getAttribute('data-ki-aufgabe') || '';
     const musterloesung = ta.getAttribute('data-ki-loesung') || '';
     const antwort = ta.value.trim();
-    const resultBox = document.getElementById('kiFeedbackResult');
+    const resultBox = box.querySelector('[data-ki-result]');
 
     if (!antwort) {
       resultBox.innerHTML = '<div class="kf-feedback-box kf-error"><span class="kf-feedback-label">Hinweis</span><p>Bitte zuerst eine Antwort schreiben.</p></div>';
@@ -2142,12 +2149,13 @@ function renderSpellResult(data, originalText, resultBox) {
   };
 
   window.kiModeUmschalten = function (toggleEl) {
+    const box = toggleEl.closest('.ko-box');
     const aktiv = !toggleEl.classList.contains('on');
     toggleEl.classList.toggle('on', aktiv);
     toggleEl.setAttribute('aria-checked', aktiv ? 'true' : 'false');
-    const kiBtn = document.getElementById('kiFeedbackBtn');
+    const kiBtn = box.querySelector('[data-ki-feedback-btn]');
     if (kiBtn) kiBtn.disabled = !aktiv;
-    document.querySelectorAll('[data-ki-pill]').forEach(function (el) {
+    box.querySelectorAll('[data-ki-pill]').forEach(function (el) {
       el.textContent = aktiv
         ? 'Modus: KI-Feedback verfügbar (Rechtschreibprüfung bleibt aktiv)'
         : 'Modus: Rechtschreibprüfung (LanguageTool)';

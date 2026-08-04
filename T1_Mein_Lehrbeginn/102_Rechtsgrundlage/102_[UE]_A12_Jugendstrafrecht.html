@@ -240,6 +240,18 @@
   <textarea id="ko_ges" rows="6" placeholder="Meine Beurteilung …"
     data-ki-aufgabe="Ein 16-jaehriger Jugendlicher hat wiederholt Gewaltdelikte begangen. Beurteilen Sie: Sollte in diesem Fall eher eine Strafe oder eher eine Massnahme (z.B. Unterbringung mit Therapie) im Vordergrund stehen? Begruenden Sie mit mindestens zwei Argumenten."
     data-ki-loesung="Fuer eine Massnahme spricht: Wiederholung deutet auf tieferliegende Probleme hin, die therapeutisch angegangen werden muessen, um weitere Delikte zu verhindern; die Persoenlichkeit ist noch veraenderbar. Fuer eine Strafe spricht: Klare Konsequenz noetig, damit die Schwere der Tat nicht bagatellisiert wird. In der Praxis werden oft beide kombiniert (Strafe UND Massnahme)."></textarea>
+<div class="ki-toggle-row" data-ki-toggle style="display:none">
+    <span class="ki-toggle-label">KI-Modus</span>
+    <div class="ki-switch" data-ki-switch role="switch" aria-checked="false" tabindex="0"
+      onclick="kiModeUmschalten(this)"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();kiModeUmschalten(this);}"
+    ><div class="ki-switch-knob"></div></div>
+    <span class="ki-modus-pill" data-ki-pill>Modus: Rechtschreibprüfung (LanguageTool)</span>
+  </div>
+  <div data-ki-feedback-btn-area style="display:none;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+    <button class="btn btn-ki" data-ki-feedback-btn onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
+  </div>
+  <div data-ki-result></div>
   <div class="sol-inline" id="sol_ko_ges">Für eine Massnahme spricht: Wiederholung deutet auf tieferliegende Probleme hin, die therapeutisch angegangen werden müssen, um weitere Delikte zu verhindern; die Persönlichkeit ist noch veränderbar. Für eine Strafe spricht: Klare Konsequenz nötig, damit die Schwere der Tat nicht bagatellisiert wird. In der Praxis werden oft beide kombiniert (Strafe UND Massnahme).</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_ges']);return false;">↺ Nur diese Frage zurücksetzen</a>
@@ -252,18 +264,18 @@
   <textarea id="ko_suk" rows="6" placeholder="Meine Stellungnahme …"
     data-ki-aufgabe="Ihr juengeres Geschwister (14) hat gehoert, dass ein gleichaltriger Jugendlicher nach einer Straftat nur eine Massnahme statt eine Gefaengnisstrafe bekommen hat, und findet das ungerecht. Nehmen Sie dazu in einer kurzen Stellungnahme (5-8 Saetze) Stellung: Ist es sinnvoll, dass Jugendliche vom Gesetz anders behandelt werden als Erwachsene? Begruenden Sie Ihre Position fuer Ihr Geschwister nachvollziehbar."
     data-ki-loesung="Eine gute Stellungnahme ist klar und nachvollziehbar formuliert. Beispiel: 'Ich finde es sinnvoll, dass es ein eigenes Jugendstrafrecht gibt: Jugendliche stecken noch mitten in ihrer Persoenlichkeitsentwicklung und sind veraenderbarer als Erwachsene. Deshalb macht es mehr Sinn, mit einer Massnahme die Ursachen anzugehen, statt nur zu bestrafen - auch wenn eine Massnahme oft anstrengender und laenger ist als eine kurze Strafe.' Wichtig: eine klare eigene Position, begruendet mit mindestens einem Argument aus dem Text (z.B. laufende Persoenlichkeitsentwicklung, hoehere Veraenderbarkeit, Fokus auf Ursachenklaerung statt reiner Bestrafung)."></textarea>
-  <div class="ki-toggle-row" id="kiToggleArea" style="display:none">
+  <div class="ki-toggle-row" data-ki-toggle style="display:none">
     <span class="ki-toggle-label">KI-Modus</span>
-    <div class="ki-switch" id="kiModeToggle" role="switch" aria-checked="false" tabindex="0"
+    <div class="ki-switch" data-ki-switch role="switch" aria-checked="false" tabindex="0"
       onclick="kiModeUmschalten(this)"
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();kiModeUmschalten(this);}"
     ><div class="ki-switch-knob"></div></div>
     <span class="ki-modus-pill" data-ki-pill>Modus: Rechtschreibprüfung (LanguageTool)</span>
   </div>
-  <div id="kiFeedbackBtnArea" style="display:none;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
-    <button class="btn btn-ki" id="kiFeedbackBtn" onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
+  <div data-ki-feedback-btn-area style="display:none;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+    <button class="btn btn-ki" data-ki-feedback-btn onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
   </div>
-  <div id="kiFeedbackResult"></div>
+  <div data-ki-result></div>
   <div class="sol-inline" id="sol_ko_suk">Eine gute Stellungnahme nimmt klar Stellung und begründet sie mit mindestens einem Argument aus dem Text (z. B. laufende Persönlichkeitsentwicklung, höhere Veränderbarkeit, Fokus auf Ursachenklärung statt reiner Bestrafung). Beispiel: «Weil Jugendliche noch mitten in der Entwicklung stecken, hilft eine Massnahme mehr als eine reine Strafe.»</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk']);return false;">↺ Nur diese Frage zurücksetzen</a>
@@ -308,8 +320,8 @@ const ERWEITERT_PASSWORT = "abu";
 function wendeErweiterteNutzungAn() {
   const aktiv = localStorage.getItem(ERWEITERT_KEY) === '1';
   const kiSichtbar = aktiv && !pruefungsModusIstAktiv();
-  const kta = document.getElementById('kiToggleArea'); if (kta) kta.style.display = kiSichtbar ? 'flex' : 'none';
-  const kba = document.getElementById('kiFeedbackBtnArea'); if (kba) kba.style.display = kiSichtbar ? 'flex' : 'none';
+  document.querySelectorAll('[data-ki-toggle]').forEach(function(el){el.style.display=kiSichtbar?'flex':'none';});
+  document.querySelectorAll('[data-ki-feedback-btn-area]').forEach(function(el){el.style.display=kiSichtbar?'flex':'none';});
   const link = document.getElementById('erweiterteNutzungLink'); if (link) link.textContent = aktiv ? '⚙ Erweiterte Nutzung (an)' : '⚙ Erweiterte Nutzung';
 }
 function erweiterteNutzungUmschalten() {
@@ -464,8 +476,8 @@ function resetAll() {
   document.querySelectorAll('.paste-warn').forEach(function(el){el.classList.remove('paste-warn');});
   document.querySelectorAll('.paste-msg.show').forEach(function(el){el.classList.remove('show');});
   document.querySelectorAll('.spell-result').forEach(function(el){el.className='spell-result';el.textContent='';});
-  const kr=document.getElementById('kiFeedbackResult');if(kr)kr.innerHTML='';
-  const kt=document.getElementById('kiModeToggle');if(kt&&kt.classList.contains('on'))kiModeUmschalten(kt);
+  document.querySelectorAll('[data-ki-result]').forEach(function(el){el.innerHTML='';});
+  document.querySelectorAll('[data-ki-switch].on').forEach(function(el){kiModeUmschalten(el);});
   try{localStorage.removeItem('abu_eingesendet_'+SAFE_FN);}catch(e){}
   const sb=document.getElementById('sendBtn');if(sb){sb.disabled=false;sb.classList.remove('sent');sb.textContent='✉ Einsenden';}
   document.querySelectorAll('.punkte-box,.punkte-summe-zeile').forEach(function(el){el.remove();});
@@ -487,7 +499,9 @@ function resetBlock(triggerLink,textareaIds) {
     }
     ta.classList.remove('paste-warn');
   });
-  const kr=document.getElementById('kiFeedbackResult');if(kr)kr.innerHTML='';
+  
+
+  textareaIds.forEach(function(id){var ta=document.getElementById(id);var box=ta&&ta.closest('.ko-box');if(!box)return;var kr=box.querySelector('[data-ki-result]');if(kr)kr.innerHTML='';});
 }
 function printAsPDF() {
   const n=document.getElementById('studentName').value.trim();
@@ -663,9 +677,10 @@ function renderSpellResult(data,originalText,rb){
     rb.innerHTML=html;
   }
   window.kiFeedbackKlick=async function(btn){
-    const ta=btn.closest('.ko-box').querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
+    const box = btn.closest('.ko-box');
+    const ta=box.querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
     const aufgabe=ta.getAttribute('data-ki-aufgabe')||'',loesung=ta.getAttribute('data-ki-loesung')||'',antwort=ta.value.trim();
-    const rb=document.getElementById('kiFeedbackResult');
+    const rb=box.querySelector('[data-ki-result]');
     if(!antwort){rb.innerHTML='<div class="kf-feedback-box kf-error"><span class="kf-feedback-label">Hinweis</span><p>Bitte zuerst eine Antwort schreiben.</p></div>';return;}
     btn.disabled=true;const alt=btn.textContent;btn.textContent='Analysiere…';
     rb.innerHTML='<div class="kf-loading"><div class="kf-spin"></div>KI analysiert Antwort…</div>';
@@ -674,9 +689,10 @@ function renderSpellResult(data,originalText,rb){
     finally{btn.disabled=false;btn.textContent=alt;}
   };
   window.kiModeUmschalten=function(el){
+    const box = el.closest('.ko-box');
     const aktiv=!el.classList.contains('on');el.classList.toggle('on',aktiv);el.setAttribute('aria-checked',aktiv?'true':'false');
-    const kb=document.getElementById('kiFeedbackBtn');if(kb)kb.disabled=!aktiv;
-    document.querySelectorAll('[data-ki-pill]').forEach(function(p){p.textContent=aktiv?'Modus: KI-Feedback verfügbar':'Modus: Rechtschreibprüfung (LanguageTool)';p.classList.toggle('on',aktiv);});
+    const kb=box.querySelector('[data-ki-feedback-btn]');if(kb)kb.disabled=!aktiv;
+    box.querySelectorAll('[data-ki-pill]').forEach(function(p){p.textContent=aktiv?'Modus: KI-Feedback verfügbar':'Modus: Rechtschreibprüfung (LanguageTool)';p.classList.toggle('on',aktiv);});
   };
   window.erfasseFehlerInHistorie=erfasse;
 })();

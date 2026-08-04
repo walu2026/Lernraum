@@ -333,18 +333,18 @@
   <textarea id="ko_ed" rows="5" placeholder="Meine Antwort …"
     data-ki-aufgabe="Analysiere: Welche zwei oder drei Eckdaten sagen am meisten über die politische, wirtschaftliche oder gesellschaftliche Realität der Schweiz aus – und welche sind für das Alltagsleben am relevantesten? Begründe die Auswahl."
     data-ki-loesung="Vier Landessprachen erklären den föderalen Aufbau und die Suche nach Kompromissen. Als Binnenstaat ist die Schweiz stark vom Aussenhandel abhängig. Die halbdirekte Demokratie prägt das politische Alltagsleben besonders stark."></textarea>
-  <div class="ki-toggle-row" id="kiToggleArea" style="display:none">
+  <div class="ki-toggle-row" data-ki-toggle style="display:none">
     <span class="ki-toggle-label">KI-Modus</span>
-    <div class="ki-switch" id="kiModeToggle" role="switch" aria-checked="false" tabindex="0"
+    <div class="ki-switch" data-ki-switch role="switch" aria-checked="false" tabindex="0"
       onclick="kiModeUmschalten(this)"
       onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();kiModeUmschalten(this);}"
     ><div class="ki-switch-knob"></div></div>
     <span class="ki-modus-pill" data-ki-pill>Modus: Rechtschreibprüfung (LanguageTool)</span>
   </div>
-  <div id="kiFeedbackBtnArea" style="display:none;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
-    <button class="btn btn-ki" id="kiFeedbackBtn" onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
+  <div data-ki-feedback-btn-area style="display:none;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+    <button class="btn btn-ki" data-ki-feedback-btn onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
   </div>
-  <div id="kiFeedbackResult"></div>
+  <div data-ki-result></div>
   <div class="sol-inline" id="sol_ko_ed">✓ Mögliche begründete Antwort: Vier Landessprachen erklären den föderalen Aufbau und die Suche nach Kompromissen. Als Binnenstaat ist die Schweiz stark vom Aussenhandel abhängig. Die halbdirekte Demokratie prägt das politische Alltagsleben besonders stark.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_ed']);return false;">↺ Nur diese Frage zurücksetzen</a>
@@ -357,6 +357,18 @@
   <textarea id="ko_suk_ed" rows="5" placeholder="Meine Antwort …"
     data-ki-aufgabe="Verfassen Sie einen kurzen Steckbrief (4-5 Saetze) ueber die Schweiz fuer eine Austauschperson aus dem Ausland, basierend auf den wichtigsten Eckdaten."
     data-ki-loesung="Ein guter Steckbrief nennt mehrere konkrete Eckdaten (z.B. Landessprachen, Staatsform, Bevölkerungszahl) und ordnet sie für eine aussenstehende Person verständlich ein."></textarea>
+<div class="ki-toggle-row" data-ki-toggle style="display:none">
+    <span class="ki-toggle-label">KI-Modus</span>
+    <div class="ki-switch" data-ki-switch role="switch" aria-checked="false" tabindex="0"
+      onclick="kiModeUmschalten(this)"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();kiModeUmschalten(this);}"
+    ><div class="ki-switch-knob"></div></div>
+    <span class="ki-modus-pill" data-ki-pill>Modus: Rechtschreibprüfung (LanguageTool)</span>
+  </div>
+  <div data-ki-feedback-btn-area style="display:none;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+    <button class="btn btn-ki" data-ki-feedback-btn onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
+  </div>
+  <div data-ki-result></div>
   <div class="sol-inline" id="sol_ko_suk_ed">✓ Ein guter Steckbrief nennt mehrere konkrete Eckdaten (z.B. Landessprachen, Staatsform, Bevölkerungszahl) und ordnet sie für eine aussenstehende Person verständlich ein.</div>
   <div class="block-reset-row" style="text-align:right;margin-top:7px;">
     <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_suk_ed']);return false;">↺ Nur diese Frage zurücksetzen</a>
@@ -401,8 +413,8 @@ const ERWEITERT_PASSWORT = "abu";
 function wendeErweiterteNutzungAn() {
   const aktiv = localStorage.getItem(ERWEITERT_KEY) === '1';
   const kiSichtbar = aktiv && !pruefungsModusIstAktiv();
-  const kta = document.getElementById('kiToggleArea'); if (kta) kta.style.display = kiSichtbar ? 'flex' : 'none';
-  const kba = document.getElementById('kiFeedbackBtnArea'); if (kba) kba.style.display = kiSichtbar ? 'flex' : 'none';
+  document.querySelectorAll('[data-ki-toggle]').forEach(function(el){el.style.display=kiSichtbar?'flex':'none';});
+  document.querySelectorAll('[data-ki-feedback-btn-area]').forEach(function(el){el.style.display=kiSichtbar?'flex':'none';});
   const link = document.getElementById('erweiterteNutzungLink'); if (link) link.textContent = aktiv ? '⚙ Erweiterte Nutzung (an)' : '⚙ Erweiterte Nutzung';
 }
 function erweiterteNutzungUmschalten() {
@@ -576,8 +588,8 @@ function resetAll() {
   document.querySelectorAll('.paste-warn').forEach(function(el){el.classList.remove('paste-warn');});
   document.querySelectorAll('.paste-msg.show').forEach(function(el){el.classList.remove('show');});
   document.querySelectorAll('.spell-result').forEach(function(el){el.className='spell-result';el.textContent='';});
-  const kr=document.getElementById('kiFeedbackResult');if(kr)kr.innerHTML='';
-  const kt=document.getElementById('kiModeToggle');if(kt&&kt.classList.contains('on'))kiModeUmschalten(kt);
+  document.querySelectorAll('[data-ki-result]').forEach(function(el){el.innerHTML='';});
+  document.querySelectorAll('[data-ki-switch].on').forEach(function(el){kiModeUmschalten(el);});
   try{localStorage.removeItem('abu_eingesendet_'+SAFE_FN);}catch(e){}
   const sb=document.getElementById('sendBtn');if(sb){sb.disabled=false;sb.classList.remove('sent');sb.textContent='✉ Einsenden';}
   document.querySelectorAll('.punkte-box,.punkte-summe-zeile').forEach(function(el){el.remove();});
@@ -599,7 +611,9 @@ function resetBlock(triggerLink,textareaIds) {
     }
     ta.classList.remove('paste-warn');
   });
-  const kr=document.getElementById('kiFeedbackResult');if(kr)kr.innerHTML='';
+  
+
+  textareaIds.forEach(function(id){var ta=document.getElementById(id);var box=ta&&ta.closest('.ko-box');if(!box)return;var kr=box.querySelector('[data-ki-result]');if(kr)kr.innerHTML='';});
 }
 function printAsPDF() {
   const n=document.getElementById('studentName').value.trim();
@@ -769,9 +783,10 @@ function renderSpellResult(data,originalText,rb){
     rb.innerHTML=html;
   }
   window.kiFeedbackKlick=async function(btn){
-    const ta=btn.closest('.ko-box').querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
+    const box = btn.closest('.ko-box');
+    const ta=box.querySelector('textarea[data-ki-aufgabe]');if(!ta)return;
     const aufgabe=ta.getAttribute('data-ki-aufgabe')||'',loesung=ta.getAttribute('data-ki-loesung')||'',antwort=ta.value.trim();
-    const rb=document.getElementById('kiFeedbackResult');
+    const rb=box.querySelector('[data-ki-result]');
     if(!antwort){rb.innerHTML='<div class="kf-feedback-box kf-error"><span class="kf-feedback-label">Hinweis</span><p>Bitte zuerst eine Antwort schreiben.</p></div>';return;}
     btn.disabled=true;const alt=btn.textContent;btn.textContent='Analysiere…';
     rb.innerHTML='<div class="kf-loading"><div class="kf-spin"></div>KI analysiert Antwort…</div>';
@@ -780,9 +795,10 @@ function renderSpellResult(data,originalText,rb){
     finally{btn.disabled=false;btn.textContent=alt;}
   };
   window.kiModeUmschalten=function(el){
+    const box = el.closest('.ko-box');
     const aktiv=!el.classList.contains('on');el.classList.toggle('on',aktiv);el.setAttribute('aria-checked',aktiv?'true':'false');
-    const kb=document.getElementById('kiFeedbackBtn');if(kb)kb.disabled=!aktiv;
-    document.querySelectorAll('[data-ki-pill]').forEach(function(p){p.textContent=aktiv?'Modus: KI-Feedback verfügbar':'Modus: Rechtschreibprüfung (LanguageTool)';p.classList.toggle('on',aktiv);});
+    const kb=box.querySelector('[data-ki-feedback-btn]');if(kb)kb.disabled=!aktiv;
+    box.querySelectorAll('[data-ki-pill]').forEach(function(p){p.textContent=aktiv?'Modus: KI-Feedback verfügbar':'Modus: Rechtschreibprüfung (LanguageTool)';p.classList.toggle('on',aktiv);});
   };
   window.erfasseFehlerInHistorie=erfasse;
 })();
