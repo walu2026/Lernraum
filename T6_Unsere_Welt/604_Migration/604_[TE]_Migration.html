@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>604 · Test: Migration – Standortbestimmung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#8D44AF; --t1-dark:#6D3488; --t1-light:#F3E9F8;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.te-nav{background:#f7f7f7;border-bottom:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;width:100%;border-collapse:collapse}
+.te-nav td{padding:6px 10px}
+.te-nav a{color:var(--t1-dark);text-decoration:none}
+.topbar{background:var(--ink);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:var(--t1);padding:3px 10px;border-radius:6px}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.wrap{max-width:780px;margin:0 auto;padding:26px 18px 80px}
+.meta{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:22px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.meta label{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft);display:block;margin-bottom:4px}
+.meta input{width:100%;font:inherit;padding:9px 12px;border:1.5px solid var(--line);border-radius:8px}
+.hinweis{background:#FFF8E6;border:1px solid #E8D9A0;border-radius:10px;padding:12px 16px;margin-bottom:22px;font-size:.92rem;color:#7A6215}
+.q{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;margin-bottom:16px;position:relative}
+.q .head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:12px}
+.q .txt{font-weight:700;font-size:1.02rem}
+.q .ptbox{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--ink-soft);border:1.5px solid var(--line);border-radius:8px;padding:3px 10px;white-space:nowrap}
+.q label{display:block;padding:9px 12px;margin:6px 0;border:1.5px solid var(--line);border-radius:8px;cursor:pointer;font-size:.96rem}
+.q label:has(input:checked){border-color:var(--t1);background:var(--t1-light)}
+.q input[type=radio],.q input[type=checkbox]{margin-right:9px}
+.q textarea{width:100%;min-height:84px;font:inherit;font-size:.95rem;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;resize:vertical}
+.q.correct{border-color:var(--ok)} .q.partial{border-color:#E8A100} .q.incorrect{border-color:var(--err)}
+.sol{display:none;margin-top:12px;padding:12px 16px;border-radius:10px;background:var(--ok-bg);color:#1B5E20;font-size:.92rem}
+.sol b{display:block;margin-bottom:4px}
+.show-sol .sol{display:block}
+.tfrow{display:flex;align-items:center;gap:14px;padding:8px 12px;margin:6px 0;border:1.5px solid var(--line);border-radius:8px;font-size:.95rem}
+.tfrow span{flex:1}
+.tfrow label{border:none;padding:2px 6px;margin:0}
+.submitbar{position:sticky;bottom:0;background:#fff;border-top:2px solid var(--line);padding:14px 18px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+button.btn{font:inherit;font-weight:700;padding:12px 24px;border-radius:10px;border:none;cursor:pointer;background:var(--t1);color:#fff}
+button.btn:hover{background:var(--t1-dark)}
+button.btn:disabled{opacity:.4;cursor:default}
+.result{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.05rem}
+.result .note{padding:4px 12px;border-radius:8px;background:var(--ink);color:#fff;margin-left:8px}
+@media print{.submitbar,.hinweis,.te-nav{display:none}.sol{display:block}}
+</style>
+</head>
+<body>
+<table class="te-nav" width="100%">
+<tr>
+<td style="text-align:left;width:33%"><a href="604_[QZ]_Migration.html">&#8592; Quiz</a></td>
+<td style="text-align:center;width:34%"><a href="../../detail.html#604">&#8593; Übersicht 604</a></td>
+<td style="text-align:right;width:33%"></td>
+</tr>
+</table>
+<div class="topbar">
+  <span class="tag">604 · [TE]</span>
+  <h1>Test: Migration – Standortbestimmung</h1>
+</div>
+<div class="wrap">
+
+<div class="meta">
+  <div><label>Name</label><input id="mName" placeholder="Vorname Name"></div>
+  <div><label>Klasse</label><input id="mKlasse" placeholder="z.B. LW1a"></div>
+</div>
+
+<div class="hinweis">⏱ Richtzeit: 20 Minuten · Max. 20 Punkte · <strong>Prüfungsmodus:</strong> Kein Feedback während des Tests – die Auswertung erscheint erst nach der Abgabe.</div>
+
+<form id="test">
+
+<div class="q" data-type="mc" data-a="1" data-p="2">
+  <div class="head"><div class="txt">1. Welches Problem entsteht typischerweise durch den Bevölkerungsrückgang, wie ihn viele europäische Länder erleben?</div><div class="ptbox">/2 P.</div></div>
+  <label><input type="radio" name="q1" value="0">Ressourcenknappheit und Umweltbelastung</label>
+  <label><input type="radio" name="q1" value="1">Alterung der Gesellschaft und Fachkräftemangel</label>
+  <label><input type="radio" name="q1" value="2">Übermässig schnelle Urbanisierung</label>
+  <div class="sol"><b>Lösung: B</b>Schrumpfende Bevölkerungen altern stärker, und es fehlen zunehmend Fachkräfte.</div>
+</div>
+
+<div class="q" data-type="mc" data-a="1" data-p="2">
+  <div class="head"><div class="txt">2. Fallbeispiel: Eine Person aus Portugal nimmt ohne spezielle Bewilligung eine Stelle in der Schweiz an – möglich dank einem seit 2002 geltenden Vertrag. Um welchen Vertrag handelt es sich?</div><div class="ptbox">/2 P.</div></div>
+  <label><input type="radio" name="q2" value="0">Schengen/Dublin</label>
+  <label><input type="radio" name="q2" value="1">Die Personenfreizügigkeit</label>
+  <label><input type="radio" name="q2" value="2">Das Freihandelsabkommen mit der EFTA</label>
+  <div class="sol"><b>Lösung: B</b>Die Personenfreizügigkeit erleichtert seit 2002 Aufenthalt und Arbeit für Personen aus EU/EFTA-Staaten.</div>
+</div>
+
+<div class="q" data-type="tf" data-p="4">
+  <div class="head"><div class="txt">3. Richtig oder falsch? Kreuze an.</div><div class="ptbox">/4 P.</div></div>
+  <div class="tfrow" data-a="R"><span>Push-Faktoren sind Gründe, die Menschen aus ihrem Herkunftsland «abstossen» (z.B. Krieg).</span><label><input type="radio" name="q3a" value="R">R</label><label><input type="radio" name="q3a" value="F">F</label></div>
+  <div class="tfrow" data-a="F"><span>Die meisten weltweiten Schutzsuchenden befinden sich laut Zahlen überwiegend in Europa.</span><label><input type="radio" name="q3b" value="R">R</label><label><input type="radio" name="q3b" value="F">F</label></div>
+  <div class="tfrow" data-a="R"><span>Das Dublin-Abkommen regelt, welcher Staat für ein Asylgesuch zuständig ist.</span><label><input type="radio" name="q3c" value="R">R</label><label><input type="radio" name="q3c" value="F">F</label></div>
+  <div class="tfrow" data-a="F"><span>Migration findet ausschliesslich in Richtung Schweiz statt, nie aus der Schweiz heraus.</span><label><input type="radio" name="q3d" value="R">R</label><label><input type="radio" name="q3d" value="F">F</label></div>
+  <div class="sol"><b>Lösung: R / F / R / F</b>Die meisten Schutzsuchenden bleiben in Nachbarstaaten; auch Auslandschweizer/innen wandern aus der Schweiz aus.</div>
+</div>
+
+<div class="q" data-type="multi" data-a="0,2,3" data-p="3">
+  <div class="head"><div class="txt">4. Welche drei sind laut Theorie typische Push-Faktoren der Migration? (3 richtige)</div><div class="ptbox">/3 P.</div></div>
+  <label><input type="checkbox" name="q4" value="0">Krieg und Verfolgung</label>
+  <label><input type="checkbox" name="q4" value="1">Bestehende soziale Netzwerke im Zielland</label>
+  <label><input type="checkbox" name="q4" value="2">Wirtschaftliche Not</label>
+  <label><input type="checkbox" name="q4" value="3">Fehlende Perspektiven im Herkunftsland</label>
+  <label><input type="checkbox" name="q4" value="4">Arbeitsmöglichkeiten im Zielland</label>
+  <div class="sol"><b>Lösung: A, C, D</b>Soziale Netzwerke und Arbeitsmöglichkeiten im Zielland sind Pull-, keine Push-Faktoren.</div>
+</div>
+
+<div class="q" data-type="mc" data-a="1" data-p="2">
+  <div class="head"><div class="txt">5. Fallbeispiel: Eine Person durchläuft nach ihrem Gesuch ein Bundesasylzentrum, eine Anhörung und einen behördlichen Entscheid mit Beschwerdemöglichkeit. Welchen Prozess beschreibt das?</div><div class="ptbox">/2 P.</div></div>
+  <label><input type="radio" name="q5" value="0">Das ordentliche Einbürgerungsverfahren</label>
+  <label><input type="radio" name="q5" value="1">Das Schweizer Asylverfahren</label>
+  <label><input type="radio" name="q5" value="2">Die Anmeldung zur Personenfreizügigkeit</label>
+  <div class="sol"><b>Lösung: B</b>Das ist der typische Ablauf des Schweizer Asylverfahrens.</div>
+</div>
+
+<div class="q" data-type="mc" data-a="0" data-p="2">
+  <div class="head"><div class="txt">6. Fallbeispiel: Der Bundesrat verabschiedete im März 2026 ein neues Vertragspaket mit der EU zuhanden des Parlaments; ob es dem fakultativen oder obligatorischen Referendum untersteht, ist noch offen. Was gilt bis zu einer allfälligen Volksabstimmung?</div><div class="ptbox">/2 P.</div></div>
+  <label><input type="radio" name="q6" value="0">Die bestehenden Verträge (Personenfreizügigkeit, Schengen/Dublin) bleiben unverändert in Kraft</label>
+  <label><input type="radio" name="q6" value="1">Alle bisherigen Verträge sind bereits ausser Kraft gesetzt</label>
+  <label><input type="radio" name="q6" value="2">Die neuen Bereiche gelten bereits provisorisch</label>
+  <div class="sol"><b>Lösung: A</b>Solange kein neuer Entscheid rechtskräftig ist, bleiben die bestehenden bilateralen Verträge gültig.</div>
+</div>
+
+<div class="q" data-type="free" data-p="2" data-kw="oberbegriff;wohnortwechsel;grenze;flucht;erzwungen;asylsuche;verfahren">
+  <div class="head"><div class="txt">7. Erkläre in einem Satz den Unterschied zwischen «Migration» und «Flucht».</div><div class="ptbox">/2 P.</div></div>
+  <textarea name="q7" placeholder="Deine Antwort …"></textarea>
+  <div class="sol"><b>Musterlösung</b>Migration ist der Oberbegriff für jeden Wohnortwechsel über eine Grenze, Flucht bezeichnet speziell die erzwungene Migration vor Krieg oder Verfolgung.</div>
+</div>
+
+<div class="q" data-type="free" data-p="3" data-kw="fachkräfte;fachkräftemangel;lieferketten;export;branche;ausländisch;arbeitskräfte">
+  <div class="head"><div class="txt">8. Nenne drei Argumente, mit denen sich die Bedeutung von Migration im eigenen Berufsfeld beurteilen lässt.</div><div class="ptbox">/3 P.</div></div>
+  <textarea name="q8" placeholder="1. …&#10;2. …&#10;3. …"></textarea>
+  <div class="sol"><b>Musterlösung (je 1 P.)</b>Anteil ausländischer Arbeitskräfte im Beruf/in der Branche · Abhängigkeit von internationalen Lieferketten oder Rohstoffen · Bedeutung des Exportmarkts · Fachkräftemangel im eigenen Berufsfeld.</div>
+</div>
+
+</form>
+
+</div>
+<div class="submitbar">
+  <div class="result" id="res">Noch nicht abgegeben</div>
+  <button class="btn" id="submitBtn" onclick="evaluate()">Test abgeben</button>
+</div>
+
+<script>
+// TODO Produktion: Supabase-Submit wie bei den [UE] – Tabelle antworten (name, klasse, datei=SAFE_FN, antworten, auswertung)
+function evaluate(){
+  const name=document.getElementById('mName').value.trim();
+  if(!name){alert('Bitte Name eingeben.');return}
+  let got=0,max=0;
+  document.querySelectorAll('.q').forEach(q=>{
+    const p=+q.dataset.p; max+=p; let score=0;
+    const type=q.dataset.type;
+    if(type==='mc'){
+      const sel=q.querySelector('input:checked');
+      if(sel&&sel.value===q.dataset.a)score=p;
+    }else if(type==='tf'){
+      const rows=[...q.querySelectorAll('.tfrow')];
+      const per=p/rows.length;
+      rows.forEach(r=>{const s=r.querySelector('input:checked');if(s&&s.value===r.dataset.a)score+=per});
+    }else if(type==='multi'){
+      const want=q.dataset.a.split(',');
+      const sel=[...q.querySelectorAll('input:checked')].map(i=>i.value);
+      const hits=sel.filter(v=>want.includes(v)).length;
+      const wrong=sel.length-hits;
+      score=Math.max(0,(hits-wrong))/want.length*p;
+    }else if(type==='free'){
+      const txt=(q.querySelector('textarea').value||'').toLowerCase();
+      const kws=q.dataset.kw.split(';');
+      const hits=kws.filter(k=>txt.includes(k)).length;
+      score=Math.min(p,Math.round(hits/Math.max(2,Math.ceil(kws.length/2))*p*10)/10);
+      score=Math.min(score,p);
+    }
+    score=Math.round(score*2)/2;
+    got+=score;
+    q.classList.remove('correct','partial','incorrect');
+    q.classList.add(score>=p?'correct':score>0?'partial':'incorrect');
+    q.querySelector('.ptbox').textContent=score+'/'+p+' P.';
+  });
+  got=Math.round(got*2)/2;
+  const note=Math.round((got/max*5+1)*10)/10;
+  document.body.classList.add('show-sol');
+  document.getElementById('res').innerHTML=`${got}/${max} Punkte <span class="note">Note ${note.toFixed(1)}</span>`;
+  document.getElementById('submitBtn').textContent='Ausdrucken / PDF';
+  document.getElementById('submitBtn').onclick=()=>window.print();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>

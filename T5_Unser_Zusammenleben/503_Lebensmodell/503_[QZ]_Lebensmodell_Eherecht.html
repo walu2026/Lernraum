@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>503 · Quiz: Lebensmodell-Check</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#E67F22; --t1-dark:#CA6F1E; --t1-light:#FDEBD0;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --err:#C62828; --err-bg:#FDECEA;
+  --gold:#B8860B;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);min-height:100vh}
+.qz-nav{background:#f7f7f7;border-bottom:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;width:100%;border-collapse:collapse}
+.qz-nav td{padding:6px 10px}
+.qz-nav a{color:var(--t1-dark);text-decoration:none}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:680px;margin:0 auto;padding:26px 18px 70px}
+.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px;box-shadow:0 2px 10px rgba(30,37,48,.05)}
+.hud{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.hud .box{flex:1;min-width:110px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 14px;text-align:center}
+.hud .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-soft)}
+.hud .val{font-family:'JetBrains Mono',monospace;font-size:1.25rem;font-weight:700}
+.hud .val.streak-hot{color:var(--t1)}
+.progress{height:8px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:20px}
+.progress i{display:block;height:100%;background:var(--t1);width:0;transition:width .35s}
+.level-badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;padding:4px 12px;border-radius:99px;margin-bottom:12px;letter-spacing:.06em}
+.lv1{background:#E8F0E9;color:var(--ok)} .lv2{background:#FFF4E0;color:var(--gold)} .lv3{background:var(--t1-light);color:var(--t1)}
+.qtext{font-size:1.18rem;font-weight:700;margin-bottom:20px;line-height:1.5}
+.opts button{display:block;width:100%;text-align:left;padding:14px 16px;margin:9px 0;background:#FCFCFD;border:2px solid var(--line);border-radius:10px;font:inherit;font-size:1rem;cursor:pointer;transition:.15s}
+.opts button:hover:not(:disabled){border-color:var(--t1);transform:translateX(3px)}
+.opts button:disabled{cursor:default;opacity:.85}
+.opts button.right{background:var(--ok-bg);border-color:var(--ok);font-weight:700}
+.opts button.wrong{background:var(--err-bg);border-color:var(--err)}
+.opts button.gone{opacity:.25}
+.fb{margin-top:14px;padding:12px 16px;border-radius:10px;font-size:.94rem;display:none}
+.fb.show{display:block}
+.fb.good{background:var(--ok-bg);color:var(--ok)} .fb.bad{background:var(--err-bg);color:var(--err)}
+.actions{display:flex;gap:10px;margin-top:20px}
+button.btn{font:inherit;font-weight:700;padding:12px 22px;border-radius:10px;border:none;cursor:pointer}
+.btn-main{background:var(--t1);color:#fff}
+.btn-main:hover{background:var(--t1-dark)}
+.btn-joker{background:#fff;border:2px solid var(--gold);color:var(--gold)}
+.btn-joker:disabled{opacity:.35;cursor:default}
+.center{text-align:center}
+.big{font-size:2rem;font-weight:800;margin:10px 0}
+.rank{font-size:3rem;margin:6px 0}
+.subtitle{color:var(--ink-soft);margin-bottom:22px}
+.pop{animation:pop .35s ease}
+@keyframes pop{0%{transform:scale(.85);opacity:0}100%{transform:scale(1);opacity:1}}
+.bonus-tag{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.75rem;background:#FFF4E0;color:var(--gold);padding:2px 10px;border-radius:99px;margin-left:8px}
+.extras{margin-top:22px}
+.extras h2{font-size:.95rem;font-weight:800;color:var(--ink);margin-bottom:6px}
+.extras-hint{font-size:.8rem;color:var(--ink-soft);margin-bottom:12px}
+.extras-hint a{color:var(--t1)}
+.extras-item{display:flex;align-items:center;gap:12px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;text-decoration:none;color:inherit;transition:.15s}
+.extras-item:hover{border-color:var(--t1);transform:translateX(3px)}
+.extras-tag{font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;background:var(--t1-light);color:var(--t1);padding:3px 8px;border-radius:6px;white-space:nowrap}
+.extras-body{flex:1;font-size:.88rem;color:var(--ink-soft);line-height:1.4}
+.extras-body b{color:var(--ink);font-size:.94rem}
+.extras-arrow{color:var(--ink-soft);font-size:1.1rem}
+@media print{.qz-nav{display:none}}
+</style>
+</head>
+<body>
+<table class="qz-nav" width="100%">
+<tr>
+<td style="text-align:left;width:33%"><a href="503_[TH]_Lebensmodell_Eherecht.html">&#8592; Theorie</a></td>
+<td style="text-align:center;width:34%"><a href="../../detail.html#503">&#8593; Übersicht 503</a></td>
+<td style="text-align:right;width:33%"><a href="503_[TE]_Lebensmodell_Eherecht.html">Test &#8594;</a></td>
+</tr>
+</table>
+<div class="topbar">
+  <span class="tag">503 · [QZ]</span>
+  <h1>Lebensmodell-Check</h1>
+  <a class="nav" href="503_Aufgaben.html">→ Zu den Übungen</a>
+</div>
+<div class="wrap">
+
+  <div class="hud" id="hud" style="display:none">
+    <div class="box"><div class="lbl">Frage</div><div class="val" id="hQ">–</div></div>
+    <div class="box"><div class="lbl">Punkte</div><div class="val" id="hP">0</div></div>
+    <div class="box"><div class="lbl">Serie</div><div class="val" id="hS">0</div></div>
+  </div>
+  <div class="progress" id="prog" style="display:none"><i id="progFill"></i></div>
+
+  <div class="card" id="stage">
+    <div class="center">
+      <div class="rank">💍</div>
+      <div class="big">Lebensmodell-Check</div>
+      <p class="subtitle">12 Fragen · 3 Levels · Streak-Bonus ab 3 richtigen in Serie · 1 Joker (50:50).<br>Von Konkubinat über Güterstände bis Erbrecht – wie fit bist du im Eherecht?</p>
+      <button class="btn btn-main" onclick="start()">Quiz starten</button>
+    </div>
+  </div>
+
+  <div class="extras">
+    <h2>🔗 Weitere Lernspiele &amp; Videos</h2>
+    <p class="extras-hint">Externe, manuell geprüfte Angebote – passend zu einzelnen Übungen. Öffnen in neuem Tab, ausserhalb des ABU-Portals.</p>
+    <a class="extras-item" href="https://learningapps.org/445140" target="_blank" rel="noopener">
+      <span class="extras-tag">A09–A10</span>
+      <span class="extras-body"><b>🎮 Güterrecht – Eigengut oder Errungenschaft?</b><br>LearningApps · Zuordnungs-Übung zur Unterscheidung von Eigengut und Errungenschaft.</span>
+      <span class="extras-arrow">↗</span>
+    </a>
+  </div>
+
+</div>
+<script>
+const QUESTIONS=[
+ // Level 1
+ {lv:1,q:"Ein unverheiratetes Paar lebt seit 5 Jahren zusammen. Einer der beiden stirbt plötzlich, ohne Testament. Was passiert mit dem Erbe?",o:["Der Konkubinatspartner erbt automatisch wie ein Ehegatte","Der Konkubinatspartner erbt nichts – nur ein Testament oder Erbvertrag könnte ihn begünstigen","Das Erbe fällt automatisch an den Staat"],a:1,fb:"Das Konkubinat ist gesetzlich nicht geregelt – ohne Testament oder Erbvertrag geht der Partner beim Erbe leer aus."},
+ {lv:1,q:"Zwei Personen, 17 und 20 Jahre alt, wollen heiraten. Ist das möglich?",o:["Ja, mit Zustimmung der Eltern","Nein, für eine Eheschliessung müssen beide Personen mindestens 18 Jahre alt sein","Ja, ab 16 Jahren ist eine Heirat immer erlaubt"],a:1,fb:"Für eine Eheschliessung müssen beide Personen mindestens 18 Jahre alt und urteilsfähig sein."},
+ {lv:1,q:"Ein gleichgeschlechtliches Paar möchte seine Partnerschaft rechtlich absichern. Welche Möglichkeit steht ihm seit der «Ehe für alle» offen?",o:["Nur eine neue eingetragene Partnerschaft, da Ehen für gleichgeschlechtliche Paare nicht möglich sind","Die Ehe – seit 1. Juli 2022 können auch gleichgeschlechtliche Paare heiraten, neue eingetragene Partnerschaften sind nicht mehr möglich","Weder Ehe noch eingetragene Partnerschaft sind möglich"],a:1,fb:"Seit dem 1. Juli 2022 gilt die «Ehe für alle»; neue eingetragene Partnerschaften können seither nicht mehr begründet werden."},
+ {lv:1,q:"Ein Ehepaar hat vor der Heirat keinen Ehevertrag abgeschlossen. Welcher Güterstand gilt automatisch?",o:["Gütertrennung","Errungenschaftsbeteiligung","Gütergemeinschaft"],a:1,fb:"Die Errungenschaftsbeteiligung ist der gesetzliche Standard und gilt automatisch ohne Ehevertrag."},
+ // Level 2
+ {lv:2,q:"Während der Ehe erbt eine Person von einer Tante eine grössere Geldsumme. Zu welchem Vermögensteil zählt diese Erbschaft?",o:["Zur Errungenschaft, weil sie während der Ehe zufloss","Zum Eigengut, weil Erbschaften unabhängig vom Zeitpunkt Eigengut sind","Sie wird automatisch hälftig zwischen den Ehegatten aufgeteilt"],a:1,fb:"Erbschaften und Schenkungen bleiben Eigengut, auch wenn sie während der Ehe zufliessen."},
+ {lv:2,q:"Ein Kind wird geboren, die Eltern sind nicht miteinander verheiratet. Wie entsteht das rechtliche Kindesverhältnis zum Vater?",o:["Automatisch durch die Geburt, wie bei der Mutter","Durch Anerkennung beim Zivilstandsamt oder gerichtliche Feststellung der Vaterschaft","Es entsteht erst, wenn die Eltern später heiraten"],a:1,fb:"Zum Vater entsteht das Kindesverhältnis durch Ehe mit der Mutter, durch Anerkennung oder durch gerichtliche Feststellung."},
+ {lv:2,q:"Eine Person wird 18 Jahre alt, befindet sich aber mitten in ihrer ersten Berufsausbildung und ist finanziell noch auf die Eltern angewiesen. Was gilt?",o:["Die Eltern haben ab 18 keinerlei Pflichten mehr","Die elterliche Sorge endet automatisch, die Unterhaltspflicht kann aber bis zum Abschluss einer angemessenen Erstausbildung weiterbestehen","Elterliche Sorge und Unterhaltspflicht bestehen unverändert bis zum Ausbildungsende weiter"],a:1,fb:"Die elterliche Sorge endet mit der Volljährigkeit, die Unterhaltspflicht kann aber bis zum Abschluss einer angemessenen Erstausbildung weiterbestehen."},
+ {lv:2,q:"Seit der Erbrechtsrevision vom 1. Januar 2023 hat sich der Pflichtteil der Eltern des Erblassers geändert. Was gilt seither?",o:["Der Pflichtteil der Eltern wurde erhöht","Der Pflichtteil der Eltern wurde vollständig abgeschafft","Es hat sich nichts geändert, weiterhin 1/2"],a:1,fb:"Seit 2023 haben Eltern des Erblassers keinen Pflichtteil mehr (vorher 1/2)."},
+ // Level 3
+ {lv:3,q:"Eine verheiratete Person stirbt und hinterlässt ihren Ehegatten sowie zwei gemeinsame Kinder, aber kein Testament. Wie wird der Nachlass gemäss gesetzlicher Erbfolge aufgeteilt?",o:["Ehegatte 1/4, Kinder 3/4","Ehegatte 1/2, Kinder 1/2 (unter sich zu gleichen Teilen)","Ehegatte 3/4, Kinder 1/4"],a:1,fb:"Bei Ehegatte plus Nachkommen gilt: Ehegatte 1/2, Nachkommen 1/2 unter sich zu gleichen Teilen."},
+ {lv:3,q:"Eine Erblasserin hinterlässt ihren Ehegatten und ihre Kinder und verfasst ein Testament. Wie hoch ist der Pflichtteil der Kinder nach geltendem Recht (seit 2023), gemessen am gesetzlichen Erbanspruch von 1/2 des Nachlasses?",o:["3/4 ihres gesetzlichen Erbanspruchs, also 3/8 des Nachlasses","1/2 ihres gesetzlichen Erbanspruchs, also 1/4 des Nachlasses","Die Kinder haben seit 2023 keinen Pflichtteil mehr"],a:1,fb:"Der Pflichtteil der Nachkommen beträgt seit 2023 die Hälfte ihres gesetzlichen Erbanspruchs: 1/2 × 1/2 = 1/4 des Nachlasses."},
+ {lv:3,q:"Ein Konkubinatspaar lebt seit Jahren zusammen. Eine Person wird nach einem Unfall urteilsunfähig, ohne dass ein Vorsorgeauftrag oder eine Patientenverfügung besteht. Welche Aussage trifft zu?",o:["Der Konkubinatspartner darf automatisch wie ein Ehegatte medizinische Entscheidungen treffen","Ärztinnen und Ärzte dürfen dem Konkubinatspartner ohne entsprechende Vollmacht keine Auskunft geben","Das Konkubinat wird in diesem Fall automatisch wie eine Ehe behandelt"],a:1,fb:"Ohne Vollmacht (Patientenverfügung/Vorsorgeauftrag) dürfen Ärzte dem Konkubinatspartner keine Auskunft geben – anders als bei Ehegatten gibt es hier keinen automatischen Schutz."},
+ {lv:3,q:"Ein Ehepaar mit Errungenschaftsbeteiligung lässt sich scheiden. Die Ehefrau hat während der Ehe eine Eigentumswohnung geerbt, der Ehemann hat seinen Lohn regelmässig angespart. Was wird bei der Scheidung geteilt?",o:["Beides zu gleichen Teilen, da alles während der Ehe erworben wurde","Nur der angesparte Lohn (Errungenschaft) – die geerbte Wohnung bleibt Eigengut der Ehefrau","Nur die geerbte Wohnung, da sie den höheren Wert hat"],a:1,fb:"Geteilt wird nur die Errungenschaft (z.B. angesparter Lohn); Eigengut wie Erbschaften bleibt bei der jeweiligen Person."}
+];
+const RANKS=[
+ {min:0,icon:"📜",name:"Rechts-Neuling",txt:"Solider Start – wirf nochmal einen Blick auf die Theorie und starte erneut!"},
+ {min:60,icon:"⚖️",name:"Familienrecht-Kennerin",txt:"Stark! Konkubinat, Güterstände und Erbrecht sitzen schon gut."},
+ {min:85,icon:"💍",name:"Familienrecht-Profi",txt:"Top! Du verstehst die rechtlichen Konsequenzen verschiedener Lebensmodelle."}
+];
+const BASE=10, STREAK_AT=3, SPEED_MS=8000, SPEED_PTS=5;
+let order=[],i=0,pts=0,streak=0,best=0,joker=1,tStart=0,correctCount=0,locked=false;
+const $=id=>document.getElementById(id);
+
+function shuffle(a){for(let j=a.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[a[j],a[k]]=[a[k],a[j]]}return a}
+
+function start(){
+  order=[...shuffle(QUESTIONS.filter(q=>q.lv==1)),...shuffle(QUESTIONS.filter(q=>q.lv==2)),...shuffle(QUESTIONS.filter(q=>q.lv==3))];
+  i=0;pts=0;streak=0;best=0;joker=1;correctCount=0;
+  $('hud').style.display='flex';$('prog').style.display='block';
+  render();
+}
+
+function render(){
+  locked=false;
+  const q=order[i];
+  $('hQ').textContent=(i+1)+'/'+order.length;
+  $('hP').textContent=pts;
+  $('hS').textContent=streak+(streak>=STREAK_AT?' 🔥':'');
+  $('hS').classList.toggle('streak-hot',streak>=STREAK_AT);
+  $('progFill').style.width=(i/order.length*100)+'%';
+  const lvClass='lv'+q.lv, lvName=['','Level 1 · Aufwärmen','Level 2 · Anwenden','Level 3 · Fälle knacken'][q.lv];
+  $('stage').innerHTML=`
+    <span class="level-badge ${lvClass}">${lvName}</span>
+    <div class="qtext pop">${q.q}</div>
+    <div class="opts" id="opts">${q.o.map((o,idx)=>`<button onclick="pick(${idx},this)">${o}</button>`).join('')}</div>
+    <div class="fb" id="fb"></div>
+    <div class="actions">
+      <button class="btn btn-joker" id="jBtn" ${joker?'':'disabled'} onclick="useJoker()">50:50 Joker (${joker})</button>
+      <button class="btn btn-main" id="next" style="display:none" onclick="nextQ()">Weiter →</button>
+    </div>`;
+  tStart=Date.now();
+}
+
+function useJoker(){
+  if(!joker||locked)return;
+  joker=0;$('jBtn').disabled=true;$('jBtn').textContent='50:50 Joker (0)';
+  const q=order[i],btns=[...document.querySelectorAll('#opts button')];
+  const wrong=btns.map((b,idx)=>idx).filter(idx=>idx!=q.a);
+  shuffle(wrong).slice(0,q.o.length-2).forEach(idx=>{btns[idx].classList.add('gone');btns[idx].disabled=true});
+}
+
+function pick(idx,btn){
+  if(locked)return;locked=true;
+  const q=order[i],btns=[...document.querySelectorAll('#opts button')];
+  btns.forEach(b=>b.disabled=true);
+  const ok=idx===q.a, fast=Date.now()-tStart<SPEED_MS;
+  const fb=$('fb');
+  if(ok){
+    correctCount++;streak++;best=Math.max(best,streak);
+    let gain=BASE*q.lv, tags='';
+    if(streak>=STREAK_AT){gain*=2;tags+='<span class="bonus-tag">Streak ×2</span>'}
+    if(fast){gain+=SPEED_PTS;tags+='<span class="bonus-tag">Tempo +5</span>'}
+    pts+=gain;
+    btn.classList.add('right');
+    fb.className='fb show good';fb.innerHTML=`✔ Richtig! +${gain} ${tags}<br>${q.fb}`;
+  }else{
+    streak=0;
+    btn.classList.add('wrong');btns[q.a].classList.add('right');
+    fb.className='fb show bad';fb.innerHTML=`✘ Daneben. ${q.fb}`;
+  }
+  $('hP').textContent=pts;$('hS').textContent=streak;
+  $('next').style.display='inline-block';
+  $('next').textContent=(i===order.length-1)?'Auswertung →':'Weiter →';
+}
+
+function nextQ(){ i++; i<order.length?render():finish(); }
+
+function finish(){
+  $('progFill').style.width='100%';
+  const maxPts=order.reduce((s,q)=>s+BASE*q.lv,0);
+  const pct=Math.min(100,Math.round(pts/maxPts*100));
+  const rank=[...RANKS].reverse().find(r=>pct>=r.min);
+  $('stage').innerHTML=`
+    <div class="center pop">
+      <div class="rank">${rank.icon}</div>
+      <div class="big">${rank.name}</div>
+      <p class="subtitle">${rank.txt}</p>
+      <div class="hud" style="justify-content:center">
+        <div class="box"><div class="lbl">Punkte</div><div class="val">${pts}</div></div>
+        <div class="box"><div class="lbl">Richtig</div><div class="val">${correctCount}/${order.length}</div></div>
+        <div class="box"><div class="lbl">Beste Serie</div><div class="val">${best}</div></div>
+      </div>
+      <div class="actions" style="justify-content:center">
+        <button class="btn btn-main" onclick="start()">Nochmals spielen</button>
+      </div>
+    </div>`;
+}
+</script>
+</body>
+</html>
