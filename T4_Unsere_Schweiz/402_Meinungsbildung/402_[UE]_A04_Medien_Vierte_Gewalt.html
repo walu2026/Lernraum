@@ -324,20 +324,19 @@ const PRUEFUNG_PASSWORT = "test";
 
 function pruefungsModusIstAktiv() { return PRUEFUNGS_MODUS_FEST || localStorage.getItem(PRUEFUNG_KEY) === '1'; }
 
-const ERWEITERT_KEY = 'abu_erweiterte_nutzung';
 const ERWEITERT_PASSWORT = "abu";
 
 function wendeErweiterteNutzungAn() {
-  const aktiv = localStorage.getItem(ERWEITERT_KEY) === '1';
+  const aktiv = localStorage.getItem(('abu_erweiterte_nutzung_' + SAFE_FN)) === '1';
   const kiSichtbar = aktiv && !pruefungsModusIstAktiv();
   document.querySelectorAll('[data-ki-toggle]').forEach(function(el){el.style.display=kiSichtbar?'flex':'none';});
   document.querySelectorAll('[data-ki-feedback-btn-area]').forEach(function(el){el.style.display=kiSichtbar?'flex':'none';});
   const link = document.getElementById('erweiterteNutzungLink'); if (link) link.textContent = aktiv ? '⚙ Erweiterte Nutzung (an)' : '⚙ Erweiterte Nutzung';
 }
 function erweiterteNutzungUmschalten() {
-  const aktuell = localStorage.getItem(ERWEITERT_KEY) === '1';
+  const aktuell = localStorage.getItem(('abu_erweiterte_nutzung_' + SAFE_FN)) === '1';
   if (!aktuell) { const e = prompt('Passwort:'); if (!e || e !== ERWEITERT_PASSWORT) { if (e !== null) alert('Falsches Passwort.'); return; } }
-  try { localStorage.setItem(ERWEITERT_KEY, aktuell ? '0' : '1'); } catch(e) {}
+  try { localStorage.setItem(('abu_erweiterte_nutzung_' + SAFE_FN), aktuell ? '0' : '1'); } catch(e) {}
   wendeErweiterteNutzungAn();
 }
 function wendePruefungsModusAn() {

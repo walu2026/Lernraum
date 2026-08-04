@@ -583,6 +583,9 @@
   <button class="btn btn-send" id="sendBtn" onclick="antwortenEinsenden(this)">✉ Antworten einsenden</button>
 </div>
 <div id="copyToast">✓ In Zwischenablage kopiert</div>
+
+<div class="side-nav side-nav-prev"><a href="101_[UE]_A10_Ferienregelung_MIX.html" title="Vorherige Übung">&#8592;</a></div>
+<div class="side-nav side-nav-next"><a href="101_[UE]_A12_Pflichtverletzungen_MIX.html" title="Nächste Übung">&#8594;</a></div>
 <div class="ws" style="border-left-color: var(--t1);">
   <div class="lebenswelt-ref">101 Lehrvertrag & Rechte/Pflichten — Eine Lehre beginnen – Rechte und Pflichten verstehen</div>
   <div class="task-title">101-11 · Rechtsfälle aus dem Lehrverhältnis</div>
@@ -722,11 +725,10 @@ function pruefungsModusUmschalten() {
    Lernende kennen das Passwort). Zustand bleibt nach Neuladen
    erhalten (localStorage, pro Browser/Gerät).
    ════════════════════════════════════════════════════════════════ */
-const ERWEITERT_KEY = 'abu_erweiterte_nutzung';
 const ERWEITERT_PASSWORT = "abu"; // <- hier dein eigenes Passwort eintragen
 
 function wendeErweiterteNutzungAn() {
-  const aktiv = localStorage.getItem(ERWEITERT_KEY) === '1';
+  const aktiv = localStorage.getItem(('abu_erweiterte_nutzung_' + SAFE_FN)) === '1';
   const pruefungAktiv = pruefungsModusIstAktiv();
   const kiSichtbar = aktiv && !pruefungAktiv;
 
@@ -741,13 +743,13 @@ function wendeErweiterteNutzungAn() {
 }
 
 function erweiterteNutzungUmschalten() {
-  const aktuell = localStorage.getItem(ERWEITERT_KEY) === '1';
+  const aktuell = localStorage.getItem(('abu_erweiterte_nutzung_' + SAFE_FN)) === '1';
   if (!aktuell) {
     const eingabe = prompt('Passwort für erweiterte Nutzung:');
     if (eingabe === null) return;
     if (eingabe !== ERWEITERT_PASSWORT) { alert('Falsches Passwort.'); return; }
   }
-  try { localStorage.setItem(ERWEITERT_KEY, aktuell ? '0' : '1'); } catch (e) {}
+  try { localStorage.setItem(('abu_erweiterte_nutzung_' + SAFE_FN), aktuell ? '0' : '1'); } catch (e) {}
   wendeErweiterteNutzungAn();
 }
 

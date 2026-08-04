@@ -641,11 +641,10 @@ function pruefungsModusIstAktiv() {
    Lernende kennen das Passwort). Zustand bleibt nach Neuladen
    erhalten (localStorage, pro Browser/Gerät).
    ════════════════════════════════════════════════════════════════ */
-const ERWEITERT_KEY = 'abu_erweiterte_nutzung';
 const ERWEITERT_PASSWORT = "abu"; // <- hier dein eigenes Passwort eintragen
 
 function wendeErweiterteNutzungAn() {
-  const aktiv = localStorage.getItem(ERWEITERT_KEY) === '1';
+  const aktiv = localStorage.getItem(('abu_erweiterte_nutzung_' + SAFE_FN)) === '1';
   // Standortbestimmung hat Vorrang: KI-Bereich bleibt versteckt, auch wenn
   // "Erweiterte Nutzung" zuvor aktiviert wurde.
   const pruefungAktiv = pruefungsModusIstAktiv();
@@ -660,13 +659,13 @@ function wendeErweiterteNutzungAn() {
 }
 
 function erweiterteNutzungUmschalten() {
-  const aktuell = localStorage.getItem(ERWEITERT_KEY) === '1';
+  const aktuell = localStorage.getItem(('abu_erweiterte_nutzung_' + SAFE_FN)) === '1';
   if (!aktuell) {
     const eingabe = prompt('Passwort für erweiterte Nutzung:');
     if (eingabe === null) return;
     if (eingabe !== ERWEITERT_PASSWORT) { alert('Falsches Passwort.'); return; }
   }
-  try { localStorage.setItem(ERWEITERT_KEY, aktuell ? '0' : '1'); } catch (e) {}
+  try { localStorage.setItem(('abu_erweiterte_nutzung_' + SAFE_FN), aktuell ? '0' : '1'); } catch (e) {}
   wendeErweiterteNutzungAn();
 }
 
