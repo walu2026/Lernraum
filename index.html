@@ -46,6 +46,38 @@
   .tile.lw-relevant::after { content:'🌱'; position:absolute; top:8px; right:10px; font-size:13px; line-height:1; }
   .lw-legend { font-size:11px; color:var(--g5); text-align:center; margin-top:1.5rem; }
 
+  /* ===== Zitat des Tages ===== */
+  .zitat-box { position:relative; background:white; border:1.5px solid var(--g3); border-radius:14px; padding:22px 24px 20px 28px; margin-bottom:2rem; overflow:hidden; }
+  .zitat-box::before { content:''; position:absolute; top:0; left:0; bottom:0; width:5px; background:linear-gradient(180deg,var(--t3),var(--t4)); }
+  .zitat-label { font-size:10.5px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; color:var(--g5); margin-bottom:8px; }
+  .zitat-text { font-size:17px; line-height:1.5; color:var(--g9); font-weight:500; }
+  .zitat-text::before { content:'\201E'; }
+  .zitat-text::after { content:'\201C'; }
+  .zitat-autor { margin-top:10px; font-size:12.5px; color:var(--g5); }
+  .zitat-autor::before { content:'— '; }
+
+  /* ===== Frage der Woche (Flip-Karte) ===== */
+  .frage-box { position:relative; perspective:1200px; margin-bottom:2rem; cursor:pointer; min-height:120px; }
+  .frage-inner { position:relative; width:100%; min-height:120px; transition:transform .5s; transform-style:preserve-3d; }
+  .frage-box.flipped .frage-inner { transform:rotateY(180deg); }
+  .frage-face { position:absolute; inset:0; backface-visibility:hidden; background:white; border:1.5px solid var(--g3); border-radius:14px; padding:22px 24px 20px 28px; overflow:auto; }
+  .frage-face::before { content:''; position:absolute; top:0; left:0; bottom:0; width:5px; background:linear-gradient(180deg,var(--t5),var(--t2)); }
+  .frage-back { transform:rotateY(180deg); }
+  .frage-label { font-size:10.5px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; color:var(--g5); margin-bottom:8px; }
+  .frage-text, .antwort-text { font-size:16px; line-height:1.5; color:var(--g9); font-weight:500; }
+  .frage-hint { margin-top:10px; font-size:11.5px; color:var(--g5); }
+
+  /* ===== Aktuell im Bild ===== */
+  .bild-box { display:flex; gap:18px; background:white; border:1.5px solid var(--g3); border-radius:14px; padding:16px; margin-top:2.5rem; }
+  .bild-box img { width:220px; height:150px; object-fit:cover; border-radius:10px; flex-shrink:0; }
+  .bild-label { font-size:10.5px; font-weight:700; letter-spacing:0.6px; text-transform:uppercase; color:var(--tA); margin-bottom:6px; }
+  .bild-titel { display:inline-block; font-size:15px; font-weight:600; color:var(--g9); margin-bottom:6px; line-height:1.3; text-decoration:none; }
+  .bild-titel:hover { color:var(--tA); text-decoration:underline; }
+  .bild-text { font-size:12.5px; color:var(--g7); line-height:1.5; margin-bottom:8px; }
+  .bild-credit { font-size:10.5px; color:var(--g5); }
+  .bild-credit a { color:var(--g5); }
+  @media(max-width:560px){ .bild-box{ flex-direction:column; } .bild-box img{ width:100%; height:160px; } }
+
   /* ===== Aktuell-Block ===== */
   .tiles-aktuell { display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:8px; padding:10px 18px 6px; background:white; }
   .tiles-aktuell .tile { padding:12px 14px 18px; }
@@ -84,6 +116,27 @@
     <span style="background:var(--t3)"></span><span style="background:var(--t4)"></span>
     <span style="background:var(--t5)"></span><span style="background:var(--t6)"></span>
     <span style="background:var(--t7)"></span><span style="background:var(--t8)"></span><span style="background:var(--t9)"></span>
+  </div>
+
+  <div class="zitat-box">
+    <div class="zitat-label">Zitat des Tages</div>
+    <div class="zitat-text" id="zitatText">…</div>
+    <div class="zitat-autor" id="zitatAutor"></div>
+  </div>
+
+  <div class="frage-box" id="frageBox">
+    <div class="frage-inner" id="frageInner">
+      <div class="frage-face frage-front">
+        <div class="frage-label">Frage der Woche<span id="frageGruppenLabel"></span></div>
+        <div class="frage-text" id="frageText">…</div>
+        <div class="frage-hint">Klicken für die Antwort →</div>
+      </div>
+      <div class="frage-face frage-back">
+        <div class="frage-label">Antwort</div>
+        <div class="antwort-text" id="antwortText">…</div>
+        <div class="frage-hint">← Klicken für die Frage</div>
+      </div>
+    </div>
   </div>
 
   <div class="theme-block" id="aktuell" style="--tc:var(--tA);--tbg:#D6F0F4">
@@ -501,10 +554,313 @@
     </div>
   </div>
 
-  <div class="lw-legend">🌱 = neue Kachel, Inhalt in Arbeit</div>
+  <div class="lw-legend">🌱 = Landwirtschaftliche Themen gemäss SLP</div>
+
+  <div class="bild-box">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Oberg%C3%B6sgen_-_nuklea_centralo_G%C3%B6sgen_251.JPG/500px-Oberg%C3%B6sgen_-_nuklea_centralo_G%C3%B6sgen_251.JPG" alt="Kernkraftwerk Gösgen, Kanton Solothurn" loading="lazy">
+    <div>
+      <div class="bild-label">Aktuell im Bild</div>
+      <a class="bild-titel" href="aktuell/politik.html">AKW-Neubauverbot &amp; Referendum →</a>
+      <div class="bild-text">Das Kernkraftwerk Gösgen (Kanton Solothurn) — Sinnbild für die Debatte um neue Atomkraftwerke in der Schweiz. Mehr dazu im Thema «Aktuell».</div>
+      <div class="bild-credit">Foto: Dietrich Michael Weidmann, <a href="https://commons.wikimedia.org/wiki/File:Oberg%C3%B6sgen_-_nuklea_centralo_G%C3%B6sgen_251.JPG" target="_blank" rel="noopener">Wikimedia Commons</a>, CC BY-SA 3.0</div>
+    </div>
+  </div>
 
 </div>
 <script>
+const zitate = [
+  {text:"Der Weg ist das Ziel.", autor:"Konfuzius"},
+  {text:"Wer aufhört zu lernen, hört auf zu wachsen.", autor:"Sprichwort"},
+  {text:"Man muss das Unmögliche versuchen, um das Mögliche zu erreichen.", autor:"Hermann Hesse"},
+  {text:"Es ist nicht genug zu wissen, man muss es auch anwenden.", autor:"Johann Wolfgang von Goethe"},
+  {text:"Der beste Weg, die Zukunft vorherzusagen, ist, sie zu gestalten.", autor:"Abraham Lincoln (zugeschrieben)"},
+  {text:"Wer nicht wagt, der nicht gewinnt.", autor:"Sprichwort"},
+  {text:"Motivation ist, was dich starten lässt. Gewohnheit ist, was dich weitermachen lässt.", autor:"Jim Ryun"},
+  {text:"Erfolg ist die Summe kleiner Anstrengungen, die täglich wiederholt werden.", autor:"Robert Collier"},
+  {text:"Ich scheitere immer wieder, und deshalb gelingt es mir.", autor:"Michael Jordan"},
+  {text:"Übung macht den Meister.", autor:"Sprichwort"},
+  {text:"Es ist nie zu spät, das zu werden, was man hätte sein können.", autor:"George Eliot"},
+  {text:"Was du heute kannst besorgen, das verschiebe nicht auf morgen.", autor:"Sprichwort"},
+  {text:"Bildung ist die mächtigste Waffe, mit der man die Welt verändern kann.", autor:"Nelson Mandela"},
+  {text:"Man sieht nur mit dem Herzen gut.", autor:"Antoine de Saint-Exupéry"},
+  {text:"Wo ein Wille ist, ist auch ein Weg.", autor:"Sprichwort"},
+  {text:"Der Erfolg hat drei Buchstaben: TUN.", autor:"Johann Wolfgang von Goethe"},
+  {text:"Fantasie ist wichtiger als Wissen, denn Wissen ist begrenzt.", autor:"Albert Einstein"},
+  {text:"Alles, was uns begegnet, lässt Spuren zurück. Alles trägt unmerklich zu unserer Bildung bei.", autor:"Johann Wolfgang von Goethe"},
+  {text:"Ein Ziel ohne Plan ist nur ein Wunsch.", autor:"Antoine de Saint-Exupéry"},
+  {text:"Zwei Dinge sollen Kinder von ihren Eltern bekommen: Wurzeln und Flügel.", autor:"Sprichwort"},
+  {text:"Wer die Wahrheit nicht sagen darf, dem darf man auch nicht verwehren, zu schweigen.", autor:"Georg Büchner"},
+  {text:"Der einzige Weg, grossartige Arbeit zu leisten, ist zu lieben, was man tut.", autor:"Steve Jobs"},
+  {text:"Man kann nicht in die Zukunft schauen, aber man kann den Boden dafür bereiten.", autor:"Sprichwort"},
+  {text:"Alles, was du dir vorstellen kannst, ist real.", autor:"Pablo Picasso"},
+  {text:"Es sind nicht die Starken, die überleben, sondern die, die sich am besten anpassen.", autor:"nach Charles Darwin"},
+  {text:"Wer kämpft, kann verlieren. Wer nicht kämpft, hat schon verloren.", autor:"Bertolt Brecht"},
+  {text:"Auch der längste Marsch beginnt mit dem ersten Schritt.", autor:"Laotse"},
+  {text:"Was mich nicht umbringt, macht mich stärker.", autor:"Friedrich Nietzsche"},
+  {text:"Wissen ist Macht.", autor:"Francis Bacon"},
+  {text:"Man muss das Leben verstehen, dann geht alles ganz von selbst.", autor:"Georg Christoph Lichtenberg"},
+  {text:"Alle grossen Dinge fangen klein an.", autor:"Sprichwort"},
+  {text:"Der Optimist sieht in jeder Gefahr eine Chance, der Pessimist in jeder Chance eine Gefahr.", autor:"Winston Churchill"},
+  {text:"Der beste Zeitpunkt, einen Baum zu pflanzen, war vor 20 Jahren. Der zweitbeste ist jetzt.", autor:"Sprichwort"},
+  {text:"Nicht weil es schwer ist, wagen wir es nicht, sondern weil wir es nicht wagen, ist es schwer.", autor:"Seneca"},
+  {text:"Wer immer tut, was er schon kann, bleibt immer das, was er schon ist.", autor:"Henry Ford"},
+  {text:"Das Geheimnis des Erfolgs ist, den Standpunkt des anderen zu verstehen.", autor:"Henry Ford"},
+  {text:"Qualität bedeutet, es richtig zu machen, wenn keiner zuschaut.", autor:"Henry Ford"},
+  {text:"Man kann einem Menschen nichts beibringen, man kann ihm nur helfen, es in sich selbst zu entdecken.", autor:"Galileo Galilei"},
+  {text:"Es gibt nichts Gutes, ausser man tut es.", autor:"Erich Kästner"},
+  {text:"Mut steht am Anfang des Handelns, Glück am Ende.", autor:"Demokrit"},
+  {text:"Nichts auf der Welt ist so mächtig wie eine Idee, deren Zeit gekommen ist.", autor:"Victor Hugo"},
+  {text:"Sei du selbst die Veränderung, die du dir wünschst für diese Welt.", autor:"Mahatma Gandhi"},
+  {text:"Es ist nicht der stärkste vom Baum, der überlebt, sondern der, der sich am schnellsten wandelt.", autor:"nach Charles Darwin"},
+  {text:"Man wird nicht als Führungspersönlichkeit geboren, man wird dazu, meist durch harte Arbeit.", autor:"Vince Lombardi"},
+  {text:"Der Charakter eines Menschen zeigt sich darin, wie er Menschen behandelt, die ihm nichts nützen.", autor:"nach Malcolm Forbes"},
+  {text:"Wer stehen bleibt, wird überholt.", autor:"Sprichwort"},
+  {text:"Wähle einen Beruf, den du liebst, und du brauchst keinen Tag in deinem Leben mehr zu arbeiten.", autor:"zugeschrieben Konfuzius"},
+  {text:"Es kommt nicht darauf an, die Zukunft zu wissen, sondern auf die Zukunft vorbereitet zu sein.", autor:"Perikles"},
+  {text:"Erfolg ist kein Zufall, sondern das Ergebnis harter Arbeit.", autor:"Pelé"},
+  {text:"Die Grenzen meiner Sprache bedeuten die Grenzen meiner Welt.", autor:"Ludwig Wittgenstein"},
+  {text:"Träume nicht dein Leben, sondern lebe deinen Traum.", autor:"Sprichwort"},
+  {text:"Wer glaubt, etwas zu sein, hört auf, etwas zu werden.", autor:"Sprichwort"},
+  {text:"Am Ende schaffen wir nur, was wir uns zutrauen.", autor:"Sprichwort"},
+  {text:"Es ist noch kein Meister vom Himmel gefallen.", autor:"Sprichwort"},
+  {text:"Wer will, findet Wege. Wer nicht will, findet Gründe.", autor:"Sprichwort"},
+  {text:"Ein Fehler, aus dem man lernt, ist kein Fehler mehr.", autor:"Sprichwort"},
+  {text:"Kleine Schritte sind besser als grosse Reden.", autor:"Sprichwort"},
+  {text:"Geduld ist auch eine Art von Mut.", autor:"nach Boris Vian"},
+  {text:"Was wir wissen, ist ein Tropfen, was wir nicht wissen, ein Ozean.", autor:"Isaac Newton"},
+  {text:"Wer im Wagen sitzt, kann nicht zugleich schieben.", autor:"Sprichwort"},
+  {text:"Wer sich selbst besiegt, hat den grössten Sieg errungen.", autor:"Platon"},
+  {text:"Der Anfang ist die Hälfte des Ganzen.", autor:"Aristoteles"},
+  {text:"Wir sind, was wir wiederholt tun. Exzellenz ist daher keine Handlung, sondern eine Gewohnheit.", autor:"nach Aristoteles"},
+  {text:"Vertrauen ist der Anfang von allem.", autor:"Sprichwort"},
+  {text:"Man muss die Menschen nehmen, wie sie sind, es gibt keine anderen.", autor:"Konrad Adenauer"},
+  {text:"Wer aufgibt, hat schon verloren, bevor er begonnen hat.", autor:"Sprichwort"},
+  {text:"Der Wind kennt den Wert eines Baumes erst, wenn er gefallen ist.", autor:"afrikanisches Sprichwort"},
+  {text:"Ein guter Plan heute ist besser als ein perfekter Plan morgen.", autor:"nach George S. Patton"},
+  {text:"Erfahrung ist der Name, den jeder seinen Fehlern gibt.", autor:"Oscar Wilde"},
+  {text:"Sei nicht bitter über das Ende, sondern lächle über das, was war.", autor:"Ludwig Jacobowski"},
+  {text:"Zeit ist das Einzige, was wir wirklich besitzen.", autor:"Sprichwort"},
+  {text:"Was du säst, wirst du ernten.", autor:"Sprichwort"},
+  {text:"Alle Ausreden der Welt bewegen nichts.", autor:"Sprichwort"},
+  {text:"Man kann die Wellen nicht stoppen, aber man kann lernen zu surfen.", autor:"Jon Kabat-Zinn"},
+  {text:"Wenn du schnell gehen willst, geh allein. Wenn du weit gehen willst, geh gemeinsam.", autor:"afrikanisches Sprichwort"},
+  {text:"Kein Wind ist demjenigen günstig, der nicht weiss, wohin er segeln will.", autor:"Seneca"},
+  {text:"Der grösste Ruhm liegt nicht im Nichtscheitern, sondern jedes Mal wieder aufzustehen.", autor:"nach Nelson Mandela"},
+  {text:"Es ist unsere Aufgabe, im Kleinen zu handeln, wo grosse Träume auf uns warten.", autor:"Sprichwort"},
+  {text:"Wer den Hafen nicht kennt, in den er segeln will, für den ist kein Wind der richtige.", autor:"Seneca"},
+  {text:"Der Weg entsteht beim Gehen.", autor:"Franz Kafka"},
+  {text:"Halte dein Gesicht immer der Sonne zu, dann fallen die Schatten hinter dich.", autor:"Walt Whitman (zugeschrieben)"},
+  {text:"Ein Traum, den man alleine träumt, ist nur ein Traum. Ein Traum, den man gemeinsam träumt, ist Wirklichkeit.", autor:"Yoko Ono"},
+  {text:"Manchmal muss man einen Sprung wagen und sich beim Fliegen die Flügel bauen.", autor:"Sprichwort"},
+  {text:"Wer viel fragt, kommt weit.", autor:"Sprichwort"},
+  {text:"Wenn du denkst, du bist zu klein, um etwas zu bewirken, versuch mal mit einer Mücke zu schlafen.", autor:"Dalai Lama"},
+  {text:"Ohne Fleiss kein Preis.", autor:"Sprichwort"},
+  {text:"Der Zweifel ist der Beginn der Weisheit.", autor:"Aristoteles"},
+  {text:"Wer nicht neugierig ist, findet nichts Neues.", autor:"Sprichwort"},
+  {text:"Man kann einem Menschen nichts lehren, man kann ihm nur helfen, es in sich selbst zu finden.", autor:"nach Galileo Galilei"},
+  {text:"Klein anfangen, gross denken.", autor:"Sprichwort"},
+  {text:"Ein Blatt fällt nicht weit vom Baum.", autor:"Sprichwort"},
+  {text:"Die beste Zeit für neue Wurzeln ist jetzt.", autor:"Sprichwort"},
+  {text:"Auch aus Steinen, die einem in den Weg gelegt werden, kann man Schönes bauen.", autor:"Johann Wolfgang von Goethe"},
+  {text:"Wer denkt, er könne es nicht schaffen, hat schon halb verloren.", autor:"Sprichwort"},
+  {text:"Grosse Geister haben immer heftigen Widerstand von mittelmässigen Köpfen erfahren.", autor:"Albert Einstein"},
+  {text:"Phantasie wird oft mehr gebraucht als Wissen.", autor:"Albert Einstein"},
+  {text:"Probleme kann man niemals mit derselben Denkweise lösen, durch die sie entstanden sind.", autor:"Albert Einstein"},
+  {text:"Das Leben ist wie Fahrradfahren. Um die Balance zu halten, musst du in Bewegung bleiben.", autor:"Albert Einstein"},
+  {text:"Nur wer sein Ziel kennt, findet den Weg.", autor:"Laotse"},
+  {text:"Sei die Veränderung, die du in der Welt sehen willst.", autor:"Mahatma Gandhi"},
+  {text:"Ein Ziel, das man erreicht hat, hört auf, eines zu sein.", autor:"Friedrich Nietzsche"},
+  {text:"Der Mensch wächst mit seinen Aufgaben.", autor:"Sprichwort"},
+  {text:"Wer heute sät, wird morgen ernten.", autor:"Sprichwort"},
+  {text:"Es ist Zeit, die Segel zu setzen und den sicheren Hafen zu verlassen.", autor:"Mark Twain (zugeschrieben)"},
+  {text:"In zwanzig Jahren wirst du dich mehr über die Dinge ärgern, die du nicht getan hast, als über die, die du getan hast.", autor:"Mark Twain (zugeschrieben)"}
+];
+function tagesZitat(liste) {
+  const heute = new Date();
+  const jahresstart = new Date(heute.getFullYear(), 0, 0);
+  const tag = Math.floor((heute - jahresstart) / 86400000);
+  return liste[tag % liste.length];
+}
+const heutigesZitat = tagesZitat(zitate);
+document.getElementById('zitatText').textContent = heutigesZitat.text;
+document.getElementById('zitatAutor').textContent = heutigesZitat.autor;
+
+const fragen = [
+  {frage:"Wie viele Kantone hat die Schweiz?", antwort:"26"},
+  {frage:"Welches ist der längste Fluss Europas?", antwort:"Die Wolga"},
+  {frage:"Wie viele Planeten hat unser Sonnensystem?", antwort:"8"},
+  {frage:"In welchem Jahr endete der Zweite Weltkrieg?", antwort:"1945"},
+  {frage:"Wie heisst die Hauptstadt der Schweiz?", antwort:"Bern"},
+  {frage:"Wofür steht die Abkürzung CHF?", antwort:"Schweizer Franken (Confoederatio Helvetica Franc)"},
+  {frage:"Wie viele Zähne hat ein erwachsener Mensch normalerweise?", antwort:"32"},
+  {frage:"Welches chemische Element hat das Symbol «O»?", antwort:"Sauerstoff"},
+  {frage:"Wie viele Herzen hat ein Oktopus?", antwort:"3"},
+  {frage:"Wer schrieb «Wilhelm Tell»?", antwort:"Friedrich Schiller"},
+  {frage:"Wie viele Mitglieder hat der Schweizer Bundesrat?", antwort:"7"},
+  {frage:"Wie heisst die grösste Sandwüste der Welt?", antwort:"Die Sahara"},
+  {frage:"In welchem Land steht der Eiffelturm?", antwort:"Frankreich"},
+  {frage:"Wie viele Sekunden hat eine Stunde?", antwort:"3600"},
+  {frage:"Was ist die Hauptstadt von Italien?", antwort:"Rom"},
+  {frage:"Wie viele Kontinente gibt es im gängigen 7-Kontinente-Modell?", antwort:"7"},
+  {frage:"Wer war der erste Mensch auf dem Mond?", antwort:"Neil Armstrong"},
+  {frage:"Was misst ein Thermometer?", antwort:"Die Temperatur"},
+  {frage:"Wie viele Bundesländer hat Deutschland?", antwort:"16"},
+  {frage:"Was zeigt die Schweizer Flagge?", antwort:"Ein weisses Kreuz auf rotem Grund"},
+  {frage:"Wie viele Spieler stehen pro Team gleichzeitig auf dem Fussballfeld?", antwort:"11"},
+  {frage:"Was ist die kleinste Primzahl?", antwort:"2"},
+  {frage:"Wie nennt man die Angst vor engen Räumen?", antwort:"Klaustrophobie"},
+  {frage:"In welchem Ozean liegen die Malediven?", antwort:"Im Indischen Ozean"},
+  {frage:"Wie viele Buchstaben hat das deutsche Alphabet inkl. Umlauten und ß?", antwort:"30"},
+  {frage:"Was ist die Landeswährung von Japan?", antwort:"Der Yen"},
+  {frage:"Wie heisst der höchste Berg der Schweiz?", antwort:"Die Dufourspitze (4634 m)"},
+  {frage:"Wer entwickelte die Relativitätstheorie?", antwort:"Albert Einstein"},
+  {frage:"Wie viele Beine hat eine Spinne?", antwort:"8"},
+  {frage:"Was ist die grösste Insel der Welt?", antwort:"Grönland"},
+  {frage:"In welchem Jahr wurde die UNO gegründet?", antwort:"1945"},
+  {frage:"Wie nennt man den Übergang von fest zu flüssig?", antwort:"Schmelzen"},
+  {frage:"Wie viele Ringe hat das olympische Symbol?", antwort:"5"},
+  {frage:"Wer malte die Mona Lisa?", antwort:"Leonardo da Vinci"},
+  {frage:"Was ist die Hauptstadt von Grossbritannien?", antwort:"London"},
+  {frage:"Wie viele Monate haben 31 Tage?", antwort:"7"},
+  {frage:"Wie lautet der medizinische Fachbegriff für Herzinfarkt?", antwort:"Myokardinfarkt"},
+  {frage:"In welchem Land liegt die Stadt Kyoto?", antwort:"Japan"},
+  {frage:"Wie viele Sinne werden dem Menschen klassischerweise zugeschrieben?", antwort:"5"},
+  {frage:"Wer schrieb «Faust»?", antwort:"Johann Wolfgang von Goethe"},
+  {frage:"Wie heisst der grösste Ozean der Erde?", antwort:"Der Pazifik"},
+  {frage:"Wie lautet die chemische Formel von Wasser?", antwort:"H2O"},
+  {frage:"Wie viele Zeitzonen hat Russland?", antwort:"11"},
+  {frage:"Wer war die erste Bundespräsidentin der Schweiz?", antwort:"Ruth Dreifuss (1999)"},
+  {frage:"Wie viele Karten hat ein normales Kartenspiel ohne Joker?", antwort:"52"},
+  {frage:"Was ist die Amtssprache in Brasilien?", antwort:"Portugiesisch"},
+  {frage:"Wie viele Knochen hat ein erwachsener Mensch?", antwort:"206"},
+  {frage:"In welchem Jahr fiel die Berliner Mauer?", antwort:"1989"},
+  {frage:"Was ist die kleinste strukturelle und funktionelle Einheit des Lebens?", antwort:"Die Zelle"},
+  {frage:"Wie heisst das grösste Säugetier der Welt?", antwort:"Der Blauwal"},
+  {frage:"Wie viele Artikel hat die Schweizer Bundesverfassung ungefähr?", antwort:"Rund 200"},
+  {frage:"Wer war der erste Präsident der USA?", antwort:"George Washington"}
+];
+function getWeekNumber(d) {
+  const jahresanfang = new Date(d.getFullYear(), 0, 1);
+  return Math.ceil(((d - jahresanfang) / 86400000 + jahresanfang.getDay() + 1) / 7);
+}
+
+// Anspruchsvollere, berufsgruppenspezifische Fragen. Zeitplan (Vormittag = vor 12 Uhr):
+// Mo AM=AFP, Mo PM=EIN, Di=LW, Mi AM=POMG, Mi PM=EIN, Do=SR. Sonst: allgemeine Fragen.
+const berufsFragen = {
+  AFP: [
+    {frage:"Wofür steht die Abkürzung ABS?", antwort:"Antiblockiersystem"},
+    {frage:"Wofür steht ESP im Auto?", antwort:"Elektronisches Stabilitätsprogramm"},
+    {frage:"Wie viele Takte hat ein klassischer Verbrennungsmotor?", antwort:"4 (Ansaugen, Verdichten, Arbeiten, Ausstossen)"},
+    {frage:"Was misst die Lambdasonde?", antwort:"Den Sauerstoffgehalt im Abgas, für die Gemischregelung"},
+    {frage:"Wofür steht OBD?", antwort:"On-Board-Diagnose"},
+    {frage:"Wie hoch ist die gesetzliche Mindestprofiltiefe für Reifen in der Schweiz?", antwort:"1,6 mm"},
+    {frage:"Wofür steht MFK?", antwort:"Motorfahrzeugkontrolle (periodische Fahrzeugprüfung)"},
+    {frage:"Was bewirkt der Katalysator im Abgassystem?", antwort:"Reduziert Schadstoffe wie CO, HC und NOx"},
+    {frage:"Was ist ein Common-Rail-System?", antwort:"Ein Diesel-Direkteinspritzsystem mit gemeinsamer Hochdruck-Leitung"},
+    {frage:"Wofür wird ein Drehmomentschlüssel verwendet?", antwort:"Um Schrauben mit einem definierten Anzugsmoment festzuziehen"},
+    {frage:"Was zeigt die Oktanzahl von Benzin an?", antwort:"Die Klopffestigkeit des Treibstoffs"},
+    {frage:"Wozu dient die Zündkerze im Benzinmotor?", antwort:"Zum Entzünden des Kraftstoff-Luft-Gemischs"},
+    {frage:"Warum muss Bremsflüssigkeit periodisch gewechselt werden?", antwort:"Sie ist hygroskopisch und nimmt mit der Zeit Wasser auf"},
+    {frage:"Was steuert das Steuergerät (ECU) im Fahrzeug?", antwort:"Motor- und Fahrzeugfunktionen elektronisch, z.B. Einspritzung und Zündung"},
+    {frage:"Was bedeutet die Abgasnorm «Euro 6» bei Fahrzeugen?", antwort:"Sie legt die zulässigen Schadstoffgrenzwerte fest"},
+    {frage:"Was ist der Unterschied zwischen Allrad- und Frontantrieb?", antwort:"Beim Allrad werden alle Räder angetrieben, beim Frontantrieb nur die Vorderräder"}
+  ],
+  EIN: [
+    {frage:"Wie hoch ist die Netzspannung im Schweizer Haushalt (einphasig)?", antwort:"230 V"},
+    {frage:"Wie hoch ist die Netzfrequenz in der Schweiz?", antwort:"50 Hz"},
+    {frage:"Wofür steht die Abkürzung NIN?", antwort:"Niederspannungs-Installationsnorm (SN 411000)"},
+    {frage:"Wovor schützt ein FI-Schutzschalter (RCD)?", antwort:"Vor gefährlichem Stromschlag durch Fehlerströme"},
+    {frage:"Wie lautet das ohmsche Gesetz?", antwort:"U = R × I (Spannung = Widerstand × Stromstärke)"},
+    {frage:"Wie berechnet man elektrische Leistung?", antwort:"P = U × I (Leistung = Spannung × Stromstärke)"},
+    {frage:"Welche Farbe hat der Schutzleiter in einer Elektroinstallation?", antwort:"Grün-Gelb"},
+    {frage:"Wofür wird Drehstrom typischerweise eingesetzt?", antwort:"Für grössere Leistungen und Motoren (400 V, dreiphasig)"},
+    {frage:"Was macht eine Sicherung im Stromkreis?", antwort:"Unterbricht den Stromkreis bei Überlast oder Kurzschluss"},
+    {frage:"Wozu dient die Erdung einer elektrischen Anlage?", antwort:"Ableiten von Fehlerströmen, Schutz vor gefährlichen Berührungsspannungen"},
+    {frage:"Welchen Steckertyp verwendet die Schweiz standardmässig?", antwort:"Typ J"},
+    {frage:"Was ist ein Kurzschluss?", antwort:"Eine ungewollte, niederohmige Verbindung zwischen zwei Leitern"},
+    {frage:"In welcher Einheit wird der elektrische Widerstand gemessen?", antwort:"Ohm (Ω)"},
+    {frage:"Was ist ein Vorteil von LED- gegenüber Glühlampen?", antwort:"Deutlich höhere Energieeffizienz und Lebensdauer"},
+    {frage:"Was bedeutet Schutzklasse II bei einem Elektrogerät?", antwort:"Doppelte oder verstärkte Isolation, kein Schutzleiter nötig"},
+    {frage:"Was misst ein Multimeter üblicherweise?", antwort:"Spannung, Stromstärke und Widerstand"}
+  ],
+  LW: [
+    {frage:"Wie viele Mägen hat eine Kuh?", antwort:"4 (Pansen, Netzmagen, Blättermagen, Labmagen)"},
+    {frage:"Wofür steht die Abkürzung GVE?", antwort:"Grossvieheinheit — 1 GVE entspricht dem Futterverzehr einer 650 kg schweren Kuh"},
+    {frage:"Was ist das Ziel der Fruchtfolge im Ackerbau?", antwort:"Bodenfruchtbarkeit erhalten und Krankheiten/Schädlinge vorbeugen"},
+    {frage:"Was ist Silage?", antwort:"Durch Milchsäuregärung haltbar gemachtes Futter"},
+    {frage:"Was bedeutet das Knospe-Label?", antwort:"Bio-Suisse-Zertifizierung für biologische Landwirtschaft in der Schweiz"},
+    {frage:"Was sind Biodiversitätsförderflächen?", antwort:"Landwirtschaftsflächen, die gezielt der Artenvielfalt dienen, z.B. Blühstreifen oder Hecken"},
+    {frage:"Was ist der Unterschied zwischen Kunstdünger und Naturdünger?", antwort:"Kunstdünger ist chemisch-synthetisch, Naturdünger stammt aus organischem Material wie Gülle oder Mist"},
+    {frage:"Was misst der pH-Wert eines Bodens?", antwort:"Den Säuregrad des Bodens"},
+    {frage:"Wofür steht die Abkürzung PS bei einem Traktor?", antwort:"Pferdestärke, ein Mass für die Motorleistung"},
+    {frage:"Was macht ein Melkroboter?", antwort:"Melkt Kühe automatisch, ohne manuelle Arbeit"},
+    {frage:"Wie viele Zitzen hat das Euter einer Kuh normalerweise?", antwort:"4"},
+    {frage:"Was sind Direktzahlungen in der Schweizer Landwirtschaft?", antwort:"Bundesbeiträge an Landwirtschaftsbetriebe für definierte Leistungen"},
+    {frage:"Was unterscheidet Nadelholz von Laubholz?", antwort:"Nadelholz hat Nadeln (meist mit Zapfen), Laubholz hat Blätter"},
+    {frage:"Was versteht man unter Mutterkuhhaltung?", antwort:"Kälber bleiben bei der Mutterkuh und werden von ihr gesäugt"},
+    {frage:"Wozu dient eine Güllegrube?", antwort:"Zur Lagerung von flüssigem Wirtschaftsdünger"},
+    {frage:"Welche drei Makronährstoffe brauchen Pflanzen am meisten?", antwort:"Stickstoff (N), Phosphor (P), Kalium (K)"}
+  ],
+  POMG: [
+    {frage:"Wofür steht die Abkürzung CNC?", antwort:"Computerized Numerical Control — computergesteuerte Werkzeugmaschine"},
+    {frage:"Was ist der Unterschied zwischen Drehen und Fräsen?", antwort:"Beim Drehen rotiert das Werkstück, beim Fräsen rotiert das Werkzeug"},
+    {frage:"Was passiert beim Härten von Stahl?", antwort:"Das Gefüge wird durch Erhitzen und schnelles Abkühlen verändert, der Stahl wird härter"},
+    {frage:"Womit misst man in der Feinmechanik sehr genau Längen (z.B. 0,01 mm)?", antwort:"Mit einer Mikrometerschraube (Bügelmessschraube)"},
+    {frage:"Was zeigt die Toleranzangabe bei einem Mass an?", antwort:"Den zulässigen Abweichungsbereich vom Nennmass"},
+    {frage:"Wofür steht CAD?", antwort:"Computer-Aided Design — computerunterstütztes Konstruieren"},
+    {frage:"Wofür steht CAM in der Fertigung?", antwort:"Computer-Aided Manufacturing — computerunterstützte Fertigung"},
+    {frage:"Was ist der Zweck von Schmiermitteln bei der spanenden Bearbeitung?", antwort:"Reibung und Verschleiss reduzieren, Wärme abführen"},
+    {frage:"Was ist ein Gewinde?", antwort:"Eine wendelförmige Rille zur Verbindung von Bauteilen, z.B. Schrauben"},
+    {frage:"Was geben die Kennwerte «Rz» bzw. «Ra» bei einer Werkstückoberfläche an?", antwort:"Die Oberflächenrauheit"},
+    {frage:"Was ist der Unterschied zwischen Bohren und Reiben?", antwort:"Bohren erzeugt die Grundbohrung, Reiben verfeinert Mass und Oberfläche"},
+    {frage:"Was versteht man unter einer Passung in der Feinmechanik?", antwort:"Das definierte Zusammenspiel (Spiel oder Übermass) zweier zu fügender Masse"},
+    {frage:"Was ist legierter Stahl?", antwort:"Stahl mit gezielt beigefügten weiteren Elementen zur Verbesserung der Eigenschaften"},
+    {frage:"Wozu dient eine Schablone oder Lehre in der Fertigung?", antwort:"Zur Kontrolle oder Führung bei der Herstellung gleichartiger Teile"},
+    {frage:"Was misst ein Messschieber?", antwort:"Innen-, Aussen- und Tiefenmasse eines Werkstücks"},
+    {frage:"Was ist ein Vorteil von CNC-Maschinen gegenüber manueller Bearbeitung?", antwort:"Höhere Präzision und Wiederholgenauigkeit bei der Fertigung"}
+  ],
+  SR: [
+    {frage:"Was unterscheidet Nadelholz von Laubholz?", antwort:"Nadelholz stammt von Nadelbäumen (z.B. Fichte, Tanne), Laubholz von Laubbäumen (z.B. Eiche, Buche)"},
+    {frage:"Was zeigen die Jahresringe eines Baumstamms?", antwort:"Das Alter des Baumes und die jährlichen Wachstumsphasen"},
+    {frage:"Was ist eine Zapfenverbindung?", antwort:"Eine klassische Holzverbindung, bei der ein Zapfen in ein passendes Zapfenloch gesteckt wird"},
+    {frage:"Was ist eine Schwalbenschwanzverbindung?", antwort:"Eine trapezförmige, sehr zugfeste Holzverbindung, oft bei Schubladen verwendet"},
+    {frage:"Was ist Furnier?", antwort:"Eine dünne, aus Holz geschälte oder gesägte Deckschicht"},
+    {frage:"Wofür steht die Abkürzung MDF?", antwort:"Mitteldichte Faserplatte"},
+    {frage:"Warum ist der Feuchtigkeitsgehalt von Holz wichtig?", antwort:"Er beeinflusst Stabilität, Form und Verarbeitbarkeit (Quellen und Schwinden)"},
+    {frage:"Wozu dient ein Hobel?", antwort:"Zum Glätten und massgenauen Bearbeiten von Holzoberflächen"},
+    {frage:"Was ist der Unterschied zwischen Massivholz und Plattenwerkstoff?", antwort:"Massivholz besteht aus einem Stück Holz, Plattenwerkstoffe (z.B. Spanplatte) aus verleimten Holzteilen"},
+    {frage:"Welcher Leim wird im Möbelbau am häufigsten verwendet?", antwort:"PVAC-Leim (Weissleim)"},
+    {frage:"Was ist der Unterschied zwischen Öl- und Lackoberflächen?", antwort:"Öl zieht ins Holz ein und lässt die Struktur offen, Lack bildet eine geschlossene Schutzschicht"},
+    {frage:"Was ist der Zweck einer Fase an einer Kante?", antwort:"Schutz vor Absplittern und angenehmere, sicherere Haptik"},
+    {frage:"Was bedeutet «auf Gehrung» arbeiten?", antwort:"Zwei Werkstücke im 45°-Winkel verbinden, z.B. bei Rahmenecken"},
+    {frage:"Wozu dient das Fügen von Brettern?", antwort:"Kanten exakt gerade hobeln, damit Bretter passgenau verleimt werden können"},
+    {frage:"Was unterscheidet Sperrholz von Massivholz?", antwort:"Sperrholz besteht aus mehreren kreuzweise verleimten Furnierschichten"},
+    {frage:"Warum quillt und schwindet Holz?", antwort:"Weil es Feuchtigkeit aus der Luft aufnimmt oder abgibt"}
+  ]
+};
+const GRUPPEN_LABEL = { AFP:'Automobiltechnik', EIN:'Elektrotechnik', LW:'Landwirtschaft', POMG:'Polymechanik', SR:'Schreinerei' };
+function aktuelleZeitfensterGruppe() {
+  const jetzt = new Date();
+  const tag = jetzt.getDay(); // 0=So, 1=Mo, 2=Di, 3=Mi, 4=Do, 5=Fr, 6=Sa
+  const vormittag = jetzt.getHours() < 12;
+  if (tag === 1) return vormittag ? 'AFP' : 'EIN';
+  if (tag === 2) return 'LW';
+  if (tag === 3) return vormittag ? 'POMG' : 'EIN';
+  if (tag === 4) return 'SR';
+  return null;
+}
+const aktiveGruppe = aktuelleZeitfensterGruppe();
+const frageListe = aktiveGruppe ? berufsFragen[aktiveGruppe] : fragen;
+const aktuelleFrage = frageListe[getWeekNumber(new Date()) % frageListe.length];
+document.getElementById('frageText').textContent = aktuelleFrage.frage;
+document.getElementById('antwortText').textContent = aktuelleFrage.antwort;
+if (aktiveGruppe) {
+  document.getElementById('frageGruppenLabel').textContent = ' · ' + GRUPPEN_LABEL[aktiveGruppe];
+}
+document.getElementById('frageBox').addEventListener('click', function() {
+  this.classList.toggle('flipped');
+});
+
 const BERUF_DATA = {
   LW:  { icon:'🚜', tag:'Wahlpflicht · Landwirtschaft' },
   EIN: { icon:'⚡', tag:'Wahlpflicht · Elektro', title:'Strom &amp; Netz im Wandel', desc:'Smart-Meter- und Solarpflicht 2026 — was sich für Elektroinstallateur:innen ändert.', href:'aktuell/elektro.html', available:true },
