@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABU Lernportal – Quiz-Rangliste</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --t1:#C0392B; --t2:#E67E22; --t3:#27AE60;
+  --t4:#2980B9; --t5:#F39C12; --t6:#8E44AD; --t7:#6C3483; --t8:#1a5276; --t9:#145a32; --t10:#117a65;
+  --g9:#111827; --g7:#374151; --g5:#6B7280; --g3:#D1D5DB; --g1:#F3F4F6;
+  --gold:#B8860B; --gold-bg:#FDF6E3;
+  --silver:#6B7280; --silver-bg:#F3F4F6;
+  --bronze:#A15C2E; --bronze-bg:#FBEEE4;
+  --ok:#2E7D32; --err:#C62828;
+  --focus:#2980B9;
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:'DM Sans',sans-serif; background:#F0F2F5; color:var(--g7); }
+.wrap { max-width:760px; margin:0 auto; padding:2rem 1.25rem 4rem; }
+
+.nav-bar { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; }
+.back-btn { font-size:13px; font-weight:500; color:var(--g5); text-decoration:none; }
+.back-btn:hover { color:var(--g9); }
+
+.eyebrow { font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--g5); margin-bottom:6px; }
+h1 { font-family:'Barlow Condensed',sans-serif; font-weight:800; text-transform:uppercase; font-size:clamp(28px,6vw,38px); letter-spacing:-0.2px; color:var(--g9); line-height:1.05; margin-bottom:6px; }
+.sub { font-size:13.5px; color:var(--g5); max-width:56ch; line-height:1.5; margin-bottom:1.5rem; }
+
+.filters { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:1.25rem; }
+.filters select {
+  font:inherit; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; color:var(--g7);
+  background:#fff; border:1px solid var(--g3); border-radius:9px; padding:9px 32px 9px 12px;
+  cursor:pointer; box-shadow:0 1px 4px rgba(17,24,39,.06);
+  appearance:none; -webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236B7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat; background-position:right 12px center;
+  flex:1; min-width:180px;
+}
+.filters select:focus-visible { outline:2px solid var(--focus); outline-offset:1px; }
+
+.stats { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:1.5rem; }
+.stat { background:#fff; border:1px solid var(--g3); border-radius:12px; padding:14px 10px; text-align:center; box-shadow:0 1px 4px rgba(17,24,39,.06); }
+.stat .lbl { font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em; color:var(--g5); margin-bottom:5px; }
+.stat .val { font-family:'JetBrains Mono',monospace; font-weight:700; font-variant-numeric:tabular-nums; font-size:21px; color:var(--g9); }
+.stat .val small { font-family:'DM Sans',sans-serif; font-weight:600; font-size:11.5px; color:var(--g5); margin-left:2px; }
+
+.board-head { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:.6rem; gap:8px; flex-wrap:wrap; }
+.board-head h2 { font-family:'Barlow Condensed',sans-serif; font-weight:800; text-transform:uppercase; font-size:16px; letter-spacing:.02em; color:var(--g9); }
+.board-head span { font-size:12px; color:var(--g5); }
+
+.board { display:flex; flex-direction:column; gap:8px; }
+.row { display:grid; grid-template-columns:34px 1fr auto; align-items:center; gap:12px; background:#fff; border:1px solid var(--g3); border-radius:12px; padding:11px 14px; box-shadow:0 1px 4px rgba(17,24,39,.06); }
+.row.me { border-color:var(--focus); box-shadow:0 0 0 1px var(--focus), 0 4px 14px rgba(41,128,185,.15); }
+.row.top { padding:13px 14px; }
+.row.top.r1 { background:linear-gradient(180deg,var(--gold-bg),#fff 65%); }
+.row.top.r2 { background:linear-gradient(180deg,var(--silver-bg),#fff 65%); }
+.row.top.r3 { background:linear-gradient(180deg,var(--bronze-bg),#fff 65%); }
+
+.rank { font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:20px; color:var(--g5); text-align:center; font-variant-numeric:tabular-nums; }
+.rank.medal { font-size:22px; }
+.r1 .rank { color:var(--gold); } .r2 .rank { color:var(--silver); } .r3 .rank { color:var(--bronze); }
+
+.who { min-width:0; }
+.who .name { font-weight:700; font-size:14.5px; color:var(--g9); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.who .meta { font-size:11.5px; color:var(--g5); margin-top:2px; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+.klasse-tag { font-family:'JetBrains Mono',monospace; font-weight:700; font-size:10.5px; color:var(--g7); background:var(--g1); padding:1.5px 6px; border-radius:6px; }
+.chip { display:inline-flex; align-items:center; gap:3px; font-size:10.5px; font-weight:600; color:var(--g5); }
+
+.score { text-align:right; }
+.score .pts { font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16.5px; color:var(--g9); font-variant-numeric:tabular-nums; }
+.score .pct { font-size:11px; color:var(--g5); font-variant-numeric:tabular-nums; }
+
+.state-msg { text-align:center; padding:2.5rem 1rem; color:var(--g5); font-size:13.5px; }
+.state-msg.err { color:var(--err); }
+
+footer.note { margin-top:2.25rem; font-size:11.5px; color:var(--g5); line-height:1.6; border-top:1px solid var(--g3); padding-top:14px; }
+
+@media (max-width:420px) { .stat .val { font-size:18px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="nav-bar">
+    <a class="back-btn" href="index.html">← Zur Startseite</a>
+  </div>
+
+  <div class="eyebrow">ABU-Lernraum · Quiz</div>
+  <h1>Rangliste</h1>
+  <p class="sub">Bestwerte aus allen Quiz — nach Serie oder über alle 33 Serien zusammengezählt (nur der beste Versuch pro Serie zählt für die Gesamtwertung). Nach Klasse filterbar.</p>
+
+  <div class="filters">
+    <select id="serieSelect" aria-label="Serie wählen"></select>
+    <select id="klasseSelect" aria-label="Klasse wählen">
+      <option value="">Alle Klassen</option>
+    </select>
+  </div>
+
+  <div class="stats" id="stats" style="display:none">
+    <div class="stat"><div class="lbl">Dein Rang</div><div class="val" id="meRank">–</div></div>
+    <div class="stat"><div class="lbl">Dein Score</div><div class="val" id="meScore">–</div></div>
+    <div class="stat"><div class="lbl">Teilnehmer</div><div class="val" id="totalCount">–</div></div>
+  </div>
+
+  <div class="board-head">
+    <h2 id="boardTitle">Rangliste</h2>
+    <span id="boardSub"></span>
+  </div>
+
+  <div class="board" id="board">
+    <div class="state-msg">Lädt…</div>
+  </div>
+
+  <footer class="note">
+    Ergebnisse werden freiwillig beim Speichern eines Quiz übermittelt. Punkte sind je nach Serie unterschiedlich skaliert (Streak-/Tempo-Boni) — die Prozentzahl macht Serien untereinander vergleichbar. ⏱ kennzeichnet einen Durchlauf mit Zeitlimit, 🏆 einen offiziellen Wettbewerbs-Versuch.
+  </footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script>
+const SUPABASE_URL="https://lrpaomltzrfgtupzeooq.supabase.co";
+const SUPABASE_KEY="sb_publishable_Q9t2s4kLLNy--Tkm8EwLBQ_CbHJo9G-";
+let supabaseClient=null;
+function getClient(){ if(!supabaseClient && window.supabase) supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY); return supabaseClient; }
+
+const SERIES=[
+ {code:'101',thema:'Thema 1 · Mein Lehrbeginn',title:'Lehrvertrag & Rechte/Pflichten'},
+ {code:'102',thema:'Thema 1 · Mein Lehrbeginn',title:'Rechtsgrundlagen'},
+ {code:'103',thema:'Thema 1 · Mein Lehrbeginn',title:'Kommunikation & Konflikte'},
+ {code:'201',thema:'Thema 2 · Mein Geld',title:'Lohn & Budget'},
+ {code:'202',thema:'Thema 2 · Mein Geld',title:'Konsum & Werbung'},
+ {code:'203',thema:'Thema 2 · Mein Geld',title:'Kaufvertrag'},
+ {code:'204',thema:'Thema 2 · Mein Geld',title:'Investition & Finanzierung'},
+ {code:'205',thema:'Thema 2 · Mein Geld',title:'Steuern & Vorsorge'},
+ {code:'206',thema:'Thema 2 · Mein Geld',title:'Mobilität'},
+ {code:'301',thema:'Thema 3 · Meine Gesundheit',title:'Gesundheitsfaktoren'},
+ {code:'302',thema:'Thema 3 · Meine Gesundheit',title:'Prävention'},
+ {code:'303',thema:'Thema 3 · Meine Gesundheit',title:'Krankenkasse & Versicherung'},
+ {code:'304',thema:'Thema 3 · Meine Gesundheit',title:'Stress, Sucht & Resilienz'},
+ {code:'305',thema:'Thema 3 · Meine Gesundheit',title:'Gewalt & Zivilcourage'},
+ {code:'401',thema:'Thema 4 · Unsere Schweiz',title:'Demokratie & Politik'},
+ {code:'402',thema:'Thema 4 · Unsere Schweiz',title:'Meinungsbildung & Medien'},
+ {code:'403',thema:'Thema 4 · Unsere Schweiz',title:'Vielseitigkeit der Schweiz'},
+ {code:'404',thema:'Thema 4 · Unsere Schweiz',title:'Medien & KI'},
+ {code:'405',thema:'Thema 4 · Unsere Schweiz',title:'Kultur entdecken'},
+ {code:'501',thema:'Thema 5 · Unser Zusammenleben',title:'Beziehungen'},
+ {code:'502',thema:'Thema 5 · Unser Zusammenleben',title:'Ausziehen & Mietrecht'},
+ {code:'503',thema:'Thema 5 · Unser Zusammenleben',title:'Lebensmodelle & Eherecht'},
+ {code:'504',thema:'Thema 5 · Unser Zusammenleben',title:'Multikulturelles Leben'},
+ {code:'505',thema:'Thema 5 · Unser Zusammenleben',title:'Gesellschaft mitgestalten'},
+ {code:'506',thema:'Thema 5 · Unser Zusammenleben',title:'Erbrecht & Güterrecht'},
+ {code:'601',thema:'Thema 6 · Unsere Welt',title:'Weltgeschehen'},
+ {code:'602',thema:'Thema 6 · Unsere Welt',title:'Ökologie & Klimawandel'},
+ {code:'603',thema:'Thema 6 · Unsere Welt',title:'Globale Vernetzung'},
+ {code:'604',thema:'Thema 6 · Unsere Welt',title:'Migration'},
+ {code:'701',thema:'Thema 7 · Meine Zukunft',title:'Arbeitsmarkt & Wirtschaft'},
+ {code:'702',thema:'Thema 7 · Meine Zukunft',title:'Stellensuche & Bewerbung'},
+ {code:'703',thema:'Thema 7 · Meine Zukunft',title:'Lohn, Steuern & Vorsorge'},
+ {code:'704',thema:'Thema 7 · Meine Zukunft',title:'Zukunftsperspektiven'},
+];
+
+const $=id=>document.getElementById(id);
+
+function buildSerieSelect(){
+  const sel=$('serieSelect');
+  let html='<option value="">Gesamt (alle Serien)</option>';
+  let curThema='';
+  SERIES.forEach(s=>{
+    if(s.thema!==curThema){ if(curThema)html+='</optgroup>'; html+=`<optgroup label="${s.thema}">`; curThema=s.thema; }
+    html+=`<option value="${s.code}">${s.code} · ${s.title}</option>`;
+  });
+  html+='</optgroup>';
+  sel.innerHTML=html;
+}
+
+async function loadKlassenOptions(){
+  const client=getClient();
+  if(!client)return;
+  try{
+    const { data, error } = await client.from('klassen').select('code').eq('aktiv',true).order('code');
+    if(error)throw error;
+    const sel=$('klasseSelect');
+    data.forEach(r=>{ const o=document.createElement('option'); o.value=r.code; o.textContent=r.code; sel.appendChild(o); });
+  }catch(e){ /* Tabelle evtl. noch nicht angelegt - Dropdown bleibt bei "Alle Klassen" */ }
+}
+
+function medalIcon(rank){ return rank===1?'🥇':rank===2?'🥈':rank===3?'🥉':null; }
+
+function renderBoard(rows, meKey){
+  const board=$('board');
+  if(!rows.length){ board.innerHTML='<div class="state-msg">Noch keine Ergebnisse für diese Auswahl.</div>'; $('stats').style.display='none'; return; }
+
+  $('totalCount').textContent=rows.length;
+  const meIdx=rows.findIndex(r=>r.key===meKey);
+  if(meIdx>=0){
+    $('meRank').innerHTML=(meIdx+1)+'<small>/ '+rows.length+'</small>';
+    $('meScore').innerHTML=rows[meIdx].pts+'<small>Pkt</small>';
+  }else{
+    $('meRank').textContent='–'; $('meScore').textContent='–';
+  }
+  $('stats').style.display='grid';
+
+  board.innerHTML=rows.map((r,idx)=>{
+    const rank=idx+1;
+    const medal=medalIcon(rank);
+    const topClass=medal?`top r${rank}`:'';
+    const meClass=r.key===meKey?'me':'';
+    const chips=[];
+    if(r.mit_timer)chips.push('<span class="chip">⏱</span>');
+    if(r.wettbewerb)chips.push('<span class="chip">🏆</span>');
+    return `<div class="row ${topClass} ${meClass}">
+      <div class="rank ${medal?'medal':''}">${medal||rank}</div>
+      <div class="who">
+        <div class="name">${r.name}</div>
+        <div class="meta"><span class="klasse-tag">${r.klasse}</span>${chips.join('')}</div>
+      </div>
+      <div class="score"><div class="pts">${r.pts}</div><div class="pct">${r.pct}%</div></div>
+    </div>`;
+  }).join('');
+}
+
+async function loadData(){
+  const board=$('board');
+  board.innerHTML='<div class="state-msg">Lädt…</div>';
+  $('stats').style.display='none';
+
+  const client=getClient();
+  if(!client){ board.innerHTML='<div class="state-msg err">Keine Verbindung zur Datenbank möglich.</div>'; return; }
+
+  const serie=$('serieSelect').value;
+  const klasse=$('klasseSelect').value;
+  const meName=localStorage.getItem('abu_quiz_name')||'';
+  const meKlasse=localStorage.getItem('abu_quiz_klasse')||'';
+  const meKey=meName+'␟'+meKlasse;
+
+  try{
+    let query=client.from('quiz_ergebnisse').select('name,klasse,serie,score,max_score,prozent,zeit_sekunden,mit_timer,wettbewerb');
+    if(klasse) query=query.eq('klasse',klasse);
+    if(serie) query=query.eq('serie',serie);
+    const { data, error } = await query;
+    if(error) throw error;
+
+    if(serie){
+      $('boardTitle').textContent=serie+' · '+(SERIES.find(s=>s.code===serie)||{}).title;
+      $('boardSub').textContent=(klasse?('Klasse '+klasse+' · '):'Alle Klassen · ')+'bester Versuch pro Person';
+      const best={};
+      data.forEach(row=>{
+        const key=row.name+'␟'+row.klasse;
+        const cur=best[key];
+        if(!cur || row.score>cur.score || (row.score===cur.score && (row.zeit_sekunden||9999)<(cur.zeit_sekunden||9999))){
+          best[key]={...row,key};
+        }
+      });
+      const rows=Object.values(best).map(r=>({key:r.key,name:r.name,klasse:r.klasse,pts:r.score,pct:r.prozent,mit_timer:r.mit_timer,wettbewerb:r.wettbewerb,zeit:r.zeit_sekunden}));
+      rows.sort((a,b)=> b.pts-a.pts || (a.zeit||9999)-(b.zeit||9999));
+      renderBoard(rows,meKey);
+    }else{
+      $('boardTitle').textContent='Gesamt-Rangliste';
+      $('boardSub').textContent=(klasse?('Klasse '+klasse+' · '):'Alle Klassen · ')+'Summe der besten Versuche über alle Serien';
+      const bestPerSerie={};
+      data.forEach(row=>{
+        const key=row.name+'␟'+row.klasse+'␟'+row.serie;
+        const cur=bestPerSerie[key];
+        if(!cur || row.score>cur.score) bestPerSerie[key]=row;
+      });
+      const totals={};
+      Object.values(bestPerSerie).forEach(row=>{
+        const key=row.name+'␟'+row.klasse;
+        if(!totals[key]) totals[key]={key,name:row.name,klasse:row.klasse,pts:0,seriesCount:0,pctSum:0,mit_timer:false,wettbewerb:false};
+        totals[key].pts+=row.score;
+        totals[key].pctSum+=row.prozent;
+        totals[key].seriesCount++;
+        if(row.mit_timer)totals[key].mit_timer=true;
+        if(row.wettbewerb)totals[key].wettbewerb=true;
+      });
+      const rows=Object.values(totals).map(r=>({...r,pct:Math.round(r.pctSum/r.seriesCount)}));
+      rows.sort((a,b)=> b.pts-a.pts);
+      renderBoard(rows,meKey);
+    }
+  }catch(err){
+    board.innerHTML='<div class="state-msg err">Fehler beim Laden: '+(err&&err.message?err.message:'unbekannt')+'</div>';
+  }
+}
+
+buildSerieSelect();
+loadKlassenOptions();
+loadData();
+$('serieSelect').addEventListener('change',loadData);
+$('klasseSelect').addEventListener('change',loadData);
+</script>
+</body>
+</html>

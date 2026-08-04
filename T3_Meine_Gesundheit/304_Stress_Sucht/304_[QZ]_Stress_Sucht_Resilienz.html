@@ -66,6 +66,19 @@ button.btn{font:inherit;font-weight:700;padding:12px 22px;border-radius:10px;bor
 .extras-body{flex:1;font-size:.88rem;color:var(--ink-soft);line-height:1.4}
 .extras-body b{color:var(--ink);font-size:.94rem}
 .extras-arrow{color:var(--ink-soft);font-size:1.1rem}
+.start-opts{margin:14px 0 18px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:.85rem;color:var(--ink-soft)}
+.start-opts input{width:16px;height:16px;accent-color:var(--t1)}
+.qtimer{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.qtimer-bar{flex:1;height:6px;background:var(--line);border-radius:99px;overflow:hidden}
+.qtimer-bar i{display:block;height:100%;background:var(--t1);width:100%;transition:width 1s linear,background .3s}
+.qtimer-num{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.85rem;color:var(--ink-soft);min-width:28px;text-align:right}
+.save-box{margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
+.save-box .row{display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;justify-content:center}
+.save-box input[type=text]{flex:1;min-width:140px;max-width:220px;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;font:inherit;font-size:.9rem}
+.save-box input[type=text]:focus{outline:none;border-color:var(--t1)}
+.save-msg{font-size:.82rem;margin-top:8px;display:none}
+.save-msg.ok{color:var(--ok);display:block}
+.save-msg.err{color:var(--err);display:block}
 @media print{.qz-nav{display:none}}
 </style>
 </head>
@@ -96,6 +109,10 @@ button.btn{font:inherit;font-weight:700;padding:12px 22px;border-radius:10px;bor
       <div class="rank">🧘</div>
       <div class="big">Stress &amp; Resilienz-Arena</div>
       <p class="subtitle">12 Fragen · 3 Levels · Streak-Bonus ab 3 richtigen in Serie · 1 Joker (50:50).<br>Von den vier Suchtphasen bis zu den sieben Resilienz-Säulen – wie weit kommst du?</p>
+      <div class="start-opts"><label><input type="checkbox" id="timerToggle"> Mit Zeitlimit spielen (20 Sek./Frage, gestaffelter Tempo-Bonus)</label></div>
+      <div class="start-opts"><label><input type="checkbox" id="wettbewerbToggle" onchange="onWettbewerbToggle()"> Wettbewerbsmodus (1 Versuch heute, erzwingt Timer)</label></div>
+      <div id="wettbewerbNote" style="display:none;font-size:.78rem;color:var(--err);margin:-8px 0 14px;text-align:center"></div>
+      <div id="wbIdentity" style="display:none"></div>
       <button class="btn btn-main" onclick="start()">Quiz starten</button>
     </div>
   </div>
@@ -111,6 +128,7 @@ button.btn{font:inherit;font-weight:700;padding:12px 22px;border-radius:10px;bor
   </div>
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
 <script>
 const QUESTIONS=[
  // Level 1
@@ -126,7 +144,7 @@ const QUESTIONS=[
  // Level 3
  {lv:3,q:"Eine Person konsumiert nicht mehr aus freiem Willen, sondern verspürt einen körperlichen Zwang und fühlt sich ohne die Substanz krank. Welche Phase ist das, und was unterscheidet sie von der Missbrauchsphase?",o:["Missbrauchsphase – identisch mit der vorherigen Phase","Abhängigkeitsphase – der Konsum steht nicht mehr im eigenen Willen, anders als beim beginnenden Kontrollverlust der Missbrauchsphase","Genussphase – weiterhin kontrollierter Konsum"],a:1,fb:"Die Abhängigkeitsphase geht über den beginnenden Kontrollverlust der Missbrauchsphase hinaus: Der Konsum ist nicht mehr willentlich steuerbar."},
  {lv:3,q:"Zwei Jugendliche zeigen ein ähnliches Konsumverhalten: Person A hat ein stabiles soziales Umfeld, Person B ist stark isoliert und steht unter Gruppendruck aus einer anderen Clique. Wer trägt laut Theorie ein höheres Risiko für eine Abhängigkeit?",o:["Person B, da Einsamkeit und Gruppendruck begünstigende Faktoren für eine Abhängigkeit sind","Beide tragen exakt dasselbe Risiko","Nur die konsumierte Menge entscheidet, das soziale Umfeld spielt keine Rolle"],a:0,fb:"Einsamkeit und Gruppendruck gehören zu den Faktoren, die eine Abhängigkeit laut Theorie begünstigen können."},
- {lv:3,q:"Ein Lernender hat vier Aufgaben: A) Prüfung morgen, B) langfristiges Projekt für in drei Monaten, C) eine Kollegin bittet kurzfristig um eine für seine Ziele unwichtige Gefälligkeit, D) ein altes Hobby-Projekt ohne Bezug zu seinen Zielen. Wie sollte er nach der Eisenhower-Matrix vorgehen?",o:["A sofort erledigen, B einplanen, C delegieren/kurz erledigen, D streichen","Alle vier Aufgaben sofort in der genannten Reihenfolge abarbeiten","Nur A bearbeiten und B, C, D vollständig ignorieren"],a:0,fb:"Jede Aufgabe landet je nach Wichtigkeit/Dringlichkeit in einem anderen Feld der Matrix – nicht alles läuft gleich."},
+ {lv:3,q:"Ein Lernender hat vier Aufgaben: (A) Prüfung morgen, (B) langfristiges Projekt für in drei Monaten, (C) eine Kollegin bittet kurzfristig um eine für seine Ziele unwichtige Gefälligkeit, (D) ein altes Hobby-Projekt ohne Bezug zu seinen Zielen. Wie sollte er nach der Eisenhower-Matrix vorgehen?",o:["A sofort erledigen, B einplanen, C delegieren/kurz erledigen, D streichen","Alle vier Aufgaben sofort in der genannten Reihenfolge abarbeiten","Nur A bearbeiten und B, C, D vollständig ignorieren"],a:0,fb:"Jede Aufgabe landet je nach Wichtigkeit/Dringlichkeit in einem anderen Feld der Matrix – nicht alles läuft gleich."},
  {lv:3,q:"Eine Person erlebt einen Rückschlag, sagt sich aber: «Ich habe das schon einmal überstanden, ich finde einen Weg» – und plant konkrete nächste Schritte, statt sich in Selbstmitleid zu verlieren. Welche zwei Resilienz-Säulen zeigen sich hier vor allem?",o:["Optimismus und Lösungsorientierung","Netzwerkorientierung und Zukunftsplanung","Akzeptanz und Verantwortung übernehmen"],a:0,fb:"Die Zuversicht («ich finde einen Weg») ist Optimismus, das Planen konkreter Schritte ist Lösungsorientierung."}
 ];
 const RANKS=[
@@ -135,20 +153,125 @@ const RANKS=[
  {min:85,icon:"🧘",name:"Resilienz-Ass",txt:"Top! Du gehst bewusst mit Belastungen um."}
 ];
 const BASE=10, STREAK_AT=3, SPEED_MS=8000, SPEED_PTS=5;
+const TIMER_SECONDS=20;
+const TIMER_TIERS=[{max:5,bonus:10},{max:10,bonus:6},{max:15,bonus:3},{max:20,bonus:0}];
+const SERIE_CODE=(document.querySelector('.topbar .tag').textContent.match(/\d+/)||[''])[0];
+const SUPABASE_URL="https://lrpaomltzrfgtupzeooq.supabase.co";
+const SUPABASE_KEY="sb_publishable_Q9t2s4kLLNy--Tkm8EwLBQ_CbHJo9G-";
+let supabaseClient=null;
+function getSupabaseClient(){ if(!supabaseClient && window.supabase) supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY); return supabaseClient; }
 let order=[],i=0,pts=0,streak=0,best=0,joker=1,tStart=0,correctCount=0,locked=false;
+let timerOn=false,timerLeft=0,timerHandle=null,runStart=0;
+let wettbewerbOn=false,advanceHandle=null;
+let KLASSEN_CACHE=null;
 const $=id=>document.getElementById(id);
+
+function todayKey(){ return new Date().toISOString().slice(0,10); }
+function wettbewerbLockKey(){ return 'abu_wettbewerb_'+SERIE_CODE+'_'+todayKey(); }
+
+function checkWettbewerbLock(){
+  const box=$('wettbewerbToggle'), note=$('wettbewerbNote');
+  if(!box)return;
+  if(localStorage.getItem(wettbewerbLockKey())){
+    box.checked=false; box.disabled=true;
+    if(note){ note.style.display='block'; note.textContent='Du hast heute bereits am Wettbewerb teilgenommen. Normales Spielen (ohne Haken) ist weiterhin möglich.'; }
+  }
+}
+
+function onWettbewerbToggle(){
+  const wBox=$('wettbewerbToggle'), tBox=$('timerToggle');
+  if(!wBox||!tBox)return;
+  if(wBox.checked){ tBox.checked=true; tBox.disabled=true; }
+  else{ tBox.disabled=false; }
+  renderWbIdentity();
+}
+
+function renderWbIdentity(){
+  const box=$('wbIdentity'), wBox=$('wettbewerbToggle');
+  if(!box||!wBox)return;
+  if(!wBox.checked){ box.style.display='none'; box.innerHTML=''; return; }
+  const name=localStorage.getItem('abu_quiz_name')||'';
+  const klasse=localStorage.getItem('abu_quiz_klasse')||'';
+  box.style.display='block';
+  if(name && klasse){
+    box.innerHTML=`<p class="subtitle" style="margin:-6px 0 14px">Du spielst als: <b>${name}</b> (${klasse}). <a href="#" onclick="resetWbIdentity();return false;" style="color:var(--t1)">Nicht du?</a></p>`;
+  }else{
+    const klasseField = KLASSEN_CACHE && KLASSEN_CACHE.length
+      ? `<select id="wbKlasse" style="max-width:130px"><option value="">Klasse wählen</option>${KLASSEN_CACHE.map(k=>`<option value="${k}">${k}</option>`).join('')}</select>`
+      : `<input type="text" id="wbKlasse" placeholder="Klasse, z.B. 3a" style="max-width:110px">`;
+    box.innerHTML=`<div class="row" style="display:flex;gap:8px;justify-content:center;margin:8px 0 14px;flex-wrap:wrap">
+      <input type="text" id="wbName" placeholder="Vorname Nachname" style="flex:1;min-width:140px;max-width:220px;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;font:inherit;font-size:.9rem">
+      ${klasseField}
+    </div>`;
+  }
+}
+
+function resetWbIdentity(){
+  localStorage.removeItem('abu_quiz_name');
+  localStorage.removeItem('abu_quiz_klasse');
+  renderWbIdentity();
+}
+
+async function loadKlassen(){
+  const client=getSupabaseClient();
+  if(!client)return null;
+  try{
+    const { data, error } = await client.from('klassen').select('code').eq('aktiv',true).order('code');
+    if(error)throw error;
+    KLASSEN_CACHE=data.map(r=>r.code);
+  }catch(e){ /* Tabelle evtl. noch nicht angelegt - Freitext-Fallback greift */ }
+  renderWbIdentity();
+  return KLASSEN_CACHE;
+}
+
+function titleCase(s){
+  return s.trim().split(/\s+/).filter(Boolean).map(w=>w.charAt(0).toUpperCase()+w.slice(1).toLowerCase()).join(' ');
+}
+loadKlassen();
+checkWettbewerbLock();
 
 function shuffle(a){for(let j=a.length-1;j>0;j--){const k=Math.floor(Math.random()*(j+1));[a[j],a[k]]=[a[k],a[j]]}return a}
 
 function start(){
+  wettbewerbOn = !!($('wettbewerbToggle') && $('wettbewerbToggle').checked && !$('wettbewerbToggle').disabled);
+  timerOn = wettbewerbOn || !!($('timerToggle') && $('timerToggle').checked);
+  if(wettbewerbOn){
+    let name=localStorage.getItem('abu_quiz_name')||'';
+    let klasse=localStorage.getItem('abu_quiz_klasse')||'';
+    if(!name||!klasse){
+      const nameEl=$('wbName'), klasseEl=$('wbKlasse');
+      const n=nameEl?titleCase(nameEl.value):'', k=klasseEl?klasseEl.value.trim():'';
+      if(!n||!k){ alert('Bitte zuerst Name und Klasse eingeben, um am Wettbewerb teilzunehmen.'); return; }
+      localStorage.setItem('abu_quiz_name',n);
+      localStorage.setItem('abu_quiz_klasse',k);
+    }
+  }
+  runStart=Date.now();
+  loadKlassen();
   order=[...shuffle(QUESTIONS.filter(q=>q.lv==1)),...shuffle(QUESTIONS.filter(q=>q.lv==2)),...shuffle(QUESTIONS.filter(q=>q.lv==3))];
   i=0;pts=0;streak=0;best=0;joker=1;correctCount=0;
   $('hud').style.display='flex';$('prog').style.display='block';
   render();
 }
 
+function updateTimerUI(){
+  const bar=$('qtBar'), num=$('qtNum');
+  if(!bar||!num)return;
+  const pct=Math.max(0,timerLeft/TIMER_SECONDS*100);
+  bar.style.width=pct+'%';
+  bar.style.background = timerLeft<=5 ? 'var(--err)' : (timerLeft<=10 ? 'var(--gold)' : 'var(--t1)');
+  num.textContent=timerLeft+'s';
+}
+
+function onTimeout(){
+  if(locked)return;
+  pick(-1,null);
+}
+
 function render(){
   locked=false;
+  if(timerHandle){clearInterval(timerHandle);timerHandle=null;}
+  if(advanceHandle){clearInterval(advanceHandle);advanceHandle=null;}
   const q=order[i];
   $('hQ').textContent=(i+1)+'/'+order.length;
   $('hP').textContent=pts;
@@ -156,16 +279,28 @@ function render(){
   $('hS').classList.toggle('streak-hot',streak>=STREAK_AT);
   $('progFill').style.width=(i/order.length*100)+'%';
   const lvClass='lv'+q.lv, lvName=['','Level 1 · Aufwärmen','Level 2 · Anwenden','Level 3 · Fälle knacken'][q.lv];
+  const timerHtml = timerOn ? `<div class="qtimer"><div class="qtimer-bar"><i id="qtBar"></i></div><div class="qtimer-num" id="qtNum">${TIMER_SECONDS}s</div></div>` : '';
   $('stage').innerHTML=`
     <span class="level-badge ${lvClass}">${lvName}</span>
+    ${timerHtml}
     <div class="qtext pop">${q.q}</div>
     <div class="opts" id="opts">${q.o.map((o,idx)=>`<button onclick="pick(${idx},this)">${o}</button>`).join('')}</div>
     <div class="fb" id="fb"></div>
     <div class="actions">
       <button class="btn btn-joker" id="jBtn" ${joker?'':'disabled'} onclick="useJoker()">50:50 Joker (${joker})</button>
       <button class="btn btn-main" id="next" style="display:none" onclick="nextQ()">Weiter →</button>
-    </div>`;
+    </div>
+    <div id="autoNote" style="font-size:.76rem;color:var(--ink-soft);text-align:center;margin-top:8px"></div>`;
   tStart=Date.now();
+  if(timerOn){
+    timerLeft=TIMER_SECONDS;
+    updateTimerUI();
+    timerHandle=setInterval(()=>{
+      timerLeft--;
+      if(timerLeft<=0){ clearInterval(timerHandle); timerHandle=null; timerLeft=0; updateTimerUI(); onTimeout(); }
+      else updateTimerUI();
+    },1000);
+  }
 }
 
 function useJoker(){
@@ -178,35 +313,93 @@ function useJoker(){
 
 function pick(idx,btn){
   if(locked)return;locked=true;
+  if(timerHandle){clearInterval(timerHandle);timerHandle=null;}
   const q=order[i],btns=[...document.querySelectorAll('#opts button')];
   btns.forEach(b=>b.disabled=true);
-  const ok=idx===q.a, fast=Date.now()-tStart<SPEED_MS;
+  const elapsedMs=Date.now()-tStart;
+  const ok=idx===q.a, fast=elapsedMs<SPEED_MS;
   const fb=$('fb');
   if(ok){
     correctCount++;streak++;best=Math.max(best,streak);
     let gain=BASE*q.lv, tags='';
     if(streak>=STREAK_AT){gain*=2;tags+='<span class="bonus-tag">Streak ×2</span>'}
-    if(fast){gain+=SPEED_PTS;tags+='<span class="bonus-tag">Tempo +5</span>'}
+    if(timerOn){
+      const secs=elapsedMs/1000;
+      const tier=TIMER_TIERS.find(t=>secs<=t.max)||TIMER_TIERS[TIMER_TIERS.length-1];
+      if(tier.bonus>0){gain+=tier.bonus;tags+=`<span class="bonus-tag">Tempo +${tier.bonus}</span>`}
+    }else if(fast){
+      gain+=SPEED_PTS;tags+='<span class="bonus-tag">Tempo +5</span>';
+    }
     pts+=gain;
-    btn.classList.add('right');
+    if(btn)btn.classList.add('right');
     fb.className='fb show good';fb.innerHTML=`✔ Richtig! +${gain} ${tags}<br>${q.fb}`;
   }else{
     streak=0;
-    btn.classList.add('wrong');btns[q.a].classList.add('right');
-    fb.className='fb show bad';fb.innerHTML=`✘ Daneben. ${q.fb}`;
+    if(btn)btn.classList.add('wrong');
+    btns[q.a].classList.add('right');
+    const timeoutNote = idx===-1 ? '⏱ Zeit abgelaufen. ' : '';
+    fb.className='fb show bad';fb.innerHTML=`✘ ${timeoutNote}Daneben. ${q.fb}`;
   }
   $('hP').textContent=pts;$('hS').textContent=streak;
   $('next').style.display='inline-block';
-  $('next').textContent=(i===order.length-1)?'Auswertung →':'Weiter →';
+  const nextLabel=(i===order.length-1)?'Auswertung':'Weiter';
+  $('next').textContent=nextLabel+' →';
+  if(wettbewerbOn){
+    let secsLeft=5;
+    const note=$('autoNote');
+    const updateNote=()=>{ if(note)note.textContent='Automatisch weiter in '+secsLeft+'s …'; };
+    updateNote();
+    advanceHandle=setInterval(()=>{
+      secsLeft--;
+      if(secsLeft<=0){ clearInterval(advanceHandle); advanceHandle=null; nextQ(); }
+      else updateNote();
+    },1000);
+  }
 }
 
-function nextQ(){ i++; i<order.length?render():finish(); }
+function nextQ(){
+  if(advanceHandle){clearInterval(advanceHandle);advanceHandle=null;}
+  i++; i<order.length?render():finish();
+}
 
 function finish(){
+  if(timerHandle){clearInterval(timerHandle);timerHandle=null;}
+  if(advanceHandle){clearInterval(advanceHandle);advanceHandle=null;}
   $('progFill').style.width='100%';
   const maxPts=order.reduce((s,q)=>s+BASE*q.lv,0);
   const pct=Math.min(100,Math.round(pts/maxPts*100));
   const rank=[...RANKS].reverse().find(r=>pct>=r.min);
+  const totalSec=Math.round((Date.now()-runStart)/1000);
+
+  if(wettbewerbOn){
+    const name=localStorage.getItem('abu_quiz_name')||'';
+    const klasse=localStorage.getItem('abu_quiz_klasse')||'';
+    $('stage').innerHTML=`
+      <div class="center pop">
+        <div class="rank">${rank.icon}</div>
+        <div class="big">${rank.name}</div>
+        <p class="subtitle">${rank.txt}</p>
+        <div class="hud" style="justify-content:center">
+          <div class="box"><div class="lbl">Punkte</div><div class="val">${pts}</div></div>
+          <div class="box"><div class="lbl">Richtig</div><div class="val">${correctCount}/${order.length}</div></div>
+          <div class="box"><div class="lbl">Beste Serie</div><div class="val">${best}</div></div>
+        </div>
+        <div class="save-box" id="wbSaveBox">
+          <p class="save-msg ok" style="display:block">⏳ Wird gespeichert für ${name} (${klasse})…</p>
+        </div>
+      </div>`;
+    saveWettbewerbResult(pts,maxPts,pct,totalSec,name,klasse);
+    return;
+  }
+
+  const savedName=(localStorage.getItem('abu_quiz_name')||'').replace(/"/g,'&quot;');
+  const savedKlasse=localStorage.getItem('abu_quiz_klasse')||'';
+  const klasseField = KLASSEN_CACHE && KLASSEN_CACHE.length
+    ? `<select id="resKlasse" style="max-width:130px">
+        <option value="">Klasse wählen</option>
+        ${KLASSEN_CACHE.map(k=>`<option value="${k}" ${k===savedKlasse?'selected':''}>${k}</option>`).join('')}
+      </select>`
+    : `<input type="text" id="resKlasse" placeholder="Klasse, z.B. 3a" value="${savedKlasse.replace(/"/g,'&quot;')}" style="max-width:110px">`;
   $('stage').innerHTML=`
     <div class="center pop">
       <div class="rank">${rank.icon}</div>
@@ -217,10 +410,69 @@ function finish(){
         <div class="box"><div class="lbl">Richtig</div><div class="val">${correctCount}/${order.length}</div></div>
         <div class="box"><div class="lbl">Beste Serie</div><div class="val">${best}</div></div>
       </div>
-      <div class="actions" style="justify-content:center">
+      <div class="save-box">
+        <div class="row">
+          <input type="text" id="resName" placeholder="Vorname Nachname" value="${savedName}">
+          ${klasseField}
+        </div>
+        <button class="btn btn-main" id="saveBtn" onclick="saveResult(${pts},${maxPts},${pct},${totalSec})">Ergebnis in Rangliste speichern</button>
+        <div class="save-msg" id="saveMsg"></div>
+      </div>
+      <div class="actions" style="justify-content:center;margin-top:14px">
         <button class="btn btn-main" onclick="start()">Nochmals spielen</button>
       </div>
     </div>`;
+}
+
+async function saveResult(score,maxScore,prozent,zeitSek){
+  const nameEl=$('resName'), klasseEl=$('resKlasse'), msg=$('saveMsg'), btn=$('saveBtn');
+  const name=titleCase(nameEl.value), klasse=klasseEl.value.trim();
+  if(!name||!klasse){ msg.className='save-msg err'; msg.textContent='Bitte Name und Klasse eingeben.'; return; }
+  const client=getSupabaseClient();
+  if(!client){ msg.className='save-msg err'; msg.textContent='Speichern aktuell nicht möglich (keine Verbindung).'; return; }
+  btn.disabled=true; btn.textContent='Wird gespeichert…';
+  try{
+    const { error } = await client.from('quiz_ergebnisse').insert([
+      { name, klasse, serie:SERIE_CODE, score, max_score:maxScore, prozent, zeit_sekunden:zeitSek, mit_timer:timerOn, wettbewerb:wettbewerbOn }
+    ]);
+    if(error) throw error;
+    localStorage.setItem('abu_quiz_name',name);
+    localStorage.setItem('abu_quiz_klasse',klasse);
+    if(wettbewerbOn){ localStorage.setItem(wettbewerbLockKey(),'1'); }
+    msg.className='save-msg ok'; msg.textContent='✔ Gespeichert! Du erscheinst in der Rangliste.';
+    btn.textContent='Gespeichert ✔';
+  }catch(err){
+    msg.className='save-msg err'; msg.textContent='Fehler beim Speichern: '+(err&&err.message?err.message:'unbekannt');
+    btn.disabled=false; btn.textContent='Ergebnis in Rangliste speichern';
+  }
+}
+
+async function saveWettbewerbResult(score,maxScore,prozent,zeitSek,name,klasse){
+  const box=$('wbSaveBox');
+  const client=getSupabaseClient();
+  if(!client){ if(box)box.innerHTML='<p class="save-msg err" style="display:block">Speichern fehlgeschlagen (keine Verbindung). Bitte Lehrperson informieren.</p>'; return; }
+  try{
+    const todayStart=new Date(); todayStart.setUTCHours(0,0,0,0);
+    const { data: existing, error: checkErr } = await client.from('quiz_ergebnisse')
+      .select('id')
+      .eq('name',name).eq('klasse',klasse).eq('serie',SERIE_CODE).eq('wettbewerb',true)
+      .gte('created_at',todayStart.toISOString())
+      .limit(1);
+    if(checkErr) throw checkErr;
+    if(existing && existing.length){
+      localStorage.setItem(wettbewerbLockKey(),'1');
+      if(box)box.innerHTML='<p class="save-msg err" style="display:block">Für '+name+' ('+klasse+') wurde heute bereits ein Wettbewerbsergebnis gespeichert — nur ein Versuch pro Person und Tag zählt.</p>';
+      return;
+    }
+    const { error } = await client.from('quiz_ergebnisse').insert([
+      { name, klasse, serie:SERIE_CODE, score, max_score:maxScore, prozent, zeit_sekunden:zeitSek, mit_timer:true, wettbewerb:true }
+    ]);
+    if(error) throw error;
+    localStorage.setItem(wettbewerbLockKey(),'1');
+    if(box)box.innerHTML='<p class="save-msg ok" style="display:block">✔ Gespeichert! Dein Wettbewerbs-Ergebnis zählt für heute.</p>';
+  }catch(err){
+    if(box)box.innerHTML='<p class="save-msg err" style="display:block">Fehler beim Speichern: '+(err&&err.message?err.message:'unbekannt')+'</p>';
+  }
 }
 </script>
 </body>
