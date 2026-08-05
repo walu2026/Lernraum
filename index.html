@@ -26,7 +26,7 @@
   .theme-block { margin-bottom:1.25rem; border-radius:14px; overflow:hidden; }
   .theme-head { display:flex; align-items:center; gap:12px; padding:0; }
   .theme-img { width:100%; height:160px; object-fit:cover; display:block; }
-  .theme-title-bar { display:flex; align-items:center; gap:12px; padding:12px 18px; background:var(--tbg); }
+  .theme-title-bar { display:flex; align-items:center; flex-wrap:wrap; gap:12px; padding:12px 18px; background:var(--tbg); }
   .theme-stripe { width:5px; height:32px; border-radius:3px; flex-shrink:0; background:var(--tc); }
   .theme-title { font-family:'Outfit',sans-serif; font-size:22px; font-weight:700; text-transform:uppercase; color:var(--tc); display:flex; align-items:center; gap:8px; }
   .theme-icon { font-size:20px; line-height:1; flex-shrink:0; }
@@ -108,16 +108,17 @@
   @media(max-width:700px){ .tiles-t9 { grid-template-columns:repeat(2,1fr); } }
   @media(max-width:600px){ .wrap{ padding:1.5rem 1rem 3rem; } .tiles{ grid-template-columns:1fr 1fr; } }
   @media(min-width:1600px){
-    .layout-grid{ display:grid; grid-template-columns:1fr 320px; gap:24px; align-items:start; }
+    .layout-grid{ display:grid; grid-template-columns:1fr 360px; gap:24px; align-items:start; }
     .side-col{ position:sticky; top:24px; display:flex; flex-direction:column; gap:20px; }
     .side-col > *{ margin-bottom:0; }
+    .side-col .aktuell-meta{ margin-left:0; width:100%; }
   }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="p1-title">ABU Lernraum</div>
-  <div class="p1-sub">Lernmaterialien, Übungen und Quizzes · <a href="quiz-rangliste.html" style="color:var(--g7);font-weight:600">🏆 Quiz-Rangliste</a> · <a href="meine-uebersicht.html" style="color:var(--g7);font-weight:600">📚 Meine Übungen</a> · <a href="meine-einsendungen.html" style="color:var(--g7);font-weight:600">📋 Meine Einsendungen</a></div>
+  <div class="p1-title"><span style="color:var(--tA)">ABU</span> Lernraum</div>
+  <div class="p1-sub">Lernmaterialien, Übungen und Quizzes · <a href="quiz-rangliste.html" style="color:var(--tA);font-weight:600">🏆 Quiz-Rangliste</a> · <a href="meine-uebersicht.html" style="color:var(--tA);font-weight:600">📚 Meine Übungen</a> · <a href="meine-einsendungen.html" style="color:var(--tA);font-weight:600">📋 Meine Einsendungen</a></div>
   <div class="rainbow">
     <span style="background:var(--t1)"></span><span style="background:var(--t2)"></span>
     <span style="background:var(--t3)"></span><span style="background:var(--t4)"></span>
