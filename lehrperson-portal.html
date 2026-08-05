@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABU Lernportal – Lehrperson</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --g9:#111827; --g7:#374151; --g5:#6B7280; --g3:#D1D5DB; --g1:#F3F4F6;
+    --violet:#5B21B6; --violet-bg:#EDE9FE; --err:#C0392B; --err-bg:#FBE2DF;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'DM Sans',sans-serif; background:#F0F2F5; color:var(--g7); min-height:100vh; }
+  .wrap { max-width:720px; margin:0 auto; padding:2.5rem 1.25rem 4rem; }
+
+  .back-btn { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:500; color:var(--g5); text-decoration:none; margin-bottom:1.5rem; }
+  .back-btn:hover { color:var(--g9); }
+  .lp-badge { display:inline-flex; align-items:center; gap:5px; font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase; background:var(--violet-bg); color:var(--violet); padding:4px 10px; border-radius:20px; margin-bottom:.75rem; }
+  h1 { font-family:'Barlow Condensed',sans-serif; font-size:clamp(28px,5vw,40px); font-weight:800; text-transform:uppercase; color:var(--g9); letter-spacing:-1px; line-height:1; margin-bottom:6px; }
+  .sub { font-size:13.5px; color:var(--g5); margin-bottom:2rem; max-width:52ch; line-height:1.5; }
+
+  /* ── LOGIN ── */
+  #loginGate { max-width:360px; margin:2rem auto; background:#fff; border-radius:16px; padding:32px 28px; box-shadow:0 2px 10px rgba(0,0,0,.06); text-align:center; }
+  #loginGate p { font-size:13.5px; color:var(--g5); margin-bottom:16px; }
+  #loginGate input { width:100%; padding:11px 14px; border:1.5px solid var(--g3); border-radius:10px; font-size:14px; font-family:inherit; margin-bottom:12px; }
+  #loginGate input:focus { outline:none; border-color:var(--violet); }
+  #loginGate button { width:100%; padding:11px; border:none; border-radius:10px; background:var(--violet); color:#fff; font-weight:700; font-size:14px; cursor:pointer; font-family:inherit; }
+  #loginGate button:hover { filter:brightness(1.1); }
+  .login-err { color:var(--err); font-size:12.5px; margin-top:10px; display:none; }
+  .login-err.show { display:block; }
+
+  /* ── TILES ── */
+  #tiles { display:none; }
+  #tiles.show { display:grid; gap:14px; grid-template-columns:1fr; }
+  @media(min-width:560px){ #tiles.show { grid-template-columns:1fr 1fr; } }
+  .tile { background:#fff; border-radius:16px; padding:22px 22px 20px; box-shadow:0 2px 10px rgba(0,0,0,.06); text-decoration:none; color:inherit; display:block; transition:transform .12s, box-shadow .12s; }
+  .tile:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(0,0,0,.1); }
+  .tile-icon { font-size:26px; margin-bottom:10px; display:block; }
+  .tile-title { font-family:'Barlow Condensed',sans-serif; font-weight:800; text-transform:uppercase; font-size:19px; color:var(--g9); letter-spacing:-.2px; margin-bottom:5px; }
+  .tile-desc { font-size:12.5px; color:var(--g5); line-height:1.5; }
+  .tile.disabled { opacity:.55; cursor:default; }
+  .tile.disabled:hover { transform:none; box-shadow:0 2px 10px rgba(0,0,0,.06); }
+  .tile-tag { display:inline-block; margin-top:10px; font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; background:var(--g1); color:var(--g5); padding:2px 8px; border-radius:20px; }
+
+  .logout-row { text-align:center; margin-top:1.75rem; }
+  .logout-row button { font-size:12px; color:var(--g5); background:none; border:none; cursor:pointer; text-decoration:underline; font-family:inherit; }
+  .logout-row button:hover { color:var(--g9); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back-btn" href="index.html">← Zurück zum Portal</a>
+  <div class="lp-badge">🔑 Lehrperson</div>
+  <h1>Lehrperson-Bereich</h1>
+  <p class="sub">Zentraler Einstieg für Auswertung, Materialübersicht und Portal-Einstellungen.</p>
+
+  <div id="loginGate">
+    <p>Bitte Lehrperson-Passwort eingeben.</p>
+    <input type="password" id="pwInput" placeholder="Passwort" autocomplete="off">
+    <button onclick="login()">Anmelden</button>
+    <div class="login-err" id="loginErr">Falsches Passwort.</div>
+  </div>
+
+  <div id="tiles">
+    <a class="tile" href="lehrperson-uebersicht.html" id="tileAuswertung">
+      <span class="tile-icon">📝</span>
+      <div class="tile-title">Auswertung</div>
+      <div class="tile-desc">Eingesendete Übungen und Prüfungen durchsehen, nach Klasse/Thema/Übung filtern.</div>
+    </a>
+    <a class="tile" href="sharepoint/lehrperson.html" id="tileMaterial">
+      <span class="tile-icon">📂</span>
+      <div class="tile-title">Materialübersicht</div>
+      <div class="tile-desc">Welches Material (Einstieg/Theorie/Übung/Abschluss/Video/PPT) existiert pro Lebenssituation — inkl. Aktualität-Beiträgen.</div>
+    </a>
+    <a class="tile disabled" href="lehrperson-einstellungen.html" id="tileEinstellungen">
+      <span class="tile-icon">⚙️</span>
+      <div class="tile-title">Einstellungen</div>
+      <div class="tile-desc">Portalweite Einstellungen (Passwörter, Zugriffsstufen u. Ä.).</div>
+      <span class="tile-tag">In Vorbereitung</span>
+    </a>
+  </div>
+
+  <div class="logout-row" id="logoutRow" style="display:none;">
+    <button onclick="logout()">Abmelden</button>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════════════════════════════
+// KONFIGURATION
+// ════════════════════════════════════════════════════════════════
+const SUPABASE_URL = "https://lrpaomltzrfgtupzeooq.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_Q9t2s4kLLNy--Tkm8EwLBQ_CbHJo9G-";
+const FUNCTION_URL = SUPABASE_URL + "/functions/v1/lehrer-uebersicht";
+
+// Gemeinsamer Session-Schlüssel für alle Lehrperson-Seiten (Auswertung,
+// Materialübersicht, künftig Einstellungen). Nur sessionStorage (nicht
+// localStorage), damit die Anmeldung mit dem Schliessen des Tabs/Browsers
+// endet — bewusst kein Dauer-Login.
+const LP_SESSION_KEY = "abu_lp_pw";
+
+async function pruefePasswort(pw) {
+  const res = await fetch(FUNCTION_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+    },
+    body: JSON.stringify({ aktion: 'lesen', passwort: pw })
+  });
+  return res.status !== 401;
+}
+
+async function login() {
+  const pw = document.getElementById('pwInput').value;
+  if (!pw) return;
+  const btn = document.querySelector('#loginGate button');
+  const alt = btn.textContent; btn.disabled = true; btn.textContent = 'Prüfe…';
+  try {
+    const ok = await pruefePasswort(pw);
+    if (!ok) {
+      document.getElementById('loginErr').classList.add('show');
+      btn.disabled = false; btn.textContent = alt;
+      return;
+    }
+    try { sessionStorage.setItem(LP_SESSION_KEY, pw); } catch(e) {}
+    zeigeTiles();
+  } catch (e) {
+    alert('Verbindungsfehler: ' + e.message);
+    btn.disabled = false; btn.textContent = alt;
+  }
+}
+
+document.getElementById('pwInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') login();
+});
+
+function zeigeTiles() {
+  document.getElementById('loginGate').style.display = 'none';
+  document.getElementById('tiles').classList.add('show');
+  document.getElementById('logoutRow').style.display = 'block';
+}
+
+function logout() {
+  try { sessionStorage.removeItem(LP_SESSION_KEY); } catch(e) {}
+  location.reload();
+}
+
+(function initial() {
+  let gespeichert = '';
+  try { gespeichert = sessionStorage.getItem(LP_SESSION_KEY) || ''; } catch(e) {}
+  if (gespeichert) {
+    pruefePasswort(gespeichert).then(function(ok) {
+      if (ok) zeigeTiles();
+      else { try { sessionStorage.removeItem(LP_SESSION_KEY); } catch(e) {} }
+    });
+  }
+})();
+</script>
+</body>
+</html>

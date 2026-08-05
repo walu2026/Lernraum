@@ -6,301 +6,401 @@
 <title>Lehrperson · Einsendungen-Übersicht · ABU Lernraum</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+
   :root {
-    --t1: #4A5568; --t1-dark: #2D3748; --t1-light: #E2E8F0; --t1-lighter: #F7FAFC;
-    --bg: #FBF8F4; --paper: #FFFFFF; --ink: #20221F; --ink-light: #7A7468; --rule: #ECE6DA;
-    --green: #1F8045; --green-light: #E9F7EE; --err: #C0392B; --err-light: #FDECEA;
-    --violet: #5B21B6; --violet-light: #EDE9FE;
+    --t1: #C0392B; --t1-light: #FBE2DF; --t1-lighter: #FDF1EF; --t1-dark: #A22F22;
+    --bg: #FBF8F4; --paper: #FFFFFF; --ink: #20221F; --ink-light: #7A7468;
+    --rule: #ECE6DA; --green: #1F8045; --green-light: #E9F7EE;
+    --gold: #B8860B; --gold-light: #FDF6E3;
+    --red: #A22F22; --red-light: #FBE2DF;
   }
-  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; line-height: 1.6; }
-  .top-bar { background: linear-gradient(120deg, #3B2F63 0%, #2D3748 60%, #1A202C 100%); color: white; padding: 16px 22px; display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
-  .top-bar h1 { font-size: 18px; font-weight: 700; }
-  .top-bar a { color: rgba(255,255,255,.85); font-size: 13px; text-decoration: none; }
-  .top-bar a:hover { color: white; text-decoration: underline; }
-  .badge-lp { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; background: var(--violet-light); color: var(--violet); padding: 4px 10px; border-radius: 20px; }
-  .ws { max-width: 780px; margin: 0 auto; padding: 34px 26px 60px; }
-  .intro { font-size: 14.5px; color: var(--ink-light); margin-bottom: 22px; line-height: 1.65; }
-  .card { background: var(--paper); border-radius: 14px; padding: 22px 24px; box-shadow: 0 2px 10px rgba(0,0,0,.05); margin-bottom: 20px; }
-  label { display: block; font-size: 12.5px; font-weight: 600; color: var(--t1-dark); margin: 14px 0 5px; }
-  label:first-child { margin-top: 0; }
-  input[type=text] { width: 100%; border: 1.5px solid var(--rule); border-radius: 9px; background: var(--bg); font-family: inherit; font-size: 14.5px; padding: 10px 12px; }
-  input[type=text]:focus { outline: none; border-color: var(--t1); background: white; box-shadow: 0 0 0 3px var(--t1-light); }
-  .btn { margin-top: 18px; padding: 12px 22px; border-radius: 999px; border: none; background: var(--t1-dark); color: white; font-weight: 700; font-size: 14.5px; cursor: pointer; font-family: inherit; }
-  .btn:hover { filter: brightness(1.1); }
-  .btn:disabled { opacity: .5; cursor: not-allowed; }
-  .btn-ghost { background: none; border: 1.5px solid var(--rule); color: var(--ink); }
-  .msg { margin-top: 14px; padding: 10px 14px; border-radius: 9px; font-size: 13.5px; display: none; }
-  .msg.show { display: block; }
-  .msg.err { background: var(--err-light); color: var(--err); }
-  .msg.info { background: var(--t1-lighter); color: var(--t1-dark); }
-  .mode-row { display: flex; gap: 8px; margin-bottom: 18px; }
-  .mode-btn { flex: 1; padding: 10px; border-radius: 10px; border: 1.5px solid var(--rule); background: var(--paper); color: var(--ink-light); font-family: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer; }
-  .mode-btn.active { background: var(--t1-dark); color: white; border-color: var(--t1-dark); }
-  .mode-panel { display: none; }
-  .mode-panel.show { display: block; }
-  .stat-row { display: flex; gap: 14px; margin-bottom: 18px; flex-wrap: wrap; }
-  .stat { background: var(--paper); border-radius: 12px; padding: 14px 18px; box-shadow: 0 2px 10px rgba(0,0,0,.05); flex: 1; min-width: 120px; }
-  .stat .n { font-size: 24px; font-weight: 800; color: var(--t1-dark); }
-  .stat .l { font-size: 12px; color: var(--ink-light); }
-  .empty { background: var(--paper); border-radius: 14px; padding: 30px 24px; text-align: center; color: var(--ink-light); font-size: 14.5px; }
-  .thema-group { margin-bottom: 22px; }
-  .thema-title { font-size: 13px; font-weight: 700; color: var(--t1-dark); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 8px; padding-left: 2px; }
-  .row-card { background: var(--paper); border-radius: 12px; padding: 13px 16px; box-shadow: 0 1px 6px rgba(0,0,0,.04); margin-bottom: 8px; cursor: pointer; }
-  .row-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-  .row-head .name { font-size: 14px; font-weight: 700; color: var(--ink); }
-  .row-head .titel { font-size: 12px; color: var(--ink-light); }
-  .row-head .titel a { color: var(--t1-dark); text-decoration: none; }
-  .row-head .titel a:hover { text-decoration: underline; }
-  .meta { font-size: 11.5px; color: var(--ink-light); font-family: 'JetBrains Mono', monospace; margin-top: 2px; }
-  .badge { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--green-light); color: #135c2c; white-space: nowrap; }
-  .detail { display: none; margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--rule); }
-  .detail.show { display: block; }
-  .qa { background: var(--bg); border-radius: 10px; padding: 10px 12px; margin-bottom: 6px; }
-  .qa .q { font-size: 11px; font-weight: 700; color: var(--t1-dark); text-transform: uppercase; letter-spacing: .03em; margin-bottom: 4px; }
-  .qa .a { font-size: 13.5px; color: var(--ink); white-space: pre-wrap; }
-  .qa .a.empty { color: var(--ink-light); font-style: italic; }
-  .lock { text-align: center; padding: 60px 20px; }
-  .lock p { color: var(--ink-light); font-size: 14.5px; margin-bottom: 18px; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; line-height: 1.5; }
+
+  /* ── LOGIN GATE ── */
+  #loginGate { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+  .login-box { background: var(--paper); border-radius: 18px; padding: 36px 32px; max-width: 360px; width: 100%; box-shadow: 0 4px 24px rgba(0,0,0,.08); }
+  .login-box h1 { font-size: 19px; margin-bottom: 18px; }
+  .login-box input { width: 100%; padding: 11px 14px; border: 1.5px solid var(--rule); border-radius: 10px; font-size: 14px; font-family: inherit; margin-bottom: 12px; }
+  .login-box input:focus { outline: none; border-color: var(--t1); }
+  .login-box button { width: 100%; padding: 11px; border: none; border-radius: 10px; background: var(--t1); color: white; font-weight: 700; font-size: 14px; cursor: pointer; font-family: inherit; }
+  .login-box button:hover { background: var(--t1-dark); }
+  .login-err { color: var(--t1-dark); font-size: 13px; margin-top: 10px; display: none; }
+  .login-err.show { display: block; }
+
+  /* ── MAIN APP ── */
+  #app { display: none; max-width: 1100px; margin: 0 auto; padding: 28px 20px 60px; }
+  #app.show { display: block; }
+  h1.page-title { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+  .sub { color: var(--ink-light); font-size: 13px; margin-bottom: 24px; }
+
+  /* ── FILTER BAR ── */
+  .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; align-items: center; }
+  .filter-bar select, .filter-bar input[type=text], .filter-bar input[type=date] {
+    padding: 9px 12px; border: 1.5px solid var(--rule); border-radius: 10px; font-size: 13.5px; font-family: inherit; background: var(--paper);
+  }
+  .filter-bar select:focus, .filter-bar input:focus { outline: none; border-color: var(--t1); }
+  .filter-bar input[type=text] { min-width: 180px; }
+  .filter-bar .quick-btns { display: flex; gap: 6px; }
+  .qbtn { padding: 8px 12px; border-radius: 999px; border: 1.5px solid var(--rule); background: var(--paper); font-size: 12.5px; font-family: inherit; cursor: pointer; color: var(--ink-light); }
+  .qbtn.active { background: var(--t1); color: white; border-color: var(--t1); }
+  .refresh-btn { padding: 9px 16px; border-radius: 10px; border: none; background: var(--t1); color: white; font-weight: 600; font-size: 13px; cursor: pointer; font-family: inherit; }
+  .refresh-btn:hover { background: var(--t1-dark); }
+
+  .count-line { font-size: 12.5px; color: var(--ink-light); margin-bottom: 14px; font-family: 'JetBrains Mono', monospace; }
+
+  /* ── ENTRY CARDS ── */
+  .entry { background: var(--paper); border-radius: 14px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,.05); overflow: hidden; }
+  .entry-head { display: flex; align-items: center; gap: 12px; padding: 14px 16px; cursor: pointer; }
+  .entry-head:hover { background: var(--bg); }
+  .entry-name { font-weight: 700; font-size: 14.5px; flex: 1; min-width: 140px; }
+  .entry-meta { font-size: 12px; color: var(--ink-light); font-family: 'JetBrains Mono', monospace; }
+  .badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+  .badge-gut { background: var(--green-light); color: #135c2c; }
+  .badge-mittel { background: var(--gold-light); color: #8a6500; }
+  .badge-schlecht { background: var(--red-light); color: var(--t1-dark); }
+  .entry-toggle { font-size: 11px; color: var(--ink-light); }
+
+  .entry-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--rule); }
+  .entry-body.open { display: block; }
+  .field-row { padding: 10px 0; border-bottom: 1px dashed var(--rule); font-size: 13.5px; }
+  .field-row:last-child { border-bottom: none; }
+  .field-key { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; color: var(--ink-light); text-transform: uppercase; letter-spacing: .04em; margin-bottom: 3px; }
+  .field-val { white-space: pre-wrap; word-break: break-word; }
+
+  .name-edit-row { display: flex; gap: 8px; align-items: center; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
+  .name-edit-row input { flex: 1; padding: 8px 12px; border: 1.5px solid var(--rule); border-radius: 8px; font-family: inherit; font-size: 13px; }
+  .name-edit-row button { padding: 8px 14px; border: none; border-radius: 8px; background: var(--green); color: white; font-weight: 600; font-size: 12.5px; cursor: pointer; font-family: inherit; }
+  .name-edit-row button:hover { background: #15602f; }
+  .name-edit-status { font-size: 12px; margin-left: 6px; }
+
+  .empty-state { text-align: center; padding: 60px 20px; color: var(--ink-light); font-size: 14px; }
+  .loading { text-align: center; padding: 40px; color: var(--ink-light); font-size: 13.5px; }
+
+  .home-link { display: inline-block; font-size: 12.5px; color: var(--ink-light); text-decoration: none; margin-bottom: 14px; }
+  .home-link:hover { color: var(--ink); text-decoration: underline; }
 </style>
 </head>
 <body>
-<div class="top-bar">
-  <h1>🔑 Einsendungen-Übersicht</h1>
-  <a href="index.html">⌂ Startseite</a>
-</div>
-<div class="ws">
 
-  <div id="lockScreen" class="lock">
-    <span class="badge-lp">Lehrperson</span>
-    <p style="margin-top:14px;">Diese Seite zeigt Einsendungen von Lernenden und ist passwortgeschützt.</p>
-    <button class="btn" onclick="freischalten()">Freischalten</button>
+<div id="loginGate">
+  <div class="login-box">
+    <h1>🔒 Lehrer-Übersicht</h1>
+    <input type="password" id="pwInput" placeholder="Passwort" autocomplete="off">
+    <button onclick="login()">Anmelden</button>
+    <div class="login-err" id="loginErr">Falsches Passwort.</div>
+    <a class="home-link" href="lehrperson-portal.html" style="margin-top:14px;margin-bottom:0;">⌂ Zurück zum Lehrperson-Bereich</a>
+  </div>
+</div>
+
+<div id="app">
+  <a class="home-link" href="lehrperson-portal.html">⌂ Lehrperson-Bereich</a>
+  <h1 class="page-title">Lehrer-Übersicht</h1>
+  <div class="sub">Eingesendete Antworten aus dem ABU-Portal</div>
+
+  <div class="filter-bar">
+    <select id="filterKlasse" onchange="render()"><option value="">Alle Klassen</option></select>
+    <select id="filterThema" onchange="onThemaChange()"><option value="">Alle Themen</option></select>
+    <select id="filterCode" onchange="onCodeChange()"><option value="">Alle Codes</option></select>
+    <select id="filterDatei" onchange="render()"><option value="">Alle Übungen</option></select>
+    <input type="text" id="filterName" placeholder="Name suchen…" oninput="render()">
+    <input type="date" id="filterVon" onchange="onDateChange()">
+    <input type="date" id="filterBis" onchange="onDateChange()">
+    <div class="quick-btns">
+      <button class="qbtn" data-range="heute" onclick="quickRange('heute')">Heute</button>
+      <button class="qbtn" data-range="woche" onclick="quickRange('woche')">Woche</button>
+      <button class="qbtn" data-range="monat" onclick="quickRange('monat')">Monat</button>
+      <button class="qbtn active" data-range="alle" onclick="quickRange('alle')">Alle</button>
+    </div>
+    <button class="refresh-btn" onclick="ladeDaten()">↻ Aktualisieren</button>
   </div>
 
-  <div id="content" style="display:none;">
-    <p class="intro">Übersicht über eingesendete Übungen — nach <strong>Klasse</strong> (alle Übungen einer Klasse) oder nach <strong>Übung</strong> (wer aus welcher Klasse hat diese Übung schon abgegeben). Klicke auf einen Eintrag, um die einzelnen Antworten zu sehen.</p>
-
-    <div class="mode-row">
-      <button class="mode-btn active" id="modeBtnKlasse" onclick="wechsleModus('klasse')">Nach Klasse</button>
-      <button class="mode-btn" id="modeBtnDatei" onclick="wechsleModus('datei')">Nach Übung</button>
-    </div>
-
-    <div class="card mode-panel show" id="panelKlasse">
-      <label for="inpKlasse">Klasse</label>
-      <input type="text" id="inpKlasse" placeholder="z.B. LW3a">
-      <button class="btn" id="btnKlasse" onclick="ladeKlasse()">Anzeigen</button>
-      <div class="msg" id="msgKlasse"></div>
-    </div>
-
-    <div class="card mode-panel" id="panelDatei">
-      <label for="inpDatei">Übung</label>
-      <input type="text" id="inpDatei" list="dateiListe" placeholder="Dateiname oder Titel tippen …">
-      <datalist id="dateiListe"></datalist>
-      <label for="inpDateiKlasse">Klasse (optional, filtert)</label>
-      <input type="text" id="inpDateiKlasse" placeholder="leer lassen = alle Klassen">
-      <button class="btn" id="btnDatei" onclick="ladeDatei()">Anzeigen</button>
-      <div class="msg" id="msgDatei"></div>
-    </div>
-
-    <div id="results"></div>
-  </div>
-
+  <div class="count-line" id="countLine"></div>
+  <div id="list"></div>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+
 <script>
-const SUPABASE_URL = 'https://lrpaomltzrfgtupzeooq.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_Q9t2s4kLLNy--Tkm8EwLBQ_CbHJo9G-';
-let supabaseClient = null;
-function getClient(){ if(!supabaseClient && window.supabase) supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY); return supabaseClient; }
+// ════════════════════════════════════════════════════════════════
+// KONFIGURATION — bei Bedarf anpassen
+// ════════════════════════════════════════════════════════════════
+const SUPABASE_URL = "https://lrpaomltzrfgtupzeooq.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_Q9t2s4kLLNy--Tkm8EwLBQ_CbHJo9G-";
+const FUNCTION_URL = SUPABASE_URL + "/functions/v1/lehrer-uebersicht";
 
-// Eigenes, von "Erweiterte Nutzung" (Lernende) getrenntes Passwort.
-// Direkt hier änderbar - wie ueberall im Portal nur ein sanfter Zugriffsschutz, keine echte Sicherheit.
-const LEHRER_KEY = 'abu_lehrperson_modus';
-const LEHRER_PASSWORT = 'lehrer2026';
+// Gemeinsamer Session-Schlüssel mit lehrperson-portal.html / sharepoint/lehrperson.html —
+// wer sich im Lehrperson-Hub anmeldet, muss hier nicht erneut das Passwort eingeben (und
+// umgekehrt). Nur sessionStorage, kein Dauer-Login.
+const LP_SESSION_KEY = "abu_lp_pw";
 
-function freischalten(){
-  if (localStorage.getItem(LEHRER_KEY) === '1') { zeigeContent(); return; }
-  const e = prompt('Lehrperson-Passwort:');
-  if (!e) return;
-  if (e !== LEHRER_PASSWORT) { alert('Falsches Passwort.'); return; }
-  try { localStorage.setItem(LEHRER_KEY, '1'); } catch(e) {}
-  zeigeContent();
-}
-function zeigeContent(){
-  document.getElementById('lockScreen').style.display = 'none';
-  document.getElementById('content').style.display = 'block';
-  ladeDateiListe();
-}
+let LEHRER_PASSWORT = "";
+let alleDaten = [];
 
-function normalisiereKlasse(roh){ let k=roh.trim().replace(/\s+/g,''); const m=k.match(/^(.*\d)([a-zA-Z])$/); return m?m[1].toUpperCase()+m[2].toLowerCase():k.toUpperCase(); }
-
-function wechsleModus(m){
-  document.getElementById('modeBtnKlasse').classList.toggle('active', m==='klasse');
-  document.getElementById('modeBtnDatei').classList.toggle('active', m==='datei');
-  document.getElementById('panelKlasse').classList.toggle('show', m==='klasse');
-  document.getElementById('panelDatei').classList.toggle('show', m==='datei');
-  document.getElementById('results').innerHTML = '';
+function login() {
+  const pw = document.getElementById('pwInput').value;
+  if (!pw) return;
+  LEHRER_PASSWORT = pw;
+  document.getElementById('loginErr').classList.remove('show');
+  ladeDaten(true);
 }
 
-let uebungenIndex = {};
-async function ladeDateiListe(){
+(function autoLogin() {
+  let gespeichert = '';
+  try { gespeichert = sessionStorage.getItem(LP_SESSION_KEY) || ''; } catch(e) {}
+  if (gespeichert) {
+    LEHRER_PASSWORT = gespeichert;
+    ladeDaten(true, true);
+  }
+})();
+
+document.getElementById('pwInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') login();
+});
+
+async function ladeDaten(istLogin, istAutoLogin) {
+  const list = document.getElementById('list');
+  if (istLogin) list.innerHTML = '';
+  document.getElementById('countLine').textContent = '';
+  if (!istLogin) document.getElementById('list').innerHTML = '<div class="loading">Lade…</div>';
+  else if (!istAutoLogin) document.getElementById('loginGate').querySelector('button').textContent = 'Lade…';
+
   try {
-    const res = await fetch('uebungen_index.json');
-    uebungenIndex = await res.json();
-    const dl = document.getElementById('dateiListe');
-    dl.innerHTML = '';
-    Object.keys(uebungenIndex).sort().forEach(function(safeFn){
-      const opt = document.createElement('option');
-      opt.value = safeFn;
-      dl.appendChild(opt);
+    const res = await fetch(FUNCTION_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+      },
+      body: JSON.stringify({ aktion: 'lesen', passwort: LEHRER_PASSWORT })
     });
-  } catch(e) { /* Index nicht ladbar - Freitext-Eingabe funktioniert trotzdem */ }
-}
+    const json = await res.json();
 
-function zeigeMsg(id, text, art){
-  const box = document.getElementById(id);
-  box.textContent = text;
-  box.className = 'msg show ' + (art||'info');
-}
-function verstecke(el){ el.classList.remove('show'); }
+    if (res.status === 401) {
+      if (istAutoLogin) {
+        // Gespeichertes Passwort ist ungültig geworden — still zurücksetzen, normales Login-Gate zeigen
+        try { sessionStorage.removeItem(LP_SESSION_KEY); } catch(e) {}
+      } else if (istLogin) {
+        document.getElementById('loginErr').classList.add('show');
+        document.getElementById('loginGate').querySelector('button').textContent = 'Anmelden';
+      } else {
+        alert('Sitzung abgelaufen oder Passwort falsch. Bitte Seite neu laden.');
+      }
+      return;
+    }
+    if (json.error) { alert('Fehler: ' + json.error); return; }
 
-function themaVon(pfad){
-  const m = pfad && pfad.match(/^(T\d)_/);
-  const namen = {
-    T1:'Mein Lehrbeginn', T2:'Mein Geld', T3:'Meine Gesundheit', T4:'Unsere Schweiz',
-    T5:'Unser Zusammenleben', T6:'Unsere Welt', T7:'Meine Zukunft', T8:'Qualifikationsverfahren'
-  };
-  return m ? (namen[m[1]] || m[1]) : 'Weitere';
-}
-
-async function ladeKlasse(){
-  const klasseRoh = document.getElementById('inpKlasse').value.trim();
-  const results = document.getElementById('results');
-  results.innerHTML = '';
-  verstecke(document.getElementById('msgKlasse'));
-  if(!klasseRoh){ zeigeMsg('msgKlasse', 'Bitte Klasse eingeben.', 'err'); return; }
-  const klasse = normalisiereKlasse(klasseRoh);
-  const client = getClient();
-  if(!client){ zeigeMsg('msgKlasse', 'Verbindung aktuell nicht möglich.', 'err'); return; }
-  const btn = document.getElementById('btnKlasse');
-  const alt = btn.textContent; btn.disabled = true; btn.textContent = 'Lade…';
-  try {
-    const { data, error } = await client.rpc('get_submissions_by_klasse', { p_klasse: klasse });
-    if (error) throw error;
-    if (!data || data.length === 0) { zeigeMsg('msgKlasse', 'Keine Einsendungen für Klasse "' + klasse + '" gefunden.', 'info'); return; }
-    renderGruppiertNachDatei(data, results);
-  } catch(err) {
-    zeigeMsg('msgKlasse', 'Abfrage fehlgeschlagen. (' + ((err&&err.message)?err.message:'unbekannt') + ')', 'err');
-  } finally {
-    btn.disabled = false; btn.textContent = alt;
+    try { sessionStorage.setItem(LP_SESSION_KEY, LEHRER_PASSWORT); } catch(e) {}
+    alleDaten = json.data || [];
+    if (istLogin) {
+      document.getElementById('loginGate').style.display = 'none';
+      document.getElementById('app').classList.add('show');
+    }
+    fuelleFilterOptionen();
+    render();
+  } catch (e) {
+    alert('Verbindungsfehler: ' + e.message);
   }
 }
 
-async function ladeDatei(){
-  const datei = document.getElementById('inpDatei').value.trim();
-  const klasseRoh = document.getElementById('inpDateiKlasse').value.trim();
-  const results = document.getElementById('results');
-  results.innerHTML = '';
-  verstecke(document.getElementById('msgDatei'));
-  if(!datei){ zeigeMsg('msgDatei', 'Bitte Übung eingeben/auswählen.', 'err'); return; }
-  const klasse = klasseRoh ? normalisiereKlasse(klasseRoh) : null;
-  const client = getClient();
-  if(!client){ zeigeMsg('msgDatei', 'Verbindung aktuell nicht möglich.', 'err'); return; }
-  const btn = document.getElementById('btnDatei');
-  const alt = btn.textContent; btn.disabled = true; btn.textContent = 'Lade…';
-  try {
-    const { data, error } = await client.rpc('get_submissions_by_datei', { p_datei: datei, p_klasse: klasse });
-    if (error) throw error;
-    if (!data || data.length === 0) { zeigeMsg('msgDatei', 'Keine Einsendungen für diese Übung gefunden.', 'info'); return; }
-    renderFlacheListe(data, results, datei);
-  } catch(err) {
-    zeigeMsg('msgDatei', 'Abfrage fehlgeschlagen. (' + ((err&&err.message)?err.message:'unbekannt') + ')', 'err');
-  } finally {
-    btn.disabled = false; btn.textContent = alt;
-  }
+// Leitet aus dem Dateinamen (z.B. "101_[UE]_A07_Gesetze_...") den
+// 3-stelligen SLP-Code ("101") und das Thema (erste Ziffer, "1") ab.
+function extractCode(datei) {
+  const m = (datei || '').match(/^(\d{3})/);
+  return m ? m[1] : null;
+}
+function extractThema(datei) {
+  const code = extractCode(datei);
+  return code ? code[0] : null;
 }
 
-function auswertungBadge(a){
-  a = a || {};
-  const geloest = (a.text_geloest||0) + (a.mc_richtig||0);
-  const total = (a.text_total||0) + (a.mc_total||0);
-  return geloest + ' / ' + total;
+function fuelleFilterOptionen() {
+  const klassen = Array.from(new Set(alleDaten.map(function(d) { return d.klasse || '(ohne Klasse)'; }))).sort();
+  const themen = Array.from(new Set(alleDaten.map(function(d) { return extractThema(d.datei); }).filter(Boolean))).sort();
+
+  const fThema = document.getElementById('filterThema').value;
+  // Codes nur innerhalb des gewählten Themas anbieten (kaskadierend); ohne Thema-Wahl alle Codes
+  const codesQuelle = fThema ? alleDaten.filter(function(d) { return extractThema(d.datei) === fThema; }) : alleDaten;
+  const codes = Array.from(new Set(codesQuelle.map(function(d) { return extractCode(d.datei); }).filter(Boolean))).sort();
+
+  // Übungen ebenfalls kaskadierend: nur innerhalb von Thema/Code-Auswahl
+  const fCode = document.getElementById('filterCode').value;
+  let dateiQuelle = alleDaten;
+  if (fThema) dateiQuelle = dateiQuelle.filter(function(d) { return extractThema(d.datei) === fThema; });
+  if (fCode) dateiQuelle = dateiQuelle.filter(function(d) { return extractCode(d.datei) === fCode; });
+  const dateien = Array.from(new Set(dateiQuelle.map(function(d) { return d.datei || '(unbekannt)'; }))).sort();
+
+  const selK = document.getElementById('filterKlasse');
+  const curK = selK.value;
+  selK.innerHTML = '<option value="">Alle Klassen</option>' + klassen.map(function(k) { return '<option value="' + escapeHtml(k) + '">' + escapeHtml(k) + '</option>'; }).join('');
+  selK.value = curK;
+
+  const selT = document.getElementById('filterThema');
+  const curT = selT.value;
+  selT.innerHTML = '<option value="">Alle Themen</option>' + themen.map(function(t) { return '<option value="' + t + '">Thema ' + t + '</option>'; }).join('');
+  selT.value = curT;
+
+  const selC = document.getElementById('filterCode');
+  const curC = selC.value;
+  selC.innerHTML = '<option value="">Alle Codes</option>' + codes.map(function(c) { return '<option value="' + c + '">' + c + '</option>'; }).join('');
+  selC.value = codes.includes(curC) ? curC : '';
+
+  const selD = document.getElementById('filterDatei');
+  const curD = selD.value;
+  selD.innerHTML = '<option value="">Alle Übungen</option>' + dateien.map(function(d) { return '<option value="' + escapeHtml(d) + '">' + escapeHtml(d) + '</option>'; }).join('');
+  selD.value = dateien.includes(curD) ? curD : '';
 }
 
-function renderGruppiertNachDatei(rows, container){
-  const stat = document.createElement('div');
-  stat.className = 'stat-row';
-  stat.innerHTML = '<div class="stat"><div class="n">' + rows.length + '</div><div class="l">Einsendungen total</div></div>' +
-    '<div class="stat"><div class="n">' + new Set(rows.map(r=>r.datei)).size + '</div><div class="l">verschiedene Übungen</div></div>';
-  container.appendChild(stat);
+function onCodeChange() {
+  document.getElementById('filterDatei').value = '';
+  fuelleFilterOptionen();
+  render();
+}
 
-  const gruppen = {};
-  rows.forEach(function(r){ (gruppen[r.datei] = gruppen[r.datei] || []).push(r); });
-  Object.keys(gruppen).sort().forEach(function(datei){
-    const pfad = uebungenIndex[datei];
-    const g = document.createElement('div');
-    g.className = 'thema-group';
-    const titelHtml = pfad ? '<a href="'+pfad+'" target="_blank">'+datei.replace(/_/g,' ')+'</a>' : datei.replace(/_/g,' ');
-    g.innerHTML = '<div class="thema-title">' + titelHtml + ' (' + themaVon(pfad) + ')</div>';
-    gruppen[datei].sort(function(a,b){ return a.name.localeCompare(b.name); }).forEach(function(r){ g.appendChild(baueZeile(r)); });
-    container.appendChild(g);
+function onThemaChange() {
+  // Code- und Übungs-Auswahl zurücksetzen, da sie vom Thema abhängen, dann neu aufbauen
+  document.getElementById('filterCode').value = '';
+  document.getElementById('filterDatei').value = '';
+  fuelleFilterOptionen();
+  render();
+}
+
+function quickRange(range) {
+  document.querySelectorAll('.qbtn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelector('.qbtn[data-range="' + range + '"]').classList.add('active');
+  const von = document.getElementById('filterVon');
+  const bis = document.getElementById('filterBis');
+  const heute = new Date();
+  function fmt(d) { return d.toISOString().slice(0, 10); }
+  if (range === 'alle') { von.value = ''; bis.value = ''; }
+  if (range === 'heute') { von.value = fmt(heute); bis.value = fmt(heute); }
+  if (range === 'woche') { const v = new Date(heute); v.setDate(v.getDate() - 7); von.value = fmt(v); bis.value = fmt(heute); }
+  if (range === 'monat') { const v = new Date(heute); v.setMonth(v.getMonth() - 1); von.value = fmt(v); bis.value = fmt(heute); }
+  render();
+}
+
+function onDateChange() {
+  document.querySelectorAll('.qbtn').forEach(function(b) { b.classList.remove('active'); });
+  render();
+}
+
+function escapeHtml(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, function(c) {
+    return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
   });
 }
 
-function renderFlacheListe(rows, container, datei){
-  const pfad = uebungenIndex[datei];
-  const stat = document.createElement('div');
-  stat.className = 'stat-row';
-  stat.innerHTML = '<div class="stat"><div class="n">' + rows.length + '</div><div class="l">Einsendungen zu dieser Übung</div></div>';
-  container.appendChild(stat);
-  const g = document.createElement('div');
-  g.className = 'thema-group';
-  const titelHtml = pfad ? '<a href="'+pfad+'" target="_blank">'+datei.replace(/_/g,' ')+'</a>' : datei.replace(/_/g,' ');
-  g.innerHTML = '<div class="thema-title">' + titelHtml + '</div>';
-  rows.sort(function(a,b){ return a.klasse.localeCompare(b.klasse) || a.name.localeCompare(b.name); }).forEach(function(r){ g.appendChild(baueZeile(r, true)); });
-  container.appendChild(g);
+function einstufung(d) {
+  const a = d.auswertung || {};
+  const total = (a.text_total || 0) + (a.mc_total || 0);
+  const bearbeitet = (a.text_geloest || 0) + (a.mc_bearbeitet || 0);
+  if (total === 0) return { label: '–', cls: '', anteil: '' };
+  const quote = bearbeitet / total;
+  let label, cls;
+  if (quote >= 0.9) { label = 'Sehr gut'; cls = 'badge-gut'; }
+  else if (quote >= 0.7) { label = 'Gut'; cls = 'badge-gut'; }
+  else if (quote >= 0.4) { label = 'Genügend'; cls = 'badge-mittel'; }
+  else { label = 'Ungenügend'; cls = 'badge-schlecht'; }
+  return { label: label, cls: cls, anteil: '(' + bearbeitet + '/' + total + ')' };
 }
 
-function baueZeile(r, zeigeKlasse){
-  const row = document.createElement('div');
-  row.className = 'row-card';
-  const zeit = new Date(r.created_at).toLocaleString('de-CH');
-  row.innerHTML =
-    '<div class="row-head">' +
-      '<div><div class="name">' + escapeHtml(r.name) + (zeigeKlasse ? ' <span style="color:var(--ink-light);font-weight:500;">· ' + escapeHtml(r.klasse) + '</span>' : '') + '</div>' +
-      '<div class="meta">' + zeit + '</div></div>' +
-      '<span class="badge">' + auswertungBadge(r.auswertung) + '</span>' +
-    '</div>' +
-    '<div class="detail" id="det_' + r.beleg_code + '"></div>';
-  row.addEventListener('click', function(){ toggleDetail(r); });
-  return row;
+function render() {
+  const fk = document.getElementById('filterKlasse').value;
+  const ft = document.getElementById('filterThema').value;
+  const fc = document.getElementById('filterCode').value;
+  const fd = document.getElementById('filterDatei').value;
+  const fn = document.getElementById('filterName').value.trim().toLowerCase();
+  const von = document.getElementById('filterVon').value;
+  const bis = document.getElementById('filterBis').value;
+
+  let gefiltert = alleDaten.filter(function(d) {
+    if (fk && (d.klasse || '(ohne Klasse)') !== fk) return false;
+    if (ft && extractThema(d.datei) !== ft) return false;
+    if (fc && extractCode(d.datei) !== fc) return false;
+    if (fd && (d.datei || '(unbekannt)') !== fd) return false;
+    if (fn && !(d.name || '').toLowerCase().includes(fn)) return false;
+    if (von || bis) {
+      const datum = (d.created_at || '').slice(0, 10);
+      if (von && datum < von) return false;
+      if (bis && datum > bis) return false;
+    }
+    return true;
+  });
+
+  document.getElementById('countLine').textContent = gefiltert.length + ' von ' + alleDaten.length + ' Einträgen';
+
+  const list = document.getElementById('list');
+  if (gefiltert.length === 0) {
+    list.innerHTML = '<div class="empty-state">Keine Einträge gefunden.</div>';
+    return;
+  }
+
+  list.innerHTML = gefiltert.map(function(d) {
+    const ein = einstufung(d);
+    const datum = d.created_at ? new Date(d.created_at).toLocaleString('de-CH') : '';
+    const antworten = d.antworten || {};
+    const feldRows = Object.keys(antworten).map(function(k) {
+      const v = antworten[k];
+      if (v === null || v === undefined || v === '') return '';
+      return '<div class="field-row"><div class="field-key">' + escapeHtml(k) + '</div><div class="field-val">' + escapeHtml(typeof v === 'object' ? JSON.stringify(v) : v) + '</div></div>';
+    }).join('');
+
+    return '<div class="entry" data-id="' + d.id + '">' +
+      '<div class="entry-head" onclick="toggleEntry(' + d.id + ')">' +
+        '<span class="entry-name">' + escapeHtml(d.name || '(kein Name)') + '</span>' +
+        '<span class="entry-meta">' + escapeHtml(d.klasse || '') + ' · ' + escapeHtml(d.datei || '') + ' · ' + datum + '</span>' +
+        (ein.label !== '–' ? '<span class="badge ' + ein.cls + '">' + ein.label + ' ' + ein.anteil + '</span>' : '') +
+        '<span class="entry-toggle">▾</span>' +
+      '</div>' +
+      '<div class="entry-body" id="body_' + d.id + '">' +
+        feldRows +
+        '<div class="name-edit-row">' +
+          '<input type="text" id="nameInput_' + d.id + '" value="' + escapeHtml(d.name || '') + '" placeholder="Vor- und Nachname">' +
+          '<button onclick="nameKorrigieren(' + d.id + ')">Name speichern</button>' +
+          '<span class="name-edit-status" id="nameStatus_' + d.id + '"></span>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+  }).join('');
 }
 
-function toggleDetail(r){
-  const box = document.getElementById('det_' + r.beleg_code);
-  if (!box) return;
-  const opening = !box.classList.contains('show');
-  box.classList.toggle('show');
-  if (opening && !box.dataset.filled) {
-    box.dataset.filled = '1';
-    const antworten = r.antworten || {};
-    let html = '';
-    Object.keys(antworten).forEach(function(key){
-      const val = antworten[key];
-      if (typeof val === 'string' || typeof val === 'boolean') {
-        const text = (typeof val === 'boolean') ? (val ? 'Ja' : 'Nein') : val.trim();
-        html += '<div class="qa"><div class="q">' + escapeHtml(key) + '</div><div class="a' + (text?'':' empty') + '">' + escapeHtml(text || '(nicht beantwortet)') + '</div></div>';
-      }
+function toggleEntry(id) {
+  const body = document.getElementById('body_' + id);
+  if (body) body.classList.toggle('open');
+}
+
+async function nameKorrigieren(id) {
+  const input = document.getElementById('nameInput_' + id);
+  const status = document.getElementById('nameStatus_' + id);
+  const neuerName = input.value.trim();
+  if (!neuerName) { status.textContent = '✗ Name darf nicht leer sein.'; status.style.color = '#A22F22'; return; }
+
+  status.textContent = 'Speichere…';
+  status.style.color = '#7A7468';
+
+  try {
+    const res = await fetch(FUNCTION_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY
+      },
+      body: JSON.stringify({ aktion: 'name_korrigieren', passwort: LEHRER_PASSWORT, id: id, name: neuerName })
     });
-    box.innerHTML = html || '<div class="qa"><div class="a empty">Keine Textantworten vorhanden.</div></div>';
+    const json = await res.json();
+    if (json.error) { status.textContent = '✗ ' + json.error; status.style.color = '#A22F22'; return; }
+
+    status.textContent = '✓ Gespeichert';
+    status.style.color = '#1F8045';
+    const eintrag = alleDaten.find(function(d) { return d.id === id; });
+    if (eintrag) eintrag.name = neuerName;
+    fuelleFilterOptionen();
+    render();
+  } catch (e) {
+    status.textContent = '✗ Verbindungsfehler';
+    status.style.color = '#A22F22';
   }
 }
-
-function escapeHtml(s){ const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-
-document.addEventListener('DOMContentLoaded', function(){
-  if (localStorage.getItem(LEHRER_KEY) === '1') { zeigeContent(); document.getElementById('lockScreen').style.display='none'; }
-});
 </script>
 </body>
 </html>
