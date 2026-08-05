@@ -181,8 +181,14 @@
   .side-nav a:hover { background: var(--t1); color: white; box-shadow: 0 4px 16px rgba(0,0,0,.28); transform: translateY(-1px); }
   @media (min-width: 1300px) { .side-nav { display: block; } }
   @media print { .side-nav { display: none !important; } }
+  .qr-badge { display:none; position:fixed; bottom:18px; left:18px; z-index:95; background:var(--paper); border:1.5px solid var(--t1); border-radius:10px; padding:6px 6px 4px; text-align:center; box-shadow:0 2px 12px rgba(0,0,0,.15); cursor:pointer; font:inherit; }
+  .qr-badge canvas, .qr-badge img { display:block; }
+  .qr-badge-label { display:block; font-size:9px; color:var(--t1-dark); margin-top:3px; font-weight:600; letter-spacing:.02em; white-space:nowrap; }
+  @media (min-width:900px) { .qr-badge { display:block; } }
+  @media print { .qr-badge { display:block !important; box-shadow:none; border:1px solid #999; } }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 <table width="100%" style="background:#f7f7f7;border-bottom:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444;">
@@ -740,5 +746,28 @@ document.addEventListener('copy',function(e){
 <td style="padding:6px 10px;text-align:right;width:33%;"><a href="701_[UE]_A04_Branchen_Sektoren.html" style="color:var(--t1-dark);text-decoration:none;">Nächste Übung &#8594;</a></td>
 </tr>
 </table>
+<button type="button" id="qrBadge" class="qr-badge" aria-label="QR-Code zu dieser Uebungsseite">
+  <span id="qrCodeBox"></span>
+  <span id="qrBadgeLabel" class="qr-badge-label">Online-Version</span>
+</button>
+<script>
+(function(){
+  var badge = document.getElementById("qrBadge");
+  if (!badge || typeof QRCode === "undefined") return;
+  var box = document.getElementById("qrCodeBox");
+  var label = document.getElementById("qrBadgeLabel");
+  var large = false, pinned = false;
+  function render(){
+    box.innerHTML = "";
+    var size = large ? 220 : 64;
+    new QRCode(box, { text: window.location.href, width: size, height: size, correctLevel: QRCode.CorrectLevel.M });
+    label.textContent = large ? "Weg bewegen / erneut tippen" : "Online-Version";
+  }
+  badge.addEventListener("mouseenter", function(){ large = true; render(); });
+  badge.addEventListener("mouseleave", function(){ if (!pinned) { large = false; render(); } });
+  badge.addEventListener("click", function(){ pinned = !pinned; large = pinned; render(); });
+  render();
+})();
+</script>
 </body>
 </html>
