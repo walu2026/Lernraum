@@ -57,6 +57,8 @@ table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.88rem}
 .check .fb.show{display:block}
 a{color:var(--t1)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -132,7 +134,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Wie ist die Schweiz politisch aufgebaut, wer entscheidet was, und wie kann das Volk direkt mitbestimmen? Diese Theorie führt durch Staatsformen, Geschichte und Bundesverfassung, den dreistufigen Staatsaufbau mit Gewaltenteilung, die Bundesorgane, Grundrechte und Pflichten, die Volksrechte, den Gesetzgebungsprozess sowie Parteien, Verbände und Lobbyismus.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES A1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">GES A1</span> Staatsformen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="401_[UE]_A01_Staatsformen.html">A1</a>
@@ -165,7 +167,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">GES A2 · A6 · SUK A1</span> Geschichte &amp; Verfassung</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="401_[UE]_A04_Schweizer_Geschichte.html">A4</a>
@@ -192,7 +194,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">GES A3 · A7</span> Staatsaufbau &amp; Gewalten</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="401_[UE]_A06_Gewaltenteilung.html">A6</a>
@@ -227,7 +229,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">GES A3</span> Bundesorgane</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="401_[UE]_A10_Parlament.html">A10</a>
@@ -265,7 +267,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 5 ==================== -->
-<section>
+<section id="lz5">
   <h2><span class="nr">GES A2 · A4</span> Grundrechte &amp; Pflichten</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="401_[UE]_A14_Rechte_und_Pflichten.html">A14</a>
@@ -291,7 +293,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 6 ==================== -->
-<section>
+<section id="lz6">
   <h2><span class="nr">GES A4</span> Volksrechte &amp; Wahlen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="401_[UE]_A17_Stimmrecht.html">A17</a>
@@ -333,7 +335,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 7 ==================== -->
-<section>
+<section id="lz7">
   <h2><span class="nr">GES A5 · A8</span> Gesetzgebung &amp; Verbände</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="401_[UE]_A26_Gesetzgebung.html">A26</a>
@@ -381,7 +383,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 8 ==================== -->
-<section>
+<section id="lz8">
   <h2><span class="nr">GES A9</span> Lobbyismus: Chancen &amp; Risiken</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="401_[UE]_A35_Lobbyismus_Chancen_Risiken.html">A35</a>

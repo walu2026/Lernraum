@@ -58,6 +58,8 @@ table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.9rem}
 .check .fb.show{display:block}
 a{color:var(--t1)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -133,7 +135,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Scheidung, Todesfall, Hofübergabe: Wer erhält was, und nach welchen Regeln? Diese Theorie zeigt das Güterrecht bei Trennung, die gesetzliche Erbfolge und Pflichtteile, die Sonderregeln für Landwirtschaftsbetriebe (Bäuerliches Bodenrecht) und ein durchgerechnetes Fallbeispiel zur Betriebsübergabe.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Diese Kachel folgt dem <strong>Schullehrplan Landwirtschaft</strong> (Code <span class="nr" style="display:inline">LW D</span>), Thema 11 «Beziehungen leben». Details am Ende der Seite.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">LW D</span> Güterrecht: Errungenschaftsbeteiligung</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="506_[UE]_A01_Gueterrecht_Errungenschaftsbeteiligung.html">A01</a>
@@ -163,7 +165,7 @@ Hälftige Teilung: je       Fr.  60'000.–
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">LW D</span> Erbrecht &amp; Testament</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="506_[UE]_A02_Erbrecht_Testament.html">A02</a>
@@ -188,7 +190,7 @@ Hälftige Teilung: je       Fr.  60'000.–
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">LW D</span> Bäuerliches Bodenrecht</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="506_[UE]_A03_Baeuerliches_Bodenrecht.html">A03</a>
@@ -218,7 +220,7 @@ Ertragswert Hof:   Fr.   400'000.–
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">LW D</span> Betriebsübergabe: Faire Erbteilung?</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="506_[UE]_A04_Betriebsuebergabe_Faire_Erbteilung.html">A04</a>

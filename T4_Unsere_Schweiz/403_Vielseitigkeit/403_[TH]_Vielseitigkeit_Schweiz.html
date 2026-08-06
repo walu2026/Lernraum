@@ -57,6 +57,8 @@ table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.9rem}
 .check .fb.show{display:block}
 a{color:var(--t1)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -132,7 +134,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Die Schweiz ist klein, aber vielfältig: vier Sprachen, unzählige Bräuche, wachsende und alternde Bevölkerung, gelebtes Ehrenamt und tiefe politische Gräben, die das Land trotzdem zusammenhalten. Diese Theorie zeigt zentrale Eckdaten, was «Heimat» bedeuten kann, kulturelle Besonderheiten und Orte, aktuelle Bevölkerungsdaten, die Rolle der Freiwilligenarbeit und gesellschaftliche Spannungsfelder.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES C1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">GES C1</span> Eckdaten Schweiz</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="403_[UE]_A01_Eckdaten_Schweiz.html">A01</a>
@@ -162,7 +164,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">SUK C1</span> Heimat &amp; Identität</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="403_[UE]_A02_Heimat.html">A02</a>
@@ -181,7 +183,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">GES C1 · C2</span> Kulturelle Besonderheiten &amp; Orte</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="403_[UE]_A03_Kulturelle_Besonderheiten_Orte.html">A03</a>
@@ -201,7 +203,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">SUK C3</span> Gesellschaftliche Entwicklungen: Daten</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="403_[UE]_A04_Gesellschaftliche_Entwicklungen_Daten.html">A04</a>
@@ -226,7 +228,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 5 ==================== -->
-<section>
+<section id="lz5">
   <h2><span class="nr">SUK C4</span> Freiwilligenarbeit &amp; Engagement</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="403_[UE]_A05_Freiwilligenarbeit_Engagement.html">A05</a>
@@ -254,7 +256,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 6 ==================== -->
-<section>
+<section id="lz6">
   <h2><span class="nr">GES C4</span> Gesellschaftliche Spannungsfelder</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="403_[UE]_A06_Gesellschaftliche_Spannungsfelder.html">A06</a>

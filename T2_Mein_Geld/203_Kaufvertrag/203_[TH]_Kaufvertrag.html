@@ -54,6 +54,8 @@ table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
 .check .fb.show{display:block}
 a{color:var(--t1)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -129,7 +131,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Ob im Laden, beim Töff- oder Wohnungskauf oder online: Ein Kaufvertrag kommt schneller zustande, als viele denken – und bringt Rechte und Pflichten mit sich, sobald etwas schiefläuft. Diese Theorie klärt, wann und wie ein Kaufvertrag gültig wird, welche Rechte bei mangelhafter Ware oder Lieferverzug bestehen und worauf beim Online-Kauf zu achten ist.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES C2</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">GES C1 · SUK C1</span> Einkaufsmöglichkeiten vergleichen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="203_[UE]_A11_Einkaufsmoeglichkeiten_Vergleichen.html">A11</a>
@@ -150,7 +152,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">GES C2 · SUK C3</span> Offerten, Kaufvertrag-Gültigkeit &amp; Mängelrüge</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="203_[UE]_A04_Offerten.html">A04</a>
@@ -175,7 +177,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">GES C2</span> Töffkauf: Vertragsform</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="203_[UE]_A02_Toeffkauf.html">A02</a>
@@ -193,7 +195,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">GES C2</span> Wohnungsverkauf: Vertragsform</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="203_[UE]_A03_Wohnungsverkauf.html">A03</a>
@@ -211,7 +213,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 5 ==================== -->
-<section>
+<section id="lz5">
   <h2><span class="nr">GES</span> Rechtsfälle zum Vertragsrecht</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="203_[UE]_A01_Vertragsrecht_Faelle.html">A01</a>
@@ -229,7 +231,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 6 ==================== -->
-<section>
+<section id="lz6">
   <h2><span class="nr">GES</span> Kaufvertrag: Aussagen und Rechtsfälle</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="203_[UE]_A07_Kaufvertrag_Aussagen.html">A07</a>
@@ -248,7 +250,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 7 ==================== -->
-<section>
+<section id="lz7">
   <h2><span class="nr">GES C4</span> Kaufen im Internet</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="203_[UE]_A08_Internetkauf.html">A08</a>
@@ -273,7 +275,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 8 ==================== -->
-<section>
+<section id="lz8">
   <h2><span class="nr">Ergänzend</span> Quittung schreiben</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="203_[UE]_A10_Quittung.html">A10</a>
@@ -291,7 +293,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 9 ==================== -->
-<section>
+<section id="lz9">
   <h2><span class="nr">SUK C3</span> Mängelrechte &amp; Garantie</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="203_[UE]_A12_Maengelrechte_Garantie.html">A12</a>
@@ -315,7 +317,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 10 ==================== -->
-<section>
+<section id="lz10">
   <h2><span class="nr">GES</span> Lieferverzug</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="203_[UE]_A13_Lieferverzug.html">A13</a>

@@ -53,6 +53,8 @@ table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
 .check .fb.show{display:block}
 a{color:var(--t1)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -128,7 +130,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Nach Lehrvertrag (Serie 101) und Rechtsgrundlagen (Serie 102) geht es nun um den Alltag selbst: Wie gelingt Kommunikation, wie erkennt man Konflikte im Betrieb oder in der Schule frühzeitig, wo gibt es Hilfe, und wie organisiert man Schule, Betrieb und Privatleben nebeneinander? Diese Theorie liefert die Werkzeuge dazu.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES C1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">SUK C3</span> Kommunikationsregeln: das Vier-Ohren-Modell</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="103_[UE]_A02_Kommunikationsregeln.html">A02</a>
@@ -154,7 +156,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">GES C1</span> Konflikte im Lehrbetrieb und in der Schule</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="103_[UE]_A01_Konflikte_Betrieb_Schule.html">A01</a>
@@ -173,7 +175,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">SUK C1 · GES C2</span> Anlaufstellen &amp; Angebote</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="103_[UE]_A03_Anlaufstellen_Angebote.html">A03</a>
@@ -197,7 +199,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">SUK C2</span> Schriftliche Anfrage formulieren</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="103_[UE]_A04_Schriftliche_Anfrage.html">A04</a>
@@ -216,7 +218,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 5 ==================== -->
-<section>
+<section id="lz5">
   <h2><span class="nr">SUK C4 · GES C3</span> Stärken, Ziele und Lernstrategien</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="103_[UE]_A05_Staerken_Ziele_Strategien.html">A05</a>
@@ -240,7 +242,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 6 ==================== -->
-<section>
+<section id="lz6">
   <h2><span class="nr">GES C4</span> Die eigene Lebenssituation reflektieren</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="103_[UE]_A06_Lebenssituation_reflektieren.html">A06</a>
@@ -258,7 +260,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 7 ==================== -->
-<section>
+<section id="lz7">
   <h2><span class="nr">Ergänzend</span> Wochenplanung und Selbstorganisation</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="103_[UE]_A07_Wochenplanung_Selbstorganisation.html">A07</a>

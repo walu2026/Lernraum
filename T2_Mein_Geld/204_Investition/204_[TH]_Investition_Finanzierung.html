@@ -55,6 +55,8 @@ table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
 .check .fb.show{display:block}
 a{color:var(--t1)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -130,7 +132,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Eine grössere Anschaffung – vom Occasionsauto bis zur ersten Investition – lässt sich auf verschiedene Arten finanzieren, mit jeweils eigenen Konsequenzen für Eigentum und Kosten. Diese Theorie zeigt die wichtigsten Finanzierungs- und Kaufarten, wie sich der Wert einer Anschaffung über die Zeit verändert und wie Sparen und Vermögensaufbau grundsätzlich funktionieren. Für die landwirtschaftlichen Zusatzübungen (Maschinen, Betriebsmittel) gelten dieselben Grundlagen.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES D1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">GES D1 · SUK D1</span> Finanzierungsarten</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="204_[UE]_A01_Eigentum_Finanzierungsarten.html">A01</a>
@@ -154,7 +156,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">GES D1</span> Kaufarten</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="204_[UE]_A02_Kaufarten.html">A02</a>
@@ -179,7 +181,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">GES D1</span> Leasing: Aussagen prüfen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="204_[UE]_A03_Leasing.html">A03</a>
@@ -197,7 +199,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">SUK D1</span> Autofinanzierung (Fallbeispiel)</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="204_[UE]_A04_Autofinanzierung.html">A04</a>
@@ -215,7 +217,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 5 ==================== -->
-<section>
+<section id="lz5">
   <h2><span class="nr">Ergänzend</span> Investitionsrechner</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="204_[UE]_A05_Investitionsrechner_allgemein.html">A05</a>
@@ -233,7 +235,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 6 ==================== -->
-<section>
+<section id="lz6">
   <h2><span class="nr">Ergänzend</span> Abschreibung</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="204_[UE]_A06_Abschreibung_allgemein.html">A06</a>
@@ -256,7 +258,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 7 ==================== -->
-<section>
+<section id="lz7">
   <h2><span class="nr">GES D3</span> Vermögensaufbau: Grundprinzipien</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="204_[UE]_A07_Vermoegensaufbau_Theorie_allgemein.html">A07</a>
@@ -285,7 +287,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 8 ==================== -->
-<section>
+<section id="lz8">
   <h2><span class="nr">GES D3</span> Vermögensaufbau-Rechner</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="204_[UE]_A08_Vermoegensaufbau_Rechner_allgemein.html">A08</a>
@@ -303,7 +305,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 9 ==================== -->
-<section>
+<section id="lz9">
   <h2><span class="nr">GES D2</span> Sparstrategien</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="204_[UE]_A10_Sparstrategien_Vergleichen.html">A10</a>
@@ -326,7 +328,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 10 ==================== -->
-<section>
+<section id="lz10">
   <h2><span class="nr">Ergänzend</span> Lernkontrolle</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="204_[UE]_A09_Lernkontrolle_allgemein.html">A09</a>

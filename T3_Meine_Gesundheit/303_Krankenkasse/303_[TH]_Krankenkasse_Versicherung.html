@@ -58,6 +58,8 @@ a{color:var(--t1)}
 .ow-item input{margin-top:4px;accent-color:var(--t1)}
 .ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -133,7 +135,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Das Schweizer Versicherungssystem beruht auf Solidarität und ist in mehrere Säulen und Versicherungsarten gegliedert. Diese Theorie zeigt, wie Kranken- und Unfallversicherung funktionieren, was Prämie, Franchise und Selbstbehalt bedeuten und wie sich Über- oder Unterversicherung auswirken.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES C2</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">GES</span> Drei Säulen &amp; Solidaritätsprinzip</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="303_[UE]_A01_Solidaritaetsprinzip.html">A01</a>
@@ -159,7 +161,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">GES C2 · C3</span> Krankenversicherung wählen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="303_[UE]_A04_Versicherungen_Tabelle.html">A04</a>
@@ -198,7 +200,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">GES C2</span> Grund- &amp; Zusatzversicherung</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="303_[UE]_A08_Krankenkasse_finden.html">A08</a>
@@ -225,7 +227,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">GES C1 · C2</span> Versicherungsfälle</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="303_[UE]_A11_SUVA_Vorschriften.html">A11</a>
@@ -252,7 +254,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 5 ==================== -->
-<section>
+<section id="lz5">
   <h2><span class="nr">SUK C1</span> Unfallbericht analysieren &amp; verfassen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="303_[UE]_A15_Unfallbericht_Analysieren_Verfassen.html">A15</a>
@@ -270,7 +272,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 6 ==================== -->
-<section>
+<section id="lz6">
   <h2><span class="nr">SUK C3</span> Meinung zu einem gesundheitspolitischen Thema</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="303_[UE]_A16_Meinung_Gesundheitspolitisches_Thema.html">A16</a>

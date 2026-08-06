@@ -70,6 +70,8 @@ a{color:var(--t1)}
 .stat-card .num{font-family:'JetBrains Mono',monospace;font-weight:800;font-size:1.3rem;color:var(--t1-dark)}
 .stat-card .lbl{font-size:.75rem;color:var(--ink-soft);margin-top:3px}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -145,7 +147,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Der Auszug von zu Hause ist ein grosser Schritt – und bringt viele praktische und rechtliche Fragen mit sich. Diese Theorie zeigt, welche Wohnformen zur Wahl stehen und wie ein Budget dafür aussieht, welche Rechte und Pflichten Mieterinnen und Mieter sowie Vermietende haben, wie Mietzins, Kaution und Kündigung geregelt sind, welchen Schutz das Mietrecht bietet und wie sich die aktuelle Lage auf dem Schweizer Wohnungsmarkt darstellt.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">GES B2</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">GES B1 · SUK B1</span> Wohnformen, Budget &amp; Übernahme</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="502_[UE]_A01_Wohnformen.html">A01</a>
@@ -188,7 +190,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">GES B2 · SUK B2</span> Rechte, Pflichten &amp; Mängel im Mietverhältnis</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="502_[UE]_A02_Mieter_Vermieter_Pflichten.html">A02</a>
@@ -234,7 +236,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">GES B2 · B4</span> Mietzins, Kündigung &amp; Mieterschutz</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="502_[UE]_A11_Wohnungskuendigung.html">A11</a>
@@ -278,7 +280,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">GES B3</span> Kaution, Untermiete &amp; Versicherungen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="502_[UE]_A03_Mietkaution.html">A03</a>
@@ -322,7 +324,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 5 ==================== -->
-<section>
+<section id="lz5">
   <h2><span class="nr">SUK B3 · B4</span> Wohnungsmarkt &amp; Online-Wohnungssuche</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="502_[UE]_A17_Wohnungsmarkt_Wohnungsnot.html">A17</a>

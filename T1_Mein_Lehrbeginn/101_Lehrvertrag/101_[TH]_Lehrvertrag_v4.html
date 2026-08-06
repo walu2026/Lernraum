@@ -24,7 +24,9 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 .lernziel table{width:100%;border-collapse:collapse;font-size:.92rem}
 .lernziel td{padding:5px 8px;border-bottom:1px solid var(--line);color:var(--ink-soft);vertical-align:top}
 .lernziel td.lz{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--t1);font-weight:700;white-space:nowrap}
-section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:22px;scroll-margin-top:16px}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 section h2{font-size:1.25rem;font-weight:800;color:var(--t1-dark);margin-bottom:6px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
 section h2 .nr{font-family:'JetBrains Mono',monospace;font-size:.8rem;background:var(--t1-light);color:var(--t1);padding:3px 9px;border-radius:6px;white-space:nowrap}
 .ue-link{font-size:.82rem;color:var(--ink-soft);margin-bottom:14px}
@@ -141,7 +143,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Mit dem Lehrvertrag beginnt die Berufslehre offiziell – ein Dokument, das weit mehr regelt als nur den Lohn. Diese Theorie zeigt, wie das Schweizer Berufsbildungssystem aufgebaut ist, was im Lehrvertrag stehen muss, welche Rechte und Pflichten Lernende und Lehrbetrieb haben, wie mit Pflichtverletzungen umgegangen wird und wie ein Lehrverhältnis endet.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">GES A3</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">GES A3</span> Das Berufsbildungssystem der Schweiz</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="101_[UE]_A01_Berufsbildung_Gesetze_MIX.html">A1</a>
@@ -186,7 +188,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">GES A1 · SUK A1</span> Mein Lehrvertrag: Form, Inhalt, Rechte und Pflichten</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="101_[UE]_A06_Mein_Lehrvertrag_MIX.html">A6</a>
@@ -223,7 +225,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">GES A2 · A4</span> Pflichtverletzungen und ihre Konsequenzen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="101_[UE]_A11_Rechtsfaelle_MIX.html">A11</a>
@@ -255,7 +257,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">GES A1</span> Lohn, Arbeitszeit und Ferien</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="101_[UE]_A09_Lohn_Arbeitszeit_MIX.html">A9</a>
@@ -295,7 +297,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 5 ==================== -->
-<section>
+<section id="lz5">
   <h2><span class="nr">GES A3 · A4</span> Wie der Lehrvertrag endet</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="101_[UE]_A14_Lehrvertrag_Ende_MIX.html">A14</a>

@@ -66,6 +66,8 @@ a{color:var(--t1)}
 .ow-item input{margin-top:4px;accent-color:var(--t1)}
 .ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -141,7 +143,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Eine Stelle zu finden und einen Arbeitsvertrag richtig einzuordnen, gehört zu den ersten grossen Schritten nach der Lehre. Diese Theorie zeigt, wie ein überzeugendes Bewerbungsdossier aussieht, welche Gesetze für den Arbeitsvertrag gelten, was bei Arbeitszeit und Kündigung zu beachten ist, welche Rolle Gesamtarbeitsverträge und Gewerkschaften spielen – und wie der Einsatz von KI bei der Rekrutierung rechtlich einzuschätzen ist.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">GES B2</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">SUK B1 · B2 · GES B1</span> Bewerbung und Vorstellungsgespräch</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="702_[UE]_A01_Bewerbungsdossier.html">A1</a>
@@ -169,7 +171,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">GES B2 · B3</span> Der Einzelarbeitsvertrag (EAV)</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="702_[UE]_A03_Arbeitsvertrag_Gesetze.html">A3</a>
@@ -199,7 +201,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">GES B2</span> Arbeitszeit und Vertragsende</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="702_[UE]_A06_Arbeitszeit.html">A6</a>
@@ -230,7 +232,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">GES B2 · Ergänzend</span> GAV und Gewerkschaften</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="702_[UE]_A09_GAV_Vorteil.html">A9</a>
@@ -254,7 +256,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 5 ==================== -->
-<section>
+<section id="lz5">
   <h2><span class="nr">GES B4</span> KI und neue Rekrutierungsformen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="702_[UE]_A14_KI_Neue_Rekrutierungsformen.html">A14</a>

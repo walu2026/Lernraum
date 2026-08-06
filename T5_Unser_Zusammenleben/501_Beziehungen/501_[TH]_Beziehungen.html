@@ -73,6 +73,8 @@ a{color:var(--t1)}
 .ohr-card strong{display:block;color:var(--t1-dark);font-size:.88rem;margin-bottom:3px}
 .ohr-card span{font-size:.8rem;color:var(--ink-soft)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -148,7 +150,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Beziehungen begleiten das ganze Leben – zu Familie, Freundinnen und Freunden, Partnerinnen und Partnern, aber auch zu Vorgesetzten und Arbeitskolleginnen und -kollegen. Diese Theorie zeigt, wie Kommunikation in Beziehungen funktioniert und wo Missverständnisse entstehen, worin sich private und berufliche Beziehungen unterscheiden, welche Faktoren zu gelingenden Beziehungen beitragen und wie sich Rollen und Kommunikationsmuster in einem Dialog erkennen lassen.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">SUK A1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">SUK A1 · GES A1</span> Kommunikationsmodelle &amp; Beziehungsformen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="501_[UE]_A01_Kommunikationsmodelle_Vier_Ohren.html">A3</a>
@@ -186,7 +188,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">SUK A2</span> Beziehungen pflegen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="501_[UE]_A03_Gute_Beziehungen_Pflegen_Reflexion.html">A5</a>
@@ -213,7 +215,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">SUK A3</span> Dialoge und Rollen analysieren</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="501_[UE]_A04_Dialoge_Rollen_Analysieren.html">A6</a>

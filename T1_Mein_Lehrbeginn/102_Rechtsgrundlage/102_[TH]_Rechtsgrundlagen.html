@@ -57,6 +57,8 @@ a{color:var(--t1)}
 .ow-item input{margin-top:4px;accent-color:var(--t1)}
 .ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -132,7 +134,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Mit der Lehre beginnt rechtlich ein neuer Lebensabschnitt: Manches, was gestern noch die Eltern regeln mussten, kann eine lernende Person jetzt selbst entscheiden – anderes noch nicht. Diese Theorie klärt die rechtlichen Grundbegriffe, die dafür nötig sind: der Unterschied zwischen Recht, Moral und Sitte, öffentliches und privates Recht, wer wann handlungsfähig ist, wie Zivil- und Strafprozess funktionieren, was das Jugendstrafrecht regelt – und wie man mit Reglementen und digitaler Kommunikation im Betrieb und in der Schule umgeht.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES B6</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">GES B6</span> Recht, Moral und Sitte/Brauch</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="102_[UE]_A01_Recht_Moral_Brauch_MIX.html">A01</a>
@@ -156,7 +158,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">GES B2 · B3</span> Rechtsgebiete, Rechte/Pflichten im Lebensverlauf, Rechtsgrundsätze</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="102_[UE]_A02_Privates_Oeffentliches_Recht_MIX.html">A02</a>
@@ -199,7 +201,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">GES B4</span> Personenrecht – Handlungsfähigkeit</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="102_[UE]_A07_Personenrecht_MIX.html">A07</a>
@@ -225,7 +227,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">GES</span> Zivil- und Strafprozess</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="102_[UE]_A06_Zivil_Strafprozess_MIX.html">A06</a>
@@ -251,7 +253,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 5 ==================== -->
-<section>
+<section id="lz5">
   <h2><span class="nr">GES B4</span> Strafrecht &amp; Bussen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="102_[UE]_A05_Busse_Einkommen_MIX.html">A05</a>
@@ -279,7 +281,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 6 ==================== -->
-<section>
+<section id="lz6">
   <h2><span class="nr">GES B5</span> Jugendstrafrecht</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="102_[UE]_A12_Jugendstrafrecht.html">A12</a>
@@ -299,7 +301,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 7 ==================== -->
-<section>
+<section id="lz7">
   <h2><span class="nr">SUK B5 · GES B6</span> Ethik-Dilemma</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="102_[UE]_A11_Ethik_Dilemma.html">A11</a>
@@ -317,7 +319,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 8 ==================== -->
-<section>
+<section id="lz8">
   <h2><span class="nr">SUK B3</span> Reglemente lesen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="102_[UE]_A14_Reglemente_Lesen.html">A14</a>
@@ -341,7 +343,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 9 ==================== -->
-<section>
+<section id="lz9">
   <h2><span class="nr">SUK B2</span> Digitale Kommunikationskanäle</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="102_[UE]_A13_Digitale_Kommunikationskanaele.html">A13</a>
@@ -364,7 +366,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 10 ==================== -->
-<section>
+<section id="lz10">
   <h2><span class="nr">GES B1 · SUK B4</span> Mein Weg in die Lehre</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="102_[UE]_A15_Mein_Weg_in_die_Lehre.html">A15</a>

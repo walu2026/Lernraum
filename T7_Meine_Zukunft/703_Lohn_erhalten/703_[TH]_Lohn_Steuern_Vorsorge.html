@@ -66,6 +66,8 @@ a{color:var(--t1)}
 .ow-item input{margin-top:4px;accent-color:var(--t1)}
 .ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -141,7 +143,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Vom Lohn bleibt nach Steuern und Vorsorgebeiträgen ein Nettobetrag übrig – wie viel, hängt von Steuersystem, Vorsorgeplanung und finanziellen Entscheidungen ab. Diese Theorie zeigt die Staatsfinanzen im Überblick, erklärt Steuerarten und Steuerprogression, ordnet Geldanlagen nach Rendite und Risiko ein, erklärt den Vorsorgeausweis der Pensionskasse und die Finanzierung von Wohneigentum – und übt das Einordnen eines Finanzartikels.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">GES C1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">GES · Ergänzend</span> Staatsfinanzen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="703_[UE]_A01_Bundesfinanzen.html">A01</a>
@@ -164,7 +166,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">GES C1</span> Steuern: Arten, Progression und Steuererklärung</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="703_[UE]_A02_Steuerarten.html">A02</a>
@@ -192,7 +194,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">GES · Ergänzend</span> Geldanlage: Rendite, Risiko und Anlageformen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="703_[UE]_A08_Rendite_Risiko.html">A08</a>
@@ -223,7 +225,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">GES C3</span> Den Vorsorgeausweis der Pensionskasse analysieren</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="703_[UE]_A18_Vorsorgeausweis_PK_Analysieren.html">A18</a>
@@ -248,7 +250,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 5 ==================== -->
-<section>
+<section id="lz5">
   <h2><span class="nr">SUK C4 · GES C6</span> Wohneigentum finanzieren</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="703_[UE]_A19_Wohneigentum_Finanzieren.html">A19</a>
@@ -272,7 +274,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 6 ==================== -->
-<section>
+<section id="lz6">
   <h2><span class="nr">GES C2</span> Einen Finanzartikel analysieren</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="703_[UE]_A20_Finanzartikel_Analysieren.html">A20</a>

@@ -66,6 +66,8 @@ a{color:var(--t1)}
 .ow-item input{margin-top:4px;accent-color:var(--t1)}
 .ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -141,7 +143,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Der Klimawandel und der Umgang mit knappen Ressourcen gehören zu den grössten Herausforderungen unserer Zeit. Diese Theorie erklärt den Treibhauseffekt und seine Folgen, ordnet den eigenen ökologischen Fussabdruck ein, zeigt staatliche Steuerungsinstrumente wie das Verursacherprinzip, thematisiert den sorgfältigen Umgang mit Wasser, stellt die Schweizer Energiestrategie vor – und regt dazu an, einen eigenen Standpunkt zu Klimafragen zu entwickeln.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">GES B1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">SUK B3</span> Der ökologische Fussabdruck</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="602_[UE]_A01_Oekologischer_Fussabdruck.html">A01</a>
@@ -168,7 +170,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">GES B1</span> Klimawandel: Treibhauseffekt und Folgen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="602_[UE]_A02_Treibhauseffekt.html">A02</a>
@@ -195,7 +197,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">GES B2</span> Energie: fossile Energieträger und Energieverbrauch</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="602_[UE]_A04_Fossile_Energietraeger.html">A04</a>
@@ -222,7 +224,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">SUK B2</span> Staatliche Instrumente &amp; Nachhaltigkeit</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="602_[UE]_A06_Umweltinstrumente.html">A06</a>
@@ -254,7 +256,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 5 ==================== -->
-<section>
+<section id="lz5">
   <h2><span class="nr">SUK B1</span> Wasser: sorgfältig mit einer wertvollen Ressource umgehen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="602_[UE]_A08_Wasser.html">A08</a>
@@ -284,7 +286,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 6 ==================== -->
-<section>
+<section id="lz6">
   <h2><span class="nr">GES B4</span> Energiestrategie Schweiz</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="602_[UE]_A13_2000_Watt_Gesellschaft.html">A13</a>
@@ -309,7 +311,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 7 ==================== -->
-<section>
+<section id="lz7">
   <h2><span class="nr">GES B3</span> Standpunkt zu Klimafragen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="602_[UE]_A16_Standpunkt_Klimafragen.html">A16</a>

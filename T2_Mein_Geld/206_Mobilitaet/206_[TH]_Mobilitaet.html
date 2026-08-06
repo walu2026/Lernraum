@@ -66,6 +66,8 @@ a{color:var(--t1)}
 .ow-item input{margin-top:4px;accent-color:var(--t1)}
 .ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -141,7 +143,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Mobilität bedeutet Freiheit und Verantwortung zugleich. Diese Theorie zeigt den Weg zum Führerausweis inklusive der landwirtschaftlichen Spezialkategorien, erklärt die wichtigsten Motorfahrzeugversicherungen, zeigt das richtige Verhalten bei einem Verkehrsunfall – und hilft bei der Wahl einer nachhaltigen, kostenbewussten Mobilität.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Diese Kachel ist eine LW-Zusatzkachel (Landwirtschaft): Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">LS C</span>) verweisen auf die Lebenssituationen des <em>Nationalen Schullehrplans ABU-LW EFZ</em>, Thema 8 «Mobil unterwegs sein» – nicht auf das SG-Kompetenzcode-Schema der übrigen Kacheln.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">Ergänzend</span> Der Weg zum Führerausweis</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="206_[UE]_A01_Weg_Zum_Fuehrerausweis.html">A01</a>
@@ -166,7 +168,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">LS C</span> Motorfahrzeugversicherung</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="206_[UE]_A02_Motorfahrzeugversicherung.html">A02</a>
@@ -190,7 +192,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">LS D</span> Verhalten bei einem Verkehrsunfall</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="206_[UE]_A03_Verkehrsunfall_Protokoll_Folgen.html">A03</a>
@@ -209,7 +211,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">LS A · LS B</span> Reiseplanung und nachhaltige Mobilität</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="206_[UE]_A04_Mobil_Unterwegs_Nachhaltige_Mobilitaet.html">A04</a>

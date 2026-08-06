@@ -66,6 +66,8 @@ a{color:var(--t1)}
 .ow-item input{margin-top:4px;accent-color:var(--t1)}
 .ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -141,7 +143,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Beim Übergang von der Lehre in die Arbeitswelt lohnt sich ein Grundverständnis wirtschaftlicher Zusammenhänge. Diese Theorie erklärt Produktionsfaktoren und Wirtschaftssektoren, zeigt, wie sich Preise auf einem Markt bilden, ordnet das Bruttoinlandprodukt und seine Grenzen ein, erklärt Konjunktur und Inflation, beleuchtet Arbeitslosigkeit und die Invalidenversicherung – und regt dazu an, die eigenen Kompetenzen und den eigenen Beitrag zum Unternehmenserfolg zu reflektieren.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">GES A2</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">GES A2</span> Produktionsfaktoren und Kapitalarten</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="701_[UE]_A01_Produktionsfaktoren.html">A01</a>
@@ -173,7 +175,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">GES A2</span> Wirtschaftssektoren und Strukturwandel</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="701_[UE]_A03_Wirtschaftssektoren.html">A03</a>
@@ -200,7 +202,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">GES A2</span> Markt und Preisbildung</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="701_[UE]_A19_Preisbildung.html">A19</a>
@@ -227,7 +229,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">GES A2</span> BIP und Wirtschaftskreislauf</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="701_[UE]_A05_BIP_Schweiz.html">A05</a>
@@ -254,7 +256,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 5 ==================== -->
-<section>
+<section id="lz5">
   <h2><span class="nr">GES A3</span> Konjunktur und Inflation</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="701_[UE]_A11_Konjunkturphasen.html">A11</a>
@@ -289,7 +291,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 6 ==================== -->
-<section>
+<section id="lz6">
   <h2><span class="nr">GES A3 · Ergänzend</span> Arbeitslosigkeit und Sozialversicherung</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="701_[UE]_A15_Arbeitslosigkeit.html">A15</a>
@@ -317,7 +319,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 7 ==================== -->
-<section>
+<section id="lz7">
   <h2><span class="nr">SUK A1 · GES A1</span> Selbsteinschätzung und gefragte Kompetenzen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="701_[UE]_A22_Selbsteinschaetzung_Gefragte_Kompetenzen.html">A22</a>
@@ -332,7 +334,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 8 ==================== -->
-<section>
+<section id="lz8">
   <h2><span class="nr">SUK A2</span> Mein Beitrag zum Unternehmenserfolg</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="701_[UE]_A23_Mein_Beitrag_Unternehmenserfolg.html">A23</a>

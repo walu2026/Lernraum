@@ -53,6 +53,8 @@ table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.93rem}
 .check .fb.show{display:block}
 a{color:var(--t1)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -127,7 +129,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Kunst und Kultur begegnen uns überall – im Dorf, am Arbeitsplatz, in der Sprache, in Traditionen. Diese Theorie zeigt verschiedene Kunstformen, beleuchtet die Mehrsprachigkeit der Schweiz, verfolgt die Entwicklung der Musik und wagt einen Streifzug durch 2000 Jahre Kunstphilosophie – bis hin zur Frage, was Künstliche Intelligenz für Kunst und Kultur bedeutet.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Diese Kachel ist eine LW-Zusatzkachel (Landwirtschaft): Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">LW A</span>) verweisen auf die Lebenssituationen des <em>Nationalen Schullehrplans ABU-LW EFZ</em>, Thema 7 «Kultur entdecken» – nicht auf das SG-Kompetenzcode-Schema der übrigen Kacheln.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">LW A</span> Kunstformen im Überblick</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="405_[UE]_A01_Kunstformen_im_Alltag.html">A01</a>
@@ -154,7 +156,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">LW A</span> Die viersprachige Schweiz</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="405_[UE]_A02_Mehrsprachigkeit_Schweiz.html">A02</a>
@@ -180,7 +182,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">LW A</span> Kultur selbst erleben</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="405_[UE]_A03_Kultureller_Anlass_Reflexion.html">A03</a>
@@ -190,7 +192,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">LW B</span> Entwicklung einer Kunstform: Musik</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="405_[UE]_A04_Entwicklung_einer_Kunstform.html">A04</a>
@@ -214,7 +216,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 5 ==================== -->
-<section>
+<section id="lz5">
   <h2><span class="nr">LW B</span> Kunst und Philosophie: 2000 Jahre «Was ist schön?»</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="405_[UE]_A05_Kunst_und_Philosophie.html">A05</a>

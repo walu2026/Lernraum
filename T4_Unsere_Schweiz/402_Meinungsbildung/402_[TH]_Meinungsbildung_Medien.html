@@ -59,6 +59,8 @@ table.tb{width:100%;border-collapse:collapse;margin:14px 0;font-size:.9rem}
 .check .fb.show{display:block}
 a{color:var(--t1)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -134,7 +136,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Wer entscheidet, was wir sehen und lesen – und wie bildet man sich in einer Welt voller Informationen eine eigene, begründete Meinung? Diese Theorie zeigt, wie Medien die politische Meinungsbildung prägen, wo die Meinungsfreiheit ihre Grenzen hat, wie sich verlässliche Quellen von Fake News unterscheiden lassen, welche Rolle die Medien als «vierte Gewalt» spielen, wie Algorithmen unsere Wahrnehmung filtern und wie man überzeugende Pro-/Kontra-Argumente aufbaut.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES B1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">GES B2</span> Massenmedien</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="402_[UE]_A01_Massenmedien.html">A01</a>
@@ -153,7 +155,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">GES B4</span> Medien als vierte Gewalt</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="402_[UE]_A04_Medien_Vierte_Gewalt.html">A04</a>
@@ -177,7 +179,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">GES B1</span> Meinungsfreiheit und Grenzen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="402_[UE]_A02_Meinungsfreiheit_Grenzen.html">A02</a>
@@ -201,7 +203,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">GES B3 · SUK B4</span> Verlässliche Quellen &amp; Fake News</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="402_[UE]_A03_Verlaessliche_Quellen_Fake_News.html">A03</a>
@@ -227,7 +229,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 5 ==================== -->
-<section>
+<section id="lz5">
   <h2><span class="nr">GES B5</span> Algorithmen &amp; digitale Technologien</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="402_[UE]_A05_Algorithmen_Digitale_Technologien.html">A05</a>
@@ -247,7 +249,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 6 ==================== -->
-<section>
+<section id="lz6">
   <h2><span class="nr">SUK B3</span> Pro-/Kontra-Argumente entwickeln</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="402_[UE]_A06_Pro_Kontra_Argumente.html">A06</a>

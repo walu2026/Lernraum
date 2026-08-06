@@ -66,6 +66,8 @@ a{color:var(--t1)}
 .ow-item input{margin-top:4px;accent-color:var(--t1)}
 .ow-item:has(input:checked){background:var(--ok-bg);border-color:var(--ok);color:var(--ink)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none} details .inner{display:block} .rechnung{background:#fff;color:var(--ink);border:1px solid var(--line)} .rechnung b{color:var(--t1)}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -140,7 +142,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Ob Konkubinat, Ehe oder eine andere Form des Zusammenlebens – jedes Lebensmodell hat unterschiedliche rechtliche Konsequenzen, etwa beim Vermögen, bei Kindern oder im Todesfall. Diese Theorie vergleicht die wichtigsten Lebensformen, erklärt die drei Güterstände der Ehe, ordnet Rechte und Pflichten von Eltern ein und zeigt, wie die gesetzliche Erbfolge funktioniert.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes in den Abschnittstiteln (z.B. <span class="nr" style="display:inline">GES C1</span>) verweisen auf die Kompetenzen des Schullehrplans; die vollständige Übersicht dazu steht am Ende der Seite.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">GES C1</span> Lebensformen: Konkubinat, Ehe und eingetragene Partnerschaft</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="503_[UE]_A01_Konkubinat.html">A01</a>
@@ -181,7 +183,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">GES C2 · C4</span> Ehe &amp; Güterrecht: Die drei Güterstände</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="503_[UE]_A04_Familienrecht_Aussagen.html">A04</a>
@@ -223,7 +225,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">GES C3</span> Kinder &amp; Sorgerecht</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="503_[UE]_A07_Elterliche_Sorge.html">A07</a>
@@ -250,7 +252,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">GES C4 · Ergänzend</span> Erbrecht</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="503_[UE]_A13_Erbrecht_Tochter.html">A13</a>
@@ -289,7 +291,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 5 ==================== -->
-<section>
+<section id="lz5">
   <h2><span class="nr">SUK C1</span> Mein Lebensmodell (Reflexion)</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="503_[UE]_A15_Mein_Zukuenftiges_Lebensmodell.html">A15</a>

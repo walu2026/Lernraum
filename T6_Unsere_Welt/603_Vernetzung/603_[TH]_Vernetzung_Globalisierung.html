@@ -61,6 +61,8 @@ details .inner{padding:14px 16px;color:var(--ink-soft)}
 .check .fb.show{display:block}
 a{color:var(--t1)}
 @media print{.topbar{background:#fff;color:var(--ink);border-bottom:2px solid var(--t1)} .topbar a.nav{display:none} .th-nav-table{display:none} .check{display:none} details .inner{display:block}}
+section:target{animation:th-target-flash 2s ease-out}
+@keyframes th-target-flash{0%{border-color:var(--t1);box-shadow:0 0 0 4px var(--t1-light)}100%{border-color:var(--line);box-shadow:none}}
 </style>
 </head>
 <body>
@@ -136,7 +138,7 @@ a{color:var(--t1)}
 <p class="seiten-einstieg">Die Schweiz ist eng mit der Welt verflochten: politisch mit ihrer Nachbarin EU, wirtschaftlich über Handel und Globalisierung, und aussenpolitisch über ihre humanitäre Tradition. Diese Theorie klärt, wie die EU aufgebaut ist, wie die Schweiz ihre Beziehung zur EU über den bilateralen Weg regelt, wie sich die humanitäre Tradition der Schweiz zeigt, was Globalisierung bedeutet und wie Freihandelsabkommen funktionieren.<br><span style="font-size:.85rem;display:inline-block;margin-top:10px">Die Codes (<span class="nr" style="display:inline">GES</span>) verweisen auf den SLP-Fachbereich; die zugehörigen Lernziele stehen am Ende der Seite.</span></p>
 
 <!-- ==================== LZ 1 ==================== -->
-<section>
+<section id="lz1">
   <h2><span class="nr">GES</span> Europäische Union</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="603_[UE]_A01_Schuman_Plan.html">A1</a>
@@ -172,7 +174,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 2 ==================== -->
-<section>
+<section id="lz2">
   <h2><span class="nr">GES</span> Schweiz &amp; Europa</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="603_[UE]_A08_Schweiz_Europa.html">A8</a>
@@ -207,7 +209,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 3 ==================== -->
-<section>
+<section id="lz3">
   <h2><span class="nr">GES</span> Humanitäre Tradition der Schweiz</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="603_[UE]_A17_IKRK_Symbole.html">A17</a>
@@ -235,7 +237,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 4 ==================== -->
-<section>
+<section id="lz4">
   <h2><span class="nr">GES</span> Globalisierung</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="603_[UE]_A21_Globalisierung.html">A21</a>
@@ -266,7 +268,7 @@ a{color:var(--t1)}
 </section>
 
 <!-- ==================== LZ 5 ==================== -->
-<section>
+<section id="lz5">
   <h2><span class="nr">GES</span> Freihandelsabkommen</h2>
   <div class="ue-link">Dazu passende Übungen:
     <a href="603_[UE]_A32_Freihandelsabkommen.html">A32</a>
