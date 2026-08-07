@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Aktuell · Wald im Trockenstress (Schreinerei)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
+  :root {
+    --t1: #D97706; --t1-light: #FCE8C8; --t1-lighter: #FDF3E4; --t1-dark: #92400E;
+    --bg: #FBF8F4; --paper: #FFFFFF; --ink: #20221F; --ink-light: #7A7468; --rule: #ECE6DA;
+    --green: #1F8045; --green-light: #E9F7EE; --gold: #B8860B;
+    --accent: var(--t1); --accent-light: var(--t1-lighter);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Plus Jakarta Sans', system-ui, sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .nav-table{width:100%;background:#f7f7f7;border-bottom:1px solid #ccc;font-family:sans-serif;font-size:12px;color:#444}
+  .nav-table td{padding:6px 10px}
+  .nav-table a{color:#444;text-decoration:none}
+  .nav-table a.up{color:var(--t1-dark);font-size:14px}
+  .wahlpflicht-banner{background:var(--t1-lighter);border-bottom:1px solid var(--t1-light);color:var(--t1-dark);font-size:.82rem;padding:9px 22px;text-align:center;font-weight:600}
+  .top-bar { background: linear-gradient(120deg, #F59E0B 0%, #D97706 40%, #92400E 100%); color: white; padding: 14px 22px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 20px rgba(0,0,0,.18); }
+  .top-bar h1 { font-size: 16px; font-weight: 700; flex: 1; min-width: 130px; letter-spacing: -.01em; }
+  .tag-pill{font-family:'JetBrains Mono',monospace;font-size:.72rem;background:rgba(255,255,255,.2);padding:3px 10px;border-radius:999px;letter-spacing:.05em}
+  .nw { display: flex; align-items: center; gap: 8px; }
+  .nw label { font-size: 12px; opacity: .9; font-weight: 500; }
+  .nw input { padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.15); color: white; font-size: 13px; width: 160px; font-family: inherit; }
+  .nw input::placeholder { color: rgba(255,255,255,.55); }
+  .nw input:focus { outline: none; border-color: rgba(255,255,255,.7); background: rgba(255,255,255,.22); }
+  .btn { padding: 8px 15px; border-radius: 999px; border: none; font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; transition: filter .15s, transform .12s; white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; }
+  .btn:hover { transform: translateY(-1px); filter: brightness(1.07); }
+  .btn:active { transform: translateY(0) scale(.97); }
+  .btn-check { background: white; color: var(--t1-dark); }
+  .btn-ghost { background: rgba(255,255,255,.18); color: white; }
+  .btn-ghost:hover { background: rgba(255,255,255,.28); }
+  .btn-dl { background: rgba(255,255,255,.94); color: var(--t1-dark); font-weight: 700; }
+  .btn-copy { background: rgba(255,255,255,.18); color: white; }
+  .btn-copy:hover { background: rgba(255,255,255,.28); }
+  .btn-copy.copied { background: var(--green); }
+  .spell-btn-main { background: rgba(255,255,255,.18); color: white; }
+  .spell-btn-main:hover { background: rgba(255,255,255,.28); }
+  #copyToast { position: fixed; top: 68px; right: 18px; z-index: 9999; background: var(--green); color: white; padding: 9px 16px; border-radius: 999px; font-family: inherit; font-size: 13px; font-weight: 600; box-shadow: 0 4px 16px rgba(0,0,0,.22); opacity: 0; transform: translateY(-8px); transition: all .25s; pointer-events: none; }
+  #copyToast.show { opacity: 1; transform: translateY(0); }
+  .ws { max-width: 880px; margin: 0 auto; padding: 34px 26px 60px; }
+  .lebenswelt-ref { font-size: 12px; font-weight: 600; color: var(--t1-dark); margin-bottom: 5px; font-family: 'JetBrains Mono', monospace; }
+  .task-title { display: block; font-size: 23px; font-weight: 800; color: var(--ink); letter-spacing: -.012em; margin-bottom: 20px; }
+  .lz-box { background: var(--t1-lighter); border-radius: 14px; padding: 14px 18px; margin-bottom: 6px; font-size: 14.5px; color: #3a362f; position: relative; overflow: hidden; }
+  .lz-box::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--t1); border-radius: 14px 0 0 14px; }
+  .lz-box strong { color: var(--t1-dark); font-weight: 700; }
+  .lesetext-box{background:var(--paper);border:1px solid var(--rule);border-radius:12px;padding:16px 20px;margin:6px 0 16px;font-size:14.5px;line-height:1.7;color:var(--ink)}
+  .lesetext-box p{margin-bottom:10px}
+  .lesetext-box p:last-child{margin-bottom:0}
+  .lesetext-label{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;color:var(--t1-dark);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;display:block}
+  .tipp-box{background:var(--t1-lighter);border:1px dashed var(--t1);border-radius:10px;padding:10px 16px;margin:4px 0 18px;font-size:13px;color:var(--t1-dark)}
+  .tipp-box a{color:var(--t1-dark);font-weight:700}
+  .ws > p, p.auftrag { font-size: 15px; margin-bottom: 14px; font-weight: 500; }
+  .ws > p strong { color: var(--t1-dark); font-weight: 700; }
+  .section-label { font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700; color: var(--t1-dark); text-transform: uppercase; letter-spacing: .06em; margin: 20px 0 10px; }
+  table.tb{width:100%;border-collapse:collapse;margin:10px 0 20px;font-size:14px}
+  .tb th{background:var(--t1);color:#fff;text-align:left;padding:8px 12px}
+  .tb td{border:1px solid var(--rule);padding:8px 12px;color:#3a362f}
+  .tb tr:nth-child(even) td{background:#FAFAF7}
+  .beispiel-box { background: var(--t1-lighter); border-radius: 10px; padding: 12px 16px; margin: 10px 0 16px; font-size: 13.5px; }
+  table.ex { width: 100% !important; border-collapse: separate !important; border-spacing: 0 8px !important; font-size: 14.5px; margin: 6px 0 24px !important; }
+  table.ex thead th { background: transparent !important; color: var(--ink-light) !important; font-family: 'JetBrains Mono', monospace; font-size: 10px !important; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; text-align: left; padding: 0 14px 6px !important; }
+  table.ex tbody tr { background: var(--paper); border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,.04); transition: box-shadow .2s, transform .2s; }
+  table.ex tbody tr:has(textarea:focus) { box-shadow: 0 4px 16px rgba(0,0,0,.1); transform: translateY(-1px); }
+  table.ex tbody td { padding: 13px 14px !important; vertical-align: top; border: none !important; }
+  table.ex tbody td:first-child { border-radius: 12px 0 0 12px; }
+  table.ex tbody td:last-child { border-radius: 0 12px 12px 0; }
+  table.ex td strong { display: inline-block; font-weight: 700; color: var(--t1-dark); font-size: 13px; background: var(--t1-lighter); padding: 3px 9px; border-radius: 999px; }
+  table.ex textarea { width: 100% !important; border: 1.5px solid var(--rule) !important; border-radius: 9px !important; background: var(--bg) !important; font-family: inherit !important; font-size: 14px !important; padding: 8px 11px !important; resize: vertical; margin-top: 5px; transition: border-color .18s, box-shadow .18s; }
+  table.ex textarea:focus { outline: none; border-color: var(--t1) !important; background: white !important; box-shadow: 0 0 0 3px var(--t1-light); }
+  .sol-inline-sm, .sol-inline { display: none; background: var(--green-light) !important; border-radius: 8px !important; padding: 8px 11px !important; margin-top: 7px !important; font-size: 13px !important; font-weight: 500; color: #135c2c !important; user-select: none; -webkit-user-select: none; }
+  .sol-inline-sm.visible, .sol-inline.visible { display: block; }
+  .sol-inline-sm.sol-empty-hint, .sol-inline.sol-empty-hint,
+  .sol-inline-sm.sol-unplausibel-hint, .sol-inline.sol-unplausibel-hint { background: #FDF6E3 !important; color: #8a6500 !important; font-style: italic; }
+  .ko-box { background: var(--paper) !important; border-radius: 16px !important; padding: 20px 22px !important; box-shadow: 0 2px 10px rgba(0,0,0,.05); margin-top: 26px !important; position: relative; overflow: hidden; }
+  .ko-box::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--t1); }
+  .ko-box:has(textarea:focus) { box-shadow: 0 6px 20px rgba(0,0,0,.1); }
+  .ko-label { font-family: 'JetBrains Mono', monospace !important; font-size: 11px !important; font-weight: 700; color: var(--t1-dark) !important; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px !important; display: block; }
+  .ko-text { font-size: 14.5px !important; color: var(--ink) !important; margin-bottom: 14px !important; font-weight: 500; line-height: 1.65 !important; }
+  .ko-box textarea { width: 100% !important; min-height: 88px; border: 1.5px solid var(--rule) !important; border-radius: 11px !important; padding: 11px 13px !important; font-family: inherit !important; font-size: 14.5px !important; resize: vertical; background: var(--bg) !important; }
+  .ko-box textarea:focus { outline: none; border-color: var(--t1) !important; background: white !important; box-shadow: 0 0 0 3px var(--t1-light); }
+  .ki-toggle-row { display: flex; align-items: center; gap: 8px; margin: 10px 0 12px; flex-wrap: wrap; }
+  .ki-toggle-label { font-size: 12px; font-weight: 600; color: var(--ink); }
+  .ki-switch { position: relative; width: 40px; height: 22px; border-radius: 999px; background: #DDD6C8; cursor: pointer; transition: background .18s; flex-shrink: 0; display: inline-block; vertical-align: middle; }
+  .ki-switch.on { background: var(--t1); }
+  .ki-switch-knob { position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: left .18s; box-shadow: 0 1px 2px rgba(0,0,0,.22); }
+  .ki-switch.on .ki-switch-knob { left: 20px; }
+  .ki-modus-pill { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: #ECE6DA; color: #7A7468; }
+  .ki-modus-pill.on { background: var(--t1-light); color: var(--t1-dark); }
+  .btn-ki { background: #fff; color: var(--t1-dark); box-shadow: 0 0 0 1.5px var(--t1) inset; }
+  .btn-ki:hover:not(:disabled) { background: var(--t1-light); }
+  .btn-ki:disabled { opacity: .45; cursor: not-allowed; box-shadow: 0 0 0 1.5px #DDD6C8 inset; }
+  .kf-feedback-box { margin-top: 11px; padding: 11px 13px; background: #fff; border-left: 3px solid #1565C0; border-radius: 0 8px 8px 0; font-size: 13.5px; line-height: 1.6; user-select: none; -webkit-user-select: none; }
+  .kf-feedback-box.kf-error { border-left-color: var(--t1); }
+  .kf-feedback-box p { margin: 0; }
+  .kf-feedback-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: #1565C0; margin-bottom: 5px; display: block; }
+  .kf-error .kf-feedback-label { color: var(--t1-dark); }
+  .block-reset-link { font-size: 11px; color: #9a948a; text-decoration: none; }
+  .block-reset-link:hover { color: var(--t1-dark); text-decoration: underline; }
+  .btn-row { display: flex; gap: 9px; flex-wrap: wrap; margin-top: 26px !important; }
+  .btn-row .btn-check { background: var(--gold); color: white; }
+  .btn-row .btn-ghost { background: var(--paper); color: var(--ink); border: 1.5px solid var(--rule); }
+  .btn-row .btn-dl { background: var(--t1); color: white; }
+  .btn-row .spell-btn-main { background: var(--t1-lighter); color: var(--t1-dark); }
+  .spell-limit-note { display: none; margin-bottom: 8px; padding: 7px 13px; background: var(--t1-lighter); border: 1px dashed var(--t1-light); border-radius: 9px; font-size: 11px; font-weight: 500; color: var(--t1-dark); font-family: 'JetBrains Mono', monospace; }
+  .spell-limit-note.show { display: block; }
+  .spell-result { display: none; margin-top: 7px; font-size: 12.5px; border-radius: 9px; padding: 9px 13px; line-height: 1.5; position: relative; }
+  .spell-result.show { display: block; }
+  .spell-result.spell-ok { background: var(--green-light); color: #1e5c23; }
+  .spell-result.spell-issues { background: #FDF6E3; color: #6b4d10; }
+  .spell-result.spell-error { background: var(--t1-lighter); color: var(--t1-dark); }
+  .spell-result ul { margin: 4px 0 0; padding-left: 16px; }
+  .spell-result li { margin-bottom: 4px; }
+  .spell-result .spell-orig { text-decoration: underline wavy var(--t1); }
+  .spell-result .spell-fix { color: #1565C0; font-weight: 600; }
+  .spell-close-btn { position: absolute; top: 5px; right: 7px; width: 19px; height: 19px; border-radius: 50%; border: none; background: rgba(0,0,0,.08); color: inherit; font-size: 11px; line-height: 19px; text-align: center; cursor: pointer; padding: 0; }
+  .spell-highlighted-text { margin: 5px 0 7px; padding: 7px 11px; background: var(--bg); border-radius: 7px; line-height: 1.6; }
+  .spell-highlighted-text mark.spell-mark { background: transparent; color: var(--t1); font-weight: 700; text-decoration: underline wavy var(--t1); text-decoration-thickness: 1.5px; cursor: help; }
+  .paste-warn { border-color: var(--t1) !important; background: var(--t1-lighter) !important; }
+  .paste-msg { display: none; font-size: 11.5px; font-family: 'JetBrains Mono', monospace; color: var(--t1-dark); background: var(--t1-lighter); border: 1px solid var(--t1-light); border-radius: 8px; padding: 4px 9px; margin-top: 3px; font-weight: 600; }
+  .paste-msg.show { display: block; }
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { animation: fadeInUp .5s cubic-bezier(.16,.84,.44,1) both; }
+  @media (prefers-reduced-motion: reduce) { .reveal { animation: none; } }
+  .quelle-box{font-size:12px;color:var(--ink-light);font-family:'JetBrains Mono',monospace;margin-top:12px;margin-bottom:0;}
+  .quelle-box a{color:var(--t1);text-decoration:underline}
+  .quelle-box a:hover{color:var(--t1-dark)}
+  .qr-badge { display:none; position:fixed; bottom:18px; left:18px; z-index:95; background:var(--paper); border:1.5px solid var(--t1); border-radius:10px; padding:6px 6px 4px; text-align:center; box-shadow:0 2px 12px rgba(0,0,0,.15); cursor:pointer; font:inherit; }
+  .qr-badge canvas, .qr-badge img { display:block; }
+  .qr-badge-label { display:block; font-size:9px; color:var(--t1-dark); margin-top:3px; font-weight:600; letter-spacing:.02em; white-space:nowrap; }
+  @media (min-width:900px) { .qr-badge { display:block; } }
+  @media print { .qr-badge { display:block !important; box-shadow:none; border:1px solid #999; } }
+  @media print {
+    .top-bar, .nav-table, .wahlpflicht-banner { display: none; }
+    .ws { box-shadow: none; border: none; margin: 0; padding: 0; max-width: 100%; }
+    table.ex tbody tr { page-break-inside: avoid; break-inside: avoid; box-shadow: none; }
+    @page { margin: 15mm 12mm; size: A4 portrait; }
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+<table class="nav-table"><tr>
+<td style="text-align:left;width:33%"><a href="wirtschaft.html">← Wirtschaft</a></td>
+<td style="text-align:center;width:34%"><a class="up" href="../index.html" title="Zur Übersicht">↑</a></td>
+<td style="text-align:right;width:33%"><span style="color:#ccc">Übersicht →</span></td>
+</tr></table>
+<div class="wahlpflicht-banner">🪚 Wahlpflicht-Thema Berufsgruppe: Diese Seite gehört zum 4. Slot, der zur Lehrberuf-Zusammensetzung der Klasse passt (hier: Schreinerei).</div>
+<div class="top-bar">
+  <span class="tag-pill">AKTUELL · WAHLPFLICHT</span>
+  <h1>Wald, Holz &amp; Lohn 2026</h1>
+  <div class="nw"><label>Name:</label><input id="studentName" type="text" placeholder="Vorname Nachname" autocomplete="name"></div>
+  <button class="btn btn-check" onclick="checkAll()">Überprüfen</button>
+  <button class="btn spell-btn-main" onclick="checkAllSpelling(this)">Rechtschreibung</button>
+  <button class="btn btn-copy" id="copyBtn" onclick="copyAllToClipboard()">📋 Kopieren</button>
+</div>
+<div id="copyToast">✓ In Zwischenablage kopiert</div>
+
+<div class="ws">
+  <div class="lebenswelt-ref">AKTUELL AUGUST 2026 — Berufsgruppe Schreinerei (passt zu 602, Ökologische Herausforderung; alternativ zu 601)</div>
+  <div class="task-title">Wald im Trockenstress, mehr Lohn ab März: Was 2026 für Schreiner:innen wichtig ist</div>
+  <div class="lz-box reveal" style="animation-delay:.02s"><strong>Worum es geht:</strong> Der Dürresommer 2026 setzt dem Schweizer Wald massiv zu — dem Rohstofflieferanten der Schreinerbranche. Schon im Juli werfen Buchen ihre Blätter ab, weil ihr Wasser-Notvorrat aufgebraucht ist; Fachleute rechnen damit, dass viele Bäume absterben. Das verändert langfristig, welches Holz in der Werkstatt ankommt. Daneben gibt es eine gute Nachricht: Seit dem Frühling gelten im Schreinergewerbe höhere Löhne — besonders junge Berufsleute profitieren.</div>
+
+  <div class="lesetext-box reveal" style="animation-delay:.05s">
+    <span class="lesetext-label">Lesetext</span>
+    <p>Normalerweise stehen die Wälder im Juli in sattem Grün. Dieses Jahr sind vielerorts die Blätter gelb-braun verfärbt oder eingerollt, einzelne Bäume schon kahl — «Herbst im Juli». Der Grund: Für die ganze Schweiz gilt die höchste Trockenheits-Gefahrenstufe, und an manchen Standorten haben die Bäume ihren Notvorrat an Wasser bereits aufgebraucht, was sonst erst im September oder Oktober passiert. Am stärksten betroffen ist der Jurabogen von Solothurn über Aargau, Basel und Zürich bis Schaffhausen: Dort liegt wenig Erde über viel Kalkstein, der Boden trocknet darum besonders schnell aus. Als erste Baumart leidet die Buche. Dazu kommt: Die Bodentemperaturen liegen laut Messungen der Forschungsanstalt WSL rund 2 bis 2,5 Grad über dem üblichen Wert — das erhöht den Wasserbedarf der Bäume zusätzlich.</p>
+    <p>Für die Holz- und Schreinerbranche ist das mehr als ein Naturthema. Sterben Bäume ab oder werden sie durch den Trockenstress geschwächt, sind sie anfälliger für Schädlinge und Krankheiten — nach den Trockenjahren 2018 und 2022 fielen jeweils grosse Mengen Schadholz an, was Angebot, Qualität und Preise durcheinanderbrachte. Und langfristig verändert sich das Sortiment: Damit der Wald klimaresistenter wird, fördern Förster gezielt Baumarten, die Hitze und Trockenheit besser vertragen — etwa Eiche, Spitzahorn oder Edellaubhölzer wie Mehlbeere, Elsbeere und Speierling. Der «Wald der Zukunft» liefert also tendenziell anderes Holz als jener, mit dem heutige Schreinergenerationen gross geworden sind.</p>
+    <p>Die zweite Neuigkeit des Jahres betrifft das Portemonnaie: Der Verband Schweizerischer Schreinermeister und Möbelfabrikanten (VSSM) und die Gewerkschaften Unia und Syna haben sich auf Lohnerhöhungen für 2026 geeinigt. Die effektiven Löhne aller dem Gesamtarbeitsvertrag (GAV) unterstellten Mitarbeitenden steigen generell um 20 Franken pro Monat; zusätzlich werden pro Person 30 Franken individuell — also nach Leistung verteilt — ausbezahlt. Die Mindestlöhne junger Berufsleute im ersten Erfahrungsjahr nach der Lehre steigen um 2,5 Prozent. «Damit nehmen die Sozialpartner die Erwartungshaltung der jungen Generation ernst», sagt VSSM-Zentralpräsident Jürg Rothenbühler.</p>
+  </div>
+
+  <div class="tipp-box">💡 <strong>Tipp:</strong> Der <a href="https://www.srf.ch/wissen/klimawandel/herbst-im-juli-trocken-und-welk-der-schweizer-wald-leidet" target="_blank" rel="noopener">SRF-Artikel «Trocken und welk: Der Schweizer Wald leidet»</a> erklärt mit Bildern und Karten, wo und warum der Wald am meisten leidet — lohnt sich zum Vertiefen.</div>
+
+  <div class="tipp-box">🔗 <strong>Passende Übungen im Lernraum:</strong> <a href="../T6_Unsere_Welt/602_Oekologische_Herausforderung/602_[UE]_A03_Globale_Erwaermung.html">602 · A03 Globale Erwärmung</a> und <a href="../T6_Unsere_Welt/602_Oekologische_Herausforderung/602_[UE]_A07_Nachhaltigkeit.html">602 · A07 Nachhaltigkeit</a> — dort vertiefen Sie die Grundlagen zu Klima und nachhaltiger Nutzung von Ressourcen wie Holz.</div>
+
+  <p class="quelle-box">Quellen: <a href="https://www.srf.ch/wissen/klimawandel/herbst-im-juli-trocken-und-welk-der-schweizer-wald-leidet" target="_blank" rel="noopener">SRF Wissen, «Trocken und welk: Der Schweizer Wald leidet» (10.7.2026)</a>; <a href="https://www.trockenheit.admin.ch/de/trockenheit/trockenheitsbulletin" target="_blank" rel="noopener">Bund, Trockenheitsbulletin (6.8.2026)</a>; <a href="https://www.schreinersicht.ch/artikel/2026_mehr_Lohn--8166" target="_blank" rel="noopener">schreinersicht.ch, «2026 mehr Lohn»</a>; <a href="https://www.vssm.ch/de/news/mehr-lohn-fuer-schreinerinnen-und-schreiner-im-jahr-2026" target="_blank" rel="noopener">VSSM, «Mehr Lohn für Schreinerinnen und Schreiner im Jahr 2026»</a>.</p>
+
+  <div class="section-label">Zahlen &amp; Fakten im Überblick</div>
+  <table class="tb">
+    <tr><th>Was</th><th>Stand Sommer 2026</th></tr>
+    <tr><td>Trockenheits-Gefahrenstufe</td><td>Stufe 4 (höchste) — für die gesamte Schweiz (Bulletin des Bundes, 6.8.2026)</td></tr>
+    <tr><td>Wasser-Notvorrat der Bäume</td><td>örtlich schon im Juli aufgebraucht — normal wäre erst September/Oktober</td></tr>
+    <tr><td>Am stärksten betroffen</td><td>Jurabogen (SO, AG, BS, ZH bis SH) — wenig Erde über Kalkstein; zuerst leidet die Buche</td></tr>
+    <tr><td>Bodentemperaturen</td><td>ca. +2 bis 2,5 °C über dem Üblichen, einzelne Standorte bis +4,5 °C (WSL)</td></tr>
+    <tr><td>Lohn 2026 (GAV Schreinergewerbe)</td><td>+20 Fr./Monat generell, zusätzlich 30 Fr. pro Person individuell verteilt</td></tr>
+    <tr><td>Mindestlöhne junge Berufsleute</td><td>+2,5% im ersten Erfahrungsjahr nach der Lehre</td></tr>
+  </table>
+  <div class="beispiel-box"><strong>Merke:</strong> Die Trockenheit trifft Schreiner:innen indirekt, aber doppelt: Kurzfristig drohen Schadholz-Wellen wie nach 2018/2022 (geschwächte Bäume, Schädlinge), langfristig verschiebt sich das Holzangebot hin zu trockenheitsresistenteren Arten wie Eiche und Edellaubhölzern.</div>
+
+  <div class="section-label">Sachfragen</div>
+  <table class="ex">
+    <thead><tr><th style="width:38%">Frage</th><th style="text-align:left;">Ihre Antwort</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>a</strong> Warum werfen Buchen dieses Jahr schon im Juli ihre Blätter ab — und warum ist das aussergewöhnlich?</td>
+        <td>
+          <textarea class="cell-ta" id="ta_a1" rows="2" placeholder="Meine Antwort …"></textarea>
+          <div class="sol-inline-sm" id="sol_a1">Die Bäume haben ihren Notvorrat an Wasser bereits aufgebraucht und werfen Blätter ab, um weniger Wasser zu verdunsten. Normalerweise passiert das erst im September/Oktober — so früh im Jahr ist das aussergewöhnlich.</div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>b</strong> Weshalb leidet der Wald entlang des Jurabogens besonders stark?</td>
+        <td>
+          <textarea class="cell-ta" id="ta_a2" rows="2" placeholder="Meine Antwort …"></textarea>
+          <div class="sol-inline-sm" id="sol_a2">Dort liegt nur wenig Erde über viel Kalkstein — der Boden kann wenig Wasser speichern und trocknet besonders schnell aus. Betroffen ist das Gebiet von Solothurn über Aargau, Basel und Zürich bis Schaffhausen.</div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>c</strong> Welche Folgen kann das Baumsterben für die Holzbranche und Ihren Beruf haben? Nennen Sie eine kurzfristige und eine langfristige Folge.</td>
+        <td>
+          <textarea class="cell-ta" id="ta_a3" rows="3" placeholder="Meine Antwort …"></textarea>
+          <div class="sol-inline-sm" id="sol_a3">Kurzfristig: Geschwächte Bäume sind anfälliger für Schädlinge und Krankheiten — es droht viel Schadholz wie nach 2018/2022, was Angebot, Qualität und Preise durcheinanderbringt. Langfristig: Der Wald wird mit trockenheitsresistenteren Arten (Eiche, Spitzahorn, Edellaubhölzer) umgebaut — das Holzsortiment für Schreiner verändert sich.</div>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>d</strong> Lohn 2026: Was haben VSSM, Unia und Syna vereinbart — und wer profitiert besonders?</td>
+        <td>
+          <textarea class="cell-ta" id="ta_a4" rows="3" placeholder="Meine Antwort …"></textarea>
+          <div class="sol-inline-sm" id="sol_a4">Die effektiven Löhne steigen generell um 20 Fr./Monat, zusätzlich werden 30 Fr. pro Person individuell (nach Leistung) verteilt. Die Mindestlöhne im ersten Erfahrungsjahr nach der Lehre steigen um 2,5% — besonders profitieren also junge Berufsleute, die frisch ausgelernt haben.</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+<div class="ko-box reveal" style="animation-delay:.2s">
+  <div class="ko-label">💬 Auftrag &amp; Stellungnahme</div>
+  <div class="ko-text" id="ko_text_ges">Der «Wald der Zukunft» wird anderes Holz liefern: mehr Eiche und Edellaubhölzer, an trockenen Standorten weniger Buche und Fichte. Überlegen Sie: Welche Holzarten verarbeitet Ihr Lehrbetrieb hauptsächlich — und was würde ein verändertes Holzangebot für den Betrieb und Ihre Ausbildung bedeuten?</div>
+  <textarea id="ko_ges" rows="6" placeholder="Meine Antwort …"
+    data-ki-aufgabe="Der Wald der Zukunft wird anderes Holz liefern: mehr Eiche und Edellaubhoelzer, an trockenen Standorten weniger Buche und Fichte. Welche Holzarten verarbeitet Ihr Lehrbetrieb hauptsaechlich - und was wuerde ein veraendertes Holzangebot fuer den Betrieb und Ihre Ausbildung bedeuten?"
+    data-ki-loesung="Moegliche Punkte: Der Betrieb verarbeitet z.B. viel Fichte/Tanne im Innenausbau oder Buche/Eiche im Moebelbau. Ein veraendertes Angebot koennte bedeuten: andere Einkaufspreise und Lieferfristen, haerteres oder anders zu bearbeitendes Holz (z.B. Eiche statt Buche: andere Werkzeuge, Oberflaechenbehandlung, Verbindungen), neue Gestaltungsmoeglichkeiten mit Edellaubhoelzern, staerkerer Fokus auf regionale Herkunft und Schadholz-Verwertung. Fuer die Ausbildung heisst das: Materialkunde wird wichtiger, Flexibilitaet im Umgang mit verschiedenen Holzarten zahlt sich aus."></textarea>
+  <div class="ki-toggle-row" id="kiToggleArea" style="display:none">
+    <span class="ki-toggle-label">KI-Modus</span>
+    <div class="ki-switch" id="kiModeToggle" role="switch" aria-checked="false" tabindex="0"
+      onclick="kiModeUmschalten(this)"
+      onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();kiModeUmschalten(this);}"
+    ><div class="ki-switch-knob"></div></div>
+    <span class="ki-modus-pill" data-ki-pill>Modus: Rechtschreibprüfung (LanguageTool)</span>
+  </div>
+  <div id="kiFeedbackBtnArea" style="display:none;gap:8px;flex-wrap:wrap;margin-bottom:6px;">
+    <button class="btn btn-ki" id="kiFeedbackBtn" onclick="kiFeedbackKlick(this)" disabled>✦ KI-Feedback</button>
+  </div>
+  <div id="kiFeedbackResult"></div>
+  <div class="sol-inline" id="sol_ko_ges">✓ Mögliche Antwort: Der Betrieb verarbeitet z.B. viel Fichte/Tanne im Innenausbau oder Buche/Eiche im Möbelbau. Ein verändertes Angebot könnte bedeuten: andere Einkaufspreise und Lieferfristen, härteres oder anders zu bearbeitendes Holz (z.B. Eiche statt Buche: andere Werkzeuge, Oberflächenbehandlung, Verbindungen), neue Gestaltungsmöglichkeiten mit Edellaubhölzern, stärkerer Fokus auf regionale Herkunft und Schadholz-Verwertung. Für die Ausbildung heisst das: Materialkunde wird wichtiger, Flexibilität im Umgang mit verschiedenen Holzarten zahlt sich aus.</div>
+  <div class="block-reset-row" style="text-align:right;margin-top:7px;">
+    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_ges']);return false;">↺ Nur diese Frage zurücksetzen</a>
+  </div>
+</div>
+
+<div class="ko-box reveal" style="animation-delay:.25s">
+  <div class="ko-label">🔎 Recherche-Auftrag: Wie trocken ist es bei Ihnen?</div>
+  <div class="ko-text" id="ko_text_rech">Öffnen Sie das <a href="https://www.trockenheit.admin.ch/de/trockenheit/trockenheitsbulletin" target="_blank" rel="noopener">Trockenheitsbulletin des Bundes</a>. Finden Sie heraus: <strong>1.</strong> Welche Gefahrenstufe gilt aktuell — und wie lautet die Prognose für die nächsten Wochen? <strong>2.</strong> Wie sieht es bei Niederschlag und Bodenfeuchte in Ihrer Region aus? <strong>3.</strong> Was bedeutet die anhaltende Trockenheit für Ihren Betrieb — denken Sie an Brandschutz in der Werkstatt (Späne, Feuerverbote), Holzlagerung und Materialbeschaffung? Halten Sie Ihre Ergebnisse in eigenen Worten fest.</div>
+  <textarea id="ko_rech" rows="7" placeholder="Meine Recherche-Ergebnisse …"
+    data-ki-aufgabe="Recherchieren Sie im Trockenheitsbulletin des Bundes (trockenheit.admin.ch): 1. Welche Gefahrenstufe gilt aktuell und wie lautet die Prognose? 2. Wie sieht es bei Niederschlag und Bodenfeuchte in Ihrer Region aus? 3. Was bedeutet die Trockenheit fuer Ihren Betrieb (Brandschutz, Holzlagerung, Materialbeschaffung)?"
+    data-ki-loesung="Beispiel (Stand 6.8.2026): Es gilt die hoechste Gefahrenstufe 4 fuer die ganze Schweiz; ergiebiger Regen ist nicht in Sicht. Im Jura und Mittelland fielen in 30 Tagen 60-80% weniger Niederschlag als normal, die Bodenfeuchte weist ein grosses bis extremes Defizit auf. Fuer den Betrieb: erhoehte Brandgefahr beachten (Feuerverbote, Umgang mit Spaenen und Abfaellen, Rauchverbot), trockene Luft beeinflusst Holzfeuchte und Lagerung (Verzug, Risse), bei Schadholz-Wellen koennen sich Preise und Verfuegbarkeit einzelner Holzarten aendern."></textarea>
+  <div class="sol-inline" id="sol_ko_rech">✓ Mögliche Antwort (Stand 6.8.2026): Es gilt die höchste Gefahrenstufe 4 für die ganze Schweiz; ergiebiger Regen ist nicht in Sicht. Im Jura und Mittelland fielen in 30 Tagen 60–80% weniger Niederschlag als normal, die Bodenfeuchte weist ein grosses bis extremes Defizit auf. Für den Betrieb: erhöhte Brandgefahr beachten (Feuerverbote, Umgang mit Spänen und Abfällen), trockene Luft beeinflusst Holzfeuchte und Lagerung (Verzug, Risse), und bei Schadholz-Wellen können sich Preise und Verfügbarkeit einzelner Holzarten ändern.</div>
+  <div class="block-reset-row" style="text-align:right;margin-top:7px;">
+    <a href="#" class="block-reset-link" onclick="resetBlock(this,['ko_rech']);return false;">↺ Nur diese Frage zurücksetzen</a>
+  </div>
+</div>
+
+  <div id="spellGlobalLimitNote" class="spell-limit-note">⚠ Rechtschreibung: Erkennt nicht alle Fehler (z.B. Zeichensetzung, Satzanfang).</div>
+  <div class="btn-row">
+    <button class="btn spell-btn-main" onclick="checkAllSpelling(this)">Rechtschreibung</button>
+    <button class="btn btn-check" onclick="checkAll()">Überprüfen</button>
+    <button class="btn btn-ghost" onclick="printAsPDF()">Als PDF drucken</button>
+    <button class="btn btn-dl" onclick="downloadFile()">Speichern</button>
+    <button class="btn btn-ghost" onclick="resetAll()">Zurücksetzen</button>
+  </div>
+  <p style="color:var(--ink-light);font-size:11.5px;font-family:'JetBrains Mono',monospace;margin-top:28px;border-top:1px solid var(--rule);padding-top:12px;">
+    <span id="footerName"></span> · Aktuell · Wahlpflicht Berufsgruppe (Schreinerei) · Eigenständig formuliert auf Basis recherchierter, verifizierter Quellen (August 2026) — keine 1:1-Übernahme urheberrechtlich geschützter Inhalte Dritter.
+  </p>
+  <p style="margin-top:6px;">
+    <a href="#" id="erweiterteNutzungLink" onclick="erweiterteNutzungUmschalten();return false;" style="font-size:11px;color:#b0aa9c;text-decoration:none;">⚙ Erweiterte Nutzung</a>
+  </p>
+</div>
+<script>
+const SAFE_FN = 'AKTUELL_2026-08_schreiner';
+function istPlausibleAntwort(text) {
+  const t = (text||'').trim(), ol = t.replace(/\s+/g,'');
+  if (ol.length < 8) return false;
+  if ((t.match(/[a-zA-ZäöüÄÖÜ]/g)||[]).length < 2) return false;
+  if (/(.)\1{2,}/.test(ol.toLowerCase()) && new Set(ol.toLowerCase()).size <= 2) return false;
+  if (/(asdf|qwer|qwert|zxcv)/i.test(ol)) return false;
+  return t.split(/\s+/).filter(w=>w.length>=4).some(function(w) { const nb=w.replace(/[^a-zA-ZäöüÄÖÜ]/g,''); return nb.length>=4 && new Set(nb.toLowerCase()).size>=3; });
+}
+function checkAll() {
+  document.querySelectorAll('textarea').forEach(function(ta) {
+    const isKo = ta.closest('.ko-box') !== null;
+    if(isKo) return;
+    const id = ta.id;
+    const sol = document.getElementById('sol_' + id.replace(/^ta_/, ''));
+    if(!sol) return;
+    if(!sol.dataset.origText) sol.dataset.origText = sol.textContent;
+    const w = ta.value.trim();
+    if(!w) {
+      sol.textContent = 'Bitte zuerst Text eingeben.';
+      sol.classList.remove('sol-unplausibel-hint');
+      sol.classList.add('visible', 'sol-empty-hint');
+      ta.style.borderColor = '#c0392b';
+    } else if(!istPlausibleAntwort(w)) {
+      sol.textContent = 'Bitte eine ernsthafte Antwort eingeben.';
+      sol.classList.remove('sol-empty-hint');
+      sol.classList.add('visible', 'sol-unplausibel-hint');
+      ta.style.borderColor = '#c0392b';
+    } else {
+      sol.classList.remove('sol-empty-hint', 'sol-unplausibel-hint');
+      const loesung = sol.dataset.origText || '';
+      sol.textContent = loesung.trim() ? loesung : '✓ Eigene Antwort (keine Musterlösung hinterlegt)';
+      sol.classList.add('visible');
+      ta.style.borderColor = '#2a7a3a';
+    }
+  });
+  document.querySelectorAll('.ko-box textarea').forEach(function(ta) {
+    const sol = document.getElementById('sol_' + ta.id);
+    if(!sol) return;
+    if(!sol.dataset.origText) sol.dataset.origText = sol.textContent;
+    if(!ta.value.trim()) {
+      sol.textContent = 'Keine Antwort eingegeben – Musterlösung wird nach dem Ausfüllen angezeigt.';
+      sol.classList.add('visible', 'sol-empty-hint');
+      sol.classList.remove('sol-unplausibel-hint');
+    } else {
+      sol.textContent = sol.dataset.origText;
+      sol.classList.add('visible');
+      sol.classList.remove('sol-empty-hint', 'sol-unplausibel-hint');
+    }
+  });
+}
+function resetAll() {
+  document.querySelectorAll('textarea').forEach(function(el){el.value='';el.style.borderColor='';});
+  document.querySelectorAll('.sol-inline,.sol-inline-sm').forEach(function(el){el.classList.remove('visible','sol-empty-hint','sol-unplausibel-hint');if(el.dataset.origText){el.textContent=el.dataset.origText;delete el.dataset.origText;}});
+  document.querySelectorAll('.paste-warn').forEach(function(el){el.classList.remove('paste-warn');});
+  document.querySelectorAll('.paste-msg.show').forEach(function(el){el.classList.remove('show');});
+  document.querySelectorAll('.spell-result').forEach(function(el){el.className='spell-result';el.textContent='';});
+  const kr=document.getElementById('kiFeedbackResult');if(kr)kr.innerHTML='';
+  try{localStorage.removeItem('abu_autosave_'+SAFE_FN);}catch(e){}
+}
+function resetBlock(triggerLink,textareaIds) {
+  if(!confirm('Nur diesen Auftrag zurücksetzen?'))return;
+  textareaIds.forEach(function(id){
+    const ta=document.getElementById(id);if(!ta)return;
+    ta.value='';ta.style.borderColor='';
+    const sol=document.getElementById('sol_'+id);
+    if(sol){sol.classList.remove('visible','sol-empty-hint','sol-unplausibel-hint');if(sol.dataset.origText){sol.textContent=sol.dataset.origText;delete sol.dataset.origText;}}
+  });
+  const kr=document.getElementById('kiFeedbackResult');if(kr)kr.innerHTML='';
+}
+function printAsPDF() {
+  const n=document.getElementById('studentName').value.trim();
+  const fn=document.getElementById('footerName');if(fn)fn.textContent=n;
+  document.title=n?SAFE_FN+'_'+n.replace(/\s+/g,'_'):SAFE_FN;
+  window.focus();setTimeout(function(){try{window.print();}catch(e){alert('Bitte Strg+P verwenden.');}},80);
+}
+function collectVals(v){document.querySelectorAll('textarea[id]').forEach(function(el){v[el.id]=el.value;});}
+function restoreVals(v){Object.keys(v).forEach(function(k){if(k==='name')return;const el=document.getElementById(k);if(el)el.value=v[k];});}
+async function downloadFile() {
+  const name=document.getElementById('studentName').value.trim();
+  if(!name){alert('Bitte zuerst Vor- und Nachname eingeben!');document.getElementById('studentName').focus();return;}
+  const v={};collectVals(v);v.name=name;
+  const fn=document.getElementById('footerName');if(fn)fn.textContent=name;
+  document.documentElement.setAttribute('data-saved-values',JSON.stringify(v).replace(/"/g,'&quot;'));
+  const html=document.documentElement.outerHTML;
+  const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+  const sn=SAFE_FN+'_'+name.replace(/\s+/g,'_')+'.html';
+  if(window.showSaveFilePicker){try{const h=await window.showSaveFilePicker({suggestedName:sn,types:[{description:'HTML-Datei',accept:{'text/html':['.html']}}]});const w=await h.createWritable();await w.write(blob);await w.close();return;}catch(err){if(err&&err.name==='AbortError')return;}}
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=sn;a.click();
+}
+function copyAllToClipboard() {
+  const ws=document.querySelector('.ws');let out=[];
+  const tt=ws.querySelector('.task-title');if(tt)out.push(tt.textContent.trim(),'');
+  ws.querySelectorAll('table.ex tbody tr').forEach(function(tr){
+    const cells=tr.querySelectorAll('td');if(!cells.length)return;
+    const label=cells[0].textContent.replace(/\s+/g,' ').trim();
+    const ta=tr.querySelector('textarea');
+    if(label){out.push('• '+label);out.push('  → '+(ta&&ta.value.trim()?ta.value.trim():'(nicht beantwortet)'));out.push('');}
+  });
+  ws.querySelectorAll('.ko-box').forEach(function(kb){
+    const kt=kb.querySelector('.ko-text');const kta=kb.querySelector('textarea');
+    if(kt)out.push('💬 '+kt.textContent.trim());
+    out.push('Antwort: '+(kta&&kta.value.trim()?kta.value.trim():'(nicht beantwortet)'),'');
+  });
+  const text=out.join('\n').replace(/\n{3,}/g,'\n\n').trim();
+  const btn=document.getElementById('copyBtn'),toast=document.getElementById('copyToast');
+  function show(){if(btn){btn.classList.add('copied');const old=btn.textContent;btn.textContent='✓ Kopiert';setTimeout(function(){btn.classList.remove('copied');btn.textContent=old;},1500);}if(toast){toast.classList.add('show');setTimeout(function(){toast.classList.remove('show');},1700);}}
+  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(show).catch(function(){});
+}
+function attachPasteWarning(){
+  document.querySelectorAll('textarea').forEach(function(ta){
+    if(ta.dataset.pasteWatched)return;ta.dataset.pasteWatched='1';
+    let msg=ta.nextElementSibling;
+    if(!msg||!msg.classList.contains('paste-msg')){msg=document.createElement('div');msg.className='paste-msg';msg.textContent='⚠ Text eingefügt – bitte in eigenen Worten formulieren.';ta.insertAdjacentElement('afterend',msg);}
+    let pf=[];
+    ta.addEventListener('paste',function(e){let pt='';try{pt=(e.clipboardData||window.clipboardData).getData('text');}catch(err){}if(pt&&pt.trim()!=='')pf.push(pt.trim());ta.classList.add('paste-warn');msg.classList.add('show');});
+    ta.addEventListener('input',function(){if(!ta.value.trim()){pf=[];ta.classList.remove('paste-warn');msg.classList.remove('show');return;}pf=pf.filter(function(f){return ta.value.indexOf(f)!==-1;});if(!pf.length){ta.classList.remove('paste-warn');msg.classList.remove('show');}});
+  });
+}
+attachPasteWarning();
+function ensureSpellResultBox(ta){let ins=ta;if(ta.nextElementSibling&&ta.nextElementSibling.classList.contains('paste-msg'))ins=ta.nextElementSibling;let rb=ins.nextElementSibling;if(!rb||!rb.classList.contains('spell-result')){rb=document.createElement('div');rb.className='spell-result';ins.insertAdjacentElement('afterend',rb);}return rb;}
+function showGlobalSpellLimitNote(){const n=document.getElementById('spellGlobalLimitNote');if(n)n.classList.add('show');}
+function checkAllSpelling(triggerBtn){
+  const tas=Array.from(document.querySelectorAll('textarea')).filter(function(ta){return(ta.value||'').trim()!=='';});
+  if(!tas.length){alert('Es wurde noch kein Text eingegeben.');return;}
+  showGlobalSpellLimitNote();
+  if(triggerBtn){triggerBtn.disabled=true;triggerBtn.dataset.origLabel=triggerBtn.dataset.origLabel||triggerBtn.textContent;triggerBtn.textContent='⏳ Prüfe '+tas.length+' Antwort'+(tas.length===1?'':'en')+' …';}
+  let remaining=tas.length;
+  function done(){remaining--;if(remaining<=0&&triggerBtn){triggerBtn.disabled=false;triggerBtn.textContent=triggerBtn.dataset.origLabel;}}
+  tas.forEach(function(ta){runSpellcheck(ta,ensureSpellResultBox(ta),done);});
+}
+function runSpellcheck(ta,rb,onDone){
+  const text=(ta.value||'').trim();if(!text){if(onDone)onDone();return;}
+  rb.className='spell-result show';rb.textContent='Wird geprüft …';
+  const p=new URLSearchParams();p.append('text',text);p.append('language','de-CH');
+  fetch('https://api.languagetool.org/v2/check',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:p.toString()})
+  .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+  .then(function(d){renderSpellResult(d,text,rb);})
+  .catch(function(){rb.className='spell-result show spell-error';rb.textContent='⚠ Prüfung aktuell nicht möglich.';})
+  .finally(function(){if(onDone)onDone();});
+}
+function escapeHtml(s){const d=document.createElement('div');d.textContent=s;return d.innerHTML;}
+function renderSpellResult(data,originalText,rb){
+  const matches=(data&&data.matches)||[];
+  if(!matches.length){rb.className='spell-result show spell-ok';rb.innerHTML='';const cb=document.createElement('button');cb.className='spell-close-btn';cb.type='button';cb.textContent='✕';cb.onclick=function(){rb.classList.remove('show');};rb.appendChild(cb);const ok=document.createElement('span');ok.textContent='✓ Keine Fehler gefunden.';rb.appendChild(ok);return;}
+  rb.className='spell-result show spell-issues';rb.innerHTML='';
+  const cb=document.createElement('button');cb.className='spell-close-btn';cb.type='button';cb.textContent='✕';cb.onclick=function(){rb.classList.remove('show');};rb.appendChild(cb);
+  const sum=document.createElement('div');sum.textContent='⚠ '+matches.length+' mögliche(r) Fehler:';rb.appendChild(sum);
+  const hl=document.createElement('div');hl.className='spell-highlighted-text';
+  let html='',pos=0;
+  matches.slice().sort(function(a,b){return a.offset-b.offset;}).forEach(function(m){
+    if(m.offset<pos)return;html+=escapeHtml(originalText.substring(pos,m.offset));
+    html+='<mark class="spell-mark" title="'+(m.shortMessage||m.message||'')+'">'+escapeHtml(originalText.substring(m.offset,m.offset+m.length))+'</mark>';
+    pos=m.offset+m.length;
+  });
+  html+=escapeHtml(originalText.substring(pos));hl.innerHTML=html;rb.appendChild(hl);
+  const list=document.createElement('ul');
+  matches.slice(0,12).forEach(function(m){
+    const li=document.createElement('li');
+    const os=document.createElement('span');os.className='spell-orig';os.textContent=originalText.substring(m.offset,m.offset+m.length);li.appendChild(os);
+    if(m.replacements&&m.replacements.length){const ar=document.createTextNode(' → ');li.appendChild(ar);const fs=document.createElement('span');fs.className='spell-fix';fs.textContent=m.replacements.slice(0,3).map(function(r){return r.value;}).join(' / ');li.appendChild(fs);}
+    const ms=document.createElement('div');ms.style.cssText='font-size:11px;color:#7a6a4a;margin-top:1px;';ms.textContent=m.shortMessage||m.message||'';li.appendChild(ms);
+    list.appendChild(li);
+  });
+  rb.appendChild(list);
+}
+window.kiModeUmschalten=function(el){
+  const aktiv=!el.classList.contains('on');el.classList.toggle('on',aktiv);el.setAttribute('aria-checked',aktiv?'true':'false');
+  const kb=document.getElementById('kiFeedbackBtn');if(kb)kb.disabled=!aktiv;
+  document.querySelectorAll('[data-ki-pill]').forEach(function(p){p.textContent=aktiv?'Modus: KI-Feedback verfügbar':'Modus: Rechtschreibprüfung (LanguageTool)';p.classList.toggle('on',aktiv);});
+};
+window.kiFeedbackKlick=function(btn){
+  const rb=document.getElementById('kiFeedbackResult');
+  rb.innerHTML='<div class="kf-feedback-box kf-error"><span class="kf-feedback-label">Hinweis</span><p>KI-Feedback ist auf den Aktuell-Seiten noch nicht an den Produktions-Worker angebunden.</p></div>';
+};
+const ERWEITERT_KEY = 'abu_erweiterte_nutzung_aktuell';
+function wendeErweiterteNutzungAn() {
+  const aktiv = localStorage.getItem(ERWEITERT_KEY) === '1';
+  const kta = document.getElementById('kiToggleArea'); if (kta) kta.style.display = aktiv ? 'flex' : 'none';
+  const kba = document.getElementById('kiFeedbackBtnArea'); if (kba) kba.style.display = aktiv ? 'flex' : 'none';
+  const link = document.getElementById('erweiterteNutzungLink'); if (link) link.textContent = aktiv ? '⚙ Erweiterte Nutzung (an)' : '⚙ Erweiterte Nutzung';
+}
+function erweiterteNutzungUmschalten() {
+  const aktuell = localStorage.getItem(ERWEITERT_KEY) === '1';
+  if (!aktuell) { const e = prompt('Passwort:'); if (!e || e !== 'abu') { if (e !== null) alert('Falsches Passwort.'); return; } }
+  try { localStorage.setItem(ERWEITERT_KEY, aktuell ? '0' : '1'); } catch(e) {}
+  wendeErweiterteNutzungAn();
+}
+document.addEventListener('DOMContentLoaded', wendeErweiterteNutzungAn);
+document.addEventListener('copy',function(e){
+  const sel=window.getSelection();if(!sel||!sel.rangeCount)return;
+  const node=sel.getRangeAt(0).commonAncestorContainer;
+  const el=node.nodeType===1?node:node.parentElement;
+  if(el&&el.closest('.sol-inline,.sol-inline-sm,.kf-feedback-box'))e.preventDefault();
+});
+</script>
+<button type="button" id="qrBadge" class="qr-badge" aria-label="QR-Code zu dieser Uebungsseite">
+  <span id="qrCodeBox"></span>
+  <span id="qrBadgeLabel" class="qr-badge-label">Online-Version</span>
+</button>
+<script>
+(function(){
+  var badge = document.getElementById("qrBadge");
+  if (!badge || typeof QRCode === "undefined") return;
+  var box = document.getElementById("qrCodeBox");
+  var label = document.getElementById("qrBadgeLabel");
+  var large = false, pinned = false;
+  function render(){
+    box.innerHTML = "";
+    var size = large ? 220 : 64;
+    new QRCode(box, { text: window.location.href, width: size, height: size, correctLevel: QRCode.CorrectLevel.M });
+    label.textContent = large ? "Weg bewegen / erneut tippen" : "Online-Version";
+  }
+  badge.addEventListener("mouseenter", function(){ large = true; render(); });
+  badge.addEventListener("mouseleave", function(){ if (!pinned) { large = false; render(); } });
+  badge.addEventListener("click", function(){ pinned = !pinned; large = pinned; render(); });
+  render();
+})();
+</script>
+</body>
+</html>
