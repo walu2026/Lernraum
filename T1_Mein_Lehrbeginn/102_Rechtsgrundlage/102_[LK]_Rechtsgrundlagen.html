@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>102 · Grundwissen: Rechtsgrundlagen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#C1392B; --t1-dark:#96281B; --t1-light:#FDEDEB;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --again:#B8860B; --again-bg:#FDF6E3;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px}
+.breadcrumb{background:#f7f7f7;border-bottom:1px solid #ccc;font-size:12px;color:#444;padding:6px 10px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.breadcrumb a{color:var(--t1-dark);text-decoration:none}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:640px;margin:0 auto;padding:28px 20px 80px}
+.seiten-einstieg{font-size:.95rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:20px}
+
+.progress-row{display:flex;align-items:center;gap:12px;margin-bottom:18px;font-size:.85rem;color:var(--ink-soft)}
+.progress-bar{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;background:var(--ok);width:0%;transition:width .25s}
+.progress-count{font-family:'JetBrains Mono',monospace;font-size:.8rem;white-space:nowrap}
+
+.hidden{display:none !important}
+
+.mode-switch{display:flex;gap:6px;margin-bottom:14px;background:var(--line);padding:4px;border-radius:11px}
+.mode-btn{flex:1;padding:8px 10px;border:none;border-radius:8px;background:transparent;font-size:.82rem;font-weight:700;color:var(--ink-soft);cursor:pointer;font-family:inherit}
+.mode-btn.active{background:#fff;color:var(--t1-dark);box-shadow:0 1px 4px rgba(0,0,0,.1)}
+
+.deck{margin-bottom:16px}
+.card-counter{text-align:center;font-size:.8rem;color:var(--ink-soft);margin-bottom:8px;font-family:'JetBrains Mono',monospace}
+.flashcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:36px 28px;min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.04);user-select:none;transition:box-shadow .15s}
+.flashcard:hover{box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.flashcard .side-label{font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t1);margin-bottom:14px}
+.flashcard .content{font-size:1.08rem;font-weight:600;color:var(--ink)}
+.flashcard.is-back .content{font-weight:500;color:var(--ink-soft);text-align:left}
+.flashcard .a-intro{font-weight:700;color:var(--ink);margin-bottom:8px}
+.flashcard .a-list{padding-left:22px;margin:0}
+.flashcard .a-list li{margin:5px 0}
+.flashcard .hint{margin-top:18px;font-size:.78rem;color:#9aa1ab}
+.flashcard.done{border-color:var(--ok);background:var(--ok-bg)}
+.flashcard.again-marked{border-color:var(--again);background:var(--again-bg)}
+
+.typecard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 26px;transition:box-shadow .15s}
+.typecard .side-label{font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t1);margin-bottom:10px}
+.typecard .type-q{font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:14px}
+.typecard textarea{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;font-family:inherit;font-size:.95rem;resize:vertical;margin-bottom:12px}
+.typecard textarea:focus{outline:none;border-color:var(--t1)}
+.btn-reveal{width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid var(--t1);background:var(--t1-light);color:var(--t1-dark);font-weight:700;font-size:.9rem;cursor:pointer;font-family:inherit}
+.btn-reveal:hover{filter:brightness(.97)}
+.btn-reveal:disabled{opacity:.5;cursor:not-allowed}
+.type-answer-box{margin-top:16px;padding-top:16px;border-top:1px dashed var(--line)}
+.type-answer-box .side-label{color:var(--ok)}
+.type-answer-box .content{font-size:1rem;color:var(--ink-soft)}
+.type-answer-box .a-intro{font-weight:700;color:var(--ink);margin-bottom:8px}
+.type-answer-box .a-list{padding-left:22px;margin:0}
+.type-answer-box .a-list li{margin:5px 0}
+.typecard.done{border-color:var(--ok);background:var(--ok-bg)}
+.typecard.again-marked{border-color:var(--again);background:var(--again-bg)}
+
+.rate-row{display:flex;gap:10px;margin-top:14px}
+.rate-row.hidden{display:none}
+.btn{flex:1;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);background:#fff;font-weight:700;font-size:.9rem;cursor:pointer;font-family:inherit;transition:filter .15s}
+.btn:hover{filter:brightness(.97)}
+.btn-ok{border-color:var(--ok);color:var(--ok)}
+.btn-ok:hover{background:var(--ok-bg)}
+.btn-again{border-color:var(--again);color:var(--again)}
+.btn-again:hover{background:var(--again-bg)}
+
+.tool-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.tool-btn{padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:#fff;font-size:.82rem;color:var(--ink-soft);cursor:pointer;font-family:inherit}
+.tool-btn:hover{border-color:var(--t1);color:var(--t1)}
+.done-banner{display:none;text-align:center;background:var(--ok-bg);border:1px solid var(--ok);border-radius:12px;padding:20px;margin-bottom:16px;color:var(--ok);font-weight:700}
+.done-banner.show{display:block}
+a{color:var(--t1)}
+
+.overview{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+.overview-actions{display:flex;justify-content:flex-end;margin-bottom:10px}
+.overview-item{padding:14px 0;border-bottom:1px solid var(--line)}
+.overview-item:last-child{border-bottom:none}
+.overview-item .oq{font-weight:700;color:var(--ink);margin-bottom:8px}
+.overview-item .oa{font-size:.92rem;color:var(--ink-soft)}
+.overview-item .oa .a-intro{font-weight:700;color:var(--ink);margin-bottom:6px}
+.overview-item .oa .a-list{padding-left:20px;margin:0}
+.overview-item .oa .a-list li{margin:4px 0}
+@media print{
+  .breadcrumb,.topbar,.mode-switch,.progress-row,.done-banner,.tool-row,.overview-actions{display:none !important}
+  .overview{border:none;box-shadow:none;padding:0}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+
+<div class="breadcrumb">
+  <a href="102_Aufgaben.html">← Zurück zur Aufgabenübersicht</a>
+  <a href="../../index.html">⌂ Startseite</a>
+</div>
+
+<div class="topbar">
+  <span class="tag">102 · [LK]</span>
+  <h1>Grundwissen: Rechtsgrundlagen</h1>
+  <a class="nav" href="102_[TH]_Rechtsgrundlagen.html">→ Theorie dazu</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg"><strong>Lernkärtchen zum Wiederholen.</strong> Wähle unten «Umdrehen» (wie die gedruckten Karteikärtchen) oder «Eintippen» (erst selbst antworten, dann vergleichen – strengt mehr an, bringt aber mehr). Danach ehrlich einschätzen: «Kann ich» oder «Noch üben». Der Fortschritt wird auf diesem Gerät gespeichert.</p>
+
+<div class="progress-row">
+  <span class="progress-count" id="progressCount">0 / 5 gekonnt</span>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<div class="done-banner" id="doneBanner">🎉 Alle Karten gekonnt! Mit «Mischen» oder «Nochmal von vorne» kannst du weiter üben.</div>
+
+<div class="mode-switch">
+  <button class="mode-btn active" id="modeFlipBtn" onclick="setMode('flip')">👆 Umdrehen</button>
+  <button class="mode-btn" id="modeTypeBtn" onclick="setMode('type')">🖊️ Eintippen</button>
+  <button class="mode-btn" id="modeOverviewBtn" onclick="setMode('overview')">📄 Alle auf einen Blick</button>
+</div>
+
+<div class="deck" id="deck">
+  <div class="card-counter" id="cardCounter">Karte 1 von 5</div>
+  <div class="flashcard" id="flashcard" onclick="flipCard()">
+    <div class="side-label" id="sideLabel">Frage</div>
+    <div class="content" id="cardContent">…</div>
+    <div class="hint" id="cardHint">Antippen zum Umdrehen</div>
+  </div>
+  <div class="typecard hidden" id="typecard">
+    <div class="side-label">Frage</div>
+    <div class="type-q" id="typeQuestion">…</div>
+    <textarea id="typeAnswerInput" rows="4" placeholder="Tippe deine Antwort ein, bevor du sie vergleichst …"></textarea>
+    <button class="btn-reveal" id="revealBtn" onclick="revealTypedAnswer()">Antwort anzeigen &amp; vergleichen</button>
+    <div class="type-answer-box hidden" id="typeAnswerBox">
+      <div class="side-label">Musterantwort</div>
+      <div class="content" id="typeAnswerContent"></div>
+    </div>
+  </div>
+  <div class="rate-row hidden" id="rateRow">
+    <button class="btn btn-again" onclick="rateCard('again')">↻ Noch üben</button>
+    <button class="btn btn-ok" onclick="rateCard('ok')">✓ Kann ich</button>
+  </div>
+</div>
+
+<div class="tool-row" id="toolRow">
+  <button class="tool-btn" onclick="shuffleDeck()">🔀 Mischen</button>
+  <button class="tool-btn" onclick="repeatOpenOnly()">🔁 Nur «noch üben» wiederholen</button>
+  <button class="tool-btn" onclick="resetProgress()">↺ Fortschritt zurücksetzen</button>
+</div>
+
+<div class="overview hidden" id="overviewCard">
+  <div class="overview-actions"><button class="tool-btn" onclick="window.print()">🖨️ Drucken</button></div>
+  <div id="overviewList"></div>
+</div>
+
+<p style="color:#5a5a52;font-size:12px;font-family:'JetBrains Mono',monospace;margin-top:28px;border-top:1px solid #ccc9be;padding-top:12px;">
+  102 · Grundwissen – Rechtsgrundlagen · Thema 1: Mein Lehrbeginn — Quelle: Orientierungswissen EFZ (SLP Kt. SG)
+</p>
+
+</div>
+
+<script>
+const CARDS = [
+  { q: "Erklären Sie den Begriff Urteilsfähigkeit.", a: "Urteilsfähigkeit ist die Fähigkeit, die Folgen der eigenen Handlungen abschätzen zu können." },
+  { q: "Erklären Sie den Begriff Volljährigkeit.", a: "Mit vollendetem 18. Altersjahr wird man volljährig." },
+  { q: "Erklären Sie den Begriff Handlungsfähigkeit.", a: "Handlungsfähigkeit ist die Fähigkeit, durch die eigenen Handlungen Rechte und Pflichten zu begründen. Voraussetzung dafür: Urteilsfähigkeit und Volljährigkeit." },
+  { q: "Unterscheiden Sie öffentliches und privates Recht.", a: ["Öffentliches Recht: regelt die Beziehung der Person zum Staat", "Privates Recht: regelt die Beziehungen zwischen (natürlichen und juristischen) Personen"] },
+  { q: "Erklären Sie die Begriffe Rechtsfähigkeit und beschränkte Handlungsunfähigkeit.", a: ["Rechtsfähigkeit: die Fähigkeit, Rechte und Pflichten zu haben – jede Person ist rechtsfähig", "Beschränkte Handlungsunfähigkeit: gilt für Personen, die zwar urteilsfähig, aber noch nicht volljährig sind"] },
+];
+
+function escapeHtml(s) {
+  const d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function renderAnswerHtml(card) {
+  let html = '';
+  if (card.aIntro) html += '<div class="a-intro">' + escapeHtml(card.aIntro) + '</div>';
+  if (Array.isArray(card.a)) {
+    html += '<ul class="a-list">' + card.a.map(item => '<li>' + escapeHtml(item) + '</li>').join('') + '</ul>';
+  } else {
+    html += '<div>' + escapeHtml(card.a) + '</div>';
+  }
+  return html;
+}
+
+const STORE_KEY = 'abu_lk_102';
+let order = CARDS.map((_, i) => i);
+let pos = 0;
+let flipped = false;
+let results = {};       // idx -> 'ok' | 'again'
+let openOnlyMode = false;
+let mode = 'flip';      // 'flip' | 'type' | 'overview'
+
+function setMode(m) {
+  mode = m;
+  document.getElementById('modeFlipBtn').classList.toggle('active', m === 'flip');
+  document.getElementById('modeTypeBtn').classList.toggle('active', m === 'type');
+  document.getElementById('modeOverviewBtn').classList.toggle('active', m === 'overview');
+  document.getElementById('deck').classList.toggle('hidden', m === 'overview');
+  document.getElementById('toolRow').classList.toggle('hidden', m === 'overview');
+  document.getElementById('overviewCard').classList.toggle('hidden', m !== 'overview');
+  document.getElementById('flashcard').classList.toggle('hidden', m !== 'flip');
+  document.getElementById('typecard').classList.toggle('hidden', m !== 'type');
+  if (m === 'overview') buildOverview();
+  else renderCard();
+}
+
+function buildOverview() {
+  const list = document.getElementById('overviewList');
+  list.innerHTML = CARDS.map((c, i) =>
+    '<div class="overview-item"><div class="oq">' + (i + 1) + '. ' + escapeHtml(c.q) + '</div><div class="oa">' + renderAnswerHtml(c) + '</div></div>'
+  ).join('');
+}
+
+function loadResults() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    results = raw ? JSON.parse(raw) : {};
+  } catch (e) { results = {}; }
+}
+function saveResults() {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(results)); } catch (e) {}
+}
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function updateProgress() {
+  const okCount = Object.values(results).filter(v => v === 'ok').length;
+  document.getElementById('progressCount').textContent = okCount + ' / ' + CARDS.length + ' gekonnt';
+  document.getElementById('progressFill').style.width = (okCount / CARDS.length * 100) + '%';
+  document.getElementById('doneBanner').classList.toggle('show', okCount === CARDS.length);
+}
+
+function renderCard() {
+  const flashDeck = document.getElementById('flashcard');
+  const typeDeck = document.getElementById('typecard');
+  const rateRow = document.getElementById('rateRow');
+  flipped = false;
+  rateRow.classList.add('hidden');
+  flashDeck.classList.remove('is-back', 'done', 'again-marked');
+  typeDeck.classList.remove('done', 'again-marked');
+  document.getElementById('typeAnswerBox').classList.add('hidden');
+  document.getElementById('typeAnswerInput').value = '';
+  document.getElementById('revealBtn').disabled = false;
+
+  if (order.length === 0) {
+    document.getElementById('cardCounter').textContent = 'Keine Karten in dieser Auswahl';
+    document.getElementById('sideLabel').textContent = '';
+    document.getElementById('cardContent').textContent = 'Alle Karten sind als «Kann ich» markiert – wechsle zurück mit «Mischen».';
+    document.getElementById('cardHint').textContent = '';
+    document.getElementById('typeQuestion').textContent = 'Alle Karten sind als «Kann ich» markiert – wechsle zurück mit «Mischen».';
+    return;
+  }
+  if (pos >= order.length) pos = 0;
+  const idx = order[pos];
+  document.getElementById('cardCounter').textContent = 'Karte ' + (pos + 1) + ' von ' + order.length;
+  document.getElementById('sideLabel').textContent = 'Frage';
+  document.getElementById('cardContent').textContent = CARDS[idx].q;
+  document.getElementById('cardHint').textContent = 'Antippen zum Umdrehen';
+  document.getElementById('typeQuestion').textContent = CARDS[idx].q;
+  if (results[idx] === 'ok') { flashDeck.classList.add('done'); typeDeck.classList.add('done'); }
+  if (results[idx] === 'again') { flashDeck.classList.add('again-marked'); typeDeck.classList.add('again-marked'); }
+}
+
+function revealTypedAnswer() {
+  if (order.length === 0) return;
+  const idx = order[pos];
+  document.getElementById('typeAnswerContent').innerHTML = renderAnswerHtml(CARDS[idx]);
+  document.getElementById('typeAnswerBox').classList.remove('hidden');
+  document.getElementById('revealBtn').disabled = true;
+  document.getElementById('rateRow').classList.remove('hidden');
+}
+
+function flipCard() {
+  if (mode !== 'flip' || order.length === 0) return;
+  const deck = document.getElementById('flashcard');
+  const idx = order[pos];
+  flipped = !flipped;
+  if (flipped) {
+    deck.classList.add('is-back');
+    document.getElementById('sideLabel').textContent = 'Antwort';
+    document.getElementById('cardContent').innerHTML = renderAnswerHtml(CARDS[idx]);
+    document.getElementById('cardHint').textContent = '';
+    document.getElementById('rateRow').classList.remove('hidden');
+  } else {
+    deck.classList.remove('is-back');
+    document.getElementById('sideLabel').textContent = 'Frage';
+    document.getElementById('cardContent').textContent = CARDS[idx].q;
+    document.getElementById('cardHint').textContent = 'Antippen zum Umdrehen';
+    document.getElementById('rateRow').classList.add('hidden');
+  }
+}
+
+function rateCard(status) {
+  const idx = order[pos];
+  results[idx] = status;
+  saveResults();
+  updateProgress();
+  if (openOnlyMode && status === 'ok') {
+    order.splice(pos, 1);
+  } else {
+    pos++;
+  }
+  if (pos >= order.length) pos = 0;
+  renderCard();
+}
+
+function shuffleDeck() {
+  openOnlyMode = false;
+  order = shuffle(CARDS.map((_, i) => i));
+  pos = 0;
+  renderCard();
+}
+
+function repeatOpenOnly() {
+  openOnlyMode = true;
+  const open = CARDS.map((_, i) => i).filter(i => results[i] !== 'ok');
+  order = shuffle(open);
+  pos = 0;
+  renderCard();
+}
+
+function resetProgress() {
+  if (!confirm('Fortschritt für diese Lernkärtchen wirklich zurücksetzen?')) return;
+  results = {};
+  saveResults();
+  openOnlyMode = false;
+  order = CARDS.map((_, i) => i);
+  pos = 0;
+  updateProgress();
+  renderCard();
+}
+
+loadResults();
+updateProgress();
+renderCard();
+</script>
+</body>
+</html>
