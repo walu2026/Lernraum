@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>101 · Lernkärtchen: Lehrvertrag</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --t1:#C1392B; --t1-dark:#96281B; --t1-light:#FDEDEB;
+  --ink:#1E2530; --ink-soft:#4A5568; --line:#E3E7ED; --bg:#F7F8FA; --card:#FFFFFF;
+  --ok:#2E7D32; --ok-bg:#E8F5E9; --again:#B8860B; --again-bg:#FDF6E3;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px}
+.breadcrumb{background:#f7f7f7;border-bottom:1px solid #ccc;font-size:12px;color:#444;padding:6px 10px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.breadcrumb a{color:var(--t1-dark);text-decoration:none}
+.topbar{background:var(--t1);color:#fff;padding:14px 22px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.topbar .tag{font-family:'JetBrains Mono',monospace;font-size:.78rem;background:rgba(255,255,255,.18);padding:3px 10px;border-radius:6px;letter-spacing:.05em}
+.topbar h1{font-size:1.05rem;font-weight:700}
+.topbar a.nav{margin-left:auto;color:#fff;font-size:.85rem;text-decoration:none;opacity:.9}
+.wrap{max-width:640px;margin:0 auto;padding:28px 20px 80px}
+.seiten-einstieg{font-size:.95rem;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 20px;margin-bottom:20px}
+
+.progress-row{display:flex;align-items:center;gap:12px;margin-bottom:18px;font-size:.85rem;color:var(--ink-soft)}
+.progress-bar{flex:1;height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.progress-fill{height:100%;background:var(--ok);width:0%;transition:width .25s}
+.progress-count{font-family:'JetBrains Mono',monospace;font-size:.8rem;white-space:nowrap}
+
+.deck{margin-bottom:16px}
+.card-counter{text-align:center;font-size:.8rem;color:var(--ink-soft);margin-bottom:8px;font-family:'JetBrains Mono',monospace}
+.flashcard{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:36px 28px;min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.04);user-select:none;transition:box-shadow .15s}
+.flashcard:hover{box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.flashcard .side-label{font-family:'JetBrains Mono',monospace;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--t1);margin-bottom:14px}
+.flashcard .content{font-size:1.08rem;font-weight:600;color:var(--ink)}
+.flashcard.is-back .content{font-weight:500;color:var(--ink-soft);text-align:left}
+.flashcard .hint{margin-top:18px;font-size:.78rem;color:#9aa1ab}
+.flashcard.done{border-color:var(--ok);background:var(--ok-bg)}
+.flashcard.again-marked{border-color:var(--again);background:var(--again-bg)}
+
+.rate-row{display:flex;gap:10px;margin-top:14px}
+.rate-row.hidden{display:none}
+.btn{flex:1;padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);background:#fff;font-weight:700;font-size:.9rem;cursor:pointer;font-family:inherit;transition:filter .15s}
+.btn:hover{filter:brightness(.97)}
+.btn-ok{border-color:var(--ok);color:var(--ok)}
+.btn-ok:hover{background:var(--ok-bg)}
+.btn-again{border-color:var(--again);color:var(--again)}
+.btn-again:hover{background:var(--again-bg)}
+
+.tool-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.tool-btn{padding:8px 14px;border-radius:8px;border:1px solid var(--line);background:#fff;font-size:.82rem;color:var(--ink-soft);cursor:pointer;font-family:inherit}
+.tool-btn:hover{border-color:var(--t1);color:var(--t1)}
+.done-banner{display:none;text-align:center;background:var(--ok-bg);border:1px solid var(--ok);border-radius:12px;padding:20px;margin-bottom:16px;color:var(--ok);font-weight:700}
+.done-banner.show{display:block}
+a{color:var(--t1)}
+</style>
+</head>
+<body>
+
+<div class="breadcrumb">
+  <a href="101_Aufgaben.html">← Zurück zur Aufgabenübersicht</a>
+  <a href="../../index.html">⌂ Startseite</a>
+</div>
+
+<div class="topbar">
+  <span class="tag">101 · [LK]</span>
+  <h1>Lernkärtchen: Lehrvertrag</h1>
+  <a class="nav" href="101_[TH]_Lehrvertrag_v4.html">→ Theorie dazu</a>
+</div>
+<div class="wrap">
+
+<p class="seiten-einstieg">Grundwissen zum Lehrvertrag zum Wiederholen – wie die gedruckten Karteikärtchen, nur digital. Karte antippen zum Umdrehen, danach ehrlich einschätzen: «Kann ich» oder «Noch üben». Der Fortschritt wird auf diesem Gerät gespeichert.</p>
+
+<div class="progress-row">
+  <span class="progress-count" id="progressCount">0 / 6 gekonnt</span>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+</div>
+
+<div class="done-banner" id="doneBanner">🎉 Alle Karten gekonnt! Mit «Mischen» oder «Nochmal von vorne» kannst du weiter üben.</div>
+
+<div class="deck">
+  <div class="card-counter" id="cardCounter">Karte 1 von 6</div>
+  <div class="flashcard" id="flashcard" onclick="flipCard()">
+    <div class="side-label" id="sideLabel">Frage</div>
+    <div class="content" id="cardContent">…</div>
+    <div class="hint" id="cardHint">Antippen zum Umdrehen</div>
+  </div>
+  <div class="rate-row hidden" id="rateRow">
+    <button class="btn btn-again" onclick="rateCard('again')">↻ Noch üben</button>
+    <button class="btn btn-ok" onclick="rateCard('ok')">✓ Kann ich</button>
+  </div>
+</div>
+
+<div class="tool-row">
+  <button class="tool-btn" onclick="shuffleDeck()">🔀 Mischen</button>
+  <button class="tool-btn" onclick="repeatOpenOnly()">🔁 Nur «noch üben» wiederholen</button>
+  <button class="tool-btn" onclick="resetProgress()">↺ Fortschritt zurücksetzen</button>
+</div>
+
+<p style="color:#5a5a52;font-size:12px;font-family:'JetBrains Mono',monospace;margin-top:28px;border-top:1px solid #ccc9be;padding-top:12px;">
+  101 · Lernkärtchen – Lehrvertrag · Thema 1: Mein Lehrbeginn — Quelle: Orientierungswissen EFZ (BZBS)
+</p>
+
+</div>
+
+<script>
+const CARDS = [
+  { q: "Nennen Sie fünf Inhalte, die im Lehrvertrag geregelt werden.",
+    a: "Art und Dauer der beruflichen Ausbildung (genaue Berufsbezeichnung) · Dauer der Probezeit · Arbeitszeit · Lohn · Ferien" },
+  { q: "Formulieren Sie die gesetzliche Hauptpflicht der Lernenden.",
+    a: "Die Lernenden haben alles zu tun, um das Lehrziel zu erreichen." },
+  { q: "Zählen Sie drei Rechte der Lernenden in der Lehre auf.",
+    a: "Zum Beispiel: fachgemässe Ausbildung · Berufsschulunterricht · Lohn · Lohnfortzahlung bei Unfall/Krankheit · Ferien · Schutz der Gesundheit am Arbeitsplatz · Lehrzeugnis" },
+  { q: "Zählen Sie drei Pflichten der Lernenden in der Lehre auf.",
+    a: "Zum Beispiel: persönliche Arbeitspflicht · Anordnungen der Ausbildungsverantwortlichen befolgen · Berufsfachschule besuchen · Sorgfaltspflicht · Treuepflicht" },
+  { q: "Zählen Sie drei Rechte der Berufsbildenden auf.",
+    a: "Zum Beispiel: Arbeit zuteilen · Überstunden anordnen · Rechenschaft über Arbeit einholen · über schulische Leistungen informiert werden · Zeitpunkt der Ferien bestimmen" },
+  { q: "Zählen Sie drei Pflichten der Berufsbildenden auf.",
+    a: "Zum Beispiel: fachgemäss ausbilden · Zeit für Berufsfachschule und üK gewähren · Lernende versichern · Lohn bezahlen · Lehrzeugnis ausstellen" },
+];
+
+const STORE_KEY = 'abu_lk_101';
+let order = CARDS.map((_, i) => i);
+let pos = 0;
+let flipped = false;
+let results = {};       // idx -> 'ok' | 'again'
+let openOnlyMode = false;
+
+function loadResults() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    results = raw ? JSON.parse(raw) : {};
+  } catch (e) { results = {}; }
+}
+function saveResults() {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(results)); } catch (e) {}
+}
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function updateProgress() {
+  const okCount = Object.values(results).filter(v => v === 'ok').length;
+  document.getElementById('progressCount').textContent = okCount + ' / ' + CARDS.length + ' gekonnt';
+  document.getElementById('progressFill').style.width = (okCount / CARDS.length * 100) + '%';
+  document.getElementById('doneBanner').classList.toggle('show', okCount === CARDS.length);
+}
+
+function renderCard() {
+  const deck = document.getElementById('flashcard');
+  const rateRow = document.getElementById('rateRow');
+  flipped = false;
+  rateRow.classList.add('hidden');
+  deck.classList.remove('is-back', 'done', 'again-marked');
+
+  if (order.length === 0) {
+    document.getElementById('cardCounter').textContent = 'Keine Karten in dieser Auswahl';
+    document.getElementById('sideLabel').textContent = '';
+    document.getElementById('cardContent').textContent = 'Alle Karten sind als «Kann ich» markiert – wechsle zurück mit «Mischen».';
+    document.getElementById('cardHint').textContent = '';
+    return;
+  }
+  if (pos >= order.length) pos = 0;
+  const idx = order[pos];
+  document.getElementById('cardCounter').textContent = 'Karte ' + (pos + 1) + ' von ' + order.length;
+  document.getElementById('sideLabel').textContent = 'Frage';
+  document.getElementById('cardContent').textContent = CARDS[idx].q;
+  document.getElementById('cardHint').textContent = 'Antippen zum Umdrehen';
+  if (results[idx] === 'ok') deck.classList.add('done');
+  if (results[idx] === 'again') deck.classList.add('again-marked');
+}
+
+function flipCard() {
+  if (order.length === 0) return;
+  const deck = document.getElementById('flashcard');
+  const idx = order[pos];
+  flipped = !flipped;
+  if (flipped) {
+    deck.classList.add('is-back');
+    document.getElementById('sideLabel').textContent = 'Antwort';
+    document.getElementById('cardContent').textContent = CARDS[idx].a;
+    document.getElementById('cardHint').textContent = '';
+    document.getElementById('rateRow').classList.remove('hidden');
+  } else {
+    deck.classList.remove('is-back');
+    document.getElementById('sideLabel').textContent = 'Frage';
+    document.getElementById('cardContent').textContent = CARDS[idx].q;
+    document.getElementById('cardHint').textContent = 'Antippen zum Umdrehen';
+    document.getElementById('rateRow').classList.add('hidden');
+  }
+}
+
+function rateCard(status) {
+  const idx = order[pos];
+  results[idx] = status;
+  saveResults();
+  updateProgress();
+  if (openOnlyMode && status === 'ok') {
+    order.splice(pos, 1);
+  } else {
+    pos++;
+  }
+  if (pos >= order.length) pos = 0;
+  renderCard();
+}
+
+function shuffleDeck() {
+  openOnlyMode = false;
+  order = shuffle(CARDS.map((_, i) => i));
+  pos = 0;
+  renderCard();
+}
+
+function repeatOpenOnly() {
+  openOnlyMode = true;
+  const open = CARDS.map((_, i) => i).filter(i => results[i] !== 'ok');
+  order = shuffle(open);
+  pos = 0;
+  renderCard();
+}
+
+function resetProgress() {
+  if (!confirm('Fortschritt für diese Lernkärtchen wirklich zurücksetzen?')) return;
+  results = {};
+  saveResults();
+  openOnlyMode = false;
+  order = CARDS.map((_, i) => i);
+  pos = 0;
+  updateProgress();
+  renderCard();
+}
+
+loadResults();
+updateProgress();
+renderCard();
+</script>
+</body>
+</html>

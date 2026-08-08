@@ -136,6 +136,7 @@ const LINKS = {
   '100_Onboarding': 'T1_Mein_Lehrbeginn/100_Einstieg/100_Onboarding.html',
   '100_Schullehrplan': 'T1_Mein_Lehrbeginn/100_Einstieg/100_Schullehrplan_ABU.html',
   '100_Übung': 'T1_Mein_Lehrbeginn/100_Einstieg/100_[UE]_Schullehrplan_ABU.html',
+  '101_Lernkärtchen': 'T1_Mein_Lehrbeginn/101_Lehrvertrag/101_[LK]_Lehrvertrag.html',
   '101_Theorie': 'T1_Mein_Lehrbeginn/101_Lehrvertrag/101_[TH]_Lehrvertrag_v4.html',
   '101_Übungen': 'T1_Mein_Lehrbeginn/101_Lehrvertrag/101_Aufgaben.html',
   '101_Quiz': 'T1_Mein_Lehrbeginn/101_Lehrvertrag/101_[QZ]_Lehrvertrag.html',
@@ -360,6 +361,7 @@ window.onload = function() {
         { key: id+'_Übungen',  icon:'✏️', cls:'fi-e', name: id+'_Übungen '+d.title,  hint:'Interaktive Übungen nach Lernzielen' },
         { key: id+'_Quiz',     icon:'🧠', cls:'fi-q', name: id+'_Quiz '+d.title,      hint:'Spielerisches Repetieren mit Punkten und Rängen' },
         { key: id+'_Test',     icon:'📝', cls:'fi-x', name: id+'_Test '+d.title,      hint:'Standortbestimmung, Prüfungsmodus' },
+        ...(LINKS[id+'_Lernkärtchen'] ? [ { key: id+'_Lernkärtchen', icon:'🗂️', cls:'fi-t', name: id+'_Lernkärtchen '+d.title, hint:'Grundwissen zum Wiederholen (Selbsttest)' } ] : []),
       ];
 
   const container = document.getElementById('fileCards');
