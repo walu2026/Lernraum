@@ -47,6 +47,14 @@
   .file-arrow { font-size:16px; color:var(--g3); transition:all .15s; }
   .file-card:hover .file-arrow { color:var(--tc,#333); transform:translateX(3px); }
 
+  /* Nebensächliche Karten (Test, Grundwissen): kleiner & dezenter als Theorie/Übungen/Quiz */
+  .file-cards-secondary { display:flex; flex-direction:column; gap:6px; margin-top:2px; }
+  .file-card.secondary { padding:10px 14px; box-shadow:none; border-color:#EEE; gap:11px; }
+  .file-card.secondary .file-icon { width:28px; height:28px; font-size:13px; border-radius:8px; }
+  .file-card.secondary .file-name { font-size:12.5px; font-weight:500; color:var(--g7); }
+  .file-card.secondary .file-hint { font-size:10px; }
+  .file-card.secondary .file-arrow { font-size:13px; }
+
   .not-linked { opacity:0.5; cursor:default; }
   .not-linked:hover { transform:none; box-shadow:0 1px 4px rgba(0,0,0,0.06); border-color:transparent; }
 
@@ -74,6 +82,7 @@
   </div>
 
   <div class="file-cards" id="fileCards"></div>
+  <div class="file-cards-secondary" id="fileCardsSecondary"></div>
   <div class="info-box">💡 Klicke auf eine Karte um die Datei zu öffnen. Falls noch kein Link hinterlegt ist, wende dich an deine Lehrperson.</div>
 </div>
 
@@ -360,15 +369,16 @@ window.onload = function() {
         { key: id+'_Theorie',  icon:'📘', cls:'fi-t', name: id+'_Theorie '+d.title,  hint:'Erklärungen, Grundlagen' },
         { key: id+'_Übungen',  icon:'✏️', cls:'fi-e', name: id+'_Übungen '+d.title,  hint:'Interaktive Übungen nach Lernzielen' },
         { key: id+'_Quiz',     icon:'🧠', cls:'fi-q', name: id+'_Quiz '+d.title,      hint:'Spielerisches Repetieren mit Punkten und Rängen' },
-        { key: id+'_Test',     icon:'📝', cls:'fi-x', name: id+'_Test '+d.title,      hint:'Standortbestimmung, Prüfungsmodus' },
-        ...(LINKS[id+'_Grundwissen'] ? [ { key: id+'_Grundwissen', icon:'🗂️', cls:'fi-t', name: id+'_Grundwissen '+d.title, hint:'Lernkärtchen zum Wiederholen (Selbsttest)' } ] : []),
+        { key: id+'_Test',     icon:'📝', cls:'fi-x', name: id+'_Test '+d.title,      hint:'Standortbestimmung, Prüfungsmodus', secondary:true },
+        ...(LINKS[id+'_Grundwissen'] ? [ { key: id+'_Grundwissen', icon:'🗂️', cls:'fi-x', name: id+'_Grundwissen '+d.title, hint:'Lernkärtchen zum Wiederholen (Selbsttest)', secondary:true } ] : []),
       ];
 
   const container = document.getElementById('fileCards');
+  const containerSecondary = document.getElementById('fileCardsSecondary');
   files.forEach(f => {
     const url = LINKS[f.key];
     const a = document.createElement('a');
-    a.className = 'file-card' + (url ? '' : ' not-linked');
+    a.className = 'file-card' + (f.secondary ? ' secondary' : '') + (url ? '' : ' not-linked');
     a.style.setProperty('--tc', d.tc);
     a.href = url || '#';
     if (url) { a.target = '_blank'; a.rel = 'noopener noreferrer'; }
@@ -379,7 +389,7 @@ window.onload = function() {
         <div class="file-hint">${url ? f.hint : '🔗 Noch kein Link hinterlegt'}</div>
       </div>
       <span class="file-arrow">${url ? '→' : ''}</span>`;
-    container.appendChild(a);
+    (f.secondary ? containerSecondary : container).appendChild(a);
   });
 };
 </script>

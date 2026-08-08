@@ -80,6 +80,21 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(-
 .done-banner{display:none;text-align:center;background:var(--ok-bg);border:1px solid var(--ok);border-radius:12px;padding:20px;margin-bottom:16px;color:var(--ok);font-weight:700}
 .done-banner.show{display:block}
 a{color:var(--t1)}
+
+.overview{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 24px}
+.overview-actions{display:flex;justify-content:flex-end;margin-bottom:10px}
+.overview-item{padding:14px 0;border-bottom:1px solid var(--line)}
+.overview-item:last-child{border-bottom:none}
+.overview-item .oq{font-weight:700;color:var(--ink);margin-bottom:8px}
+.overview-item .oa{font-size:.92rem;color:var(--ink-soft)}
+.overview-item .oa .a-intro{font-weight:700;color:var(--ink);margin-bottom:6px}
+.overview-item .oa .a-list{padding-left:20px;margin:0}
+.overview-item .oa .a-list li{margin:4px 0}
+@media print{
+  .breadcrumb,.topbar,.mode-switch,.progress-row,.done-banner,.tool-row,.overview-actions{display:none !important}
+  .overview{border:none;box-shadow:none;padding:0}
+  body{background:#fff}
+}
 </style>
 </head>
 <body>
@@ -108,9 +123,10 @@ a{color:var(--t1)}
 <div class="mode-switch">
   <button class="mode-btn active" id="modeFlipBtn" onclick="setMode('flip')">👆 Umdrehen</button>
   <button class="mode-btn" id="modeTypeBtn" onclick="setMode('type')">🖊️ Eintippen</button>
+  <button class="mode-btn" id="modeOverviewBtn" onclick="setMode('overview')">📄 Alle auf einen Blick</button>
 </div>
 
-<div class="deck">
+<div class="deck" id="deck">
   <div class="card-counter" id="cardCounter">Karte 1 von 6</div>
   <div class="flashcard" id="flashcard" onclick="flipCard()">
     <div class="side-label" id="sideLabel">Frage</div>
@@ -133,10 +149,15 @@ a{color:var(--t1)}
   </div>
 </div>
 
-<div class="tool-row">
+<div class="tool-row" id="toolRow">
   <button class="tool-btn" onclick="shuffleDeck()">🔀 Mischen</button>
   <button class="tool-btn" onclick="repeatOpenOnly()">🔁 Nur «noch üben» wiederholen</button>
   <button class="tool-btn" onclick="resetProgress()">↺ Fortschritt zurücksetzen</button>
+</div>
+
+<div class="overview hidden" id="overviewCard">
+  <div class="overview-actions"><button class="tool-btn" onclick="window.print()">🖨️ Drucken</button></div>
+  <div id="overviewList"></div>
 </div>
 
 <p style="color:#5a5a52;font-size:12px;font-family:'JetBrains Mono',monospace;margin-top:28px;border-top:1px solid #ccc9be;padding-top:12px;">
@@ -188,15 +209,27 @@ let pos = 0;
 let flipped = false;
 let results = {};       // idx -> 'ok' | 'again'
 let openOnlyMode = false;
-let mode = 'flip';      // 'flip' | 'type'
+let mode = 'flip';      // 'flip' | 'type' | 'overview'
 
 function setMode(m) {
   mode = m;
   document.getElementById('modeFlipBtn').classList.toggle('active', m === 'flip');
   document.getElementById('modeTypeBtn').classList.toggle('active', m === 'type');
+  document.getElementById('modeOverviewBtn').classList.toggle('active', m === 'overview');
+  document.getElementById('deck').classList.toggle('hidden', m === 'overview');
+  document.getElementById('toolRow').classList.toggle('hidden', m === 'overview');
+  document.getElementById('overviewCard').classList.toggle('hidden', m !== 'overview');
   document.getElementById('flashcard').classList.toggle('hidden', m !== 'flip');
   document.getElementById('typecard').classList.toggle('hidden', m !== 'type');
-  renderCard();
+  if (m === 'overview') buildOverview();
+  else renderCard();
+}
+
+function buildOverview() {
+  const list = document.getElementById('overviewList');
+  list.innerHTML = CARDS.map((c, i) =>
+    '<div class="overview-item"><div class="oq">' + (i + 1) + '. ' + escapeHtml(c.q) + '</div><div class="oa">' + renderAnswerHtml(c) + '</div></div>'
+  ).join('');
 }
 
 function loadResults() {
