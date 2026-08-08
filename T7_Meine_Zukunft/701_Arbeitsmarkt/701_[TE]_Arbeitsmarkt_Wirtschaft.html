@@ -47,6 +47,17 @@ button.btn:disabled{opacity:.4;cursor:default}
 .result{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.05rem}
 .result .note{padding:4px 12px;border-radius:8px;background:var(--ink);color:#fff;margin-left:8px}
 @media print{.submitbar,.hinweis,.te-nav{display:none}.sol{display:block}}
+body:not(.te-ok) .wrap,body:not(.te-ok) .submitbar{display:none}
+.te-lock{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:999;padding:20px}
+body.te-ok .te-lock{display:none}
+.te-lock-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:32px 30px;max-width:320px;width:100%;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.08)}
+.te-lock-icon{font-size:2.2rem;margin-bottom:8px}
+.te-lock-box h2{font-size:1.15rem;margin-bottom:6px}
+.te-lock-box p{font-size:.88rem;color:var(--ink-soft);margin-bottom:16px}
+.te-lock-box input{width:100%;font:inherit;padding:10px 12px;border:1.5px solid var(--line);border-radius:8px;margin-bottom:12px;text-align:center;box-sizing:border-box}
+.te-lock-box button{width:100%}
+.te-lock-err{color:var(--err);font-size:.85rem;margin-top:10px;min-height:1em}
+
 </style>
 </head>
 <body>
@@ -61,6 +72,18 @@ button.btn:disabled{opacity:.4;cursor:default}
   <span class="tag">701 · [TE]</span>
   <h1>Test: Arbeitsmarkt &amp; Wirtschaft – Standortbestimmung</h1>
 </div>
+
+<div class="te-lock" id="teLock">
+  <div class="te-lock-box">
+    <div class="te-lock-icon">🔒</div>
+    <h2>Test gesperrt</h2>
+    <p>Bitte das Passwort der Lehrperson eingeben.</p>
+    <input type="password" id="teLockPw" placeholder="Passwort" autocomplete="off">
+    <button class="btn" onclick="teUnlock()">Entsperren</button>
+    <div class="te-lock-err" id="teLockErr"></div>
+  </div>
+</div>
+
 <div class="wrap">
 
 <div class="meta">
@@ -144,6 +167,29 @@ button.btn:disabled{opacity:.4;cursor:default}
 </div>
 
 <script>
+/* Zugriffssperre – kein echter Serverschutz, hält aber Lernende vom
+   beiäufigen Öffnen vor dem Testtermin ab. Passwort hier bei Bedarf
+   ändern; TE_KEY pro Testdatei eindeutig halten, sonst schaltet das
+   Entsperren eines Tests auch andere frei. */
+const TE_PASSWORT = "pruefung701";
+const TE_KEY = 'abu_te_zugang_701_arbeitsmarkt_wirtschaft';
+
+function teUnlock(){
+  const pw = document.getElementById('teLockPw').value;
+  if(pw === TE_PASSWORT){
+    try{localStorage.setItem(TE_KEY,'1');}catch(e){}
+    document.body.classList.add('te-ok');
+  }else{
+    document.getElementById('teLockErr').textContent = 'Falsches Passwort.';
+  }
+}
+document.addEventListener('DOMContentLoaded', function(){
+  if(localStorage.getItem(TE_KEY) === '1') document.body.classList.add('te-ok');
+  const pwField = document.getElementById('teLockPw');
+  pwField.addEventListener('keydown', function(e){ if(e.key === 'Enter') teUnlock(); });
+  if(!document.body.classList.contains('te-ok')) pwField.focus();
+});
+
 // TODO Produktion: Supabase-Submit wie bei den [UE] – Tabelle antworten (name, klasse, datei=SAFE_FN, antworten, auswertung)
 function evaluate(){
   const name=document.getElementById('mName').value.trim();
