@@ -79,6 +79,7 @@
 
 <script>
 const DATA = {
+  '100':{ tc:'#C0392B', tbg:'#FDDBD9', label:'Thema 1 · Mein Lehrbeginn', title:'Einstieg: 1. Schultag', desc:'Digitales Onboarding und der Schullehrplan ABU kennenlernen' },
   '101':{ tc:'#C0392B', tbg:'#FDDBD9', label:'Thema 1 · Mein Lehrbeginn', title:'Lehrvertrag & Rechte/Pflichten', ls:'Lebenssituation A', desc:'Eine Lehre beginnen – Rechte und Pflichten verstehen und wahrnehmen', pre:'110' },
   '102':{ tc:'#C0392B', tbg:'#FDDBD9', label:'Thema 1 · Mein Lehrbeginn', title:'Rechtsgrundlagen', ls:'Lebenssituation B', desc:'In einen neuen Lebensabschnitt eintreten und die eigene Rolle finden', pre:'120' },
   '103':{ tc:'#C0392B', tbg:'#FDDBD9', label:'Thema 1 · Mein Lehrbeginn', title:'Kommunikation & Konflikte', ls:'Lebenssituation C', desc:'Den Alltag zwischen Beruf, Schule und Privatleben organisieren', pre:'130' },
@@ -132,6 +133,9 @@ const DATA = {
 // Links: fill in SharePoint URLs here
 // Format: 'CODE_TYPE': 'https://sharepoint-url...'
 const LINKS = {
+  '100_Onboarding': 'T1_Mein_Lehrbeginn/100_Einstieg/100_Onboarding.html',
+  '100_Schullehrplan': 'T1_Mein_Lehrbeginn/100_Einstieg/100_Schullehrplan_ABU.html',
+  '100_Übung': 'T1_Mein_Lehrbeginn/100_Einstieg/100_[UE]_Schullehrplan_ABU.html',
   '101_Theorie': 'T1_Mein_Lehrbeginn/101_Lehrvertrag/101_[TH]_Lehrvertrag_v4.html',
   '101_Übungen': 'T1_Mein_Lehrbeginn/101_Lehrvertrag/101_Aufgaben.html',
   '101_Quiz': 'T1_Mein_Lehrbeginn/101_Lehrvertrag/101_[QZ]_Lehrvertrag.html',
@@ -342,7 +346,14 @@ window.onload = function() {
   // T9 und T10: nur ein Ordner pro Kachel, kein Theorie/Übungen/Quiz
   const isT9  = id === '901' || id === '902';
   const isT10 = id === '1001' || id === '1002' || id === '1003';
-  const files = (isT9 || isT10)
+  const isEinstieg = id === '100';
+  const files = isEinstieg
+    ? [
+        { key:'100_Onboarding',    icon:'💻', cls:'fi-t', name:'Digitales Onboarding & WLAN',   hint:'Konto, Authenticator, Teams, OneDrive, WLAN einrichten' },
+        { key:'100_Schullehrplan', icon:'📘', cls:'fi-t', name:'Der Schullehrplan ABU',          hint:'Aufbau, Themen, Lernbereiche' },
+        { key:'100_Übung',         icon:'✏️', cls:'fi-e', name:'Übung: Aufbau Schullehrplan',    hint:'Themen, Lehrjahre und Lernbereiche zuordnen' },
+      ]
+    : (isT9 || isT10)
     ? [ { key: id+'_Theorie', icon:'📁', cls:'fi-t', name: d.title, hint:'SharePoint-Ordner öffnen' } ]
     : [
         { key: id+'_Theorie',  icon:'📘', cls:'fi-t', name: id+'_Theorie '+d.title,  hint:'Erklärungen, Grundlagen' },
